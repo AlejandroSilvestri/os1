@@ -1,0 +1,133 @@
+
+=============================================================================
+Versión 1: webcam
+
+Adaptación de ORB-SLAM2 para funcionar con el feed de películas y webcam, con entrada por opencv.
+
+
+LISTO:
+- Se renombra el archivo inicial mono_tum.cc como main.cc, alivianado.
+- Feed webcam
+- Archivo de configuración con webcam calibrada
+- Vocabulario en archivo binario para carga mucho más rápida
+- Variable ArchivoBowBinario para que compile usando vocabulario de archivo binario en lugar de texto.
+- La webcam funcionó el sábado 10/9/16. El sistema funciona completo, sólo falta probar el cierre de bucle.
+- Estoy eliminando las partes que no son monocular.  Deshabilité todos los métodos específicos de estéreo y rgb-d, y funciona.
+- Agregada la visualización de puntos singulares en DrawFrame.
+
+
+
+TODO:
+- Feed películas
+- Uso de g2o y dbow2 como so, quitados del código, preservando solamente .hpp
+- Investigar cómo guardar y cargar el mapa para tracking
+- Traspasar comentarios de orb-slam a orb-slam2
+
+
+MODIFICACIONES:
+Para cargar rápido el vocabulario binario:
+
+System.cc
+#ifdef ArchivoBowBinario
+    bool bVocLoad = mpVocabulary->loadFromBinaryFile(strVocFile);
+#else
+    bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
+#endif
+
+
+TemplatedVocabulary.h
+bool loadFromBinaryFile(const std::string &filename);
+...
+template<class TDescriptor, class F>
+bool TemplatedVocabulary<TDescriptor,F>::loadFromBinaryFile(const std::string &filename){...}
+
+
+FORB.h
+static void fromArray(TDescriptor &a, unsigned char* p);
+
+
+FORB.cc
+void FORB::fromArray(FORB::TDescriptor &a, unsigned char* buffer){...}
+
+
+El proyecto BOWabinario utiliza código de DBoW2 para leer el vocabulario en texto, y genera su equivalente parseado en binario.
+
+
+
+
+
+===================================================================
+Versión 0: Ande
+
+Apuntó a hacer funcionar orb-slam2 en eclipse de manera monolítica.  Se eliminaron las versiones estéreo, rgb-d y monocular kitti, dejando solamente monocular tum.
+Funcionó el viernes 26/8/2016.
+
+Esta versión parte de orb-slam2 master sin ejecutar CMAKE, y con el propósito de compilarlo con Eclipse se le realizaron los siguientes cambios, algunos de ellos son los que hubiera hecho CMAKE:
+
+- Se eliminaron archivos extras, como los de CMAKE.  Se dejaron algunos de documentación y licencia, como readme.
+- Se corrigieron includes a librerías del sistema, como Eigen que debe ser eigen3/Eigen
+- Se pegó g2o/config.h elaborado por cmake
+- En las propiedades del proyecto se agregó la carpeta include del proyecto.
+- Según cmakelist.txt, conviene usar -std=c++11 y -DCOMPILEDWITHC11.  Agregué el dialecto -std=c++11 (que no está en el desplegable) y el símbolo COMPILEDWITHC11 sin valor. 
+- Eliminé sparse_block_matrix_text.cpp, pues contiene una segunda función main
+- Cambié #include <opencv/cv.h> por #include<opencv2/core/core.hpp> en ORBextractor.h, por prolijidad.  El header lo necesita para definir Point2d.
+- SimSolver.cc forcé casting en vector<Mat>.push_back(Mat), para que eclipse no lo indique como error.  Sospecho que eclipse se equivoca.
+
+
+El símbolo COMPILEDWITHC11 es usado en mono_kitti.cc para decidir si usa el nuevo std::chono::steady_clock o no.
+El símbolo __cplusplus=201103L es usado en la librería estándar mutex para no incorporar un warning de versión antigua.  mutex lo usa, no lo vi mencionado en cmakelists.txt.
+
+
+Según cmakelist.txt, conviene usar -std=c++11 y -DCOMPILEDWITHC11.  Antes me había dado resultado:
+- Agregué el símbolo __cplusplus con el valor 201103L, que activa funciones extras quitando el error sobre std::mutex.  Para que no tenga conflicto, dejé en blanco el dialecto de g++. 
+
+Eclipse advierte que usar includes relativos en los settings de g++ puede ocasionar resultados indeseados.
+../include permitió a los src/*.cc acceder a los "*.h" del proyecto.
+Quizás sea más claro reemplazar ese include relativo por alguno con etiquetas del proyecto, del tipo {ESTE_PROYECTO}/include.
+
+Librerías que agregué, aparte de opencv: pangolin, pthreads, GL, GLU
+Podría volver a probar a ver si las tres últimas no se cargan por defecto.
+
+
+=====================================
+Librerías de OpenCV y portación a 3.1
+=====================================
+
+Librerías: opencv_core, opencv_features2d, opencv_highgui, opencv_imgcodecs, opencv_calib3d, opencv_imgproc
+
+ORB-SLAM2 es compatible con opencv 3.1, aunque cmake no lo reconoce: para que lo haga se debe editar CMakeLists.txt y reemplazar así:
+#find_package(OpenCV 2.4.3 REQUIRED)
+find_package(OpenCV 3.1.0 REQUIRED)
+
+
+
+#include<opencv2/core/core.hpp>
+Mat requiere opencv_core
+imread requiere opencv_imgcodecs
+
+#include<opencv2/features2d/features2d.hpp>
+FAST requiere opencv_features2d
+
+#include <opencv2/highgui/highgui.hpp>
+FrameDrawer.cc y ORBextractor.cc usan highgui, requieren opencv_highgui
+
+#include <opencv2/opencv.hpp>
+Incluye core, y luego repasa todos los hpp, incluyéndolos según variables del preprocesador del tipo HAVE_OPENCV_FEATURES2D.
+ORB-SLAM no incluye ninguna de estas variables, por lo que este include equivale a incluir core.
+
+
+#include <opencv/cv.h>
+Requerido en ORBextractor.h, pero no en ORBextactor.cc.  ¿Será un error?  Lo cambié por prolijidad.
+
+
+FrameDrawing.cc requiere opencv_imgproc en algún punto.
+Sim3Solver.cc requiere opencv_calib3d porque usa rodrigues.
+
+=============================
+Sobre la compilación
+
+
+
+CMake compila
+
+

@@ -1,0 +1,44 @@
+Quité estos warnings:
+- Class member is not initialized in constructor (aparecía por todos lados)
+- Class has virtual constructor but not virtual destructor (aparecía en FORB)
+
+
+
+No inicializa.  Probé volver a calibrar la cámara, con mejores parámetros de distorsión (k3 mucho menor al anterior).
+Tengo que hacer una prueba con buena luz con estos nuevos parámetros.
+
+
+
+Cuando la cámara no inicializa, introduce un delay importante en cada bucle.
+Se fuerza la reinicialización desconectándola y volviendo a conectarla, pero sin os1 funcionando.
+
+
+
+GStreamer: usualmente opencv (específicamente videoio) arroja un error de GStreamer, cuando no puede abrir la fuente de video.
+
+
+
+QObject::killTimer: Timers cannot be stopped from another thread
+QObject::startTimer: Timers cannot be started from another thread
+SOLUCIONADO al dejar de usar cv::waitKey
+
+Son errores que aparecen siempre al terminar orb-slam.  En os1 aparece al procesar los primeros cuadros de la webcam,
+a veces luego del primero, a veces luego de procesar 11 cuadros.  A partir de ahí deja de funcionar.
+QObject es un objeto de QT.  ORB-SLAM2 no utiliza nunca QObjetc directamente. Pero usa highgui, e indirectamente usa QT.
+Quizás sea un efecto secundario de que el programa aborta por algún motivo.
+Calibré la webcam, que no se puede abrir en tonos de grises.
+
+Probaré avanzar cuadro por cuadro con el teclado.  ÉXITO.
+El problema proviene de la velocidad con que se leen los cuadros de la webcam y se inyectan al tracking.
+Hipótesis:
+1- Bien porque el sistema no es capaz de procesar los cuadros a tiempo.
+	Extraño, pues los cuadros se leen e inyectan en el mismo hilo de Tracking, que termina el bucle hasta no terminar el tracking.
+2- La webcam envía cuadros corruptos si se le pide velocidad.
+	Extraño, en show 1.2 funciona bien a esta velocidad.
+
+Al fallar este error se repite en cada bucle:
+QObject::startTimer: Timers cannot be started from another thread
+
+El error proviene de waitKey, función de highgui.  main no incluía highgui, pero incluyéndolo el error prosiguió.
+Lo extraño es que waitKey funciona bien.  Tampoco explica por qué orb-slam deja de funcionar.
+Buscaré otra manera de hacer el delay, la manera de orb-slam.
