@@ -35,23 +35,23 @@ namespace ORB_SLAM2
 {
 
 /**
- * Las pocas propiedades son protegidas, corresponden a la configuración establecida en la construcción.
  *
- * ORBMatcher empaqueta todos los métodos de macheo de descriptores.
- * No confundir con La clase ORBextractor, de nombre similar, que empaqueta todos los métodos de extracción de descriptores.
+ * ORBmatcher empaqueta todos los métodos de macheo de descriptores.
+ * Las pocas propiedades son protegidas, corresponden a la configuración establecida en la construcción.
+ * No confundir con la clase ORBextractor, de nombre similar, que empaqueta todos los métodos de extracción de descriptores.
  * Todos los métodos son invocados desde otros objetos.
  * Solamente DescriptorDistance, que computa la distancia entre dos descriptores con el algoritmo de Stanford,
  * es invocado también internamente por prácticamente todos los otros métodos de ORBMatcher.
  *
- * Mientras ORBExtractor se ocupa de detectar puntos singulares y extraer descriptores ORB,
- * ORBMatcher se ocupa de machear de diversas maneras:
+ * Mientras ORBextractor se ocupa de detectar puntos singulares y extraer descriptores ORB,
+ * ORBmatcher se ocupa de machear de diversas maneras:
  *
- * -SearchByProjection parte de una pose, proyecta los puntos del mapa local que deberían ser visibles, y realiza un macheo circular.
- * -SearchByBoW machea primero por BoW, y luego por descriptores cuando hay varios candidatos con el mismo BoW.
- * -SearchForInitialization machea para encontrar los primeros puntos del mapa.
- * -SearchForTriangulation machea para encontrar nuevos puntos 3D.
- * -SearchBySim3 machea para evaluar candidatos a cierre de bucle.
- * -Fuse fusiona puntos del mapa duplicados.
+ * - SearchByProjection parte de una pose, proyecta los puntos del mapa local que deberían ser visibles, y realiza un macheo circular.
+ * - SearchByBoW machea primero por BoW, y luego por descriptores cuando hay varios candidatos con el mismo BoW.
+ * - SearchForInitialization machea para encontrar los primeros puntos del mapa.
+ * - SearchForTriangulation machea para encontrar nuevos puntos 3D.
+ * - SearchBySim3 machea para evaluar candidatos a cierre de bucle.
+ * - Fuse fusiona puntos del mapa duplicados.
  */
 class ORBmatcher
 {    
@@ -103,8 +103,25 @@ public:
 
 public:
 
+    /**
+     * Umbral bajo, estricto, para distancias entre descriptores.
+     * `bestDist<=TH_LOW` es la chequeo habitual para aceptar o rechazar la mejor distancia luego de comparar varios descriptores candidatos.
+     * Este umbral se usa sólo dentro del objeto, para todas los macheos excepto para machear descriptores de cuadros con descriptores de mapa.
+     * TH_LOW se define en 50 (hasta 50 de los 256 bits del descriptor pueden ser diferentes del descriptor de referencia).
+     */
     static const int TH_LOW;
+
+    /**
+     * Umbral alto, laxo, para distancias entre descriptores.
+     * `bestDist<=TH_HI` es la chequeo habitual para aceptar o rechazar la mejor distancia luego de comparar varios descriptores candidatos.
+     * Este umbral se usa sólo dentro del objeto en ComputeSim3 y SearchByProjection para tracking.
+     * TH_HIGH se define en 100 (hasta 100 de los 256 bits del descriptor pueden ser diferentes del descriptor de referencia).
+     */
     static const int TH_HIGH;
+
+    /**
+     * Tamaño del array de histograma.
+     */
     static const int HISTO_LENGTH;
 
 
@@ -116,7 +133,20 @@ protected:
 
     void ComputeThreeMaxima(std::vector<int>* histo, const int L, int &ind1, int &ind2, int &ind3);
 
+    /**
+     * Nearest neighbor ratio.
+     * Al buscar los dos mejores distancias, se procura que la mejor sea mayor a un porcentaje (mfNNratio) de la segunda.
+     * `bestDist1<mfNNratio*bestDist2`
+     * Es 0.6 por defecto.
+     */
     float mfNNratio;
+
+    /**
+     * Señal interna de configuración definida en la construcción del objeto, que indica si se debe chequear la orientación
+     * antes de comparar descriptores.
+     * La orientación dice de qué lado es visible el descriptor, de modo que con esta verificación se evita comparar los puntos 3D observados desde el lado contrario.
+     * Es `true` por defecto.
+     */
     bool mbCheckOrientation;
 };
 
