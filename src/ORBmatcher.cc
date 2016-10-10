@@ -38,7 +38,8 @@ const int ORBmatcher::TH_HIGH = 100;
 const int ORBmatcher::TH_LOW = 50;
 const int ORBmatcher::HISTO_LENGTH = 30;
 
-/** Constructor que guarda los argumentos en propiedades.
+/**
+ * Constructor que guarda los argumentos en propiedades.
  * @param nnratio Nearest Neighbour ratio.  Indica la relación entre el mejor y peor candidato a brindar como resultado.
  * @param checkOri Check Orientation.  true para comprobar la orientación de cada punto antes de evaluar el macheo (true por defecto).  Además lleva un histórico de orientaciones.
  *
@@ -144,6 +145,11 @@ int ORBmatcher::SearchByProjection(Frame &F, const vector<MapPoint*> &vpMapPoint
     return nmatches;
 }
 
+/**
+ * Empaqueta la decisión del radio en búsqueda circular, según el coseno de la triangulación.
+ * A mayor paralaje, menor radio, la búsqueda será más estricta.
+ * Invocado sólo desde SearchByProjection entre keyframe y mapa.
+ */
 float ORBmatcher::RadiusByViewingCos(const float &viewCos)
 {
     if(viewCos>0.998)
@@ -185,6 +191,15 @@ bool ORBmatcher::CheckDistEpipolarLine(const cv::KeyPoint &kp1,const cv::KeyPoin
     return dsqr<3.84*pKF2->mvLevelSigma2[kp2.octave];
 }
 
+/**
+ * Machea el cuadro actual con un keyframe.
+ * Machea por BoW y luego por descriptores.
+ * @param pKF Keyframe candidato a explicar el cuadro actual.  Es el keyframe de referencia para tracking, o uno de varios candidatos en relocalización.
+ * @param F Cuadro actual que se intenta ubicar.
+ * @param vpMapPointMatches
+ * @returns Cantidad de puntos macheados.
+ * Invocado sólo por Tracking::Relocalization y Tracking::TrackByReferencieKeyFrame.
+ */
 int ORBmatcher::SearchByBoW(KeyFrame* pKF,Frame &F, vector<MapPoint*> &vpMapPointMatches)
 {
     const vector<MapPoint*> vpMapPointsKF = pKF->GetMapPointMatches();
@@ -443,6 +458,19 @@ int ORBmatcher::SearchByProjection(KeyFrame* pKF, cv::Mat Scw, const vector<MapP
     return nmatches;
 }
 
+/**
+ * Macheo para inicialización.
+ * Este método busca macheos en una ventana holgada, procurando una elevada cantidad de macheos que luego serán considerados para la triangulación de los primeros puntos del mapa.
+ * El método se invoca de manera repetida y sucesiva, cuadro por cuadro, hasta que se logra inicializar, o hasta que la cantidad de macheo se reduce demasiado.
+ * @param F1 Cuadro inicial del proceso de inicialización del mapa.
+ * @param F2 Cuadro actual.
+ * @param vbPrevMatched Coordenadas de los puntos singulares macheados en el cuadro anterior (es decir, la última vez que se invocó este método).
+ * @param vnMatches12
+ * @param windowSize Tamaño del área de búsqueda, windowSize es la longitud del lado del área cuadrada.  Siempre es 100.
+ * @returns Cantidad de macheos obtenidos.
+ *
+ * Invocado sólo por Tracking::MonocularInitialization.
+ */
 int ORBmatcher::SearchForInitialization(Frame &F1, Frame &F2, vector<cv::Point2f> &vbPrevMatched, vector<int> &vnMatches12, int windowSize)
 {
     int nmatches=0;
@@ -560,6 +588,15 @@ int ORBmatcher::SearchForInitialization(Frame &F1, Frame &F2, vector<cv::Point2f
     return nmatches;
 }
 
+/**
+ * Evalúa keyframe candidato para cierre de bucle.
+ * Machea por BoW y luego por descriptores.
+ * @param pKF1 Keyframe actual.
+ * @param pKF2 Keyframe candidato al cierre de bucle.
+ * @param vpMatches12 Resultado de la búsqueda, puntos del mapa macheados.
+ * @returns Cantidad de macheos.
+ * Invocado sólo desde LoopClosing::ComputeSim3.
+ */
 int ORBmatcher::SearchByBoW(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &vpMatches12)
 {
     const vector<cv::KeyPoint> &vKeysUn1 = pKF1->mvKeysUn;
@@ -879,6 +916,17 @@ int ORBmatcher::SearchForTriangulation(KeyFrame *pKF1, KeyFrame *pKF2, cv::Mat F
     return nmatches;
 }
 
+/**
+ * Proyecta puntos del mapa sobre un keyframe y busca puntos duplicados, como parte del mapeo local.
+ * Fusiona puntos del mapa que corresponden al mismo punto real.
+ * Se utiliza dos veces: proyectando los puntos del keyframe actual sobre los keyframes vecinos, y viceversa.
+ * @param pKF Keyframe donde se proyectarán los puntos del mapa.
+ * @param vpMapPoints Puntos del mapa observados en un keyframe vecino.
+ * @param th Radio de búsqueda circular.
+ * @returns Cantidad de puntos fusionados.
+ *
+ * Invocado dos veces sólo desde LocalMapping::SearchInNeighbors.
+ */
 int ORBmatcher::Fuse(KeyFrame *pKF, const vector<MapPoint *> &vpMapPoints, const float th)
 {
     cv::Mat Rcw = pKF->GetRotation();
@@ -1031,6 +1079,18 @@ int ORBmatcher::Fuse(KeyFrame *pKF, const vector<MapPoint *> &vpMapPoints, const
     return nFused;
 }
 
+/**
+ * Fusiona los puntos del mapa para cerrar un bucle.
+ *
+ * @param pKF Keyframe actual o vecino de un extremo del bucle cerrado.
+ * @param Scw Pose sim3 de la cámara respecto del mundo.  Este argumento requiere mayor investigación.
+ * @param vpPoints Puntos del mapa observados por el keyframe del otro extremo del bucle, y sus vecinos.
+ * @param th Radio para el macheo circular.
+ * @param vpReplacePoint Resultado del método, puntos fusionados.
+ * @returns Cantidad de puntos fusionados.
+ *
+ * Invocado sólo desde LoopClosing::SearchAndFuse
+ */
 int ORBmatcher::Fuse(KeyFrame *pKF, cv::Mat Scw, const vector<MapPoint *> &vpPoints, float th, vector<MapPoint *> &vpReplacePoint)
 {
     // Get Calibration Parameters for later projection
@@ -1156,6 +1216,21 @@ int ORBmatcher::Fuse(KeyFrame *pKF, cv::Mat Scw, const vector<MapPoint *> &vpPoi
     return nFused;
 }
 
+/**
+ * Compara dos keyframes candidatos al cierre de bucle.
+ *
+ * @param pKF1 Keyframe actual.
+ * @param pKF2 Keyframe candidato a cerrar el bucle.
+ * @param vpMatches12 Puntos 3D vistos desde ambas cámaras.
+ * @param s12 Escala de pFK1 respecto de pKF2.
+ * @param R12 Matriz rotación de pFK1 respecto de pKF2.
+ * @param t12 Traslación de pFK1 respecto de pKF2.
+ * @param th Radio en píxeles donde buscar puntos singulares para machear.
+ * @returns Cantidad de puntos macheados y explicados por la Sim3.
+ *
+ *
+ * Invocado sólo desde LoopClosing::ComputeSim3.
+ */
 int ORBmatcher::SearchBySim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint*> &vpMatches12,
                              const float &s12, const cv::Mat &R12, const cv::Mat &t12, const float th)
 {
@@ -1691,6 +1766,18 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, KeyFrame *pKF, const set
     return nmatches;
 }
 
+/**
+ * Computa 3 máximos.
+ * Recorre los vectores del histograma, comparando sus longitudes, y devuelve los índices de los tres vectores de mayor cantidad de elementos.
+ *
+ * @param histo Histograma, array de vectores de int.  Siempre creado como `vector<int> rotHist[HISTO_LENGTH];`.
+ * @param L Longitud, cantidad de elementos de histo.  Siempre es HISTO_LENGTH.
+ * @param ind1 Índice del histotrama de mayor longitud.  Valor resultado, uno de los 3 máximos.  Siempre se pasa inicializado en -1.
+ * @param ind2 Índice del histotrama de segunda mayor longitud.  Valor resultado, uno de los 3 máximos.  Siempre se pasa inicializado en -1.
+ * @param ind3 Índice del histotrama de tercera mayor longitud.  Valor resultado, uno de los 3 máximos.  Siempre se pasa inicializado en -1.
+ *
+ * Este método se invoca sólo desde otros métodos de la misma clase.  Todos ellos inicializan `int1=int2=int3=-1`.
+ */
 void ORBmatcher::ComputeThreeMaxima(vector<int>* histo, const int L, int &ind1, int &ind2, int &ind3)
 {
     int max1=0;
