@@ -41,7 +41,7 @@ class MapPoint;
 class KeyFrame;
 
 /**
- * Frame es un cuadro, una imagen, con los puntos detectados.
+ * Frame representa un cuadro, una imagen, con los puntos singulares detectados.
  * Frame representa una toma de cámara, con su imagen, los puntos 2D detectados, sus descriptores, su mapeo en 3D y demás.
  * Tracking utiliza 3 Frames:
  * - mCurrentFrame

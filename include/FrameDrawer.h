@@ -38,37 +38,59 @@ class Tracking;
 class Viewer;
 
 /**
- * Clase de instancia única que se ocupa de muestra la imagen de la cámara con marcas sobre los puntos reconocidos.
- * Utiliza imshow de opencv.
+ * Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los puntos reconocidos.
+ * Utiliza imshow de opencv.  Al pie de la imagen describe el estado del sistema.
+ * FrameDrawer se accede desde dos hilos paralelos asincrónicos:
+ * - Tracking::Track invoca el método FrameDrawer::Update avisando que hay un nuevo Frame para mostrar.
+ * - Viewer::Run invoca el método FrameDrawer::DrawFrame cuando es momento de actualizar la pantalla.
  */
 class FrameDrawer
 {
 public:
+	/** Constructor.*/
     FrameDrawer(Map* pMap);
     //FrameDrawer();
 
+    /** Invocado sólo por Tracking::Track avisando que hay un nuevo Frame para mostrar.*/
     // Update info from the last processed frame.
     void Update(Tracking *pTracker);
-    void Register(Map* pMap);
 
+    /** Invocado sólo por Viewer::Run para que envíe la imagen del cuadro actual a la pantalla.*/
     // Draw last processed frame.
     cv::Mat DrawFrame();
 
 protected:
 
+    /** Agrega una barra debajo de la imagen y escribe en ella el estado del sistema.*/
     void DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText);
 
+    /** Imagen gris del cuadro actual.*/
     // Info of the frame to be drawn
     cv::Mat mIm;
+
+    /** Cantidad de puntos singulares.*/
     int N;
+
+    /** Puntos singulares del cuadro actual.*/
     vector<cv::KeyPoint> mvCurrentKeys;
+
     vector<bool> mvbMap, mvbVO;
+
+    /**Copia de la señal de sólo tracking (true) o tracking & mapping (false).*/
     bool mbOnlyTracking;
+
     int mnTracked, mnTrackedVO;
+
+    /** Puntos singulares de inicialización.*/
     vector<cv::KeyPoint> mvIniKeys;
+
+    /** Macheos de inicialización.*/
     vector<int> mvIniMatches;
+
+    /** Copia del estado del autómata finito del sistema.*/
     int mState;
 
+    /**Mapa mundi.*/
     Map* mpMap;
 
     std::mutex mMutex;

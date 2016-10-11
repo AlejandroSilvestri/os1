@@ -613,7 +613,7 @@ bool KeyFrame::IsInImage(const float &x, const float &y) const
     return (x>=mnMinX && x<mnMaxX && y>=mnMinY && y<mnMaxY);
 }
 
-cv::Mat KeyFrame::UnprojectStereo(int i)
+/*cv::Mat KeyFrame::UnprojectStereo(int i)
 {
     const float z = mvDepth[i];
     if(z>0)
@@ -629,7 +629,7 @@ cv::Mat KeyFrame::UnprojectStereo(int i)
     }
     else
         return cv::Mat();
-}
+}*/
 
 float KeyFrame::ComputeSceneMedianDepth(const int q)
 {

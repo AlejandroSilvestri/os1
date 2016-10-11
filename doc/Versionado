@@ -18,10 +18,10 @@ LISTO:
 
 
 TODO:
-- Feed películas
-- Uso de g2o y dbow2 como so, quitados del código, preservando solamente .hpp
-- Investigar cómo guardar y cargar el mapa para tracking
-- Traspasar comentarios de orb-slam a orb-slam2
+- Feed películas.
+- Parámetros: archivo de configuración, opcionalmente ruta de video.  El vocabulario es estático y binario, su nombre queda implícito en el código.
+- Investigar cómo guardar y cargar el mapa para tracking (convendría hacer un branch)
+- Traspasar comentarios de orb-slam a orb-slam2 (en progreso)
 
 
 MODIFICACIONES:

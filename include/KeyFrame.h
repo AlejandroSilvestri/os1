@@ -42,10 +42,10 @@ class KeyFrameDatabase;
 
 /**
  * Cuadro clave, keyframe.
- * ORB-SLAM identifica algunos cuadros como clave y los agrega a un grafo local de keyframes.
+ * ORB-SLAM identifica algunos cuadros como clave y los agrega al mapa.
  * Un KeyFrame tiene más datos que un Frame.  Al construirse copia los datos del Frame.
  * LocalMapping triangula nuevos puntos del mapa exclusivamente a partir de keyframes, no de frames.
- *
+ * Tracking::CreateNewKeyFrame tiene la exclusividad de la creación de keyframes.
  *
  */class KeyFrame
 {
@@ -63,22 +63,59 @@ public:
     KeyFrame(Frame &F, Map* pMap, KeyFrameDatabase* pKFDB);
 
     // Pose functions
+    /** Establece Tcw, la pose del keyframe.*/
     void SetPose(const cv::Mat &Tcw);
+
+    /** Lee Tcw, la pose del keyframe.*/
     cv::Mat GetPose();
+
+    /**Lee Twc, la matriz inversa de la pose.*/
     cv::Mat GetPoseInverse();
+
+    /** Lee el vector centro de cámara, igual al vector traslación para monocular.*/
     cv::Mat GetCameraCenter();
+
     //cv::Mat GetStereoCenter();
+
+    /** Lee la matriz rotación 3D, obtenida de Tcw.*/
     cv::Mat GetRotation();
+
+    /** Lee el vector traslación, obtenido de Tcw.*/
     cv::Mat GetTranslation();
 
     // Bag of Words Representation
     void ComputeBoW();
 
     // Covisibility graph functions
+    /**
+     * Conecta el keyframe con otro en el grafo de covisibilidad.
+     *
+     * @param pKF Keyframe a conectar.
+     * @param weight Peso o ponderación de la conexión.
+     */
     void AddConnection(KeyFrame* pKF, const int &weight);
+
+    /**
+     * Elimina del grafo de covisibilidad la conexión con el keyframe dado.
+     *
+     * @param pKF Keyframe a desconectar.
+     */
     void EraseConnection(KeyFrame* pKF);
+
+    /**
+     * Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad.
+     */
     void UpdateConnections();
+
+    /**
+     * Actualiza los mejores covisibles.
+     *
+     *
+     * Invocado cada vez que se actualiza el grafo (cada que que se agrega o elimina una conexión).
+     */
     void UpdateBestCovisibles();
+
+
     std::set<KeyFrame *> GetConnectedKeyFrames();
     std::vector<KeyFrame* > GetVectorCovisibleKeyFrames();
     std::vector<KeyFrame*> GetBestCovisibilityKeyFrames(const int &N);
@@ -108,27 +145,67 @@ public:
     MapPoint* GetMapPoint(const size_t &idx);
 
     // KeyPoint functions
+
+    /**
+     * Filtra puntos singulares que estén en el cuadrado de centro x,y y lado 2 r.
+     *
+     * @param x Coordenada del centro del cuadrado.
+     * @param y Coordenada del centro del cuadrado.
+     * @param r Longitud de medio lado del cuadrado.
+     * @returns Vector de índices de los puntos singulares en el área cuadrada.
+     */
     std::vector<size_t> GetFeaturesInArea(const float &x, const float  &y, const float  &r) const;
-    cv::Mat UnprojectStereo(int i);
+    //cv::Mat UnprojectStereo(int i);
 
     // Image
+
+    /**
+     * Verifica si la coordenada está dentro del área de la imagen.
+     * @param x Coordenada x.
+     * @param y Coordenada y.
+     * @returns true si la coordenada está dentro del área de la imagen, false si no.
+     */
     bool IsInImage(const float &x, const float &y) const;
 
     // Enable/Disable bad flag changes
+
+    /** Marca el keyframe como imborrable.*/
     void SetNotErase();
+
+    /** Elimina el keyframe.*/
     void SetErase();
 
     // Set/check bad flag
+    /** Marca el keyframe como malo.  Los algoritmos lo ignorarán.*/
     void SetBadFlag();
+
+    /** Consulta la marca mbBad.  true si es malo.*/
     bool isBad();
 
+    /**
+     *  Computa la profundidad de la escena.
+     *  @param q
+     *  @returns
+     */
     // Compute Scene Depth (q=2 median). Used in monocular.
     float ComputeSceneMedianDepth(const int q);
 
+    /**
+     * Compara dos pesos.
+     * @param a Peso a.
+     * @param b Peso b.
+     * @returns a>b.
+     */
     static bool weightComp( int a, int b){
         return a>b;
     }
 
+    /**
+     * Compara Id.  Menor id, mayor antigüedad.
+     * @param pKF1 keyframe 1.
+     * @param pKF2 keyframe 2.
+     * @returns true si pKF1 es más antiguo que pKF2.
+     */
     static bool lId(KeyFrame* pKF1, KeyFrame* pKF2){
         return pKF1->mnId<pKF2->mnId;
     }
