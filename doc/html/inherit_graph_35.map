@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classg2o_1_1_hyper_graph_element_action.html" title="Abstract action that operates on a graph entity. " alt="" coords="5,64,212,91"/>
+<area shape="rect" id="node2" href="$classg2o_1_1_draw_action.html" title="draw actions " alt="" coords="304,5,423,32"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_hyper_graph_element_action_collection.html" title="collection of actions " alt="" coords="260,57,467,98"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_write_gnuplot_action.html" title="brief write into gnuplot " alt="" coords="281,123,445,149"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="g2o::OptimizableGraph::Edge" name="g2o::OptimizableGraph::Edge">
+<area shape="rect" id="node2" href="$classg2o_1_1_hyper_graph_1_1_edge.html" title="Abstract Edge class. " alt="" coords="25,96,184,123"/>
+<area shape="rect" id="node3" href="$structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html" title="base hyper graph element, specialized in vertex and edge " alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_robust_kernel.html" title="base for all robust cost functions " alt="" coords="209,96,339,123"/>
+</map>

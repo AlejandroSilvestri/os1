@@ -1,0 +1,18 @@
+<map id="g2o::BlockSolver&lt; Traits &gt;" name="g2o::BlockSolver&lt; Traits &gt;">
+<area shape="rect" id="node2" href="$classg2o_1_1_block_solver_base.html" title="base for the block solvers with some basic function interfaces " alt="" coords="1309,149,1460,175"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_solver.html" title="Generic interface for a sparse solver operating on a graph which solves one iteration of the lineariz..." alt="" coords="1096,149,1184,175"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_sparse_optimizer.html" title="g2o::SparseOptimizer" alt="" coords="785,103,933,130"/>
+<area shape="rect" id="node10" href="$classg2o_1_1_optimization_algorithm.html" title="Generic interface for a non&#45;linear solver operating on a graph. " alt="" coords="1051,58,1229,85"/>
+<area shape="rect" id="node5" href="$structg2o_1_1_optimizable_graph.html" title="This is an abstract class that represents one optimization problem. " alt="" coords="581,103,736,130"/>
+<area shape="rect" id="node6" href="$classg2o_1_1_hyper_graph.html" title="Class that models a directed Hyper&#45;Graph. " alt="" coords="263,53,384,79"/>
+<area shape="rect" id="node7" href="$classg2o_1_1_jacobian_workspace.html" title="provide memory workspace for computing the Jacobians " alt="" coords="239,103,408,130"/>
+<area shape="rect" id="node8" href="$classg2o_1_1_parameter_container.html" title="map id to parameters " alt="" coords="240,154,407,181"/>
+<area shape="rect" id="node11" href="$classg2o_1_1_property_map.html" title="a collection of properties mapping from name to the property itself " alt="" coords="797,13,922,39"/>
+<area shape="rect" id="node13" href="$classg2o_1_1_sparse_block_matrix.html" title="g2o::SparseBlockMatrix\l\&lt; PoseMatrixType \&gt;" alt="" coords="1304,200,1465,241"/>
+<area shape="rect" id="node14" href="$classg2o_1_1_sparse_block_matrix_c_c_s.html" title="g2o::SparseBlockMatrixCCS\l\&lt; PoseLandmarkMatrixType \&gt;" alt="" coords="1285,265,1484,307"/>
+<area shape="rect" id="node15" href="$classg2o_1_1_sparse_block_matrix.html" title="g2o::SparseBlockMatrix\l\&lt; LandmarkMatrixType \&gt;" alt="" coords="1301,331,1469,372"/>
+<area shape="rect" id="node16" href="$classg2o_1_1_sparse_block_matrix.html" title="g2o::SparseBlockMatrix\l\&lt; PoseLandmarkMatrixType \&gt;" alt="" coords="1285,396,1484,437"/>
+<area shape="rect" id="node17" href="$classg2o_1_1_sparse_block_matrix_diagonal.html" title="g2o::SparseBlockMatrixDiagonal\l\&lt; LandmarkMatrixType \&gt;" alt="" coords="1279,461,1491,503"/>
+<area shape="rect" id="node18" href="$classg2o_1_1_sparse_block_matrix_c_c_s.html" title="g2o::SparseBlockMatrixCCS\l\&lt; PoseMatrixType \&gt;" alt="" coords="1289,527,1480,568"/>
+<area shape="rect" id="node19" href="$classg2o_1_1_linear_solver.html" title="g2o::LinearSolver\&lt;\l PoseMatrixType \&gt;" alt="" coords="1318,592,1451,633"/>
+</map>

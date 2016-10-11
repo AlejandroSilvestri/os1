@@ -1,0 +1,15 @@
+<map id="g2o::EstimatePropagator::AdjacencyMapEntry" name="g2o::EstimatePropagator::AdjacencyMapEntry">
+<area shape="rect" id="node2" href="$classg2o_1_1_optimizable_graph_1_1_vertex.html" title="A general case Vertex for optimization. " alt="" coords="977,146,1131,187"/>
+<area shape="rect" id="node5" href="$classg2o_1_1_cache_container.html" title="g2o::CacheContainer" alt="" coords="1313,116,1459,143"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_hyper_graph_1_1_vertex.html" title="abstract Vertex, your types must derive from that one " alt="" coords="611,212,777,239"/>
+<area shape="rect" id="node4" href="$structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html" title="base hyper graph element, specialized in vertex and edge " alt="" coords="239,205,437,246"/>
+<area shape="rect" id="node13" href="$classg2o_1_1_optimizable_graph_1_1_data.html" title="data packet for a vertex. " alt="" coords="617,146,771,187"/>
+<area shape="rect" id="node15" href="$classg2o_1_1_hyper_graph_1_1_edge.html" title="Abstract Edge class. " alt="" coords="615,313,773,340"/>
+<area shape="rect" id="node7" href="$structg2o_1_1_optimizable_graph.html" title="This is an abstract class that represents one optimization problem. " alt="" coords="617,56,771,83"/>
+<area shape="rect" id="node8" href="$classg2o_1_1_hyper_graph.html" title="Class that models a directed Hyper&#45;Graph. " alt="" coords="277,107,399,133"/>
+<area shape="rect" id="node9" href="$classg2o_1_1_jacobian_workspace.html" title="provide memory workspace for computing the Jacobians " alt="" coords="253,5,423,32"/>
+<area shape="rect" id="node10" href="$classg2o_1_1_parameter_container.html" title="map id to parameters " alt="" coords="255,56,421,83"/>
+<area shape="rect" id="node12" href="$classg2o_1_1_open_m_p_mutex.html" title="g2o::OpenMPMutex" alt="" coords="625,5,763,32"/>
+<area shape="rect" id="node14" href="$classg2o_1_1_optimizable_graph_1_1_edge.html" title="g2o::OptimizableGraph\l::Edge" alt="" coords="977,255,1131,297"/>
+<area shape="rect" id="node16" href="$classg2o_1_1_robust_kernel.html" title="base for all robust cost functions " alt="" coords="629,263,759,289"/>
+</map>

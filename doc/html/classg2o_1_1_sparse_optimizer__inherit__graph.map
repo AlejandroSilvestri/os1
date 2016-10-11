@@ -1,0 +1,4 @@
+<map id="g2o::SparseOptimizer" name="g2o::SparseOptimizer">
+<area shape="rect" id="node2" href="$structg2o_1_1_optimizable_graph.html" title="This is an abstract class that represents one optimization problem. " alt="" coords="5,80,160,107"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_hyper_graph.html" title="Class that models a directed Hyper&#45;Graph. " alt="" coords="22,5,143,32"/>
+</map>

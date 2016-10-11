@@ -1,0 +1,10 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$class_d_bo_w2_1_1_bow_vector.html" title="Vector of words to represent images. " alt="" coords="133,5,273,32"/>
+<area shape="rect" id="node3" href="$class_d_bo_w2_1_1_feature_vector.html" title="Vector of nodes with indexes of local features. " alt="" coords="124,56,283,83"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_cache_container.html" title="g2o::CacheContainer" alt="" coords="131,107,276,133"/>
+<area shape="rect" id="node5" href="$classg2o_1_1_parameter_container.html" title="map id to parameters " alt="" coords="120,157,287,184"/>
+<area shape="rect" id="node6" href="$classg2o_1_1_property_map.html" title="a collection of properties mapping from name to the property itself " alt="" coords="141,208,266,235"/>
+<area shape="rect" id="node7" href="$classg2o_1_1_draw_action_1_1_parameters.html" title="g2o::DrawAction::Parameters" alt="" coords="355,208,549,235"/>
+<area shape="rect" id="node8" href="$structg2o_1_1_hyper_graph_element_action_1_1_parameters.html" title="g2o::HyperGraphElementAction\l::Parameters" alt="" coords="100,259,307,301"/>
+<area shape="rect" id="node9" href="$structg2o_1_1_write_gnuplot_action_1_1_parameters.html" title="g2o::WriteGnuplotAction\l::Parameters" alt="" coords="370,259,534,301"/>
+</map>
