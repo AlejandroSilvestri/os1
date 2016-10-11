@@ -38,7 +38,6 @@ var class_o_r_b___s_l_a_m2_1_1_key_frame =
     [ "SetNotErase", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09", null ],
     [ "SetPose", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa799150fa33f3b9a404226454b96c95a", null ],
     [ "TrackedMapPoints", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a729cbf2c84db5cbfdda98a9612f8cd0b", null ],
-    [ "UnprojectStereo", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a0d2dc03ca0d62fc5585773e43d503e79", null ],
     [ "UpdateBestCovisibles", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb8502509c136536bf8d45793f8872", null ],
     [ "UpdateConnections", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#afe7026956c91d4e0a01812be9dc7e8d5", null ],
     [ "cx", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a70011d4f3a151dd374c684e258aab4a8", null ],

@@ -17,7 +17,7 @@ var searchData=
   ['readline',['readLine',['../group__utils.html#ga07aa1d8e5a4e25d0170010df66908611',1,'g2o']]],
   ['readme_2emd',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
   ['refreshpropertyptrs',['refreshPropertyPtrs',['../classg2o_1_1_draw_action.html#a9556cd6f8d1f842d45e046e1770699b0',1,'g2o::DrawAction']]],
-  ['register',['Register',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a40ab93ce129797b3b2ab054ab04af83f',1,'ORB_SLAM2::FrameDrawer::Register()'],['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ad7852ad0781ebc8553bff8d03ff67937',1,'ORB_SLAM2::MapDrawer::Register()']]],
+  ['register',['Register',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ad7852ad0781ebc8553bff8d03ff67937',1,'ORB_SLAM2::MapDrawer']]],
   ['registeraction',['registerAction',['../classg2o_1_1_hyper_graph_element_action_collection.html#a9eb641e9c9bb22f3540dc98c2c750ea9',1,'g2o::HyperGraphElementActionCollection::registerAction()'],['../classg2o_1_1_hyper_graph_action_library.html#a8ff09559af9efdf636ad14a011ef73ae',1,'g2o::HyperGraphActionLibrary::registerAction()']]],
   ['registeractionproxy',['RegisterActionProxy',['../classg2o_1_1_register_action_proxy.html',1,'g2o']]],
   ['registeractionproxy',['RegisterActionProxy',['../classg2o_1_1_register_action_proxy.html#a2998e33a5b4627b38b58a493c16d65e6',1,'g2o::RegisterActionProxy']]],

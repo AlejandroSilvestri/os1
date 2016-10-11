@@ -104,17 +104,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6ca536b80e44da0f56fcd35ff8c6a833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor que guarda los argumentos en propiedades.  <a href="#a6ca536b80e44da0f56fcd35ff8c6a833">More...</a><br /></td></tr>
 <tr class="separator:a6ca536b80e44da0f56fcd35ff8c6a833"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae43d042858a3a3ca4238bb4ca519f196"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196">SearchByProjection</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;F, const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMapPoints, const float th=3)</td></tr>
+<tr class="memdesc:ae43d042858a3a3ca4238bb4ca519f196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macheo circular entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos.  <a href="#ae43d042858a3a3ca4238bb4ca519f196">More...</a><br /></td></tr>
 <tr class="separator:ae43d042858a3a3ca4238bb4ca519f196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dba0b2bed7d16ca56e27ff4df00f557"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a0dba0b2bed7d16ca56e27ff4df00f557">SearchByProjection</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;CurrentFrame, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;LastFrame, const float th, const bool bMono)</td></tr>
 <tr class="memdesc:a0dba0b2bed7d16ca56e27ff4df00f557"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macheo ad hoc circular entre descriptores de puntos singulares del cuadro actual con los puntos singulares del cuadro anterior asociados a algún punto del mapa local.  <a href="#a0dba0b2bed7d16ca56e27ff4df00f557">More...</a><br /></td></tr>
 <tr class="separator:a0dba0b2bed7d16ca56e27ff4df00f557"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af83a014848a63b5a3b3086386f7a865e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#af83a014848a63b5a3b3086386f7a865e">SearchByProjection</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;CurrentFrame, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, const std::set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;sAlreadyFound, const float th, const int ORBdist)</td></tr>
+<tr class="memdesc:af83a014848a63b5a3b3086386f7a865e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca en el cuadro actual los puntos vistos en el keyFrame candidato para relocalización.  <a href="#af83a014848a63b5a3b3086386f7a865e">More...</a><br /></td></tr>
 <tr class="separator:af83a014848a63b5a3b3086386f7a865e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1c0dcdeed922c9a96760aa9a76a2fdb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ac1c0dcdeed922c9a96760aa9a76a2fdb">SearchByProjection</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, cv::Mat Scw, const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpPoints, std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMatched, int th)</td></tr>
+<tr class="memdesc:ac1c0dcdeed922c9a96760aa9a76a2fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ante una detección de bucle con vaios macheos y una pose propuesta, este método aumenta la cantidad de macheos comparando contra otros puntos que deberían ser vistos desde el keyframe actual.  <a href="#ac1c0dcdeed922c9a96760aa9a76a2fdb">More...</a><br /></td></tr>
 <tr class="separator:ac1c0dcdeed922c9a96760aa9a76a2fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a024fe40fa89785df914ef0a59cdf605d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a024fe40fa89785df914ef0a59cdf605d">SearchByBoW</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;F, std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMapPointMatches)</td></tr>
+<tr class="memdesc:a024fe40fa89785df914ef0a59cdf605d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machea el cuadro actual con un keyframe.  <a href="#a024fe40fa89785df914ef0a59cdf605d">More...</a><br /></td></tr>
 <tr class="separator:a024fe40fa89785df914ef0a59cdf605d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad62ee37a7d926719f16ddd17f7e48e10"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ad62ee37a7d926719f16ddd17f7e48e10">SearchByBoW</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF1, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF2, std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMatches12)</td></tr>
+<tr class="memdesc:ad62ee37a7d926719f16ddd17f7e48e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evalúa keyframe candidato para cierre de bucle.  <a href="#ad62ee37a7d926719f16ddd17f7e48e10">More...</a><br /></td></tr>
 <tr class="separator:ad62ee37a7d926719f16ddd17f7e48e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff9b6dde7878d59e334ed5ad2ddd04eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#aff9b6dde7878d59e334ed5ad2ddd04eb">SearchForInitialization</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;F1, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;F2, std::vector&lt; cv::Point2f &gt; &amp;vbPrevMatched, std::vector&lt; int &gt; &amp;vnMatches12, int windowSize=10)</td></tr>
 <tr class="memdesc:aff9b6dde7878d59e334ed5ad2ddd04eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macheo para inicialización.  <a href="#aff9b6dde7878d59e334ed5ad2ddd04eb">More...</a><br /></td></tr>
@@ -129,6 +134,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:add796fcf9f5cae91393d4c0b767e0183"><td class="mdescLeft">&#160;</td><td class="mdescRight">Proyecta puntos del mapa sobre un keyframe y busca puntos duplicados, como parte del mapeo local.  <a href="#add796fcf9f5cae91393d4c0b767e0183">More...</a><br /></td></tr>
 <tr class="separator:add796fcf9f5cae91393d4c0b767e0183"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16efd376a838e1edf18c04229b86059d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a16efd376a838e1edf18c04229b86059d">Fuse</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, cv::Mat Scw, const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpPoints, float th, vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpReplacePoint)</td></tr>
+<tr class="memdesc:a16efd376a838e1edf18c04229b86059d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fusiona los puntos del mapa para cerrar un bucle.  <a href="#a16efd376a838e1edf18c04229b86059d">More...</a><br /></td></tr>
 <tr class="separator:a16efd376a838e1edf18c04229b86059d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -248,7 +254,7 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td>
-          <td class="paramname"><em>pKF2</em>&#160;</td>
+          <td class="paramname"><em>pKF</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -476,6 +482,20 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Fusiona los puntos del mapa para cerrar un bucle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe actual o vecino de un extremo del bucle cerrado. </td></tr>
+    <tr><td class="paramname">Scw</td><td>Pose sim3 de la cámara respecto del mundo. Este argumento requiere mayor investigación. </td></tr>
+    <tr><td class="paramname">vpPoints</td><td>Puntos del mapa observados por el keyframe del otro extremo del bucle, y sus vecinos. </td></tr>
+    <tr><td class="paramname">th</td><td>Radio para el macheo circular. </td></tr>
+    <tr><td class="paramname">vpReplacePoint</td><td>Resultado del método, puntos fusionados. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cantidad de puntos fusionados.</dd></dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aabe9d9b913f36b607c67b0ed0df42a1d">LoopClosing::SearchAndFuse</a> </p>
+
 </div>
 </div>
 <a id="ae6ae0904b9919f1141ef4a790cd34bfe"></a>
@@ -535,6 +555,17 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Machea el cuadro actual con un keyframe. </p>
+<p>Machea por BoW y luego por descriptores. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe candidato a explicar el cuadro actual. Es el keyframe de referencia para tracking, o uno de varios candidatos en relocalización. </td></tr>
+    <tr><td class="paramname">F</td><td>Cuadro actual que se intenta ubicar. </td></tr>
+    <tr><td class="paramname">vpMapPointMatches</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cantidad de puntos macheados. Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#acd4ea9e7097bed16428a4b78fe4b6a67" title="Dispara una relocalización. ">Tracking::Relocalization</a> y Tracking::TrackByReferencieKeyFrame. </dd></dl>
+
 </div>
 </div>
 <a id="ad62ee37a7d926719f16ddd17f7e48e10"></a>
@@ -567,6 +598,17 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evalúa keyframe candidato para cierre de bucle. </p>
+<p>Machea por BoW y luego por descriptores. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF1</td><td>Keyframe actual. </td></tr>
+    <tr><td class="paramname">pKF2</td><td>Keyframe candidato al cierre de bucle. </td></tr>
+    <tr><td class="paramname">vpMatches12</td><td>Resultado de la búsqueda, puntos del mapa macheados. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cantidad de macheos. Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ab4fcf814eed5b5dd2aec96454561b078">LoopClosing::ComputeSim3</a>. </dd></dl>
+
 </div>
 </div>
 <a id="ae43d042858a3a3ca4238bb4ca519f196"></a>
@@ -598,6 +640,18 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Macheo circular entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos. </p>
+<p>Supongo que evita reprocesar los puntos que ya fueron vistos en LastFrame y que han sido asignados al cuadro actual en TrackWithMotionModel. Agrega los puntos nuevos al registro de puntos vistos del cuadro actual mvpMapPoints.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>Cuadro actual </td></tr>
+    <tr><td class="paramname">vpMapPoints</td><td>Mapa local </td></tr>
+    <tr><td class="paramname">th</td><td>Threshold, umbral.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado exclusivamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a451c0e5372c24645c7634fcebc8fa847" title="Invocado por TrackLocalMap. ">Tracking::SearchLocalPoints</a>. </p>
 
 </div>
 </div>
@@ -647,7 +701,12 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>1- Aplica el modelo de movimiento para pronosticar una pose 2- Proyecta puntos del mapa detectados en LastFrame. 3- Machea descriptores entre los puntos singulares de CurrentFrame encontrados en una región circular con centro en la proyección. 4- Asocia los puntos 3D macheados a los puntos singulares en CurrentFrame.</p>
+<ol type="1">
+<li>Aplica el modelo de movimiento para pronosticar una pose.</li>
+<li>Proyecta puntos del mapa detectados en LastFrame.</li>
+<li>Machea descriptores entre los puntos singulares de CurrentFrame encontrados en una región circular con centro en la proyección.</li>
+<li>Asocia los puntos 3D macheados a los puntos singulares en CurrentFrame.</li>
+</ol>
 <p>Invocado exclusivamente desde TrackWithMotionModel, que a partir de este macheo computa la pose del cuadro actual. </p>
 
 </div>
@@ -694,6 +753,19 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Busca en el cuadro actual los puntos vistos en el keyFrame candidato para relocalización. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentFrame</td><td>Cuadro actual. </td></tr>
+    <tr><td class="paramname">pKF</td><td><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> candidato para relocalización. </td></tr>
+    <tr><td class="paramname">AlreadyFound</td><td>Mapa de puntos encontrados. </td></tr>
+    <tr><td class="paramname">th</td><td>Umbral, radio patrón para el macheo circular. El radio computado en píxeles varía para cada punto singular según el nivel de la pirámide. </td></tr>
+    <tr><td class="paramname">ORBdist</td><td>Distancia máxima aceptada entre descriptores. Si el mejor macheo tiene distancia mayor, se descarta.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado exclusivamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#acd4ea9e7097bed16428a4b78fe4b6a67" title="Dispara una relocalización. ">Tracking::Relocalization</a>. </p>
+
 </div>
 </div>
 <a id="ac1c0dcdeed922c9a96760aa9a76a2fdb"></a>
@@ -737,6 +809,19 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Ante una detección de bucle con vaios macheos y una pose propuesta, este método aumenta la cantidad de macheos comparando contra otros puntos que deberían ser vistos desde el keyframe actual. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe actual, candidato a cerrar bucle. </td></tr>
+    <tr><td class="paramname">Scw</td><td>Rototraslación y escala (sim3), transformación de pose propuesta para el cierre de bucle. </td></tr>
+    <tr><td class="paramname">vpPoints</td><td>Puntos posiblemente observados según la pose calculada, a considerar en el cierre de bucle. </td></tr>
+    <tr><td class="paramname">vpMatched</td><td>Puntos macheados en la detección de bucle. </td></tr>
+    <tr><td class="paramname">th</td><td>Umbral.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado exclusivamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ab4fcf814eed5b5dd2aec96454561b078">LoopClosing::ComputeSim3</a>. </p>
 
 </div>
 </div>

@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame_drawe
 </div><!--header-->
 <div class="contents">
 
-<p>Clase de instancia única que se ocupa de muestra la imagen de la cámara con marcas sobre los puntos reconocidos.  
+<p>Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los puntos reconocidos.  
  <a href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_frame_drawer_8h_source.html">FrameDrawer.h</a>&gt;</code></p>
@@ -104,48 +104,54 @@ Collaboration diagram for ORB_SLAM2::FrameDrawer:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:add0e1c3734c200a959d8ed9f225223db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add0e1c3734c200a959d8ed9f225223db">FrameDrawer</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
-<tr class="memdesc:add0e1c3734c200a959d8ed9f225223db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, que inicia el contenedor de la imagen a color a mostrar.  <a href="#add0e1c3734c200a959d8ed9f225223db">More...</a><br /></td></tr>
+<tr class="memdesc:add0e1c3734c200a959d8ed9f225223db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#add0e1c3734c200a959d8ed9f225223db">More...</a><br /></td></tr>
 <tr class="separator:add0e1c3734c200a959d8ed9f225223db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1bba97371be98ccab373bab862cf964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964">Update</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html">Tracking</a> *pTracker)</td></tr>
-<tr class="memdesc:ad1bba97371be98ccab373bab862cf964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Track invoca este método avisando que se terminó de procesar un cuadro.  <a href="#ad1bba97371be98ccab373bab862cf964">More...</a><br /></td></tr>
+<tr class="memdesc:ad1bba97371be98ccab373bab862cf964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> avisando que hay un nuevo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> para mostrar.  <a href="#ad1bba97371be98ccab373bab862cf964">More...</a><br /></td></tr>
 <tr class="separator:ad1bba97371be98ccab373bab862cf964"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40ab93ce129797b3b2ab054ab04af83f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a40ab93ce129797b3b2ab054ab04af83f">Register</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
-<tr class="separator:a40ab93ce129797b3b2ab054ab04af83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d2b0099c169f6944cadc2cd574a06de"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a7d2b0099c169f6944cadc2cd574a06de">DrawFrame</a> ()</td></tr>
-<tr class="memdesc:a7d2b0099c169f6944cadc2cd574a06de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera la imagen para visualización.  <a href="#a7d2b0099c169f6944cadc2cd574a06de">More...</a><br /></td></tr>
+<tr class="memdesc:a7d2b0099c169f6944cadc2cd574a06de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947">Viewer::Run</a> para que envíe la imagen del cuadro actual a la pantalla.  <a href="#a7d2b0099c169f6944cadc2cd574a06de">More...</a><br /></td></tr>
 <tr class="separator:a7d2b0099c169f6944cadc2cd574a06de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a059f66cfb0702264c788a79313ec3630"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a059f66cfb0702264c788a79313ec3630">DrawTextInfo</a> (cv::Mat &amp;im, int nState, cv::Mat &amp;imText)</td></tr>
-<tr class="memdesc:a059f66cfb0702264c788a79313ec3630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega una barra de información det texto al pie de la imagen.  <a href="#a059f66cfb0702264c788a79313ec3630">More...</a><br /></td></tr>
+<tr class="memdesc:a059f66cfb0702264c788a79313ec3630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega una barra debajo de la imagen y escribe en ella el estado del sistema.  <a href="#a059f66cfb0702264c788a79313ec3630">More...</a><br /></td></tr>
 <tr class="separator:a059f66cfb0702264c788a79313ec3630"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a2b405554be1a48ade50055af97c2c2c9"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a2b405554be1a48ade50055af97c2c2c9">mIm</a></td></tr>
+<tr class="memdesc:a2b405554be1a48ade50055af97c2c2c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imagen gris del cuadro actual.  <a href="#a2b405554be1a48ade50055af97c2c2c9">More...</a><br /></td></tr>
 <tr class="separator:a2b405554be1a48ade50055af97c2c2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbc9489192f5485ece966b0d6d589e47"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#adbc9489192f5485ece966b0d6d589e47">N</a></td></tr>
+<tr class="memdesc:adbc9489192f5485ece966b0d6d589e47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de puntos singulares.  <a href="#adbc9489192f5485ece966b0d6d589e47">More...</a><br /></td></tr>
 <tr class="separator:adbc9489192f5485ece966b0d6d589e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35ec8c5aea5cffee69ac5cec6abb5871"><td class="memItemLeft" align="right" valign="top">vector&lt; cv::KeyPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a35ec8c5aea5cffee69ac5cec6abb5871">mvCurrentKeys</a></td></tr>
+<tr class="memdesc:a35ec8c5aea5cffee69ac5cec6abb5871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos singulares del cuadro actual.  <a href="#a35ec8c5aea5cffee69ac5cec6abb5871">More...</a><br /></td></tr>
 <tr class="separator:a35ec8c5aea5cffee69ac5cec6abb5871"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7d745757f0a81f8460236036b837b0e"><td class="memItemLeft" align="right" valign="top">vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#aa7d745757f0a81f8460236036b837b0e">mvbMap</a></td></tr>
 <tr class="separator:aa7d745757f0a81f8460236036b837b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab47bccbb2ddfa65221a968736a6bd092"><td class="memItemLeft" align="right" valign="top">vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ab47bccbb2ddfa65221a968736a6bd092">mvbVO</a></td></tr>
 <tr class="separator:ab47bccbb2ddfa65221a968736a6bd092"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7087ccda3d514be5e0132f889c3e949"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad7087ccda3d514be5e0132f889c3e949">mbOnlyTracking</a></td></tr>
+<tr class="memdesc:ad7087ccda3d514be5e0132f889c3e949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia de la señal de sólo tracking (true) o tracking &amp; mapping (false).  <a href="#ad7087ccda3d514be5e0132f889c3e949">More...</a><br /></td></tr>
 <tr class="separator:ad7087ccda3d514be5e0132f889c3e949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae111426e790338d9f5f4556434716919"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ae111426e790338d9f5f4556434716919">mnTracked</a></td></tr>
 <tr class="separator:ae111426e790338d9f5f4556434716919"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1cbcb7a1443ceaaafaaf5537927f184"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ab1cbcb7a1443ceaaafaaf5537927f184">mnTrackedVO</a></td></tr>
 <tr class="separator:ab1cbcb7a1443ceaaafaaf5537927f184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a890a8bd44745b16024e1d7e82ac1d3f0"><td class="memItemLeft" align="right" valign="top">vector&lt; cv::KeyPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a890a8bd44745b16024e1d7e82ac1d3f0">mvIniKeys</a></td></tr>
+<tr class="memdesc:a890a8bd44745b16024e1d7e82ac1d3f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos singulares de inicialización.  <a href="#a890a8bd44745b16024e1d7e82ac1d3f0">More...</a><br /></td></tr>
 <tr class="separator:a890a8bd44745b16024e1d7e82ac1d3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a158a3ca6cab99c6bb691a7537212764b"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a158a3ca6cab99c6bb691a7537212764b">mvIniMatches</a></td></tr>
+<tr class="memdesc:a158a3ca6cab99c6bb691a7537212764b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macheos de inicialización.  <a href="#a158a3ca6cab99c6bb691a7537212764b">More...</a><br /></td></tr>
 <tr class="separator:a158a3ca6cab99c6bb691a7537212764b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00cc5f188d53b4d8f767f339515cc8e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a00cc5f188d53b4d8f767f339515cc8e3">mState</a></td></tr>
+<tr class="memdesc:a00cc5f188d53b4d8f767f339515cc8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia del estado del autómata finito del sistema.  <a href="#a00cc5f188d53b4d8f767f339515cc8e3">More...</a><br /></td></tr>
 <tr class="separator:a00cc5f188d53b4d8f767f339515cc8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48374a37e72786b2e64c15c0ec13ce7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a48374a37e72786b2e64c15c0ec13ce7b">mpMap</a></td></tr>
+<tr class="memdesc:a48374a37e72786b2e64c15c0ec13ce7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapa mundi.  <a href="#a48374a37e72786b2e64c15c0ec13ce7b">More...</a><br /></td></tr>
 <tr class="separator:a48374a37e72786b2e64c15c0ec13ce7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1425b923def88314bb43eddf3eee4ddb"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a1425b923def88314bb43eddf3eee4ddb">mMutex</a></td></tr>
 <tr class="separator:a1425b923def88314bb43eddf3eee4ddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,8 +160,11 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a44ac17e7eaa72fc541bd64c45e697265"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Clase de instancia única que se ocupa de muestra la imagen de la cámara con marcas sobre los puntos reconocidos. </p>
-<p>Utiliza imshow de opencv. </p>
+<div class="textblock"><p>Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los puntos reconocidos. </p>
+<p>Utiliza imshow de opencv. Al pie de la imagen describe el estado del sistema. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">FrameDrawer</a> se accede desde dos hilos paralelos asincrónicos:</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> invoca el método <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964" title="Invocado sólo por Tracking::Track avisando que hay un nuevo Frame para mostrar. ">FrameDrawer::Update</a> avisando que hay un nuevo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> para mostrar.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947">Viewer::Run</a> invoca el método <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a7d2b0099c169f6944cadc2cd574a06de" title="Invocado sólo por Viewer::Run para que envíe la imagen del cuadro actual a la pantalla. ">FrameDrawer::DrawFrame</a> cuando es momento de actualizar la pantalla. </li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="add0e1c3734c200a959d8ed9f225223db"></a>
 <div class="memitem">
@@ -171,7 +180,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor, que inicia el contenedor de la imagen a color a mostrar. </p>
+<p>Constructor. </p>
+<p>Constructor, que inicia el contenedor de la imagen a color a mostrar.</p>
 
 </div>
 </div>
@@ -189,7 +199,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Genera la imagen para visualización. </p>
+<p>Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947">Viewer::Run</a> para que envíe la imagen del cuadro actual a la pantalla. </p>
+<p>Genera la imagen para visualización.</p>
 <p>Sobre el cuadro actual procesado dibuja marcas. En el estado NOT_INITIALIZED dibuja las líneas de flujo óptico consideradas para la triangulación inicial. En el estado OK pone marcas verdes sobre puntos del mapa local visualizados, y marcas azules sobre puntos encontrados para VO</p>
 <p>Invocado exclusivamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947">Viewer::Run</a> </p>
 
@@ -233,7 +244,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Agrega una barra de información det texto al pie de la imagen. </p>
+<p>Agrega una barra debajo de la imagen y escribe en ella el estado del sistema. </p>
+<p>Agrega una barra de información det texto al pie de la imagen.</p>
 <p>El texto de la barra se genera en este método.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -243,22 +255,6 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a40ab93ce129797b3b2ab054ab04af83f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ORB_SLAM2::FrameDrawer::Register </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td>
-          <td class="paramname"><em>pMap</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -276,8 +272,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Track invoca este método avisando que se terminó de procesar un cuadro. </p>
-<p>Cuando se invoque DrawFrame, el objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de muestra la imagen de la cámara con marcas sobre los puntos r...">FrameDrawer</a> tendrá los datos del último cuadro procesado. Invocada sólo desde Track. </p>
+<p>Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> avisando que hay un nuevo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> para mostrar. </p>
+<p>Track invoca este método avisando que se terminó de procesar un cuadro.</p>
+<p>Cuando se invoque DrawFrame, el objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">FrameDrawer</a> tendrá los datos del último cuadro procesado. Invocada sólo desde Track. </p>
 
 </div>
 </div>
@@ -300,6 +297,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Copia de la señal de sólo tracking (true) o tracking &amp; mapping (false). </p>
+
 </div>
 </div>
 <a id="a2b405554be1a48ade50055af97c2c2c9"></a>
@@ -319,6 +318,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Imagen gris del cuadro actual. </p>
 
 </div>
 </div>
@@ -400,6 +401,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Mapa mundi. </p>
+
 </div>
 </div>
 <a id="a00cc5f188d53b4d8f767f339515cc8e3"></a>
@@ -419,6 +422,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Copia del estado del autómata finito del sistema. </p>
 
 </div>
 </div>
@@ -480,6 +485,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Puntos singulares del cuadro actual. </p>
+
 </div>
 </div>
 <a id="a890a8bd44745b16024e1d7e82ac1d3f0"></a>
@@ -499,6 +506,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Puntos singulares de inicialización. </p>
 
 </div>
 </div>
@@ -520,6 +529,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Macheos de inicialización. </p>
+
 </div>
 </div>
 <a id="adbc9489192f5485ece966b0d6d589e47"></a>
@@ -539,6 +550,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Cantidad de puntos singulares. </p>
 
 </div>
 </div>

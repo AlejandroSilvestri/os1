@@ -100,8 +100,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_tracking.ht
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::Tracking:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_tracking__coll__graph.svg" width="2571" height="978"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_tracking__coll__graph.svg" width="2571" height="978"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -302,7 +301,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). </p>
 <p>Este objeto empaqueta el código que realiza el tracking y se ejecuta en su thread único y exclusivo. .Run() cuelga el listener GrabImage(), que recibe mensajes con imágenes desde el nodo cámara vía ros.</p>
 <p>Por su naturaleza asincrónica, GrabImage implementa un autómata finito que conduce el hilo por los distintos estados de inicialización, y de relocalización cuando se pierde el tracking. Su variable de estado es mState.</p>
-<p>En cada ciclo (cada vez que recibe una imagen) crea una instancia de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame es un cuadro, una imagen, con los puntos detectados. ">Frame</a>, donde guarda los resultados de la detección de puntos, extracción de descriptores, macheo, vínculo con los puntos 3D, etc.</p>
+<p>En cada ciclo (cada vez que recibe una imagen) crea una instancia de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>, donde guarda los resultados de la detección de puntos, extracción de descriptores, macheo, vínculo con los puntos 3D, etc.</p>
 <p>En el thread de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> se realiza la triangulación inicial, el SfM, y se generan los KeyFrames. También se dispara la relocalización cuando se la necesita.</p>
 <p>Construye el mapa local en mvpLocalKeyFrames, un vector de KeyFrames.</p>
 <p>Convención de prefijos de miembros: Las propiedades adoptan los siguientes prefijos:</p><ul>
@@ -1708,7 +1707,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Variables de inicialización. </p>
-<p>Luego de la inicialización, estos valores están en el <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame es un cuadro, una imagen, con los puntos detectados. ">Frame</a>. Vector con los matches anteriores, para inicialización. </p>
+<p>Luego de la inicialización, estos valores están en el <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. Vector con los matches anteriores, para inicialización. </p>
 
 </div>
 </div>
