@@ -1,0 +1,6 @@
+<map id="g2o::VertexSBAPointXYZ" name="g2o::VertexSBAPointXYZ">
+<area shape="rect" id="node2" href="$classg2o_1_1_base_vertex.html" title="g2o::BaseVertex\&lt; 3,\l Vector3d \&gt;" alt="" coords="33,259,176,300"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_optimizable_graph_1_1_vertex.html" title="A general case Vertex for optimization. " alt="" coords="27,169,182,211"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_hyper_graph_1_1_vertex.html" title="abstract Vertex, your types must derive from that one " alt="" coords="21,95,188,121"/>
+<area shape="rect" id="node5" href="$structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html" title="base hyper graph element, specialized in vertex and edge " alt="" coords="5,5,204,47"/>
+</map>

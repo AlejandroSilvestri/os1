@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classg2o_1_1_solver.html" title="Generic interface for a sparse solver operating on a graph which solves one iteration of the lineariz..." alt="" coords="5,5,93,32"/>
+<area shape="rect" id="node2" href="$classg2o_1_1_block_solver_base.html" title="base for the block solvers with some basic function interfaces " alt="" coords="141,5,292,32"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_block_solver.html" title="Implementation of a solver operating on the blocks of the Hessian. " alt="" coords="340,5,519,32"/>
+</map>

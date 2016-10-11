@@ -1,0 +1,35 @@
+<map id="/home/alejandro/Desarrollo eclipse/os1/include/Optimizer.h" name="/home/alejandro/Desarrollo eclipse/os1/include/Optimizer.h">
+<area shape="rect" id="node2" href="$_map_8h.html" title="Map.h" alt="" coords="580,550,639,577"/>
+<area shape="rect" id="node3" href="$_map_point_8h.html" title="MapPoint.h" alt="" coords="632,632,720,659"/>
+<area shape="rect" id="node4" href="$_key_frame_8h.html" title="KeyFrame.h" alt="" coords="463,721,556,748"/>
+<area shape="rect" id="node17" href="$_frame_8h.html" title="Frame.h" alt="" coords="377,893,447,919"/>
+<area shape="rect" id="node22" href="$_loop_closing_8h.html" title="LoopClosing.h" alt="" coords="1010,95,1115,121"/>
+<area shape="rect" id="node32" href="$types__seven__dof__expmap_8h.html" title="../Thirdparty/g2o/g2o\l/types/types_seven_dof\l_expmap.h" alt="" coords="1846,707,2007,763"/>
+<area shape="rect" id="node5" href="$_bow_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/BowVector.h" alt="" coords="385,1228,535,1269"/>
+<area shape="rect" id="node9" href="$_feature_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FeatureVector.h" alt="" coords="314,1139,483,1180"/>
+<area shape="rect" id="node10" href="$_o_r_b_vocabulary_8h.html" title="ORBVocabulary.h" alt="" coords="1179,975,1306,1001"/>
+<area shape="rect" id="node15" href="$_o_r_bextractor_8h.html" title="ORBextractor.h" alt="" coords="611,975,725,1001"/>
+<area shape="rect" id="node19" href="$_key_frame_database_8h.html" title="KeyFrameDatabase.h" alt="" coords="1363,811,1512,837"/>
+<area shape="rect" id="node11" href="$_f_o_r_b_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FORB.h" alt="" coords="1155,1049,1298,1091"/>
+<area shape="rect" id="node13" href="$_templated_vocabulary_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/TemplatedVocabulary.h" alt="" coords="917,1049,1131,1091"/>
+<area shape="rect" id="node23" href="$_local_mapping_8h.html" title="LocalMapping.h" alt="" coords="1006,169,1119,196"/>
+<area shape="rect" id="node24" href="$_tracking_8h.html" title="Tracking.h" alt="" coords="915,244,997,271"/>
+<area shape="rect" id="node26" href="$_viewer_8h.html" title="Viewer.h" alt="" coords="955,393,1029,420"/>
+<area shape="rect" id="node27" href="$_frame_drawer_8h.html" title="FrameDrawer.h" alt="" coords="928,468,1040,495"/>
+<area shape="rect" id="node28" href="$_map_drawer_8h.html" title="MapDrawer.h" alt="" coords="702,468,802,495"/>
+<area shape="rect" id="node29" href="$_system_8h.html" title="System.h" alt="" coords="1105,319,1183,345"/>
+<area shape="rect" id="node31" href="$_initializer_8h.html" title="Initializer.h" alt="" coords="237,811,323,837"/>
+<area shape="rect" id="node33" href="$base__vertex_8h.html" title="../core/base_vertex.h" alt="" coords="2439,975,2585,1001"/>
+<area shape="rect" id="node43" href="$base__binary__edge_8h.html" title="../core/base_binary\l_edge.h" alt="" coords="2001,885,2135,927"/>
+<area shape="rect" id="node48" href="$types__six__dof__expmap_8h.html" title="types_six_dof_expmap.h" alt="" coords="1985,811,2151,837"/>
+<area shape="rect" id="node50" href="$sim3_8h.html" title="sim3.h" alt="" coords="1848,811,1909,837"/>
+<area shape="rect" id="node34" href="$optimizable__graph_8h.html" title="optimizable_graph.h" alt="" coords="2024,1057,2163,1083"/>
+<area shape="rect" id="node35" href="$macros_8h.html" title="../stuff/macros.h" alt="" coords="2039,1146,2158,1173"/>
+<area shape="rect" id="node36" href="$creators_8h.html" title="creators.h" alt="" coords="2339,1057,2419,1083"/>
+<area shape="rect" id="node42" href="$base__vertex_8hpp.html" title="base_vertex.hpp" alt="" coords="3047,1057,3166,1083"/>
+<area shape="rect" id="node44" href="$base__edge_8h.html" title="base_edge.h" alt="" coords="2020,975,2116,1001"/>
+<area shape="rect" id="node45" href="$robust__kernel_8h.html" title="robust_kernel.h" alt="" coords="1885,975,1995,1001"/>
+<area shape="rect" id="node46" href="$config_8h.html" title="../../config.h" alt="" coords="1769,975,1861,1001"/>
+<area shape="rect" id="node47" href="$base__binary__edge_8hpp.html" title="base_binary_edge.hpp" alt="" coords="2263,975,2415,1001"/>
+<area shape="rect" id="node49" href="$base__unary__edge_8h.html" title="../core/base_unary\l_edge.h" alt="" coords="1797,885,1928,927"/>
+</map>

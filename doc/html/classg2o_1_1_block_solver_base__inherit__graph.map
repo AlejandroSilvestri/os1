@@ -1,0 +1,4 @@
+<map id="g2o::BlockSolverBase" name="g2o::BlockSolverBase">
+<area shape="rect" id="node3" href="$classg2o_1_1_block_solver.html" title="Implementation of a solver operating on the blocks of the Hessian. " alt="" coords="5,155,184,181"/>
+<area shape="rect" id="node2" href="$classg2o_1_1_solver.html" title="Generic interface for a sparse solver operating on a graph which solves one iteration of the lineariz..." alt="" coords="51,5,139,32"/>
+</map>

@@ -1,0 +1,30 @@
+<map id="/home/alejandro/Desarrollo eclipse/os1/src/Frame.cc" name="/home/alejandro/Desarrollo eclipse/os1/src/Frame.cc">
+<area shape="rect" id="node2" href="$_frame_8h.html" title="Frame.h" alt="" coords="538,177,609,203"/>
+<area shape="rect" id="node30" href="$_converter_8h.html" title="Converter.h" alt="" coords="1772,259,1863,285"/>
+<area shape="rect" id="node48" href="$_o_r_bmatcher_8h.html" title="ORBmatcher.h" alt="" coords="355,95,464,121"/>
+<area shape="rect" id="node4" href="$_map_point_8h.html" title="MapPoint.h" alt="" coords="349,259,437,285"/>
+<area shape="rect" id="node5" href="$_key_frame_8h.html" title="KeyFrame.h" alt="" coords="469,452,563,479"/>
+<area shape="rect" id="node6" href="$_bow_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/BowVector.h" alt="" coords="1442,884,1593,925"/>
+<area shape="rect" id="node9" href="$_feature_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FeatureVector.h" alt="" coords="1603,795,1773,836"/>
+<area shape="rect" id="node10" href="$_o_r_b_vocabulary_8h.html" title="ORBVocabulary.h" alt="" coords="627,623,754,650"/>
+<area shape="rect" id="node23" href="$_o_r_bextractor_8h.html" title="ORBextractor.h" alt="" coords="177,713,290,739"/>
+<area shape="rect" id="node28" href="$_map_8h.html" title="Map.h" alt="" coords="304,348,363,375"/>
+<area shape="rect" id="node25" href="$_key_frame_database_8h.html" title="KeyFrameDatabase.h" alt="" coords="467,541,616,568"/>
+<area shape="rect" id="node11" href="$_f_o_r_b_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FORB.h" alt="" coords="619,705,762,747"/>
+<area shape="rect" id="node15" href="$_templated_vocabulary_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/TemplatedVocabulary.h" alt="" coords="973,705,1187,747"/>
+<area shape="rect" id="node14" href="$_f_class_8h.html" title="FClass.h" alt="" coords="576,802,651,829"/>
+<area shape="rect" id="node21" href="$_scoring_object_8h.html" title="ScoringObject.h" alt="" coords="1363,802,1477,829"/>
+<area shape="rect" id="node22" href="$_random_8h.html" title="../DUtils/Random.h" alt="" coords="805,891,939,918"/>
+<area shape="rect" id="node32" href="$types__six__dof__expmap_8h.html" title="../Thirdparty/g2o/g2o\l/types/types_six_dof\l_expmap.h" alt="" coords="1805,437,1947,493"/>
+<area shape="rect" id="node46" href="$types__seven__dof__expmap_8h.html" title="../Thirdparty/g2o/g2o\l/types/types_seven_dof\l_expmap.h" alt="" coords="1855,333,2017,389"/>
+<area shape="rect" id="node33" href="$base__vertex_8h.html" title="../core/base_vertex.h" alt="" coords="1995,623,2141,650"/>
+<area shape="rect" id="node40" href="$base__binary__edge_8h.html" title="../core/base_binary\l_edge.h" alt="" coords="2616,616,2749,657"/>
+<area shape="rect" id="node41" href="$base__unary__edge_8h.html" title="../core/base_unary\l_edge.h" alt="" coords="1673,705,1804,747"/>
+<area shape="rect" id="node42" href="$se3__ops_8h.html" title="se3_ops.h" alt="" coords="1489,623,1572,650"/>
+<area shape="rect" id="node43" href="$se3quat_8h.html" title="se3quat.h" alt="" coords="1569,541,1647,568"/>
+<area shape="rect" id="node44" href="$types__sba_8h.html" title="types_sba.h" alt="" coords="2023,541,2116,568"/>
+<area shape="rect" id="node34" href="$optimizable__graph_8h.html" title="optimizable_graph.h" alt="" coords="1828,713,1967,739"/>
+<area shape="rect" id="node35" href="$macros_8h.html" title="../stuff/macros.h" alt="" coords="2187,802,2306,829"/>
+<area shape="rect" id="node36" href="$creators_8h.html" title="creators.h" alt="" coords="828,713,908,739"/>
+<area shape="rect" id="node47" href="$sim3_8h.html" title="sim3.h" alt="" coords="1517,452,1579,479"/>
+</map>

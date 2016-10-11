@@ -1,0 +1,5 @@
+<map id="g2o::LinearSolver&lt; MatrixType &gt;" name="g2o::LinearSolver&lt; MatrixType &gt;">
+<area shape="rect" id="node2" href="$classg2o_1_1_linear_solver_c_c_s.html" title="Solver with faster iterating structure for the linear matrix. " alt="" coords="189,5,341,47"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_linear_solver_dense.html" title="linear solver using dense cholesky decomposition " alt="" coords="184,71,345,112"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_linear_solver_eigen.html" title="linear solver which uses the sparse Cholesky solver from Eigen " alt="" coords="187,136,343,177"/>
+</map>

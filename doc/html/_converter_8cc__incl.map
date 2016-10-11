@@ -1,0 +1,27 @@
+<map id="/home/alejandro/Desarrollo eclipse/os1/src/Converter.cc" name="/home/alejandro/Desarrollo eclipse/os1/src/Converter.cc">
+<area shape="rect" id="node2" href="$_converter_8h.html" title="Converter.h" alt="" coords="883,95,973,121"/>
+<area shape="rect" id="node5" href="$types__six__dof__expmap_8h.html" title="../Thirdparty/g2o/g2o\l/types/types_six_dof\l_expmap.h" alt="" coords="1725,273,1867,329"/>
+<area shape="rect" id="node49" href="$types__seven__dof__expmap_8h.html" title="../Thirdparty/g2o/g2o\l/types/types_seven_dof\l_expmap.h" alt="" coords="1578,169,1739,225"/>
+<area shape="rect" id="node6" href="$base__vertex_8h.html" title="../core/base_vertex.h" alt="" coords="823,467,969,493"/>
+<area shape="rect" id="node36" href="$base__binary__edge_8h.html" title="../core/base_binary\l_edge.h" alt="" coords="1592,377,1725,419"/>
+<area shape="rect" id="node41" href="$base__unary__edge_8h.html" title="../core/base_unary\l_edge.h" alt="" coords="1867,377,1997,419"/>
+<area shape="rect" id="node43" href="$se3__ops_8h.html" title="se3_ops.h" alt="" coords="2567,467,2649,493"/>
+<area shape="rect" id="node46" href="$se3quat_8h.html" title="se3quat.h" alt="" coords="2391,385,2470,411"/>
+<area shape="rect" id="node47" href="$types__sba_8h.html" title="types_sba.h" alt="" coords="1749,385,1843,411"/>
+<area shape="rect" id="node7" href="$optimizable__graph_8h.html" title="optimizable_graph.h" alt="" coords="1136,541,1275,568"/>
+<area shape="rect" id="node30" href="$macros_8h.html" title="../stuff/macros.h" alt="" coords="337,616,455,643"/>
+<area shape="rect" id="node32" href="$creators_8h.html" title="creators.h" alt="" coords="536,541,616,568"/>
+<area shape="rect" id="node35" href="$base__vertex_8hpp.html" title="base_vertex.hpp" alt="" coords="899,541,1018,568"/>
+<area shape="rect" id="node14" href="$openmp__mutex_8h.html" title="openmp_mutex.h" alt="" coords="624,616,747,643"/>
+<area shape="rect" id="node17" href="$hyper__graph_8h.html" title="hyper_graph.h" alt="" coords="1132,691,1236,717"/>
+<area shape="rect" id="node23" href="$parameter_8h.html" title="parameter.h" alt="" coords="1345,616,1436,643"/>
+<area shape="rect" id="node25" href="$parameter__container_8h.html" title="parameter_container.h" alt="" coords="1461,616,1611,643"/>
+<area shape="rect" id="node27" href="$jacobian__workspace_8h.html" title="jacobian_workspace.h" alt="" coords="822,616,973,643"/>
+<area shape="rect" id="node15" href="$config_8h.html" title="../../config.h" alt="" coords="250,691,342,717"/>
+<area shape="rect" id="node37" href="$base__edge_8h.html" title="base_edge.h" alt="" coords="1833,467,1929,493"/>
+<area shape="rect" id="node38" href="$robust__kernel_8h.html" title="robust_kernel.h" alt="" coords="2005,467,2115,493"/>
+<area shape="rect" id="node40" href="$base__binary__edge_8hpp.html" title="base_binary_edge.hpp" alt="" coords="285,467,437,493"/>
+<area shape="rect" id="node42" href="$base__unary__edge_8hpp.html" title="base_unary_edge.hpp" alt="" coords="2191,467,2340,493"/>
+<area shape="rect" id="node45" href="$se3__ops_8hpp.html" title="se3_ops.hpp" alt="" coords="2649,541,2745,568"/>
+<area shape="rect" id="node50" href="$sim3_8h.html" title="sim3.h" alt="" coords="2499,385,2560,411"/>
+</map>
