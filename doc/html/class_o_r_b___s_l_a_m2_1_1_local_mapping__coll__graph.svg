@@ -77,7 +77,7 @@
 </g>
 <!-- Node17 -->
 <g id="node17" class="node"><title>Node17</title>
-<g id="a_node17"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_frame.html" target="_top" xlink:title="Frame es un cuadro, una imagen, con los puntos detectados. ">
+<g id="a_node17"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_frame.html" target="_top" xlink:title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">
 <polygon fill="white" stroke="black" points="1094,-382.798 1094,-401.798 1204,-401.798 1204,-382.798 1094,-382.798"/>
 <text text-anchor="middle" x="1149" y="-389.798" font-family="Helvetica,sans-Serif" font-size="10.00">ORB_SLAM2::Frame</text>
 </a>
@@ -202,7 +202,7 @@
 </g>
 <!-- Node14 -->
 <g id="node14" class="node"><title>Node14</title>
-<g id="a_node14"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" target="_top" xlink:title="Clase de instancia única que se ocupa de muestra la imagen de la cámara con marcas sobre los puntos r...">
+<g id="a_node14"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" target="_top" xlink:title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">
 <polygon fill="white" stroke="black" points="919,-110.798 919,-129.798 1060,-129.798 1060,-110.798 919,-110.798"/>
 <text text-anchor="middle" x="989.5" y="-117.798" font-family="Helvetica,sans-Serif" font-size="10.00">ORB_SLAM2::FrameDrawer</text>
 </a>

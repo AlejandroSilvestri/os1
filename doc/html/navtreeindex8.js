@@ -1,7 +1,5 @@
 var NAVTREEINDEX8 =
 {
-"classg2o_1_1_sparse_optimizer.html#ad9f7ba03f7f37114f757f34f67dd48e5":[4,0,2,81,20],
-"classg2o_1_1_sparse_optimizer.html#ae592f525151d0cfb5bde3e7213f7ab11":[4,0,2,81,49],
 "classg2o_1_1_sparse_optimizer.html#ae971d068585055973798f93ac2363d94":[4,0,2,81,50],
 "classg2o_1_1_sparse_optimizer.html#af974cb94744550cc732d61f7fd7d63ed":[4,0,2,81,52],
 "classg2o_1_1_vertex_s_b_a_point_x_y_z.html":[4,0,2,83],
@@ -143,8 +141,8 @@ var NAVTREEINDEX8 =
 "functions_enum.html":[4,3,4],
 "functions_eval.html":[4,3,5],
 "functions_f.html":[4,3,0,6],
-"functions_func.html":[4,3,1,0],
 "functions_func.html":[4,3,1],
+"functions_func.html":[4,3,1,0],
 "functions_func_0x7e.html":[4,3,1,24],
 "functions_func_a.html":[4,3,1,1],
 "functions_func_b.html":[4,3,1,2],
@@ -228,8 +226,8 @@ var NAVTREEINDEX8 =
 "group__utils.html#ga72be58353c64ef6f14ae70d43f75c892":[2,2,12],
 "group__utils.html#ga88353c6cfc2e519df07814ca577e71ec":[2,2,9],
 "group__utils.html#ga98a43706466c9618576a0f23e9021457":[2,2,18],
-"group__utils.html#ga9b9f34c01b03b47644c2762bf256be32":[2,2,4],
 "group__utils.html#ga9b9f34c01b03b47644c2762bf256be32":[5,0,3,1,0,2,10,2],
+"group__utils.html#ga9b9f34c01b03b47644c2762bf256be32":[2,2,4],
 "group__utils.html#ga9dac39a213d269b8d68fb698bf82873a":[2,2,14],
 "group__utils.html#gaafc27d8d00ac925dce6e52a013cc2b32":[5,0,3,1,0,2,10,4],
 "group__utils.html#gaafc27d8d00ac925dce6e52a013cc2b32":[2,2,6],
@@ -249,5 +247,7 @@ var NAVTREEINDEX8 =
 "hyper__dijkstra_8h_source.html":[5,0,3,1,0,0,22],
 "hyper__graph_8cpp.html":[5,0,3,1,0,0,23],
 "hyper__graph_8d.html":[5,0,0,1,1,0,0,5],
-"hyper__graph_8h.html":[5,0,3,1,0,0,24]
+"hyper__graph_8h.html":[5,0,3,1,0,0,24],
+"hyper__graph_8h_source.html":[5,0,3,1,0,0,24],
+"hyper__graph__action_8cpp.html":[5,0,3,1,0,0,25]
 };

@@ -1,7 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"classg2o_1_1_base_unary_edge.html#a24bcabd661223e15b7337f2835310f5e":[4,0,2,7,2],
-"classg2o_1_1_base_unary_edge.html#a367f19b903938faf6e89dd1b0e4e722b":[4,0,2,7,11],
 "classg2o_1_1_base_unary_edge.html#a396fbab83bfc9ce2e2080b16ccc357f4":[4,0,2,7,9],
 "classg2o_1_1_base_unary_edge.html#a3d3311901116092cf817b094f6a0b44b":[4,0,2,7,8],
 "classg2o_1_1_base_unary_edge.html#a4c5ec31144a266fb059b73b2387456c1":[4,0,2,7,6],
@@ -249,5 +247,7 @@ var NAVTREEINDEX4 =
 "classg2o_1_1_estimate_propagator_cost_odometry.html":[4,0,2,26],
 "classg2o_1_1_estimate_propagator_cost_odometry.html#a3da1f1d67f717d0dbc0077db1c571146":[4,0,2,26,2],
 "classg2o_1_1_estimate_propagator_cost_odometry.html#a426a53e3cce07b71a129cc53754e9f1a":[4,0,2,26,0],
-"classg2o_1_1_estimate_propagator_cost_odometry.html#a6e610e7413e8973453943c5b4b9423aa":[4,0,2,26,1]
+"classg2o_1_1_estimate_propagator_cost_odometry.html#a6e610e7413e8973453943c5b4b9423aa":[4,0,2,26,1],
+"classg2o_1_1_factory.html":[4,0,2,27],
+"classg2o_1_1_factory.html#a01b16c7d5a49ddab5ccd5980f76900b7":[4,0,2,27,12]
 };

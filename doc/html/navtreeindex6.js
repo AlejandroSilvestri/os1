@@ -1,7 +1,5 @@
 var NAVTREEINDEX6 =
 {
-"classg2o_1_1_optimizable_graph_1_1_edge.html#a804b9a2178249b9297c55b8fbbeda56e":[4,0,2,46,1,38],
-"classg2o_1_1_optimizable_graph_1_1_edge.html#a9519f8892e97f03daacb44ea50ac7f4e":[4,0,2,46,1,17],
 "classg2o_1_1_optimizable_graph_1_1_edge.html#a99de4bbb57e3c5e7321f150a45d1cb12":[4,0,2,46,1,16],
 "classg2o_1_1_optimizable_graph_1_1_edge.html#aa93e3a4f976b467994f4eb7679a04bf3":[4,0,2,46,1,30],
 "classg2o_1_1_optimizable_graph_1_1_edge.html#ab3e4290bc51d03ba294f36254048b15a":[4,0,2,46,1,33],
@@ -249,5 +247,7 @@ var NAVTREEINDEX6 =
 "classg2o_1_1_robust_kernel_d_c_s.html":[4,0,2,65],
 "classg2o_1_1_robust_kernel_d_c_s.html#aa469fa37ee76e4483108110b58d5823d":[4,0,2,65,0],
 "classg2o_1_1_robust_kernel_factory.html":[4,0,2,66],
-"classg2o_1_1_robust_kernel_factory.html#a031a4fdb890d6191c0bff8aedfb078c6":[4,0,2,66,3]
+"classg2o_1_1_robust_kernel_factory.html#a031a4fdb890d6191c0bff8aedfb078c6":[4,0,2,66,3],
+"classg2o_1_1_robust_kernel_factory.html#a078e96a0ca100165d18b146f07813765":[4,0,2,66,5],
+"classg2o_1_1_robust_kernel_factory.html#a3679a51bd829f6d47e8312d339339a79":[4,0,2,66,4]
 };

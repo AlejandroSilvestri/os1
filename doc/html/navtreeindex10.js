@@ -1,7 +1,5 @@
 var NAVTREEINDEX10 =
 {
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a0305ad0a8964947347da1d38ef0363ed":[4,0,0,5,0,3],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a050a0ee173dd58475dd2ab84e6f215e8":[4,0,0,5,0,2],
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a082fba9dcf272b78354ffd5b1d58f5fa":[4,0,0,5,0,6],
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a1339ee00108c4c652cd1ca55a37c3fd3":[4,0,0,5,0,0],
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a62fb0c85332741c114110463252c64e9":[4,0,0,5,0,5],
