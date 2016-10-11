@@ -41,7 +41,7 @@ class Frame;
 
 /**
  * Lista invertida de KeyFrames, accesible por BoW.
- * Esta clase registra los k
+ * Para cada palabra del vocabulario, hay una lista de keyframes que la contienen.
  */
 class KeyFrameDatabase
 {
@@ -92,6 +92,9 @@ public:
 
 protected:
 
+	/**
+	 * Vocabulario BoW.
+	 */
 	// Associated vocabulary
 	const ORBVocabulary* mpVoc;
 

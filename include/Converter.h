@@ -40,6 +40,7 @@ namespace ORB_SLAM2
 class Converter
 {
 public:
+	/** Convierte una matriz Mat de descriptores en un vector de descriptores Mat.*/
     static std::vector<cv::Mat> toDescriptorVector(const cv::Mat &Descriptors);
 
     /** Convierte un Mat a SE3Quat.*/
@@ -63,9 +64,10 @@ public:
     /** Convierte matrices Eigen a Mat.*/
     static cv::Mat toCvMat(const Eigen::Matrix<double,3,1> &m);
 
+    /** Convierte matrices SE3 de Eigen a Mat.*/
     static cv::Mat toCvSE3(const Eigen::Matrix<double,3,3> &R, const Eigen::Matrix<double,3,1> &t);
 
-    /** */
+    /** Convierte un vector 3D de Mat a Eigen.*/
     static Eigen::Matrix<double,3,1> toVector3d(const cv::Mat &cvVector);
 
     /** Convierte Point3f a Eigen.*/
@@ -76,8 +78,6 @@ public:
 
     /** Convierte Mat a vector.*/
     static std::vector<float> toQuaternion(const cv::Mat &M);
-
-    static void RmatOfQuat(cv::Mat &M, const cv::Mat &q);
 };
 
 }// namespace ORB_SLAM

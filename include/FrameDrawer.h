@@ -37,11 +37,15 @@ namespace ORB_SLAM2
 class Tracking;
 class Viewer;
 
+/**
+ * Clase de instancia única que se ocupa de muestra la imagen de la cámara con marcas sobre los puntos reconocidos.
+ * Utiliza imshow de opencv.
+ */
 class FrameDrawer
 {
 public:
     FrameDrawer(Map* pMap);
-    FrameDrawer();
+    //FrameDrawer();
 
     // Update info from the last processed frame.
     void Update(Tracking *pTracker);

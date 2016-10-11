@@ -71,7 +71,7 @@ public:
 
     // Constructor for Monocular cameras.
     Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
-    Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor, ORBVocabulary* voc, const float &thDepth);
+    //Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor, ORBVocabulary* voc, const float &thDepth);
 
     // Extract ORB on the image. 0 for left image and 1 for right image.
     void ExtractORB(int flag, const cv::Mat &im);
@@ -85,11 +85,13 @@ public:
     // Computes rotation, translation and camera center matrices from the camera pose.
     void UpdatePoseMatrices();
 
+    /** Devuelve el vector de la posición de la cámara, el centro de la cámara.*/
     // Returns the camera center.
     inline cv::Mat GetCameraCenter(){
         return mOw.clone();
     }
 
+    /** Devuelve la inversa de la rotación.*/
     // Returns inverse of rotation
     inline cv::Mat GetRotationInverse(){
         return mRwc.clone();
@@ -121,6 +123,7 @@ public:
     /** "Algoritmo" para extraer los descriptores.  El framework permite al programador probar diferentes extractores; ORB-SLAM utiliza solamente ORBextractor.*/
     ORBVocabulary* mpORBvocabulary;
 
+    /** Extractor usado para extraer descriptores.*/
     // Feature extractor. The right is used only in the stereo case.
     ORBextractor* mpORBextractorLeft, *mpORBextractorRight;
 
@@ -155,12 +158,15 @@ public:
 	/** Coeficientes de distorsión de cámara mDistCoef.*/
     cv::Mat mDistCoef;
 
+    /** No usado en monocular.*/
     // Stereo baseline multiplied by fx.
     float mbf;
 
+    /** No usado en monocular.*/
     // Stereo baseline in meters.
     float mb;
 
+    /** No usado en monocular.*/
     // Threshold close/far points. Close points are inserted from 1 view.
     // Far points are inserted as in the monocular case from 2 views.
     float mThDepth;
@@ -172,19 +178,23 @@ public:
     // Vector of keypoints (original for visualization) and undistorted (actually used by the system).
     // In the stereo case, mvKeysUn is redundant as images must be rectified.
     // In the RGB-D case, RGB images can be distorted.
-    /** Vector de puntos obtenidos por el detector, tal como los devuelve opencv.*/
-    std::vector<cv::KeyPoint> mvKeys, mvKeysRight;
+    /** Vector de puntos singulares obtenidos por el detector, tal como los devuelve opencv.*/
+    std::vector<cv::KeyPoint> mvKeys/*, mvKeysRight*/;
 
 	/** Vector de puntos antidistorsionados, mvKeys corregidos según los coeficientes de distorsión.*/
     std::vector<cv::KeyPoint> mvKeysUn;
 
     // Corresponding stereo coordinate and depth for each keypoint.
     // "Monocular" keypoints have a negative value.
+    /** -1 para monocular.*/
     std::vector<float> mvuRight;
+    /** -1 para monocular.*/
     std::vector<float> mvDepth;
 
     // Bag of Words Vector structures.
+    /** Vector BoW correspondiente a los puntos singulares.*/
     DBoW2::BowVector mBowVec;
+    /** Vector "Feature" correspondiente a los puntos singulares.*/
     DBoW2::FeatureVector mFeatVec;
 
 	/** Descriptores ORB en el formato Mat, tal como los devuelve opencv.*/
@@ -249,27 +259,35 @@ public:
     // Scale pyramid info.
     int mnScaleLevels;
 
-	/** Factor de escala de la imagen.*/
+	/** Factor de escala entre niveles de la pirámide.*/
     float mfScaleFactor;
 
+    /** Factor de escala logarítmico.*/
     float mfLogScaleFactor;
 
 	/** Vector de factores de escala de cada nivel de la pirámide.*/
     vector<float> mvScaleFactors;
+	/** Inversa de mvScaleFactors.*/
     vector<float> mvInvScaleFactors;
+    /** Cuadrado de mvScaleFactos.*/
     vector<float> mvLevelSigma2;
+    /** Inversa de mvLevelSigma2.*/
     vector<float> mvInvLevelSigma2;
 
 
 	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     // Undistorted Image Bounds (computed once).
     static float mnMinX;
+	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMaxX;
+	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMinY;
+	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMaxY;
 
-	/** true para cálculos de variables de clase, que no cambian luego.
+	/**
 	 * Esta variable se pone en uno con un argumento del constructor solamente cuando se crea el primer Frame.
+	 * true para cálculos de variables de clase, que no cambian luego.
 	 */
     static bool mbInitialComputations;
 
@@ -280,9 +298,6 @@ public:
 
     // Computes image bounds for the undistorted image (called in the constructor).
     void ComputeImageBounds(const cv::Mat &imLeft);
-
-    void InitializeScaleLevels();
-    static void InitializeClass();
 
     // Assign keypoints to the grid for speed up feature matching (called in the constructor).
     void AssignFeaturesToGrid();
@@ -298,7 +313,10 @@ private:
     /** Vector t de traslación.  Se actualizan con UpdatePoseMatrices().*/
     cv::Mat mtcw;
 
+    /** Matriz de rotación inversa, del mundo respecto de la cámara.*/
     cv::Mat mRwc;
+
+    /** Vector centro de cámara, igual al vector traslación.*/
     cv::Mat mOw; //==mtwc
 };
 

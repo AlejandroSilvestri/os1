@@ -39,9 +39,27 @@ class Initializer
 
 public:
 
+    /**
+     * Constructor que toma ReferenceFrame como referencia para los sucesivos intentos de inicialización.
+     * @param ReferenceFrame Cuadro de referencia inicial, el primero de las dos vistas necesarias para la triangulación.
+     * @param sigma
+     * @param iterations Cantidad máxima de iteraciones para cada intento de triangulación.
+     */
     // Fix the reference frame
     Initializer(const Frame &ReferenceFrame, float sigma = 1.0, int iterations = 200);
 
+    /**
+     * Computa en paralelo una matriz fundamental y una homografía.
+     * Selecciona el modelo con mejor resultado e intenta obtener el movimiento y la estructura SFM (structure from motion).
+     * Intenta triangular los primeros puntos del mapa.
+     * @param CurrentFrame
+     * @param vMatches12
+     * @param R21 Matriz rotación de la segunda cámara respecto de la primera, resultado de la inicialización.
+     * @param t21 Vector traslación de la segunda cámara respecto de la primera, resultado de la inicialización.
+     * @param vP3D Puntos 3D triangulados.
+     * @param vbTriangulated Indicador de inliers (true) u outliers (false).
+     * @returns true si logró la triangulación, false si no.
+     */
     // Computes in parallel a fundamental matrix and a homography
     // Selects a model and tries to recover the motion and the structure from motion
     bool Initialize(const Frame &CurrentFrame, const vector<int> &vMatches12,

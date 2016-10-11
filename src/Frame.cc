@@ -47,7 +47,7 @@ Frame::Frame(const Frame &frame)
     :mpORBvocabulary(frame.mpORBvocabulary), mpORBextractorLeft(frame.mpORBextractorLeft), mpORBextractorRight(frame.mpORBextractorRight),
      mTimeStamp(frame.mTimeStamp), mK(frame.mK.clone()), mDistCoef(frame.mDistCoef.clone()),
      mbf(frame.mbf), mb(frame.mb), mThDepth(frame.mThDepth), N(frame.N), mvKeys(frame.mvKeys),
-     mvKeysRight(frame.mvKeysRight), mvKeysUn(frame.mvKeysUn),  mvuRight(frame.mvuRight),
+     /*mvKeysRight(frame.mvKeysRight),*/ mvKeysUn(frame.mvKeysUn),  mvuRight(frame.mvuRight),
      mvDepth(frame.mvDepth), mBowVec(frame.mBowVec), mFeatVec(frame.mFeatVec),
      mDescriptors(frame.mDescriptors.clone()), mDescriptorsRight(frame.mDescriptorsRight.clone()),
      mvpMapPoints(frame.mvpMapPoints), mvbOutlier(frame.mvbOutlier), mnId(frame.mnId),
@@ -274,10 +274,10 @@ void Frame::AssignFeaturesToGrid()
  */
 void Frame::ExtractORB(int flag, const cv::Mat &im)
 {
-    if(flag==0)
+    //if(flag==0)
         (*mpORBextractorLeft)(im,cv::Mat(),mvKeys,mDescriptors);
-    else
-        (*mpORBextractorRight)(im,cv::Mat(),mvKeysRight,mDescriptorsRight);
+    /*else
+        (*mpORBextractorRight)(im,cv::Mat(),mvKeysRight,mDescriptorsRight);*/
 }
 
 /**
