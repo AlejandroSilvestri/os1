@@ -1,11 +1,5 @@
 var NAVTREEINDEX4 =
 {
-"classg2o_1_1_base_unary_edge.html#a396fbab83bfc9ce2e2080b16ccc357f4":[4,0,2,7,9],
-"classg2o_1_1_base_unary_edge.html#a3d3311901116092cf817b094f6a0b44b":[4,0,2,7,8],
-"classg2o_1_1_base_unary_edge.html#a4c5ec31144a266fb059b73b2387456c1":[4,0,2,7,6],
-"classg2o_1_1_base_unary_edge.html#a503e62e74775172c008135650850d511":[4,0,2,7,4],
-"classg2o_1_1_base_unary_edge.html#a6753caa95c30fa5bb3887e2a30892ff3":[4,0,2,7,1],
-"classg2o_1_1_base_unary_edge.html#a7375d1ebfb57ba0308f863739b817b15":[4,0,2,7,5],
 "classg2o_1_1_base_unary_edge.html#a8b396647b5b438d30a04758023baa595":[4,0,2,7,10],
 "classg2o_1_1_base_unary_edge.html#a919dcb89130f6e7082e807530facdd78":[4,0,2,7,12],
 "classg2o_1_1_base_unary_edge.html#ab953b076b4c35fcf99de02bd0bfcc1ae":[4,0,2,7,3],
@@ -249,5 +243,11 @@ var NAVTREEINDEX4 =
 "classg2o_1_1_estimate_propagator_cost_odometry.html#a426a53e3cce07b71a129cc53754e9f1a":[4,0,2,26,0],
 "classg2o_1_1_estimate_propagator_cost_odometry.html#a6e610e7413e8973453943c5b4b9423aa":[4,0,2,26,1],
 "classg2o_1_1_factory.html":[4,0,2,27],
-"classg2o_1_1_factory.html#a01b16c7d5a49ddab5ccd5980f76900b7":[4,0,2,27,12]
+"classg2o_1_1_factory.html#a01b16c7d5a49ddab5ccd5980f76900b7":[4,0,2,27,12],
+"classg2o_1_1_factory.html#a20292a9c8417303fec92057826ba2430":[4,0,2,27,8],
+"classg2o_1_1_factory.html#a38e27fb1014dfb8691f4df045ebb5130":[4,0,2,27,13],
+"classg2o_1_1_factory.html#a4b7c6970f55045ee632e6276387d0223":[4,0,2,27,4],
+"classg2o_1_1_factory.html#a564b37b3ccbdd559a386b40ca16d219b":[4,0,2,27,9],
+"classg2o_1_1_factory.html#a639c8d850892dddc20098e9aa97ef9e8":[4,0,2,27,1],
+"classg2o_1_1_factory.html#a8c3800dfa57718d2ceb4f6150611540d":[4,0,2,27,6]
 };

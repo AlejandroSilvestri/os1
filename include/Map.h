@@ -48,27 +48,49 @@ class ORBextractor;
 class Map
 {
 public:
-    Map();
+	/** Constructor, que inicializa propiedades.  El mapa comienza "desactualizado" con mbMapUpdated==false. */
+	Map();
 
+	/** Agrega un nuevo keyframe al mapa.
+	 * Registra el nuevo keyframe en el vector de keyframes del mapa,
+	 * y actualiza el registro mnMaxKFid del id del último keyframe.
+	 */
     void AddKeyFrame(KeyFrame* pKF);
+
+    /** Agrega un mapa 3D al mapa.*/
     void AddMapPoint(MapPoint* pMP);
+
+    /*** Elimina un determinado punto del mapa.*/
     void EraseMapPoint(MapPoint* pMP);
+
+    /** Elimina un determinado keyframe del mapa.*/
     void EraseKeyFrame(KeyFrame* pKF);
+
+    /** Agrega un punto al conjunto de puntos de referencia.
+     * Esta función se invoca exclusivamente desde Tracing::UpdateReference(), para registrar aquí los puntos del mapa local.
+     */
     void SetReferenceMapPoints(const std::vector<MapPoint*> &vpMPs);
 
+    /** Devuelve un vector de keyframes con todos los keyframes del mapa.*/
     std::vector<KeyFrame*> GetAllKeyFrames();
+
+    /** Devuelve un vector de puntos, con todos los puntos del mapa.*/
     std::vector<MapPoint*> GetAllMapPoints();
+
+    /** Informa la cantidad de puntos de referencia en el mapa.*/
     std::vector<MapPoint*> GetReferenceMapPoints();
 
+    /** Informa la cantidad de puntos en el mapa.*/
     long unsigned int MapPointsInMap();
+
+    /** Informa la cantidad de keyframes en el mapa.*/
     long unsigned  KeyFramesInMap();
 
+    /** Informa el id del último keyframe agregado.*/
     long unsigned int GetMaxKFid();
 
+    /** Elimina puntos y keyframes del mapa.  Reinicia el mapa.*/
     void clear();
-
-	bool Save(const string &filename);
-	bool Load(const string &filename, ORBVocabulary &voc);
 
 	vector<KeyFrame*> mvpKeyFrameOrigins;
 
@@ -95,11 +117,6 @@ protected:
 
     std::mutex mMutexMap;
 
-    // Agregados para guardar y cargar mapas
-    void _WriteMapPoint(ofstream &f, MapPoint* mp);
-    void _WriteKeyFrame(ofstream &f, KeyFrame* kf,  map<MapPoint*, unsigned long int>& idx_of_mp);
-    MapPoint* _ReadMapPoint(ifstream &f);
-    KeyFrame* _ReadKeyFrame(ifstream &f, ORBVocabulary &voc, std::vector<MapPoint*> amp, ORBextractor* ex);
 };
 
 } //namespace ORB_SLAM

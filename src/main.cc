@@ -141,6 +141,7 @@ using namespace std;
  * Los KeyFrame se crean a partir de un Frame cuando el sistema entiende que éste aporta información al mapa.
  * Mientras un Frame es efímero, un KeyFrame es de larga vida, es la manera en que un Frame se convierte en parte del mapa.
  * Cuando se crea un KeyFrame, copia la información principal del Frame actual, y computa más datos, como por ejemplo los BoW de cada descriptor.
+ * La documentación de KeyFrame explica la notación de matrices utilizadas en ésta y otras clases.
  *
  * MapPoint:
  * Punto 3D del mapa del mundo.  No sólo tiene las coordenadas del punto, sino también la lista de KeyFrames que lo observan,

@@ -28,11 +28,6 @@
 namespace ORB_SLAM2
 {
 
-/**
- * Constructor de la única instancia de LocalMapping.
- * @param mMap Mapa global.
- * @param bMonocular Señal que indica que el sistema es monocular.
- */
 LocalMapping::LocalMapping(Map *pMap, const float bMonocular):
     mbMonocular(bMonocular), mbResetRequested(false), mbFinishRequested(false), mbFinished(true), mpMap(pMap),
     mbAbortBA(false), mbStopped(false), mbStopRequested(false), mbNotStop(false), mbAcceptKeyFrames(true)
@@ -49,21 +44,6 @@ void LocalMapping::SetTracker(Tracking *pTracker)
     mpTracker=pTracker;
 }
 
-/**
- * Bucle principal del thread de mapeo local.
- * Recibe y procesa pedidos de control, como reset, finish, etc.
- * Cuando hay keyframes en la lista de nuevos keyframes, los procesa disparando las tareas principales del mapeo en este orden:
- *
- * -ProcessNewKeyFrame
- * -MapPointCulling
- * -CreateNewMapPoints
- * -SearchInNeighbors
- * -Optimizer::LocalBundleAdjustment
- * -KeyFrameCulling
- *
- * Si hay varios nuevos keyframes en la lista, procesa de a uno por bucle.
- * Algunas de las tareas principales listadas no se ejecutan hasta que se vacía la lista de nuevos keyframes.
- */
 void LocalMapping::Run()
 {
 
@@ -138,20 +118,12 @@ void LocalMapping::InsertKeyFrame(KeyFrame *pKF)
     mbAbortBA=true;
 }
 
-/**
- * Consulta la lista de nuvos keyframes mlNewKeyFrames.
- * @returns true si hay keyframes en la lista.
- */
 bool LocalMapping::CheckNewKeyFrames()
 {
     unique_lock<mutex> lock(mMutexNewKFs);
     return(!mlNewKeyFrames.empty());
 }
 
-/**
- * Actualiza mpCurrentKeyFrame, y quita el nuevo keyframe de la lista mlNewKeyFrames.
- * Para cada punto 3D visualizado computa BoW y recomputa descriptores, normal y profundidad.
- */
 void LocalMapping::ProcessNewKeyFrame()
 {
     {
@@ -231,14 +203,6 @@ void LocalMapping::MapPointCulling()
     }
 }
 
-/**
- * El ciclo de mapeo local invoca periódicamente este método, que busca macheos candidatos para su triangulación y agregado al mapa.
- * La búsqueda se hace triangulando puntos del keyframe actual y todos sus vecinos en el grafo.
- * Invoca a SearchForTriangulation para obtener los pares macheados.
- * Luego evalúa el paralaje para descartar el punto.
- * Finalmente triangula son SVD y lo agrega al mapa.
- * Realiza esta operación para el keyframe actual, comparado con cada uno de sus vecinos en el grafo.
- */
 void LocalMapping::CreateNewMapPoints()
 {
     // Retrieve neighbor keyframes in covisibility graph
@@ -572,14 +536,6 @@ void LocalMapping::SearchInNeighbors()
     mpCurrentKeyFrame->UpdateConnections();
 }
 
-/**
- * Computa la matriz fundamental F del keyframe 1 respecto del keyframe 2.
- * @param pKF1 Primer keyframe
- * @param pKF2 Segundo keyframe
- * @returns La matriz fundamental F12.
- *
- * Invocado sólo desde CreateNewMapPoints.
- */
 cv::Mat LocalMapping::ComputeF12(KeyFrame *&pKF1, KeyFrame *&pKF2)
 {
     // Rotación del keyframe 1 respecto del mundo.

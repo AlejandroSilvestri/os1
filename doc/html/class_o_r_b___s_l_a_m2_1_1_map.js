@@ -1,10 +1,6 @@
 var class_o_r_b___s_l_a_m2_1_1_map =
 [
     [ "Map", "class_o_r_b___s_l_a_m2_1_1_map.html#a1ab4040dee1287a387124b7d52ac8a02", null ],
-    [ "_ReadKeyFrame", "class_o_r_b___s_l_a_m2_1_1_map.html#a8c936162a3d05d2ee404b872346abf94", null ],
-    [ "_ReadMapPoint", "class_o_r_b___s_l_a_m2_1_1_map.html#a093b2e4d9513b3e01ce1dc5562e52736", null ],
-    [ "_WriteKeyFrame", "class_o_r_b___s_l_a_m2_1_1_map.html#ae8a1e0fc871caa396db9dd27a7c6d8ba", null ],
-    [ "_WriteMapPoint", "class_o_r_b___s_l_a_m2_1_1_map.html#a93bd0752b2276697c6c9feb35aaaee54", null ],
     [ "AddKeyFrame", "class_o_r_b___s_l_a_m2_1_1_map.html#a688de3b072e0176bb288bb70d36cd0e9", null ],
     [ "AddMapPoint", "class_o_r_b___s_l_a_m2_1_1_map.html#a2d8e1b4376778dfe32df90ec00b599e3", null ],
     [ "clear", "class_o_r_b___s_l_a_m2_1_1_map.html#abf0d75e6e234d89b06f568c4600d0436", null ],
@@ -15,9 +11,7 @@ var class_o_r_b___s_l_a_m2_1_1_map =
     [ "GetMaxKFid", "class_o_r_b___s_l_a_m2_1_1_map.html#a1c93202df313c1245056e01dbb070dca", null ],
     [ "GetReferenceMapPoints", "class_o_r_b___s_l_a_m2_1_1_map.html#a56e1d96a4e1d669609e2c2a493f133c2", null ],
     [ "KeyFramesInMap", "class_o_r_b___s_l_a_m2_1_1_map.html#a3440f5e9e93ca7231bde3c5138ab5f5c", null ],
-    [ "Load", "class_o_r_b___s_l_a_m2_1_1_map.html#a3b529d9080fa1bb8ff5a356c2f4447cb", null ],
     [ "MapPointsInMap", "class_o_r_b___s_l_a_m2_1_1_map.html#ad2d7846734c8cb0421d67ff3907649ad", null ],
-    [ "Save", "class_o_r_b___s_l_a_m2_1_1_map.html#a833aec66a96d77b7ac7716ee5a803665", null ],
     [ "SetReferenceMapPoints", "class_o_r_b___s_l_a_m2_1_1_map.html#ac31706152aeb99c94ddb7f6ce452bd77", null ],
     [ "mMutexMap", "class_o_r_b___s_l_a_m2_1_1_map.html#a86b9fb9d5c601fb6fd88c46444bd553c", null ],
     [ "mMutexMapUpdate", "class_o_r_b___s_l_a_m2_1_1_map.html#a05544c09b3227d31163f10609b90b913", null ],

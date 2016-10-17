@@ -52,14 +52,14 @@ var NAVTREEINDEX =
 "_bow_vector_8cpp.html",
 "class_d_bo_w2_1_1_templated_vocabulary.html#ad7bbb3cf53f8f9f3610b9b67c551ba8e",
 "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a83495a11d1fb3cd98e82fa1e2efb6920",
-"class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#af83a014848a63b5a3b3086386f7a865e",
-"classg2o_1_1_base_unary_edge.html#a396fbab83bfc9ce2e2080b16ccc357f4",
-"classg2o_1_1_factory.html#a20292a9c8417303fec92057826ba2430",
-"classg2o_1_1_optimizable_graph_1_1_edge.html#a99de4bbb57e3c5e7321f150a45d1cb12",
-"classg2o_1_1_robust_kernel_factory.html#a4b644b5cbf7f9bec42b8c168e8416011",
-"classg2o_1_1_sparse_optimizer.html#ae971d068585055973798f93ac2363d94",
-"hyper__graph__action_8cpp.html#afec6173619ee5ac5139c3cdbad0fb26e",
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a082fba9dcf272b78354ffd5b1d58f5fa"
+"class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#abbef2ac776747661112246e85667f452",
+"classg2o_1_1_base_unary_edge.html#a8b396647b5b438d30a04758023baa595",
+"classg2o_1_1_factory.html#a93fbd79ea000ed88101c1f23b19e6e2a",
+"classg2o_1_1_optimizable_graph_1_1_edge.html#abe22d8f67447fc93c49b5aa730eaba83",
+"classg2o_1_1_robust_kernel_huber.html",
+"classg2o_1_1_vertex_s_b_a_point_x_y_z.html#aa2a13838edc46ed5395fee5c07c4c8ea",
+"index.html",
+"structg2o_1_1_base_multi_edge_1_1_hessian_helper.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -397,7 +397,25 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cuadro clave, keyframe. </p>
-<p>ORB-SLAM identifica algunos cuadros como clave y los agrega al mapa. Un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> tiene más datos que un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. Al construirse copia los datos del <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> triangula nuevos puntos del mapa exclusivamente a partir de keyframes, no de frames. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a8c7fb6c4b1f952524512023df690bf4d" title="Crea un keyframe a partir del frame actual. ">Tracking::CreateNewKeyFrame</a> tiene la exclusividad de la creación de keyframes. </p>
+<p>ORB-SLAM identifica algunos cuadros como clave y los agrega al mapa. Un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> tiene más datos que un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. Al construirse copia los datos del <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. Los <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> son efímeros, los <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> perduran en el mapa. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> triangula nuevos puntos del mapa exclusivamente a partir de keyframes, no de frames. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a8c7fb6c4b1f952524512023df690bf4d" title="Crea un keyframe a partir del frame actual. ">Tracking::CreateNewKeyFrame</a> tiene la exclusividad de la creación de keyframes.</p>
+<p>Matrices</p>
+<ul>
+<li>E: matriz esencial, 3x3</li>
+<li>F: matriz fundamental, 3x3</li>
+<li>H: homografía, 3x3</li>
+<li>K: matriz intrínseca, de cámara o de calibración, 3x3</li>
+<li>R: matriz de rotación, 3x3, derivada de una pose</li>
+<li>T: transformación, matriz homogénea de 4x4, de rototraslación, para expresar poses</li>
+</ul>
+<p>Subíndices usuales:</p>
+<ul>
+<li>Tcw: "pose de Cámara respecto de World"</li>
+<li>F21: "matriz fundamental del cuadro 2 respecto de 1"</li>
+</ul>
+<p>Vectores:</p>
+<ul>
+<li>t: traslación, derivada de una pose </li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6b2fd06ed5e4a8f9546c515db554bcb6"></a>
 <div class="memitem">

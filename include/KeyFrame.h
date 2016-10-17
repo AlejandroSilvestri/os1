@@ -44,10 +44,30 @@ class KeyFrameDatabase;
  * Cuadro clave, keyframe.
  * ORB-SLAM identifica algunos cuadros como clave y los agrega al mapa.
  * Un KeyFrame tiene más datos que un Frame.  Al construirse copia los datos del Frame.
+ * Los Frame son efímeros, los KeyFrame perduran en el mapa.
  * LocalMapping triangula nuevos puntos del mapa exclusivamente a partir de keyframes, no de frames.
  * Tracking::CreateNewKeyFrame tiene la exclusividad de la creación de keyframes.
  *
- */class KeyFrame
+ * Matrices
+ *
+ * - E: matriz esencial, 3x3
+ * - F: matriz fundamental, 3x3
+ * - H: homografía, 3x3
+ * - K: matriz intrínseca, de cámara o de calibración, 3x3
+ * - R: matriz de rotación, 3x3, derivada de una pose
+ * - T: transformación, matriz homogénea de 4x4, de rototraslación, para expresar poses
+ *
+ * Subíndices usuales:
+ *
+ * - Tcw: "pose de Cámara respecto de World"
+ * - F21: "matriz fundamental del cuadro 2 respecto de 1"
+ *
+ * Vectores:
+ *
+ * - t: traslación, derivada de una pose
+ *
+ */
+class KeyFrame
 {
 public:
 	/**

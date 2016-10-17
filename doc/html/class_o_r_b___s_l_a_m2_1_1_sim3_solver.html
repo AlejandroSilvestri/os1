@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_sim3_solver
 </div><!--header-->
 <div class="contents">
 
+<p>Solucionador de transformación sim3 para cerrar bucles.  
+ <a href="class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_sim3_solver_8h_source.html">Sim3Solver.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::Sim3Solver:</div>
@@ -101,12 +104,15 @@ Collaboration diagram for ORB_SLAM2::Sim3Solver:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4825895bc1a5a74fc71cd4fbfd4f2a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#ac4825895bc1a5a74fc71cd4fbfd4f2a6">Sim3Solver</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF1, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF2, const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMatched12, const bool bFixScale=true)</td></tr>
+<tr class="memdesc:ac4825895bc1a5a74fc71cd4fbfd4f2a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor del solucionador sim3, a partir de dos keyframes y un vector de puntos macheados.  <a href="#ac4825895bc1a5a74fc71cd4fbfd4f2a6">More...</a><br /></td></tr>
 <tr class="separator:ac4825895bc1a5a74fc71cd4fbfd4f2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab90d591f1b9eac3d846efd35c2c04920"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#ab90d591f1b9eac3d846efd35c2c04920">SetRansacParameters</a> (double probability=0.99, int minInliers=6, int maxIterations=300)</td></tr>
+<tr class="memdesc:ab90d591f1b9eac3d846efd35c2c04920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuración de Ransac.  <a href="#ab90d591f1b9eac3d846efd35c2c04920">More...</a><br /></td></tr>
 <tr class="separator:ab90d591f1b9eac3d846efd35c2c04920"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34ba62d5d8033ab12a811c241f30544b"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#a34ba62d5d8033ab12a811c241f30544b">find</a> (std::vector&lt; bool &gt; &amp;vbInliers12, int &amp;nInliers)</td></tr>
 <tr class="separator:a34ba62d5d8033ab12a811c241f30544b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae07cddad85e41611bd454f8026de31a6"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#ae07cddad85e41611bd454f8026de31a6">iterate</a> (int nIterations, bool &amp;bNoMore, std::vector&lt; bool &gt; &amp;vbInliers, int &amp;nInliers)</td></tr>
+<tr class="memdesc:ae07cddad85e41611bd454f8026de31a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia las iteraciones de Ransac.  <a href="#ae07cddad85e41611bd454f8026de31a6">More...</a><br /></td></tr>
 <tr class="separator:ae07cddad85e41611bd454f8026de31a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cf5646f2530a074e30320ae5cf1cb4b"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#a9cf5646f2530a074e30320ae5cf1cb4b">GetEstimatedRotation</a> ()</td></tr>
 <tr class="separator:a9cf5646f2530a074e30320ae5cf1cb4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -209,7 +215,18 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ae647640668c16a2716db73a43c812e7a"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#ae647640668c16a2716db73a43c812e7a">mK2</a></td></tr>
 <tr class="separator:ae647640668c16a2716db73a43c812e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Solucionador de transformación sim3 para cerrar bucles. </p>
+<p>Para dos keyframes, presenta la transformación sim3 (rotación, traslación y escala) que mejor explica las poses. También indica si no encontró una buena explicación.</p>
+<p>Esta clase se instancia exclusivamente en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ab4fcf814eed5b5dd2aec96454561b078">LoopClosing::ComputeSim3()</a>, en este contexto: Cuando se detecta la posibilidad de cierre de bucles, varios keyframes se presentan como candidatos. Se crea un solucionador sim3 para evaluar la calidad del cierre propuesto por cada keyframe candidato. Se utilizan los métodos:</p><ul>
+<li>SetRansacParameters</li>
+<li>iterate</li>
+<li>GetEstimatedRotation</li>
+<li>GetEstimatedTranslation</li>
+<li>GetEstimatedScale</li>
+</ul>
+<p>Se inicializa el solucionador con los parámetros RANSAC, se lo ejecuta con iterate, y luego se evalúa rotación, traslación y escala resultante. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac4825895bc1a5a74fc71cd4fbfd4f2a6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -245,6 +262,16 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor del solucionador sim3, a partir de dos keyframes y un vector de puntos macheados. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF1</td><td>Un keyframe extremo a cerrar en bucle. Se usa el keyframe actual. </td></tr>
+    <tr><td class="paramname">pKF2</td><td>Otro keyframe extremo a cerrar en bucle. Se usa el keyframe detectado, el del otro extremo. </td></tr>
+    <tr><td class="paramname">vpMatched12</td><td>Vector de puntos del mapa que se observan en ambos keyframes, sobre los que se aplicará la transformación de similaridad. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -493,6 +520,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inicia las iteraciones de Ransac. </p>
+
 </div>
 </div>
 <a id="af44c59a21d53b04ec7f867b8291dcf25"></a>
@@ -570,6 +599,16 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Configuración de Ransac. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">probability</td><td></td></tr>
+    <tr><td class="paramname">minInliers</td><td>Mínima cantidad de inliers para considerar exitora una iteración. </td></tr>
+    <tr><td class="paramname">maxIterations</td><td>Máxima cantidad de iteraciones, luego de las cuales aborta. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

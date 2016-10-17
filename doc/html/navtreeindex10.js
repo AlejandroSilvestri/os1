@@ -1,12 +1,5 @@
 var NAVTREEINDEX10 =
 {
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a082fba9dcf272b78354ffd5b1d58f5fa":[4,0,0,5,0,6],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a1339ee00108c4c652cd1ca55a37c3fd3":[4,0,0,5,0,0],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a62fb0c85332741c114110463252c64e9":[4,0,0,5,0,5],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a9f1fcb620025ba6103a47e5c2b169cd6":[4,0,0,5,0,1],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#aa56418d848932be4583fac6b3021c708":[4,0,0,5,0,8],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ab785e994eeae8e6c1d67ee45ad4c8450":[4,0,0,5,0,4],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ae1e261135cb7af400f1c4c4795cdba41":[4,0,0,5,0,7],
 "structg2o_1_1_base_multi_edge_1_1_hessian_helper.html":[4,0,2,5,0],
 "structg2o_1_1_base_multi_edge_1_1_hessian_helper.html#a5a76a58b21ca39ea6ca1e274b588fad0":[4,0,2,5,0,0],
 "structg2o_1_1_base_multi_edge_1_1_hessian_helper.html#ab9eab8a9c5bf6e7814173d1955d7a01c":[4,0,2,5,0,1],

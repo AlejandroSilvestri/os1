@@ -634,7 +634,7 @@ bool Initializer::ReconstructH(vector<bool> &vbMatchesInliers, cv::Mat &H21, cv:
         tp*=d1-d3;
 
         cv::Mat t = U*tp;
-        vt.push_back(t/cv::norm(t));
+        vt.push_back(static_cast<cv::Mat>(t/cv::norm(t)));
 
         cv::Mat np(3,1,CV_32F);
         np.at<float>(0)=x1[i];
@@ -672,7 +672,7 @@ bool Initializer::ReconstructH(vector<bool> &vbMatchesInliers, cv::Mat &H21, cv:
         tp*=d1+d3;
 
         cv::Mat t = U*tp;
-        vt.push_back(t/cv::norm(t));
+        vt.push_back(static_cast<cv::Mat>(t/cv::norm(t)));
 
         cv::Mat np(3,1,CV_32F);
         np.at<float>(0)=x1[i];

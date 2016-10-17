@@ -32,17 +32,59 @@
 namespace ORB_SLAM2
 {
 
+/**
+ * Solucionador de transformación sim3 para cerrar bucles.
+ * Para dos keyframes, presenta la transformación sim3 (rotación, traslación y escala) que mejor explica las poses.
+ * También indica si no encontró una buena explicación.
+ *
+ * Esta clase se instancia exclusivamente en LoopClosing::ComputeSim3(), en este contexto:
+ * Cuando se detecta la posibilidad de cierre de bucles, varios keyframes se presentan como candidatos.
+ * Se crea un solucionador sim3 para evaluar la calidad del cierre propuesto por cada keyframe candidato.
+ * Se utilizan los métodos:
+ * - SetRansacParameters
+ * - iterate
+ * - GetEstimatedRotation
+ * - GetEstimatedTranslation
+ * - GetEstimatedScale
+ *
+ * Se inicializa el solucionador con los parámetros RANSAC, se lo ejecuta con iterate,
+ * y luego se evalúa rotación, traslación y escala resultante.
+ *
+ */
 class Sim3Solver
 {
 public:
 
-    Sim3Solver(KeyFrame* pKF1, KeyFrame* pKF2, const std::vector<MapPoint*> &vpMatched12, const bool bFixScale = true);
+	/**
+	 * Constructor del solucionador sim3, a partir de dos keyframes y un vector de puntos macheados.
+	 *
+	 * @param pKF1 Un keyframe extremo a cerrar en bucle.  Se usa el keyframe actual.
+	 * @param pKF2 Otro keyframe extremo a cerrar en bucle.  Se usa el keyframe detectado, el del otro extremo.
+	 * @param vpMatched12 Vector de puntos del mapa que se observan en ambos keyframes, sobre los que se aplicará la transformación de similaridad.
+	 *
+	 */
+	Sim3Solver(KeyFrame* pKF1, KeyFrame* pKF2, const std::vector<MapPoint*> &vpMatched12, const bool bFixScale = true);
 
-    void SetRansacParameters(double probability = 0.99, int minInliers = 6 , int maxIterations = 300);
+    /**
+     * Configuración de Ransac.
+     *
+     * @param probability
+     * @param minInliers Mínima cantidad de inliers para considerar exitora una iteración.
+     * @param maxIterations Máxima cantidad de iteraciones, luego de las cuales aborta.
+     */
+	void SetRansacParameters(double probability = 0.99, int minInliers = 6 , int maxIterations = 300);
 
-    cv::Mat find(std::vector<bool> &vbInliers12, int &nInliers);
+	/**
+	 *
+	 */
+	cv::Mat find(std::vector<bool> &vbInliers12, int &nInliers);
 
-    cv::Mat iterate(int nIterations, bool &bNoMore, std::vector<bool> &vbInliers, int &nInliers);
+    /**
+     * Inicia las iteraciones de Ransac.
+     *
+     *
+     */
+	cv::Mat iterate(int nIterations, bool &bNoMore, std::vector<bool> &vbInliers, int &nInliers);
 
     cv::Mat GetEstimatedRotation();
     cv::Mat GetEstimatedTranslation();
