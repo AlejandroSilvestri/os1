@@ -54,46 +54,147 @@ class MapPoint
 {
 public:
 	MapPoint(const cv::Mat &Pos, int FirstKFid, int FirstFrame, Map* pMap);
+
+	/**
+	 * Constructor que toma los valores argumentos.
+	 *
+	 * @param Pos Posición en el mapa.
+	 * @param pRefKF Keyframe de referencia.
+	 * @param pMap Mapa al que pertenece el punto.  Hay un único mapa en ORB-SLAM.
+	 *
+	 */
     MapPoint(const cv::Mat &Pos, KeyFrame* pRefKF, Map* pMap);
     MapPoint(const cv::Mat &Pos,  Map* pMap, Frame* pFrame, const int &idxF);
 
+    /**
+     * Asigna al punto las coordenadas 3D argumento.
+     *
+     * @param Pos Vector con la posición que se copiará al punto.
+     */
     void SetWorldPos(const cv::Mat &Pos);
+
+    /**
+     * Devuele un Mat con las coordenadas del punto.
+     *
+     * @returns Vector de posición del punto.
+     */
     cv::Mat GetWorldPos();
 
+    /**
+     * Vector normal promedio de las observaciones.
+     * Los puntos suelen estar en una superficie, y sólo pueden ser observados de un lado.
+     * Cada punto aproxima su vector normal como promedio de las observaciones.
+     *
+     * @returns Vector normal del punto.
+     */
     cv::Mat GetNormal();
+
+    /**
+     * Devuelve el keyframe de referencia.
+     *
+     * @returns Keyframe de referencia.
+     */
     KeyFrame* GetReferenceKeyFrame();
+
+    /**
+     * Establece el keyframe de referencia.
+     *
+     * @param pRefKF Keyframe de referencia.
+     */
     void SetReferenceKeyFrame(KeyFrame* pRefKF);
 
+    /** Devuelve todas las observaciones del punto.  Cada observación consiste de un mapa id a keyframe.*/
     std::map<KeyFrame*,size_t> GetObservations();
+
+    /** Informa la cantidad de observaciones que registra el punto.*/
     int Observations();
 
+    /** Cada vez que el punto es observado desde un keyframe, se registra esa observación.
+     * @param pKF Keyframe que observa el punto.
+     * @param idx índice del keyframe que observa el punto.
+     */
     void AddObservation(KeyFrame* pKF,size_t idx);
+
+    /** Elimina del punto el registro que indicaba que fue observado por ese keyframe.  */
     void EraseObservation(KeyFrame* pKF);
 
+    /**
+     * Id del keyframe si éste observa el punto, -1 si no.
+     *
+     * @param pKF Keyframe a testear, para ver si observa o no el punto.
+     *
+     * Devuelve el índice del keyframe argumento si el mismo está en el registro de keyframes que observan al punto.  Si no devuelve -1.
+     */
     int GetIndexInKeyFrame(KeyFrame* pKF);
     bool IsInKeyFrame(KeyFrame* pKF);
 
+    /** Elimina el punto, marcándolo como malo.*/
     void SetBadFlag();
+
+    /** Informa el flag mBad.  Todos los iteradores consultan este flag antes de considerar el punto.*/
     bool isBad();
 
+    /**  Toma las propiedades del punto argumento.*/
     void Replace(MapPoint* pMP);    
     MapPoint* GetReplaced();
 
+    /** Incrementa el contador de cantidad de veces que fue observado el punto.*/
     void IncreaseVisible(int n=1);
+
+    /** Incrementa el contador de cantidad de veces que fue hallado el punto.*/
     void IncreaseFound(int n=1);
+
+    /** Porcentaje de veces que el punto fue detectado, sobre el total de veces que estuvo en el fustrum.*/
     float GetFoundRatio();
     inline int GetFound(){
         return mnFound;
     }
 
+    /** Elige el mejor descriptor entre todos los keyframes que observan el punto.
+     * Recupera todos los descriptores, computa las distancias entre todas las combinaciones,
+     * y elige el descriptor con menor distancia promedio al resto.
+     * Guarda el valor en mDescriptor.
+     */
     void ComputeDistinctiveDescriptors();
 
+    /**
+     * Devuelve el mejor descriptor del punto 3D.
+     * Un punto 3D tiene varias observaciones, y por lo tanto varios descriptores.
+     * MapPoint::ComputeDistinctiveDescriptors calcula el que mejor lo representa.
+     *
+     * @returns Descriptor del punto 3D.
+     */
     cv::Mat GetDescriptor();
 
+    /**
+     * Recalcula el vector normal y la profundidad de visibilidad a partir de las observaciones.
+     */
     void UpdateNormalAndDepth();
 
+    /**
+     * Calcula la distancia mínima a la que puede ser observado el punto.
+     * Se calcula como 80% de la menor distancia en que fue efectivamente observado.
+     *
+     * @returns Distancia mínima de observación.
+     */
     float GetMinDistanceInvariance();
+
+    /**
+     * Calcula la distancia máxima a la que puede ser observado el punto.
+     * Se calcula como el 127% de la mayor distancia en que fue efectivamente observado.
+     *
+     * @returns Distancia máxima de observación.
+     */
     float GetMaxDistanceInvariance();
+
+
+    /**
+     * Predice la escala (el nivel de la pirámide) en que se encontrará el punto, a partir de la distancia de observación.
+     *
+     * @param currentDist Distancia actual.
+     * @param logScaleFactor Factor de escala.
+     * @returns Nivel de la pirámide.
+     */
     int PredictScale(const float &currentDist, const float &logScaleFactor);
 
 public:
@@ -112,8 +213,11 @@ public:
     /** Id del primer frame que observa este punto.*/
     long int mnFirstFrame;
 
+    /** Cantidad de veces que fue observado.*/
     int nObs;
 
+    //@{
+    /** Variables usadas por Tracking.*/
     // Variables used by the tracking
     float mTrackProjX;
     float mTrackProjY;
@@ -123,18 +227,23 @@ public:
     float mTrackViewCos;
     long unsigned int mnTrackReferenceForFrame;
     long unsigned int mnLastFrameSeen;
+    //@}
 
+    //@{
+    /** Variables usadas por LocalMapping.*/
     // Variables used by local mapping
     long unsigned int mnBALocalForKF;
     long unsigned int mnFuseCandidateForKF;
 
+    //@{
+    /** Variables usadas por LoopClosing.*/
     // Variables used by loop closing
     long unsigned int mnLoopPointForKF;
     long unsigned int mnCorrectedByKF;
     long unsigned int mnCorrectedReference;    
     cv::Mat mPosGBA;
     long unsigned int mnBAGlobalForKF;
-
+    //@}
 
     static std::mutex mGlobalMutex;
 

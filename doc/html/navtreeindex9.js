@@ -1,13 +1,6 @@
 var NAVTREEINDEX9 =
 {
-"hyper__graph__action_8cpp.html#afec6173619ee5ac5139c3cdbad0fb26e":[5,0,3,1,0,0,25,0],
-"hyper__graph__action_8d.html":[5,0,0,1,1,0,0,6],
-"hyper__graph__action_8h.html":[5,0,3,1,0,0,26],
-"hyper__graph__action_8h.html#a917c9372b6aeabdf00458df985464223":[5,0,3,1,0,0,26,12],
-"hyper__graph__action_8h.html#afec6173619ee5ac5139c3cdbad0fb26e":[5,0,3,1,0,0,26,13],
-"hyper__graph__action_8h_source.html":[5,0,3,1,0,0,26],
 "index.html":[],
-"index.html":[0],
 "index.html#clas":[0,3],
 "index.html#conc":[0,4],
 "index.html#conf":[0,1],
@@ -75,12 +68,12 @@ var NAVTREEINDEX9 =
 "misc_8h.html#ae71449b1cc6e6250b91f539153a7a0d3":[5,0,3,1,0,2,2,1],
 "misc_8h_source.html":[5,0,3,1,0,2,2],
 "modules.html":[2],
-"namespace_d_bo_w2.html":[4,0,0],
 "namespace_d_bo_w2.html":[3,0,0],
-"namespace_d_utils.html":[4,0,1],
+"namespace_d_bo_w2.html":[4,0,0],
 "namespace_d_utils.html":[3,0,1],
-"namespace_o_r_b___s_l_a_m2.html":[3,0,4],
+"namespace_d_utils.html":[4,0,1],
 "namespace_o_r_b___s_l_a_m2.html":[4,0,3],
+"namespace_o_r_b___s_l_a_m2.html":[3,0,4],
 "namespaceg2o.html":[4,0,2],
 "namespaceg2o.html":[3,0,2],
 "namespaceg2o_1_1internal.html":[3,0,2,0],
@@ -249,5 +242,12 @@ var NAVTREEINDEX9 =
 "string__tools_8h_source.html":[5,0,3,1,0,2,8],
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html":[4,0,0,5,0],
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a0305ad0a8964947347da1d38ef0363ed":[4,0,0,5,0,3],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a050a0ee173dd58475dd2ab84e6f215e8":[4,0,0,5,0,2]
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a050a0ee173dd58475dd2ab84e6f215e8":[4,0,0,5,0,2],
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a082fba9dcf272b78354ffd5b1d58f5fa":[4,0,0,5,0,6],
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a1339ee00108c4c652cd1ca55a37c3fd3":[4,0,0,5,0,0],
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a62fb0c85332741c114110463252c64e9":[4,0,0,5,0,5],
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a9f1fcb620025ba6103a47e5c2b169cd6":[4,0,0,5,0,1],
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#aa56418d848932be4583fac6b3021c708":[4,0,0,5,0,8],
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ab785e994eeae8e6c1d67ee45ad4c8450":[4,0,0,5,0,4],
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ae1e261135cb7af400f1c4c4795cdba41":[4,0,0,5,0,7]
 };

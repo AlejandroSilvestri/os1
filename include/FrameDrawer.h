@@ -74,12 +74,25 @@ protected:
     /** Puntos singulares del cuadro actual.*/
     vector<cv::KeyPoint> mvCurrentKeys;
 
+    //@{
+    /** Vectores booleanos que indican si el punto singular está siendo trackeado.
+     * mvbMap indica si el punto singular corresponde a un punto del mapa.
+     * mvbVO indica si el punto singular corresponde a un punto no agregado al mapa, para odometría visual.
+     */
     vector<bool> mvbMap, mvbVO;
+    //@}
 
     /**Copia de la señal de sólo tracking (true) o tracking & mapping (false).*/
     bool mbOnlyTracking;
 
+    //@{
+    /**
+     * Cantidad de macheos con puntos 3D.
+     * mnTracked indica la cantidad de macheos entre puntos singulares del cuadro y puntos del mapa.
+     * mnTrackedVO indica la cantidad de macheos entre puntos singulares del cuadro y puntos 3D de odometría visual, no agregados al mapa.
+     */
     int mnTracked, mnTrackedVO;
+    //@}
 
     /** Puntos singulares de inicialización.*/
     vector<cv::KeyPoint> mvIniKeys;

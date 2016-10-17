@@ -121,8 +121,6 @@ var searchData=
   ['_5fproperty',['_property',['../classg2o_1_1_abstract_optimization_algorithm_creator.html#acf2663d0d6dec71049e4853a9825eafb',1,'g2o::AbstractOptimizationAlgorithmCreator']]],
   ['_5fquadraticformmutex',['_quadraticFormMutex',['../classg2o_1_1_optimizable_graph_1_1_vertex.html#ab9b85ddb487ad4818bc53e0c00ff7bcc',1,'g2o::OptimizableGraph::Vertex']]],
   ['_5fr',['_r',['../classg2o_1_1_s_e3_quat.html#a420255bcfca499dc2669b27fd373f665',1,'g2o::SE3Quat']]],
-  ['_5freadkeyframe',['_ReadKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_map.html#a8c936162a3d05d2ee404b872346abf94',1,'ORB_SLAM2::Map']]],
-  ['_5freadmappoint',['_ReadMapPoint',['../class_o_r_b___s_l_a_m2_1_1_map.html#a093b2e4d9513b3e01ce1dc5562e52736',1,'ORB_SLAM2::Map']]],
   ['_5frenamedtypeslookup',['_renamedTypesLookup',['../structg2o_1_1_optimizable_graph.html#a726ab6d0b04b12f835b690d54e061731',1,'g2o::OptimizableGraph']]],
   ['_5freset',['_reset',['../classg2o_1_1_linear_solver_dense.html#a2d82ac52c9c24501cccee3ef3cb575fe',1,'g2o::LinearSolverDense']]],
   ['_5frobustkernel',['_robustKernel',['../classg2o_1_1_optimizable_graph_1_1_edge.html#a6b942321f9e4e82051d529efb255af35',1,'g2o::OptimizableGraph::Edge']]],
@@ -150,8 +148,6 @@ var searchData=
   ['_5fwaspdinalliterations',['_wasPDInAllIterations',['../classg2o_1_1_optimization_algorithm_dogleg.html#af921ebbebaf059f73e410fc751616ec2',1,'g2o::OptimizationAlgorithmDogleg']]],
   ['_5fworkspace',['_workspace',['../classg2o_1_1_jacobian_workspace.html#af7dbaa3a651808e1bf3f876896bd1bfc',1,'g2o::JacobianWorkspace']]],
   ['_5fwritedebug',['_writeDebug',['../classg2o_1_1_optimization_algorithm_with_hessian.html#a6dd1e4e8dc2d09233c40de02b2c9fe8c',1,'g2o::OptimizationAlgorithmWithHessian::_writeDebug()'],['../classg2o_1_1_linear_solver_eigen.html#a2d331575853451fc94ca6f6420f0bdcb',1,'g2o::LinearSolverEigen::_writeDebug()']]],
-  ['_5fwritekeyframe',['_WriteKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_map.html#ae8a1e0fc871caa396db9dd27a7c6d8ba',1,'ORB_SLAM2::Map']]],
-  ['_5fwritemappoint',['_WriteMapPoint',['../class_o_r_b___s_l_a_m2_1_1_map.html#a93bd0752b2276697c6c9feb35aaaee54',1,'ORB_SLAM2::Map']]],
   ['_5fx',['_x',['../classg2o_1_1_solver.html#a94ee5e303a754f4ff338a7b032c214ae',1,'g2o::Solver']]],
   ['_5fxsize',['_xSize',['../classg2o_1_1_solver.html#abcf7731347f14915bd9ba963021ea830',1,'g2o::Solver']]]
 ];

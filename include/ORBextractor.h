@@ -45,6 +45,7 @@ public:
 
     std::vector<cv::KeyPoint> vKeys;
 
+    //@{
     /**
      * Vértice del rectángulo límite.
      * U: upper, B: bottom
@@ -52,6 +53,7 @@ public:
      *
      */
     cv::Point2i UL, UR, BL, BR;
+    //@}
 
     /**
      *

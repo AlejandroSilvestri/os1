@@ -89,6 +89,9 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_pn_psolver.
 </div><!--header-->
 <div class="contents">
 
+<p>Solucionador Point n-Points EPnP.  
+ <a href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_pn_psolver_8h_source.html">PnPsolver.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -104,7 +107,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abbef2ac776747661112246e85667f452"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#abbef2ac776747661112246e85667f452">iterate</a> (int nIterations, bool &amp;bNoMore, vector&lt; bool &gt; &amp;vbInliers, int &amp;nInliers)</td></tr>
 <tr class="separator:abbef2ac776747661112246e85667f452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Solucionador Point n-Points EPnP. </p>
+<p>Utiliza RANSAC para buscar la pose de un keyframe que mejor explican una serie de puntos observados, de posición conocida en el mapa.</p>
+<p>Esta clase se instancia repetidas veces solamente en Tracring::Relocalisation(), este este contexto: Se evalúan varios keyframes candidatos, que obsevan presumiblemente los mismos puntos observados por el frame actual. Para cada uno se correlacionan los puntos observados con BoW, del keyframe candidato se obtienen sus correspondientes coordenadas 3D, y se ejecuta el solucionador para conseguir la pose que mejor explica la observación, </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7b4cad992a43620e027bfb4bc9ef24f8"></a>
 <div class="memitem">
 <div class="memproto">
