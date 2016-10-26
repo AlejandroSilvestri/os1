@@ -92,10 +92,17 @@ public:
     /** Elimina puntos y keyframes del mapa.  Reinicia el mapa.*/
     void clear();
 
-	vector<KeyFrame*> mvpKeyFrameOrigins;
+	/**
+	 * Registro de los keyframes iniciales.
+	 * En el código se registra un único keyframe en este vector.
+	 * Es iterado por LoopClosing::RunGlobalBundleAdjustment.
+	 */
+    vector<KeyFrame*> mvpKeyFrameOrigins;
 
+    /** Mutex para actualización del mapa.*/
     std::mutex mMutexMapUpdate;
 
+    /** Mutext para agregado de nuevos puntos al mapa.*/
     // This avoid that two points are created simultaneously in separate threads (id conflict)
     std::mutex mMutexPointCreation;
 
@@ -115,6 +122,7 @@ protected:
     /** Id del último keyframe agregado.*/
     long unsigned int mnMaxKFid;
 
+    /** Mutext del mapa.*/
     std::mutex mMutexMap;
 
 };

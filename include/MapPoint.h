@@ -154,12 +154,9 @@ public:
         return mnFound;
     }
 
-<<<<<<< HEAD
+
     /**
      * Elige el mejor descriptor entre todos los keyframes que observan el punto.
-=======
-    /** Elige el mejor descriptor entre todos los keyframes que observan el punto.
->>>>>>> refs/remotes/origin/master
      * Recupera todos los descriptores, computa las distancias entre todas las combinaciones,
      * y elige el descriptor con menor distancia promedio al resto.
      * Guarda el valor en mDescriptor.
@@ -225,13 +222,10 @@ public:
     /** Cantidad de veces que fue observado.*/
     int nObs;
 
-<<<<<<< HEAD
     ///@{
     /** Variables efímeras usadas por Tracking.*/
-=======
     //@{
     /** Variables usadas por Tracking.*/
->>>>>>> refs/remotes/origin/master
     // Variables used by the tracking
     float mTrackProjX;
     float mTrackProjY;
@@ -241,42 +235,29 @@ public:
     float mTrackViewCos;
     long unsigned int mnTrackReferenceForFrame;
     long unsigned int mnLastFrameSeen;
-<<<<<<< HEAD
     ///@}
-=======
     //@}
->>>>>>> refs/remotes/origin/master
-
-<<<<<<< HEAD
     ///@{
     /** Variables efímeras usadas por LocalMapping.*/
-=======
     //@{
     /** Variables usadas por LocalMapping.*/
->>>>>>> refs/remotes/origin/master
     // Variables used by local mapping
     long unsigned int mnBALocalForKF;
     long unsigned int mnFuseCandidateForKF;
     ///@}
 
-<<<<<<< HEAD
     ///@{
     /** Variables efímeras usadas por LoopClosing.*/
-=======
     //@{
     /** Variables usadas por LoopClosing.*/
->>>>>>> refs/remotes/origin/master
     // Variables used by loop closing
     long unsigned int mnLoopPointForKF;
     long unsigned int mnCorrectedByKF;
     long unsigned int mnCorrectedReference;    
     cv::Mat mPosGBA;
     long unsigned int mnBAGlobalForKF;
-<<<<<<< HEAD
     ///@}
-=======
     //@}
->>>>>>> refs/remotes/origin/master
 
     static std::mutex mGlobalMutex;
 

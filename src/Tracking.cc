@@ -440,10 +440,12 @@ void Tracking::Track()
 
                     if(bOKMM && !bOKReloc)
                     {
-                        mCurrentFrame.SetPose(TcwMM);
+                        // Recupera pose y puntos del frame, que se pueden haber perdido en el intento fallido de relocalización.
+                    	mCurrentFrame.SetPose(TcwMM);
                         mCurrentFrame.mvpMapPoints = vpMPsMM;
                         mCurrentFrame.mvbOutlier = vbOutMM;
 
+                        // Aquí se llega con bOKMM==true, por lo que siempre mbVO==false.
                         if(mbVO)
                         {
                             for(int i =0; i<mCurrentFrame.N; i++)
@@ -720,17 +722,18 @@ void Tracking::MonocularInitialization()
     }
 }
 
-/** Crea el mapa inicial.
-Toma la rotación Rcw y traslación tcw argumentos para asumir la primer pose de la cámara.
-Crea dos KeyFrames (inicial y actual) a partir de los cuadros inicial y actual.
-Computa Bag of Words en ambos keyframes.
-Agrega los keyframes al mapa.
-Recorre los puntos macheados, los computa como puntos del mapa para agregarlos.
-Esto significa que les asocia los keyframes que los observan, sus normales y profundidades, y sus descriptores distintivos.
-Luego realiza un primer bundle adjustment.
-
-Invocado sólo desde MonocularInitialization.
-*/
+/**
+ * Crea el mapa inicial.
+ * Toma la rotación Rcw y traslación tcw argumentos para asumir la primer pose de la cámara.
+ * Crea dos KeyFrames (inicial y actual) a partir de los cuadros inicial y actual.
+ * Computa Bag of Words en ambos keyframes.
+ * Agrega los keyframes al mapa.
+ * Recorre los puntos macheados, los computa como puntos del mapa para agregarlos.
+ * Esto significa que les asocia los keyframes que los observan, sus normales y profundidades, y sus descriptores distintivos.
+ * Luego realiza un primer bundle adjustment.
+ *
+ * Invocado sólo desde MonocularInitialization.
+ */
 void Tracking::CreateInitialMapMonocular()
 {
     // Create KeyFrames
@@ -1011,13 +1014,13 @@ bool Tracking::TrackWithMotionModel()
         th=15;
     //else
     //    th=7;
-    int nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,th,mSensor==System::MONOCULAR);
+    int nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,th,true);//mSensor==System::MONOCULAR);
 
     // If few matches, uses a wider window search
     if(nmatches<20)
     {
         fill(mCurrentFrame.mvpMapPoints.begin(),mCurrentFrame.mvpMapPoints.end(),static_cast<MapPoint*>(NULL));
-        nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,2*th,mSensor==System::MONOCULAR);
+        nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,2*th,true);//mSensor==System::MONOCULAR);
     }
 
     if(nmatches<20)
@@ -1056,13 +1059,14 @@ bool Tracking::TrackWithMotionModel()
     return nmatchesMap>=10;
 }
 
-/** Actualiza el mapa y realiza el tracking.
-Se invoca cuando el sistema está ubicado: tiene pose de cámara y lleva el rastro de varios puntos en el cuadro.
-Actualiza el mapa local a partir de la pose estimada:
-busca puntos del mapa que se deberían observar desde esa pose, usando SearchReferencePointsInFrustum().
-Optimiza la pose a partir de los puntos observados, obteniendo la lista de inliers.
-Incrementa la cantidad de veces que estos puntos fueron observados, para estadística.
-Para retornar con éxito exige 30 puntos inliers, o 50 (más exigente) si hubo una relocalización reciente.
+/**
+ * Actualiza el mapa y realiza el tracking.
+ * Se invoca cuando el sistema está ubicado: tiene pose de cámara y lleva el rastro de varios puntos en el cuadro.
+ * Actualiza el mapa local a partir de la pose estimada:
+ * busca puntos del mapa que se deberían observar desde esa pose, usando SearchReferencePointsInFrustum().
+ * Optimiza la pose a partir de los puntos observados, obteniendo la lista de inliers.
+ * Incrementa la cantidad de veces que estos puntos fueron observados, para estadística.
+ * Para retornar con éxito exige 30 puntos inliers, o 50 (más exigente) si hubo una relocalización reciente.
  */
 bool Tracking::TrackLocalMap()
 {
@@ -1093,8 +1097,8 @@ bool Tracking::TrackLocalMap()
                 else
                     mnMatchesInliers++;
             }
-            else if(mSensor==System::STEREO)
-                mCurrentFrame.mvpMapPoints[i] = static_cast<MapPoint*>(NULL);
+            /*else if(mSensor==System::STEREO)
+                mCurrentFrame.mvpMapPoints[i] = static_cast<MapPoint*>(NULL);*/
 
         }
     }
@@ -1155,7 +1159,7 @@ bool Tracking::NeedNewKeyFrame()
     // This ratio measures how many MapPoints we could create if we insert a keyframe.
     int nMap = 0;
     int nTotal= 0;
-    if(mSensor!=System::MONOCULAR)
+    /*if(mSensor!=System::MONOCULAR)
     {
         for(int i =0; i<mCurrentFrame.N; i++)
         {
@@ -1169,11 +1173,11 @@ bool Tracking::NeedNewKeyFrame()
         }
     }
     else
-    {
+    {*/
         // There are no visual odometry matches in the monocular case
         nMap=1;
         nTotal=1;
-    }
+    //}
 
     const float ratioMap = (float)nMap/fmax(1.0f,nTotal);
 
@@ -1182,7 +1186,7 @@ bool Tracking::NeedNewKeyFrame()
     if(nKFs<2)
         thRefRatio = 0.4f;
 
-    if(mSensor==System::MONOCULAR)
+    //if(mSensor==System::MONOCULAR)
         thRefRatio = 0.9f;
 
     float thMapRatio = 0.35f;
@@ -1194,7 +1198,7 @@ bool Tracking::NeedNewKeyFrame()
     // Condition 1b: More than "MinFrames" have passed and Local Mapping is idle
     const bool c1b = (mCurrentFrame.mnId>=mnLastKeyFrameId+mMinFrames && bLocalMappingIdle);
     //Condition 1c: tracking is weak
-    const bool c1c =  mSensor!=System::MONOCULAR && (mnMatchesInliers<nRefMatches*0.25 || ratioMap<0.3f) ;
+    const bool c1c = false;// mSensor!=System::MONOCULAR && (mnMatchesInliers<nRefMatches*0.25 || ratioMap<0.3f) ;
     // Condition 2: Few tracked points compared to reference keyframe. Lots of visual odometry compared to map matches.
     const bool c2 = ((mnMatchesInliers<nRefMatches*thRefRatio|| ratioMap<thMapRatio) && mnMatchesInliers>15);
 
@@ -1209,14 +1213,14 @@ bool Tracking::NeedNewKeyFrame()
         else
         {
             mpLocalMapper->InterruptBA();
-            if(mSensor!=System::MONOCULAR)
+            /*if(mSensor!=System::MONOCULAR)
             {
                 if(mpLocalMapper->KeyframesInQueue()<3)
                     return true;
                 else
                     return false;
             }
-            else
+            else*/
                 return false;
         }
     }
@@ -1751,8 +1755,12 @@ void Tracking::Reset()
 
 /**
  * Comando para cambiar la calibración.
- * No usado en esta implementación, pero permitiría cambiar de cámara,
- * o usar una cámara sobre el mapa relevado por otra.
+ * No usado en esta implementación, pero permitiría cambiar de cámara, o usar una cámara sobre el mapa relevado por otra.
+ * Sin embargo las profundidades de visualización de los puntos 3D todavía están muy vinculados a la distancia focal, y todavía no son compatibles con distancias diferentes.
+ * Carga nuevos parámetros de calibración del archivo de configuración.
+ *
+ * @param strSettingPath Nombre del archivo de configuración.
+ *
  */
 void Tracking::ChangeCalibration(const string &strSettingPath)
 {

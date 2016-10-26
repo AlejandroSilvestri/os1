@@ -66,18 +66,29 @@ class KeyFrameDatabase;
  *
  * - t: traslación, derivada de una pose
  *
+ * Origen de coordenadas:
+ *
+ * El origen de coordenadas por defecto es el mundo, cuyo origen está dado por la pose de la primer cámara,
+ * y la escala por la distancia entre las cámaras de inicialización que triangularon los primeros puntos.
+ *
+ *
+ *
  */
 class KeyFrame
 {
 public:
 	/**
 	 * Constructor que copia los datos del frame que se convierte en keyframe.
+	 *
 	 * @param F Frame de referencia, que se erige en KeyFrame
 	 * @param pMap Mapa local donde se encuentra este KeyFrame, necesario solamente para quitar el KeyFrame del mapa.
 	 * @param pKFDB Base de datos de keyframes donde se registran todos los keyframes, necesario solamente para quitar este KeyFrame de la base de datos.
+	 *
 	 * Este constructor copia todos los valores del Frame F.
-	 *  pMap es un puntero al mapa donde está este keyFrame, y se utiliza sólo para cuando se requiera eliminar del mapa.  Se registra en mpMap.
-	 *  pKFDB es la base de datos de keyframes.  Se registra en mpKeyFrameDB.
+	 *
+	 * pMap es un puntero al mapa donde está este keyFrame, y se utiliza sólo para cuando se requiera eliminar del mapa.  Se registra en mpMap.
+	 *
+	 * pKFDB es la base de datos de keyframes.  Se registra en mpKeyFrameDB.
 	 *
 	 */
     KeyFrame(Frame &F, Map* pMap, KeyFrameDatabase* pKFDB);
@@ -86,18 +97,23 @@ public:
     /** Establece Tcw, la pose del keyframe.*/
     void SetPose(const cv::Mat &Tcw);
 
-    /** Lee Tcw, la pose del keyframe.*/
+    /** Lee Tcw, la pose del keyframe. @returns Tcw, la pose.*/
     cv::Mat GetPose();
 
-    /**Lee Twc, la matriz inversa de la pose.*/
+    /** Lee Twc, la matriz inversa de la pose. @returns Twc, la inversa de la pose.*/
     cv::Mat GetPoseInverse();
 
-    /** Lee el vector centro de cámara, igual al vector traslación para monocular.*/
+    /** Lee el vector centro de cámara, igual al vector traslación para monocular. @returns el vector de posición de la cámara, igual a la traslación.  Es diferente sólo en estéreo.*/
     cv::Mat GetCameraCenter();
 
     //cv::Mat GetStereoCenter();
 
-    /** Lee la matriz rotación 3D, obtenida de Tcw.*/
+    /**
+     * Lee la matriz rotación 3D, obtenida de Tcw.
+     * @returns R, la matriz rotación 3D de 3x3, parte de la pose.
+     *
+     * La matriz rotación rota un vector
+     */
     cv::Mat GetRotation();
 
     /** Lee el vector traslación, obtenido de Tcw.*/

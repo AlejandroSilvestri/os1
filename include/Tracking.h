@@ -120,12 +120,17 @@ public:
                    KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor);
 
     // Preprocess the input and call Track(). Extract features and performs stereo matching.
-    cv::Mat GrabImageStereo(const cv::Mat &imRectLeft,const cv::Mat &imRectRight, const double &timestamp);
-    cv::Mat GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const double &timestamp);
+    //cv::Mat GrabImageStereo(const cv::Mat &imRectLeft,const cv::Mat &imRectRight, const double &timestamp);
+    //cv::Mat GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const double &timestamp);
     cv::Mat GrabImageMonocular(const cv::Mat &im, const double &timestamp);
 
+    /** Registra el objeto de LocalMapping. @param pLocalMapper Objeto de mapeo local.*/
     void SetLocalMapper(LocalMapping* pLocalMapper);
+
+    /** Registra el objeto de LoopClosing. @param pLoopClosing Objeto de cierre de bucle.*/
     void SetLoopClosing(LoopClosing* pLoopClosing);
+
+    /** Registra el objeto de visualización. @param pViewer Visualizador.*/
     void SetViewer(Viewer* pViewer);
 
     // Load new settings
@@ -157,6 +162,7 @@ public:
     /** Estado anterior al actual.  Último estado que fue procesado por completo. */
     eTrackingState mLastProcessedState;
 
+    /** Tipo de sensor: monocular, estéreo o rgbd.  Siempre System::MONOCULAR en esta versión.*/
     // Input sensor
     int mSensor;
 
@@ -186,15 +192,25 @@ public:
     /** Vector con los puntos 3D iniciales.*/
     std::vector<cv::Point3f> mvIniP3D;
 
-    /** Cuadro en el que se inició el tracking.*/
+    /**
+     * Primer cuadro para la inicialización.
+     * La triangulación de puntos para el mapa inicial se realiza entre dos cuadros:
+     * - mCurrentFrame
+     * - mInitialFrame
+     *
+     * Una vez que el sistema se inicializó, mInitialFrame no se vuelve a usar.
+     */
     Frame mInitialFrame;
 
+    ///@{
+    /** Listas para registrar la trayectoria de la cámara, para guardarla al terminar la aplicación.*/
     // Lists used to recover the full camera trajectory at the end of the execution.
     // Basically we store the reference keyframe for each frame and its relative transformation
     list<cv::Mat> mlRelativeFramePoses;
     list<KeyFrame*> mlpReferences;
     list<double> mlFrameTimes;
     list<bool> mlbLost;
+    ///@}
 
     /**
      * Flag indicador de modo Tracking (true) o tracking y mapping (false).
@@ -204,7 +220,7 @@ public:
 
     void Reset();
 
-    // Agregado: parámetro del trackbar de la ventana que muestra el cuadro actual.
+    /** Agregado: parámetro del trackbar de la ventana que muestra el cuadro actual.*/
     int param = 100;
 
 protected:
@@ -238,8 +254,12 @@ protected:
 
     /**
      * Flag de odometría visual.
-     * Es true cuando no hay macheos con puntos del mapa.
+     * Es true cuando hay pocos macheos con puntos del mapa.
      * El sistema entra en modo de odometría visual para adivinar en qué lugar del mapa está, mientras intenta relocalizar.
+     * La diferencia con el tracking normal es que sólo intenta Tracking::TrackWithMotionModel, y no intenta Tracking::TrackReferenceKeyFrame.
+     * Además, al mismo tiempo que realiza VO, intenta relocalizar.
+     *
+     * TrackWithMotionModel pasa a odometría visual cuando no hace mapping (onlyTracking) y visualiza menos de 10 puntos del mapa.
      */
     // In case of performing only localization, this flag is true when there are no matches to
     // points in the map. Still tracking will continue if there are enough matches with temporal points.
@@ -312,7 +332,6 @@ protected:
     int mMinFrames;
     int mMaxFrames;
 
-    list<MapPoint*> mlpTemporalPoints;
 
 
 private:
