@@ -75,19 +75,36 @@ public:
 	void SetRansacParameters(double probability = 0.99, int minInliers = 6 , int maxIterations = 300);
 
 	/**
+	 * Ejecuta el número máximo de iteraciones Ransac.
 	 *
+     * @param vbInliers Resultado, marca la posición de los elementos inliers encontrados.
+     * @param nInliers Restulado, cantidad de inliers encontrados.
+     * @returns Pose de la relocalización, o una matriz vacía si no falla.
+     *
+   	 * No utilizado en orb-slam2.  En su lugar se usa Sim3solver::iterate.
 	 */
 	cv::Mat find(std::vector<bool> &vbInliers12, int &nInliers);
 
     /**
-     * Inicia las iteraciones de Ransac.
+     * Ejecuta n iteraciones de Ransac.
+     *
+     * @param nIterations Cantidad de iteraciones a ejecutar.  Termina antes si se alcanza PnPsolver::mRansacMaxIts en total.
+     * @param bNoMore Resultado, señal que indica que se alcanzaron las PnPsolver::mRansacMaxIts iteraciones en total.
+     * @param vbInliers Resultado, marca la posición de los elementos inliers encontrados.
+     * @param nInliers Restulado, cantidad de inliers encontrados.
+     * @returns Pose de la relocalización, o una matriz vacía si no falla.
+     *
+     * Usado sólo en LoopClosing::ComputeSim3.  También se invoca desde el método no utilizado find.
      *
      *
      */
 	cv::Mat iterate(int nIterations, bool &bNoMore, std::vector<bool> &vbInliers, int &nInliers);
 
-    cv::Mat GetEstimatedRotation();
+    /** Obtiene la matriz rotación 3D estimada para el cierre de bucle.  @returns Matriz de rotación 3D, de 3x3.*/
+	cv::Mat GetEstimatedRotation();
+	/** Obtiene la traslación estimada para el cierre de bucle.  @returns Vector traslación 3d, de 3x1.*/
     cv::Mat GetEstimatedTranslation();
+    /** Obtiene la escala de acople estimada para el cierre de bucle.  @returns Factor de escala para el cierre de bucle.*/
     float GetEstimatedScale();
 
 
@@ -95,11 +112,38 @@ protected:
 
     void ComputeCentroid(cv::Mat &P, cv::Mat &Pr, cv::Mat &C);
 
+    /**
+     * Implementación de Horn 1987, para computar la transformación de similaridad.
+     *
+     * @param P1
+     * @param P2
+     */
     void ComputeSim3(cv::Mat &P1, cv::Mat &P2);
 
+    /** Establece las marcas de inliers, reproyectando y comparando el error con un umbral.*/
     void CheckInliers();
 
+    /**
+     * Proyecta puntos 3D expresados en coordenadas del mundo, sobre una cámara.
+     *
+     * @param vP3Dw Puntos 3D a proyectar.
+     * @param vP2D Resultado, proyecciones 2D de los puntos 3D.
+     * @param Tcw Pose de la cámara respecto del mundo.
+     * @param K Matriz intrínseca de la cámara.
+     *
+     * Utilizado sólo en Sim3Solver::CheckInliers.
+     */
     void Project(const std::vector<cv::Mat> &vP3Dw, std::vector<cv::Mat> &vP2D, cv::Mat Tcw, cv::Mat K);
+
+    /**
+     * Proyecta puntos 3D expresados en las coordenadas de la cámara.
+     *
+     * @param vP3Dw Puntos 3D a proyectar.
+     * @param vP2D Resultado, proyecciones 2D de los puntos 3D.
+     * @param K Matriz intrínseca de la cámara.
+     *
+     * Invocado sólo desde el constructor.
+     */
     void FromCameraToImage(const std::vector<cv::Mat> &vP3Dc, std::vector<cv::Mat> &vP2D, cv::Mat K);
 
 

@@ -14,6 +14,7 @@ LISTO:
 - La webcam funcionó el sábado 10/9/16. El sistema funciona completo, sólo falta probar el cierre de bucle.
 - Estoy eliminando las partes que no son monocular.  Deshabilité todos los métodos específicos de estéreo y rgb-d, y funciona.
 - Agregada la visualización de puntos singulares en DrawFrame.
+- Traspasados comentarios de orb-slam a orb-slam2
 
 
 
@@ -21,7 +22,40 @@ TODO:
 - Feed películas.
 - Parámetros: archivo de configuración, opcionalmente ruta de video.  El vocabulario es estático y binario, su nombre queda implícito en el código.
 - Investigar cómo guardar y cargar el mapa para tracking (convendría hacer un branch)
-- Traspasar comentarios de orb-slam a orb-slam2 (en progreso)
+- Documentar completamente el namespace ORB-SLAM2
+
+
+Status de la documentación de os1:
+
+Completamente documentados.  .h si el header concentra toda la documentación:
+- Converter.h: no estaba documentado en orb-slam
+- Frame
+- FrameDrawer: No estaba en orb-slam.
+- Initializer.h
+- KeyFrame.h
+- LocalMapping.h
+- Map.h
+- MapPoint.h
+- Optimizer.h
+- ORBextractor.h
+- ORBmatcher.h
+- ORBvocabulary.h: No estaba en orb-slam
+- KeyFrame.h
+- System
+
+Falta documentar detalles:
+- Tracking
+- PnPsolver
+- Sim3Solver
+
+
+Falta documentar, pero ya se traspasó lo de orb-slam o no había nada para traspasar:
+- LoopClosing: sin documentación
+- MapDrawer: sin documentación
+- Viewer: sin documentación
+
+
+
 
 
 MODIFICACIONES:

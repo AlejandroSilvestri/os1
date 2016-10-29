@@ -135,11 +135,12 @@ public:
     int SearchByProjection(KeyFrame* pKF, cv::Mat Scw, const std::vector<MapPoint*> &vpPoints, std::vector<MapPoint*> &vpMatched, int th);
 
     /**
-     * Machea el cuadro actual con un keyframe.
+     * Machea puntos del cuadro actual con los de un keyframe.
      * Machea por BoW y luego por descriptores.
+     *
      * @param pKF Keyframe candidato a explicar el cuadro actual.  Es el keyframe de referencia para tracking, o uno de varios candidatos en relocalización.
      * @param F Cuadro actual que se intenta ubicar.
-     * @param vpMapPointMatches
+     * @param vpMapPointMatches Resultado, puntos 3D macheados.
      * @returns Cantidad de puntos macheados.
      * Invocado sólo por Tracking::Relocalization y Tracking::TrackByReferencieKeyFrame.
      */

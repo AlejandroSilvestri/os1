@@ -102,7 +102,7 @@ public:
     /** Mutex para actualización del mapa.*/
     std::mutex mMutexMapUpdate;
 
-    /** Mutext para agregado de nuevos puntos al mapa.*/
+    /** Mutex para agregado de nuevos puntos al mapa.*/
     // This avoid that two points are created simultaneously in separate threads (id conflict)
     std::mutex mMutexPointCreation;
 
