@@ -50,16 +50,16 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_bow_vector_8cpp.html",
-"class_d_bo_w2_1_1_templated_vocabulary.html#ad7bbb3cf53f8f9f3610b9b67c551ba8e",
-"class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a83495a11d1fb3cd98e82fa1e2efb6920",
-"class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#abbef2ac776747661112246e85667f452",
-"classg2o_1_1_base_unary_edge.html#ad7e6dc44c571be159f066bdb961ade2b",
-"classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0",
-"classg2o_1_1_optimizable_graph_1_1_edge.html#ae535735e71365a547fd1a11fae5378f6",
-"classg2o_1_1_robust_kernel_pseudo_huber.html",
-"classg2o_1_1_vertex_s_e3_expmap.html#a15fc8c37a0d056a562d4df12c872f62a",
-"index.html#desc",
-"structg2o_1_1_block_solver_traits.html"
+"class_d_utils_1_1_timestamp.html#a42280e1193a6af2ac41362cf18a1185c",
+"class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22",
+"class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#a9aca06ce2678d686a318266fe3262a0b",
+"classg2o_1_1_base_vertex.html#ae6edf93fe07aa27579a9352faa83098c",
+"classg2o_1_1_hyper_graph.html#ab07fe8bd9982a66ba34e83dff8317ea2",
+"classg2o_1_1_optimizable_graph_1_1_vertex.html#a61c4e7b7a7a61e1f287069a8cb01004f",
+"classg2o_1_1_s_e3_quat.html#a685de01e417e01f84d5b8389e5f5f333",
+"color__macros_8h.html#a4e411f6bd6ac8d6c2bd23d866c097e91",
+"misc_8h.html",
+"structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry.html#a2db2f9eaa364a04f07c81c70784f2193"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

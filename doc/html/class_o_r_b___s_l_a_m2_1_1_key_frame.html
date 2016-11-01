@@ -100,7 +100,8 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_key_frame.h
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::KeyFrame:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_key_frame__coll__graph.svg" width="1179" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_key_frame__coll__graph.svg" width="1179" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -332,8 +333,10 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ae08ac0ce59e2c003c182f946de3b3bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptores.  <a href="#ae08ac0ce59e2c003c182f946de3b3bc0">More...</a><br /></td></tr>
 <tr class="separator:ae08ac0ce59e2c003c182f946de3b3bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70cb0dee48e804c5b1f30afd0ce99787"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_bo_w2_1_1_bow_vector.html">DBoW2::BowVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a70cb0dee48e804c5b1f30afd0ce99787">mBowVec</a></td></tr>
+<tr class="memdesc:a70cb0dee48e804c5b1f30afd0ce99787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de BoW obtenidos de los descriptores del keyframe.  <a href="#a70cb0dee48e804c5b1f30afd0ce99787">More...</a><br /></td></tr>
 <tr class="separator:a70cb0dee48e804c5b1f30afd0ce99787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3588bf0a927e8ab838c614565ee7de20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_bo_w2_1_1_feature_vector.html">DBoW2::FeatureVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3588bf0a927e8ab838c614565ee7de20">mFeatVec</a></td></tr>
+<tr class="memdesc:a3588bf0a927e8ab838c614565ee7de20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de Features de <a class="el" href="namespace_d_bo_w2.html" title="File: BowVector.cpp Date: March 2011 Author: Dorian Galvez-Lopez Description: bag of words vector Lic...">DBoW2</a>.  <a href="#a3588bf0a927e8ab838c614565ee7de20">More...</a><br /></td></tr>
 <tr class="separator:a3588bf0a927e8ab838c614565ee7de20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab9c8e2e4aa4757ad0be28b2f49a3cf7"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aab9c8e2e4aa4757ad0be28b2f49a3cf7">mTcp</a></td></tr>
 <tr class="memdesc:aab9c8e2e4aa4757ad0be28b2f49a3cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pose de cámara relativa a su padre.  <a href="#aab9c8e2e4aa4757ad0be28b2f49a3cf7">More...</a><br /></td></tr>
@@ -1665,6 +1668,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Vector de BoW obtenidos de los descriptores del keyframe. </p>
+<p>ComputeBoW llena este vector. </p>
+
 </div>
 </div>
 <a id="ae282bb579271984c9ee0d55bac7f5dee"></a>
@@ -1736,6 +1742,9 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Vector de Features de <a class="el" href="namespace_d_bo_w2.html" title="File: BowVector.cpp Date: March 2011 Author: Dorian Galvez-Lopez Description: bag of words vector Lic...">DBoW2</a>. </p>
+<p>ComputeBoW llena este vector. </p>
 
 </div>
 </div>

@@ -1,7 +1,6 @@
 var searchData=
 [
   ['jacobian_5fworkspace_2ecpp',['jacobian_workspace.cpp',['../jacobian__workspace_8cpp.html',1,'']]],
-  ['jacobian_5fworkspace_2ed',['jacobian_workspace.d',['../jacobian__workspace_8d.html',1,'']]],
   ['jacobian_5fworkspace_2eh',['jacobian_workspace.h',['../jacobian__workspace_8h.html',1,'']]],
   ['jacobianoplusxi',['jacobianOplusXi',['../classg2o_1_1_base_binary_edge.html#a5232f0a5f116e7106b7968ab3bff036c',1,'g2o::BaseBinaryEdge::jacobianOplusXi()'],['../classg2o_1_1_base_unary_edge.html#a396fbab83bfc9ce2e2080b16ccc357f4',1,'g2o::BaseUnaryEdge::jacobianOplusXi()']]],
   ['jacobianoplusxj',['jacobianOplusXj',['../classg2o_1_1_base_binary_edge.html#a71c1a583816399cf7db1a91ebe5dbf18',1,'g2o::BaseBinaryEdge']]],
