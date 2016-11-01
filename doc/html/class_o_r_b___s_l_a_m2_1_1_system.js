@@ -14,7 +14,6 @@ var class_o_r_b___s_l_a_m2_1_1_system =
     [ "GetTracker", "class_o_r_b___s_l_a_m2_1_1_system.html#a28715073ef3ddbc8aececc634173f931", null ],
     [ "Reset", "class_o_r_b___s_l_a_m2_1_1_system.html#a33f5eb6f33d14cdda2a889fe06d6619e", null ],
     [ "SaveKeyFrameTrajectoryTUM", "class_o_r_b___s_l_a_m2_1_1_system.html#a6435a029f66a34103c434aa16e80eae3", null ],
-    [ "SaveMap", "class_o_r_b___s_l_a_m2_1_1_system.html#a36c9e244b6ad65ec5cc90f5d9d1e2f04", null ],
     [ "SetStatus", "class_o_r_b___s_l_a_m2_1_1_system.html#a63af12168389966ddb02d3b4ddff3212", null ],
     [ "Shutdown", "class_o_r_b___s_l_a_m2_1_1_system.html#aa934876a230dfa99e123f62b4b54d0cb", null ],
     [ "TrackMonocular", "class_o_r_b___s_l_a_m2_1_1_system.html#a0408659bafa31c4d0722ccd032fb9430", null ]

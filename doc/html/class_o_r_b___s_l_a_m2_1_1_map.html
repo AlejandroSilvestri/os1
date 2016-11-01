@@ -140,10 +140,13 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a9617fdf1c8349a1bf88bb13c20acf160"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a9617fdf1c8349a1bf88bb13c20acf160">mvpKeyFrameOrigins</a></td></tr>
+<tr class="memdesc:a9617fdf1c8349a1bf88bb13c20acf160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registro de los keyframes iniciales.  <a href="#a9617fdf1c8349a1bf88bb13c20acf160">More...</a><br /></td></tr>
 <tr class="separator:a9617fdf1c8349a1bf88bb13c20acf160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05544c09b3227d31163f10609b90b913"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a05544c09b3227d31163f10609b90b913">mMutexMapUpdate</a></td></tr>
+<tr class="memdesc:a05544c09b3227d31163f10609b90b913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex para actualización del mapa.  <a href="#a05544c09b3227d31163f10609b90b913">More...</a><br /></td></tr>
 <tr class="separator:a05544c09b3227d31163f10609b90b913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a968356226057387d8207054d56e5d35c"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a968356226057387d8207054d56e5d35c">mMutexPointCreation</a></td></tr>
+<tr class="memdesc:a968356226057387d8207054d56e5d35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex para agregado de nuevos puntos al mapa.  <a href="#a968356226057387d8207054d56e5d35c">More...</a><br /></td></tr>
 <tr class="separator:a968356226057387d8207054d56e5d35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -161,6 +164,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:abfafaf7ca3821cb069cb95fb88c91dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id del último keyframe agregado.  <a href="#abfafaf7ca3821cb069cb95fb88c91dfc">More...</a><br /></td></tr>
 <tr class="separator:abfafaf7ca3821cb069cb95fb88c91dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86b9fb9d5c601fb6fd88c46444bd553c"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a86b9fb9d5c601fb6fd88c46444bd553c">mMutexMap</a></td></tr>
+<tr class="memdesc:a86b9fb9d5c601fb6fd88c46444bd553c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutext del mapa.  <a href="#a86b9fb9d5c601fb6fd88c46444bd553c">More...</a><br /></td></tr>
 <tr class="separator:a86b9fb9d5c601fb6fd88c46444bd553c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -415,6 +419,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Mutext del mapa. </p>
+
 </div>
 </div>
 <a id="a05544c09b3227d31163f10609b90b913"></a>
@@ -427,6 +433,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Mutex para actualización del mapa. </p>
+
 </div>
 </div>
 <a id="a968356226057387d8207054d56e5d35c"></a>
@@ -438,6 +446,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Mutex para agregado de nuevos puntos al mapa. </p>
 
 </div>
 </div>
@@ -516,6 +526,9 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Registro de los keyframes iniciales. </p>
+<p>En el código se registra un único keyframe en este vector. Es iterado por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a4b10a9c18541818c9490a62447ef7f18">LoopClosing::RunGlobalBundleAdjustment</a>. </p>
 
 </div>
 </div>

@@ -141,46 +141,67 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a09cb8502509c136536bf8d45793f8872"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza los mejores covisibles.  <a href="#a09cb8502509c136536bf8d45793f8872">More...</a><br /></td></tr>
 <tr class="separator:a09cb8502509c136536bf8d45793f8872"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4ffdf4441477a36c42d6605c573f1cf"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4ffdf4441477a36c42d6605c573f1cf">GetConnectedKeyFrames</a> ()</td></tr>
+<tr class="memdesc:af4ffdf4441477a36c42d6605c573f1cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve un conjunto de keyframes conectados a éste por el grafo esencial.  <a href="#af4ffdf4441477a36c42d6605c573f1cf">More...</a><br /></td></tr>
 <tr class="separator:af4ffdf4441477a36c42d6605c573f1cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9315d396634f6637f70f716336777b8d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9315d396634f6637f70f716336777b8d">GetVectorCovisibleKeyFrames</a> ()</td></tr>
+<tr class="memdesc:a9315d396634f6637f70f716336777b8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el vector de keyframes covisibles <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8" title="Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles. ">KeyFrame::mvpOrderedConnectedKeyFrames</a> .  <a href="#a9315d396634f6637f70f716336777b8d">More...</a><br /></td></tr>
 <tr class="separator:a9315d396634f6637f70f716336777b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ecb2df01af804fb727c93948a28475f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2ecb2df01af804fb727c93948a28475f">GetBestCovisibilityKeyFrames</a> (const int &amp;<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac9b6948404d0ade2779335708cd443b9">N</a>)</td></tr>
+<tr class="memdesc:a2ecb2df01af804fb727c93948a28475f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve los primeros y mejores N elementos del vector de keyframes covisibles <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8" title="Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles. ">KeyFrame::mvpOrderedConnectedKeyFrames</a> .  <a href="#a2ecb2df01af804fb727c93948a28475f">More...</a><br /></td></tr>
 <tr class="separator:a2ecb2df01af804fb727c93948a28475f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7047bffbf130b00dd0270df99874f8a1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a7047bffbf130b00dd0270df99874f8a1">GetCovisiblesByWeight</a> (const int &amp;w)</td></tr>
+<tr class="memdesc:a7047bffbf130b00dd0270df99874f8a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve los mejores elementos del vector de keyframes covisibles, con peso mejor al de referencia.  <a href="#a7047bffbf130b00dd0270df99874f8a1">More...</a><br /></td></tr>
 <tr class="separator:a7047bffbf130b00dd0270df99874f8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab10fd3aab6431face352a930961ff713"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab10fd3aab6431face352a930961ff713">GetWeight</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:ab10fd3aab6431face352a930961ff713"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa el peso de la conexión de un determinado keyframe covisible.  <a href="#ab10fd3aab6431face352a930961ff713">More...</a><br /></td></tr>
 <tr class="separator:ab10fd3aab6431face352a930961ff713"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2394adfb627d9cf87ed8da78f6b0d709"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2394adfb627d9cf87ed8da78f6b0d709">AddChild</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:a2394adfb627d9cf87ed8da78f6b0d709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega un keyframe hijo al grafo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac647a33b4a6d158b640c5482ed57bbfe" title="KeyFrames hijos en el grafo. ">KeyFrame::mspChildrens</a>.  <a href="#a2394adfb627d9cf87ed8da78f6b0d709">More...</a><br /></td></tr>
 <tr class="separator:a2394adfb627d9cf87ed8da78f6b0d709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefdd69627fd6a204a6ef4539303b81f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aefdd69627fd6a204a6ef4539303b81f6">EraseChild</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:aefdd69627fd6a204a6ef4539303b81f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Borra un keyframe hijo del grafo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac647a33b4a6d158b640c5482ed57bbfe" title="KeyFrames hijos en el grafo. ">KeyFrame::mspChildrens</a>.  <a href="#aefdd69627fd6a204a6ef4539303b81f6">More...</a><br /></td></tr>
 <tr class="separator:aefdd69627fd6a204a6ef4539303b81f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3232df2495062749da1344db3e5a487f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f">ChangeParent</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:a3232df2495062749da1344db3e5a487f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el padre del keyframe.  <a href="#a3232df2495062749da1344db3e5a487f">More...</a><br /></td></tr>
 <tr class="separator:a3232df2495062749da1344db3e5a487f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a618ddd51eab47bf1d84a21d2e818a787"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a618ddd51eab47bf1d84a21d2e818a787">GetChilds</a> ()</td></tr>
+<tr class="memdesc:a618ddd51eab47bf1d84a21d2e818a787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve los hijos de este keyframe.  <a href="#a618ddd51eab47bf1d84a21d2e818a787">More...</a><br /></td></tr>
 <tr class="separator:a618ddd51eab47bf1d84a21d2e818a787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a660cfc9a6ccf87e5497356d0d98ef06f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a660cfc9a6ccf87e5497356d0d98ef06f">GetParent</a> ()</td></tr>
+<tr class="memdesc:a660cfc9a6ccf87e5497356d0d98ef06f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa el keyframe padre.  <a href="#a660cfc9a6ccf87e5497356d0d98ef06f">More...</a><br /></td></tr>
 <tr class="separator:a660cfc9a6ccf87e5497356d0d98ef06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2276fdbae634194e790878adebba7861"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2276fdbae634194e790878adebba7861">hasChild</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:a2276fdbae634194e790878adebba7861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica si un keyframe es hijo de éste.  <a href="#a2276fdbae634194e790878adebba7861">More...</a><br /></td></tr>
 <tr class="separator:a2276fdbae634194e790878adebba7861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca519e7486b0e6f1fd6c98d7ced920b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aca519e7486b0e6f1fd6c98d7ced920b8">AddLoopEdge</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:aca519e7486b0e6f1fd6c98d7ced920b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega un eje al grafo de covisibilidad, a partir de una detección de bucle.  <a href="#aca519e7486b0e6f1fd6c98d7ced920b8">More...</a><br /></td></tr>
 <tr class="separator:aca519e7486b0e6f1fd6c98d7ced920b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3109e85b0ab224efdc23e51b5d2c3fa"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab3109e85b0ab224efdc23e51b5d2c3fa">GetLoopEdges</a> ()</td></tr>
+<tr class="memdesc:ab3109e85b0ab224efdc23e51b5d2c3fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa los keyframes conectados con ejes de bucle.  <a href="#ab3109e85b0ab224efdc23e51b5d2c3fa">More...</a><br /></td></tr>
 <tr class="separator:ab3109e85b0ab224efdc23e51b5d2c3fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16ea4f0cfa1ca411bb3382107fe69d2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a16ea4f0cfa1ca411bb3382107fe69d2d">AddMapPoint</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *pMP, const size_t &amp;idx)</td></tr>
+<tr class="memdesc:a16ea4f0cfa1ca411bb3382107fe69d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega un punto 3D a la lista de puntos observados.  <a href="#a16ea4f0cfa1ca411bb3382107fe69d2d">More...</a><br /></td></tr>
 <tr class="separator:a16ea4f0cfa1ca411bb3382107fe69d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fd38a2bca9f5ced2f1f7501b8046195"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2fd38a2bca9f5ced2f1f7501b8046195">EraseMapPointMatch</a> (const size_t &amp;idx)</td></tr>
+<tr class="memdesc:a2fd38a2bca9f5ced2f1f7501b8046195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reemplaza el punto del índice por NULL.  <a href="#a2fd38a2bca9f5ced2f1f7501b8046195">More...</a><br /></td></tr>
 <tr class="separator:a2fd38a2bca9f5ced2f1f7501b8046195"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3a775e959978e6d449386882e45b8a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab3a775e959978e6d449386882e45b8a2">EraseMapPointMatch</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *pMP)</td></tr>
+<tr class="memdesc:ab3a775e959978e6d449386882e45b8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reemplaza el punto por NULL.  <a href="#ab3a775e959978e6d449386882e45b8a2">More...</a><br /></td></tr>
 <tr class="separator:ab3a775e959978e6d449386882e45b8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35779a4eb4f5cec346780bbbdf377298"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a35779a4eb4f5cec346780bbbdf377298">ReplaceMapPointMatch</a> (const size_t &amp;idx, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *pMP)</td></tr>
+<tr class="memdesc:a35779a4eb4f5cec346780bbbdf377298"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reemplaza un elemento de los puntos observador por un nuevo punto 3D.  <a href="#a35779a4eb4f5cec346780bbbdf377298">More...</a><br /></td></tr>
 <tr class="separator:a35779a4eb4f5cec346780bbbdf377298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09cb77a8377be3fa8c85c7b5ee45e913"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb77a8377be3fa8c85c7b5ee45e913">GetMapPoints</a> ()</td></tr>
+<tr class="memdesc:a09cb77a8377be3fa8c85c7b5ee45e913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve los puntos 3D observados por el keyframe.  <a href="#a09cb77a8377be3fa8c85c7b5ee45e913">More...</a><br /></td></tr>
 <tr class="separator:a09cb77a8377be3fa8c85c7b5ee45e913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabc5f6491c32999d9f546669737547bf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aabc5f6491c32999d9f546669737547bf">GetMapPointMatches</a> ()</td></tr>
+<tr class="memdesc:aabc5f6491c32999d9f546669737547bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el vector de puntos 3D.  <a href="#aabc5f6491c32999d9f546669737547bf">More...</a><br /></td></tr>
 <tr class="separator:aabc5f6491c32999d9f546669737547bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a729cbf2c84db5cbfdda98a9612f8cd0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a729cbf2c84db5cbfdda98a9612f8cd0b">TrackedMapPoints</a> (const int &amp;minObs)</td></tr>
+<tr class="memdesc:a729cbf2c84db5cbfdda98a9612f8cd0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica la cantidad de puntos 3D que tengan como mínimo una cantidad dada de observaciones.  <a href="#a729cbf2c84db5cbfdda98a9612f8cd0b">More...</a><br /></td></tr>
 <tr class="separator:a729cbf2c84db5cbfdda98a9612f8cd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab85915f3e647334634d8a4d489c63ffd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab85915f3e647334634d8a4d489c63ffd">GetMapPoint</a> (const size_t &amp;idx)</td></tr>
+<tr class="memdesc:ab85915f3e647334634d8a4d489c63ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el punto 3D a partir del índice.  <a href="#ab85915f3e647334634d8a4d489c63ffd">More...</a><br /></td></tr>
 <tr class="separator:ab85915f3e647334634d8a4d489c63ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa057f2902cc7910343c5d452d33cb39f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa057f2902cc7910343c5d452d33cb39f">GetFeaturesInArea</a> (const float &amp;x, const float &amp;y, const float &amp;r) const</td></tr>
 <tr class="memdesc:aa057f2902cc7910343c5d452d33cb39f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filtra puntos singulares que estén en el cuadrado de centro x,y y lado 2 r.  <a href="#aa057f2902cc7910343c5d452d33cb39f">More...</a><br /></td></tr>
@@ -201,7 +222,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a95c437e42b4894a4acc9f05af61e9963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consulta la marca mbBad.  <a href="#a95c437e42b4894a4acc9f05af61e9963">More...</a><br /></td></tr>
 <tr class="separator:a95c437e42b4894a4acc9f05af61e9963"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c5f9ea38d377cfa70d441e184803ae"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa4c5f9ea38d377cfa70d441e184803ae">ComputeSceneMedianDepth</a> (const int q)</td></tr>
-<tr class="memdesc:aa4c5f9ea38d377cfa70d441e184803ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computa la profundidad de la escena.  <a href="#aa4c5f9ea38d377cfa70d441e184803ae">More...</a><br /></td></tr>
+<tr class="memdesc:aa4c5f9ea38d377cfa70d441e184803ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computa la profundidad del punto mediano de la escena.  <a href="#aa4c5f9ea38d377cfa70d441e184803ae">More...</a><br /></td></tr>
 <tr class="separator:aa4c5f9ea38d377cfa70d441e184803ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
@@ -237,32 +258,46 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a89412cd7a6d467c262a7c3a584c81990"><td class="mdescLeft">&#160;</td><td class="mdescRight">La inversa del alto de la grilla en píxeles.  <a href="#a89412cd7a6d467c262a7c3a584c81990">More...</a><br /></td></tr>
 <tr class="separator:a89412cd7a6d467c262a7c3a584c81990"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c775159303dc3435fc05e73f30f2865"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a1c775159303dc3435fc05e73f30f2865">mnTrackReferenceForFrame</a></td></tr>
+<tr class="memdesc:a1c775159303dc3435fc05e73f30f2865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por tracking.  <a href="#a1c775159303dc3435fc05e73f30f2865">More...</a><br /></td></tr>
 <tr class="separator:a1c775159303dc3435fc05e73f30f2865"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bad332e7057e8f59d630e78c7994129"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2bad332e7057e8f59d630e78c7994129">mnFuseTargetForKF</a></td></tr>
+<tr class="memdesc:a2bad332e7057e8f59d630e78c7994129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por tracking.  <a href="#a2bad332e7057e8f59d630e78c7994129">More...</a><br /></td></tr>
 <tr class="separator:a2bad332e7057e8f59d630e78c7994129"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75767b3e2e5f8eb4b4b73cba161b097b"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a75767b3e2e5f8eb4b4b73cba161b097b">mnBALocalForKF</a></td></tr>
+<tr class="memdesc:a75767b3e2e5f8eb4b4b73cba161b097b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por el mapeo local.  <a href="#a75767b3e2e5f8eb4b4b73cba161b097b">More...</a><br /></td></tr>
 <tr class="separator:a75767b3e2e5f8eb4b4b73cba161b097b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a484457e131f76713de4dc4e0bc9b5fed"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a484457e131f76713de4dc4e0bc9b5fed">mnBAFixedForKF</a></td></tr>
+<tr class="memdesc:a484457e131f76713de4dc4e0bc9b5fed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por el mapeo local.  <a href="#a484457e131f76713de4dc4e0bc9b5fed">More...</a><br /></td></tr>
 <tr class="separator:a484457e131f76713de4dc4e0bc9b5fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3446f5fd861f1e51faf9191c1eb75ab"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ae3446f5fd861f1e51faf9191c1eb75ab">mnLoopQuery</a></td></tr>
+<tr class="memdesc:ae3446f5fd861f1e51faf9191c1eb75ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por la base de datos de keyframes.  <a href="#ae3446f5fd861f1e51faf9191c1eb75ab">More...</a><br /></td></tr>
 <tr class="separator:ae3446f5fd861f1e51faf9191c1eb75ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36d7ead1b29c188be610208f11625d24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a36d7ead1b29c188be610208f11625d24">mnLoopWords</a></td></tr>
+<tr class="memdesc:a36d7ead1b29c188be610208f11625d24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por la base de datos de keyframes.  <a href="#a36d7ead1b29c188be610208f11625d24">More...</a><br /></td></tr>
 <tr class="separator:a36d7ead1b29c188be610208f11625d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40712f54ab899a6dbd795405a4984ab5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a40712f54ab899a6dbd795405a4984ab5">mLoopScore</a></td></tr>
+<tr class="memdesc:a40712f54ab899a6dbd795405a4984ab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por la base de datos de keyframes.  <a href="#a40712f54ab899a6dbd795405a4984ab5">More...</a><br /></td></tr>
 <tr class="separator:a40712f54ab899a6dbd795405a4984ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a028c2a2f0f737ec09719712c84339748"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a028c2a2f0f737ec09719712c84339748">mnRelocQuery</a></td></tr>
+<tr class="memdesc:a028c2a2f0f737ec09719712c84339748"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por la base de datos de keyframes.  <a href="#a028c2a2f0f737ec09719712c84339748">More...</a><br /></td></tr>
 <tr class="separator:a028c2a2f0f737ec09719712c84339748"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b1f8023efe8ddf58ac5d1d2cf41c0cf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a0b1f8023efe8ddf58ac5d1d2cf41c0cf">mnRelocWords</a></td></tr>
+<tr class="memdesc:a0b1f8023efe8ddf58ac5d1d2cf41c0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por la base de datos de keyframes.  <a href="#a0b1f8023efe8ddf58ac5d1d2cf41c0cf">More...</a><br /></td></tr>
 <tr class="separator:a0b1f8023efe8ddf58ac5d1d2cf41c0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78f768a3601ac95f99dff3fd511f2a6e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a78f768a3601ac95f99dff3fd511f2a6e">mRelocScore</a></td></tr>
+<tr class="memdesc:a78f768a3601ac95f99dff3fd511f2a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables usadas por la base de datos de keyframes.  <a href="#a78f768a3601ac95f99dff3fd511f2a6e">More...</a><br /></td></tr>
 <tr class="separator:a78f768a3601ac95f99dff3fd511f2a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9bdd885bb078b5e1910c2317e9aa112"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac9bdd885bb078b5e1910c2317e9aa112">mTcwGBA</a></td></tr>
+<tr class="memdesc:ac9bdd885bb078b5e1910c2317e9aa112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable usada en cierre de bucle.  <a href="#ac9bdd885bb078b5e1910c2317e9aa112">More...</a><br /></td></tr>
 <tr class="separator:ac9bdd885bb078b5e1910c2317e9aa112"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a6fb84afa3701dcc6b1e3e76ccb36fa"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a4a6fb84afa3701dcc6b1e3e76ccb36fa">mTcwBefGBA</a></td></tr>
+<tr class="memdesc:a4a6fb84afa3701dcc6b1e3e76ccb36fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable usada en cierre de bucle.  <a href="#a4a6fb84afa3701dcc6b1e3e76ccb36fa">More...</a><br /></td></tr>
 <tr class="separator:a4a6fb84afa3701dcc6b1e3e76ccb36fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31b686c81674d0248b5f7dabdfd58ecb"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a31b686c81674d0248b5f7dabdfd58ecb">mnBAGlobalForKF</a></td></tr>
+<tr class="memdesc:a31b686c81674d0248b5f7dabdfd58ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable usada en cierre de bucle.  <a href="#a31b686c81674d0248b5f7dabdfd58ecb">More...</a><br /></td></tr>
 <tr class="separator:a31b686c81674d0248b5f7dabdfd58ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a951e9ac5670b8543a7386dee5714da0c"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a951e9ac5670b8543a7386dee5714da0c">fx</a></td></tr>
+<tr class="memdesc:a951e9ac5670b8543a7386dee5714da0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetros de calibración.  <a href="#a951e9ac5670b8543a7386dee5714da0c">More...</a><br /></td></tr>
 <tr class="separator:a951e9ac5670b8543a7386dee5714da0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1acd1b8dad098299d350f67dc4517c0"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab1acd1b8dad098299d350f67dc4517c0">fy</a></td></tr>
 <tr class="separator:ab1acd1b8dad098299d350f67dc4517c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -281,6 +316,7 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a16a3c245370ba4efb5b473059c7f4362"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a16a3c245370ba4efb5b473059c7f4362">mThDepth</a></td></tr>
 <tr class="separator:a16a3c245370ba4efb5b473059c7f4362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9b6948404d0ade2779335708cd443b9"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac9b6948404d0ade2779335708cd443b9">N</a></td></tr>
+<tr class="memdesc:ac9b6948404d0ade2779335708cd443b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de puntos singulares.  <a href="#ac9b6948404d0ade2779335708cd443b9">More...</a><br /></td></tr>
 <tr class="separator:ac9b6948404d0ade2779335708cd443b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1bcd5810e62ec163a3f38ccb806d04a"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; cv::KeyPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa1bcd5810e62ec163a3f38ccb806d04a">mvKeys</a></td></tr>
 <tr class="memdesc:aa1bcd5810e62ec163a3f38ccb806d04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos singulares visualizados por el keyframe.  <a href="#aa1bcd5810e62ec163a3f38ccb806d04a">More...</a><br /></td></tr>
@@ -303,16 +339,22 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aab9c8e2e4aa4757ad0be28b2f49a3cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pose de cámara relativa a su padre.  <a href="#aab9c8e2e4aa4757ad0be28b2f49a3cf7">More...</a><br /></td></tr>
 <tr class="separator:aab9c8e2e4aa4757ad0be28b2f49a3cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd3b2544330774672483656955e0ca03"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#abd3b2544330774672483656955e0ca03">mnScaleLevels</a></td></tr>
+<tr class="memdesc:abd3b2544330774672483656955e0ca03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de niveles de la pirámide.  <a href="#abd3b2544330774672483656955e0ca03">More...</a><br /></td></tr>
 <tr class="separator:abd3b2544330774672483656955e0ca03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18fbd1aa1da7c7cd68cb05d8e5b78a08"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a18fbd1aa1da7c7cd68cb05d8e5b78a08">mfScaleFactor</a></td></tr>
+<tr class="memdesc:a18fbd1aa1da7c7cd68cb05d8e5b78a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factor de escala entre dos niveles consecutivos de la pirámide.  <a href="#a18fbd1aa1da7c7cd68cb05d8e5b78a08">More...</a><br /></td></tr>
 <tr class="separator:a18fbd1aa1da7c7cd68cb05d8e5b78a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7ca053915d4aaba66c1fd5962182d14"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ae7ca053915d4aaba66c1fd5962182d14">mfLogScaleFactor</a></td></tr>
+<tr class="memdesc:ae7ca053915d4aaba66c1fd5962182d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logaritmo del factor de escala.  <a href="#ae7ca053915d4aaba66c1fd5962182d14">More...</a><br /></td></tr>
 <tr class="separator:ae7ca053915d4aaba66c1fd5962182d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cdc02a7bccd3b75e61351a1f14f9c04"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8cdc02a7bccd3b75e61351a1f14f9c04">mvScaleFactors</a></td></tr>
+<tr class="memdesc:a8cdc02a7bccd3b75e61351a1f14f9c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factores de escala absolutos para cada nivel de la pirámide.  <a href="#a8cdc02a7bccd3b75e61351a1f14f9c04">More...</a><br /></td></tr>
 <tr class="separator:a8cdc02a7bccd3b75e61351a1f14f9c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4a9029bf7ea62953ac38644756fcd3b"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa4a9029bf7ea62953ac38644756fcd3b">mvLevelSigma2</a></td></tr>
+<tr class="memdesc:aa4a9029bf7ea62953ac38644756fcd3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sigma cuadrado (cuadrado de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8cdc02a7bccd3b75e61351a1f14f9c04" title="Factores de escala absolutos para cada nivel de la pirámide. ">KeyFrame::mvScaleFactors</a>) para cada nivel de la pirámide.  <a href="#aa4a9029bf7ea62953ac38644756fcd3b">More...</a><br /></td></tr>
 <tr class="separator:aa4a9029bf7ea62953ac38644756fcd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a320d543b9585072c264b4e6f7e334bad"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a320d543b9585072c264b4e6f7e334bad">mvInvLevelSigma2</a></td></tr>
+<tr class="memdesc:a320d543b9585072c264b4e6f7e334bad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inversa de sigma cuadrado para cada nivel de la pirámide.  <a href="#a320d543b9585072c264b4e6f7e334bad">More...</a><br /></td></tr>
 <tr class="separator:a320d543b9585072c264b4e6f7e334bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02b00239e47ff44e5578c2eeaf3d3cc8"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a02b00239e47ff44e5578c2eeaf3d3cc8">mnMinX</a></td></tr>
 <tr class="memdesc:a02b00239e47ff44e5578c2eeaf3d3cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#a02b00239e47ff44e5578c2eeaf3d3cc8">More...</a><br /></td></tr>
@@ -359,10 +401,13 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aa01e44ecc9b907b3f85094d84de08cb8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::vector&lt; size_t &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa01e44ecc9b907b3f85094d84de08cb8">mGrid</a></td></tr>
 <tr class="separator:aa01e44ecc9b907b3f85094d84de08cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a057195e3e9e7d3f08b97b6366e9f81"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a6a057195e3e9e7d3f08b97b6366e9f81">mConnectedKeyFrameWeights</a></td></tr>
+<tr class="memdesc:a6a057195e3e9e7d3f08b97b6366e9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos.  <a href="#a6a057195e3e9e7d3f08b97b6366e9f81">More...</a><br /></td></tr>
 <tr class="separator:a6a057195e3e9e7d3f08b97b6366e9f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4a83f5b32cf53c0ad87702226b9dff8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8">mvpOrderedConnectedKeyFrames</a></td></tr>
+<tr class="memdesc:af4a83f5b32cf53c0ad87702226b9dff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyframes covisibles ordenados por peso, actualizado vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb8502509c136536bf8d45793f8872" title="Actualiza los mejores covisibles. ">KeyFrame::UpdateBestCovisibles</a>.  <a href="#af4a83f5b32cf53c0ad87702226b9dff8">More...</a><br /></td></tr>
 <tr class="separator:af4a83f5b32cf53c0ad87702226b9dff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeac0492454556dc98bb6bd895acfec9b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aeac0492454556dc98bb6bd895acfec9b">mvOrderedWeights</a></td></tr>
+<tr class="memdesc:aeac0492454556dc98bb6bd895acfec9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pesos de los keyframes de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8" title="Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles. ">KeyFrame::mvpOrderedConnectedKeyFrames</a>.  <a href="#aeac0492454556dc98bb6bd895acfec9b">More...</a><br /></td></tr>
 <tr class="separator:aeac0492454556dc98bb6bd895acfec9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ad3ef1653d6cfa622994bd2c1bd67c1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9ad3ef1653d6cfa622994bd2c1bd67c1">mbFirstConnection</a></td></tr>
 <tr class="memdesc:a9ad3ef1653d6cfa622994bd2c1bd67c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado del autómata de inicialización.  <a href="#a9ad3ef1653d6cfa622994bd2c1bd67c1">More...</a><br /></td></tr>
@@ -377,13 +422,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a64c0b63cb66f5ca99639c6c54aa67e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">KeyFrames que participan de un extremo de un bucle.  <a href="#a64c0b63cb66f5ca99639c6c54aa67e1b">More...</a><br /></td></tr>
 <tr class="separator:a64c0b63cb66f5ca99639c6c54aa67e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecf677dc6fdd14e6122d0f5e09c01850"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aecf677dc6fdd14e6122d0f5e09c01850">mbNotErase</a></td></tr>
+<tr class="memdesc:aecf677dc6fdd14e6122d0f5e09c01850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Señal de no borrar.  <a href="#aecf677dc6fdd14e6122d0f5e09c01850">More...</a><br /></td></tr>
 <tr class="separator:aecf677dc6fdd14e6122d0f5e09c01850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae282bb579271984c9ee0d55bac7f5dee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ae282bb579271984c9ee0d55bac7f5dee">mbToBeErased</a></td></tr>
+<tr class="memdesc:ae282bb579271984c9ee0d55bac7f5dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marca el keyframe para ser borrado.  <a href="#ae282bb579271984c9ee0d55bac7f5dee">More...</a><br /></td></tr>
 <tr class="separator:ae282bb579271984c9ee0d55bac7f5dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ed66ca840fb2288ee6b700bb4fc6858"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9ed66ca840fb2288ee6b700bb4fc6858">mbBad</a></td></tr>
 <tr class="memdesc:a9ed66ca840fb2288ee6b700bb4fc6858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag de eliminación.  <a href="#a9ed66ca840fb2288ee6b700bb4fc6858">More...</a><br /></td></tr>
 <tr class="separator:a9ed66ca840fb2288ee6b700bb4fc6858"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a2a61ea9a420938b61b3843dcc8761b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a7a2a61ea9a420938b61b3843dcc8761b">mHalfBaseline</a></td></tr>
+<tr class="memdesc:a7a2a61ea9a420938b61b3843dcc8761b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dato auxiliar para visualización solamente.  <a href="#a7a2a61ea9a420938b61b3843dcc8761b">More...</a><br /></td></tr>
 <tr class="separator:a7a2a61ea9a420938b61b3843dcc8761b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1fd59a0e3f3c32cf90c03a087ffd31b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab1fd59a0e3f3c32cf90c03a087ffd31b">mpMap</a></td></tr>
 <tr class="memdesc:ab1fd59a0e3f3c32cf90c03a087ffd31b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapa donde se encuentra el keyFrame.  <a href="#ab1fd59a0e3f3c32cf90c03a087ffd31b">More...</a><br /></td></tr>
@@ -414,8 +462,10 @@ Protected Attributes</h2></td></tr>
 </ul>
 <p>Vectores:</p>
 <ul>
-<li>t: traslación, derivada de una pose </li>
+<li>t: traslación, derivada de una pose</li>
 </ul>
+<p>Origen de coordenadas:</p>
+<p>El origen de coordenadas por defecto es el mundo, cuyo origen está dado por la pose de la primer cámara, y la escala por la distancia entre las cámaras de inicialización que triangularon los primeros puntos. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6b2fd06ed5e4a8f9546c515db554bcb6"></a>
 <div class="memitem">
@@ -452,10 +502,13 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">F</td><td><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> de referencia, que se erige en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> </td></tr>
     <tr><td class="paramname">pMap</td><td>Mapa local donde se encuentra este <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a>, necesario solamente para quitar el <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> del mapa. </td></tr>
-    <tr><td class="paramname">pKFDB</td><td>Base de datos de keyframes donde se registran todos los keyframes, necesario solamente para quitar este <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> de la base de datos. Este constructor copia todos los valores del <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> F. pMap es un puntero al mapa donde está este keyFrame, y se utiliza sólo para cuando se requiera eliminar del mapa. Se registra en mpMap. pKFDB es la base de datos de keyframes. Se registra en mpKeyFrameDB. </td></tr>
+    <tr><td class="paramname">pKFDB</td><td>Base de datos de keyframes donde se registran todos los keyframes, necesario solamente para quitar este <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> de la base de datos.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Este constructor copia todos los valores del <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> F.</p>
+<p>pMap es un puntero al mapa donde está este keyFrame, y se utiliza sólo para cuando se requiera eliminar del mapa. Se registra en mpMap.</p>
+<p>pKFDB es la base de datos de keyframes. Se registra en mpKeyFrameDB. </p>
 
 </div>
 </div>
@@ -473,6 +526,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Agrega un keyframe hijo al grafo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac647a33b4a6d158b640c5482ed57bbfe" title="KeyFrames hijos en el grafo. ">KeyFrame::mspChildrens</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe hijo a agregar. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -501,13 +562,15 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Conecta el keyframe con otro en el grafo de covisibilidad. </p>
+<p>El grafo de covisibilidad es un mapa de pares keyframe y peso <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a6a057195e3e9e7d3f08b97b6366e9f81" title="Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos. ">KeyFrame::mConnectedKeyFrameWeights</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pKF</td><td>Keyframe a conectar. </td></tr>
-    <tr><td class="paramname">weight</td><td>Peso o ponderación de la conexión. </td></tr>
+    <tr><td class="paramname">weight</td><td>Peso o ponderación de la conexión.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#afe7026956c91d4e0a01812be9dc7e8d5" title="Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad. ">KeyFrame::UpdateConnections</a>. </p>
 
 </div>
 </div>
@@ -524,6 +587,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Agrega un eje al grafo de covisibilidad, a partir de una detección de bucle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe con el que tender el eje. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -551,6 +622,15 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Agrega un punto 3D a la lista de puntos observados. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMP</td><td>Punto 3D a agregar al keyframe. </td></tr>
+    <tr><td class="paramname">idx</td><td>Índice del punto en el vector de puntos 3D, también índice del punto singular asociado. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a3232df2495062749da1344db3e5a487f"></a>
@@ -566,6 +646,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Cambia el padre del keyframe. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Nuevo keyframe padre. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -598,14 +686,20 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Computa la profundidad de la escena. </p>
+<p>Computa la profundidad del punto mediano de la escena. </p>
+<p>La escena es el conjunto de puntos 3D observador por el keyframe.</p>
+<p>La profundidad de un punto 3D respecto de una pose de cámara es la distancia de ese punto al plano paralelo a la imagen de la cámara, que pasa por su foco.</p>
+<p>Calcula la profundidad para cada punto del mundo, los ordena por profundidad y devuelve la profundidad del punto 1/q.</p>
+<p>Fallaría si no hubiera ningún punto 3D en la escena.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">q</td><td></td></tr>
+    <tr><td class="paramname">q</td><td>Fraccionador, q&gt;=1, que elige qué profundidad devolver. 1 devuelve la del más lejano, infinito la del más cercano, 2 la mediana. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Profundidad del punto elegido.</dd></dl>
+<p>Se invoca desde dos lugares, siempre con el argumento q=2.</p>
+<p>Desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">Tracking::CreateInitialMapMonocular</a> se usa esta profundidad para establecer la unidad de medida del mundo. Desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac06b513357429d9eff89e29d2ae58d6c" title="El ciclo de mapeo local invoca periódicamente este método, que busca macheos candidatos para su trian...">LocalMapping::CreateNewMapPoints</a> se usa para descartar la triangulación de un par de keyframes. </p>
 
 </div>
 </div>
@@ -622,6 +716,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Borra un keyframe hijo del grafo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac647a33b4a6d158b640c5482ed57bbfe" title="KeyFrames hijos en el grafo. ">KeyFrame::mspChildrens</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe hijo a borrar. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -663,6 +765,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Reemplaza el punto del índice por NULL. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>Índice del punto a eliminar. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ab3a775e959978e6d449386882e45b8a2"></a>
@@ -678,6 +788,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reemplaza el punto por NULL. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMP</td><td>Punto 3D a eliminar del vector de puntos 3D observados. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -695,6 +813,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Devuelve los primeros y mejores N elementos del vector de keyframes covisibles <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8" title="Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles. ">KeyFrame::mvpOrderedConnectedKeyFrames</a> . </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N</td><td>Cantidad máxima de keyframes a devolver. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a535f0f7db34aca7c55ddadc2ad9f4a5f"></a>
@@ -711,6 +837,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lee el vector centro de cámara, igual al vector traslación para monocular. </p>
+<dl class="section return"><dt>Returns</dt><dd>el vector de posición de la cámara, igual a la traslación. Es diferente sólo en estéreo. </dd></dl>
 
 </div>
 </div>
@@ -727,6 +854,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Devuelve los hijos de este keyframe. </p>
+<dl class="section return"><dt>Returns</dt><dd>Keyframes hijos. </dd></dl>
+
 </div>
 </div>
 <a id="af4ffdf4441477a36c42d6605c573f1cf"></a>
@@ -741,6 +871,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Devuelve un conjunto de keyframes conectados a éste por el grafo esencial. </p>
 
 </div>
 </div>
@@ -757,6 +889,14 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Devuelve los mejores elementos del vector de keyframes covisibles, con peso mejor al de referencia. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>Peso de referencia. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -816,6 +956,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Informa los keyframes conectados con ejes de bucle. </p>
+<dl class="section return"><dt>Returns</dt><dd>Keyframes conectados por ejes de bucles. </dd></dl>
+
 </div>
 </div>
 <a id="ab85915f3e647334634d8a4d489c63ffd"></a>
@@ -832,6 +975,15 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Devuelve el punto 3D a partir del índice. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>Índice. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Punto 3D. </dd></dl>
+
 </div>
 </div>
 <a id="aabc5f6491c32999d9f546669737547bf"></a>
@@ -846,6 +998,9 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Devuelve el vector de puntos 3D. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>. </dd></dl>
 
 </div>
 </div>
@@ -862,6 +1017,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Devuelve los puntos 3D observados por el keyframe. </p>
+<p>Recorre el vector y genera un set, eliminando los índices NULL. </p><dl class="section return"><dt>Returns</dt><dd>Puntos 3D. </dd></dl>
+
 </div>
 </div>
 <a id="a660cfc9a6ccf87e5497356d0d98ef06f"></a>
@@ -876,6 +1034,9 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Informa el keyframe padre. </p>
+<dl class="section return"><dt>Returns</dt><dd>Keyframe padre. </dd></dl>
 
 </div>
 </div>
@@ -893,6 +1054,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lee Tcw, la pose del keyframe. </p>
+<dl class="section return"><dt>Returns</dt><dd>Tcw, la pose. </dd></dl>
 
 </div>
 </div>
@@ -910,6 +1072,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lee Twc, la matriz inversa de la pose. </p>
+<dl class="section return"><dt>Returns</dt><dd>Twc, la inversa de la pose. </dd></dl>
 
 </div>
 </div>
@@ -927,6 +1090,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Lee la matriz rotación 3D, obtenida de Tcw. </p>
+<dl class="section return"><dt>Returns</dt><dd>R, la matriz rotación 3D de 3x3, parte de la pose.</dd></dl>
+<p>La matriz rotación rota un vector </p>
 
 </div>
 </div>
@@ -960,6 +1125,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Devuelve el vector de keyframes covisibles <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8" title="Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles. ">KeyFrame::mvpOrderedConnectedKeyFrames</a> . </p>
+
 </div>
 </div>
 <a id="ab10fd3aab6431face352a930961ff713"></a>
@@ -976,6 +1143,15 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Informa el peso de la conexión de un determinado keyframe covisible. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe cuyo peso se quiere conocer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Peso del keyframe. </dd></dl>
+
 </div>
 </div>
 <a id="a2276fdbae634194e790878adebba7861"></a>
@@ -991,6 +1167,15 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Indica si un keyframe es hijo de éste. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe presunto hijo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true si es hijo, false si no. </dd></dl>
 
 </div>
 </div>
@@ -1116,6 +1301,15 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Reemplaza un elemento de los puntos observador por un nuevo punto 3D. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idx</td><td>Índice del punto a reemplazar. </td></tr>
+    <tr><td class="paramname">pMP</td><td>Nuevo punto que reemplaza al anterior. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a365ec4d06acbbcd668aa5a069c69fdaa"></a>
@@ -1202,6 +1396,15 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Indica la cantidad de puntos 3D que tengan como mínimo una cantidad dada de observaciones. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">minObs</td><td>Cantidad mínima de observaciones </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cantidad de puntos 3D con al menos esa cantidad mínima de observaciones. </dd></dl>
+
 </div>
 </div>
 <a id="a09cb8502509c136536bf8d45793f8872"></a>
@@ -1218,6 +1421,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Actualiza los mejores covisibles. </p>
+<p>El grafo de covisibilidad es un mapa. Este método produce dos vectores alineados, KayFrame.mvpOrderedConnectedKeyFrames con los keyframes, y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aeac0492454556dc98bb6bd895acfec9b" title="Pesos de los keyframes de KeyFrame::mvpOrderedConnectedKeyFrames. ">KeyFrame::mvOrderedWeights</a> con sus respectivos pesos.</p>
 <p>Invocado cada vez que se actualiza el grafo (cada que que se agrega o elimina una conexión). </p>
 
 </div>
@@ -1236,6 +1440,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad. </p>
+<p>Es invocado de varios módulos, entre ellos desde ProcessNewKeyFrame. </p>
 
 </div>
 </div>
@@ -1317,6 +1522,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parámetros de calibración. </p>
 
 </div>
 </div>
@@ -1444,6 +1651,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Señal de no borrar. </p>
+
 </div>
 </div>
 <a id="a70cb0dee48e804c5b1f30afd0ce99787"></a>
@@ -1476,6 +1685,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Marca el keyframe para ser borrado. </p>
+
 </div>
 </div>
 <a id="a6a057195e3e9e7d3f08b97b6366e9f81"></a>
@@ -1495,6 +1706,9 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos. </p>
+<p>Actualizado vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#afe7026956c91d4e0a01812be9dc7e8d5" title="Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad. ">KeyFrame::UpdateConnections</a>. </p>
 
 </div>
 </div>
@@ -1565,6 +1779,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Logaritmo del factor de escala. </p>
+
 </div>
 </div>
 <a id="a18fbd1aa1da7c7cd68cb05d8e5b78a08"></a>
@@ -1576,6 +1792,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Factor de escala entre dos niveles consecutivos de la pirámide. </p>
 
 </div>
 </div>
@@ -1617,6 +1835,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Dato auxiliar para visualización solamente. </p>
+
 </div>
 </div>
 <a id="afcb8246d60511b756ba241de680e96ac"></a>
@@ -1642,6 +1862,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variables usadas por la base de datos de keyframes. </p>
 
 </div>
 </div>
@@ -1715,6 +1937,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Variables usadas por el mapeo local. </p>
+
 </div>
 </div>
 <a id="a31b686c81674d0248b5f7dabdfd58ecb"></a>
@@ -1727,6 +1951,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Variable usada en cierre de bucle. </p>
+
 </div>
 </div>
 <a id="a75767b3e2e5f8eb4b4b73cba161b097b"></a>
@@ -1738,6 +1964,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variables usadas por el mapeo local. </p>
 
 </div>
 </div>
@@ -1765,6 +1993,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variables usadas por tracking. </p>
 
 </div>
 </div>
@@ -1823,6 +2053,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Variables usadas por la base de datos de keyframes. </p>
+
 </div>
 </div>
 <a id="a36d7ead1b29c188be610208f11625d24"></a>
@@ -1834,6 +2066,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variables usadas por la base de datos de keyframes. </p>
 
 </div>
 </div>
@@ -1903,6 +2137,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Variables usadas por la base de datos de keyframes. </p>
+
 </div>
 </div>
 <a id="a0b1f8023efe8ddf58ac5d1d2cf41c0cf"></a>
@@ -1914,6 +2150,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variables usadas por la base de datos de keyframes. </p>
 
 </div>
 </div>
@@ -1927,6 +2165,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Cantidad de niveles de la pirámide. </p>
+
 </div>
 </div>
 <a id="a1c775159303dc3435fc05e73f30f2865"></a>
@@ -1938,6 +2178,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variables usadas por tracking. </p>
 
 </div>
 </div>
@@ -2042,6 +2284,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Variables usadas por la base de datos de keyframes. </p>
+
 </div>
 </div>
 <a id="ac647a33b4a6d158b640c5482ed57bbfe"></a>
@@ -2112,6 +2356,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Variable usada en cierre de bucle. </p>
+
 </div>
 </div>
 <a id="ac9bdd885bb078b5e1910c2317e9aa112"></a>
@@ -2123,6 +2369,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variable usada en cierre de bucle. </p>
 
 </div>
 </div>
@@ -2174,6 +2422,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inversa de sigma cuadrado para cada nivel de la pirámide. </p>
+
 </div>
 </div>
 <a id="aa1bcd5810e62ec163a3f38ccb806d04a"></a>
@@ -2215,6 +2465,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sigma cuadrado (cuadrado de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8cdc02a7bccd3b75e61351a1f14f9c04" title="Factores de escala absolutos para cada nivel de la pirámide. ">KeyFrame::mvScaleFactors</a>) para cada nivel de la pirámide. </p>
+
 </div>
 </div>
 <a id="aeac0492454556dc98bb6bd895acfec9b"></a>
@@ -2234,6 +2486,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Pesos de los keyframes de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8" title="Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles. ">KeyFrame::mvpOrderedConnectedKeyFrames</a>. </p>
 
 </div>
 </div>
@@ -2277,6 +2531,8 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Keyframes covisibles ordenados por peso, actualizado vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb8502509c136536bf8d45793f8872" title="Actualiza los mejores covisibles. ">KeyFrame::UpdateBestCovisibles</a>. </p>
+
 </div>
 </div>
 <a id="a8cdc02a7bccd3b75e61351a1f14f9c04"></a>
@@ -2288,6 +2544,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Factores de escala absolutos para cada nivel de la pirámide. </p>
 
 </div>
 </div>
@@ -2312,6 +2570,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Cantidad de puntos singulares. </p>
 
 </div>
 </div>

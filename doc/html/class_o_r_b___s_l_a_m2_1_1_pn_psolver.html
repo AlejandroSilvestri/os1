@@ -99,12 +99,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b4cad992a43620e027bfb4bc9ef24f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a7b4cad992a43620e027bfb4bc9ef24f8">PnPsolver</a> (const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;F, const vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMapPointMatches)</td></tr>
 <tr class="separator:a7b4cad992a43620e027bfb4bc9ef24f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad40b921779ed92bfb6b017a76e4d88aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#ad40b921779ed92bfb6b017a76e4d88aa">~PnPsolver</a> ()</td></tr>
+<tr class="memdesc:ad40b921779ed92bfb6b017a76e4d88aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor por defecto.  <a href="#ad40b921779ed92bfb6b017a76e4d88aa">More...</a><br /></td></tr>
 <tr class="separator:ad40b921779ed92bfb6b017a76e4d88aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adff29377dcc77891a33113080b6b1eb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#adff29377dcc77891a33113080b6b1eb7">SetRansacParameters</a> (double probability=0.99, int minInliers=8, int maxIterations=300, int minSet=4, float epsilon=0.4, float th2=5.991)</td></tr>
+<tr class="memdesc:adff29377dcc77891a33113080b6b1eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajusta los parámetros de Ransac.  <a href="#adff29377dcc77891a33113080b6b1eb7">More...</a><br /></td></tr>
 <tr class="separator:adff29377dcc77891a33113080b6b1eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a784429037a79cb53923f4db181a4d115"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a784429037a79cb53923f4db181a4d115">find</a> (vector&lt; bool &gt; &amp;vbInliers, int &amp;nInliers)</td></tr>
+<tr class="memdesc:a784429037a79cb53923f4db181a4d115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta el número máximo de iteraciones Ransac.  <a href="#a784429037a79cb53923f4db181a4d115">More...</a><br /></td></tr>
 <tr class="separator:a784429037a79cb53923f4db181a4d115"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbef2ac776747661112246e85667f452"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#abbef2ac776747661112246e85667f452">iterate</a> (int nIterations, bool &amp;bNoMore, vector&lt; bool &gt; &amp;vbInliers, int &amp;nInliers)</td></tr>
+<tr class="memdesc:abbef2ac776747661112246e85667f452"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta n iteraciones de Ransac.  <a href="#abbef2ac776747661112246e85667f452">More...</a><br /></td></tr>
 <tr class="separator:abbef2ac776747661112246e85667f452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -151,6 +155,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Destructor por defecto. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -177,6 +183,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Ejecuta el número máximo de iteraciones Ransac. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vbInliers</td><td>Resultado, marca la posición de los elementos inliers encontrados. </td></tr>
+    <tr><td class="paramname">nInliers</td><td>Restulado, cantidad de inliers encontrados. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pose de la relocalización, o una matriz vacía si no falla.</dd></dl>
+<p>No utilizado en orb-slam2. En su lugar se usa <a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#abbef2ac776747661112246e85667f452" title="Ejecuta n iteraciones de Ransac. ">PnPsolver::iterate</a>. </p>
 
 </div>
 </div>
@@ -215,6 +232,19 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Ejecuta n iteraciones de Ransac. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nIterations</td><td>Cantidad de iteraciones a ejecutar. Termina antes si se alcanza PnPsolver::mRansacMaxIts en total. </td></tr>
+    <tr><td class="paramname">bNoMore</td><td>Resultado, señal que indica que se alcanzaron las PnPsolver::mRansacMaxIts iteraciones en total. </td></tr>
+    <tr><td class="paramname">vbInliers</td><td>Resultado, marca la posición de los elementos inliers encontrados. </td></tr>
+    <tr><td class="paramname">nInliers</td><td>Restulado, cantidad de inliers encontrados. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pose de la relocalización, o una matriz vacía si no falla.</dd></dl>
+<p>Usado sólo en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#acd4ea9e7097bed16428a4b78fe4b6a67" title="Dispara una relocalización. ">Tracking::Relocalization</a>. También se invoca desde el método no utilizado find. </p>
 
 </div>
 </div>
@@ -265,6 +295,22 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Ajusta los parámetros de Ransac. </p>
+<p>Todos los parámetros tienen un valor por defecto, aunque orb-slam2 no los usa.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">probability</td><td>Mínima probablidad de acierto aceptada. Este valor se registra en PnPsolver::mRansacProb </td></tr>
+    <tr><td class="paramname">minInliers</td><td>Mínima cantidad de inliers aceptados. Este valor se registra en PnPsolver::mRansacMinInliers </td></tr>
+    <tr><td class="paramname">maxIterations</td><td>Máxima cantidad de iteraciones permitidas para encontrar la solución. Si la alcanza, desiste. Este valor se registra en PnPsolver::mRansacMaxIts </td></tr>
+    <tr><td class="paramname">minSet</td><td>Cantidad mínima de puntos a considerar en cada iteración. Este valor se registra en PnPsolver::mRansacMinSet </td></tr>
+    <tr><td class="paramname">epsilon</td><td>Este valor se registra en PnPsolver::mRansacEpsilon </td></tr>
+    <tr><td class="paramname">th2</td><td>Umbral al caudrado.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado con parámetros por defecto por el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html" title="Solucionador Point n-Points EPnP. ">PnPsolver</a>, y por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#acd4ea9e7097bed16428a4b78fe4b6a67" title="Dispara una relocalización. ">Tracking::Relocalization</a> con parámetros ad hoc.</p>
+<p>En orb-slam2 toda vez que se construye una instancia, se invoca dos veces consecutivas este método: primero en el constuctor con valores por defecto, e inmediatamente después con parámetros ad hoc. </p>
 
 </div>
 </div>

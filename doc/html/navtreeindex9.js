@@ -1,9 +1,5 @@
 var NAVTREEINDEX9 =
 {
-"index.html":[],
-"index.html#clas":[0,3],
-"index.html#conc":[0,4],
-"index.html#conf":[0,1],
 "index.html#desc":[0,2],
 "index.html#hilos":[0,5],
 "index.html#intro_sec":[0,0],
@@ -70,8 +66,8 @@ var NAVTREEINDEX9 =
 "modules.html":[2],
 "namespace_d_bo_w2.html":[3,0,0],
 "namespace_d_bo_w2.html":[4,0,0],
-"namespace_d_utils.html":[3,0,1],
 "namespace_d_utils.html":[4,0,1],
+"namespace_d_utils.html":[3,0,1],
 "namespace_o_r_b___s_l_a_m2.html":[4,0,3],
 "namespace_o_r_b___s_l_a_m2.html":[3,0,4],
 "namespaceg2o.html":[4,0,2],
@@ -249,5 +245,9 @@ var NAVTREEINDEX9 =
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a9f1fcb620025ba6103a47e5c2b169cd6":[4,0,0,5,0,1],
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#aa56418d848932be4583fac6b3021c708":[4,0,0,5,0,8],
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ab785e994eeae8e6c1d67ee45ad4c8450":[4,0,0,5,0,4],
-"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ae1e261135cb7af400f1c4c4795cdba41":[4,0,0,5,0,7]
+"struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ae1e261135cb7af400f1c4c4795cdba41":[4,0,0,5,0,7],
+"structg2o_1_1_base_multi_edge_1_1_hessian_helper.html":[4,0,2,5,0],
+"structg2o_1_1_base_multi_edge_1_1_hessian_helper.html#a5a76a58b21ca39ea6ca1e274b588fad0":[4,0,2,5,0,0],
+"structg2o_1_1_base_multi_edge_1_1_hessian_helper.html#ab9eab8a9c5bf6e7814173d1955d7a01c":[4,0,2,5,0,1],
+"structg2o_1_1_base_multi_edge_1_1_hessian_helper.html#aeaff0227a982c30364d97ef9f0d9d60c":[4,0,2,5,0,2]
 };

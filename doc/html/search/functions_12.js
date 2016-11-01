@@ -5,7 +5,6 @@ var searchData=
   ['savehessian',['saveHessian',['../classg2o_1_1_block_solver.html#a51563178d31f3eae6ec61993ea069a77',1,'g2o::BlockSolver::saveHessian()'],['../classg2o_1_1_solver.html#a14852543c4dc3f3e7088efe03aa135eb',1,'g2o::Solver::saveHessian()']]],
   ['savekeyframetrajectorytum',['SaveKeyFrameTrajectoryTUM',['../class_o_r_b___s_l_a_m2_1_1_system.html#a6435a029f66a34103c434aa16e80eae3',1,'ORB_SLAM2::System']]],
   ['savem',['saveM',['../class_d_bo_w2_1_1_bow_vector.html#a0611e948f987574161c121231341537b',1,'DBoW2::BowVector']]],
-  ['savemap',['SaveMap',['../class_o_r_b___s_l_a_m2_1_1_system.html#a36c9e244b6ad65ec5cc90f5d9d1e2f04',1,'ORB_SLAM2::System']]],
   ['savesubset',['saveSubset',['../structg2o_1_1_optimizable_graph.html#adcf211f9c7bf3ee9dab65b130807402c',1,'g2o::OptimizableGraph::saveSubset(std::ostream &amp;os, HyperGraph::VertexSet &amp;vset, int level=0)'],['../structg2o_1_1_optimizable_graph.html#a2a08383ab953d435eaaca6231b64c3b6',1,'g2o::OptimizableGraph::saveSubset(std::ostream &amp;os, HyperGraph::EdgeSet &amp;eset)']]],
   ['savetotextfile',['saveToTextFile',['../class_d_bo_w2_1_1_templated_vocabulary.html#a1338b014b856d0a17e71010f6488548e',1,'DBoW2::TemplatedVocabulary']]],
   ['savevertex',['saveVertex',['../structg2o_1_1_optimizable_graph.html#a221656c91e253b4246553a33e33c3e6b',1,'g2o::OptimizableGraph']]],

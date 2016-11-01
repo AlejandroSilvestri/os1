@@ -116,7 +116,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac1c0dcdeed922c9a96760aa9a76a2fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ante una detección de bucle con vaios macheos y una pose propuesta, este método aumenta la cantidad de macheos comparando contra otros puntos que deberían ser vistos desde el keyframe actual.  <a href="#ac1c0dcdeed922c9a96760aa9a76a2fdb">More...</a><br /></td></tr>
 <tr class="separator:ac1c0dcdeed922c9a96760aa9a76a2fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a024fe40fa89785df914ef0a59cdf605d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a024fe40fa89785df914ef0a59cdf605d">SearchByBoW</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> &amp;F, std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMapPointMatches)</td></tr>
-<tr class="memdesc:a024fe40fa89785df914ef0a59cdf605d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machea el cuadro actual con un keyframe.  <a href="#a024fe40fa89785df914ef0a59cdf605d">More...</a><br /></td></tr>
+<tr class="memdesc:a024fe40fa89785df914ef0a59cdf605d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machea puntos del cuadro actual con los de un keyframe.  <a href="#a024fe40fa89785df914ef0a59cdf605d">More...</a><br /></td></tr>
 <tr class="separator:a024fe40fa89785df914ef0a59cdf605d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad62ee37a7d926719f16ddd17f7e48e10"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ad62ee37a7d926719f16ddd17f7e48e10">SearchByBoW</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF1, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF2, std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMatches12)</td></tr>
 <tr class="memdesc:ad62ee37a7d926719f16ddd17f7e48e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evalúa keyframe candidato para cierre de bucle.  <a href="#ad62ee37a7d926719f16ddd17f7e48e10">More...</a><br /></td></tr>
@@ -555,12 +555,13 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Machea el cuadro actual con un keyframe. </p>
-<p>Machea por BoW y luego por descriptores. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Machea puntos del cuadro actual con los de un keyframe. </p>
+<p>Machea por BoW y luego por descriptores.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pKF</td><td>Keyframe candidato a explicar el cuadro actual. Es el keyframe de referencia para tracking, o uno de varios candidatos en relocalización. </td></tr>
     <tr><td class="paramname">F</td><td>Cuadro actual que se intenta ubicar. </td></tr>
-    <tr><td class="paramname">vpMapPointMatches</td><td></td></tr>
+    <tr><td class="paramname">vpMapPointMatches</td><td>Resultado, puntos 3D macheados. </td></tr>
   </table>
   </dd>
 </dl>

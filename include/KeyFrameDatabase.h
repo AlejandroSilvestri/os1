@@ -48,6 +48,7 @@ class KeyFrameDatabase
 public:
 	/**
 	 * Constructor que dimensiona mvInvertedFile del mismo tamaño del vocabulario.
+	 * Se invoca sólo desde el constructor de System.
 	 */
     KeyFrameDatabase(const ORBVocabulary &voc);
 

@@ -424,7 +424,9 @@ public:
     const cv::Mat mDescriptors;
 
     //BoW
+    /** Vector de BoW obtenidos de los descriptores del keyframe.  ComputeBoW llena este vector.*/
     DBoW2::BowVector mBowVec;
+    /** Vector de Features de DBoW2.  ComputeBoW llena este vector.*/
     DBoW2::FeatureVector mFeatVec;
 
     // Pose relative to parent (this is computed when bad flag is activated)

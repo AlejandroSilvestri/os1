@@ -1,9 +1,5 @@
 var NAVTREEINDEX7 =
 {
-"classg2o_1_1_robust_kernel_huber.html":[4,0,2,67],
-"classg2o_1_1_robust_kernel_huber.html#a7e9ee4bbc9483dcd3d10a4c1f506a4d2":[4,0,2,67,1],
-"classg2o_1_1_robust_kernel_huber.html#aa437e8a62360ba63b56b383aac8e4674":[4,0,2,67,0],
-"classg2o_1_1_robust_kernel_huber.html#ad243b5888d71a3573e9f9372abead870":[4,0,2,67,2],
 "classg2o_1_1_robust_kernel_pseudo_huber.html":[4,0,2,68],
 "classg2o_1_1_robust_kernel_pseudo_huber.html#a7dab9bbb0e6f204a5f863220d606b0da":[4,0,2,68,0],
 "classg2o_1_1_robust_kernel_saturated.html":[4,0,2,69],
@@ -249,5 +245,9 @@ var NAVTREEINDEX7 =
 "classg2o_1_1_vertex_s_b_a_point_x_y_z.html":[4,0,2,83],
 "classg2o_1_1_vertex_s_b_a_point_x_y_z.html#a3668aa23ed3fc7e2c3e6bddda7ddcd1a":[4,0,2,83,2],
 "classg2o_1_1_vertex_s_b_a_point_x_y_z.html#a6b2fc33f2107c039d441e1bd2a17973a":[4,0,2,83,4],
-"classg2o_1_1_vertex_s_b_a_point_x_y_z.html#a787b72465f35a3f30fcbb6b8056b47c4":[4,0,2,83,3]
+"classg2o_1_1_vertex_s_b_a_point_x_y_z.html#a787b72465f35a3f30fcbb6b8056b47c4":[4,0,2,83,3],
+"classg2o_1_1_vertex_s_b_a_point_x_y_z.html#aa2a13838edc46ed5395fee5c07c4c8ea":[4,0,2,83,1],
+"classg2o_1_1_vertex_s_b_a_point_x_y_z.html#ad2b835ac63c1bbe22975a409151036d8":[4,0,2,83,0],
+"classg2o_1_1_vertex_s_e3_expmap.html":[4,0,2,84],
+"classg2o_1_1_vertex_s_e3_expmap.html#a0d12948c1fb058698bc58177db3806b1":[4,0,2,84,3]
 };
