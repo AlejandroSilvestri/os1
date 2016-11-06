@@ -15,14 +15,15 @@ LISTO:
 - Estoy eliminando las partes que no son monocular.  Deshabilité todos los métodos específicos de estéreo y rgb-d, y funciona.
 - Agregada la visualización de puntos singulares en DrawFrame.
 - Traspasados comentarios de orb-slam a orb-slam2
+- Parámetros: archivo de configuración, opcionalmente ruta de video.  El vocabulario es estático y binario, su nombre queda implícito en el código.
+- Documentar completamente el namespace ORB-SLAM2
+- Feed películas.
+- Investigar cómo guardar y cargar el mapa para tracking (convendría hacer un branch)
 
 
 
 TODO:
-- Feed películas.
-- Parámetros: archivo de configuración, opcionalmente ruta de video.  El vocabulario es estático y binario, su nombre queda implícito en el código.
-- Investigar cómo guardar y cargar el mapa para tracking (convendría hacer un branch)
-- Documentar completamente el namespace ORB-SLAM2
+- trackbar para línea de tiempo de películas
 
 
 Status de la documentación de os1:

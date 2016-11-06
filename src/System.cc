@@ -36,8 +36,8 @@ namespace ORB_SLAM2
  * @param eSensor modo de operación: mono, estéreo, rgbd.
  * @param bUseViewer indica si activar o no el visor (la gui).
  */
-System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor,
-               const bool bUseViewer):mSensor(sensor),mbReset(false),mbActivateLocalizationMode(false),
+System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer, cv::VideoCapture* video_)
+				:video(video_), mSensor(sensor),mbReset(false),mbActivateLocalizationMode(false),
         mbDeactivateLocalizationMode(false)
 {
     // Output welcome message
@@ -47,7 +47,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     "This is free software, and you are welcome to redistribute it" << endl <<
     "under certain conditions. See LICENSE.txt." << endl << endl;
 
-    cout << "Input sensor was set to: ";
+    /*cout << "Input sensor was set to: ";
 
     if(mSensor==MONOCULAR)
         cout << "Monocular" << endl;
@@ -55,6 +55,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
         cout << "Stereo" << endl;
     else if(mSensor==RGBD)
         cout << "RGB-D" << endl;
+    */
 
     //Check settings file
     cv::FileStorage fsSettings(strSettingsFile.c_str(), cv::FileStorage::READ);
@@ -106,7 +107,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, mpLoopCloser);
 
     //Initialize the Viewer thread and launch
-    mpViewer = new Viewer(this, mpFrameDrawer,mpMapDrawer,mpTracker,strSettingsFile);
+    mpViewer = new Viewer(this, mpFrameDrawer,mpMapDrawer,mpTracker,strSettingsFile, video);
     if(bUseViewer)
         mptViewer = new thread(&Viewer::Run, mpViewer);
 
@@ -266,6 +267,7 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
     }
     }
 
+    imagenEntrada = im;	// Registra la imagen de entrada a color, para su visualización.
     return mpTracker->GrabImageMonocular(im,timestamp);
 }
 
@@ -451,5 +453,9 @@ void System::SaveTrajectoryKITTI(const string &filename)
     cout << endl << "trajectory saved!" << endl;
 }
 */
+
+/*void System::cambiarCuadro(int pos, cv::VideoCapture* videoEntrada){
+	videoEntrada->set(CV_CAP_PROP_POS_FRAMES, pos);
+}*/
 
 } //namespace ORB_SLAM

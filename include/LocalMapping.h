@@ -88,7 +88,7 @@ public:
 
     /**
      * Método usado por el tracker para solicitar la inclusión de un nuevo keyframe.
-     * Este método agrega el keyframe a la cola, que se procesa en un hilo aparte.
+     * Este método agrega el keyframe a la cola LocalMapping.mlNewKeyFrames, que se procesa en un hilo aparte, en LocalMapping.Run por LocalMapping.ProcessNewKeyFrame.
      *
      * Invocado sólo desde Tracking.
      */
@@ -151,8 +151,10 @@ protected:
     bool CheckNewKeyFrames();
 
     /**
-     * Actualiza mpCurrentKeyFrame, y quita el nuevo keyframe de la lista mlNewKeyFrames.
+     * Actualiza LocalMapping.mpCurrentKeyFrame, y quita el nuevo keyframe de la lista LocalMapping.mlNewKeyFrames.
      * Para cada punto 3D visualizado computa BoW y recomputa descriptores, normal y profundidad.
+     *
+     * Invocado sólo desde LocalMapping.Run.
      */
     void ProcessNewKeyFrame();
 

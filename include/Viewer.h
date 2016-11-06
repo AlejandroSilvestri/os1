@@ -40,7 +40,7 @@ class System;
 class Viewer
 {
 public:
-    Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const string &strSettingPath);
+    Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const string &strSettingPath, cv::VideoCapture* = NULL);	// Agregé el últinmo argumento
 
     // Main thread function. Draw points, keyframes, the current camera pose and the last processed
     // frame. Drawing is refreshed according to the camera fps. We use Pangolin.
@@ -55,6 +55,32 @@ public:
     bool isStopped();
 
     void Release();
+
+    /* Agregados */
+
+    /** Flujo de entrada de video.  NULL si no proviene de un archivo.  Usado para manipular el tiempo con un trackbar.  Definido en el constructor.*/
+    cv::VideoCapture* video;
+
+    /**
+     * Posición del trackbar de tiempo de entrada, expresado en cuadros.
+     * Eco de la posición del trackbar.
+     * Sólo se usa cuando la entrada es archivo de video.
+     */
+    int tiempo = 0;
+
+    /**
+     * Duración del archivo de video de entrada, expresado en cuadros.
+     * 0 si no la entrada no es de un archivo.
+     * Definido en el constructor de viewer.
+     */
+    int duracion;
+
+    /**
+     * Señal para main, indicando que el usuario cambió el tiempo con el trackbar.
+     * Viewer.Run la levanta, y main la baja.
+     */
+    bool tiempoAlterado = false;
+
 
 private:
 

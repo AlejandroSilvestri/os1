@@ -26,8 +26,10 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/videoio/videoio.hpp>
+//#include <opencv2/highgui/highgui.hpp>
 
 #include<System.h>
+
 
 using namespace std;
 
@@ -176,16 +178,43 @@ using namespace std;
 int main(int argc, char **argv){
 
 	cout	<< "Iniciando ORB-SLAM.  Uso:" << endl
-			<< "os1 [archivo_de_video archivo_de_configuración]\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl
+			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\n\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl
 			<< "Cantidad de argumentos: " << argc << endl;
 
     cv::VideoCapture video,					// Entrada de video desde un archivo
     			 	 webcam;				// Entrada de video desde una webcam
     cv::VideoCapture* videoEntrada = NULL;	// Entrada de video seleccionada, una de las de arriba
 
-	if(argc>1){
-		// Hay parámetros, el primero es la ruta al archivo de video.
-		video.open(argv[1]);
+    // Parámetros de la línea de comando
+
+    char* rutaConfiguracion = NULL;
+    char* rutaVideo = NULL;
+	char archivoConfiguracionWebcamPorDefecto[] = "webcam.yaml";	// Configuración por defecto, para webcam.
+
+	switch(argc){
+	case 1:	// Sin argumentos, webcam por defecto y webcam.yaml como configuración
+		rutaConfiguracion = archivoConfiguracionWebcamPorDefecto;
+		cout << "Sin argumentos, webcam con esta configuración: " << rutaConfiguracion << endl;
+		break;
+
+	case 2:	// Un argumento, archivo de configuración  NO IMPLEMENTADO
+		rutaConfiguracion = argv[1];
+	    //cv::FileStorage fSettings(rutaConfiguracion, cv::FileStorage::READ);
+	    //rutaVideo = fSettings["rutaVideo"];// No sé cargar una string de yaml
+		break;
+
+	case 3:	// Dos argumentos, archivo de configuración y ruta de video
+		rutaConfiguracion = argv[1];
+		rutaVideo = argv[2];	// Segundo argumento
+		cout << "Dos argumentos: " << rutaConfiguracion << ", " << rutaVideo << endl;
+		break;
+
+	}
+
+	// Indica si la entrada de video corresponde a un archivo, y por lo tanto su base de tiempo es controlable
+	bool videoEsArchivo = rutaVideo;
+    if(videoEsArchivo){
+		video.open(rutaVideo);
 		videoEntrada = &video;
 
 	}else{
@@ -196,21 +225,28 @@ int main(int argc, char **argv){
 
     // Inicializa el sistema SLAM.
 #ifdef ArchivoBowBinario	// Mi versión de archivo binario con el vocabulario, que carga mucho más rápido porque evita el análisis sintáctico.
-    ORB_SLAM2::System SLAM("orbVoc.bin", "webcam.yaml",ORB_SLAM2::System::MONOCULAR,true);
+    ORB_SLAM2::System SLAM("orbVoc.bin", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true, videoEntrada);
 #else	// Versión original que carga el vocabulario de un archivo de texto
-    ORB_SLAM2::System SLAM("../Archivos/ORBvoc.txt", "webcam.yaml",ORB_SLAM2::System::MONOCULAR,true);
+    ORB_SLAM2::System SLAM("../Archivos/ORBvoc.txt", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
 #endif
 
     // Imagen de entrada
     cv::Mat im;
 
-    //cout << "Entrando al bucle principal." << endl;
+    //videoEsArchivo = false;	// valor forzado para debug
 
-    int n = 0;
+	int n = 0;
     while(true){
-
         // Leer nuevo cuadro
-    	bool hayImagen = (*videoEntrada).read(im);
+    	bool hayImagen;
+
+    	if(videoEsArchivo && SLAM.mpViewer->tiempoAlterado){
+			// El usuario movió el trackbar: hay que cambiar el frame.
+			videoEntrada->set(CV_CAP_PROP_POS_FRAMES, SLAM.mpViewer->tiempo);
+			SLAM.mpViewer->tiempoAlterado = false;	// Bajar la señal.
+    	}
+
+   		hayImagen = videoEntrada->read(im);
 
     	// t1 está en segundos, con doble precisión.  El bucle para inicialización demora entre 1 y 2 centésimas de segundo.
     	std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
@@ -226,7 +262,7 @@ int main(int argc, char **argv){
 
     	// Mensajes de consola con frecuencia controlada
         if(++n<=10 || n%100==0)
-    		cout << "Cuadro nº " << n << ", tiempo de proceso del último cuadro: " << ttrack << " s" << endl;
+    		cout << "Cuadro nº " << n << ", " << ttrack << " s" << endl;
 
         // Delay para 30 fps, período de 0.033 s
         if(ttrack < 0.033)

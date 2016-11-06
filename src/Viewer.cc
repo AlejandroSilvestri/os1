@@ -23,14 +23,14 @@
 
 #include <mutex>
 
-namespace ORB_SLAM2
-{
+namespace ORB_SLAM2{
 
-Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath):
+Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath, cv::VideoCapture* video_):
+	video(video_),
     mpSystem(pSystem), mpFrameDrawer(pFrameDrawer),mpMapDrawer(pMapDrawer), mpTracker(pTracking),
     mbFinishRequested(false), mbFinished(true), mbStopped(false), mbStopRequested(false)
 {
-    cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
+	cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
 
     float fps = fSettings["Camera.fps"];
     if(fps<1)
@@ -92,9 +92,19 @@ void Viewer::Run()
     mpTracker->param = 100;
     cv::createTrackbar("Parámetro", "ORB-SLAM2: Current Frame", &mpTracker->param, 1023);
 
+    // Video de entrada con línea de tiempo
+    cv::namedWindow("entrada");
+    if(duracion) cv::createTrackbar("tiempo", "entrada", &tiempo, video->get(CV_CAP_PROP_FRAME_COUNT));
+
+
+
     bool bFollow = true;
     bool bLocalizationMode = false;
 
+    // Registra la posición anterior, para saber si el usuario lo movió.  Se compara con la variable tiempo, que refleja la posición del trackbar.
+    int trackbarPosicionAnterior = 0;
+
+    // Bucle principal del visor
     while(1)
     {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -127,6 +137,7 @@ void Viewer::Run()
             bLocalizationMode = false;
         }
 
+        //Mostrar mapa con Pangolin
         d_cam.Activate(s_cam);
         glClearColor(1.0f,1.0f,1.0f,1.0f);
         mpMapDrawer->DrawCurrentCamera(Twc);
@@ -138,7 +149,28 @@ void Viewer::Run()
         pangolin::FinishFrame();
 
         cv::Mat im = mpFrameDrawer->DrawFrame();
+
+        // Mostrar cuadro con imshow
         cv::imshow("ORB-SLAM2: Current Frame",im);
+
+        //if(mpTracker->imagenEntrada.rows>0)
+        cv::imshow("entrada", mpSystem->imagenEntrada);
+
+        // duración cero para entradas que no son archivos de video, y que por ende no usa el trackbar.
+        // Tampoco se procesa si el usuario movió el trackbar de tiempo, y el cambio de tiempo está en proceso.
+        if(duracion && !tiempoAlterado){
+			if(tiempo == trackbarPosicionAnterior){
+				// El usuario no cambió el trackbar de tiempo.  Hay que reflejar la posición actual en el trackbar.
+				trackbarPosicionAnterior = video->get(CV_CAP_PROP_POS_FRAMES);
+				cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
+			}else{
+				// El usuario cambió el trackbar de tiempo
+				trackbarPosicionAnterior = tiempo;
+				tiempoAlterado = true;
+			}
+        }
+
+        // Retardo de bucle en ms, 1e3/fps
         cv::waitKey(mT);
 
         if(menuReset)

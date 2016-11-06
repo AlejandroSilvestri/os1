@@ -288,11 +288,11 @@ void LocalMapping::CreateNewMapPoints()
             const int &idx2 = vMatchedIndices[ikp].second;
 
             const cv::KeyPoint &kp1 = mpCurrentKeyFrame->mvKeysUn[idx1];
-            const float kp1_ur=mpCurrentKeyFrame->mvuRight[idx1];	//  Negativo para monocular.
+            //const float kp1_ur=mpCurrentKeyFrame->mvuRight[idx1];	//  Negativo para monocular.
             //bool bStereo1 = kp1_ur>=0;	// false para monocular
 
             const cv::KeyPoint &kp2 = pKF2->mvKeysUn[idx2];
-            const float kp2_ur = pKF2->mvuRight[idx2];	//  Negativo para monocular.
+            //const float kp2_ur = pKF2->mvuRight[idx2];	//  Negativo para monocular.
             //bool bStereo2 = kp2_ur>=0;	// false para monocular
 
             // Check parallax between rays
@@ -303,7 +303,7 @@ void LocalMapping::CreateNewMapPoints()
             cv::Mat ray2 = Rwc2*xn2;
             const float cosParallaxRays = ray1.dot(ray2)/(cv::norm(ray1)*cv::norm(ray2));
 
-            float cosParallaxStereo = cosParallaxRays+1;
+            //float cosParallaxStereo = cosParallaxRays+1;
             //float cosParallaxStereo1 = cosParallaxStereo;
             //float cosParallaxStereo2 = cosParallaxStereo;
 

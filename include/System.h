@@ -36,6 +36,7 @@
 #include "ORBVocabulary.h"
 #include "Viewer.h"
 
+
 namespace ORB_SLAM2
 {
 
@@ -95,7 +96,11 @@ class LoopClosing;
 class System
 {
 public:
-    // Input sensor
+	// Para que se vea desde main y viewer
+	//mutex mutexVideoEntrada;
+
+
+	// Input sensor
 	/** Tipo de sensor, modo de operación: mono, estéreo o mapa de profundidad.*/
     enum eSensor{
         MONOCULAR=0,
@@ -115,7 +120,7 @@ public:
      *
      */
     // Initialize the SLAM system. It launches the Local Mapping, Loop Closing and Viewer threads.
-    System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer = true);
+    System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer = true, cv::VideoCapture* = NULL);
 
     /** Constructor alternativo, no utilizado en orb-slam2, que permite indicar un mapa, un visor y un vocabulario preexistentes.*/
     System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor=MONOCULAR, Viewer* v=NULL, Map* m=NULL, ORBVocabulary* voc = NULL);
@@ -200,6 +205,17 @@ public:
     Tracking* GetTracker() {return mpTracker;}
 
 
+    /* Agregados */
+
+    /** Visor, maneja el visor del mapa y el de cámara.   Usa Pangolin.  Lo hice público para que main pueda interactuar con él a través de System.*/
+    // The viewer draws the map and the current camera pose. It uses Pangolin.
+    Viewer* mpViewer;
+
+    /** Video de entrada.*/
+    cv::VideoCapture* video;
+
+    /** Imagen de entrada.*/
+    cv::Mat imagenEntrada;
 
 private:
 
@@ -233,10 +249,6 @@ private:
     // Loop Closer. It searches loops with every new keyframe. If there is a loop it performs
     // a pose graph optimization and full bundle adjustment (in a new thread) afterwards.
     LoopClosing* mpLoopCloser;
-
-    /** Visor, maneja el visor del mapa y el de cámara.   Usa Pangolin.*/
-    // The viewer draws the map and the current camera pose. It uses Pangolin.
-    Viewer* mpViewer;
 
     /** Visor de cámara, que muestra la imagen con los puntos detectados sobre ella.*/
     FrameDrawer* mpFrameDrawer;

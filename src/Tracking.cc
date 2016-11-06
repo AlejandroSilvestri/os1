@@ -46,7 +46,7 @@ namespace ORB_SLAM2
 /** Una única instancia de este objeto se ejecuta en el thread principal.
 
 */
-Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor):
+Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor, unsigned int cantidadCuadros):
     mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false), mbVO(false), mpORBVocabulary(pVoc),
     mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys),
     mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0)
@@ -134,7 +134,7 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     cout << "- Initial Fast Threshold: " << fIniThFAST << endl;
     cout << "- Minimum Fast Threshold: " << fMinThFAST << endl;
 
-    if(sensor==System::STEREO || sensor==System::RGBD)
+    /*if(sensor==System::STEREO || sensor==System::RGBD)
     {
         mThDepth = mbf*(float)fSettings["ThDepth"]/fx;
         cout << endl << "Depth Threshold (Close/Far Points): " << mThDepth << endl;
@@ -145,9 +145,14 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
         mDepthMapFactor = fSettings["DepthMapFactor"];
         if(mDepthMapFactor==0)
             mDepthMapFactor=1;
-        else
+        else*/
             mDepthMapFactor = 1.0f/mDepthMapFactor;
-    }
+    //}
+
+
+    // Inicializar este Mat
+    //imagenEntrada = cv::Mat();
+
 
 }
 
@@ -275,7 +280,7 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const d
 
 cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
 {
-    mImGray = im;
+    /*imagenEntrada = */mImGray = im;
 
     if(mImGray.channels()==3)
     {
@@ -1231,7 +1236,7 @@ bool Tracking::NeedNewKeyFrame()
 /**
  * Crea un keyframe a partir del frame actual.
  * Crea un KeyFrame usando mCurrentFrame, y lo inserta en el mapa con mpLocalMapper.
- * Lo nombra mpLasKeyFrame, y registra su mnid en mnLastKeyFrameId.
+ * Lo nombra LasKeyFrame.InsertKeyFrame, y registra su mnid en mnLastKeyFrameId.
  *
  * Este método se invoca desde un único punto del código, en Track(), luego de preguntar NeedNewKeyFrame().
  */

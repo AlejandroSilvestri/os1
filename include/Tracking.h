@@ -115,7 +115,9 @@ class Tracking
 
 public:
     Tracking(System* pSys, ORBVocabulary* pVoc, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Map* pMap,
-             KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor);
+             KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor, unsigned int cantidadCuadros = 0);
+
+    /** Constructor no utilizado en ORB-SLAM2.*/
     Tracking(System* pSys, ORBVocabulary* pVoc, Map* pMap,
                    KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor);
 
@@ -176,6 +178,9 @@ public:
      */
     cv::Mat mImGray;
 
+    /** Agregado, imagen de entrada para visualización.  Se registra en GrabImage*/
+    //cv::Mat imagenEntrada;
+
 
     /** Variables de inicialización.  Luego de la inicialización, estos valores están en el Frame.*/
     // Initialization Variables (Monocular)
@@ -222,6 +227,7 @@ public:
 
     /** Agregado: parámetro del trackbar de la ventana que muestra el cuadro actual.*/
     int param = 100;
+
 
 protected:
 
