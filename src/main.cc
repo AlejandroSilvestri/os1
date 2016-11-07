@@ -233,20 +233,25 @@ int main(int argc, char **argv){
     // Imagen de entrada
     cv::Mat im;
 
-    //videoEsArchivo = false;	// valor forzado para debug
-
-	int n = 0;
+	// Número de cuadro procesado, monótonamente creciente, para espaciar mensajes de consola.
+    int n = 0;
     while(true){
         // Leer nuevo cuadro
     	bool hayImagen;
 
-    	if(videoEsArchivo && SLAM.mpViewer->tiempoAlterado){
-			// El usuario movió el trackbar: hay que cambiar el frame.
-			videoEntrada->set(CV_CAP_PROP_POS_FRAMES, SLAM.mpViewer->tiempo);
-			SLAM.mpViewer->tiempoAlterado = false;	// Bajar la señal.
-    	}
+    	if(videoEsArchivo)
+    		if(SLAM.mpViewer->tiempoAlterado){
+				// El usuario movió el trackbar: hay que cambiar el frame.
+				videoEntrada->set(CV_CAP_PROP_POS_FRAMES, SLAM.mpViewer->tiempo);
+				SLAM.mpViewer->tiempoAlterado = false;	// Bajar la señal.
+			} else if (SLAM.mpViewer->tiempoReversa){
+				// La película va marcha atrás
+				int pos = videoEntrada->get(CV_CAP_PROP_POS_FRAMES);
+				videoEntrada->set(CV_CAP_PROP_POS_FRAMES, pos>=2? pos-2 : 0);
+			}
 
-   		hayImagen = videoEntrada->read(im);
+   		if(!SLAM.mpViewer->videoPausado)
+   			hayImagen = videoEntrada->read(im);
 
     	// t1 está en segundos, con doble precisión.  El bucle para inicialización demora entre 1 y 2 centésimas de segundo.
     	std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();

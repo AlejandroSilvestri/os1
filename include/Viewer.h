@@ -81,6 +81,14 @@ public:
      */
     bool tiempoAlterado = false;
 
+    /**
+     * Sentido de avance del tiempo. false para adelante, true para reversa.
+     */
+    bool tiempoReversa = false;
+
+    /** Control de pausa del video.  Es leído desde el bucle principal de main.*/
+    bool videoPausado = false;
+
 
 private:
 

@@ -104,6 +104,9 @@ void Viewer::Run()
     // Registra la posición anterior, para saber si el usuario lo movió.  Se compara con la variable tiempo, que refleja la posición del trackbar.
     int trackbarPosicionAnterior = 0;
 
+    // Factor de escala de las imágenes
+    float factorEscalaImagenParaMostrar = 1.0;
+
     // Bucle principal del visor
     while(1)
     {
@@ -149,12 +152,14 @@ void Viewer::Run()
         pangolin::FinishFrame();
 
         cv::Mat im = mpFrameDrawer->DrawFrame();
+        cv::Mat imagenParaMostrar;
 
         // Mostrar cuadro con imshow
-        cv::imshow("ORB-SLAM2: Current Frame",im);
+        cv::resize(im, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+        cv::imshow("ORB-SLAM2: Current Frame",imagenParaMostrar);
 
-        //if(mpTracker->imagenEntrada.rows>0)
-        cv::imshow("entrada", mpSystem->imagenEntrada);
+        cv::resize(mpSystem->imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+        cv::imshow("entrada", imagenParaMostrar);
 
         // duración cero para entradas que no son archivos de video, y que por ende no usa el trackbar.
         // Tampoco se procesa si el usuario movió el trackbar de tiempo, y el cambio de tiempo está en proceso.
@@ -171,7 +176,30 @@ void Viewer::Run()
         }
 
         // Retardo de bucle en ms, 1e3/fps
-        cv::waitKey(mT);
+        char tecla = cv::waitKey(mT);
+
+        switch(tecla){
+        // Tamaño de las ventanas de imágenes.  T cicla por los divisores 1, 2 y 4.
+        case 't':
+        	if(factorEscalaImagenParaMostrar == 1.0)
+        		factorEscalaImagenParaMostrar = 0.5;
+        	else if(factorEscalaImagenParaMostrar == 0.5)
+        		factorEscalaImagenParaMostrar = 0.25;
+        	else
+        		factorEscalaImagenParaMostrar = 1.0;
+
+        	//cout << "t " << factorEscalaImagenParaMostrar << endl;
+        	break;
+
+        // Reversa, alterna el sentido del tiempo en archivos de video.  Inocuo en otras entradas.
+        case 'r':
+        	tiempoReversa = !tiempoReversa;
+        	break;
+
+        // Pausa y resumen.
+        case ' ':
+        	videoPausado = !videoPausado;
+        }
 
         if(menuReset)
         {
