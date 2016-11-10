@@ -124,6 +124,12 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpLoopCloser->SetLocalMapper(mpLocalMapper);
 
     cout << "Terminando el constructor SLAM." << endl;
+
+    // Registrando punteros necesarios en la serialización
+    Map::mpMap = mpMap;
+    Map::mpKeyFrameDatabase = mpKeyFrameDatabase;
+    Map::mpVocabulary = mpVocabulary;
+
 }
 /*
 cv::Mat System::TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const double &timestamp)

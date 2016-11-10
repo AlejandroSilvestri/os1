@@ -23,9 +23,10 @@
 
 #include "MapPoint.h"
 #include "KeyFrame.h"
+#include "System.h"
 #include <set>
-
 #include <mutex>
+#include <boost/serialization/access.hpp>
 
 
 
@@ -106,6 +107,37 @@ public:
     // This avoid that two points are created simultaneously in separate threads (id conflict)
     std::mutex mMutexPointCreation;
 
+    /**
+     * Inicia el guardado del mapa completo.
+     * No corresponde al desdoblamiento de boost::serialization
+     *
+     * @param archivo Nombre del archivo donde se guardará el mapa.
+     *
+     * Se implementa en serialize.cpp
+     */
+    void save(char* archivo);
+
+    /**
+     * Inicia la carga del mapa completo (Map, MapPoints y KeyFrames), y su acomodamiento en memoria.
+     * No corresponde al desdoblamiento de boost::serialization
+     * Reconstruye KeyFrameDatabase.
+     * Acomoda el estado del sistema en relocalización.
+     *
+     * @param archivo Nombre del archivo de donde se cargará el mapa.
+     * @param sys Sistema
+     *
+     * Se implementa en serialize.cpp
+     */
+    void load(char* archivo);
+
+    /**
+     *  Punteros necesarios en la serialización, en los constructores por defecto de KeyFrame y MapPoint, accesibles vía Map::
+     *  System asigna sus valores durante su construcción.
+     */
+    static Map* mpMap;
+    static KeyFrameDatabase* mpKeyFrameDatabase;
+    static ORBVocabulary* mpVocabulary;
+
 protected:
     /** Puntos del mapa.*/
     std::set<MapPoint*> mspMapPoints;
@@ -113,9 +145,11 @@ protected:
     /** KeyFrames del mapa.*/
     std::set<KeyFrame*> mspKeyFrames;
 
-    /** Puntos de referencia en el mapa.
+    /**
+     * Puntos de referencia en el mapa.
      * Es el vector de puntos del mapa local que administra Tracking.
      * Por cada cuadro que se procesa, se actualiza el mapa local y se copia este vector al mapa.
+     * Es un vector efímero.
      */
     std::vector<MapPoint*> mvpReferenceMapPoints;
 
@@ -125,6 +159,9 @@ protected:
     /** Mutext del mapa.*/
     std::mutex mMutexMap;
 
+	friend class boost::serialization::access;
+	/** Serialización agregada para guardar y cargar mapas.*/
+	template<class Archivo> void serialize(Archivo&, const unsigned int);
 };
 
 } //namespace ORB_SLAM

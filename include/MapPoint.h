@@ -27,6 +27,7 @@
 
 #include<opencv2/core/core.hpp>
 #include<mutex>
+#include <boost/serialization/access.hpp>
 
 namespace ORB_SLAM2
 {
@@ -314,6 +315,11 @@ protected:
 
 	std::mutex mMutexPos;
 	std::mutex mMutexFeatures;
+
+	/** Serialización agregada para guardar y cargar puntos de mapa.*/
+	MapPoint();
+	friend class boost::serialization::access;
+	template<class Archivo> void serialize(Archivo&, const unsigned int);
 };
 
 } //namespace ORB_SLAM

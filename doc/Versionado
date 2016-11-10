@@ -1,8 +1,28 @@
+Versión 3: mapa
+
+OS1 con capacidad de guardar y cargar mapas, en archivos binarios, de texto y xml.
+
+Para serializar se utiliza boost::serialization, de manera intrusiva pero lo menos posible,
+definiendo las funciones de serialización en archivo serialize.cpp aparte.
+
+
+
+=============================================================================
+Versión 2: video
+
+OS1: Adaptación de ORB-SLAM2 para funcionar con el feed de películas, con trackbar de tiempo y posibilidad de pausa y reversa.
+
+LISTO:
+- Feed películas.
+- trackbar para línea de tiempo de películas
+- Reversa
+- Pausa: orb-slam sigue funcionando, alimentado con la misma imagen.
 
 =============================================================================
 Versión 1: webcam
 
-Adaptación de ORB-SLAM2 para funcionar con el feed de películas y webcam, con entrada por opencv.
+OS1: Adaptación de ORB-SLAM2 para funcionar con el feed de películas y webcam, con entrada por opencv.
+ORB-SLAM2 totalmente documentado.
 
 
 LISTO:
@@ -17,13 +37,11 @@ LISTO:
 - Traspasados comentarios de orb-slam a orb-slam2
 - Parámetros: archivo de configuración, opcionalmente ruta de video.  El vocabulario es estático y binario, su nombre queda implícito en el código.
 - Documentar completamente el namespace ORB-SLAM2
-- Feed películas.
 - Investigar cómo guardar y cargar el mapa para tracking (convendría hacer un branch)
 
 
 
 TODO:
-- trackbar para línea de tiempo de películas
 
 
 Status de la documentación de os1:

@@ -30,6 +30,7 @@
 #include "KeyFrameDatabase.h"
 
 #include <mutex>
+#include <boost/serialization/access.hpp>
 
 
 namespace ORB_SLAM2
@@ -582,6 +583,11 @@ protected:
     std::mutex mMutexPose;
     std::mutex mMutexConnections;
     std::mutex mMutexFeatures;
+
+	/** Serialización agregada para guardar y cargar keyframes.*/
+	KeyFrame();
+    friend class boost::serialization::access;
+	template<class Archivo> void serialize(Archivo&, const unsigned int);
 };
 
 } //namespace ORB_SLAM
