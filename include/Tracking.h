@@ -22,21 +22,21 @@
 #ifndef TRACKING_H
 #define TRACKING_H
 
-#include<opencv2/core/core.hpp>
-#include<opencv2/features2d/features2d.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/features2d.hpp>
 
-#include"Viewer.h"
-#include"FrameDrawer.h"
-#include"Map.h"
-#include"LocalMapping.h"
-#include"LoopClosing.h"
-#include"Frame.h"
+#include "Viewer.h"
+#include "FrameDrawer.h"
+#include "Map.h"
+#include "LocalMapping.h"
+#include "LoopClosing.h"
 #include "ORBVocabulary.h"
-#include"KeyFrameDatabase.h"
-#include"ORBextractor.h"
+#include "KeyFrameDatabase.h"
+#include "ORBextractor.h"
 #include "Initializer.h"
 #include "MapDrawer.h"
 #include "System.h"
+#include "Frame.h"
 
 #include <mutex>
 
@@ -49,6 +49,7 @@ class Map;
 class LocalMapping;
 class LoopClosing;
 class System;
+class Frame;
 
 /** Objeto único que se ejecuta en su propio Trhead, y se inicia con Run().
  * Este objeto empaqueta el código que realiza el tracking y se ejecuta en su thread único y exclusivo.

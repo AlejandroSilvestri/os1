@@ -19,6 +19,10 @@
 */
 
 #include "Viewer.h"
+#include "FrameDrawer.h"
+#include "MapDrawer.h"
+#include "Tracking.h"
+#include "System.h"
 #include <pangolin/pangolin.h>
 
 #include <mutex>

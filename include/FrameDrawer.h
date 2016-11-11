@@ -21,21 +21,22 @@
 #ifndef FRAMEDRAWER_H
 #define FRAMEDRAWER_H
 
-#include "Tracking.h"
-#include "MapPoint.h"
-#include "Map.h"
+//#include "Tracking.h"
+//#include "MapPoint.h"
+//#include "Map.h"
 
-#include<opencv2/core/core.hpp>
-#include<opencv2/features2d/features2d.hpp>
+#include <opencv2/core.hpp>
+//#include <opencv2/features2d.hpp>
+#include <mutex>
 
-#include<mutex>
-
-
+using namespace std;
 namespace ORB_SLAM2
 {
 
 class Tracking;
 class Viewer;
+class MapPoint;
+class Map;
 
 /**
  * Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los puntos reconocidos.

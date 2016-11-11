@@ -21,9 +21,10 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "MapPoint.h"
-#include "KeyFrame.h"
-#include "System.h"
+//#include "MapPoint.h"
+//#include "KeyFrame.h"
+//#include "System.h"
+#include "ORBVocabulary.h"
 #include <set>
 #include <mutex>
 #include <boost/serialization/access.hpp>
@@ -36,6 +37,7 @@ namespace ORB_SLAM2
 class MapPoint;
 class KeyFrame;
 class ORBextractor;
+class KeyFrameDatabase;
 
 /**
  * Mapa del mundo, de puntos y keyframes.

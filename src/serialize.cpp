@@ -61,9 +61,9 @@
 
 // Clases de orb-slam2
 #include "Map.h"	// Incluye MapPoint y KeyFrame, éste incluye a KeyFrameDatabase
-//#include "KeyFrame.h"
-//#include "KeyFrameDatabase.h"
-//#include "MapPoint.h"
+#include "KeyFrame.h"
+#include "KeyFrameDatabase.h"
+#include "MapPoint.h"
 
 
 // Defines
@@ -148,6 +148,7 @@ template<class Archive> void load(Archive & ar, ::cv::Mat& m, const unsigned int
 
 // Definiciones de los métodos serialize de las clases Map, MapPoint y KeyFrame
 namespace ORB_SLAM2{
+
 
 // Map: usando set ========================================================
 template<class Archivo> void Map::serialize(Archivo& ar, const unsigned int version){

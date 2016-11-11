@@ -21,12 +21,12 @@
 #ifndef MAPPOINT_H
 #define MAPPOINT_H
 
-#include"KeyFrame.h"
-#include"Frame.h"
-#include"Map.h"
+#include "KeyFrame.h"
+#include "Frame.h"
+#include "Map.h"
 
-#include<opencv2/core/core.hpp>
-#include<mutex>
+#include <opencv2/core/core.hpp>
+#include <mutex>
 #include <boost/serialization/access.hpp>
 
 namespace ORB_SLAM2
@@ -37,7 +37,8 @@ class Map;
 class Frame;
 
 
-/** Cada instancia representa un mapa 3D en el sistema de referencia del mapa.
+/**
+ * Cada instancia representa un mapa 3D en el sistema de referencia del mapa.
  * MapPoint es mucho más que las coordenadas del punto 3D.  Contiene, por ejemplo,  la lista de keyframes que lo observan.
  * Implementa un ABC (alta, baja, consulta) de "observaciones" (keyframes), y otro de descriptores asociados.
  * Incluso elije el mejor descriptor, el más cercano al resto de sus descriptores.

@@ -20,11 +20,15 @@
 
 #include "FrameDrawer.h"
 #include "Tracking.h"
+#include "MapPoint.h"
+#include "Map.h"
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
+//#include <opencv2/core.hpp>
+//#include <opencv2/highgui.hpp>
+#include <opencv2/videoio.hpp>
+#include <opencv2/features2d.hpp>
 
-#include<mutex>
+#include <mutex>
 
 namespace ORB_SLAM2
 {
@@ -167,13 +171,14 @@ cv::Mat FrameDrawer::DrawFrame()
  */
 void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
 {
-    stringstream s;
-    if(nState==Tracking::NO_IMAGES_YET)
+    stringstream s;	// Mensaje
+    //cv::Scalar color = cv::Scalar(0,0,0); // Color del fondo del mensaje, negro por defecto
+    if(nState==Tracking::NO_IMAGES_YET){
         s << " WAITING FOR IMAGES";
-    else if(nState==Tracking::NOT_INITIALIZED)
+        //color = cv::Scalar(0,0,0);
+    }else if(nState==Tracking::NOT_INITIALIZED){
         s << " TRYING TO INITIALIZE ";
-    else if(nState==Tracking::OK)
-    {
+    }else if(nState==Tracking::OK){
         if(!mbOnlyTracking)
             s << "SLAM MODE |  ";
         else
@@ -184,12 +189,11 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
         if(mnTrackedVO>0)
             s << ", + VO matches: " << mnTrackedVO;
     }
-    else if(nState==Tracking::LOST)
-    {
+    else if(nState==Tracking::LOST){
         s << " TRACK LOST. TRYING TO RELOCALIZE ";
+        //color = cv::Scalar(0,0,128);
     }
-    else if(nState==Tracking::SYSTEM_NOT_READY)
-    {
+    else if(nState==Tracking::SYSTEM_NOT_READY){
         s << " LOADING ORB VOCABULARY. PLEASE WAIT...";
     }
 
@@ -198,6 +202,7 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
 
     imText = cv::Mat(im.rows+textSize.height+10,im.cols,im.type());
     im.copyTo(imText.rowRange(0,im.rows).colRange(0,im.cols));
+    //imText.rowRange(im.rows,imText.rows) = cv::Mat(textSize.height+10,im.cols,im.type(), color);
     imText.rowRange(im.rows,imText.rows) = cv::Mat::zeros(textSize.height+10,im.cols,im.type());
     cv::putText(imText,s.str(),cv::Point(5,imText.rows-5),cv::FONT_HERSHEY_PLAIN,1,cv::Scalar(255,255,255),1,8);
 

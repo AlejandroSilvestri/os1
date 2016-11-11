@@ -22,10 +22,14 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include<string>
-#include<thread>
-#include<opencv2/core/core.hpp>
+#include <string>
+#include <thread>
+#include <opencv2/core.hpp>
+#include <opencv2/videoio.hpp>
+#include <mutex>
 
+
+/*
 #include "Tracking.h"
 #include "FrameDrawer.h"
 #include "MapDrawer.h"
@@ -33,12 +37,15 @@
 #include "LocalMapping.h"
 #include "LoopClosing.h"
 #include "KeyFrameDatabase.h"
-#include "ORBVocabulary.h"
 #include "Viewer.h"
+*/
+#include "ORBVocabulary.h"
 
 
-namespace ORB_SLAM2
-{
+namespace ORB_SLAM2{
+
+class KeyFrameDatabase;
+class MapDrawer;
 
 /** Visor 3D del sistema, única instancia de Viewer. */
 class Viewer;
@@ -103,9 +110,9 @@ public:
 	// Input sensor
 	/** Tipo de sensor, modo de operación: mono, estéreo o mapa de profundidad.*/
     enum eSensor{
-        MONOCULAR=0,
-        STEREO=1,
-        RGBD=2
+        MONOCULAR=0//,
+        //STEREO=1,
+        //RGBD=2
     };
 
 public:
@@ -123,7 +130,7 @@ public:
     System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer = true, cv::VideoCapture* = NULL);
 
     /** Constructor alternativo, no utilizado en orb-slam2, que permite indicar un mapa, un visor y un vocabulario preexistentes.*/
-    System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor=MONOCULAR, Viewer* v=NULL, Map* m=NULL, ORBVocabulary* voc = NULL);
+    //System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor=MONOCULAR, Viewer* v=NULL, Map* m=NULL, ORBVocabulary* voc = NULL);
 
     // Proccess the given stereo frame. Images must be synchronized and rectified.
     // Input images: RGB (CV_8UC3) or grayscale (CV_8U). RGB is converted to grayscale.

@@ -21,14 +21,14 @@
 #ifndef FRAME_H
 #define FRAME_H
 
-#include<vector>
+#include <vector>
 
 #include "MapPoint.h"
 #include "../Thirdparty/DBoW2/DBoW2/BowVector.h"
 #include "../Thirdparty/DBoW2/DBoW2/FeatureVector.h"
 #include "ORBVocabulary.h"
-#include "KeyFrame.h"
-#include "ORBextractor.h"
+//#include "KeyFrame.h"
+//#include "ORBextractor.h"
 
 #include <opencv2/opencv.hpp>
 
@@ -39,6 +39,7 @@ namespace ORB_SLAM2
 
 class MapPoint;
 class KeyFrame;
+class ORBextractor;
 
 /**
  * Frame representa un cuadro, una imagen, con los puntos singulares detectados.
@@ -125,7 +126,7 @@ public:
 
     /** Extractor usado para extraer descriptores.*/
     // Feature extractor. The right is used only in the stereo case.
-    ORBextractor* mpORBextractorLeft, *mpORBextractorRight;
+    ORBextractor* mpORBextractorLeft;//, *mpORBextractorRight;
 
     /**
      * Time stamp de la captura de la imagen.

@@ -655,7 +655,7 @@ void Tracking::MonocularInitialization()
     if(!mpInitializer)
     {
         // Set Reference Frame
-        if(mCurrentFrame.mvKeys.size()>minMatches)
+        if(mCurrentFrame.mvKeys.size() > static_cast<size_t>(minMatches))
         {
             mInitialFrame = Frame(mCurrentFrame);
             mLastFrame = Frame(mCurrentFrame);

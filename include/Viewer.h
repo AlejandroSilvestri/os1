@@ -22,11 +22,15 @@
 #ifndef VIEWER_H
 #define VIEWER_H
 
+/*
 #include "FrameDrawer.h"
 #include "MapDrawer.h"
 #include "Tracking.h"
 #include "System.h"
+*/
+#include <opencv2/videoio.hpp>
 
+#include <string>
 #include <mutex>
 
 namespace ORB_SLAM2
@@ -40,7 +44,7 @@ class System;
 class Viewer
 {
 public:
-    Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const string &strSettingPath, cv::VideoCapture* = NULL);	// Agregé el últinmo argumento
+    Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const std::string &strSettingPath, cv::VideoCapture* = NULL);	// Agregé el últinmo argumento
 
     // Main thread function. Draw points, keyframes, the current camera pose and the last processed
     // frame. Drawing is refreshed according to the camera fps. We use Pangolin.

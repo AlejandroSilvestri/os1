@@ -19,16 +19,18 @@
 */
 
 
-#include<iostream>
-#include<algorithm>
-#include<fstream>
-#include<chrono>
+#include <iostream>
+#include <algorithm>
+#include <fstream>
+#include <chrono>
+#include <unistd.h>
+//#include <thread>
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/videoio/videoio.hpp>
-//#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/videoio.hpp>
 
-#include<System.h>
+#include <System.h>
+#include <Viewer.h>
 
 
 using namespace std;
@@ -239,16 +241,17 @@ int main(int argc, char **argv){
         // Leer nuevo cuadro
     	bool hayImagen;
 
-    	if(videoEsArchivo)
+    	if(videoEsArchivo){
     		if(SLAM.mpViewer->tiempoAlterado){
 				// El usuario movió el trackbar: hay que cambiar el frame.
-				videoEntrada->set(CV_CAP_PROP_POS_FRAMES, SLAM.mpViewer->tiempo);
+				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, SLAM.mpViewer->tiempo);
 				SLAM.mpViewer->tiempoAlterado = false;	// Bajar la señal.
 			} else if (SLAM.mpViewer->tiempoReversa){
 				// La película va marcha atrás
-				int pos = videoEntrada->get(CV_CAP_PROP_POS_FRAMES);
-				videoEntrada->set(CV_CAP_PROP_POS_FRAMES, pos>=2? pos-2 : 0);
+				int pos = videoEntrada->get(cv::CAP_PROP_POS_FRAMES);
+				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, pos>=2? pos-2 : 0);
 			}
+    	}
 
    		if(!SLAM.mpViewer->videoPausado)
    			hayImagen = videoEntrada->read(im);
@@ -271,6 +274,7 @@ int main(int argc, char **argv){
 
         // Delay para 30 fps, período de 0.033 s
         if(ttrack < 0.033)
+        	//std::this_thread::sleep_for(std::chrono::milliseconds((0.033-ttrack)*1e3));
         	usleep((0.033-ttrack)*1e6);
 
     }
