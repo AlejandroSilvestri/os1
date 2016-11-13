@@ -82,12 +82,16 @@ void Viewer::Run()
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     pangolin::CreatePanel("menu").SetBounds(0.0,1.0,0.0,pangolin::Attach::Pix(175));
-    pangolin::Var<bool> menuFollowCamera("menu.Follow Camera",true,true);
-    pangolin::Var<bool> menuShowPoints("menu.Show Points",true,true);
-    pangolin::Var<bool> menuShowKeyFrames("menu.Show KeyFrames",true,true);
-    pangolin::Var<bool> menuShowGraph("menu.Show Graph",true,true);
-    pangolin::Var<bool> menuLocalizationMode("menu.Localization Mode",false,true);
+    pangolin::Var<bool> menuFollowCamera("menu.Seguir la cámara",true,true);
+    pangolin::Var<bool> menuShowPoints("menu.Puntos del mapa",true,true);
+    pangolin::Var<bool> menuShowKeyFrames("menu.KeyFrames",true,true);
+    pangolin::Var<bool> menuShowGraph("menu.Grafo",true,true);
+    pangolin::Var<bool> menuLocalizationMode("menu.Sólo tracking",false,true);
     pangolin::Var<bool> menuReset("menu.Reset",false,false);
+    pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa",false,false);
+    //pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa",false,false);
+    //pangolin::Var<bool> menuSalir("menu.Salir",false,false);
+
 
     // Define Camera Render Object (for view / scene browsing)
     pangolin::OpenGlRenderState s_cam(
@@ -257,6 +261,19 @@ void Viewer::Run()
 
         	break;
 
+        }
+
+        if(menuGuardarMapa){
+        	Map* mapa = mpMapDrawer->mpMap;
+
+        	// Pasar a tracking para pausar el mapa
+        	mpSystem->DeactivateLocalizationMode();
+        	menuLocalizationMode = false;
+
+        	// Pausar LocalMapping
+        	// Falta implementar, quizás en System, que pause localmapping y verifique que no haya un BA en loopclosing.
+
+        	mapa->save("mapa.bin");
         }
 
         if(menuReset)

@@ -41,6 +41,13 @@ class LocalMapping;
 class KeyFrameDatabase;
 
 
+/**
+ * Cierre de bucles.
+ * Este objeto singleton ejecuta el método LoopClosing::Run en un thread exclusivo.
+ * Cada vez que se agrega un keyframe al mapa (LoopClosing::CheckNewKeyFrames), intenta detectar un bucle (LoopClosing::DetectLoop).
+ * Si lo detecta, computa su pose (LoopClosing::ComputeSim3) y corrige el mapa (LoopClosing::CorrectLoop).
+ *
+ */
 class LoopClosing
 {
 public:
