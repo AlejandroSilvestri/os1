@@ -12,3 +12,7 @@ Este proyecto es parte de la materia de Robótica y visión artificial de ingeni
 El código fue modificado para utilizar vocabulario binario, mucho más veloz para cargar.  El archivo puede no estar en GitHub.
 
 Webcam.yaml tiene la calibración de la cámara.
+
+Librerías del proyecto:
+
+[[https://github.com/AlejandroSilvestri/os1/blob/master/doc/Librerias.png]]
