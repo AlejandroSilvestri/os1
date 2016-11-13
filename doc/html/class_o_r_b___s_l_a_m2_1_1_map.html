@@ -84,7 +84,10 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_map.html','
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_o_r_b___s_l_a_m2_1_1_map-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ORB_SLAM2::Map Class Reference</div>  </div>
@@ -95,6 +98,12 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_map.html','
  <a href="class_o_r_b___s_l_a_m2_1_1_map.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_map_8h_source.html">Map.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ORB_SLAM2::Map:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_map__coll__graph.svg" width="430" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -136,6 +145,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abf0d75e6e234d89b06f568c4600d0436"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#abf0d75e6e234d89b06f568c4600d0436">clear</a> ()</td></tr>
 <tr class="memdesc:abf0d75e6e234d89b06f568c4600d0436"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina puntos y keyframes del mapa.  <a href="#abf0d75e6e234d89b06f568c4600d0436">More...</a><br /></td></tr>
 <tr class="separator:abf0d75e6e234d89b06f568c4600d0436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac34069b3d5875c9f775506580c6684f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#ac34069b3d5875c9f775506580c6684f8">save</a> (char *archivo)</td></tr>
+<tr class="memdesc:ac34069b3d5875c9f775506580c6684f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia el guardado del mapa completo.  <a href="#ac34069b3d5875c9f775506580c6684f8">More...</a><br /></td></tr>
+<tr class="separator:ac34069b3d5875c9f775506580c6684f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6138670d5586f1ae330c8908e968a7e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a6138670d5586f1ae330c8908e968a7e6">load</a> (char *archivo)</td></tr>
+<tr class="memdesc:a6138670d5586f1ae330c8908e968a7e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia la carga del mapa completo (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. ">Map</a>, MapPoints y KeyFrames), y su acomodamiento en memoria.  <a href="#a6138670d5586f1ae330c8908e968a7e6">More...</a><br /></td></tr>
+<tr class="separator:a6138670d5586f1ae330c8908e968a7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -148,6 +163,23 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a968356226057387d8207054d56e5d35c"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a968356226057387d8207054d56e5d35c">mMutexPointCreation</a></td></tr>
 <tr class="memdesc:a968356226057387d8207054d56e5d35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex para agregado de nuevos puntos al mapa.  <a href="#a968356226057387d8207054d56e5d35c">More...</a><br /></td></tr>
 <tr class="separator:a968356226057387d8207054d56e5d35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ae81a4fd9b51a09f001117ba44f25ff94"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#ae81a4fd9b51a09f001117ba44f25ff94">mpMap</a> = NULL</td></tr>
+<tr class="memdesc:ae81a4fd9b51a09f001117ba44f25ff94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Punteros necesarios en la serialización, en los constructores por defecto de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a>, accesibles vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. ">Map</a>:: <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html" title="System se instancia una única vez en main, en la variable SLAM. ">System</a> asigna sus valores durante su construcción.  <a href="#ae81a4fd9b51a09f001117ba44f25ff94">More...</a><br /></td></tr>
+<tr class="separator:ae81a4fd9b51a09f001117ba44f25ff94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e9aeefdc18aab609b2ff70577761084"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html">KeyFrameDatabase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a6e9aeefdc18aab609b2ff70577761084">mpKeyFrameDatabase</a> = NULL</td></tr>
+<tr class="separator:a6e9aeefdc18aab609b2ff70577761084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b3c0f0cf887b8fc1a8be1ba0ced4242"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a7b3c0f0cf887b8fc1a8be1ba0ced4242">mpVocabulary</a> = NULL</td></tr>
+<tr class="separator:a7b3c0f0cf887b8fc1a8be1ba0ced4242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:aa6d9c97f0bb802fd544d6abd928dba61"><td class="memTemplParams" colspan="2">template&lt;class Archivo &gt; </td></tr>
+<tr class="memitem:aa6d9c97f0bb802fd544d6abd928dba61"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#aa6d9c97f0bb802fd544d6abd928dba61">serialize</a> (Archivo &amp;, const unsigned int)</td></tr>
+<tr class="memdesc:aa6d9c97f0bb802fd544d6abd928dba61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialización agregada para guardar y cargar mapas.  <a href="#aa6d9c97f0bb802fd544d6abd928dba61">More...</a><br /></td></tr>
+<tr class="separator:aa6d9c97f0bb802fd544d6abd928dba61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -166,6 +198,11 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a86b9fb9d5c601fb6fd88c46444bd553c"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a86b9fb9d5c601fb6fd88c46444bd553c">mMutexMap</a></td></tr>
 <tr class="memdesc:a86b9fb9d5c601fb6fd88c46444bd553c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutext del mapa.  <a href="#a86b9fb9d5c601fb6fd88c46444bd553c">More...</a><br /></td></tr>
 <tr class="separator:a86b9fb9d5c601fb6fd88c46444bd553c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac98d07dd8f7b70e16ccb9a01abf56b9c"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#ac98d07dd8f7b70e16ccb9a01abf56b9c">boost::serialization::access</a></td></tr>
+<tr class="separator:ac98d07dd8f7b70e16ccb9a01abf56b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Mapa del mundo, de puntos y keyframes. </p>
@@ -364,6 +401,33 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a6138670d5586f1ae330c8908e968a7e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::Map::load </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>archivo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicia la carga del mapa completo (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. ">Map</a>, MapPoints y KeyFrames), y su acomodamiento en memoria. </p>
+<p>No corresponde al desdoblamiento de <a class="el" href="namespaceboost_1_1serialization.html">boost::serialization</a> Reconstruye <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html" title="Lista invertida de KeyFrames, accesible por BoW. ">KeyFrameDatabase</a>. Acomoda el estado del sistema en relocalización.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">archivo</td><td>Nombre del archivo de donde se cargará el mapa. </td></tr>
+    <tr><td class="paramname">sys</td><td>Sistema</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Se implementa en <a class="el" href="serialize_8cpp.html">serialize.cpp</a> </p>
+
+</div>
+</div>
 <a id="ad2d7846734c8cb0421d67ff3907649ad"></a>
 <div class="memitem">
 <div class="memproto">
@@ -378,6 +442,70 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Informa la cantidad de puntos en el mapa. </p>
+
+</div>
+</div>
+<a id="ac34069b3d5875c9f775506580c6684f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::Map::save </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>archivo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inicia el guardado del mapa completo. </p>
+<p>No corresponde al desdoblamiento de <a class="el" href="namespaceboost_1_1serialization.html">boost::serialization</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">archivo</td><td>Nombre del archivo donde se guardará el mapa.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Se implementa en <a class="el" href="serialize_8cpp.html">serialize.cpp</a> </p>
+
+</div>
+</div>
+<a id="aa6d9c97f0bb802fd544d6abd928dba61"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Archivo &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::Map::serialize </td>
+          <td>(</td>
+          <td class="paramtype">Archivo &amp;&#160;</td>
+          <td class="paramname"><em>ar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>version</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Serialización agregada para guardar y cargar mapas. </p>
 
 </div>
 </div>
@@ -397,6 +525,27 @@ Protected Attributes</h2></td></tr>
 
 <p>Agrega un punto al conjunto de puntos de referencia. </p>
 <p>Esta función se invoca exclusivamente desde Tracing::UpdateReference(), para registrar aquí los puntos del mapa local. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="ac98d07dd8f7b70e16ccb9a01abf56b9c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class boost::serialization::access</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -470,6 +619,68 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Id del último keyframe agregado. </p>
+
+</div>
+</div>
+<a id="a6e9aeefdc18aab609b2ff70577761084"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html">KeyFrameDatabase</a> * ORB_SLAM2::Map::mpKeyFrameDatabase = NULL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae81a4fd9b51a09f001117ba44f25ff94"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> * ORB_SLAM2::Map::mpMap = NULL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Punteros necesarios en la serialización, en los constructores por defecto de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a>, accesibles vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. ">Map</a>:: <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html" title="System se instancia una única vez en main, en la variable SLAM. ">System</a> asigna sus valores durante su construcción. </p>
+
+</div>
+</div>
+<a id="a7b3c0f0cf887b8fc1a8be1ba0ced4242"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> * ORB_SLAM2::Map::mpVocabulary = NULL</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -551,13 +762,14 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Puntos de referencia en el mapa. </p>
-<p>Es el vector de puntos del mapa local que administra <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. Por cada cuadro que se procesa, se actualiza el mapa local y se copia este vector al mapa. </p>
+<p>Es el vector de puntos del mapa local que administra <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. Por cada cuadro que se procesa, se actualiza el mapa local y se copia este vector al mapa. Es un vector efímero. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/alejandro/Desarrollo eclipse/os1/include/<a class="el" href="_map_8h_source.html">Map.h</a></li>
 <li>/home/alejandro/Desarrollo eclipse/os1/src/<a class="el" href="_map_8cc.html">Map.cc</a></li>
+<li>/home/alejandro/Desarrollo eclipse/os1/src/<a class="el" href="serialize_8cpp.html">serialize.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

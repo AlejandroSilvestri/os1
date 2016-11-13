@@ -7,5 +7,6 @@ var searchData=
   ['bg_5fmagenta',['BG_MAGENTA',['../color__macros_8h.html#ac08aa3f07e012f1b0edafa632d5300ba',1,'color_macros.h']]],
   ['bg_5fred',['BG_RED',['../color__macros_8h.html#ac317d04c219b630f9c36b0241d9d4be7',1,'color_macros.h']]],
   ['bg_5fwhite',['BG_WHITE',['../color__macros_8h.html#a6beded3f171517df3902c52f79f6fea2',1,'color_macros.h']]],
-  ['bg_5fyellow',['BG_YELLOW',['../color__macros_8h.html#ab31fe3e74b1137650d30ede5c9b86218',1,'color_macros.h']]]
+  ['bg_5fyellow',['BG_YELLOW',['../color__macros_8h.html#ab31fe3e74b1137650d30ede5c9b86218',1,'color_macros.h']]],
+  ['bifurcacion',['BIFURCACION',['../serialize_8cpp.html#aa20820f8508907155ae78692268d3fe7',1,'serialize.cpp']]]
 ];

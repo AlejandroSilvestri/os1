@@ -7,7 +7,7 @@ var class_o_r_b___s_l_a_m2_1_1_tracking =
       [ "OK", "class_o_r_b___s_l_a_m2_1_1_tracking.html#a3995b5e23b910c6ee30b7fe21732fe36af16e000dbb1927cf7f48e97b5e8e78dd", null ],
       [ "LOST", "class_o_r_b___s_l_a_m2_1_1_tracking.html#a3995b5e23b910c6ee30b7fe21732fe36affaf8b66b0b767f1eb2b0214b3f37fb2", null ]
     ] ],
-    [ "Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html#a2e5ff2f26f1518166a028911b830c5b1", null ],
+    [ "Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html#a24f9d67b73420f419f792d2b32c69ac4", null ],
     [ "Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html#a0840541147e58f80cfb99d4b6fd4c714", null ],
     [ "ChangeCalibration", "class_o_r_b___s_l_a_m2_1_1_tracking.html#a7be9bebf51fda1413d253224cdacf7cd", null ],
     [ "CheckReplacedInLastFrame", "class_o_r_b___s_l_a_m2_1_1_tracking.html#a2ca003d3234b2e8444f70dcd2132126f", null ],

@@ -66,17 +66,28 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     K.at<float>(1,2) = cy;
     K.copyTo(mK);
 
-    cv::Mat DistCoef(4,1,CV_32F);
+    cv::Mat DistCoef(8,1,CV_32F);
     DistCoef.at<float>(0) = fSettings["Camera.k1"];
     DistCoef.at<float>(1) = fSettings["Camera.k2"];
     DistCoef.at<float>(2) = fSettings["Camera.p1"];
     DistCoef.at<float>(3) = fSettings["Camera.p2"];
-    const float k3 = fSettings["Camera.k3"];
-    if(k3!=0)
-    {
-        DistCoef.resize(5);
-        DistCoef.at<float>(4) = k3;
-    }
+    const float k3 = DistCoef.at<float>(4) = fSettings["Camera.k3"];
+    const float k4 = DistCoef.at<float>(5) = fSettings["Camera.k4"];
+    const float k5 = DistCoef.at<float>(6) = fSettings["Camera.k5"];
+    const float k6 = DistCoef.at<float>(7) = fSettings["Camera.k6"];
+
+    // UndistortPoints acorta su fórmula polinómica si el vector de coeficientes es más corto.  Las longitudes son 4, 5 u 8.
+    if(k5==0 && k6==0 && k4==0){
+		if(k3==0){
+			DistCoef.resize(4);
+			cout << "2 coeficientes de distorsión radial." << endl;
+		}else{
+			DistCoef.resize(5);
+			cout << "3 coeficientes de distorsión radial." << endl;
+		}
+    } else
+		cout << "6 coeficientes de distorsión radial." << endl;
+
     DistCoef.copyTo(mDistCoef);
 
     mbf = fSettings["Camera.bf"];
@@ -96,8 +107,14 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     cout << "- cy: " << cy << endl;
     cout << "- k1: " << DistCoef.at<float>(0) << endl;
     cout << "- k2: " << DistCoef.at<float>(1) << endl;
-    if(DistCoef.rows==5)
+    if(DistCoef.rows>4){
         cout << "- k3: " << DistCoef.at<float>(4) << endl;
+        if(DistCoef.rows>5){
+            cout << "- k4: " << DistCoef.at<float>(5) << endl;
+            cout << "- k5: " << DistCoef.at<float>(6) << endl;
+            cout << "- k6: " << DistCoef.at<float>(7) << endl;
+        }
+    }
     cout << "- p1: " << DistCoef.at<float>(2) << endl;
     cout << "- p2: " << DistCoef.at<float>(3) << endl;
     cout << "- fps: " << fps << endl;
@@ -671,15 +688,15 @@ void Tracking::MonocularInitialization()
             fill(mvIniMatches.begin(),mvIniMatches.end(),-1);
 
             return;
-        } else
-        	cout << "Pocos keypoints en el 1º cuadro: " << mCurrentFrame.mvKeys.size() << endl;
+        } //else
+        	//cout << "Pocos keypoints en el 1º cuadro: " << mCurrentFrame.mvKeys.size() << endl;
     }
     else
     {
         // Try to initialize
         if((int)mCurrentFrame.mvKeys.size() <= minMatches)
         {
-            cout << "Pocos keypoints en el 2º cuadro: " << mCurrentFrame.mvKeys.size() << endl;
+            //cout << "Pocos keypoints en el 2º cuadro: " << mCurrentFrame.mvKeys.size() << endl;
             delete mpInitializer;
             mpInitializer = static_cast<Initializer*>(NULL);
             fill(mvIniMatches.begin(),mvIniMatches.end(),-1);
@@ -693,7 +710,7 @@ void Tracking::MonocularInitialization()
         // Check if there are enough correspondences
         if(nmatches < minMatches)
         {
-            cout << "Pocos macheos: " << nmatches << endl;
+            //cout << "Pocos macheos: " << nmatches << endl;
             delete mpInitializer;
             mpInitializer = static_cast<Initializer*>(NULL);
             return;

@@ -2,6 +2,7 @@ var searchData=
 [
   ['id',['id',['../struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a62fb0c85332741c114110463252c64e9',1,'DBoW2::TemplatedVocabulary::Node::id()'],['../classg2o_1_1_hyper_graph_1_1_vertex.html#a48191960395856d1b686287489e53da3',1,'g2o::HyperGraph::Vertex::id()'],['../classg2o_1_1_hyper_graph_1_1_edge.html#a93f47febcbd6c654fc3344d4643a087f',1,'g2o::HyperGraph::Edge::id()'],['../classg2o_1_1_parameter.html#a1bca491a08b68a7a6b85204a5a8b0f2c',1,'g2o::Parameter::id()']]],
   ['idf',['IDF',['../namespace_d_bo_w2.html#a5de5c8a307aca9a84ffefda2a9bc467aa5a1c1f7cd866c8bea4551e296298c3bc',1,'DBoW2']]],
+  ['imagenentrada',['imagenEntrada',['../class_o_r_b___s_l_a_m2_1_1_system.html#a60b15b1f4e0299fa9398801abc143070',1,'ORB_SLAM2::System']]],
   ['increasefound',['IncreaseFound',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#aa097cd8cf993a54e999f297e05729392',1,'ORB_SLAM2::MapPoint']]],
   ['increasevisible',['IncreaseVisible',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#a0a234f5bd6bc19a9ea55fad0c9e6db5f',1,'ORB_SLAM2::MapPoint']]],
   ['indexmapping',['indexMapping',['../classg2o_1_1_sparse_optimizer.html#a93e11150d513979a6367518ecaf26e02',1,'g2o::SparseOptimizer']]],
@@ -24,6 +25,7 @@ var searchData=
   ['initmatrixstructure',['initMatrixStructure',['../classg2o_1_1_linear_solver_c_c_s.html#a070138d7e2a68a576e015f5073a4a464',1,'g2o::LinearSolverCCS']]],
   ['initmultithreading',['initMultiThreading',['../structg2o_1_1_optimizable_graph.html#ab4ee0fc3ecd31852276ded40b62e9c76',1,'g2o::OptimizableGraph']]],
   ['insertkeyframe',['InsertKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_local_mapping.html#af2d70466a1a217fb7e55d874931ce688',1,'ORB_SLAM2::LocalMapping::InsertKeyFrame()'],['../class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a680d0b255d764754841e622f5af97473',1,'ORB_SLAM2::LoopClosing::InsertKeyFrame()']]],
+  ['inst_5fexp',['INST_EXP',['../serialize_8cpp.html#a985119c54406f96afeb99eaf54d27923',1,'serialize.cpp']]],
   ['installdependency',['installDependency',['../classg2o_1_1_cache.html#a776574fb98726ff61bc1280ea624c6e5',1,'g2o::Cache']]],
   ['installparameter',['installParameter',['../classg2o_1_1_optimizable_graph_1_1_edge.html#a237bea2f2fb7cc6a9cf4ee5ee6fe4d88',1,'g2o::OptimizableGraph::Edge']]],
   ['instance',['instance',['../classg2o_1_1_factory.html#a8a1f33e017c5ad59399cef48972578ae',1,'g2o::Factory::instance()'],['../classg2o_1_1_hyper_graph_action_library.html#a12074e3f4d9bcb3da20a4fe23d18b745',1,'g2o::HyperGraphActionLibrary::instance()'],['../classg2o_1_1_optimization_algorithm_factory.html#a4fe827a82f01c74ef124e7a9a9c98707',1,'g2o::OptimizationAlgorithmFactory::instance()'],['../classg2o_1_1_robust_kernel_factory.html#a9cc4361620f8d7269ad9774d3aba2fc0',1,'g2o::RobustKernelFactory::instance()']]],

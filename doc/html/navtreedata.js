@@ -51,15 +51,15 @@ var NAVTREEINDEX =
 [
 "_bow_vector_8cpp.html",
 "class_d_utils_1_1_timestamp.html#a42280e1193a6af2ac41362cf18a1185c",
-"class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22",
-"class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#a9aca06ce2678d686a318266fe3262a0b",
-"classg2o_1_1_base_vertex.html#ae6edf93fe07aa27579a9352faa83098c",
-"classg2o_1_1_hyper_graph.html#ab07fe8bd9982a66ba34e83dff8317ea2",
-"classg2o_1_1_optimizable_graph_1_1_vertex.html#a61c4e7b7a7a61e1f287069a8cb01004f",
-"classg2o_1_1_s_e3_quat.html#a685de01e417e01f84d5b8389e5f5f333",
-"color__macros_8h.html#a4e411f6bd6ac8d6c2bd23d866c097e91",
-"misc_8h.html",
-"structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry.html#a2db2f9eaa364a04f07c81c70784f2193"
+"class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a6b4d311f49979f38d47ed96290255a2f",
+"class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#a69cf052880d6e926e11b74e1b59a05e0",
+"classg2o_1_1_base_vertex.html#a40fcd78e21bb4aedf7e299922c650937",
+"classg2o_1_1_hyper_graph.html",
+"classg2o_1_1_optimizable_graph_1_1_vertex.html#a1cf16cd3b2e99169cdd6dfc139f926bc",
+"classg2o_1_1_robust_kernel_scale_delta.html#a537a88b2ff5432fb9e1ad2aaa85f60b9",
+"classg2o_1_1_vertex_sim3_expmap.html#a16b4ef216ad1c4709a6fc6aa452d8e61",
+"macros_8h.html#af93ab8e29004f71549e1cd50278c5473",
+"structg2o_1_1_g2_o_batch_statistics.html#a456a521ccb1e4c69940475a92a1f5d29"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

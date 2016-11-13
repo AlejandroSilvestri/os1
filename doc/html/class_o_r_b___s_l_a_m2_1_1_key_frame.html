@@ -86,7 +86,9 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_key_frame.h
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_o_r_b___s_l_a_m2_1_1_key_frame-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ORB_SLAM2::KeyFrame Class Reference</div>  </div>
@@ -100,7 +102,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_key_frame.h
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::KeyFrame:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_key_frame__coll__graph.svg" width="1179" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_key_frame__coll__graph.svg" width="1480" height="279"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -225,6 +227,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa4c5f9ea38d377cfa70d441e184803ae"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa4c5f9ea38d377cfa70d441e184803ae">ComputeSceneMedianDepth</a> (const int q)</td></tr>
 <tr class="memdesc:aa4c5f9ea38d377cfa70d441e184803ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computa la profundidad del punto mediano de la escena.  <a href="#aa4c5f9ea38d377cfa70d441e184803ae">More...</a><br /></td></tr>
 <tr class="separator:aa4c5f9ea38d377cfa70d441e184803ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
+<tr class="memitem:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a338bacd1855d45c7a1cc38b9ba47a46e">serialize</a> (Archive &amp;ar, const unsigned int version)</td></tr>
+<tr class="memdesc:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializador para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> No guarda mpKeyFrameDB, que se debe asignar de otro modo.  <a href="#a338bacd1855d45c7a1cc38b9ba47a46e">More...</a><br /></td></tr>
+<tr class="separator:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -381,6 +387,15 @@ Static Public Attributes</h2></td></tr>
 <tr class="memdesc:acb0d220936541a8afc020a65aa675559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contador para autonumeración de ids.  <a href="#acb0d220936541a8afc020a65aa675559">More...</a><br /></td></tr>
 <tr class="separator:acb0d220936541a8afc020a65aa675559"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a3c33a6c79533849d367db9e85fe98c14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3c33a6c79533849d367db9e85fe98c14">KeyFrame</a> ()</td></tr>
+<tr class="memdesc:a3c33a6c79533849d367db9e85fe98c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialización agregada para guardar y cargar keyframes.  <a href="#a3c33a6c79533849d367db9e85fe98c14">More...</a><br /></td></tr>
+<tr class="separator:a3c33a6c79533849d367db9e85fe98c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03bbcbd5f862204ac10985a51d8cd74f"><td class="memTemplParams" colspan="2">template&lt;class Archivo &gt; </td></tr>
+<tr class="memitem:a03bbcbd5f862204ac10985a51d8cd74f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a03bbcbd5f862204ac10985a51d8cd74f">serialize</a> (Archivo &amp;, const unsigned int)</td></tr>
+<tr class="separator:a03bbcbd5f862204ac10985a51d8cd74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a8dc31ef9a08d34ecb196f3e58a2c09b9"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8dc31ef9a08d34ecb196f3e58a2c09b9">Tcw</a></td></tr>
@@ -445,6 +460,11 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a30315bba6d290ec12227cf9c0aed5df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb19a0cf32ad590df9794f77585e9ce8"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#acb19a0cf32ad590df9794f77585e9ce8">mMutexFeatures</a></td></tr>
 <tr class="separator:acb19a0cf32ad590df9794f77585e9ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:ac98d07dd8f7b70e16ccb9a01abf56b9c"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac98d07dd8f7b70e16ccb9a01abf56b9c">boost::serialization::access</a></td></tr>
+<tr class="separator:ac98d07dd8f7b70e16ccb9a01abf56b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cuadro clave, keyframe. </p>
@@ -512,6 +532,33 @@ Protected Attributes</h2></td></tr>
 <p>Este constructor copia todos los valores del <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> F.</p>
 <p>pMap es un puntero al mapa donde está este keyFrame, y se utiliza sólo para cuando se requiera eliminar del mapa. Se registra en mpMap.</p>
 <p>pKFDB es la base de datos de keyframes. Se registra en mpKeyFrameDB. </p>
+
+</div>
+</div>
+<a id="a3c33a6c79533849d367db9e85fe98c14"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ORB_SLAM2::KeyFrame::KeyFrame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Serialización agregada para guardar y cargar keyframes. </p>
+<p>Constructor por defecto para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> Se ocupa de inicializar los atributos const, para que el compilador no chille.</p>
+<p>Entre ellos inicializa los atributos no serializables (todos punteros a singletons). Luego serialize se encarga de cambiarle los valores, aunque sean const. </p>
 
 </div>
 </div>
@@ -1315,6 +1362,72 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a338bacd1855d45c7a1cc38b9ba47a46e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Archive &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::KeyFrame::serialize </td>
+          <td>(</td>
+          <td class="paramtype">Archive &amp;&#160;</td>
+          <td class="paramname"><em>ar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>version</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serializador para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> No guarda mpKeyFrameDB, que se debe asignar de otro modo. </p>
+
+</div>
+</div>
+<a id="a03bbcbd5f862204ac10985a51d8cd74f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Archivo &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::KeyFrame::serialize </td>
+          <td>(</td>
+          <td class="paramtype">Archivo &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned&#160;</td>
+          <td class="paramname"><em>int</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a365ec4d06acbbcd668aa5a069c69fdaa"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1488,6 +1601,27 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a&gt;b. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="ac98d07dd8f7b70e16ccb9a01abf56b9c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class boost::serialization::access</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -2679,6 +2813,7 @@ Protected Attributes</h2></td></tr>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/alejandro/Desarrollo eclipse/os1/include/<a class="el" href="_key_frame_8h_source.html">KeyFrame.h</a></li>
 <li>/home/alejandro/Desarrollo eclipse/os1/src/<a class="el" href="_key_frame_8cc.html">KeyFrame.cc</a></li>
+<li>/home/alejandro/Desarrollo eclipse/os1/src/<a class="el" href="serialize_8cpp.html">serialize.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

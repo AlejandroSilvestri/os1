@@ -83,6 +83,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame_drawe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_o_r_b___s_l_a_m2_1_1_frame_drawer-members.html">List of all members</a>  </div>
@@ -98,7 +99,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame_drawe
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::FrameDrawer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame_drawer__coll__graph.svg" width="199" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame_drawer__coll__graph.svg" width="430" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -113,6 +114,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7d2b0099c169f6944cadc2cd574a06de"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a7d2b0099c169f6944cadc2cd574a06de">DrawFrame</a> ()</td></tr>
 <tr class="memdesc:a7d2b0099c169f6944cadc2cd574a06de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947">Viewer::Run</a> para que envíe la imagen del cuadro actual a la pantalla.  <a href="#a7d2b0099c169f6944cadc2cd574a06de">More...</a><br /></td></tr>
 <tr class="separator:a7d2b0099c169f6944cadc2cd574a06de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ac256525bcc9b9330b439c16583ad0255"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ac256525bcc9b9330b439c16583ad0255">K</a></td></tr>
+<tr class="memdesc:ac256525bcc9b9330b439c16583ad0255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz de calibración del último frame, para undistort.  <a href="#ac256525bcc9b9330b439c16583ad0255">More...</a><br /></td></tr>
+<tr class="separator:ac256525bcc9b9330b439c16583ad0255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8596422190adf9c7f6e083073ad96004"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a8596422190adf9c7f6e083073ad96004">distCoef</a></td></tr>
+<tr class="memdesc:a8596422190adf9c7f6e083073ad96004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coeficientes de distorsión para undistort.  <a href="#a8596422190adf9c7f6e083073ad96004">More...</a><br /></td></tr>
+<tr class="separator:a8596422190adf9c7f6e083073ad96004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -284,6 +294,34 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8596422190adf9c7f6e083073ad96004"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::FrameDrawer::distCoef</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Coeficientes de distorsión para undistort. </p>
+
+</div>
+</div>
+<a id="ac256525bcc9b9330b439c16583ad0255"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::FrameDrawer::K</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Matriz de calibración del último frame, para undistort. </p>
+
+</div>
+</div>
 <a id="ad7087ccda3d514be5e0132f889c3e949"></a>
 <div class="memitem">
 <div class="memproto">

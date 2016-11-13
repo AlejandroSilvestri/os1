@@ -29,7 +29,6 @@ var class_o_r_b___s_l_a_m2_1_1_frame =
     [ "mnId", "class_o_r_b___s_l_a_m2_1_1_frame.html#acd59686475a89bfdfcae316dfa6b6069", null ],
     [ "mnScaleLevels", "class_o_r_b___s_l_a_m2_1_1_frame.html#a4c4b02f27be28aec6cb8bb1bab3f622f", null ],
     [ "mpORBextractorLeft", "class_o_r_b___s_l_a_m2_1_1_frame.html#a5c4f28562114c30c6276f2e42aac6607", null ],
-    [ "mpORBextractorRight", "class_o_r_b___s_l_a_m2_1_1_frame.html#a53cd56c00a153e8b54be49ea73b64672", null ],
     [ "mpORBvocabulary", "class_o_r_b___s_l_a_m2_1_1_frame.html#a4c54c9963da838cd6fa83a65930bd1b7", null ],
     [ "mpReferenceKF", "class_o_r_b___s_l_a_m2_1_1_frame.html#a4f5187c3a75ef493687fa0582fed0aa8", null ],
     [ "mTcw", "class_o_r_b___s_l_a_m2_1_1_frame.html#a3be6708cfd359fae30307f9408abd6f9", null ],

@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_system.html
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_o_r_b___s_l_a_m2_1_1_system-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ORB_SLAM2::System Class Reference</div>  </div>
@@ -94,26 +95,27 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_system.html
  <a href="class_o_r_b___s_l_a_m2_1_1_system.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_system_8h_source.html">System.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ORB_SLAM2::System:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_system__coll__graph.svg" width="166" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a3f14b84bb9663e1129e649e592bd14cf"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">eSensor</a> { <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cfad1e5840d6aeaa77d25724ea0b27437cd">MONOCULAR</a> =0, 
-<a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cfa6d4fa33f59566841b81a92625419c177">STEREO</a> =1, 
-<a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cfa1c8a78c1a9b7ac931a73f230687b2c7c">RGBD</a> =2
+<tr class="memitem:a3f14b84bb9663e1129e649e592bd14cf"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">eSensor</a> { <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cfad1e5840d6aeaa77d25724ea0b27437cd">MONOCULAR</a> =0
  }<tr class="memdesc:a3f14b84bb9663e1129e649e592bd14cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo de sensor, modo de operación: mono, estéreo o mapa de profundidad.  <a href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a3f14b84bb9663e1129e649e592bd14cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a687bbabebe054f6d40b44b1ba64bc57a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a687bbabebe054f6d40b44b1ba64bc57a">System</a> (const string &amp;strVocFile, const string &amp;strSettingsFile, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">eSensor</a> sensor, const bool bUseViewer=true)</td></tr>
-<tr class="memdesc:a687bbabebe054f6d40b44b1ba64bc57a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a687bbabebe054f6d40b44b1ba64bc57a">More...</a><br /></td></tr>
-<tr class="separator:a687bbabebe054f6d40b44b1ba64bc57a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6085e0cdf88ed5b00864404ecf056dfe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a6085e0cdf88ed5b00864404ecf056dfe">System</a> (const string &amp;strVocFile, const string &amp;strSettingsFile, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">eSensor</a> sensor=<a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cfad1e5840d6aeaa77d25724ea0b27437cd">MONOCULAR</a>, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html">Viewer</a> *v=NULL, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *m=NULL, <a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *voc=NULL)</td></tr>
-<tr class="memdesc:a6085e0cdf88ed5b00864404ecf056dfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor alternativo, no utilizado en orb-slam2, que permite indicar un mapa, un visor y un vocabulario preexistentes.  <a href="#a6085e0cdf88ed5b00864404ecf056dfe">More...</a><br /></td></tr>
-<tr class="separator:a6085e0cdf88ed5b00864404ecf056dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e9b6b0e27ac44fe16b0f35c39aa9b63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a8e9b6b0e27ac44fe16b0f35c39aa9b63">System</a> (const string &amp;strVocFile, const string &amp;strSettingsFile, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">eSensor</a> sensor, const bool bUseViewer=true, cv::VideoCapture *=NULL)</td></tr>
+<tr class="memdesc:a8e9b6b0e27ac44fe16b0f35c39aa9b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8e9b6b0e27ac44fe16b0f35c39aa9b63">More...</a><br /></td></tr>
+<tr class="separator:a8e9b6b0e27ac44fe16b0f35c39aa9b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0408659bafa31c4d0722ccd032fb9430"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a0408659bafa31c4d0722ccd032fb9430">TrackMonocular</a> (const cv::Mat &amp;im, const double &amp;timestamp)</td></tr>
-<tr class="memdesc:a0408659bafa31c4d0722ccd032fb9430"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa una imagen de la cámara.  <a href="#a0408659bafa31c4d0722ccd032fb9430">More...</a><br /></td></tr>
+<tr class="memdesc:a0408659bafa31c4d0722ccd032fb9430"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor alternativo, no utilizado en orb-slam2, que permite indicar un mapa, un visor y un vocabulario preexistentes.  <a href="#a0408659bafa31c4d0722ccd032fb9430">More...</a><br /></td></tr>
 <tr class="separator:a0408659bafa31c4d0722ccd032fb9430"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cd39ec31a23d7ba5ebe1a6e4f4a0f89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a6cd39ec31a23d7ba5ebe1a6e4f4a0f89">ActivateLocalizationMode</a> ()</td></tr>
 <tr class="memdesc:a6cd39ec31a23d7ba5ebe1a6e4f4a0f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pasa a modo de sólo localización, sin mapeo (sólo tracking).  <a href="#a6cd39ec31a23d7ba5ebe1a6e4f4a0f89">More...</a><br /></td></tr>
@@ -141,6 +143,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a28715073ef3ddbc8aececc634173f931"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html">Tracking</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a28715073ef3ddbc8aececc634173f931">GetTracker</a> ()</td></tr>
 <tr class="memdesc:a28715073ef3ddbc8aececc634173f931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve un puntero al objeto de tracking.  <a href="#a28715073ef3ddbc8aececc634173f931">More...</a><br /></td></tr>
 <tr class="separator:a28715073ef3ddbc8aececc634173f931"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a4f89f0644efa2054604a53ffa8dbd4e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html">Viewer</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a4f89f0644efa2054604a53ffa8dbd4e7">mpViewer</a></td></tr>
+<tr class="memdesc:a4f89f0644efa2054604a53ffa8dbd4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visor, maneja el visor del mapa y el de cámara.  <a href="#a4f89f0644efa2054604a53ffa8dbd4e7">More...</a><br /></td></tr>
+<tr class="separator:a4f89f0644efa2054604a53ffa8dbd4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15fdbc8309a8b1255b3028053e9ba4a8"><td class="memItemLeft" align="right" valign="top">cv::VideoCapture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a15fdbc8309a8b1255b3028053e9ba4a8">video</a></td></tr>
+<tr class="memdesc:a15fdbc8309a8b1255b3028053e9ba4a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Video de entrada.  <a href="#a15fdbc8309a8b1255b3028053e9ba4a8">More...</a><br /></td></tr>
+<tr class="separator:a15fdbc8309a8b1255b3028053e9ba4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60b15b1f4e0299fa9398801abc143070"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a60b15b1f4e0299fa9398801abc143070">imagenEntrada</a></td></tr>
+<tr class="memdesc:a60b15b1f4e0299fa9398801abc143070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imagen de entrada.  <a href="#a60b15b1f4e0299fa9398801abc143070">More...</a><br /></td></tr>
+<tr class="separator:a60b15b1f4e0299fa9398801abc143070"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html" title="System se instancia una única vez en main, en la variable SLAM. ">System</a> se instancia una única vez en main, en la variable SLAM. </p>
@@ -188,16 +202,12 @@ Public Member Functions</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3f14b84bb9663e1129e649e592bd14cfad1e5840d6aeaa77d25724ea0b27437cd"></a>MONOCULAR&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><a id="a3f14b84bb9663e1129e649e592bd14cfa6d4fa33f59566841b81a92625419c177"></a>STEREO&#160;</td><td class="fielddoc">
-</td></tr>
-<tr><td class="fieldname"><a id="a3f14b84bb9663e1129e649e592bd14cfa1c8a78c1a9b7ac931a73f230687b2c7c"></a>RGBD&#160;</td><td class="fielddoc">
-</td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a687bbabebe054f6d40b44b1ba64bc57a"></a>
+<a id="a8e9b6b0e27ac44fe16b0f35c39aa9b63"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -223,7 +233,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>bUseViewer</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>bUseViewer</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::VideoCapture *&#160;</td>
+          <td class="paramname"><em>video_</em> = <code>NULL</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -248,58 +264,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="a6085e0cdf88ed5b00864404ecf056dfe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ORB_SLAM2::System::System </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>strVocFile</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>strSettingsFile</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">eSensor</a>&#160;</td>
-          <td class="paramname"><em>sensor</em> = <code><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cfad1e5840d6aeaa77d25724ea0b27437cd">MONOCULAR</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html">Viewer</a> *&#160;</td>
-          <td class="paramname"><em>v</em> = <code>NULL</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td>
-          <td class="paramname"><em>m</em> = <code>NULL</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *&#160;</td>
-          <td class="paramname"><em>voc</em> = <code>NULL</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructor alternativo, no utilizado en orb-slam2, que permite indicar un mapa, un visor y un vocabulario preexistentes. </p>
 
 </div>
 </div>
@@ -498,9 +462,9 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Procesa una imagen de la cámara. </p>
+<p>Constructor alternativo, no utilizado en orb-slam2, que permite indicar un mapa, un visor y un vocabulario preexistentes. </p>
 <p>Envoltorio del método principal, invocado repetidamente por el bucle principal, una vez por cada imagen del sensor.</p>
-<p>Es el método central, invocado repetidamente en el bucle principal de tracking.</p>
+<p>Procesa una imagen de la cámara. Es el método central, invocado repetidamente en el bucle principal de tracking.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">im</td><td>Imagen de cámara a procesar. </td></tr>
@@ -515,6 +479,50 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a60b15b1f4e0299fa9398801abc143070"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::System::imagenEntrada</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Imagen de entrada. </p>
+
+</div>
+</div>
+<a id="a4f89f0644efa2054604a53ffa8dbd4e7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html">Viewer</a>* ORB_SLAM2::System::mpViewer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Visor, maneja el visor del mapa y el de cámara. </p>
+<p>Usa Pangolin. Lo hice público para que main pueda interactuar con él a través de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html" title="System se instancia una única vez en main, en la variable SLAM. ">System</a>. </p>
+
+</div>
+</div>
+<a id="a15fdbc8309a8b1255b3028053e9ba4a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::VideoCapture* ORB_SLAM2::System::video</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Video de entrada. </p>
 
 </div>
 </div>

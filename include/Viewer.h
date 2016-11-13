@@ -93,6 +93,10 @@ public:
     /** Control de pausa del video.  Es leído desde el bucle principal de main.*/
     bool videoPausado = false;
 
+    /** Señal que alterna mostrando la imagen de entrada como viene o antidistorsionada.*/
+    bool mostrarEntradaAntidistorsionada = false;
+
+
 
 private:
 

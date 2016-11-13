@@ -1,0 +1,5 @@
+<map id="ORB_SLAM2::Map" name="ORB_SLAM2::Map">
+<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_key_frame_database.html" title="Lista invertida de KeyFrames, accesible por BoW. " alt="" coords="198,199,423,225"/>
+<area shape="rect" id="node3" href="$class_d_bo_w2_1_1_templated_vocabulary.html" title="Generic Vocabulary. " alt="" coords="5,95,208,136"/>
+<area shape="rect" id="node4" href="$class_d_bo_w2_1_1_general_scoring.html" title="Base class of scoring functions. " alt="" coords="24,5,189,32"/>
+</map>

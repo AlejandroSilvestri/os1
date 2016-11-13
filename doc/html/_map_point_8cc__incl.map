@@ -1,17 +1,17 @@
 <map id="/home/alejandro/Desarrollo eclipse/os1/src/MapPoint.cc" name="/home/alejandro/Desarrollo eclipse/os1/src/MapPoint.cc">
-<area shape="rect" id="node2" href="$_map_point_8h.html" title="MapPoint.h" alt="" coords="646,177,734,203"/>
-<area shape="rect" id="node31" href="$_o_r_bmatcher_8h.html" title="ORBmatcher.h" alt="" coords="1304,95,1414,121"/>
-<area shape="rect" id="node3" href="$_key_frame_8h.html" title="KeyFrame.h" alt="" coords="643,333,736,360"/>
-<area shape="rect" id="node25" href="$_frame_8h.html" title="Frame.h" alt="" coords="821,483,892,509"/>
-<area shape="rect" id="node30" href="$_map_8h.html" title="Map.h" alt="" coords="306,259,364,285"/>
-<area shape="rect" id="node4" href="$_bow_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/BowVector.h" alt="" coords="1545,811,1696,852"/>
-<area shape="rect" id="node8" href="$_feature_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FeatureVector.h" alt="" coords="1476,721,1645,763"/>
-<area shape="rect" id="node9" href="$_o_r_b_vocabulary_8h.html" title="ORBVocabulary.h" alt="" coords="662,557,789,584"/>
-<area shape="rect" id="node23" href="$_o_r_bextractor_8h.html" title="ORBextractor.h" alt="" coords="525,557,638,584"/>
-<area shape="rect" id="node27" href="$_key_frame_database_8h.html" title="KeyFrameDatabase.h" alt="" coords="482,408,631,435"/>
-<area shape="rect" id="node10" href="$_f_o_r_b_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FORB.h" alt="" coords="162,632,305,673"/>
-<area shape="rect" id="node14" href="$_templated_vocabulary_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/TemplatedVocabulary.h" alt="" coords="735,632,948,673"/>
-<area shape="rect" id="node13" href="$_f_class_8h.html" title="FClass.h" alt="" coords="122,729,196,755"/>
-<area shape="rect" id="node20" href="$_scoring_object_8h.html" title="ScoringObject.h" alt="" coords="1286,729,1400,755"/>
-<area shape="rect" id="node21" href="$_random_8h.html" title="../DUtils/Random.h" alt="" coords="1076,729,1210,755"/>
+<area shape="rect" id="node2" href="$_map_point_8h.html" title="MapPoint.h" alt="" coords="814,177,902,203"/>
+<area shape="rect" id="node32" href="$_o_r_bmatcher_8h.html" title="ORBmatcher.h" alt="" coords="940,95,1049,121"/>
+<area shape="rect" id="node3" href="$_key_frame_8h.html" title="KeyFrame.h" alt="" coords="1053,259,1146,285"/>
+<area shape="rect" id="node25" href="$_frame_8h.html" title="Frame.h" alt="" coords="1378,423,1448,449"/>
+<area shape="rect" id="node31" href="$_map_8h.html" title="Map.h" alt="" coords="705,259,764,285"/>
+<area shape="rect" id="node4" href="$_bow_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/BowVector.h" alt="" coords="1422,751,1572,792"/>
+<area shape="rect" id="node8" href="$_feature_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FeatureVector.h" alt="" coords="1670,661,1839,703"/>
+<area shape="rect" id="node9" href="$_o_r_b_vocabulary_8h.html" title="ORBVocabulary.h" alt="" coords="848,497,975,524"/>
+<area shape="rect" id="node23" href="$_o_r_bextractor_8h.html" title="ORBextractor.h" alt="" coords="1199,341,1312,367"/>
+<area shape="rect" id="node27" href="$_key_frame_database_8h.html" title="KeyFrameDatabase.h" alt="" coords="1025,341,1174,367"/>
+<area shape="rect" id="node10" href="$_f_o_r_b_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FORB.h" alt="" coords="215,572,358,613"/>
+<area shape="rect" id="node14" href="$_templated_vocabulary_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/TemplatedVocabulary.h" alt="" coords="736,572,949,613"/>
+<area shape="rect" id="node13" href="$_f_class_8h.html" title="FClass.h" alt="" coords="249,669,324,695"/>
+<area shape="rect" id="node20" href="$_scoring_object_8h.html" title="ScoringObject.h" alt="" coords="1109,669,1224,695"/>
+<area shape="rect" id="node21" href="$_random_8h.html" title="../DUtils/Random.h" alt="" coords="899,669,1034,695"/>
 </map>

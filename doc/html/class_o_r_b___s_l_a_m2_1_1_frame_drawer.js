@@ -4,6 +4,8 @@ var class_o_r_b___s_l_a_m2_1_1_frame_drawer =
     [ "DrawFrame", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a7d2b0099c169f6944cadc2cd574a06de", null ],
     [ "DrawTextInfo", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a059f66cfb0702264c788a79313ec3630", null ],
     [ "Update", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964", null ],
+    [ "distCoef", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a8596422190adf9c7f6e083073ad96004", null ],
+    [ "K", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ac256525bcc9b9330b439c16583ad0255", null ],
     [ "mbOnlyTracking", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad7087ccda3d514be5e0132f889c3e949", null ],
     [ "mIm", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a2b405554be1a48ade50055af97c2c2c9", null ],
     [ "mMutex", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a1425b923def88314bb43eddf3eee4ddb", null ],

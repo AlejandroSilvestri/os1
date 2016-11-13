@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_local_mappi
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::LocalMapping:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_local_mapping__coll__graph.svg" width="2344" height="1038"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_local_mapping__coll__graph.svg" width="2684" height="986"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -165,7 +165,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a27db88f75fe6f2bd43b0bd0769d56462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Consulta la lista de nuvos keyframes mlNewKeyFrames.  <a href="#a27db88f75fe6f2bd43b0bd0769d56462">More...</a><br /></td></tr>
 <tr class="separator:a27db88f75fe6f2bd43b0bd0769d56462"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84eea8f268cce9d919a4906ae634dd22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22">ProcessNewKeyFrame</a> ()</td></tr>
-<tr class="memdesc:a84eea8f268cce9d919a4906ae634dd22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza mpCurrentKeyFrame, y quita el nuevo keyframe de la lista mlNewKeyFrames.  <a href="#a84eea8f268cce9d919a4906ae634dd22">More...</a><br /></td></tr>
+<tr class="memdesc:a84eea8f268cce9d919a4906ae634dd22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a1e4de53f96e97c6b94b794d0a5bc67e3" title="Keyframe actual, el último keyframe nuevo que se ha procesado. ">LocalMapping.mpCurrentKeyFrame</a>, y quita el nuevo keyframe de la lista <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a4a365466d11db0f8e8fc14d76fc0cd83" title="Buffer de solicitud de nuevos keyframes. ">LocalMapping.mlNewKeyFrames</a>.  <a href="#a84eea8f268cce9d919a4906ae634dd22">More...</a><br /></td></tr>
 <tr class="separator:a84eea8f268cce9d919a4906ae634dd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac06b513357429d9eff89e29d2ae58d6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac06b513357429d9eff89e29d2ae58d6c">CreateNewMapPoints</a> ()</td></tr>
 <tr class="memdesc:ac06b513357429d9eff89e29d2ae58d6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">El ciclo de mapeo local invoca periódicamente este método, que busca macheos candidatos para su triangulación y agregado al mapa.  <a href="#ac06b513357429d9eff89e29d2ae58d6c">More...</a><br /></td></tr>
@@ -449,7 +449,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Método usado por el tracker para solicitar la inclusión de un nuevo keyframe. </p>
-<p>Este método agrega el keyframe a la cola, que se procesa en un hilo aparte.</p>
+<p>Este método agrega el keyframe a la cola <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a4a365466d11db0f8e8fc14d76fc0cd83" title="Buffer de solicitud de nuevos keyframes. ">LocalMapping.mlNewKeyFrames</a>, que se procesa en un hilo aparte, en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">LocalMapping.Run</a> por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22" title="Actualiza LocalMapping.mpCurrentKeyFrame, y quita el nuevo keyframe de la lista LocalMapping.mlNewKeyFrames. ">LocalMapping.ProcessNewKeyFrame</a>.</p>
 <p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. </p>
 
 </div>
@@ -604,8 +604,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Actualiza mpCurrentKeyFrame, y quita el nuevo keyframe de la lista mlNewKeyFrames. </p>
-<p>Para cada punto 3D visualizado computa BoW y recomputa descriptores, normal y profundidad. </p>
+<p>Actualiza <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a1e4de53f96e97c6b94b794d0a5bc67e3" title="Keyframe actual, el último keyframe nuevo que se ha procesado. ">LocalMapping.mpCurrentKeyFrame</a>, y quita el nuevo keyframe de la lista <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a4a365466d11db0f8e8fc14d76fc0cd83" title="Buffer de solicitud de nuevos keyframes. ">LocalMapping.mlNewKeyFrames</a>. </p>
+<p>Para cada punto 3D visualizado computa BoW y recomputa descriptores, normal y profundidad.</p>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">LocalMapping.Run</a>. </p>
 
 </div>
 </div>

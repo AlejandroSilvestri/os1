@@ -53,6 +53,19 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
     mViewpointY = fSettings["Viewer.ViewpointY"];
     mViewpointZ = fSettings["Viewer.ViewpointZ"];
     mViewpointF = fSettings["Viewer.ViewpointF"];
+
+    // Explicación de las funciones de teclado
+    cout << endl << "Teclas:" << endl
+    		<< "t: Cambia el tamaño de las ventanas de imágenes.  Hay 3 tamaños: 100%, 50% y 25%." << endl
+    		<< "u: Undistort, muestra la imagen de entrada antidistorsionada." << endl
+    		<< endl
+    		<< "Si se procesa un archivo de video:" << endl
+    		<< "espacio: Pausa el video." << endl
+    		<< "r: Reversa, invierte la secuencia de imágenes del video." << endl
+    		<< "" << endl
+    		<< "" << endl
+    		<< "" << endl
+    		<< endl;
 }
 
 void Viewer::Run()
@@ -162,7 +175,20 @@ void Viewer::Run()
         cv::resize(im, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
         cv::imshow("ORB-SLAM2: Current Frame",imagenParaMostrar);
 
-        cv::resize(mpSystem->imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+        // Mostrar imagen de entrada
+        if(mostrarEntradaAntidistorsionada){
+        	cv::Mat imagenEntrada = mpSystem->imagenEntrada;
+        	int ancho = imagenEntrada.cols;
+        	int alto = imagenEntrada.rows;
+        	cv::Mat K = mpFrameDrawer->K;	// Matriz de calibración tomada del cuadro actual.
+        	cv::Mat distCoef = mpFrameDrawer->distCoef;
+        	cv::Mat nuevaK = cv::getOptimalNewCameraMatrix(K, distCoef, cv::Size(ancho, alto), 1.0);
+
+        	cv::undistort(imagenEntrada, imagenParaMostrar, K, distCoef, nuevaK);
+        	cv::resize(imagenParaMostrar, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+        }else{
+            cv::resize(mpSystem->imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+        }
         cv::imshow("entrada", imagenParaMostrar);
 
         // duración cero para entradas que no son archivos de video, y que por ende no usa el trackbar.
@@ -203,6 +229,14 @@ void Viewer::Run()
         // Pausa y resumen.
         case ' ':
         	videoPausado = !videoPausado;
+        	break;
+
+        // Alternar imagen antidistorsionada
+        case 'u':
+        	mostrarEntradaAntidistorsionada = !mostrarEntradaAntidistorsionada;
+        	break;
+
+
         }
 
         if(menuReset)

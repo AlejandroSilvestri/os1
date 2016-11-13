@@ -5,6 +5,14 @@ OS1 con capacidad de guardar y cargar mapas, en archivos binarios, de texto y xm
 Para serializar se utiliza boost::serialization, de manera intrusiva pero lo menos posible,
 definiendo las funciones de serialización en archivo serialize.cpp aparte.
 
+LISTO:
+- Pausa en reversa corregida
+- Agregados coeficientes de distorsión hasta K6, aunque un fisheye se corrigió bien con K1 y K2 solamente
+- Vista de imagen de entrada antidistorsionada
+
+TODO:
+- Mensaje explicando teclas
+
 
 
 =============================================================================

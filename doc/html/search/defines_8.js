@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rad2deg',['RAD2DEG',['../macros_8h.html#af93ab8e29004f71549e1cd50278c5473',1,'macros.h']]]
+  ['pthing',['PTHING',['../batch__stats_8cpp.html#a4615940f3cf749903bc1c549b2457d26',1,'batch_stats.cpp']]]
 ];

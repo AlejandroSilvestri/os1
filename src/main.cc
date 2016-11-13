@@ -180,8 +180,7 @@ using namespace std;
 int main(int argc, char **argv){
 
 	cout	<< "Iniciando ORB-SLAM.  Uso:" << endl
-			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\n\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl
-			<< "Cantidad de argumentos: " << argc << endl;
+			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl;
 
     cv::VideoCapture video,					// Entrada de video desde un archivo
     			 	 webcam;				// Entrada de video desde una webcam
@@ -246,10 +245,13 @@ int main(int argc, char **argv){
 				// El usuario movió el trackbar: hay que cambiar el frame.
 				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, SLAM.mpViewer->tiempo);
 				SLAM.mpViewer->tiempoAlterado = false;	// Bajar la señal.
-			} else if (SLAM.mpViewer->tiempoReversa){
+			} else if (SLAM.mpViewer->tiempoReversa && !SLAM.mpViewer->videoPausado){
 				// La película va marcha atrás
 				int pos = videoEntrada->get(cv::CAP_PROP_POS_FRAMES);
 				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, pos>=2? pos-2 : 0);
+				if(pos<2)
+					// Si llega al inicio del video, recomienza hacia adelante
+					SLAM.mpViewer->tiempoReversa = false;
 			}
     	}
 

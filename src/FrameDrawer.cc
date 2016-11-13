@@ -98,7 +98,7 @@ cv::Mat FrameDrawer::DrawFrame()
     if(state==Tracking::NOT_INITIALIZED){ //INITIALIZING
         for(unsigned int i=0; i<vMatches.size(); i++)
             if(vMatches[i]>=0)
-                cv::line(im,vIniKeys[i].pt,vCurrentKeys[vMatches[i]].pt, cv::Scalar(0,255,0));
+                cv::line(im,vIniKeys[i].pt,vCurrentKeys[vMatches[i]].pt, cv::Scalar(0,255,255));
 
     // Dibuja marcas sobre puntos del mapa: verdes en estado normal, azules en VO.
     }else if(state==Tracking::OK) //TRACKING
@@ -172,17 +172,21 @@ cv::Mat FrameDrawer::DrawFrame()
 void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
 {
     stringstream s;	// Mensaje
-    //cv::Scalar color = cv::Scalar(0,0,0); // Color del fondo del mensaje, negro por defecto
+    cv::Scalar color = cv::Scalar(0,0,0); // Color del fondo del mensaje, negro por defecto
     if(nState==Tracking::NO_IMAGES_YET){
         s << " WAITING FOR IMAGES";
-        //color = cv::Scalar(0,0,0);
+        color = cv::Scalar(0,32,64);
     }else if(nState==Tracking::NOT_INITIALIZED){
-        s << " TRYING TO INITIALIZE ";
+        s << " INICIALIZANDO ";
+        color = cv::Scalar(0,64,64);
     }else if(nState==Tracking::OK){
-        if(!mbOnlyTracking)
-            s << "SLAM MODE |  ";
-        else
-            s << "LOCALIZATION | ";
+        if(!mbOnlyTracking){
+            s << "SLAM |  ";
+            color = cv::Scalar(0,64,0);
+        }else{
+            s << "LOCALIZACIÓN | ";
+            color = cv::Scalar(32,32,0);
+        }
         int nKFs = mpMap->KeyFramesInMap();
         int nMPs = mpMap->MapPointsInMap();
         s << "KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked;
@@ -190,8 +194,8 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
             s << ", + VO matches: " << mnTrackedVO;
     }
     else if(nState==Tracking::LOST){
-        s << " TRACK LOST. TRYING TO RELOCALIZE ";
-        //color = cv::Scalar(0,0,128);
+        s << " PERDIDO.  INTENTANDO RELOCALIZAR ";
+        color = cv::Scalar(0,0,64);
     }
     else if(nState==Tracking::SYSTEM_NOT_READY){
         s << " LOADING ORB VOCABULARY. PLEASE WAIT...";
@@ -202,8 +206,8 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
 
     imText = cv::Mat(im.rows+textSize.height+10,im.cols,im.type());
     im.copyTo(imText.rowRange(0,im.rows).colRange(0,im.cols));
-    //imText.rowRange(im.rows,imText.rows) = cv::Mat(textSize.height+10,im.cols,im.type(), color);
-    imText.rowRange(im.rows,imText.rows) = cv::Mat::zeros(textSize.height+10,im.cols,im.type());
+    imText.rowRange(im.rows,imText.rows) = cv::Mat(textSize.height+10,im.cols,im.type(), color);
+    //imText.rowRange(im.rows,imText.rows) = cv::Mat::zeros(textSize.height+10,im.cols,im.type());
     cv::putText(imText,s.str(),cv::Point(5,imText.rows-5),cv::FONT_HERSHEY_PLAIN,1,cv::Scalar(255,255,255),1,8);
 
 }
@@ -223,7 +227,10 @@ void FrameDrawer::Update(Tracking *pTracker)
     mvbMap = vector<bool>(N,false);
     mbOnlyTracking = pTracker->mbOnlyTracking;
 
+    // Datos adicionales para viewer
     observaciones = vector<int>(N,0);
+    K = pTracker->mCurrentFrame.mK;
+    distCoef = pTracker->mCurrentFrame.mDistCoef;
 
 
     if(pTracker->mLastProcessedState==Tracking::NOT_INITIALIZED)

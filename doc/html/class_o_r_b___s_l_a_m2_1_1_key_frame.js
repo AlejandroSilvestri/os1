@@ -1,6 +1,7 @@
 var class_o_r_b___s_l_a_m2_1_1_key_frame =
 [
     [ "KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a6b2fd06ed5e4a8f9546c515db554bcb6", null ],
+    [ "KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3c33a6c79533849d367db9e85fe98c14", null ],
     [ "AddChild", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2394adfb627d9cf87ed8da78f6b0d709", null ],
     [ "AddConnection", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8d21a23485b7c104a73d6ad3cccf4e93", null ],
     [ "AddLoopEdge", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#aca519e7486b0e6f1fd6c98d7ced920b8", null ],
@@ -33,6 +34,8 @@ var class_o_r_b___s_l_a_m2_1_1_key_frame =
     [ "isBad", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a95c437e42b4894a4acc9f05af61e9963", null ],
     [ "IsInImage", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab3be661e9ce7fb1809bb39a5e6fde7fd", null ],
     [ "ReplaceMapPointMatch", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a35779a4eb4f5cec346780bbbdf377298", null ],
+    [ "serialize", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a338bacd1855d45c7a1cc38b9ba47a46e", null ],
+    [ "serialize", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a03bbcbd5f862204ac10985a51d8cd74f", null ],
     [ "SetBadFlag", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a365ec4d06acbbcd668aa5a069c69fdaa", null ],
     [ "SetErase", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9424cf54c979bc87df12b48e3827e834", null ],
     [ "SetNotErase", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09", null ],
@@ -40,6 +43,7 @@ var class_o_r_b___s_l_a_m2_1_1_key_frame =
     [ "TrackedMapPoints", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a729cbf2c84db5cbfdda98a9612f8cd0b", null ],
     [ "UpdateBestCovisibles", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb8502509c136536bf8d45793f8872", null ],
     [ "UpdateConnections", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#afe7026956c91d4e0a01812be9dc7e8d5", null ],
+    [ "boost::serialization::access", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac98d07dd8f7b70e16ccb9a01abf56b9c", null ],
     [ "cx", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a70011d4f3a151dd374c684e258aab4a8", null ],
     [ "cy", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#ae78735c57b92b2d5960ed21c97dfe6a8", null ],
     [ "fx", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a951e9ac5670b8543a7386dee5714da0c", null ],

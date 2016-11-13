@@ -60,6 +60,12 @@ public:
     // Draw last processed frame.
     cv::Mat DrawFrame();
 
+    /** Matriz de calibración del último frame, para undistort.*/
+    cv::Mat K;
+
+    /** Coeficientes de distorsión para undistort.*/
+    cv::Mat distCoef;
+
 protected:
 
     /** Agrega una barra debajo de la imagen y escribe en ella el estado del sistema.*/

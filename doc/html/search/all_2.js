@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['access',['access',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac98d07dd8f7b70e16ccb9a01abf56b9c',1,'ORB_SLAM2::KeyFrame::access()'],['../class_o_r_b___s_l_a_m2_1_1_map.html#ac98d07dd8f7b70e16ccb9a01abf56b9c',1,'ORB_SLAM2::Map::access()'],['../class_o_r_b___s_l_a_m2_1_1_map_point.html#ac98d07dd8f7b70e16ccb9a01abf56b9c',1,'ORB_SLAM2::MapPoint::access()']]],
   ['b',['b',['../classg2o_1_1_base_vertex.html#a837ef1047343d927edb48ad8d510fe90',1,'g2o::BaseVertex::b(int i) const'],['../classg2o_1_1_base_vertex.html#a5c235369ef3fb58de65b90c8cc37d611',1,'g2o::BaseVertex::b(int i)'],['../classg2o_1_1_base_vertex.html#af7a70ede844ad023ba32edde16c8c745',1,'g2o::BaseVertex::b()'],['../classg2o_1_1_base_vertex.html#a6b0bf63c79b2b36186680b2a73ec70bf',1,'g2o::BaseVertex::b() const'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#a79afa60eb11928eeeb1b97f2d2a30732',1,'g2o::OptimizableGraph::Vertex::b(int i) const =0'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#af2d92761ad2732b6e9b19bd52fa2a19b',1,'g2o::OptimizableGraph::Vertex::b(int i)=0'],['../classg2o_1_1_solver.html#a3212ad9d80f8f5ad15b72c2b55000095',1,'g2o::Solver::b()'],['../classg2o_1_1_solver.html#a812d5cad59fed145c3f47bcf99419a97',1,'g2o::Solver::b() const']]],
   ['backupstacktype',['BackupStackType',['../classg2o_1_1_base_vertex.html#ae6632291d46b458196bdb021a6c8cba1',1,'g2o::BaseVertex']]],
   ['base_5fbinary_5fedge_2eh',['base_binary_edge.h',['../base__binary__edge_8h.html',1,'']]],
@@ -28,8 +29,8 @@ var searchData=
   ['baseofblock',['baseOfBlock',['../classg2o_1_1_sparse_block_matrix_diagonal.html#a4cc17dfc19f065595dd2b09de0440df5',1,'g2o::SparseBlockMatrixDiagonal']]],
   ['baseproperty',['BaseProperty',['../classg2o_1_1_base_property.html',1,'g2o']]],
   ['baseproperty',['BaseProperty',['../classg2o_1_1_base_property.html#a00444ab7926d86beb9e66550e40e5d97',1,'g2o::BaseProperty']]],
-  ['baseunaryedge',['BaseUnaryEdge',['../classg2o_1_1_base_unary_edge.html#a7375d1ebfb57ba0308f863739b817b15',1,'g2o::BaseUnaryEdge']]],
   ['baseunaryedge',['BaseUnaryEdge',['../classg2o_1_1_base_unary_edge.html',1,'g2o']]],
+  ['baseunaryedge',['BaseUnaryEdge',['../classg2o_1_1_base_unary_edge.html#a7375d1ebfb57ba0308f863739b817b15',1,'g2o::BaseUnaryEdge']]],
   ['baseunaryedge_3c_202_2c_20vector2d_2c_20vertexse3expmap_20_3e',['BaseUnaryEdge&lt; 2, Vector2d, VertexSE3Expmap &gt;',['../classg2o_1_1_base_unary_edge.html',1,'g2o']]],
   ['baseunaryedge_3c_203_2c_20vector3d_2c_20vertexse3expmap_20_3e',['BaseUnaryEdge&lt; 3, Vector3d, VertexSE3Expmap &gt;',['../classg2o_1_1_base_unary_edge.html',1,'g2o']]],
   ['basevertex',['BaseVertex',['../classg2o_1_1_base_vertex.html#a40fcd78e21bb4aedf7e299922c650937',1,'g2o::BaseVertex']]],
@@ -52,6 +53,7 @@ var searchData=
   ['bg_5fwhite',['BG_WHITE',['../color__macros_8h.html#a6beded3f171517df3902c52f79f6fea2',1,'color_macros.h']]],
   ['bg_5fyellow',['BG_YELLOW',['../color__macros_8h.html#ab31fe3e74b1137650d30ede5c9b86218',1,'color_macros.h']]],
   ['bhattacharyya',['BHATTACHARYYA',['../namespace_d_bo_w2.html#aa252a592dd607c6e60dede06ceef2722a22de570628b33a2662630def802a23cb',1,'DBoW2']]],
+  ['bifurcacion',['BIFURCACION',['../serialize_8cpp.html#aa20820f8508907155ae78692268d3fe7',1,'serialize.cpp']]],
   ['binary',['BINARY',['../namespace_d_bo_w2.html#a5de5c8a307aca9a84ffefda2a9bc467aae517632073c3a0b980558ebb6519d759',1,'DBoW2']]],
   ['bl',['BL',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html#ab31adc0d00b85307ba98b2ff434c30fc',1,'ORB_SLAM2::ExtractorNode']]],
   ['block',['block',['../structg2o_1_1_sparse_block_matrix_c_c_s_1_1_row_block.html#a88ab75d0e29496d3ca023105256a2926',1,'g2o::SparseBlockMatrixCCS::RowBlock::block()'],['../classg2o_1_1_sparse_block_matrix.html#aaca7b38d2e9a18eebf9e6f5957af0cf7',1,'g2o::SparseBlockMatrix::block(int r, int c, bool alloc=false)'],['../classg2o_1_1_sparse_block_matrix.html#aa8268815dbc660a4aa04c4360e3e9e2c',1,'g2o::SparseBlockMatrix::block(int r, int c) const']]],
@@ -71,8 +73,9 @@ var searchData=
   ['blocksolverx',['BlockSolverX',['../namespaceg2o.html#a8d3214273331c25cbb5d5266770e6c12',1,'g2o']]],
   ['bnomore',['bNoMore',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html#ada60a6ca3a5874204dcb3245ac7d2d97',1,'ORB_SLAM2::ExtractorNode']]],
   ['boolproperty',['BoolProperty',['../namespaceg2o.html#a28e624fedcafeb2b049be2930421071f',1,'g2o']]],
-  ['bowvector',['BowVector',['../class_d_bo_w2_1_1_bow_vector.html',1,'DBoW2']]],
+  ['boost',['boost',['../namespaceboost.html',1,'']]],
   ['bowvector',['BowVector',['../class_d_bo_w2_1_1_bow_vector.html#ac4da23e700adc4ee083d66b23ce86e90',1,'DBoW2::BowVector']]],
+  ['bowvector',['BowVector',['../class_d_bo_w2_1_1_bow_vector.html',1,'DBoW2']]],
   ['bowvector_2ecpp',['BowVector.cpp',['../_bow_vector_8cpp.html',1,'']]],
   ['bowvector_2eh',['BowVector.h',['../_bow_vector_8h.html',1,'']]],
   ['br',['BR',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html#a8530a1f5934122f24382859c156a441d',1,'ORB_SLAM2::ExtractorNode']]],
@@ -80,5 +83,6 @@ var searchData=
   ['buildlinearstructure',['buildLinearStructure',['../classg2o_1_1_optimization_algorithm_with_hessian.html#aa84732c8554039ba0152693837bd1b4a',1,'g2o::OptimizationAlgorithmWithHessian']]],
   ['buildstructure',['buildStructure',['../classg2o_1_1_block_solver.html#a17e4392d3cca9a9d7cf38bb46d073b86',1,'g2o::BlockSolver::buildStructure()'],['../classg2o_1_1_solver.html#a6c93ac0f528ffe05867d33150c54f46f',1,'g2o::Solver::buildStructure()']]],
   ['buildsystem',['buildSystem',['../classg2o_1_1_block_solver.html#a2654a8d52f38e5ce23720a8de302e2e7',1,'g2o::BlockSolver::buildSystem()'],['../classg2o_1_1_solver.html#ac1565e85d5ca68a87ad7f06f8164a8c0',1,'g2o::Solver::buildSystem()']]],
-  ['bundleadjustment',['BundleAdjustment',['../class_o_r_b___s_l_a_m2_1_1_optimizer.html#aac6bf926792ed8a013d64897879a89ec',1,'ORB_SLAM2::Optimizer']]]
+  ['bundleadjustment',['BundleAdjustment',['../class_o_r_b___s_l_a_m2_1_1_optimizer.html#aac6bf926792ed8a013d64897879a89ec',1,'ORB_SLAM2::Optimizer']]],
+  ['serialization',['serialization',['../namespaceboost_1_1serialization.html',1,'boost']]]
 ];
