@@ -191,18 +191,32 @@ void Viewer::Run()
         }
         cv::imshow("entrada", imagenParaMostrar);
 
+
         // duración cero para entradas que no son archivos de video, y que por ende no usa el trackbar.
         // Tampoco se procesa si el usuario movió el trackbar de tiempo, y el cambio de tiempo está en proceso.
-        if(duracion && !tiempoAlterado){
-			if(tiempo == trackbarPosicionAnterior){
-				// El usuario no cambió el trackbar de tiempo.  Hay que reflejar la posición actual en el trackbar.
-				trackbarPosicionAnterior = video->get(CV_CAP_PROP_POS_FRAMES);
-				cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
-			}else{
-				// El usuario cambió el trackbar de tiempo
-				trackbarPosicionAnterior = tiempo;
-				tiempoAlterado = true;
-			}
+        if(duracion){
+        	// Es archivo de video
+
+        	// Controlar la barra de tiempo
+        	if(!tiempoAlterado){
+				if(tiempo == trackbarPosicionAnterior){
+					// El usuario no cambió el trackbar de tiempo.  Hay que reflejar la posición actual en el trackbar.
+					trackbarPosicionAnterior = video->get(CV_CAP_PROP_POS_FRAMES);
+					cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
+				}else{
+					// El usuario cambió el trackbar de tiempo
+					trackbarPosicionAnterior = tiempo;
+					tiempoAlterado = true;
+				}
+            }
+
+        	// El modo automático controla el sentido de avance del video si se pierde
+        	if(modoAutomatico){
+            	if(mpTracker->mState==Tracking::OK)
+            		tiempoReversa = sentidoModoAutomatico;
+            	else if(mpTracker->mState==Tracking::LOST)
+            		tiempoReversa = !sentidoModoAutomatico;
+        	}
         }
 
         // Retardo de bucle en ms, 1e3/fps
@@ -224,6 +238,7 @@ void Viewer::Run()
         // Reversa, alterna el sentido del tiempo en archivos de video.  Inocuo en otras entradas.
         case 'r':
         	tiempoReversa = !tiempoReversa;
+        	sentidoModoAutomatico = tiempoReversa;	// Usado en el modo automático solamente.
         	break;
 
         // Pausa y resumen.
@@ -236,6 +251,11 @@ void Viewer::Run()
         	mostrarEntradaAntidistorsionada = !mostrarEntradaAntidistorsionada;
         	break;
 
+        // Modo automático, que invierte el video cuando se pierde, y lo vuelve a invertir cuando se relocaliza.
+        case 'a':
+        	modoAutomatico = !modoAutomatico;
+
+        	break;
 
         }
 

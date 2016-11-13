@@ -271,8 +271,8 @@ int main(int argc, char **argv){
         double ttrack = std::chrono::duration_cast<std::chrono::duration<double> >(std::chrono::steady_clock::now() - t1).count();
 
     	// Mensajes de consola con frecuencia controlada
-        if(++n%100==0)//if(++n<=10 || n%100==0)
-    		cout << "Cuadro nº " << n << ", " << ttrack << " s" << endl;
+        //if(++n%100==0)//if(++n<=10 || n%100==0)
+    		//cout << "Cuadro nº " << n << ", " << ttrack << " s" << endl;
 
         // Delay para 30 fps, período de 0.033 s
         if(ttrack < 0.033)

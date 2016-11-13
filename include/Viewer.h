@@ -94,7 +94,13 @@ public:
     bool videoPausado = false;
 
     /** Señal que alterna mostrando la imagen de entrada como viene o antidistorsionada.*/
-    bool mostrarEntradaAntidistorsionada = false;
+    bool mostrarEntradaAntidistorsionada = true;
+
+    /** Modo automatico que pasa a resversa cuando se pierde.  Controlado por el usuario.*/
+    bool modoAutomatico = false;
+
+    /** Variable interna que indica el sentido del video cuando actúa la corrección automática.  false es normal para adelante, perdido reversa.  true es lo contrario.*/
+    bool sentidoModoAutomatico = false;
 
 
 

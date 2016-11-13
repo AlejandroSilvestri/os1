@@ -9,9 +9,12 @@ LISTO:
 - Pausa en reversa corregida
 - Agregados coeficientes de distorsión hasta K6, aunque un fisheye se corrigió bien con K1 y K2 solamente
 - Vista de imagen de entrada antidistorsionada
+- Mensaje explicando teclas
+- Corregido color de barra de información
+- Barra de información con código de color indicando la cantidad de puntos visualizados
 
 TODO:
-- Mensaje explicando teclas
+- Señalar pausa y reversa
 
 
 

@@ -34,7 +34,7 @@ namespace ORB_SLAM2
 {
 
 class Tracking;
-class Viewer;
+//class Viewer;
 class MapPoint;
 class Map;
 

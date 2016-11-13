@@ -182,7 +182,8 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
     }else if(nState==Tracking::OK){
         if(!mbOnlyTracking){
             s << "SLAM |  ";
-            color = cv::Scalar(0,128,0);
+            color = cv::Scalar(0,mnTracked,0);
+            //cout << color << endl;
         }else{
             s << "LOCALIZACIÓN | ";
             color = cv::Scalar(64,64,0);
