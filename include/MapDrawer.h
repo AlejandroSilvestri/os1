@@ -31,32 +31,105 @@
 namespace ORB_SLAM2
 {
 
+/**
+ * Esta clase contiene los métodos para dibujar en pangolin.
+ * Dibuja la cámara, los keyframes y los puntos 3D del mapa.
+ * No los dibuja directamente sobre Pangolin, sino que usa glew.
+ * Viewer::Run invoca estos métodos, y vuelca lo dibujado a Pangolin.
+ *
+ */
 class MapDrawer
 {
 public:
-    MapDrawer(Map* pMap, const string &strSettingPath);
+    /**
+     * Constructor que toma sus parámetros directamente desde el archivo de configuración.
+     *
+     * @param pMap Mapa del mundo.
+     * @param strSettingPath Ruta del archivo de configuración.
+     *
+     * La configuración se limita a aspectos gráficos: anchos de trazos, tamaños de cámara y keyframes.
+     *
+     * Invocado sólo desde el constructor de System.
+     */
+	MapDrawer(Map* pMap, const string &strSettingPath);
+
+    /** Constructor declarado no definido.*/
     MapDrawer(const string &strSettingPath);
 
+    /** Mapa del mundo.*/
     Map* mpMap;
 
+    /**
+     * Dibuja en pantalla todos los puntos 3D del mapa.
+     * Dibua todos en color negro, y luego en rojo los de referencia (los visualizados por la cámara).
+     * Invocado en cada iteración de Viewer::Run.
+     *
+     * Invocado sólo desde Viewer::Run, en cada iteración.
+     */
     void DrawMapPoints();
+
+    /**
+     * Dibuja los keyframes y el grafo en pantalla.
+     *
+     * @param bDrawKF true para dibujar keyframes.
+     * @param bDrawGraph true para dibujar el grafo.
+     *
+     * Invocado sólo desde Viewer::Run, en cada iteración.
+     */
     void DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph);
+
+    /**
+     * Dibuja la cámara en la pose dada.
+     *
+     * @param Twc Pose de la cámara.
+     *
+     * Invocado sólo desde Viewer::Run, en cada iteración.
+     */
     void DrawCurrentCamera(pangolin::OpenGlMatrix &Twc);
+
+    /**
+     *
+     *
+     * @param Tcw Pose en el mundo, matriz de rototraslación en coordenadas homogéneas.
+     *
+     * Invocado sólo desde Tracking::Track y Tracking::CreateInitialMapMonocular.
+     */
     void SetCurrentCameraPose(const cv::Mat &Tcw);
+
+    /** Método declarado y no definido.*/
     void SetReferenceKeyFrame(KeyFrame *pKF);
+
+    /**
+     *
+     *
+     * Invocado sólo desde Viewer::Run.
+     */
     void GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M);
 
+    /** Método declarado y no definido.*/
     void Register(Map* pMap);
 
 private:
 
+    /** Tamaño de los keyframe a dibujar, definido en el archivo de configuración.*/
     float mKeyFrameSize;
+
+    /** Ancho del trazo para dibujar keyframes, definido en el archivo de configuración.*/
     float mKeyFrameLineWidth;
+
+    /** Ancho del trazo del grafo, definido en el archivo de configuración.*/
     float mGraphLineWidth;
+
+    /** Tamaño de los puntos del mapa, definido en el archivo de configuración.*/
     float mPointSize;
+
+    /** Tamaño de la cámara a dibujar, definido en el archivo de configuración.*/
     float mCameraSize;
+
+    /** Ancho del trazo para dibujar la cámara, definido en el archivo de configuración.*/
     float mCameraLineWidth;
 
+    /** Pose de la cámara.*/
     cv::Mat mCameraPose;
 
     std::mutex mMutexCamera;
