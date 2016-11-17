@@ -138,15 +138,20 @@ public:
      */
     void load(char* archivo);
 
+
     /**
-     *  Punteros necesarios en la serialización, en los constructores por defecto de KeyFrame y MapPoint, accesibles vía Map::
-     *  System asigna sus valores durante su construcción.
-     *
-    static Map* mpMap;
-    static KeyFrameDatabase* mpKeyFrameDatabase;
-    static ORBVocabulary* mpVocabulary;
-    //static Tracking* mpTracker;
+     * Buffer usado al cargar.
+     * load carga inicialmente los valores fijos, aquéllos que se mantienen idénticos en todos los keyframes.
+     * Usa keyFrameBuffer como contenedor de estos valores, accesibles por el constructor KeyFrame() durante la serialización de carga.
      */
+    KeyFrame* keyFrameBuffer = NULL;
+
+    /**
+     * Buffer usado al cargar.
+     * load carga inicialmente los valores fijos, aquéllos que se mantienen idénticos en todos los MapPoints.
+     * Usa keyMapPointBuffer como contenedor de estos valores, accesibles por el constructor KeyFrame() durante la serialización de carga.
+     */
+    MapPoint* mapPointBuffer = NULL;
 
 protected:
     /** Puntos del mapa.*/

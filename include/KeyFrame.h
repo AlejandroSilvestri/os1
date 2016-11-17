@@ -95,7 +95,19 @@ public:
     KeyFrame(Frame &F, Map* pMap, KeyFrameDatabase* pKFDB);
 
     // Pose functions
-    /** Establece Tcw, la pose del keyframe.*/
+    /**
+     * Establece Tcw, la pose del keyframe.
+     *
+     * @param Tcw Matriz de pose de la cámara respecto del mundo.
+     *
+     * Este método también calcula otras formas de expresión de la pose:
+     * - Twc
+     * - Rcw
+     * - Rwc
+     * - tcw
+     * - Ow
+     *
+     */
     void SetPose(const cv::Mat &Tcw);
 
     /** Lee Tcw, la pose del keyframe. @returns Tcw, la pose.*/
@@ -287,7 +299,14 @@ public:
     /** Marca el keyframe como malo.  Los algoritmos lo ignorarán.*/
     void SetBadFlag();
 
-    /** Consulta la marca mbBad.  true si es malo.*/
+    /**
+     * Consulta la marca mbBad.
+     * true si es malo.
+     * Cuando el keyframe es malo, se lo ignora sin excepciones en todo orb-slam2.
+     * Equivaldría a eliminar la instancia, pero eso puede romper algún puntero efímero.
+     * La serialización es un buen momento para quitar los malos.
+     *
+     */
     bool isBad();
 
     /**
@@ -361,37 +380,37 @@ public:
 
     // Variables used by the tracking
 
-    /** Variables usadas por tracking.*/
+    /** Variable efímera usadas por Tracking.*/
     long unsigned int mnTrackReferenceForFrame;
 
-    /** Variables usadas por tracking.*/
+    /** Variable efímera usadas por Tracking.*/
     long unsigned int mnFuseTargetForKF;
 
     // Variables used by the local mapping
 
-    /** Variables usadas por el mapeo local.*/
+    /** Variable efímera usadas por el mapeo local.*/
     long unsigned int mnBALocalForKF;
 
-    /** Variables usadas por el mapeo local.*/
+    /** Variable efímera usadas por el mapeo local.*/
     long unsigned int mnBAFixedForKF;
 
     // Variables used by the keyframe database
-    /** Variables usadas por la base de datos de keyframes.*/
+    /** Variable efímera usadas por la base de datos de keyframes.*/
     long unsigned int mnLoopQuery;
 
-    /** Variables usadas por la base de datos de keyframes.*/
+    /** Variable efímera usadas por la base de datos de keyframes.*/
     int mnLoopWords;
 
-    /** Variables usadas por la base de datos de keyframes.*/
+    /** Variable efímera usadas por la base de datos de keyframes.*/
     float mLoopScore;
 
-    /** Variables usadas por la base de datos de keyframes.*/
+    /** Variable efímera usadas por por la base de datos de keyframes.*/
     long unsigned int mnRelocQuery;
 
-    /** Variables usadas por la base de datos de keyframes.*/
+    /** Variable efímera usadas por la base de datos de keyframes.*/
     int mnRelocWords;
 
-    /** Variables usadas por la base de datos de keyframes.*/
+    /** Variable efímera usadas por la base de datos de keyframes.*/
     float mRelocScore;
 
     // Variables used by loop closing
@@ -399,7 +418,7 @@ public:
     cv::Mat mTcwGBA;
     /** Variable usada en cierre de bucle.*/
     cv::Mat mTcwBefGBA;
-    /** Variable usada en cierre de bucle.*/
+    /** Variable efímera usadas por  cierre de bucle.*/
     long unsigned int mnBAGlobalForKF;
 
     // Calibration parameters
@@ -418,8 +437,8 @@ public:
     /** Puntos singulares con coordenadas "desdistorsionadas".  Los elementos se corresponden con los de mvKeys.*/
     const std::vector<cv::KeyPoint> mvKeysUn;
 
-    const std::vector<float> mvuRight; // negative value for monocular points
-    const std::vector<float> mvDepth; // negative value for monocular points
+    //const std::vector<float> mvuRight; // negative value for monocular points
+    //const std::vector<float> mvDepth; // negative value for monocular points
 
     /** Descriptores.  Se corresponden con los de mvKeys.*/
     const cv::Mat mDescriptors;
@@ -571,8 +590,8 @@ protected:
      */
     bool mbBad;    
 
-    /** Dato auxiliar para visualización solamente.*/
-    float mHalfBaseline; // Only for visualization
+    /** No se usa en el código.*/
+    //float mHalfBaseline; // Only for visualization
 
     /** Mapa donde se encuentra el keyFrame.
      * Se recibe como argumento del constructor.

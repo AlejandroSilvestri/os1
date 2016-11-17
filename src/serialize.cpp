@@ -41,6 +41,7 @@
  *
  */
 
+#include <typeinfo>
 
 // boost::serialization
 #include <boost/serialization/serialization.hpp>
@@ -85,7 +86,7 @@ TIPOS_ARCHIVOS(binary)
 #define BIFURCACION
 #ifdef BIFURCACION
 	#include <typeinfo>
-	#define GUARDANDO(ARCHIVO) (typeinfo(ARCHIVO) == typeinfo(ArchivoSalida))
+	#define CARGANDO(ARCHIVO) ( typeid(ARCHIVO) == typeid(ArchivoEntrada) )
 #endif
 
 /** Instanciación explícita*/
@@ -108,11 +109,10 @@ namespace boost{namespace serialization{
 
 // KeyPoint
 template<class Archive> void serialize(Archive & ar, cv::KeyPoint& kf, const unsigned int version){
-  ar & kf.angle;
-  ar & kf.class_id;
-  ar & kf.octave;
-  ar & kf.response;
-  ar & kf.response;
+  ar & kf.angle;	// Usado en matcher
+  //ar & kf.class_id;	// No usado
+  ar & kf.octave;	// Usado en LocalMapping y otros
+  //ar & kf.response;	// Solamente se usa durante la extracción en ORBextractor::DistributeOctTree
   ar & kf.pt.x;
   ar & kf.pt.y;
 }
@@ -201,12 +201,16 @@ void Map::load(char* archivo){
 		// Agrega el keyframe a la base de datos de keyframes
 		kfdb->add(kf);
 
-		// Busca el máximo id
-		//maxId = max(maxId, kf->mnId);
+		// UpdateConnections para reconstruir el grafo
+		//kf->UpdateConnections();
 	}
 	//KeyFrame::nNextId = maxId + 1;
 	KeyFrame::nNextId = mnMaxKFid + 1;	// mnMaxKFid es el id del último keyframe agregado al mapa
 
+	//for(MapPoint* mp : mspMapPoints){
+		// Reconstruye normal, profundidad y alguna otra cosa.  Requiere cargados los keyframes.
+		//mp->UpdateNormalAndDepth();
+	//}
 
 	// Next id para MapPoint
 	maxId = 0;
@@ -256,11 +260,19 @@ template<class Archivo> void MapPoint::serialize(Archivo& ar, const unsigned int
 
 	//if(mbBad) return;	// Evita guardar puntos inútiles
 
-	ar & const_cast<long unsigned int &> (mnId );
-	ar & nNextId;
+	ar & const_cast<long unsigned int &> (mnId);
+	ar & const_cast<cv::Mat &> (mWorldPos);
 	ar & const_cast<long int &> (mnFirstKFid);
-	ar & const_cast<long int &> (mnFirstFrame);	//Inútil
+	ar & mpRefKF;
 	ar & const_cast<int &> (nObs);
+	ar & mObservations;
+	ar & const_cast<cv::Mat &> (mDescriptor);	// Reconstruíble con mp->ComputeDistinctiveDescriptors() (quizás requiere primero haber cargado los keyframes.), pero significa mucho trabajo para pocos datos.
+
+	ar & const_cast<int &> (mnVisible);
+	ar & const_cast<int &> (mnFound);
+	ar & const_cast<bool &> (mbBad);
+
+	//Posiblemente efímeros
 	ar & const_cast<float &> (mTrackProjX);
 	ar & const_cast<float &> (mTrackProjY);
 	ar & const_cast<float &> (mTrackProjXR);
@@ -274,22 +286,23 @@ template<class Archivo> void MapPoint::serialize(Archivo& ar, const unsigned int
 	ar & const_cast<long unsigned int &> (mnLoopPointForKF);
 	ar & const_cast<long unsigned int &> (mnCorrectedByKF);
 	ar & const_cast<long unsigned int &> (mnCorrectedReference);
-
 	ar & const_cast<cv::Mat &> (mPosGBA);
 	ar & const_cast<long unsigned int &> (mnBAGlobalForKF);
-	ar & const_cast<cv::Mat &> (mWorldPos);
 
-	ar & mObservations;
 
+	//ar & nNextId;	// Propiedad estática, se ajusta luego de cargar, en Map::load
+	//ar & const_cast<long int &> (mnFirstFrame);	//Inútil
+
+	// Reconstruíbles con mp->UpdateNormalAndDepth();
 	ar & const_cast<cv::Mat &> (mNormalVector); // Reconstruíble con mp->UpdateNormalAndDepth();
-	ar & const_cast<cv::Mat &> (mDescriptor);	// Reconstruíble con mp->ComputeDistinctiveDescriptors();
-	ar & mpRefKF;
-
-	ar & const_cast<int &> (mnVisible);
-	ar & const_cast<int &> (mnFound);
-	ar & const_cast<bool &> (mbBad);
 	ar & const_cast<float &> (mfMinDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
 	ar & const_cast<float &> (mfMaxDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
+
+
+
+	if(CARGANDO(ar)){
+		//UpdateNormalAndDepth();  // luego de cargar los keyframes
+	}
 }
 INST_EXP(MapPoint)
 
@@ -323,7 +336,7 @@ KeyFrame::KeyFrame():
     mbf(0.0), mb(0.0), mThDepth(0.0), N(0), mnScaleLevels(0), mfScaleFactor(0),
     mfLogScaleFactor(0.0),
     mnMinX(0), mnMinY(0), mnMaxX(0), mnMaxY(0),
-    mpKeyFrameDB(Sistema->mpKeyFrameDatabase), mpORBvocabulary(Sistema->mpVocabulary), mpMap(Sistema->mpMap)
+    mpKeyFrameDB(Sistema->mpKeyFrameDatabase), mpORBvocabulary(Sistema->mpVocabulary), mbFirstConnection(true), mpMap(Sistema->mpMap)
 {}
 
 /**
@@ -334,27 +347,26 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 
 	//if(mbToBeErased || mbBad) return;
 
-	ar & nNextId;
-	ar & const_cast<long unsigned int &> (mnId);
-	ar & const_cast<long unsigned int &> (mnFrameId);	// Inútil
-	ar & const_cast<double &> (mTimeStamp);		// Inútil
+	ar & mnId;	//ar & const_cast<long unsigned int &> (mnId);
+	ar & const_cast<cv::Mat &> (Tcw);
+	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
+	ar & const_cast<int &> (N);	// Reconstruible N=mvKeysUn.size()
+	ar & const_cast<cv::Mat &> (mDescriptors);
+	ar & const_cast<bool &> (mbBad);
+
+	ar & mvpMapPoints;
+	ar & mpParent;
+	ar & mspChildrens;
+	ar & mspLoopEdges;
+
+
+	ar & mGrid;	// Reconstruible
+
+	// Tienen el mismo valor en todas las instancais
 	ar & const_cast<int &> (mnGridCols);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnGridRows);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &>  (mfGridElementWidthInv);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &>  (mfGridElementHeightInv);	// Mismo valor en todos los keyframes
-	ar & const_cast<long unsigned int &> (mnTrackReferenceForFrame);	// Parece efímera
-	ar & const_cast<long unsigned int &> (mnFuseTargetForKF);	// Parece efímera
-	ar & const_cast<long unsigned int &> (mnBALocalForKF);	// Parece efímera
-	ar & const_cast<long unsigned int &> (mnBAFixedForKF);	// Parece efímera
-	ar & const_cast<long unsigned int &> (mnLoopQuery);	// Efímero, no hace falta guardar, se inicializa en cero.
-	ar & const_cast<int &> (mnLoopWords);	// Efímero, no hace falta guardar, se inicializa en cero.
-	ar & const_cast<float &> (mLoopScore);	// Parece efímera
-	ar & const_cast<long unsigned int &> (mnRelocQuery);	// Efímero, no hace falta guardar, se inicializa en cero.
-	ar & const_cast<int &> (mnRelocWords);	// Efímero, no hace falta guardar, se inicializa en cero.
-	ar & const_cast<float &> (mRelocScore);	// Efímero, no hace falta guardar, se inicializa en cero.
-	ar & const_cast<cv::Mat &> (mTcwGBA);	// Parece efímera
-	ar & const_cast<cv::Mat &> (mTcwBefGBA);	// Parece efímera
-	ar & const_cast<long unsigned int &> (mnBAGlobalForKF);	// Parece efímera
 	ar & const_cast<float &> (fx);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (fy);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (cx);	// Mismo valor en todos los keyframes
@@ -364,48 +376,72 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	ar & const_cast<float &> (mbf);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (mb);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (mThDepth);	// Mismo valor en todos los keyframes
-	ar & const_cast<int &> (N);	// Reconstruible
-	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeys);	// Quizás no se usan, o sólo se usan para graficar
-	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
-	ar & const_cast<std::vector<float> &> (mvuRight);	// No usado
-	ar & const_cast<std::vector<float> &> (mvDepth);	// No usado
-	ar & const_cast<cv::Mat &> (mDescriptors);
-	ar & const_cast<cv::Mat &> (mTcp);
 	ar & const_cast<int &> (mnScaleLevels);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (mfScaleFactor);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (mfLogScaleFactor);	// Mismo valor en todos los keyframes
 	ar & const_cast<std::vector<float> &> (mvScaleFactors);	// Mismo valor en todos los keyframes
 	ar & const_cast<std::vector<float> &> (mvLevelSigma2);	// Mismo valor en todos los keyframes
 	ar & const_cast<std::vector<float> &> (mvInvLevelSigma2);	// Mismo valor en todos los keyframes
-
 	ar & const_cast<int &> (mnMinX);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnMinY);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnMaxX);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnMaxY);	// Mismo valor en todos los keyframes
 	ar & const_cast<cv::Mat &> (mK);	// Mismo valor en todos los keyframes
-	ar & const_cast<cv::Mat &> (Tcw);
-	ar & const_cast<cv::Mat &> (Twc);	// Reconstruible
-	ar & const_cast<cv::Mat &> (Ow);	// Reconstruible
-	ar & mvpMapPoints;
-	ar & mConnectedKeyFrameWeights;
-	ar & mvpOrderedConnectedKeyFrames;	// Reconstruible
-	ar & const_cast<std::vector<int> &>(mvOrderedWeights);	// Reconstruible
 
-	ar & const_cast<bool &> (mbFirstConnection);	// Reconstruible
-	ar & mpParent;
-	ar & mspChildrens;
-	ar & mspLoopEdges;
-
+	/*// Pueden ser inútiles
+	ar & const_cast<cv::Mat &> (mTcwBefGBA);	// Parece efímera
+	ar & const_cast<long unsigned int &> (mnBAGlobalForKF);	// Parece efímera
 	ar & const_cast<bool &> (mbNotErase);	// Parece efímero
 	ar & const_cast<bool &> (mbToBeErased);	// Parece efímero
-	ar & const_cast<bool &> (mbBad);
-	ar & const_cast<float &> (mHalfBaseline);	// Sólo para visualización
+*/
 
-	ar & mGrid;	// Reconstruible
 
+
+
+	//ar & nNextId;	// Propiedad de clase, se ajusta al final de load.
+	//ar & const_cast<long unsigned int &> (mnFrameId);	// Inútil
+	//ar & const_cast<double &> (mTimeStamp);		// Inútil
+	//ar & const_cast<long unsigned int &> (mnTrackReferenceForFrame);	// Efímero, inicializado en el constructor
+	//ar & const_cast<long unsigned int &> (mnFuseTargetForKF);	// Efímero, inicializado en el constructor
+	//ar & const_cast<long unsigned int &> (mnBALocalForKF);	// Efímero, inicializado en el constructor
+	//ar & const_cast<long unsigned int &> (mnBAFixedForKF);	// Efímero, inicializado en el constructor
+	//ar & const_cast<long unsigned int &> (mnLoopQuery);	// Efímero, no hace falta guardar, se inicializa en cero.
+	//ar & const_cast<int &> (mnLoopWords);	// Efímero, no hace falta guardar, se inicializa en cero.
+	//ar & const_cast<float &> (mLoopScore);	// Efímero, no hace falta guardar, se inicializa en cero.
+	//ar & const_cast<long unsigned int &> (mnRelocQuery);	// Efímero, no hace falta guardar, se inicializa en cero.
+	//ar & const_cast<int &> (mnRelocWords);	// Efímero, no hace falta guardar, se inicializa en cero.
+	//ar & const_cast<float &> (mRelocScore);	// Efímero, no hace falta guardar, se inicializa en cero.
+	//ar & const_cast<cv::Mat &> (mTcwGBA);	// Efímera
+	//ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeys);	// No se usan
+	//ar & const_cast<std::vector<float> &> (mvuRight);	// No usado
+	//ar & const_cast<std::vector<float> &> (mvDepth);	// No usado
+	//ar & const_cast<cv::Mat &> (mTcp);	// Inútil
+	//ar & const_cast<float &> (mHalfBaseline);	// Sólo para visualización
 	//ar & const_cast<cv::Mat &> (Cw);
 
-	ComputeBoW();	// Sólo actúa al cargar, porque si el keyframe ya tiene los datos no hace nada.
+
+
+	//ar & const_cast<cv::Mat &> (Twc);	// Reconstruible con SetPose Tcw
+	//ar & const_cast<cv::Mat &> (Ow);	// Reconstruible con SetPose Tcw
+
+	//Reconstruible UpdateConnections
+	ar & mConnectedKeyFrameWeights;	// Reconstruible UpdateConnections
+	ar & mvpOrderedConnectedKeyFrames;	// Reconstruible UpdateConnections
+	ar & const_cast<std::vector<int> &>(mvOrderedWeights);	// Reconstruible UpdateConnections
+	ar & const_cast<bool &> (mbFirstConnection);	// Reconstruible UpdateConnections
+
+
+
+	// Sólo load
+	if(CARGANDO(ar)){
+		// Reconstrucciones
+		//int n = const_cast<int &> (N);
+		//n = mvKeysUn.size();
+
+		ComputeBoW();	// Sólo actúa al cargar, porque si el keyframe ya tiene los datos no hace nada.
+		SetPose(Tcw);
+		// UpdateConnections sólo se puede invocar luego de cargados todos los keyframes
+	}
 
 	// En load hay que construir mGrid con un método como Frame::AssignFeaturesToGrid
 }
