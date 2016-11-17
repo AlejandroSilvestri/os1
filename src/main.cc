@@ -184,7 +184,7 @@ ORB_SLAM2::System* Sistema;
 
 int main(int argc, char **argv){
 
-	cout	<< "Iniciando ORB-SLAM.  Uso:" << endl
+	cout	<< "Iniciando ORB-SLAM.  Línea de comando:" << endl
 			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl;
 
     cv::VideoCapture video,					// Entrada de video desde un archivo

@@ -328,15 +328,31 @@ INST_EXP(MapPoint)
  * Luego serialize se encarga de cambiarle los valores, aunque sean const.
  */
 KeyFrame::KeyFrame():
+	// Públicas
     mnFrameId(0),  mTimeStamp(0.0), mnGridCols(FRAME_GRID_COLS), mnGridRows(FRAME_GRID_ROWS),
-    mfGridElementWidthInv(0.0), mfGridElementHeightInv(0.0),
+    mfGridElementWidthInv(Frame::mfGridElementWidthInv),
+    mfGridElementHeightInv(Frame::mfGridElementHeightInv),
+
     mnTrackReferenceForFrame(0), mnFuseTargetForKF(0), mnBALocalForKF(0), mnBAFixedForKF(0),
     mnLoopQuery(0), mnLoopWords(0), mnRelocQuery(0), mnRelocWords(0), mnBAGlobalForKF(0),
-    fx(0.0), fy(0.0), cx(0.0), cy(0.0), invfx(0.0), invfy(0.0),
-    mbf(0.0), mb(0.0), mThDepth(0.0), N(0), mnScaleLevels(0), mfScaleFactor(0),
-    mfLogScaleFactor(0.0),
-    mnMinX(0), mnMinY(0), mnMaxX(0), mnMaxY(0),
-    mpKeyFrameDB(Sistema->mpKeyFrameDatabase), mpORBvocabulary(Sistema->mpVocabulary), mbFirstConnection(true), mpMap(Sistema->mpMap)
+
+    fx(Frame::fx), fy(Frame::fy), cx(Frame::cx), cy(Frame::cy), invfx(Frame::invfx), invfy(Frame::invfy),
+    mbf(Sistema->mpTracker->mCurrentFrame.mbf),
+    mb(Sistema->mpTracker->mCurrentFrame.mb),
+    mThDepth(Sistema->mpTracker->mCurrentFrame.mThDepth),
+    N(0), mnScaleLevels(Sistema->mpTracker->mCurrentFrame.mnScaleLevels),
+    mfScaleFactor(Sistema->mpTracker->mCurrentFrame.mfScaleFactor),
+    mfLogScaleFactor(Sistema->mpTracker->mCurrentFrame.mfLogScaleFactor),
+    mvScaleFactors(Sistema->mpTracker->mCurrentFrame.mvScaleFactors),
+    mvLevelSigma2(Sistema->mpTracker->mCurrentFrame.mvLevelSigma2),
+    mvInvLevelSigma2(Sistema->mpTracker->mCurrentFrame.mvInvLevelSigma2),
+    mnMinX(Frame::mnMinX), mnMinY(Frame::mnMinY), mnMaxX(Frame::mnMaxX), mnMaxY(Frame::mnMaxY),
+    mK(Sistema->mpTracker->mCurrentFrame.mK),
+    // Protegidas:
+    mpKeyFrameDB(Sistema->mpKeyFrameDatabase),
+    mpORBvocabulary(Sistema->mpVocabulary),
+    mbFirstConnection(true),
+    mpMap(Sistema->mpMap)
 {}
 
 /**
@@ -357,16 +373,28 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	ar & mvpMapPoints;
 
 	// Conexiones del grafo: no es reconstruible, UpdateConections sólo lo inicializa, pero el grafo sigue cambiando, agregando hijos.
-	ar & mConnectedKeyFrameWeights;	// Reconstruible UpdateConnections
-	ar & mvpOrderedConnectedKeyFrames;	// Reconstruible UpdateConnections
-	ar & const_cast<std::vector<int> &>(mvOrderedWeights);	// Reconstruible UpdateConnections
-	ar & const_cast<bool &> (mbFirstConnection);	// Reconstruible UpdateConnections
+	ar & mConnectedKeyFrameWeights;
+	ar & mvpOrderedConnectedKeyFrames;
+	ar & const_cast<std::vector<int> &>(mvOrderedWeights);
+	ar & const_cast<bool &> (mbFirstConnection);
 	ar & mpParent;
 	ar & mspChildrens;
 	ar & mspLoopEdges;
 
 
 	// Tienen el mismo valor en todas las instancias
+	//ar & const_cast<float &> (mbf);	// Mismo valor en todos los keyframes
+	//ar & const_cast<float &> (mb);	// Mismo valor en todos los keyframes
+	//ar & const_cast<float &> (mThDepth);	// Mismo valor en todos los keyframes
+	//ar & const_cast<int &> (mnScaleLevels);	// Mismo valor en todos los keyframes
+	//ar & const_cast<float &> (mfScaleFactor);	// Mismo valor en todos los keyframes
+	//ar & const_cast<float &> (mfLogScaleFactor);	// Mismo valor en todos los keyframes
+	//ar & const_cast<std::vector<float> &> (mvScaleFactors);	// Mismo valor en todos los keyframes
+	//ar & const_cast<std::vector<float> &> (mvLevelSigma2);	// Mismo valor en todos los keyframes
+	//ar & const_cast<std::vector<float> &> (mvInvLevelSigma2);	// Mismo valor en todos los keyframes
+	ar & const_cast<cv::Mat &> (mK);	// Mismo valor en todos los keyframes
+
+	/*// El constructor toma sus valores de variables estáticas de Frame
 	ar & const_cast<float &>  (mfGridElementWidthInv);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &>  (mfGridElementHeightInv);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (fx);	// Mismo valor en todos los keyframes
@@ -375,20 +403,12 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	ar & const_cast<float &> (cy);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (invfx);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (invfy);	// Mismo valor en todos los keyframes
-	ar & const_cast<float &> (mbf);	// Mismo valor en todos los keyframes
-	ar & const_cast<float &> (mb);	// Mismo valor en todos los keyframes
-	ar & const_cast<float &> (mThDepth);	// Mismo valor en todos los keyframes
-	ar & const_cast<int &> (mnScaleLevels);	// Mismo valor en todos los keyframes
-	ar & const_cast<float &> (mfScaleFactor);	// Mismo valor en todos los keyframes
-	ar & const_cast<float &> (mfLogScaleFactor);	// Mismo valor en todos los keyframes
-	ar & const_cast<std::vector<float> &> (mvScaleFactors);	// Mismo valor en todos los keyframes
-	ar & const_cast<std::vector<float> &> (mvLevelSigma2);	// Mismo valor en todos los keyframes
-	ar & const_cast<std::vector<float> &> (mvInvLevelSigma2);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnMinX);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnMinY);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnMaxX);	// Mismo valor en todos los keyframes
 	ar & const_cast<int &> (mnMaxY);	// Mismo valor en todos los keyframes
-	ar & const_cast<cv::Mat &> (mK);	// Mismo valor en todos los keyframes
+	*/
+
 
 	/*// Pueden ser inútiles
 	ar & const_cast<cv::Mat &> (mTcwBefGBA);	// Parece efímera
