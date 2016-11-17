@@ -355,16 +355,18 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	ar & const_cast<bool &> (mbBad);
 
 	ar & mvpMapPoints;
+
+	// Conexiones del grafo: no es reconstruible, UpdateConections sólo lo inicializa, pero el grafo sigue cambiando, agregando hijos.
+	ar & mConnectedKeyFrameWeights;	// Reconstruible UpdateConnections
+	ar & mvpOrderedConnectedKeyFrames;	// Reconstruible UpdateConnections
+	ar & const_cast<std::vector<int> &>(mvOrderedWeights);	// Reconstruible UpdateConnections
+	ar & const_cast<bool &> (mbFirstConnection);	// Reconstruible UpdateConnections
 	ar & mpParent;
 	ar & mspChildrens;
 	ar & mspLoopEdges;
 
 
-	ar & mGrid;	// Reconstruible
-
-	// Tienen el mismo valor en todas las instancais
-	ar & const_cast<int &> (mnGridCols);	// Mismo valor en todos los keyframes
-	ar & const_cast<int &> (mnGridRows);	// Mismo valor en todos los keyframes
+	// Tienen el mismo valor en todas las instancias
 	ar & const_cast<float &>  (mfGridElementWidthInv);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &>  (mfGridElementHeightInv);	// Mismo valor en todos los keyframes
 	ar & const_cast<float &> (fx);	// Mismo valor en todos los keyframes
@@ -393,11 +395,13 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	ar & const_cast<long unsigned int &> (mnBAGlobalForKF);	// Parece efímera
 	ar & const_cast<bool &> (mbNotErase);	// Parece efímero
 	ar & const_cast<bool &> (mbToBeErased);	// Parece efímero
-*/
+	 */
 
 
 
 
+	//ar & const_cast<int &> (mnGridCols);	// Mismo valor en todos los keyframes, de una constante
+	//ar & const_cast<int &> (mnGridRows);	// Mismo valor en todos los keyframes, de una constante
 	//ar & nNextId;	// Propiedad de clase, se ajusta al final de load.
 	//ar & const_cast<long unsigned int &> (mnFrameId);	// Inútil
 	//ar & const_cast<double &> (mTimeStamp);		// Inútil
@@ -420,15 +424,12 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	//ar & const_cast<cv::Mat &> (Cw);
 
 
-
+	// Reconstruible con SetPose Tcw
 	//ar & const_cast<cv::Mat &> (Twc);	// Reconstruible con SetPose Tcw
 	//ar & const_cast<cv::Mat &> (Ow);	// Reconstruible con SetPose Tcw
 
-	//Reconstruible UpdateConnections
-	ar & mConnectedKeyFrameWeights;	// Reconstruible UpdateConnections
-	ar & mvpOrderedConnectedKeyFrames;	// Reconstruible UpdateConnections
-	ar & const_cast<std::vector<int> &>(mvOrderedWeights);	// Reconstruible UpdateConnections
-	ar & const_cast<bool &> (mbFirstConnection);	// Reconstruible UpdateConnections
+	// Grilla reconstruible
+	//ar & mGrid;	// Reconstruible
 
 
 
@@ -441,6 +442,35 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 		ComputeBoW();	// Sólo actúa al cargar, porque si el keyframe ya tiene los datos no hace nada.
 		SetPose(Tcw);
 		// UpdateConnections sólo se puede invocar luego de cargados todos los keyframes
+
+
+		// Reconstruir la grilla
+
+		// Dimensiona los vectores por exceso
+		std::vector<std::size_t> grid[FRAME_GRID_COLS][FRAME_GRID_ROWS];
+	    int nReserve = 0.5f*N/(FRAME_GRID_COLS*FRAME_GRID_ROWS);
+	    for(unsigned int i=0; i<FRAME_GRID_COLS;i++)
+	        for (unsigned int j=0; j<FRAME_GRID_ROWS;j++)
+	            grid[i][j].reserve(nReserve);
+
+	    for(int i=0;i<N;i++){
+	        const cv::KeyPoint &kp = mvKeysUn[i];
+	        int posX = round((kp.pt.x-mnMinX)*mfGridElementWidthInv);
+	        int posY = round((kp.pt.y-mnMinY)*mfGridElementHeightInv);
+
+	        //Keypoint's coordinates are undistorted, which could cause to go out of the image
+	        if(!(posX<0 || posX>=FRAME_GRID_COLS || posY<0 || posY>=FRAME_GRID_ROWS))
+	            grid[posX][posY].push_back(i);
+	    }
+
+	    // Copia al vector final.  No sé si esta parte agrega valor.
+	    mGrid.resize(mnGridCols);
+	    for(int i=0; i<mnGridCols;i++)
+	    {
+	        mGrid[i].resize(mnGridRows);
+	        for(int j=0; j<mnGridRows; j++)
+	            mGrid[i][j] = grid[i][j];
+	    }
 	}
 
 	// En load hay que construir mGrid con un método como Frame::AssignFeaturesToGrid
