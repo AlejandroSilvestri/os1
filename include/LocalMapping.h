@@ -51,6 +51,19 @@ class Map;
  * No hay una entidad formal que represente el "mapa local".
  * El mapa local es un sobconjunto del mapa global, con raíz en el keyframe de referencia,
  * involucrando a los vecinos en el grafo.
+ *
+ *
+ * Métodos públicos para interacción con el thread
+ *
+ * El método Run tiene un bucle infinito, que se ejecuta en su propio thread.  Las comunicaciones con él son asincrónicas.
+ *
+ * LocalMapping::RequestStop solicita que pare, que haga una pausa.  LocalMapping::isStopped se puede consultar para confirmar que paró.
+ * Run entra en un bucle esperando que la señal de reanudamiento.
+ * LocalMapping::Release solicita que reanude luego de una pausa.
+ * LocalMapping::RequestReset reinicializa el objeto limpiando variables.  Se invoca desde Tracking::Reset.  El reseteo es asincrónico, no hay señal que indique que ya ocurrió.
+ * LocalMapping::RequestFinish solicita terminar.  Se puede consultar con LocalMapping::isFinished.  En la práctica no hace nada.
+ *
+ *
  */
 class LocalMapping
 {
@@ -98,7 +111,9 @@ public:
     /**
      * Solicitud de pausa.
      * Otros hilos solicitan detener momentáneamente LocalMapping para interactuar con el mapa, generalmente para BA.
+     * Se invoca también cuando se pasa a modo solo tracking, sin mapeo.
      * Luego de solicitar la parada, esperan que se cumpla consultando LocalMapping::isStopped.
+     * Para reanudar el mapeo, hay que invocar LocalMapping::Release.
      */
     void RequestStop();
 
@@ -109,7 +124,7 @@ public:
     /** Invocado en el bucle principal de Run, para procesar pedidos de parada.  Si hay un pedido de parada, devuelve true.*/
     bool Stop();
 
-    /** Invocado desde otros hilos, limpia el buffer de keyframes nuevos.*/
+    /** Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo.*/
     void Release();
 
     /** Informa el si LocalMapping está parado.*/

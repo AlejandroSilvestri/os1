@@ -64,7 +64,10 @@
 #include "KeyFrame.h"
 #include "KeyFrameDatabase.h"
 #include "MapPoint.h"
+#include "System.h"
+#include "Tracking.h"
 
+extern ORB_SLAM2::System* Sistema;
 
 // Defines
 #define TIPOS_ARCHIVOS(FORMATO) \
@@ -73,16 +76,19 @@
 // Aquí se define el tipo de archivo: binary, text, xml...
 TIPOS_ARCHIVOS(binary)
 
-// La bifurcación consiste en distinguir si serializa carga o guarda.  Se activa definiendo BIFURCACION, pero requiere c++11 para typeinfo
-// En un método serialize(Archivo...) la macro GUARDANDO(Archivo) devuelve true si se está guardando, false si se está cargando.
-// Comentar la siguiente línea para desactivar la capacidad de bifurcación
+/**
+ * La bifurcación consiste en distinguir si serializa carga o guarda.  Se activa definiendo BIFURCACION, pero requiere c++11 para typeinfo
+ * En un método serialize(Archivo...) la macro GUARDANDO(Archivo) devuelve true si se está guardando, false si se está cargando.
+ *
+ * Comentar la siguiente línea para desactivar la capacidad de bifurcación
+ */
 #define BIFURCACION
 #ifdef BIFURCACION
 	#include <typeinfo>
 	#define GUARDANDO(ARCHIVO) (typeinfo(ARCHIVO) == typeinfo(ArchivoSalida))
 #endif
 
-// Instancias explícitas
+/** Instanciación explícita*/
 #define INST_EXP(CLASE)\
 template void CLASE::serialize<ArchivoEntrada>(ArchivoEntrada&,const unsigned int);\
 template void CLASE::serialize<ArchivoSalida>(ArchivoSalida&,const unsigned int);
@@ -90,17 +96,16 @@ template void CLASE::serialize<ArchivoSalida>(ArchivoSalida&,const unsigned int)
 
 
 
-
-
-
-
-// Serialización no intrusiva fuera de la clase: Mat, KeyPoint
-BOOST_SERIALIZATION_SPLIT_FREE(::cv::Mat)
-namespace boost{namespace serialization{
 /**
  * OpencCV KeyPoint y Mat
  * Copiado de https://github.com/MathewDenny/ORB_SLAM2 MapPoint.h
  */
+
+// Serialización no intrusiva fuera de la clase: Mat, KeyPoint
+BOOST_SERIALIZATION_SPLIT_FREE(::cv::Mat)
+namespace boost{namespace serialization{
+
+
 // KeyPoint
 template<class Archive> void serialize(Archive & ar, cv::KeyPoint& kf, const unsigned int version){
   ar & kf.angle;
@@ -170,11 +175,13 @@ void Map::save(char* archivo){
 }
 
 void Map::load(char* archivo){
+	// A este punto se llega co el mapa limpio y los sistemas suspendidos para no interferir.
+
 	// Abre el archivo
 	std::ifstream is(archivo);
 	ArchivoEntrada ar(is, boost::archive::no_header);
 
-	// Guarda mappoints y keyframes
+	// Carga mappoints y keyframes en Map
 	serialize<ArchivoEntrada>(ar, 0);
 
 	/*
@@ -185,16 +192,47 @@ void Map::load(char* archivo){
 	 * kfdb Única instancia de KeyFrameDatabase, cuyo mvInvertedFile se reconstruirá
 	 * mapa Única instancia del mapa de cuyo mspKeyFrames se recorrerán los keyframes
 	 */
-	KeyFrameDatabase* kfdb = Map::mpKeyFrameDatabase;
-	for(KeyFrame* kf : mspKeyFrames)
+	KeyFrameDatabase* kfdb = Sistema->mpKeyFrameDatabase;//Map::mpKeyFrameDatabase;
+	//kfdb->clear();
+	long unsigned int maxId = 0;
+
+	// Recorre todos los keyframes cargados
+	for(KeyFrame* kf : mspKeyFrames){
+		// Agrega el keyframe a la base de datos de keyframes
 		kfdb->add(kf);
+
+		// Busca el máximo id
+		//maxId = max(maxId, kf->mnId);
+	}
+	//KeyFrame::nNextId = maxId + 1;
+	KeyFrame::nNextId = mnMaxKFid + 1;	// mnMaxKFid es el id del último keyframe agregado al mapa
+
+
+	// Next id para MapPoint
+	maxId = 0;
+	for(auto mp : mspMapPoints) maxId = max(maxId, mp->mnId);
+	MapPoint::nNextId = maxId + 1;
+
+
+	/*
+	// Inicializa el registro de trayectoria.
+	Tracking* t = Sistema->mpTracker;
+	cv::Mat uno = cv::Mat::eye(4, 4, CV_32F);
+	t->mlRelativeFramePoses.push_back(uno);
+	t->mlpReferences.push_back(NULL);
+	t->mlFrameTimes.push_back(0.0);
+	 */
+
 }
 
+
+/*
 // Inicializa punteros a singleton
 Map* Map::mpMap = NULL;
 KeyFrameDatabase* Map::mpKeyFrameDatabase = NULL;
 ORBVocabulary* Map::mpVocabulary = NULL;
-
+//Tracking* Map::mpTracker = NULL;
+*/
 
 
 
@@ -208,7 +246,7 @@ MapPoint::MapPoint():
 nObs(0), mnTrackReferenceForFrame(0),
 mnLastFrameSeen(0), mnBALocalForKF(0), mnFuseCandidateForKF(0), mnLoopPointForKF(0), mnCorrectedByKF(0),
 mnCorrectedReference(0), mnBAGlobalForKF(0),mnVisible(1), mnFound(1), mbBad(false),
-mpReplaced(static_cast<MapPoint*>(NULL)), mfMinDistance(0), mfMaxDistance(0), mpMap(Map::mpMap)
+mpReplaced(static_cast<MapPoint*>(NULL)), mfMinDistance(0), mfMaxDistance(0), mpMap(Sistema->mpMap)//Map::mpMap)
 {}
 
 /**
@@ -221,7 +259,7 @@ template<class Archivo> void MapPoint::serialize(Archivo& ar, const unsigned int
 	ar & const_cast<long unsigned int &> (mnId );
 	ar & nNextId;
 	ar & const_cast<long int &> (mnFirstKFid);
-	ar & const_cast<long int &> (mnFirstFrame);
+	ar & const_cast<long int &> (mnFirstFrame);	//Inútil
 	ar & const_cast<int &> (nObs);
 	ar & const_cast<float &> (mTrackProjX);
 	ar & const_cast<float &> (mTrackProjY);
@@ -243,19 +281,29 @@ template<class Archivo> void MapPoint::serialize(Archivo& ar, const unsigned int
 
 	ar & mObservations;
 
-	ar & const_cast<cv::Mat &> (mNormalVector);
-	ar & const_cast<cv::Mat &> (mDescriptor);
+	ar & const_cast<cv::Mat &> (mNormalVector); // Reconstruíble con mp->UpdateNormalAndDepth();
+	ar & const_cast<cv::Mat &> (mDescriptor);	// Reconstruíble con mp->ComputeDistinctiveDescriptors();
 	ar & mpRefKF;
 
 	ar & const_cast<int &> (mnVisible);
 	ar & const_cast<int &> (mnFound);
 	ar & const_cast<bool &> (mbBad);
-	ar & const_cast<float &> (mfMinDistance);
-	ar & const_cast<float &> (mfMaxDistance);
+	ar & const_cast<float &> (mfMinDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
+	ar & const_cast<float &> (mfMaxDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
 }
 INST_EXP(MapPoint)
 
+/*
+ * De https://github.com/shomin/ORB_SLAM2/blob/master/src/Map.cc#L349 load:
 
+ // MapPoints descriptors
+  for(auto mp: amp) {
+	mp->ComputeDistinctiveDescriptors();
+	mp->UpdateNormalAndDepth();
+  }
+
+
+ */
 
 
 
@@ -275,7 +323,7 @@ KeyFrame::KeyFrame():
     mbf(0.0), mb(0.0), mThDepth(0.0), N(0), mnScaleLevels(0), mfScaleFactor(0),
     mfLogScaleFactor(0.0),
     mnMinX(0), mnMinY(0), mnMaxX(0), mnMaxY(0),
-    mpKeyFrameDB(Map::mpKeyFrameDatabase), mpORBvocabulary(Map::mpVocabulary), mpMap(Map::mpMap)
+    mpKeyFrameDB(Sistema->mpKeyFrameDatabase), mpORBvocabulary(Sistema->mpVocabulary), mpMap(Sistema->mpMap)
 {}
 
 /**
@@ -288,72 +336,78 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 
 	ar & nNextId;
 	ar & const_cast<long unsigned int &> (mnId);
-	ar & const_cast<long unsigned int &> (mnFrameId);
-	ar & const_cast<double &> (mTimeStamp);
-	ar & const_cast<int &> (mnGridCols);
-	ar & const_cast<int &> (mnGridRows);
-	ar & const_cast<float &>  (mfGridElementWidthInv);
-	ar & const_cast<float &>  (mfGridElementHeightInv);
-	ar & const_cast<long unsigned int &> (mnTrackReferenceForFrame);
-	ar & const_cast<long unsigned int &> (mnFuseTargetForKF);
-	ar & const_cast<long unsigned int &> (mnBALocalForKF);
-	ar & const_cast<long unsigned int &> (mnBAFixedForKF);
-	ar & const_cast<long unsigned int &> (mnLoopQuery);
-	ar & const_cast<int &> (mnLoopWords);
-	ar & const_cast<float &> (mLoopScore);
-	ar & const_cast<long unsigned int &> (mnRelocQuery);
-	ar & const_cast<int &> (mnRelocWords);
-	ar & const_cast<float &> (mRelocScore);
-	ar & const_cast<cv::Mat &> (mTcwGBA);
-	ar & const_cast<cv::Mat &> (mTcwBefGBA);
-	ar & const_cast<long unsigned int &> (mnBAGlobalForKF);
-	ar & const_cast<float &> (fx);
-	ar & const_cast<float &> (fy);
-	ar & const_cast<float &> (cx);
-	ar & const_cast<float &> (cy);
-	ar & const_cast<float &> (invfx);
-	ar & const_cast<float &> (invfy);
-	ar & const_cast<float &> (mbf);
-	ar & const_cast<float &> (mb);
-	ar & const_cast<float &> (mThDepth);
-	ar & const_cast<int &> (N);
-	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeys);
+	ar & const_cast<long unsigned int &> (mnFrameId);	// Inútil
+	ar & const_cast<double &> (mTimeStamp);		// Inútil
+	ar & const_cast<int &> (mnGridCols);	// Mismo valor en todos los keyframes
+	ar & const_cast<int &> (mnGridRows);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &>  (mfGridElementWidthInv);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &>  (mfGridElementHeightInv);	// Mismo valor en todos los keyframes
+	ar & const_cast<long unsigned int &> (mnTrackReferenceForFrame);	// Parece efímera
+	ar & const_cast<long unsigned int &> (mnFuseTargetForKF);	// Parece efímera
+	ar & const_cast<long unsigned int &> (mnBALocalForKF);	// Parece efímera
+	ar & const_cast<long unsigned int &> (mnBAFixedForKF);	// Parece efímera
+	ar & const_cast<long unsigned int &> (mnLoopQuery);	// Efímero, no hace falta guardar, se inicializa en cero.
+	ar & const_cast<int &> (mnLoopWords);	// Efímero, no hace falta guardar, se inicializa en cero.
+	ar & const_cast<float &> (mLoopScore);	// Parece efímera
+	ar & const_cast<long unsigned int &> (mnRelocQuery);	// Efímero, no hace falta guardar, se inicializa en cero.
+	ar & const_cast<int &> (mnRelocWords);	// Efímero, no hace falta guardar, se inicializa en cero.
+	ar & const_cast<float &> (mRelocScore);	// Efímero, no hace falta guardar, se inicializa en cero.
+	ar & const_cast<cv::Mat &> (mTcwGBA);	// Parece efímera
+	ar & const_cast<cv::Mat &> (mTcwBefGBA);	// Parece efímera
+	ar & const_cast<long unsigned int &> (mnBAGlobalForKF);	// Parece efímera
+	ar & const_cast<float &> (fx);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (fy);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (cx);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (cy);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (invfx);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (invfy);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (mbf);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (mb);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (mThDepth);	// Mismo valor en todos los keyframes
+	ar & const_cast<int &> (N);	// Reconstruible
+	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeys);	// Quizás no se usan, o sólo se usan para graficar
 	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
-	ar & const_cast<std::vector<float> &> (mvuRight);
-	ar & const_cast<std::vector<float> &> (mvDepth);
+	ar & const_cast<std::vector<float> &> (mvuRight);	// No usado
+	ar & const_cast<std::vector<float> &> (mvDepth);	// No usado
 	ar & const_cast<cv::Mat &> (mDescriptors);
 	ar & const_cast<cv::Mat &> (mTcp);
-	ar & const_cast<int &> (mnScaleLevels);
-	ar & const_cast<float &> (mfScaleFactor);
-	ar & const_cast<float &> (mfLogScaleFactor);
-	ar & const_cast<std::vector<float> &> (mvScaleFactors);
-	ar & const_cast<std::vector<float> &> (mvLevelSigma2);
-	ar & const_cast<std::vector<float> &> (mvInvLevelSigma2);
+	ar & const_cast<int &> (mnScaleLevels);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (mfScaleFactor);	// Mismo valor en todos los keyframes
+	ar & const_cast<float &> (mfLogScaleFactor);	// Mismo valor en todos los keyframes
+	ar & const_cast<std::vector<float> &> (mvScaleFactors);	// Mismo valor en todos los keyframes
+	ar & const_cast<std::vector<float> &> (mvLevelSigma2);	// Mismo valor en todos los keyframes
+	ar & const_cast<std::vector<float> &> (mvInvLevelSigma2);	// Mismo valor en todos los keyframes
 
-	ar & const_cast<int &> (mnMinX);
-	ar & const_cast<int &> (mnMinY);
-	ar & const_cast<int &> (mnMaxX);
-	ar & const_cast<int &> (mnMaxY);
-	ar & const_cast<cv::Mat &> (mK);
+	ar & const_cast<int &> (mnMinX);	// Mismo valor en todos los keyframes
+	ar & const_cast<int &> (mnMinY);	// Mismo valor en todos los keyframes
+	ar & const_cast<int &> (mnMaxX);	// Mismo valor en todos los keyframes
+	ar & const_cast<int &> (mnMaxY);	// Mismo valor en todos los keyframes
+	ar & const_cast<cv::Mat &> (mK);	// Mismo valor en todos los keyframes
 	ar & const_cast<cv::Mat &> (Tcw);
-	ar & const_cast<cv::Mat &> (Twc);
-	ar & const_cast<cv::Mat &> (Ow);
+	ar & const_cast<cv::Mat &> (Twc);	// Reconstruible
+	ar & const_cast<cv::Mat &> (Ow);	// Reconstruible
 	ar & mvpMapPoints;
 	ar & mConnectedKeyFrameWeights;
-	ar & mvpOrderedConnectedKeyFrames;
-	ar & const_cast<std::vector<int> &>(mvOrderedWeights);
+	ar & mvpOrderedConnectedKeyFrames;	// Reconstruible
+	ar & const_cast<std::vector<int> &>(mvOrderedWeights);	// Reconstruible
 
-	ar & const_cast<bool &> (mbFirstConnection);
+	ar & const_cast<bool &> (mbFirstConnection);	// Reconstruible
 	ar & mpParent;
 	ar & mspChildrens;
 	ar & mspLoopEdges;
 
-	ar & const_cast<bool &> (mbNotErase);
-	ar & const_cast<bool &> (mbToBeErased);
+	ar & const_cast<bool &> (mbNotErase);	// Parece efímero
+	ar & const_cast<bool &> (mbToBeErased);	// Parece efímero
 	ar & const_cast<bool &> (mbBad);
-	ar & const_cast<float &> (mHalfBaseline);
+	ar & const_cast<float &> (mHalfBaseline);	// Sólo para visualización
+
+	ar & mGrid;	// Reconstruible
 
 	//ar & const_cast<cv::Mat &> (Cw);
+
+	ComputeBoW();	// Sólo actúa al cargar, porque si el keyframe ya tiene los datos no hace nada.
+
+	// En load hay que construir mGrid con un método como Frame::AssignFeaturesToGrid
 }
 INST_EXP(KeyFrame)
 

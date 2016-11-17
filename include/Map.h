@@ -80,7 +80,10 @@ public:
     /** Devuelve un vector de puntos, con todos los puntos del mapa.*/
     std::vector<MapPoint*> GetAllMapPoints();
 
-    /** Informa la cantidad de puntos de referencia en el mapa.*/
+    /**
+     * Devuelve un vector de puntos a graficar.
+     * Invocado sólo por MapDrawer::DrawMapPoints, estos puntos se grafican en rojo, representando el mapa local.
+     */
     std::vector<MapPoint*> GetReferenceMapPoints();
 
     /** Informa la cantidad de puntos en el mapa.*/
@@ -92,12 +95,15 @@ public:
     /** Informa el id del último keyframe agregado.*/
     long unsigned int GetMaxKFid();
 
-    /** Elimina puntos y keyframes del mapa.  Reinicia el mapa.*/
+    /**
+     * Reinicia el mapa.
+     * Elimina puntos y keyframes del mapa (es decir, del sistema), y limpia los vectores de puntos y keyframes.
+     */
     void clear();
 
 	/**
 	 * Registro de los keyframes iniciales.
-	 * En el código se registra un único keyframe en este vector.
+	 * El único keyframe en este vector lo agrega Tracking::CreateInitialMapMonocular.  El el keyframe inicial.
 	 * Es iterado por LoopClosing::RunGlobalBundleAdjustment.
 	 */
     vector<KeyFrame*> mvpKeyFrameOrigins;
@@ -135,10 +141,12 @@ public:
     /**
      *  Punteros necesarios en la serialización, en los constructores por defecto de KeyFrame y MapPoint, accesibles vía Map::
      *  System asigna sus valores durante su construcción.
-     */
+     *
     static Map* mpMap;
     static KeyFrameDatabase* mpKeyFrameDatabase;
     static ORBVocabulary* mpVocabulary;
+    //static Tracking* mpTracker;
+     */
 
 protected:
     /** Puntos del mapa.*/
@@ -149,7 +157,8 @@ protected:
 
     /**
      * Puntos de referencia en el mapa.
-     * Es el vector de puntos del mapa local que administra Tracking.
+     * Son los puntos del mapa local, para graficar en rojo.
+     * Tracking::UpdateReference lo genera, y MapDrawer::DrawMapPoints lo consume.
      * Por cada cuadro que se procesa, se actualiza el mapa local y se copia este vector al mapa.
      * Es un vector efímero.
      */

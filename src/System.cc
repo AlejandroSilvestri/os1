@@ -136,11 +136,13 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     cout << "Terminando el constructor SLAM." << endl;
 
+    /*
     // Registrando punteros necesarios en la serialización
     Map::mpMap = mpMap;
     Map::mpKeyFrameDatabase = mpKeyFrameDatabase;
     Map::mpVocabulary = mpVocabulary;
-
+    //Map::mpTracker = mpTracker;
+     */
 }
 /*
 cv::Mat System::TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const double &timestamp)

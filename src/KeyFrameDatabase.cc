@@ -82,10 +82,12 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
     {
         unique_lock<mutex> lock(mMutex);
 
+        // Recorre los BoW del keyframe pKF
         for(DBoW2::BowVector::const_iterator vit=pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit != vend; vit++)
         {
             list<KeyFrame*> &lKFs =   mvInvertedFile[vit->first];
 
+            // Para cada BoW de pKF, recorre todos los keyframes pKFi que contengan ese BoW
             for(list<KeyFrame*>::iterator lit=lKFs.begin(), lend= lKFs.end(); lit!=lend; lit++)
             {
                 KeyFrame* pKFi=*lit;

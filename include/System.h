@@ -214,21 +214,18 @@ public:
 
     /* Agregados */
 
-    /** Visor, maneja el visor del mapa y el de cámara.   Usa Pangolin.  Lo hice público para que main pueda interactuar con él a través de System.*/
-    // The viewer draws the map and the current camera pose. It uses Pangolin.
-    Viewer* mpViewer;
-
     /** Video de entrada.*/
     cv::VideoCapture* video;
 
     /** Imagen de entrada.*/
     cv::Mat imagenEntrada;
 
-private:
 
-    // Input sensor
-	/** Tipo de sensor, modo de operación: mono, estéreo o mapa de profundidad.*/
-    eSensor mSensor;
+    // Hice públicos los singletons, para que se puedan obtener vía System
+
+    /** Visor, maneja el visor del mapa y el de cámara.   Usa Pangolin.  Lo hice público para que main pueda interactuar con él a través de System.*/
+    // The viewer draws the map and the current camera pose. It uses Pangolin.
+    Viewer* mpViewer;
 
     // ORB vocabulary used for place recognition and feature matching.
     /** Vocabulario ORB BOW.*/
@@ -262,6 +259,15 @@ private:
 
     /** Visor del mapa que muestra los puntos 3D y la pose de la cámara.   Usa Pangolin.*/
     MapDrawer* mpMapDrawer;
+
+    /** Referencia global al sistema singleton.*/
+    static System* sistema;
+
+private:
+
+    // Input sensor
+	/** Tipo de sensor, modo de operación: mono, estéreo o mapa de profundidad.*/
+    eSensor mSensor;
 
     // System threads: Local Mapping, Loop Closing, Viewer.
     // The Tracking thread "lives" in the main execution thread that creates the System object.

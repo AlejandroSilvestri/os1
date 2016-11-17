@@ -24,13 +24,15 @@
 #include <fstream>
 #include <chrono>
 #include <unistd.h>
-//#include <thread>
+#include <thread>
 
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 
 #include <System.h>
 #include <Viewer.h>
+#include <Tracking.h>
+#include <FrameDrawer.h>
 
 
 using namespace std;
@@ -177,6 +179,9 @@ using namespace std;
  * Previamente inicializa el sistema al construir el objeto SLAM, pasándole como argumentos las rutas al vocabulario y configuración,
  * y el modo MONOCULAR.
  */
+
+ORB_SLAM2::System* Sistema;
+
 int main(int argc, char **argv){
 
 	cout	<< "Iniciando ORB-SLAM.  Uso:" << endl
@@ -231,9 +236,14 @@ int main(int argc, char **argv){
     ORB_SLAM2::System SLAM("../Archivos/ORBvoc.txt", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
 #endif
 
+    // Puntero global al sistema singleton
+    //ORB_SLAM2::System::sistema = &SLAM;
+    Sistema = &SLAM;
+
     // Imagen de entrada
     cv::Mat im;
 
+    ORB_SLAM2::Viewer* visor = SLAM.mpViewer;
 	// Número de cuadro procesado, monótonamente creciente, para espaciar mensajes de consola.
     int n = 0;
     while(true){
@@ -241,21 +251,21 @@ int main(int argc, char **argv){
     	bool hayImagen;
 
     	if(videoEsArchivo){
-    		if(SLAM.mpViewer->tiempoAlterado){
+    		if(visor->tiempoAlterado){
 				// El usuario movió el trackbar: hay que cambiar el frame.
-				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, SLAM.mpViewer->tiempo);
-				SLAM.mpViewer->tiempoAlterado = false;	// Bajar la señal.
-			} else if (SLAM.mpViewer->tiempoReversa && !SLAM.mpViewer->videoPausado){
+				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, visor->tiempo);
+				visor->tiempoAlterado = false;	// Bajar la señal.
+			} else if (visor->tiempoReversa && !visor->videoPausado){
 				// La película va marcha atrás
 				int pos = videoEntrada->get(cv::CAP_PROP_POS_FRAMES);
 				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, pos>=2? pos-2 : 0);
 				if(pos<2)
 					// Si llega al inicio del video, recomienza hacia adelante
-					SLAM.mpViewer->tiempoReversa = false;
+					visor->tiempoReversa = false;
 			}
     	}
 
-   		if(!SLAM.mpViewer->videoPausado)
+   		if(!visor->videoPausado)
    			hayImagen = videoEntrada->read(im);
 
     	// t1 está en segundos, con doble precisión.  El bucle para inicialización demora entre 1 y 2 centésimas de segundo.
@@ -265,14 +275,32 @@ int main(int argc, char **argv){
         if(hayImagen)
         	SLAM.TrackMonocular(im,0);
         else
-        	cout << "No hay imagen en bucle nº " << n << endl;
+        	cout << "No hay imagen en bucle nº " << n << endl;	// No pasa nunca
 
         // Start cronómetro para medir duración del procesamiento
         double ttrack = std::chrono::duration_cast<std::chrono::duration<double> >(std::chrono::steady_clock::now() - t1).count();
 
-    	// Mensajes de consola con frecuencia controlada
-        //if(++n%100==0)//if(++n<=10 || n%100==0)
-    		//cout << "Cuadro nº " << n << ", " << ttrack << " s" << endl;
+    	// Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
+    	if(visor->cargarMapa){
+    		visor->cargarMapa = false;
+
+        	// Limpia el mapa de todos los singletons
+    		SLAM.mpTracker->Reset();
+
+    	    // Espera a que se detenga LocalMapping
+    		SLAM.mpLocalMapper->RequestStop();
+    		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
+
+        	char archivo[] = "mapa.bin";
+        	SLAM.mpMap->load(archivo);
+        	cout << "Mapa cargado." << endl;
+
+        	SLAM.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
+
+        	// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST
+        	SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
+
+    	}
 
         // Delay para 30 fps, período de 0.033 s
         if(ttrack < 0.033)

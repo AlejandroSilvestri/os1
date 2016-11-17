@@ -102,15 +102,24 @@ public:
     /** Variable interna que indica el sentido del video cuando actúa la corrección automática.  false es normal para adelante, perdido reversa.  true es lo contrario.*/
     bool sentidoModoAutomatico = false;
 
+    /** Señal para que main cargue en mapa en el thread de System y Tracking.*/
+    bool cargarMapa = false;
 
 
 private:
 
     bool Stop();
 
+    /** Sistema.*/
     System* mpSystem;
+
+    /** Única instancia de FrameDrawer, que se invoca sólo desde Viewer.*/
     FrameDrawer* mpFrameDrawer;
+
+    /** Única instancia de MapDrawer, que se invoca sólo desde Viewer.*/
     MapDrawer* mpMapDrawer;
+
+    /** Tracker.*/
     Tracking* mpTracker;
 
     // 1/fps in ms
@@ -125,7 +134,17 @@ private:
     bool mbFinished;
     std::mutex mMutexFinish;
 
+    /**
+     * Señal de que Viewer está parado.
+     * Pero no se lee en ninguna parte del código: no se usa.
+     */
     bool mbStopped;
+
+    /**
+     * Señal de que se solicitó la parada del Viewer.
+     * Cuando pueda parará, y marcará mbStopped
+     *
+     */
     bool mbStopRequested;
     std::mutex mMutexStop;
 

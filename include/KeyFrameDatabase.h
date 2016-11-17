@@ -74,10 +74,14 @@ public:
 
 	/**
 	 * A partir de un KeyFrame intenta detectar un bucle.
+	 *
      * @param pKF KeyFrame
      * @param minScore Cantidad mínima de BoW coincidentes a encontrar para considerar que un KeyFrame es candidato para cerrar el bucle.
 	 * @returns Los KeyFrames candidatos a cerrar el bucle, que tendrán que pasar la prueba de la pose.
+	 *
 	 * Los candidatos devueltos son los que tienen una cantidad mínima de BoWs coincidentes con los del KeyFrame argumento.
+	 *
+	 * Invocado sólo desde LoopClosing::DetectLoop, una única vez por cada keyframe, siempre con keyframes nuevos o recientes.
 	 */
     // Loop Detection
 	std::vector<KeyFrame *> DetectLoopCandidates(KeyFrame* pKF, float minScore);

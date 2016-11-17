@@ -229,6 +229,9 @@ public:
     /** Agregado: parámetro del trackbar de la ventana que muestra el cuadro actual.*/
     int param = 100;
 
+    /** Público para que lo pueda ver Viewer al serializar mapas.*/
+    LocalMapping* mpLocalMapper;
+
 
 protected:
 
@@ -275,7 +278,6 @@ protected:
     bool mbVO;
 
     //Other Thread Pointers
-    LocalMapping* mpLocalMapper;
     LoopClosing* mpLoopClosing;
 
     //ORB

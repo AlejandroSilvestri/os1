@@ -68,11 +68,13 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
     		<< endl;
 }
 
-void Viewer::Run()
-{
+void Viewer::Run(){
+	//cout << "Viewer Run inciando." << endl;
+
     mbFinished = false;
 
     pangolin::CreateWindowAndBind("ORB-SLAM2: Map Viewer",1024,768);
+	cout << "Pangolin creado." << endl;
 
     // 3D Mouse handler requires depth testing to be enabled
     glEnable(GL_DEPTH_TEST);
@@ -82,14 +84,14 @@ void Viewer::Run()
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     pangolin::CreatePanel("menu").SetBounds(0.0,1.0,0.0,pangolin::Attach::Pix(175));
-    pangolin::Var<bool> menuFollowCamera("menu.Seguir la cámara",true,true);
+    pangolin::Var<bool> menuFollowCamera("menu.Seguir la camara",true,true);
     pangolin::Var<bool> menuShowPoints("menu.Puntos del mapa",true,true);
     pangolin::Var<bool> menuShowKeyFrames("menu.KeyFrames",true,true);
     pangolin::Var<bool> menuShowGraph("menu.Grafo",true,true);
-    pangolin::Var<bool> menuLocalizationMode("menu.Sólo tracking",false,true);
+    pangolin::Var<bool> menuLocalizationMode("menu.Tracking, sin mapeo",false,true);
     pangolin::Var<bool> menuReset("menu.Reset",false,false);
     pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa",false,false);
-    //pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa",false,false);
+    pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa",false,false);
     //pangolin::Var<bool> menuSalir("menu.Salir",false,false);
 
 
@@ -107,6 +109,7 @@ void Viewer::Run()
     pangolin::OpenGlMatrix Twc;
     Twc.SetIdentity();
 
+	cout << "Ventana para frame." << endl;
     cv::namedWindow("ORB-SLAM2: Current Frame");
 
     // Línea agregada para un trackbar paramétrico.
@@ -129,8 +132,7 @@ void Viewer::Run()
     float factorEscalaImagenParaMostrar = 1.0;
 
     // Bucle principal del visor
-    while(1)
-    {
+    while(1){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         mpMapDrawer->GetCurrentOpenGLCameraMatrix(Twc);
@@ -264,20 +266,41 @@ void Viewer::Run()
         }
 
         if(menuGuardarMapa){
+        	menuGuardarMapa = false;
         	Map* mapa = mpMapDrawer->mpMap;
 
         	// Pasar a tracking para pausar el mapa
-        	mpSystem->DeactivateLocalizationMode();
-        	menuLocalizationMode = false;
+        	mpSystem->ActivateLocalizationMode();
+        	menuLocalizationMode = true;
+        	videoPausado = true;
 
-        	// Pausar LocalMapping
-        	// Falta implementar, quizás en System, que pause localmapping y verifique que no haya un BA en loopclosing.
+        	LocalMapping* mapeador = mpTracker->mpLocalMapper;
+        	while(!mapeador->isStopped()){
+        		mapeador->RequestStop();	// Por las dudas
+        		usleep(1000);
+        	}
 
-        	mapa->save("mapa.bin");
+        	char archivo[] = "mapa.bin";
+        	mapa->save(archivo);
+        	cout << "Mapa guardado." << endl;
         }
+
+        if(menuCargarMapa){
+        	menuCargarMapa = false;
+
+        	// Pasar a tracking
+        	mpSystem->ActivateLocalizationMode();
+        	menuLocalizationMode = true;
+        	videoPausado = true;
+
+        	// Señal para que main cargue el mapa
+        	cargarMapa = true;
+        }
+
 
         if(menuReset)
         {
+        	// Reestablece los botones
             menuShowGraph = true;
             menuShowKeyFrames = true;
             menuShowPoints = true;
@@ -287,6 +310,8 @@ void Viewer::Run()
             bLocalizationMode = false;
             bFollow = true;
             menuFollowCamera = true;
+
+            // Solicita resetear el sistema, retorna inmediatamente.
             mpSystem->Reset();
             menuReset = false;
         }
