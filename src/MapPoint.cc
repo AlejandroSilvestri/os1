@@ -115,8 +115,8 @@ void MapPoint::EraseObservation(KeyFrame* pKF)
         unique_lock<mutex> lock(mMutexFeatures);
         if(mObservations.count(pKF))
         {
-            int idx = mObservations[pKF];
-            /*if(pKF->mvuRight[idx]>=0)
+        	/*int idx = mObservations[pKF];
+            if(pKF->mvuRight[idx]>=0)
                 nObs-=2;
             else*/
                 nObs--;

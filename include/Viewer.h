@@ -41,9 +41,25 @@ class FrameDrawer;
 class MapDrawer;
 class System;
 
+/**
+ * Viewer representa la interfaz de usuario.
+ *
+ * Se compone de dos partes, implementadas en dos clases: FrameDrawer y MapDrawer, ambos singleton.
+ *
+ * FrameDrawer se encarga de generar la imagen procesada con los puntos del mapa y una barra de estado.  Viewer la muestra con imshow.
+ *
+ * MapDrawer se encarga de cargar en Pangolin los puntos 3D del mundo, las poses de los keyframes y de la cámara.
+ *
+ * Estos dos objetos preparan lo que se muestra, la acción de llevarloa a pantalla ocurre en Viewer::Run:
+ * - imshow
+ * - pangolin::FinishFrame
+ */
 class Viewer
 {
 public:
+	/**
+	 * Constructor único del singleton Viewer.
+	 */
     Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const std::string &strSettingPath, cv::VideoCapture* = NULL);	// Agregé el últinmo argumento
 
     // Main thread function. Draw points, keyframes, the current camera pose and the last processed

@@ -109,6 +109,9 @@ void Viewer::Run(){
     pangolin::OpenGlMatrix Twc;
     Twc.SetIdentity();
 
+
+
+
 	cout << "Ventana para frame." << endl;
     cv::namedWindow("ORB-SLAM2: Current Frame");
 
@@ -130,6 +133,17 @@ void Viewer::Run(){
 
     // Factor de escala de las imágenes
     float factorEscalaImagenParaMostrar = 1.0;
+
+
+    // Inicialización para capturar imágenes de pangolin
+    pangolin::Image<unsigned char> buffer;
+    pangolin::VideoPixelFormat fmt = pangolin::VideoFormatFromString("RGBA32");
+    pangolin::Viewport v = d_cam.v;
+    buffer.Alloc(v.w, v.h, v.w * fmt.bpp/8 );
+    cv::Mat imgBuffer = cv::Mat(v.h, v.w, CV_8UC4, buffer.ptr);
+
+
+
 
     // Bucle principal del visor
     while(1){
@@ -163,7 +177,7 @@ void Viewer::Run(){
             bLocalizationMode = false;
         }
 
-        //Mostrar mapa con Pangolin
+        // Mostrar mapa con Pangolin =========================================================
         d_cam.Activate(s_cam);
         glClearColor(1.0f,1.0f,1.0f,1.0f);
         mpMapDrawer->DrawCurrentCamera(Twc);
@@ -172,8 +186,19 @@ void Viewer::Run(){
         if(menuShowPoints)
             mpMapDrawer->DrawMapPoints();
 
+        // Captura imagen de pangolin en el Mat imagen
+        glReadBuffer(GL_BACK);	// Color de relleno
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+        glReadPixels(v.l, v.b, v.w, v.h, GL_RGBA, GL_UNSIGNED_BYTE, buffer.ptr );	// v.w es el ancho de la ventana con el panel.  buffer toma la imagen sin el panel, más angosta, y se rellena con una barra negra al a derecha.
+        cv::Mat imagen;
+        cv::cvtColor(imgBuffer, imagen,  cv::COLOR_RGBA2BGR);
+        cv::flip(imagen, imagen, 0);
+        //cv::imshow("entrada", imagen);
+
+
         pangolin::FinishFrame();
 
+        // imshow ============================================================================
         cv::Mat im = mpFrameDrawer->DrawFrame();
         cv::Mat imagenParaMostrar;
 

@@ -83,7 +83,7 @@ void Optimizer::BundleAdjustment(const vector<KeyFrame *> &vpKFs, const vector<M
     }
 
     const float thHuber2D = sqrt(5.99);
-    const float thHuber3D = sqrt(7.815);
+    //const float thHuber3D = sqrt(7.815);
 
     // Set MapPoint vertices
     for(size_t i=0; i<vpMP.size(); i++)
@@ -271,7 +271,7 @@ int Optimizer::PoseOptimization(Frame *pFrame)
     vnIndexEdgeStereo.reserve(N);
 
     const float deltaMono = sqrt(5.991);
-    const float deltaStereo = sqrt(7.815);
+    //const float deltaStereo = sqrt(7.815);
 
 
     {
@@ -567,7 +567,7 @@ void Optimizer::LocalBundleAdjustment(KeyFrame *pKF, bool* pbStopFlag, Map* pMap
     vpMapPointEdgeStereo.reserve(nExpectedSize);
 
     const float thHuberMono = sqrt(5.991);
-    const float thHuberStereo = sqrt(7.815);
+    //const float thHuberStereo = sqrt(7.815);
 
     for(list<MapPoint*>::iterator lit=lLocalMapPoints.begin(), lend=lLocalMapPoints.end(); lit!=lend; lit++)
     {
