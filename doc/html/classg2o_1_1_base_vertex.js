@@ -28,5 +28,6 @@ var classg2o_1_1_base_vertex =
     [ "_b", "classg2o_1_1_base_vertex.html#a70c672f2997275927efa49c1f5b18ac3", null ],
     [ "_backup", "classg2o_1_1_base_vertex.html#a936082916993857a77c8318bc3e59d23", null ],
     [ "_estimate", "classg2o_1_1_base_vertex.html#ab188c92c3e906c6e06507ae624c0e7ac", null ],
-    [ "_hessian", "classg2o_1_1_base_vertex.html#afaf73b0e874db76655d90bdb2f156c00", null ]
+    [ "_hessian", "classg2o_1_1_base_vertex.html#afaf73b0e874db76655d90bdb2f156c00", null ],
+    [ "Dimension", "classg2o_1_1_base_vertex.html#a9a831bfdf84cfe625d8f942bc4f1c2d1", null ]
 ];

@@ -84,12 +84,14 @@ $(document).ready(function(){initNavTree('serialize_8cpp.html','');});
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">serialize.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;boost/serialization/serialization.hpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;typeinfo&gt;</code><br />
+<code>#include &lt;boost/serialization/serialization.hpp&gt;</code><br />
 <code>#include &lt;boost/archive/tmpdir.hpp&gt;</code><br />
 <code>#include &lt;boost/serialization/base_object.hpp&gt;</code><br />
 <code>#include &lt;boost/serialization/vector.hpp&gt;</code><br />
@@ -106,17 +108,18 @@ $(document).ready(function(){initNavTree('serialize_8cpp.html','');});
 <code>#include &quot;<a class="el" href="_key_frame_8h_source.html">KeyFrame.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_key_frame_database_8h_source.html">KeyFrameDatabase.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_map_point_8h_source.html">MapPoint.h</a>&quot;</code><br />
-<code>#include &lt;typeinfo&gt;</code><br />
+<code>#include &quot;<a class="el" href="_system_8h_source.html">System.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_tracking_8h_source.html">Tracking.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for serialize.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="serialize_8cpp__incl.svg" width="3350" height="694"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="serialize_8cpp__incl.svg" width="4328" height="947"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceboost"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost.html">boost</a></td></tr>
+<tr class="memdesc:namespaceboost"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpencCV KeyPoint y Mat Copiado de <a href="https://github.com/MathewDenny/ORB_SLAM2">https://github.com/MathewDenny/ORB_SLAM2</a> <a class="el" href="_map_point_8h.html">MapPoint.h</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceboost_1_1serialization"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1serialization.html">boost::serialization</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,27 +129,33 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:aa20820f8508907155ae78692268d3fe7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#aa20820f8508907155ae78692268d3fe7">BIFURCACION</a></td></tr>
+<tr class="memdesc:aa20820f8508907155ae78692268d3fe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">La bifurcación consiste en distinguir si serializa carga o guarda.  <a href="#aa20820f8508907155ae78692268d3fe7">More...</a><br /></td></tr>
+<tr class="separator:aa20820f8508907155ae78692268d3fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16b53bced2ab4579dde2b0736671d96e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#a16b53bced2ab4579dde2b0736671d96e">CARGANDO</a>(ARCHIVO)&#160;&#160;&#160;( typeid(ARCHIVO) == typeid(ArchivoEntrada) )</td></tr>
+<tr class="separator:a16b53bced2ab4579dde2b0736671d96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a985119c54406f96afeb99eaf54d27923"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#a985119c54406f96afeb99eaf54d27923">INST_EXP</a>(CLASE)</td></tr>
+<tr class="memdesc:a985119c54406f96afeb99eaf54d27923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instanciación explícita.  <a href="#a985119c54406f96afeb99eaf54d27923">More...</a><br /></td></tr>
+<tr class="separator:a985119c54406f96afeb99eaf54d27923"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae010f83f4f8bf5a00058a6d5870298d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#ae010f83f4f8bf5a00058a6d5870298d2">TIPOS_ARCHIVOS</a>(FORMATO)</td></tr>
 <tr class="separator:ae010f83f4f8bf5a00058a6d5870298d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa20820f8508907155ae78692268d3fe7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#aa20820f8508907155ae78692268d3fe7">BIFURCACION</a></td></tr>
-<tr class="separator:aa20820f8508907155ae78692268d3fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6db88b45487dad60bac268cc054a4b75"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#a6db88b45487dad60bac268cc054a4b75">GUARDANDO</a>(ARCHIVO)&#160;&#160;&#160;(typeinfo(ARCHIVO) == typeinfo(ArchivoSalida))</td></tr>
-<tr class="separator:a6db88b45487dad60bac268cc054a4b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a985119c54406f96afeb99eaf54d27923"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#a985119c54406f96afeb99eaf54d27923">INST_EXP</a>(CLASE)</td></tr>
-<tr class="separator:a985119c54406f96afeb99eaf54d27923"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a15224c7905c88e5aa5c7910226273447"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
-<tr class="memitem:a15224c7905c88e5aa5c7910226273447"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1serialization.html#a15224c7905c88e5aa5c7910226273447">boost::serialization::serialize</a> (Archive &amp;ar, cv::KeyPoint &amp;kf, const unsigned int version)</td></tr>
-<tr class="memdesc:a15224c7905c88e5aa5c7910226273447"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpencCV KeyPoint y Mat Copiado de <a href="https://github.com/MathewDenny/ORB_SLAM2">https://github.com/MathewDenny/ORB_SLAM2</a> <a class="el" href="_map_point_8h.html">MapPoint.h</a>.  <a href="namespaceboost_1_1serialization.html#a15224c7905c88e5aa5c7910226273447">More...</a><br /></td></tr>
-<tr class="separator:a15224c7905c88e5aa5c7910226273447"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2461caecae62258618693b30f87de9d9"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
-<tr class="memitem:a2461caecae62258618693b30f87de9d9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1serialization.html#a2461caecae62258618693b30f87de9d9">boost::serialization::save</a> (Archive &amp;ar, const ::cv::Mat &amp;m, const unsigned int version)</td></tr>
-<tr class="separator:a2461caecae62258618693b30f87de9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f2eb183bf258e6d6cf94377d38decfc"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
 <tr class="memitem:a8f2eb183bf258e6d6cf94377d38decfc"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1serialization.html#a8f2eb183bf258e6d6cf94377d38decfc">boost::serialization::load</a> (Archive &amp;ar, ::cv::Mat &amp;m, const unsigned int version)</td></tr>
 <tr class="separator:a8f2eb183bf258e6d6cf94377d38decfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2461caecae62258618693b30f87de9d9"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
+<tr class="memitem:a2461caecae62258618693b30f87de9d9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1serialization.html#a2461caecae62258618693b30f87de9d9">boost::serialization::save</a> (Archive &amp;ar, const ::cv::Mat &amp;m, const unsigned int version)</td></tr>
+<tr class="separator:a2461caecae62258618693b30f87de9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15224c7905c88e5aa5c7910226273447"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
+<tr class="memitem:a15224c7905c88e5aa5c7910226273447"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1serialization.html#a15224c7905c88e5aa5c7910226273447">boost::serialization::serialize</a> (Archive &amp;ar, cv::KeyPoint &amp;kf, const unsigned int version)</td></tr>
+<tr class="separator:a15224c7905c88e5aa5c7910226273447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5e7908b022b8741b974b071738a01f52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html">ORB_SLAM2::System</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serialize_8cpp.html#a5e7908b022b8741b974b071738a01f52">Sistema</a></td></tr>
+<tr class="separator:a5e7908b022b8741b974b071738a01f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="aa20820f8508907155ae78692268d3fe7"></a>
@@ -159,18 +168,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>La bifurcación consiste en distinguir si serializa carga o guarda. </p>
+<p>Se activa definiendo BIFURCACION, pero requiere c++11 para typeinfo En un método serialize(Archivo...) la macro GUARDANDO(Archivo) devuelve true si se está guardando, false si se está cargando.</p>
+<p>Comentar la siguiente línea para desactivar la capacidad de bifurcación </p>
+
 </div>
 </div>
-<a id="a6db88b45487dad60bac268cc054a4b75"></a>
+<a id="a16b53bced2ab4579dde2b0736671d96e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define GUARDANDO</td>
+          <td class="memname">#define CARGANDO</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">ARCHIVO</td><td>)</td>
-          <td>&#160;&#160;&#160;(typeinfo(ARCHIVO) == typeinfo(ArchivoSalida))</td>
+          <td>&#160;&#160;&#160;( typeid(ARCHIVO) == typeid(ArchivoEntrada) )</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,6 +204,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">template</span> <span class="keywordtype">void</span> CLASE::serialize&lt;ArchivoEntrada&gt;(ArchivoEntrada&amp;,<span class="keyword">const</span> <span class="keywordtype">unsigned</span> int);\</div><div class="line">template <span class="keywordtype">void</span> CLASE::serialize&lt;ArchivoSalida&gt;(ArchivoSalida&amp;,<span class="keyword">const</span> <span class="keywordtype">unsigned</span> int);</div></div><!-- fragment -->
+<p>Instanciación explícita. </p>
+
 </div>
 </div>
 <a id="ae010f83f4f8bf5a00058a6d5870298d2"></a>
@@ -207,6 +222,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">typedef</span> boost::archive::FORMATO##_iarchive ArchivoEntrada;\</div><div class="line">    typedef boost::archive::FORMATO##_oarchive ArchivoSalida;</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a5e7908b022b8741b974b071738a01f52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html">ORB_SLAM2::System</a>* Sistema</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 </div>
 </div>
 </div><!-- contents -->

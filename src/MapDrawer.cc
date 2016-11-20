@@ -65,7 +65,7 @@ void MapDrawer::DrawMapPoints()
 
     glPointSize(mPointSize);
     glBegin(GL_POINTS);
-    glColor3f(1.0,0.0,0.0);	// Rojo
+    glColor3f(0.0,1.0,0.0);	// RGB
 
     for(set<MapPoint*>::iterator sit=spRefMPs.begin(), send=spRefMPs.end(); sit!=send; sit++)
     {
@@ -190,7 +190,7 @@ void MapDrawer::DrawCurrentCamera(pangolin::OpenGlMatrix &Twc)
 #endif
 
     glLineWidth(mCameraLineWidth);
-    glColor3f(0.0f,1.0f,0.0f);
+    glColor3f(1.0f,0.0f,1.0f);	// RGB
     glBegin(GL_LINES);
     glVertex3f(0,0,0);
     glVertex3f(w,h,z);
@@ -226,16 +226,20 @@ void MapDrawer::SetCurrentCameraPose(const cv::Mat &Tcw)
 
 void MapDrawer::GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M)
 {
-    if(!mCameraPose.empty())
-    {
+    if(!mCameraPose.empty()){
+    	// Lo usual.  mCameraPose está actualizado por Track en el estado OK, copiando Tcw del cuadro actual.
+
+    	// Deconstruye Tcw y forma Rwc y twc, que representan Twc: la pose del mundo respecto de la cámara.
         cv::Mat Rwc(3,3,CV_32F);
         cv::Mat twc(3,1,CV_32F);
+
         {
             unique_lock<mutex> lock(mMutexCamera);
             Rwc = mCameraPose.rowRange(0,3).colRange(0,3).t();
             twc = -Rwc*mCameraPose.rowRange(0,3).col(3);
         }
 
+        // Construye M a partir de Rwc y twc
         M.m[0] = Rwc.at<float>(0,0);
         M.m[1] = Rwc.at<float>(1,0);
         M.m[2] = Rwc.at<float>(2,0);
@@ -257,7 +261,34 @@ void MapDrawer::GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M)
         M.m[15]  = 1.0;
     }
     else
+    	// Por si el sistema no inicializó poses todavía
         M.SetIdentity();
 }
+
+void MapDrawer::GetCurrentOpenGLCameraMatrixModified(cv::Mat &Tcp, pangolin::OpenGlMatrix &M){
+
+	// Obtener la rotación y traslación de la pose invertida y producir Twc
+	cv::Mat Rwc, twc, Twc = cv::Mat::zeros(4,4,CV_32F);
+    {
+        unique_lock<mutex> lock(mMutexCamera);
+        Rwc = mCameraPose.rowRange(0,3).colRange(0,3).t();
+        twc = -Rwc * mCameraPose.rowRange(0,3).col(3);
+    }
+    Rwc.copyTo(Twc.rowRange(0,3).colRange(0,3));
+    twc.copyTo(Twc.rowRange(0,3).col(3));
+
+    //cout << "\nTwc\n" << Twc << endl;
+
+    // Modificar, transformar Twc
+    cv::Mat Twp = Twc * Tcp;
+
+    //cout << "\nTwp\n" << Twp << endl;
+
+	// Convertir a matriz opengl
+    for(unsigned int i=0; i<4; i++)
+		for(unsigned int j=0; j<4; j++)
+		    M.m[j+i*4] = Twp.at<float>(j,i);
+}
+
 
 } //namespace ORB_SLAM

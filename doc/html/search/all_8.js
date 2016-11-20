@@ -30,7 +30,7 @@ var searchData=
   ['hyper_5fgraph_5faction_2eh',['hyper_graph_action.h',['../hyper__graph__action_8h.html',1,'']]],
   ['hyperdijkstra',['HyperDijkstra',['../structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry.html#a358d802df25b35f34e715710d1fa380c',1,'g2o::HyperDijkstra::AdjacencyMapEntry::HyperDijkstra()'],['../structg2o_1_1_hyper_dijkstra.html#a55e844f4b596290cb36a0d9fe4140966',1,'g2o::HyperDijkstra::HyperDijkstra()']]],
   ['hyperdijkstra',['HyperDijkstra',['../structg2o_1_1_hyper_dijkstra.html',1,'g2o']]],
-  ['hypergraph',['HyperGraph',['../classg2o_1_1_hyper_graph.html#a833632b111cfc7cf08b842ae3cb43d41',1,'g2o::HyperGraph']]],
+  ['hypergraph',['HyperGraph',['../classg2o_1_1_hyper_graph.html#a833632b111cfc7cf08b842ae3cb43d41',1,'g2o::HyperGraph::HyperGraph()'],['../classg2o_1_1_hyper_graph.html#ab19a6e0681e2b30d48740cebf553c7eb',1,'g2o::HyperGraph::HyperGraph(const HyperGraph &amp;)']]],
   ['hypergraph',['HyperGraph',['../classg2o_1_1_hyper_graph.html',1,'g2o']]],
   ['hypergraphaction',['HyperGraphAction',['../classg2o_1_1_hyper_graph_action.html',1,'g2o']]],
   ['hypergraphactionlibrary',['HyperGraphActionLibrary',['../classg2o_1_1_hyper_graph_action_library.html#a68fe0eee5bdda62e6929c3ee2b4b38f1',1,'g2o::HyperGraphActionLibrary']]],

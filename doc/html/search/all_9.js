@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['ic_5fangle',['IC_Angle',['../namespace_o_r_b___s_l_a_m2.html#ac570dbdaae2d483745515b5022fd6820',1,'ORB_SLAM2']]],
   ['id',['id',['../struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a62fb0c85332741c114110463252c64e9',1,'DBoW2::TemplatedVocabulary::Node::id()'],['../classg2o_1_1_hyper_graph_1_1_vertex.html#a48191960395856d1b686287489e53da3',1,'g2o::HyperGraph::Vertex::id()'],['../classg2o_1_1_hyper_graph_1_1_edge.html#a93f47febcbd6c654fc3344d4643a087f',1,'g2o::HyperGraph::Edge::id()'],['../classg2o_1_1_parameter.html#a1bca491a08b68a7a6b85204a5a8b0f2c',1,'g2o::Parameter::id()']]],
   ['idf',['IDF',['../namespace_d_bo_w2.html#a5de5c8a307aca9a84ffefda2a9bc467aa5a1c1f7cd866c8bea4551e296298c3bc',1,'DBoW2']]],
   ['imagenentrada',['imagenEntrada',['../class_o_r_b___s_l_a_m2_1_1_system.html#a60b15b1f4e0299fa9398801abc143070',1,'ORB_SLAM2::System']]],
@@ -24,6 +25,7 @@ var searchData=
   ['initiateclusterskmpp',['initiateClustersKMpp',['../class_d_bo_w2_1_1_templated_vocabulary.html#aa4c94955c7e03ec39fc0d9b9ce60009f',1,'DBoW2::TemplatedVocabulary']]],
   ['initmatrixstructure',['initMatrixStructure',['../classg2o_1_1_linear_solver_c_c_s.html#a070138d7e2a68a576e015f5073a4a464',1,'g2o::LinearSolverCCS']]],
   ['initmultithreading',['initMultiThreading',['../structg2o_1_1_optimizable_graph.html#ab4ee0fc3ecd31852276ded40b62e9c76',1,'g2o::OptimizableGraph']]],
+  ['inqueue',['inQueue',['../classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a6697b7728a51b80663f843daba54e2d8',1,'g2o::EstimatePropagator::AdjacencyMapEntry']]],
   ['insertkeyframe',['InsertKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_local_mapping.html#af2d70466a1a217fb7e55d874931ce688',1,'ORB_SLAM2::LocalMapping::InsertKeyFrame()'],['../class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a680d0b255d764754841e622f5af97473',1,'ORB_SLAM2::LoopClosing::InsertKeyFrame()']]],
   ['inst_5fexp',['INST_EXP',['../serialize_8cpp.html#a985119c54406f96afeb99eaf54d27923',1,'serialize.cpp']]],
   ['installdependency',['installDependency',['../classg2o_1_1_cache.html#a776574fb98726ff61bc1280ea624c6e5',1,'g2o::Cache']]],

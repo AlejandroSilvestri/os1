@@ -15,5 +15,6 @@ var classg2o_1_1_base_multi_edge =
     [ "mapHessianMemory", "classg2o_1_1_base_multi_edge.html#aecded66022b967fab0deb1c6a2d76445", null ],
     [ "resize", "classg2o_1_1_base_multi_edge.html#ae07ec9359cd515d0abc2100ee8aae93f", null ],
     [ "_hessian", "classg2o_1_1_base_multi_edge.html#af927d6f41bf73fc3b928cae2d6219d9e", null ],
-    [ "_jacobianOplus", "classg2o_1_1_base_multi_edge.html#a00f8130e287bc945a8436375c4d07a02", null ]
+    [ "_jacobianOplus", "classg2o_1_1_base_multi_edge.html#a00f8130e287bc945a8436375c4d07a02", null ],
+    [ "Dimension", "classg2o_1_1_base_multi_edge.html#a3c713fe8d1cd161f777625d8e2d5695d", null ]
 ];

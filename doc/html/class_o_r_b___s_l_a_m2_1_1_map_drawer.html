@@ -84,47 +84,90 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_map_drawer.
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_o_r_b___s_l_a_m2_1_1_map_drawer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ORB_SLAM2::MapDrawer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>Esta clase contiene los métodos para dibujar en pangolin.  
+ <a href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_map_drawer_8h_source.html">MapDrawer.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::MapDrawer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_map_drawer__coll__graph.svg" width="430" height="410"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_map_drawer__coll__graph.svg" width="1459" height="444"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af8d3dec705fc048dac229cf682bfceb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#af8d3dec705fc048dac229cf682bfceb1">DrawCurrentCamera</a> (pangolin::OpenGlMatrix &amp;Twc)</td></tr>
+<tr class="memdesc:af8d3dec705fc048dac229cf682bfceb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja la cámara en la pose dada.  <a href="#af8d3dec705fc048dac229cf682bfceb1">More...</a><br /></td></tr>
+<tr class="separator:af8d3dec705fc048dac229cf682bfceb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e00f408c3c2d1878ca53930903caa5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a5e00f408c3c2d1878ca53930903caa5f">DrawKeyFrames</a> (const bool bDrawKF, const bool bDrawGraph)</td></tr>
+<tr class="memdesc:a5e00f408c3c2d1878ca53930903caa5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja los keyframes y el grafo en pantalla.  <a href="#a5e00f408c3c2d1878ca53930903caa5f">More...</a><br /></td></tr>
+<tr class="separator:a5e00f408c3c2d1878ca53930903caa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79991cc944076440e4ce4326436da285"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a79991cc944076440e4ce4326436da285">DrawMapPoints</a> ()</td></tr>
+<tr class="memdesc:a79991cc944076440e4ce4326436da285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja en pantalla todos los puntos 3D del mapa.  <a href="#a79991cc944076440e4ce4326436da285">More...</a><br /></td></tr>
+<tr class="separator:a79991cc944076440e4ce4326436da285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a872b93687086460e398e912191c91aca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a872b93687086460e398e912191c91aca">GetCurrentOpenGLCameraMatrix</a> (pangolin::OpenGlMatrix &amp;M)</td></tr>
+<tr class="memdesc:a872b93687086460e398e912191c91aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa Twc, la pose actual del mundo respecto de la cámara.  <a href="#a872b93687086460e398e912191c91aca">More...</a><br /></td></tr>
+<tr class="separator:a872b93687086460e398e912191c91aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfabe8a5d66f8ecc64021aeff9a14a9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#abfabe8a5d66f8ecc64021aeff9a14a9e">GetCurrentOpenGLCameraMatrixModified</a> (cv::Mat &amp;T, pangolin::OpenGlMatrix &amp;M)</td></tr>
+<tr class="separator:abfabe8a5d66f8ecc64021aeff9a14a9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a649a10671736e192e85a6d824d776fc1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a649a10671736e192e85a6d824d776fc1">MapDrawer</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, const string &amp;strSettingPath)</td></tr>
+<tr class="memdesc:a649a10671736e192e85a6d824d776fc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor que toma sus parámetros directamente desde el archivo de configuración.  <a href="#a649a10671736e192e85a6d824d776fc1">More...</a><br /></td></tr>
 <tr class="separator:a649a10671736e192e85a6d824d776fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fc28aa651024421fe1b660940122a64"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a2fc28aa651024421fe1b660940122a64">MapDrawer</a> (const string &amp;strSettingPath)</td></tr>
+<tr class="memdesc:a2fc28aa651024421fe1b660940122a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor declarado no definido.  <a href="#a2fc28aa651024421fe1b660940122a64">More...</a><br /></td></tr>
 <tr class="separator:a2fc28aa651024421fe1b660940122a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79991cc944076440e4ce4326436da285"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a79991cc944076440e4ce4326436da285">DrawMapPoints</a> ()</td></tr>
-<tr class="separator:a79991cc944076440e4ce4326436da285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e00f408c3c2d1878ca53930903caa5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a5e00f408c3c2d1878ca53930903caa5f">DrawKeyFrames</a> (const bool bDrawKF, const bool bDrawGraph)</td></tr>
-<tr class="separator:a5e00f408c3c2d1878ca53930903caa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8d3dec705fc048dac229cf682bfceb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#af8d3dec705fc048dac229cf682bfceb1">DrawCurrentCamera</a> (pangolin::OpenGlMatrix &amp;Twc)</td></tr>
-<tr class="separator:af8d3dec705fc048dac229cf682bfceb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7852ad0781ebc8553bff8d03ff67937"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ad7852ad0781ebc8553bff8d03ff67937">Register</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
+<tr class="memdesc:ad7852ad0781ebc8553bff8d03ff67937"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método declarado y no definido.  <a href="#ad7852ad0781ebc8553bff8d03ff67937">More...</a><br /></td></tr>
+<tr class="separator:ad7852ad0781ebc8553bff8d03ff67937"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8c03502b5878303b31816ce5dfd9c0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ac8c03502b5878303b31816ce5dfd9c0a">SetCurrentCameraPose</a> (const cv::Mat &amp;Tcw)</td></tr>
 <tr class="separator:ac8c03502b5878303b31816ce5dfd9c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac72cc0b3e9e3a92527b38ca12230e79c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ac72cc0b3e9e3a92527b38ca12230e79c">SetReferenceKeyFrame</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:ac72cc0b3e9e3a92527b38ca12230e79c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método declarado y no definido.  <a href="#ac72cc0b3e9e3a92527b38ca12230e79c">More...</a><br /></td></tr>
 <tr class="separator:ac72cc0b3e9e3a92527b38ca12230e79c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a872b93687086460e398e912191c91aca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a872b93687086460e398e912191c91aca">GetCurrentOpenGLCameraMatrix</a> (pangolin::OpenGlMatrix &amp;M)</td></tr>
-<tr class="separator:a872b93687086460e398e912191c91aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7852ad0781ebc8553bff8d03ff67937"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ad7852ad0781ebc8553bff8d03ff67937">Register</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
-<tr class="separator:ad7852ad0781ebc8553bff8d03ff67937"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa10e7a80919749c11774eb84219f0a4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#aa10e7a80919749c11774eb84219f0a4b">mpMap</a></td></tr>
+<tr class="memdesc:aa10e7a80919749c11774eb84219f0a4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mapa del mundo.  <a href="#aa10e7a80919749c11774eb84219f0a4b">More...</a><br /></td></tr>
 <tr class="separator:aa10e7a80919749c11774eb84219f0a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a9d9d5a9b0b0c73ac47288bb31ab02487"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a9d9d5a9b0b0c73ac47288bb31ab02487">mCameraLineWidth</a></td></tr>
+<tr class="memdesc:a9d9d5a9b0b0c73ac47288bb31ab02487"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ancho del trazo para dibujar la cámara, definido en el archivo de configuración.  <a href="#a9d9d5a9b0b0c73ac47288bb31ab02487">More...</a><br /></td></tr>
+<tr class="separator:a9d9d5a9b0b0c73ac47288bb31ab02487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1df47d70a2609cd77d7be569d053e908"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a1df47d70a2609cd77d7be569d053e908">mCameraPose</a></td></tr>
+<tr class="memdesc:a1df47d70a2609cd77d7be569d053e908"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pose de la cámara.  <a href="#a1df47d70a2609cd77d7be569d053e908">More...</a><br /></td></tr>
+<tr class="separator:a1df47d70a2609cd77d7be569d053e908"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a485491f1257e132b10a4d129b4f3f9ce"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a485491f1257e132b10a4d129b4f3f9ce">mCameraSize</a></td></tr>
+<tr class="memdesc:a485491f1257e132b10a4d129b4f3f9ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamaño de la cámara a dibujar, definido en el archivo de configuración.  <a href="#a485491f1257e132b10a4d129b4f3f9ce">More...</a><br /></td></tr>
+<tr class="separator:a485491f1257e132b10a4d129b4f3f9ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ba8aa0b866fc4bfde76d5e8f592be7b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a3ba8aa0b866fc4bfde76d5e8f592be7b">mGraphLineWidth</a></td></tr>
+<tr class="memdesc:a3ba8aa0b866fc4bfde76d5e8f592be7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ancho del trazo del grafo, definido en el archivo de configuración.  <a href="#a3ba8aa0b866fc4bfde76d5e8f592be7b">More...</a><br /></td></tr>
+<tr class="separator:a3ba8aa0b866fc4bfde76d5e8f592be7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbdf0b3ccfbbbcec719d6c8b2ed5832d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#afbdf0b3ccfbbbcec719d6c8b2ed5832d">mKeyFrameLineWidth</a></td></tr>
+<tr class="memdesc:afbdf0b3ccfbbbcec719d6c8b2ed5832d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ancho del trazo para dibujar keyframes, definido en el archivo de configuración.  <a href="#afbdf0b3ccfbbbcec719d6c8b2ed5832d">More...</a><br /></td></tr>
+<tr class="separator:afbdf0b3ccfbbbcec719d6c8b2ed5832d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af26fb341deb8fac97ff3c19e61326f21"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#af26fb341deb8fac97ff3c19e61326f21">mKeyFrameSize</a></td></tr>
+<tr class="memdesc:af26fb341deb8fac97ff3c19e61326f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamaño de los keyframe a dibujar, definido en el archivo de configuración.  <a href="#af26fb341deb8fac97ff3c19e61326f21">More...</a><br /></td></tr>
+<tr class="separator:af26fb341deb8fac97ff3c19e61326f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf8ac349e12a7ae5b8c7e4af7a806ee5"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#adf8ac349e12a7ae5b8c7e4af7a806ee5">mMutexCamera</a></td></tr>
+<tr class="separator:adf8ac349e12a7ae5b8c7e4af7a806ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad98a7d7b4aaee890a41696bef0786b84"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ad98a7d7b4aaee890a41696bef0786b84">mPointSize</a></td></tr>
+<tr class="memdesc:ad98a7d7b4aaee890a41696bef0786b84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamaño de los puntos del mapa, definido en el archivo de configuración.  <a href="#ad98a7d7b4aaee890a41696bef0786b84">More...</a><br /></td></tr>
+<tr class="separator:ad98a7d7b4aaee890a41696bef0786b84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Esta clase contiene los métodos para dibujar en pangolin. </p>
+<p>Dibuja la cámara, los keyframes y los puntos 3D del mapa. No los dibuja directamente sobre Pangolin, sino que usa glew. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> invoca estos métodos, y vuelca lo dibujado a Pangolin. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a649a10671736e192e85a6d824d776fc1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -149,6 +192,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor que toma sus parámetros directamente desde el archivo de configuración. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMap</td><td>Mapa del mundo. </td></tr>
+    <tr><td class="paramname">strSettingPath</td><td>Ruta del archivo de configuración.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>La configuración se limita a aspectos gráficos: anchos de trazos, tamaños de cámara y keyframes.</p>
+<p>Invocado sólo desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html" title="System se instancia una única vez en main, en la variable SLAM. ">System</a>. </p>
+
 </div>
 </div>
 <a id="a2fc28aa651024421fe1b660940122a64"></a>
@@ -164,6 +218,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor declarado no definido. </p>
 
 </div>
 </div>
@@ -181,6 +237,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Dibuja la cámara en la pose dada. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Twc</td><td>Pose de la cámara.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, en cada iteración. </p>
 
 </div>
 </div>
@@ -208,6 +273,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Dibuja los keyframes y el grafo en pantalla. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bDrawKF</td><td>true para dibujar keyframes. </td></tr>
+    <tr><td class="paramname">bDrawGraph</td><td>true para dibujar el grafo.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, en cada iteración. </p>
+
 </div>
 </div>
 <a id="a79991cc944076440e4ce4326436da285"></a>
@@ -223,6 +298,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Dibuja en pantalla todos los puntos 3D del mapa. </p>
+<p>Dibua todos en color negro, y luego en rojo los de referencia (los visualizados por la cámara). Invocado en cada iteración de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>.</p>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, en cada iteración. </p>
+
 </div>
 </div>
 <a id="a872b93687086460e398e912191c91aca"></a>
@@ -235,6 +314,36 @@ Public Attributes</h2></td></tr>
           <td class="paramtype">pangolin::OpenGlMatrix &amp;&#160;</td>
           <td class="paramname"><em>M</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Informa Twc, la pose actual del mundo respecto de la cámara. </p>
+<p>Calcula la pose actual invertida en el formato paonglin::OpenGlMatrix</p>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>. </p>
+
+</div>
+</div>
+<a id="abfabe8a5d66f8ecc64021aeff9a14a9e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::MapDrawer::GetCurrentOpenGLCameraMatrixModified </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>T</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">pangolin::OpenGlMatrix &amp;&#160;</td>
+          <td class="paramname"><em>M</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -255,6 +364,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Método declarado y no definido. </p>
+
 </div>
 </div>
 <a id="ac8c03502b5878303b31816ce5dfd9c0a"></a>
@@ -270,6 +381,13 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Tcw</td><td>Pose en el mundo, matriz de rototraslación en coordenadas homogéneas.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">Tracking::CreateInitialMapMonocular</a>. </p>
 
 </div>
 </div>
@@ -287,9 +405,163 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Método declarado y no definido. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9d9d5a9b0b0c73ac47288bb31ab02487"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ORB_SLAM2::MapDrawer::mCameraLineWidth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ancho del trazo para dibujar la cámara, definido en el archivo de configuración. </p>
+
+</div>
+</div>
+<a id="a1df47d70a2609cd77d7be569d053e908"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::MapDrawer::mCameraPose</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pose de la cámara. </p>
+
+</div>
+</div>
+<a id="a485491f1257e132b10a4d129b4f3f9ce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ORB_SLAM2::MapDrawer::mCameraSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tamaño de la cámara a dibujar, definido en el archivo de configuración. </p>
+
+</div>
+</div>
+<a id="a3ba8aa0b866fc4bfde76d5e8f592be7b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ORB_SLAM2::MapDrawer::mGraphLineWidth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ancho del trazo del grafo, definido en el archivo de configuración. </p>
+
+</div>
+</div>
+<a id="afbdf0b3ccfbbbcec719d6c8b2ed5832d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ORB_SLAM2::MapDrawer::mKeyFrameLineWidth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ancho del trazo para dibujar keyframes, definido en el archivo de configuración. </p>
+
+</div>
+</div>
+<a id="af26fb341deb8fac97ff3c19e61326f21"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ORB_SLAM2::MapDrawer::mKeyFrameSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tamaño de los keyframe a dibujar, definido en el archivo de configuración. </p>
+
+</div>
+</div>
+<a id="adf8ac349e12a7ae5b8c7e4af7a806ee5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex ORB_SLAM2::MapDrawer::mMutexCamera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa10e7a80919749c11774eb84219f0a4b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -299,6 +571,30 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Mapa del mundo. </p>
+
+</div>
+</div>
+<a id="ad98a7d7b4aaee890a41696bef0786b84"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ORB_SLAM2::MapDrawer::mPointSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tamaño de los puntos del mapa, definido en el archivo de configuración. </p>
 
 </div>
 </div>

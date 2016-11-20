@@ -5,6 +5,7 @@ var classg2o_1_1_s_e3_quat =
     [ "SE3Quat", "classg2o_1_1_s_e3_quat.html#ab22b3fde9b7e0a833b74b3453041c040", null ],
     [ "SE3Quat", "classg2o_1_1_s_e3_quat.html#ada36ff00a7a238cef3fe958ff9f7f9cd", null ],
     [ "adj", "classg2o_1_1_s_e3_quat.html#a5540394ac7f1a61c5e04ceed9c96617a", null ],
+    [ "exp", "classg2o_1_1_s_e3_quat.html#a374a05b202889d09d5a3a25e0fb6c103", null ],
     [ "fromMinimalVector", "classg2o_1_1_s_e3_quat.html#a65714851482e99558401d4ea66edb183", null ],
     [ "fromVector", "classg2o_1_1_s_e3_quat.html#a59aa7dffe9320761ee65bcdfa2bc61fd", null ],
     [ "inverse", "classg2o_1_1_s_e3_quat.html#a894d361da0f27b25472b3a274deefed3", null ],

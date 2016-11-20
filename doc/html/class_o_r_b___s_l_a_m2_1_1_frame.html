@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame.html'
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_o_r_b___s_l_a_m2_1_1_frame-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ORB_SLAM2::Frame Class Reference</div>  </div>
@@ -98,12 +99,23 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame.html'
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::Frame:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame__coll__graph.svg" width="1820" height="446"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame__coll__graph.svg" width="1839" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:aa3ba21cd44638b322db024cba2b9c19e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aa3ba21cd44638b322db024cba2b9c19e">AssignFeaturesToGrid</a> ()</td></tr>
+<tr class="memdesc:aa3ba21cd44638b322db024cba2b9c19e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asigna los puntos singulares a sus celdas de la grilla.  <a href="#aa3ba21cd44638b322db024cba2b9c19e">More...</a><br /></td></tr>
+<tr class="separator:aa3ba21cd44638b322db024cba2b9c19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac748d2318f9a409406dba4910ff5ef8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ac748d2318f9a409406dba4910ff5ef8e">ComputeBoW</a> ()</td></tr>
+<tr class="memdesc:ac748d2318f9a409406dba4910ff5ef8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computa BoW para todos los descriptores del cuadro.  <a href="#ac748d2318f9a409406dba4910ff5ef8e">More...</a><br /></td></tr>
+<tr class="separator:ac748d2318f9a409406dba4910ff5ef8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a420f0369833f856df1973410ea39b335"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a420f0369833f856df1973410ea39b335">ComputeImageBounds</a> (const cv::Mat &amp;imLeft)</td></tr>
+<tr class="memdesc:a420f0369833f856df1973410ea39b335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula los vértices del cuadro andistorsionado.  <a href="#a420f0369833f856df1973410ea39b335">More...</a><br /></td></tr>
+<tr class="separator:a420f0369833f856df1973410ea39b335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a626aef981e9fd9caff63bf93f1abf47f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a626aef981e9fd9caff63bf93f1abf47f">ExtractORB</a> (int flag, const cv::Mat &amp;im)</td></tr>
+<tr class="memdesc:a626aef981e9fd9caff63bf93f1abf47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procede con la extracción de descriptores ORB.  <a href="#a626aef981e9fd9caff63bf93f1abf47f">More...</a><br /></td></tr>
+<tr class="separator:a626aef981e9fd9caff63bf93f1abf47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa43d601e841ddb7a9f100b0b9afd3b10"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aa43d601e841ddb7a9f100b0b9afd3b10">Frame</a> ()</td></tr>
 <tr class="memdesc:aa43d601e841ddb7a9f100b0b9afd3b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">El constructor sin argumentos crea un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> sin inicialización.  <a href="#aa43d601e841ddb7a9f100b0b9afd3b10">More...</a><br /></td></tr>
 <tr class="separator:aa43d601e841ddb7a9f100b0b9afd3b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,21 +125,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a39a57316938495a9ca8a053edd74b414"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a39a57316938495a9ca8a053edd74b414">Frame</a> (const cv::Mat &amp;imGray, const double &amp;timeStamp, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html">ORBextractor</a> *extractor, <a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *voc, cv::Mat &amp;K, cv::Mat &amp;distCoef, const float &amp;bf, const float &amp;thDepth)</td></tr>
 <tr class="memdesc:a39a57316938495a9ca8a053edd74b414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor que crea un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> y lo llena con los argumentos.  <a href="#a39a57316938495a9ca8a053edd74b414">More...</a><br /></td></tr>
 <tr class="separator:a39a57316938495a9ca8a053edd74b414"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626aef981e9fd9caff63bf93f1abf47f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a626aef981e9fd9caff63bf93f1abf47f">ExtractORB</a> (int flag, const cv::Mat &amp;im)</td></tr>
-<tr class="memdesc:a626aef981e9fd9caff63bf93f1abf47f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procede con la extracción de descriptores ORB.  <a href="#a626aef981e9fd9caff63bf93f1abf47f">More...</a><br /></td></tr>
-<tr class="separator:a626aef981e9fd9caff63bf93f1abf47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac748d2318f9a409406dba4910ff5ef8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ac748d2318f9a409406dba4910ff5ef8e">ComputeBoW</a> ()</td></tr>
-<tr class="memdesc:ac748d2318f9a409406dba4910ff5ef8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computa BoW para todos los descriptores del cuadro.  <a href="#ac748d2318f9a409406dba4910ff5ef8e">More...</a><br /></td></tr>
-<tr class="separator:ac748d2318f9a409406dba4910ff5ef8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95cf2ea68735ef3e8c2d820eada11bf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a95cf2ea68735ef3e8c2d820eada11bf4">SetPose</a> (cv::Mat Tcw)</td></tr>
-<tr class="memdesc:a95cf2ea68735ef3e8c2d820eada11bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter de pose.  <a href="#a95cf2ea68735ef3e8c2d820eada11bf4">More...</a><br /></td></tr>
-<tr class="separator:a95cf2ea68735ef3e8c2d820eada11bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a18d3024a23f6fa2cab9c7d987598c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0a18d3024a23f6fa2cab9c7d987598c2">UpdatePoseMatrices</a> ()</td></tr>
-<tr class="memdesc:a0a18d3024a23f6fa2cab9c7d987598c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula las matrices de posición mRcw, mtcw y mOw a partir de la pose mTcw.  <a href="#a0a18d3024a23f6fa2cab9c7d987598c2">More...</a><br /></td></tr>
-<tr class="separator:a0a18d3024a23f6fa2cab9c7d987598c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48c8983df3a521ed7439d9654b28e390"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a48c8983df3a521ed7439d9654b28e390">GetCameraCenter</a> ()</td></tr>
 <tr class="memdesc:a48c8983df3a521ed7439d9654b28e390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el vector de la posición de la cámara, el centro de la cámara.  <a href="#a48c8983df3a521ed7439d9654b28e390">More...</a><br /></td></tr>
 <tr class="separator:a48c8983df3a521ed7439d9654b28e390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="memItemLeft" align="right" valign="top">vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a922a340f438ed0ddd2d7d2a9f95872b6">GetFeaturesInArea</a> (const float &amp;x, const float &amp;y, const float &amp;r, const int minLevel=-1, const int maxLevel=-1) const</td></tr>
+<tr class="memdesc:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona los puntos dentro de una ventana cuadrada de centro x,y y lado r.  <a href="#a922a340f438ed0ddd2d7d2a9f95872b6">More...</a><br /></td></tr>
+<tr class="separator:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96ec2c272f2ecea3f94b8472add80478"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a96ec2c272f2ecea3f94b8472add80478">GetRotationInverse</a> ()</td></tr>
 <tr class="memdesc:a96ec2c272f2ecea3f94b8472add80478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la inversa de la rotación.  <a href="#a96ec2c272f2ecea3f94b8472add80478">More...</a><br /></td></tr>
 <tr class="separator:a96ec2c272f2ecea3f94b8472add80478"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,154 +140,166 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae2bc4b1482d2010511da5423d298c9bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ae2bc4b1482d2010511da5423d298c9bd">PosInGrid</a> (const cv::KeyPoint &amp;kp, int &amp;posX, int &amp;posY)</td></tr>
 <tr class="memdesc:ae2bc4b1482d2010511da5423d298c9bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula las coordenadas de la celda en la grilla, a la que pertenece un punto singular.  <a href="#ae2bc4b1482d2010511da5423d298c9bd">More...</a><br /></td></tr>
 <tr class="separator:ae2bc4b1482d2010511da5423d298c9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="memItemLeft" align="right" valign="top">vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a922a340f438ed0ddd2d7d2a9f95872b6">GetFeaturesInArea</a> (const float &amp;x, const float &amp;y, const float &amp;r, const int minLevel=-1, const int maxLevel=-1) const</td></tr>
-<tr class="memdesc:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona los puntos dentro de una ventana cuadrada de centro x,y y lado r.  <a href="#a922a340f438ed0ddd2d7d2a9f95872b6">More...</a><br /></td></tr>
-<tr class="separator:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95cf2ea68735ef3e8c2d820eada11bf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a95cf2ea68735ef3e8c2d820eada11bf4">SetPose</a> (cv::Mat Tcw)</td></tr>
+<tr class="memdesc:a95cf2ea68735ef3e8c2d820eada11bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter de pose.  <a href="#a95cf2ea68735ef3e8c2d820eada11bf4">More...</a><br /></td></tr>
+<tr class="separator:a95cf2ea68735ef3e8c2d820eada11bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a97fc690d8c1cd5e975d19440a31657"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a2a97fc690d8c1cd5e975d19440a31657">UndistortKeyPoints</a> ()</td></tr>
 <tr class="memdesc:a2a97fc690d8c1cd5e975d19440a31657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula los puntos singulares de mvKeysUn.  <a href="#a2a97fc690d8c1cd5e975d19440a31657">More...</a><br /></td></tr>
 <tr class="separator:a2a97fc690d8c1cd5e975d19440a31657"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a420f0369833f856df1973410ea39b335"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a420f0369833f856df1973410ea39b335">ComputeImageBounds</a> (const cv::Mat &amp;imLeft)</td></tr>
-<tr class="memdesc:a420f0369833f856df1973410ea39b335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula los vértices del cuadro andistorsionado.  <a href="#a420f0369833f856df1973410ea39b335">More...</a><br /></td></tr>
-<tr class="separator:a420f0369833f856df1973410ea39b335"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3ba21cd44638b322db024cba2b9c19e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aa3ba21cd44638b322db024cba2b9c19e">AssignFeaturesToGrid</a> ()</td></tr>
-<tr class="memdesc:aa3ba21cd44638b322db024cba2b9c19e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asigna los puntos singulares a sus celdas de la grilla.  <a href="#aa3ba21cd44638b322db024cba2b9c19e">More...</a><br /></td></tr>
-<tr class="separator:aa3ba21cd44638b322db024cba2b9c19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a18d3024a23f6fa2cab9c7d987598c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0a18d3024a23f6fa2cab9c7d987598c2">UpdatePoseMatrices</a> ()</td></tr>
+<tr class="memdesc:a0a18d3024a23f6fa2cab9c7d987598c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula las matrices de posición mRcw, mtcw y mOw a partir de la pose mTcw.  <a href="#a0a18d3024a23f6fa2cab9c7d987598c2">More...</a><br /></td></tr>
+<tr class="separator:a0a18d3024a23f6fa2cab9c7d987598c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4c54c9963da838cd6fa83a65930bd1b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4c54c9963da838cd6fa83a65930bd1b7">mpORBvocabulary</a></td></tr>
-<tr class="memdesc:a4c54c9963da838cd6fa83a65930bd1b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vocabulario BOW para clasificar descriptores.  <a href="#a4c54c9963da838cd6fa83a65930bd1b7">More...</a><br /></td></tr>
-<tr class="separator:a4c54c9963da838cd6fa83a65930bd1b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4f28562114c30c6276f2e42aac6607"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html">ORBextractor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a5c4f28562114c30c6276f2e42aac6607">mpORBextractorLeft</a></td></tr>
-<tr class="memdesc:a5c4f28562114c30c6276f2e42aac6607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extractor usado para extraer descriptores.  <a href="#a5c4f28562114c30c6276f2e42aac6607">More...</a><br /></td></tr>
-<tr class="separator:a5c4f28562114c30c6276f2e42aac6607"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7987de59d3b4bf655614e19db0c90278"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a7987de59d3b4bf655614e19db0c90278">mTimeStamp</a></td></tr>
-<tr class="memdesc:a7987de59d3b4bf655614e19db0c90278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time stamp de la captura de la imagen.  <a href="#a7987de59d3b4bf655614e19db0c90278">More...</a><br /></td></tr>
-<tr class="separator:a7987de59d3b4bf655614e19db0c90278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6508d43259538370dcb77911122dc85b"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a6508d43259538370dcb77911122dc85b">mK</a></td></tr>
-<tr class="memdesc:a6508d43259538370dcb77911122dc85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz K intrínseca, de cámara.  <a href="#a6508d43259538370dcb77911122dc85b">More...</a><br /></td></tr>
-<tr class="separator:a6508d43259538370dcb77911122dc85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef15cff1b0d7572f49975d3200ffd140"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aef15cff1b0d7572f49975d3200ffd140">mDistCoef</a></td></tr>
-<tr class="memdesc:aef15cff1b0d7572f49975d3200ffd140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coeficientes de distorsión de cámara mDistCoef.  <a href="#aef15cff1b0d7572f49975d3200ffd140">More...</a><br /></td></tr>
-<tr class="separator:aef15cff1b0d7572f49975d3200ffd140"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb4090340565194b372b2ce0d95f16fb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afb4090340565194b372b2ce0d95f16fb">mbf</a></td></tr>
-<tr class="memdesc:afb4090340565194b372b2ce0d95f16fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">No usado en monocular.  <a href="#afb4090340565194b372b2ce0d95f16fb">More...</a><br /></td></tr>
-<tr class="separator:afb4090340565194b372b2ce0d95f16fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950131e5ed7fca2a73fc5a50e6d9b2de"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a950131e5ed7fca2a73fc5a50e6d9b2de">mb</a></td></tr>
 <tr class="memdesc:a950131e5ed7fca2a73fc5a50e6d9b2de"><td class="mdescLeft">&#160;</td><td class="mdescRight">No usado en monocular.  <a href="#a950131e5ed7fca2a73fc5a50e6d9b2de">More...</a><br /></td></tr>
 <tr class="separator:a950131e5ed7fca2a73fc5a50e6d9b2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb4090340565194b372b2ce0d95f16fb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afb4090340565194b372b2ce0d95f16fb">mbf</a></td></tr>
+<tr class="memdesc:afb4090340565194b372b2ce0d95f16fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">No usado en monocular.  <a href="#afb4090340565194b372b2ce0d95f16fb">More...</a><br /></td></tr>
+<tr class="separator:afb4090340565194b372b2ce0d95f16fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68bbc187861a8e5c0ed9d92b5308c2cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_bo_w2_1_1_bow_vector.html">DBoW2::BowVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a68bbc187861a8e5c0ed9d92b5308c2cb">mBowVec</a></td></tr>
+<tr class="memdesc:a68bbc187861a8e5c0ed9d92b5308c2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector BoW correspondiente a los puntos singulares.  <a href="#a68bbc187861a8e5c0ed9d92b5308c2cb">More...</a><br /></td></tr>
+<tr class="separator:a68bbc187861a8e5c0ed9d92b5308c2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dfc1a363215ad0a09303e612a1ffbe7"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0dfc1a363215ad0a09303e612a1ffbe7">mDescriptors</a></td></tr>
+<tr class="memdesc:a0dfc1a363215ad0a09303e612a1ffbe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptores ORB en el formato Mat, tal como los devuelve opencv.  <a href="#a0dfc1a363215ad0a09303e612a1ffbe7">More...</a><br /></td></tr>
+<tr class="separator:a0dfc1a363215ad0a09303e612a1ffbe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe3cee153dda7e06d5004fd959fcd88e"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afe3cee153dda7e06d5004fd959fcd88e">mDescriptorsRight</a></td></tr>
+<tr class="separator:afe3cee153dda7e06d5004fd959fcd88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef15cff1b0d7572f49975d3200ffd140"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aef15cff1b0d7572f49975d3200ffd140">mDistCoef</a></td></tr>
+<tr class="memdesc:aef15cff1b0d7572f49975d3200ffd140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coeficientes de distorsión de cámara mDistCoef.  <a href="#aef15cff1b0d7572f49975d3200ffd140">More...</a><br /></td></tr>
+<tr class="separator:aef15cff1b0d7572f49975d3200ffd140"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8153622c07ed98421bd7c7b2b7451b03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_bo_w2_1_1_feature_vector.html">DBoW2::FeatureVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a8153622c07ed98421bd7c7b2b7451b03">mFeatVec</a></td></tr>
+<tr class="memdesc:a8153622c07ed98421bd7c7b2b7451b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector "Feature" correspondiente a los puntos singulares.  <a href="#a8153622c07ed98421bd7c7b2b7451b03">More...</a><br /></td></tr>
+<tr class="separator:a8153622c07ed98421bd7c7b2b7451b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ddefb0665fb5128391a7e59a236e9a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ad3ddefb0665fb5128391a7e59a236e9a">mfLogScaleFactor</a></td></tr>
+<tr class="memdesc:ad3ddefb0665fb5128391a7e59a236e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factor de escala logarítmico.  <a href="#ad3ddefb0665fb5128391a7e59a236e9a">More...</a><br /></td></tr>
+<tr class="separator:ad3ddefb0665fb5128391a7e59a236e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab180286bac29f4e030ce850c51c435c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aab180286bac29f4e030ce850c51c435c">mfScaleFactor</a></td></tr>
+<tr class="memdesc:aab180286bac29f4e030ce850c51c435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factor de escala entre niveles de la pirámide.  <a href="#aab180286bac29f4e030ce850c51c435c">More...</a><br /></td></tr>
+<tr class="separator:aab180286bac29f4e030ce850c51c435c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194dca06186458639d46234d828afeed"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a194dca06186458639d46234d828afeed">mGrid</a> [<a class="el" href="_frame_8h.html#a3ef79fa8924a9c5df3cddac58a52ab0c">FRAME_GRID_COLS</a>][<a class="el" href="_frame_8h.html#a9550f0488f3dac9a5c56f0d3c07c01c1">FRAME_GRID_ROWS</a>]</td></tr>
+<tr class="separator:a194dca06186458639d46234d828afeed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6508d43259538370dcb77911122dc85b"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a6508d43259538370dcb77911122dc85b">mK</a></td></tr>
+<tr class="memdesc:a6508d43259538370dcb77911122dc85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz K intrínseca, de cámara.  <a href="#a6508d43259538370dcb77911122dc85b">More...</a><br /></td></tr>
+<tr class="separator:a6508d43259538370dcb77911122dc85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd59686475a89bfdfcae316dfa6b6069"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#acd59686475a89bfdfcae316dfa6b6069">mnId</a></td></tr>
+<tr class="memdesc:acd59686475a89bfdfcae316dfa6b6069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id incremental que identifica a este frame.  <a href="#acd59686475a89bfdfcae316dfa6b6069">More...</a><br /></td></tr>
+<tr class="separator:acd59686475a89bfdfcae316dfa6b6069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4b02f27be28aec6cb8bb1bab3f622f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4c4b02f27be28aec6cb8bb1bab3f622f">mnScaleLevels</a></td></tr>
+<tr class="memdesc:a4c4b02f27be28aec6cb8bb1bab3f622f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de niveles en la pirámide.  <a href="#a4c4b02f27be28aec6cb8bb1bab3f622f">More...</a><br /></td></tr>
+<tr class="separator:a4c4b02f27be28aec6cb8bb1bab3f622f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c4f28562114c30c6276f2e42aac6607"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html">ORBextractor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a5c4f28562114c30c6276f2e42aac6607">mpORBextractorLeft</a></td></tr>
+<tr class="memdesc:a5c4f28562114c30c6276f2e42aac6607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extractor usado para extraer descriptores.  <a href="#a5c4f28562114c30c6276f2e42aac6607">More...</a><br /></td></tr>
+<tr class="separator:a5c4f28562114c30c6276f2e42aac6607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c54c9963da838cd6fa83a65930bd1b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4c54c9963da838cd6fa83a65930bd1b7">mpORBvocabulary</a></td></tr>
+<tr class="memdesc:a4c54c9963da838cd6fa83a65930bd1b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vocabulario BOW para clasificar descriptores.  <a href="#a4c54c9963da838cd6fa83a65930bd1b7">More...</a><br /></td></tr>
+<tr class="separator:a4c54c9963da838cd6fa83a65930bd1b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f5187c3a75ef493687fa0582fed0aa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4f5187c3a75ef493687fa0582fed0aa8">mpReferenceKF</a></td></tr>
+<tr class="memdesc:a4f5187c3a75ef493687fa0582fed0aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> de referencia.  <a href="#a4f5187c3a75ef493687fa0582fed0aa8">More...</a><br /></td></tr>
+<tr class="separator:a4f5187c3a75ef493687fa0582fed0aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3be6708cfd359fae30307f9408abd6f9"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a3be6708cfd359fae30307f9408abd6f9">mTcw</a></td></tr>
+<tr class="memdesc:a3be6708cfd359fae30307f9408abd6f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pose de la cámara.  <a href="#a3be6708cfd359fae30307f9408abd6f9">More...</a><br /></td></tr>
+<tr class="separator:a3be6708cfd359fae30307f9408abd6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15e0251e1e18b84f385ad817f0e8ba1a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a15e0251e1e18b84f385ad817f0e8ba1a">mThDepth</a></td></tr>
 <tr class="memdesc:a15e0251e1e18b84f385ad817f0e8ba1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">No usado en monocular.  <a href="#a15e0251e1e18b84f385ad817f0e8ba1a">More...</a><br /></td></tr>
 <tr class="separator:a15e0251e1e18b84f385ad817f0e8ba1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0035828f1744f1bdd4ae8681e7cbbd32"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0035828f1744f1bdd4ae8681e7cbbd32">N</a></td></tr>
-<tr class="memdesc:a0035828f1744f1bdd4ae8681e7cbbd32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de puntos singulares.  <a href="#a0035828f1744f1bdd4ae8681e7cbbd32">More...</a><br /></td></tr>
-<tr class="separator:a0035828f1744f1bdd4ae8681e7cbbd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7987de59d3b4bf655614e19db0c90278"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a7987de59d3b4bf655614e19db0c90278">mTimeStamp</a></td></tr>
+<tr class="memdesc:a7987de59d3b4bf655614e19db0c90278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time stamp de la captura de la imagen.  <a href="#a7987de59d3b4bf655614e19db0c90278">More...</a><br /></td></tr>
+<tr class="separator:a7987de59d3b4bf655614e19db0c90278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa05cc57f36b5b04a2e1690e576c93fc8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aa05cc57f36b5b04a2e1690e576c93fc8">mvbOutlier</a></td></tr>
+<tr class="memdesc:aa05cc57f36b5b04a2e1690e576c93fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag que indica si hay outliers asociados en mvpMapPoints.  <a href="#aa05cc57f36b5b04a2e1690e576c93fc8">More...</a><br /></td></tr>
+<tr class="separator:aa05cc57f36b5b04a2e1690e576c93fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4232b92ebf890728291ef2a66e7d39bb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4232b92ebf890728291ef2a66e7d39bb">mvDepth</a></td></tr>
+<tr class="memdesc:a4232b92ebf890728291ef2a66e7d39bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">-1 para monocular.  <a href="#a4232b92ebf890728291ef2a66e7d39bb">More...</a><br /></td></tr>
+<tr class="separator:a4232b92ebf890728291ef2a66e7d39bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1979f999e1d3a858bf7db733791a477e"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a1979f999e1d3a858bf7db733791a477e">mvInvLevelSigma2</a></td></tr>
+<tr class="memdesc:a1979f999e1d3a858bf7db733791a477e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inversa de mvLevelSigma2.  <a href="#a1979f999e1d3a858bf7db733791a477e">More...</a><br /></td></tr>
+<tr class="separator:a1979f999e1d3a858bf7db733791a477e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c7ed1316a886b9a7c3f02ee13219b8c"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4c7ed1316a886b9a7c3f02ee13219b8c">mvInvScaleFactors</a></td></tr>
+<tr class="memdesc:a4c7ed1316a886b9a7c3f02ee13219b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inversa de mvScaleFactors.  <a href="#a4c7ed1316a886b9a7c3f02ee13219b8c">More...</a><br /></td></tr>
+<tr class="separator:a4c7ed1316a886b9a7c3f02ee13219b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86563de6facec0433e31f726723057e4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::KeyPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a86563de6facec0433e31f726723057e4">mvKeys</a></td></tr>
 <tr class="memdesc:a86563de6facec0433e31f726723057e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de puntos singulares obtenidos por el detector, tal como los devuelve opencv.  <a href="#a86563de6facec0433e31f726723057e4">More...</a><br /></td></tr>
 <tr class="separator:a86563de6facec0433e31f726723057e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13737fa65f0ce693275f1919240bac35"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::KeyPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a13737fa65f0ce693275f1919240bac35">mvKeysUn</a></td></tr>
 <tr class="memdesc:a13737fa65f0ce693275f1919240bac35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de puntos antidistorsionados, mvKeys corregidos según los coeficientes de distorsión.  <a href="#a13737fa65f0ce693275f1919240bac35">More...</a><br /></td></tr>
 <tr class="separator:a13737fa65f0ce693275f1919240bac35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09a1957b966542e640ecabc41ec76c16"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a09a1957b966542e640ecabc41ec76c16">mvuRight</a></td></tr>
-<tr class="memdesc:a09a1957b966542e640ecabc41ec76c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">-1 para monocular.  <a href="#a09a1957b966542e640ecabc41ec76c16">More...</a><br /></td></tr>
-<tr class="separator:a09a1957b966542e640ecabc41ec76c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4232b92ebf890728291ef2a66e7d39bb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4232b92ebf890728291ef2a66e7d39bb">mvDepth</a></td></tr>
-<tr class="memdesc:a4232b92ebf890728291ef2a66e7d39bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">-1 para monocular.  <a href="#a4232b92ebf890728291ef2a66e7d39bb">More...</a><br /></td></tr>
-<tr class="separator:a4232b92ebf890728291ef2a66e7d39bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68bbc187861a8e5c0ed9d92b5308c2cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_bo_w2_1_1_bow_vector.html">DBoW2::BowVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a68bbc187861a8e5c0ed9d92b5308c2cb">mBowVec</a></td></tr>
-<tr class="memdesc:a68bbc187861a8e5c0ed9d92b5308c2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector BoW correspondiente a los puntos singulares.  <a href="#a68bbc187861a8e5c0ed9d92b5308c2cb">More...</a><br /></td></tr>
-<tr class="separator:a68bbc187861a8e5c0ed9d92b5308c2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8153622c07ed98421bd7c7b2b7451b03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_bo_w2_1_1_feature_vector.html">DBoW2::FeatureVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a8153622c07ed98421bd7c7b2b7451b03">mFeatVec</a></td></tr>
-<tr class="memdesc:a8153622c07ed98421bd7c7b2b7451b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector "Feature" correspondiente a los puntos singulares.  <a href="#a8153622c07ed98421bd7c7b2b7451b03">More...</a><br /></td></tr>
-<tr class="separator:a8153622c07ed98421bd7c7b2b7451b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dfc1a363215ad0a09303e612a1ffbe7"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0dfc1a363215ad0a09303e612a1ffbe7">mDescriptors</a></td></tr>
-<tr class="memdesc:a0dfc1a363215ad0a09303e612a1ffbe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptores ORB en el formato Mat, tal como los devuelve opencv.  <a href="#a0dfc1a363215ad0a09303e612a1ffbe7">More...</a><br /></td></tr>
-<tr class="separator:a0dfc1a363215ad0a09303e612a1ffbe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe3cee153dda7e06d5004fd959fcd88e"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afe3cee153dda7e06d5004fd959fcd88e">mDescriptorsRight</a></td></tr>
-<tr class="separator:afe3cee153dda7e06d5004fd959fcd88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48e791ae28b483211dad6b3474027935"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a48e791ae28b483211dad6b3474027935">mvpMapPoints</a></td></tr>
-<tr class="memdesc:a48e791ae28b483211dad6b3474027935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de puntos 3D del mapa asociados a los puntos singulares.  <a href="#a48e791ae28b483211dad6b3474027935">More...</a><br /></td></tr>
-<tr class="separator:a48e791ae28b483211dad6b3474027935"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa05cc57f36b5b04a2e1690e576c93fc8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aa05cc57f36b5b04a2e1690e576c93fc8">mvbOutlier</a></td></tr>
-<tr class="memdesc:aa05cc57f36b5b04a2e1690e576c93fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag que indica si hay outliers asociados en mvpMapPoints.  <a href="#aa05cc57f36b5b04a2e1690e576c93fc8">More...</a><br /></td></tr>
-<tr class="separator:aa05cc57f36b5b04a2e1690e576c93fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a194dca06186458639d46234d828afeed"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a194dca06186458639d46234d828afeed">mGrid</a> [<a class="el" href="_frame_8h.html#a3ef79fa8924a9c5df3cddac58a52ab0c">FRAME_GRID_COLS</a>][<a class="el" href="_frame_8h.html#a9550f0488f3dac9a5c56f0d3c07c01c1">FRAME_GRID_ROWS</a>]</td></tr>
-<tr class="separator:a194dca06186458639d46234d828afeed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3be6708cfd359fae30307f9408abd6f9"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a3be6708cfd359fae30307f9408abd6f9">mTcw</a></td></tr>
-<tr class="memdesc:a3be6708cfd359fae30307f9408abd6f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pose de la cámara.  <a href="#a3be6708cfd359fae30307f9408abd6f9">More...</a><br /></td></tr>
-<tr class="separator:a3be6708cfd359fae30307f9408abd6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd59686475a89bfdfcae316dfa6b6069"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#acd59686475a89bfdfcae316dfa6b6069">mnId</a></td></tr>
-<tr class="memdesc:acd59686475a89bfdfcae316dfa6b6069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id incremental que identifica a este frame.  <a href="#acd59686475a89bfdfcae316dfa6b6069">More...</a><br /></td></tr>
-<tr class="separator:acd59686475a89bfdfcae316dfa6b6069"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f5187c3a75ef493687fa0582fed0aa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4f5187c3a75ef493687fa0582fed0aa8">mpReferenceKF</a></td></tr>
-<tr class="memdesc:a4f5187c3a75ef493687fa0582fed0aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> de referencia.  <a href="#a4f5187c3a75ef493687fa0582fed0aa8">More...</a><br /></td></tr>
-<tr class="separator:a4f5187c3a75ef493687fa0582fed0aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c4b02f27be28aec6cb8bb1bab3f622f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4c4b02f27be28aec6cb8bb1bab3f622f">mnScaleLevels</a></td></tr>
-<tr class="memdesc:a4c4b02f27be28aec6cb8bb1bab3f622f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de niveles en la pirámide.  <a href="#a4c4b02f27be28aec6cb8bb1bab3f622f">More...</a><br /></td></tr>
-<tr class="separator:a4c4b02f27be28aec6cb8bb1bab3f622f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab180286bac29f4e030ce850c51c435c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aab180286bac29f4e030ce850c51c435c">mfScaleFactor</a></td></tr>
-<tr class="memdesc:aab180286bac29f4e030ce850c51c435c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factor de escala entre niveles de la pirámide.  <a href="#aab180286bac29f4e030ce850c51c435c">More...</a><br /></td></tr>
-<tr class="separator:aab180286bac29f4e030ce850c51c435c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3ddefb0665fb5128391a7e59a236e9a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ad3ddefb0665fb5128391a7e59a236e9a">mfLogScaleFactor</a></td></tr>
-<tr class="memdesc:ad3ddefb0665fb5128391a7e59a236e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factor de escala logarítmico.  <a href="#ad3ddefb0665fb5128391a7e59a236e9a">More...</a><br /></td></tr>
-<tr class="separator:ad3ddefb0665fb5128391a7e59a236e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55d7bd3fa5d3fa8d2ecf18609e91f98e"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a55d7bd3fa5d3fa8d2ecf18609e91f98e">mvScaleFactors</a></td></tr>
-<tr class="memdesc:a55d7bd3fa5d3fa8d2ecf18609e91f98e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de factores de escala de cada nivel de la pirámide.  <a href="#a55d7bd3fa5d3fa8d2ecf18609e91f98e">More...</a><br /></td></tr>
-<tr class="separator:a55d7bd3fa5d3fa8d2ecf18609e91f98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c7ed1316a886b9a7c3f02ee13219b8c"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4c7ed1316a886b9a7c3f02ee13219b8c">mvInvScaleFactors</a></td></tr>
-<tr class="memdesc:a4c7ed1316a886b9a7c3f02ee13219b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inversa de mvScaleFactors.  <a href="#a4c7ed1316a886b9a7c3f02ee13219b8c">More...</a><br /></td></tr>
-<tr class="separator:a4c7ed1316a886b9a7c3f02ee13219b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afba8ed34e98d14761be2c1922863cd65"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afba8ed34e98d14761be2c1922863cd65">mvLevelSigma2</a></td></tr>
 <tr class="memdesc:afba8ed34e98d14761be2c1922863cd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cuadrado de mvScaleFactos.  <a href="#afba8ed34e98d14761be2c1922863cd65">More...</a><br /></td></tr>
 <tr class="separator:afba8ed34e98d14761be2c1922863cd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1979f999e1d3a858bf7db733791a477e"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a1979f999e1d3a858bf7db733791a477e">mvInvLevelSigma2</a></td></tr>
-<tr class="memdesc:a1979f999e1d3a858bf7db733791a477e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inversa de mvLevelSigma2.  <a href="#a1979f999e1d3a858bf7db733791a477e">More...</a><br /></td></tr>
-<tr class="separator:a1979f999e1d3a858bf7db733791a477e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e791ae28b483211dad6b3474027935"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a48e791ae28b483211dad6b3474027935">mvpMapPoints</a></td></tr>
+<tr class="memdesc:a48e791ae28b483211dad6b3474027935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de puntos 3D del mapa asociados a los puntos singulares.  <a href="#a48e791ae28b483211dad6b3474027935">More...</a><br /></td></tr>
+<tr class="separator:a48e791ae28b483211dad6b3474027935"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d7bd3fa5d3fa8d2ecf18609e91f98e"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a55d7bd3fa5d3fa8d2ecf18609e91f98e">mvScaleFactors</a></td></tr>
+<tr class="memdesc:a55d7bd3fa5d3fa8d2ecf18609e91f98e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de factores de escala de cada nivel de la pirámide.  <a href="#a55d7bd3fa5d3fa8d2ecf18609e91f98e">More...</a><br /></td></tr>
+<tr class="separator:a55d7bd3fa5d3fa8d2ecf18609e91f98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a1957b966542e640ecabc41ec76c16"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a09a1957b966542e640ecabc41ec76c16">mvuRight</a></td></tr>
+<tr class="memdesc:a09a1957b966542e640ecabc41ec76c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">-1 para monocular.  <a href="#a09a1957b966542e640ecabc41ec76c16">More...</a><br /></td></tr>
+<tr class="separator:a09a1957b966542e640ecabc41ec76c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0035828f1744f1bdd4ae8681e7cbbd32"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0035828f1744f1bdd4ae8681e7cbbd32">N</a></td></tr>
+<tr class="memdesc:a0035828f1744f1bdd4ae8681e7cbbd32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de puntos singulares.  <a href="#a0035828f1744f1bdd4ae8681e7cbbd32">More...</a><br /></td></tr>
+<tr class="separator:a0035828f1744f1bdd4ae8681e7cbbd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:ab505e3f86afa1c3d16b98fda89ec394c"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ab505e3f86afa1c3d16b98fda89ec394c">fx</a></td></tr>
-<tr class="memdesc:ab505e3f86afa1c3d16b98fda89ec394c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetros intrínsecos fx, fy, cx, cy.  <a href="#ab505e3f86afa1c3d16b98fda89ec394c">More...</a><br /></td></tr>
-<tr class="separator:ab505e3f86afa1c3d16b98fda89ec394c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a226a0adc90bc7a09502fc4db00ee20d7"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a226a0adc90bc7a09502fc4db00ee20d7">fy</a></td></tr>
-<tr class="memdesc:a226a0adc90bc7a09502fc4db00ee20d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetro intrínseco.  <a href="#a226a0adc90bc7a09502fc4db00ee20d7">More...</a><br /></td></tr>
-<tr class="separator:a226a0adc90bc7a09502fc4db00ee20d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f2803f215bc30016bd0833d8c7d5942"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a5f2803f215bc30016bd0833d8c7d5942">cx</a></td></tr>
 <tr class="memdesc:a5f2803f215bc30016bd0833d8c7d5942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetro intrínseco.  <a href="#a5f2803f215bc30016bd0833d8c7d5942">More...</a><br /></td></tr>
 <tr class="separator:a5f2803f215bc30016bd0833d8c7d5942"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf6a631b787270da2d5b3c0f53615b62"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#abf6a631b787270da2d5b3c0f53615b62">cy</a></td></tr>
 <tr class="memdesc:abf6a631b787270da2d5b3c0f53615b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetro intrínseco.  <a href="#abf6a631b787270da2d5b3c0f53615b62">More...</a><br /></td></tr>
 <tr class="separator:abf6a631b787270da2d5b3c0f53615b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab505e3f86afa1c3d16b98fda89ec394c"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ab505e3f86afa1c3d16b98fda89ec394c">fx</a></td></tr>
+<tr class="memdesc:ab505e3f86afa1c3d16b98fda89ec394c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetros intrínsecos fx, fy, cx, cy.  <a href="#ab505e3f86afa1c3d16b98fda89ec394c">More...</a><br /></td></tr>
+<tr class="separator:ab505e3f86afa1c3d16b98fda89ec394c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a226a0adc90bc7a09502fc4db00ee20d7"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a226a0adc90bc7a09502fc4db00ee20d7">fy</a></td></tr>
+<tr class="memdesc:a226a0adc90bc7a09502fc4db00ee20d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetro intrínseco.  <a href="#a226a0adc90bc7a09502fc4db00ee20d7">More...</a><br /></td></tr>
+<tr class="separator:a226a0adc90bc7a09502fc4db00ee20d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617c29a929afd74d599c9e41fc71abea"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a617c29a929afd74d599c9e41fc71abea">invfx</a></td></tr>
 <tr class="memdesc:a617c29a929afd74d599c9e41fc71abea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inversa del parámetro intrínseco.  <a href="#a617c29a929afd74d599c9e41fc71abea">More...</a><br /></td></tr>
 <tr class="separator:a617c29a929afd74d599c9e41fc71abea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1dfdeb6378b11477c1b94233f881345"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ad1dfdeb6378b11477c1b94233f881345">invfy</a></td></tr>
 <tr class="memdesc:ad1dfdeb6378b11477c1b94233f881345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parámetro intrínseco.  <a href="#ad1dfdeb6378b11477c1b94233f881345">More...</a><br /></td></tr>
 <tr class="separator:ad1dfdeb6378b11477c1b94233f881345"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc2f7799428918dbbf46f7dfc4ccd59d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afc2f7799428918dbbf46f7dfc4ccd59d">mfGridElementWidthInv</a></td></tr>
-<tr class="memdesc:afc2f7799428918dbbf46f7dfc4ccd59d"><td class="mdescLeft">&#160;</td><td class="mdescRight">mfGridElementWidthInv es la inversa del ancho de la celda en píxeles.  <a href="#afc2f7799428918dbbf46f7dfc4ccd59d">More...</a><br /></td></tr>
-<tr class="separator:afc2f7799428918dbbf46f7dfc4ccd59d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a010327bee872485894b5905d17462086"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a010327bee872485894b5905d17462086">mfGridElementHeightInv</a></td></tr>
-<tr class="memdesc:a010327bee872485894b5905d17462086"><td class="mdescLeft">&#160;</td><td class="mdescRight">mfGridElementHeightInv es la inversa del altoo de la celda en píxeles.  <a href="#a010327bee872485894b5905d17462086">More...</a><br /></td></tr>
-<tr class="separator:a010327bee872485894b5905d17462086"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ea8a00151931d155747283850467733"><td class="memItemLeft" align="right" valign="top">static long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a1ea8a00151931d155747283850467733">nNextId</a> =0</td></tr>
-<tr class="memdesc:a1ea8a00151931d155747283850467733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id incremental con el valor para el frame siguiente.  <a href="#a1ea8a00151931d155747283850467733">More...</a><br /></td></tr>
-<tr class="separator:a1ea8a00151931d155747283850467733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac119d458dd562196240e72b7dbb54f3d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ac119d458dd562196240e72b7dbb54f3d">mnMinX</a></td></tr>
-<tr class="memdesc:ac119d458dd562196240e72b7dbb54f3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#ac119d458dd562196240e72b7dbb54f3d">More...</a><br /></td></tr>
-<tr class="separator:ac119d458dd562196240e72b7dbb54f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade32bf37203ae9578e4bd9a02cc0f7c1"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ade32bf37203ae9578e4bd9a02cc0f7c1">mnMaxX</a></td></tr>
-<tr class="memdesc:ade32bf37203ae9578e4bd9a02cc0f7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#ade32bf37203ae9578e4bd9a02cc0f7c1">More...</a><br /></td></tr>
-<tr class="separator:ade32bf37203ae9578e4bd9a02cc0f7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38d30251e5bf5e44411e83b688dfac97"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a38d30251e5bf5e44411e83b688dfac97">mnMinY</a></td></tr>
-<tr class="memdesc:a38d30251e5bf5e44411e83b688dfac97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#a38d30251e5bf5e44411e83b688dfac97">More...</a><br /></td></tr>
-<tr class="separator:a38d30251e5bf5e44411e83b688dfac97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac63dd82413eba002462109e625207ab4"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ac63dd82413eba002462109e625207ab4">mnMaxY</a></td></tr>
-<tr class="memdesc:ac63dd82413eba002462109e625207ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#ac63dd82413eba002462109e625207ab4">More...</a><br /></td></tr>
-<tr class="separator:ac63dd82413eba002462109e625207ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f57238f88850695d8cf032b5af0dad6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a9f57238f88850695d8cf032b5af0dad6">mbInitialComputations</a> =true</td></tr>
 <tr class="memdesc:a9f57238f88850695d8cf032b5af0dad6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Esta variable se pone en uno con un argumento del constructor solamente cuando se crea el primer <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>.  <a href="#a9f57238f88850695d8cf032b5af0dad6">More...</a><br /></td></tr>
 <tr class="separator:a9f57238f88850695d8cf032b5af0dad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a010327bee872485894b5905d17462086"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a010327bee872485894b5905d17462086">mfGridElementHeightInv</a></td></tr>
+<tr class="memdesc:a010327bee872485894b5905d17462086"><td class="mdescLeft">&#160;</td><td class="mdescRight">mfGridElementHeightInv es la inversa del altoo de la celda en píxeles.  <a href="#a010327bee872485894b5905d17462086">More...</a><br /></td></tr>
+<tr class="separator:a010327bee872485894b5905d17462086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc2f7799428918dbbf46f7dfc4ccd59d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afc2f7799428918dbbf46f7dfc4ccd59d">mfGridElementWidthInv</a></td></tr>
+<tr class="memdesc:afc2f7799428918dbbf46f7dfc4ccd59d"><td class="mdescLeft">&#160;</td><td class="mdescRight">mfGridElementWidthInv es la inversa del ancho de la celda en píxeles.  <a href="#afc2f7799428918dbbf46f7dfc4ccd59d">More...</a><br /></td></tr>
+<tr class="separator:afc2f7799428918dbbf46f7dfc4ccd59d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade32bf37203ae9578e4bd9a02cc0f7c1"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ade32bf37203ae9578e4bd9a02cc0f7c1">mnMaxX</a></td></tr>
+<tr class="memdesc:ade32bf37203ae9578e4bd9a02cc0f7c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#ade32bf37203ae9578e4bd9a02cc0f7c1">More...</a><br /></td></tr>
+<tr class="separator:ade32bf37203ae9578e4bd9a02cc0f7c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac63dd82413eba002462109e625207ab4"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ac63dd82413eba002462109e625207ab4">mnMaxY</a></td></tr>
+<tr class="memdesc:ac63dd82413eba002462109e625207ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#ac63dd82413eba002462109e625207ab4">More...</a><br /></td></tr>
+<tr class="separator:ac63dd82413eba002462109e625207ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac119d458dd562196240e72b7dbb54f3d"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ac119d458dd562196240e72b7dbb54f3d">mnMinX</a></td></tr>
+<tr class="memdesc:ac119d458dd562196240e72b7dbb54f3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#ac119d458dd562196240e72b7dbb54f3d">More...</a><br /></td></tr>
+<tr class="separator:ac119d458dd562196240e72b7dbb54f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38d30251e5bf5e44411e83b688dfac97"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a38d30251e5bf5e44411e83b688dfac97">mnMinY</a></td></tr>
+<tr class="memdesc:a38d30251e5bf5e44411e83b688dfac97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.  <a href="#a38d30251e5bf5e44411e83b688dfac97">More...</a><br /></td></tr>
+<tr class="separator:a38d30251e5bf5e44411e83b688dfac97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ea8a00151931d155747283850467733"><td class="memItemLeft" align="right" valign="top">static long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a1ea8a00151931d155747283850467733">nNextId</a> =0</td></tr>
+<tr class="memdesc:a1ea8a00151931d155747283850467733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id incremental con el valor para el frame siguiente.  <a href="#a1ea8a00151931d155747283850467733">More...</a><br /></td></tr>
+<tr class="separator:a1ea8a00151931d155747283850467733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a4315630bb510b424d8b089975135199a"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a4315630bb510b424d8b089975135199a">mOw</a></td></tr>
+<tr class="memdesc:a4315630bb510b424d8b089975135199a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector centro de cámara, igual al vector traslación.  <a href="#a4315630bb510b424d8b089975135199a">More...</a><br /></td></tr>
+<tr class="separator:a4315630bb510b424d8b089975135199a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3923c4b0fc83ab5fdba34ddd823621c6"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a3923c4b0fc83ab5fdba34ddd823621c6">mRcw</a></td></tr>
+<tr class="memdesc:a3923c4b0fc83ab5fdba34ddd823621c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz R de rotación.  <a href="#a3923c4b0fc83ab5fdba34ddd823621c6">More...</a><br /></td></tr>
+<tr class="separator:a3923c4b0fc83ab5fdba34ddd823621c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afda03a992077579e0ed3c20240eef276"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#afda03a992077579e0ed3c20240eef276">mRwc</a></td></tr>
+<tr class="memdesc:afda03a992077579e0ed3c20240eef276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz de rotación inversa, del mundo respecto de la cámara.  <a href="#afda03a992077579e0ed3c20240eef276">More...</a><br /></td></tr>
+<tr class="separator:afda03a992077579e0ed3c20240eef276"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31b2fa3a66f2855ec0c71c9ba34cfa8f"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a31b2fa3a66f2855ec0c71c9ba34cfa8f">mtcw</a></td></tr>
+<tr class="memdesc:a31b2fa3a66f2855ec0c71c9ba34cfa8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector t de traslación.  <a href="#a31b2fa3a66f2855ec0c71c9ba34cfa8f">More...</a><br /></td></tr>
+<tr class="separator:a31b2fa3a66f2855ec0c71c9ba34cfa8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> representa un cuadro, una imagen, con los puntos singulares detectados. </p>
@@ -1204,6 +1219,28 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a4315630bb510b424d8b089975135199a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::Frame::mOw</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector centro de cámara, igual al vector traslación. </p>
+
+</div>
+</div>
 <a id="a5c4f28562114c30c6276f2e42aac6607"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1247,6 +1284,51 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a3923c4b0fc83ab5fdba34ddd823621c6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::Frame::mRcw</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Matriz R de rotación. </p>
+<p>Se actualizan con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0a18d3024a23f6fa2cab9c7d987598c2" title="Calcula las matrices de posición mRcw, mtcw y mOw a partir de la pose mTcw. ">UpdatePoseMatrices()</a>. </p>
+
+</div>
+</div>
+<a id="afda03a992077579e0ed3c20240eef276"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::Frame::mRwc</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Matriz de rotación inversa, del mundo respecto de la cámara. </p>
+
+</div>
+</div>
 <a id="a3be6708cfd359fae30307f9408abd6f9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1258,12 +1340,42 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Pose de la cámara. </p>
-<p>Matriz de 4x4 de rototraslación en coordenadas homogéneas. Su valor se actualiza mediante SetPose, que además extrae la matriz rotación y el vector traslación con UpdatePoseMatrices. Estos datos extraídos se calculan para presentación, pero no son usados por el algoritmo, que sólo utiliza mTcw.</p>
+<p>Matriz de 4x4 de rototraslación en coordenadas homogéneas. Es cv:Mat(4,4,CV_32F), y sus elementos son float.</p>
+<p>La posición de la cámara (vector traslación) se obtiene de la última columna de esta matriz.</p>
+<p>La unidad de medida se establece durante la inicialización igual a la profundidad media de la escena. Esto significa que la unidad dependerá de los puntos 3D triangulados en la inicialización.</p>
+<p>El sistema de coordenadas 3D de una cámara se relaciona con el 2D de su proyección manteniendo paralelos los ejes X e Y, y estableciendo Z hacia adelante. De este modo X apunta a la derecha e Y apunta hacia abajo (en esto es contrario al sistema de coordenadas estándar). Los vectores 3D homogéneos tienen la disposición tradicional:</p>
+<p>V = [vx, vy, vz, 1]</p>
+<p>Las poses son matrices de 4x4 como ésta, sus subíndices indican sujeto y referencia. Tcw es T de cámara respecto de world. Las poses se combinan así:</p>
+<p>Tac = Tab * Tbc</p>
+<p>Su valor se actualiza mediante SetPose, que además extrae la matriz rotación y el vector traslación con UpdatePoseMatrices. Estos datos extraídos se calculan para presentación, pero no son usados por el algoritmo, que sólo utiliza mTcw.</p>
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> no calcula mTcw. Esta matriz es calculada y pasada al cuadro con SetPose, en:</p><ul>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>, copiando de un cuadro anterior, inicializando con la pose cartesiana, o estimando por modelo de movimiento.</li>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a7415d78b8a2323b88e108fa1ea3bf2d3" title="Cómputo de la pose de un cuadro. ">Optimizer::PoseOptimization</a>, invocado desde varios métodos de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. Aquí es donde se hace el verdadero cálculo de pose.</li>
 <li></li>
 </ul>
+
+</div>
+</div>
+<a id="a31b2fa3a66f2855ec0c71c9ba34cfa8f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::Frame::mtcw</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector t de traslación. </p>
+<p>Se actualizan con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a0a18d3024a23f6fa2cab9c7d987598c2" title="Calcula las matrices de posición mRcw, mtcw y mOw a partir de la pose mTcw. ">UpdatePoseMatrices()</a>. </p>
 
 </div>
 </div>

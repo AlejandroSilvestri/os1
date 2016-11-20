@@ -41,6 +41,7 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -50,16 +51,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_bow_vector_8cpp.html",
-"class_d_utils_1_1_timestamp.html#a42280e1193a6af2ac41362cf18a1185c",
-"class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a6b4d311f49979f38d47ed96290255a2f",
-"class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#a69cf052880d6e926e11b74e1b59a05e0",
-"classg2o_1_1_base_vertex.html#a40fcd78e21bb4aedf7e299922c650937",
-"classg2o_1_1_hyper_graph.html",
-"classg2o_1_1_optimizable_graph_1_1_vertex.html#a1cf16cd3b2e99169cdd6dfc139f926bc",
-"classg2o_1_1_robust_kernel_scale_delta.html#a537a88b2ff5432fb9e1ad2aaa85f60b9",
-"classg2o_1_1_vertex_sim3_expmap.html#a16b4ef216ad1c4709a6fc6aa452d8e61",
-"macros_8h.html#af93ab8e29004f71549e1cd50278c5473",
-"structg2o_1_1_g2_o_batch_statistics.html#a456a521ccb1e4c69940475a92a1f5d29"
+"class_d_utils_1_1_random.html",
+"class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8dc31ef9a08d34ecb196f3e58a2c09b9",
+"class_o_r_b___s_l_a_m2_1_1_map_point.html#aac515bf003cea5f99737d13475c46816",
+"class_o_r_b___s_l_a_m2_1_1_tracking.html#a01522faf940cc80402f0750b0d90ecf2",
+"classg2o_1_1_base_vertex.html#ac35e0c8c62a59e947ac7710ed85fcd7a",
+"classg2o_1_1_hyper_graph.html#a6b629dff2928dbd704ca81f24858e72f",
+"classg2o_1_1_optimizable_graph_1_1_vertex.html#a2eb3dbe08fd20ca8feeeaecc63ce240c",
+"classg2o_1_1_robust_kernel_huber.html#aa437e8a62360ba63b56b383aac8e4674",
+"classg2o_1_1_sparse_optimizer.html#ad8dfc896595b27ea0315862acb54f5f2",
+"index.html#clas",
+"structg2o_1_1_block_solver_traits.html#a35e6e4bad138dcfcaa3b1339e168bf30"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

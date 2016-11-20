@@ -365,6 +365,11 @@ private:
     unsigned int mnLastKeyFrameId;
     unsigned int mnLastRelocFrameId;
 
+    /**
+     * Rototraslación del modelo de movimiento.
+     * Es una matriz de 4x4 como Tcw, surge de multiplicar Tcw del cuadro actual con Twc del anterior.
+     * El resultado es la rototraslación relativa del último cuadro respecto del anterior.
+     */
     //Motion Model
     cv::Mat mVelocity;
 

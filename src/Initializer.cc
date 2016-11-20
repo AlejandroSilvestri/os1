@@ -740,9 +740,12 @@ void Initializer::Triangulate(const cv::KeyPoint &kp1, const cv::KeyPoint &kp2, 
     A.row(2) = kp2.pt.x*P2.row(2)-P2.row(0);
     A.row(3) = kp2.pt.y*P2.row(2)-P2.row(1);
 
-    cv::Mat u,w,vt;
+    cv::Mat u,w,vt;	// Resultados, sólo interesa vt
     cv::SVD::compute(A,w,u,vt,cv::SVD::MODIFY_A| cv::SVD::FULL_UV);
+
+    // Extrae el punto en coordenadas homogénea
     x3D = vt.row(3).t();
+    // Pasa de coordenadas homogéneas a euclideanas
     x3D = x3D.rowRange(0,3)/x3D.at<float>(3);
 }
 

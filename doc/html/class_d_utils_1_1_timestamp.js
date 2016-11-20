@@ -9,6 +9,7 @@ var class_d_utils_1_1_timestamp =
     [ "~Timestamp", "class_d_utils_1_1_timestamp.html#a06ea20fe67d9e7177818ba219ea3137f", null ],
     [ "empty", "class_d_utils_1_1_timestamp.html#a0aaa878aee63c543dea866892c003a62", null ],
     [ "Format", "class_d_utils_1_1_timestamp.html#ad2ce60eeec43f9fa86379ed8b269ab64", null ],
+    [ "Format", "class_d_utils_1_1_timestamp.html#abd63d0a2abc2209f9300296ee3e85265", null ],
     [ "getFloatTime", "class_d_utils_1_1_timestamp.html#a360ea9b3a339c315f1a1eb2416787088", null ],
     [ "getStringTime", "class_d_utils_1_1_timestamp.html#af1db3a964b6a7b88e73f7bd3110efd79", null ],
     [ "getTime", "class_d_utils_1_1_timestamp.html#a15e5c1a751a3faef596437a69d4c3d88", null ],

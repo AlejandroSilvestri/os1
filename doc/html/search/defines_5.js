@@ -26,6 +26,5 @@ var searchData=
   ['g2o_5fuse_5frobust_5fkernel',['G2O_USE_ROBUST_KERNEL',['../robust__kernel__factory_8h.html#ab56433f8002af3facebfa87587af842f',1,'robust_kernel_factory.h']]],
   ['g2o_5fuse_5ftype_5fby_5fclass_5fname',['G2O_USE_TYPE_BY_CLASS_NAME',['../factory_8h.html#a8a9dfe3b92e8018b8d19e0c512ee63d1',1,'factory.h']]],
   ['g2o_5fuse_5ftype_5fgroup',['G2O_USE_TYPE_GROUP',['../factory_8h.html#af7ab0b7b31135f39038d4152ed3f8298',1,'factory.h']]],
-  ['get_5fvalue',['GET_VALUE',['../_o_r_bextractor_8cc.html#a35931865021519a9d7a2a4d2f196e684',1,'ORBextractor.cc']]],
-  ['guardando',['GUARDANDO',['../serialize_8cpp.html#a6db88b45487dad60bac268cc054a4b75',1,'serialize.cpp']]]
+  ['get_5fvalue',['GET_VALUE',['../_o_r_bextractor_8cc.html#a35931865021519a9d7a2a4d2f196e684',1,'ORBextractor.cc']]]
 ];

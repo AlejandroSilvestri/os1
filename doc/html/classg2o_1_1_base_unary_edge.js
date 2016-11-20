@@ -14,5 +14,6 @@ var classg2o_1_1_base_unary_edge =
     [ "linearizeOplus", "classg2o_1_1_base_unary_edge.html#a367f19b903938faf6e89dd1b0e4e722b", null ],
     [ "mapHessianMemory", "classg2o_1_1_base_unary_edge.html#a919dcb89130f6e7082e807530facdd78", null ],
     [ "resize", "classg2o_1_1_base_unary_edge.html#a01fcdfd2d3ed0325655bb99db95c0b10", null ],
-    [ "_jacobianOplusXi", "classg2o_1_1_base_unary_edge.html#af7d022a6c6c9c29dfd9147fce0dc13d8", null ]
+    [ "_jacobianOplusXi", "classg2o_1_1_base_unary_edge.html#af7d022a6c6c9c29dfd9147fce0dc13d8", null ],
+    [ "Dimension", "classg2o_1_1_base_unary_edge.html#a4e584cf552998a34948d8d5b484f7fd3", null ]
 ];

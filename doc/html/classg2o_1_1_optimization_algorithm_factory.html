@@ -87,6 +87,7 @@ $(document).ready(function(){initNavTree('classg2o_1_1_optimization_algorithm_fa
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classg2o_1_1_optimization_algorithm_factory-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">g2o::OptimizationAlgorithmFactory Class Reference</div>  </div>
@@ -97,6 +98,11 @@ $(document).ready(function(){initNavTree('classg2o_1_1_optimization_algorithm_fa
  <a href="classg2o_1_1_optimization_algorithm_factory.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="optimization__algorithm__factory_8h_source.html">optimization_algorithm_factory.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for g2o::OptimizationAlgorithmFactory:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classg2o_1_1_optimization_algorithm_factory__coll__graph.svg" width="308" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -105,46 +111,51 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a3d48f9c7c6be0428ae3d222d85f65686"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_optimization_algorithm.html">OptimizationAlgorithm</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a3d48f9c7c6be0428ae3d222d85f65686">construct</a> (const std::string &amp;tag, <a class="el" href="structg2o_1_1_optimization_algorithm_property.html">OptimizationAlgorithmProperty</a> &amp;solverProperty) const</td></tr>
+<tr class="memdesc:a3d48f9c7c6be0428ae3d222d85f65686"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct a solver based on its name, e.g., var, fix3_2_cholmod  <a href="#a3d48f9c7c6be0428ae3d222d85f65686">More...</a><br /></td></tr>
+<tr class="separator:a3d48f9c7c6be0428ae3d222d85f65686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17f0e3d3f60e5cda96651a7ded37b4c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a3ed210b94bf09b47e30d07da3766b4ec">CreatorList</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#ae17f0e3d3f60e5cda96651a7ded37b4c">creatorList</a> () const</td></tr>
+<tr class="memdesc:ae17f0e3d3f60e5cda96651a7ded37b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the underlying list of creators  <a href="#ae17f0e3d3f60e5cda96651a7ded37b4c">More...</a><br /></td></tr>
+<tr class="separator:ae17f0e3d3f60e5cda96651a7ded37b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89704fe7093e03eb4f2d568a1969bc45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a89704fe7093e03eb4f2d568a1969bc45">listSolvers</a> (std::ostream &amp;os) const</td></tr>
+<tr class="memdesc:a89704fe7093e03eb4f2d568a1969bc45"><td class="mdescLeft">&#160;</td><td class="mdescRight">list the known solvers into a stream  <a href="#a89704fe7093e03eb4f2d568a1969bc45">More...</a><br /></td></tr>
+<tr class="separator:a89704fe7093e03eb4f2d568a1969bc45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7726ae90dc3d5baf62fa364517e0fed7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a7726ae90dc3d5baf62fa364517e0fed7">registerSolver</a> (<a class="el" href="classg2o_1_1_abstract_optimization_algorithm_creator.html">AbstractOptimizationAlgorithmCreator</a> *c)</td></tr>
 <tr class="memdesc:a7726ae90dc3d5baf62fa364517e0fed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a specific creator for allocating a solver  <a href="#a7726ae90dc3d5baf62fa364517e0fed7">More...</a><br /></td></tr>
 <tr class="separator:a7726ae90dc3d5baf62fa364517e0fed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf79430f6176c9e9309a703ba2dbd14b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#adf79430f6176c9e9309a703ba2dbd14b">unregisterSolver</a> (<a class="el" href="classg2o_1_1_abstract_optimization_algorithm_creator.html">AbstractOptimizationAlgorithmCreator</a> *c)</td></tr>
 <tr class="memdesc:adf79430f6176c9e9309a703ba2dbd14b"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister a specific creator for allocating a solver  <a href="#adf79430f6176c9e9309a703ba2dbd14b">More...</a><br /></td></tr>
 <tr class="separator:adf79430f6176c9e9309a703ba2dbd14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d48f9c7c6be0428ae3d222d85f65686"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_optimization_algorithm.html">OptimizationAlgorithm</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a3d48f9c7c6be0428ae3d222d85f65686">construct</a> (const std::string &amp;tag, <a class="el" href="structg2o_1_1_optimization_algorithm_property.html">OptimizationAlgorithmProperty</a> &amp;solverProperty) const</td></tr>
-<tr class="memdesc:a3d48f9c7c6be0428ae3d222d85f65686"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct a solver based on its name, e.g., var, fix3_2_cholmod  <a href="#a3d48f9c7c6be0428ae3d222d85f65686">More...</a><br /></td></tr>
-<tr class="separator:a3d48f9c7c6be0428ae3d222d85f65686"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89704fe7093e03eb4f2d568a1969bc45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a89704fe7093e03eb4f2d568a1969bc45">listSolvers</a> (std::ostream &amp;os) const</td></tr>
-<tr class="memdesc:a89704fe7093e03eb4f2d568a1969bc45"><td class="mdescLeft">&#160;</td><td class="mdescRight">list the known solvers into a stream  <a href="#a89704fe7093e03eb4f2d568a1969bc45">More...</a><br /></td></tr>
-<tr class="separator:a89704fe7093e03eb4f2d568a1969bc45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae17f0e3d3f60e5cda96651a7ded37b4c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a3ed210b94bf09b47e30d07da3766b4ec">CreatorList</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#ae17f0e3d3f60e5cda96651a7ded37b4c">creatorList</a> () const</td></tr>
-<tr class="memdesc:ae17f0e3d3f60e5cda96651a7ded37b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the underlying list of creators  <a href="#ae17f0e3d3f60e5cda96651a7ded37b4c">More...</a><br /></td></tr>
-<tr class="separator:ae17f0e3d3f60e5cda96651a7ded37b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4fe827a82f01c74ef124e7a9a9c98707"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classg2o_1_1_optimization_algorithm_factory.html">OptimizationAlgorithmFactory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a4fe827a82f01c74ef124e7a9a9c98707">instance</a> ()</td></tr>
-<tr class="memdesc:a4fe827a82f01c74ef124e7a9a9c98707"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the instance  <a href="#a4fe827a82f01c74ef124e7a9a9c98707">More...</a><br /></td></tr>
-<tr class="separator:a4fe827a82f01c74ef124e7a9a9c98707"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80b6a74ac262e6192064ec264f965bd7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a80b6a74ac262e6192064ec264f965bd7">destroy</a> ()</td></tr>
 <tr class="memdesc:a80b6a74ac262e6192064ec264f965bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">free the instance  <a href="#a80b6a74ac262e6192064ec264f965bd7">More...</a><br /></td></tr>
 <tr class="separator:a80b6a74ac262e6192064ec264f965bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fe827a82f01c74ef124e7a9a9c98707"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classg2o_1_1_optimization_algorithm_factory.html">OptimizationAlgorithmFactory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a4fe827a82f01c74ef124e7a9a9c98707">instance</a> ()</td></tr>
+<tr class="memdesc:a4fe827a82f01c74ef124e7a9a9c98707"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the instance  <a href="#a4fe827a82f01c74ef124e7a9a9c98707">More...</a><br /></td></tr>
+<tr class="separator:a4fe827a82f01c74ef124e7a9a9c98707"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:ac0e56515170544768e4cad9f2fede55c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#ac0e56515170544768e4cad9f2fede55c">OptimizationAlgorithmFactory</a> ()</td></tr>
-<tr class="separator:ac0e56515170544768e4cad9f2fede55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a172879a5ecbbe9ec7c4771c87aef1c57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a172879a5ecbbe9ec7c4771c87aef1c57">~OptimizationAlgorithmFactory</a> ()</td></tr>
-<tr class="separator:a172879a5ecbbe9ec7c4771c87aef1c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33368953cc13fc69bad64ce440d90a39"><td class="memItemLeft" align="right" valign="top">CreatorList::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a33368953cc13fc69bad64ce440d90a39">findSolver</a> (const std::string &amp;name) const</td></tr>
 <tr class="separator:a33368953cc13fc69bad64ce440d90a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75857fd4977318d51412f4ebae20157d"><td class="memItemLeft" align="right" valign="top">CreatorList::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a75857fd4977318d51412f4ebae20157d">findSolver</a> (const std::string &amp;name)</td></tr>
 <tr class="separator:a75857fd4977318d51412f4ebae20157d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0e56515170544768e4cad9f2fede55c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#ac0e56515170544768e4cad9f2fede55c">OptimizationAlgorithmFactory</a> ()</td></tr>
+<tr class="separator:ac0e56515170544768e4cad9f2fede55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172879a5ecbbe9ec7c4771c87aef1c57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a172879a5ecbbe9ec7c4771c87aef1c57">~OptimizationAlgorithmFactory</a> ()</td></tr>
+<tr class="separator:a172879a5ecbbe9ec7c4771c87aef1c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a1d7f67d60df0d0b26a7694dcea4879db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a3ed210b94bf09b47e30d07da3766b4ec">CreatorList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a1d7f67d60df0d0b26a7694dcea4879db">_creator</a></td></tr>
 <tr class="separator:a1d7f67d60df0d0b26a7694dcea4879db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a688a34932a4e4c94e122dd81f35bb7ca"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classg2o_1_1_optimization_algorithm_factory.html">OptimizationAlgorithmFactory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html#a688a34932a4e4c94e122dd81f35bb7ca">factoryInstance</a> = 0</td></tr>
+<tr class="separator:a688a34932a4e4c94e122dd81f35bb7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>create solvers based on their short name </p>
@@ -430,6 +441,26 @@ Protected Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a688a34932a4e4c94e122dd81f35bb7ca"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classg2o_1_1_optimization_algorithm_factory.html">OptimizationAlgorithmFactory</a> * g2o::OptimizationAlgorithmFactory::factoryInstance = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

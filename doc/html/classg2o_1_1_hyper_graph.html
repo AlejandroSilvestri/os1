@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('classg2o_1_1_hyper_graph.html','');});
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="classg2o_1_1_hyper_graph-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">g2o::HyperGraph Class Reference</div>  </div>
@@ -116,6 +117,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:a5e2970e236c0dcb4eff7c205d7b6b4ae"><td class="memItemLeft" align="right" valign="top">typedef std::set&lt; <a class="el" href="classg2o_1_1_hyper_graph_1_1_edge.html">Edge</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae">EdgeSet</a></td></tr>
+<tr class="separator:a5e2970e236c0dcb4eff7c205d7b6b4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b8fda20e1b03e92aeceeac6e8218b73"><td class="memItemLeft" align="right" valign="top">typedef std::bitset&lt; <a class="el" href="classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69eafe77ef3192f9be61982957b0a3e2f6a6">HyperGraph::HGET_NUM_ELEMS</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a7b8fda20e1b03e92aeceeac6e8218b73">GraphElemBitset</a></td></tr>
+<tr class="separator:a7b8fda20e1b03e92aeceeac6e8218b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af603119d5d3475aed6e34ee9d701b69e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69e">HyperGraphElementType</a> { <br />
 &#160;&#160;<a class="el" href="classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69ea4a278c79154a0d4c381a7e265d7048f5">HGET_VERTEX</a>, 
 <a class="el" href="classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69ea32ab1204ad3640d91c59ce6fffe2e580">HGET_EDGE</a>, 
@@ -128,64 +133,67 @@ Public Types</h2></td></tr>
  }<tr class="memdesc:af603119d5d3475aed6e34ee9d701b69e"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum of all the types we have in our graphs  <a href="classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69e">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:af603119d5d3475aed6e34ee9d701b69e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b8fda20e1b03e92aeceeac6e8218b73"><td class="memItemLeft" align="right" valign="top">typedef std::bitset&lt; <a class="el" href="classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69eafe77ef3192f9be61982957b0a3e2f6a6">HyperGraph::HGET_NUM_ELEMS</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a7b8fda20e1b03e92aeceeac6e8218b73">GraphElemBitset</a></td></tr>
-<tr class="separator:a7b8fda20e1b03e92aeceeac6e8218b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e2970e236c0dcb4eff7c205d7b6b4ae"><td class="memItemLeft" align="right" valign="top">typedef std::set&lt; <a class="el" href="classg2o_1_1_hyper_graph_1_1_edge.html">Edge</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae">EdgeSet</a></td></tr>
-<tr class="separator:a5e2970e236c0dcb4eff7c205d7b6b4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a703938cdb4bb636860eed55a2489d70c"><td class="memItemLeft" align="right" valign="top">typedef std::set&lt; <a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a703938cdb4bb636860eed55a2489d70c">VertexSet</a></td></tr>
-<tr class="separator:a703938cdb4bb636860eed55a2489d70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97307eac064ebf4b3e2cfbf0718035b5"><td class="memItemLeft" align="right" valign="top">typedef std::tr1::unordered_map&lt; int, <a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a97307eac064ebf4b3e2cfbf0718035b5">VertexIDMap</a></td></tr>
-<tr class="separator:a97307eac064ebf4b3e2cfbf0718035b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9339534c99300a0ddac87ba976ef188c"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a9339534c99300a0ddac87ba976ef188c">VertexContainer</a></td></tr>
 <tr class="separator:a9339534c99300a0ddac87ba976ef188c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97307eac064ebf4b3e2cfbf0718035b5"><td class="memItemLeft" align="right" valign="top">typedef std::tr1::unordered_map&lt; int, <a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a97307eac064ebf4b3e2cfbf0718035b5">VertexIDMap</a></td></tr>
+<tr class="separator:a97307eac064ebf4b3e2cfbf0718035b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a703938cdb4bb636860eed55a2489d70c"><td class="memItemLeft" align="right" valign="top">typedef std::set&lt; <a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a703938cdb4bb636860eed55a2489d70c">VertexSet</a></td></tr>
+<tr class="separator:a703938cdb4bb636860eed55a2489d70c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a0f1d35009a2879b238c8148c33485c89"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a0f1d35009a2879b238c8148c33485c89">addEdge</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_edge.html">Edge</a> *e)</td></tr>
+<tr class="memdesc:a0f1d35009a2879b238c8148c33485c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an edge to the graph.  <a href="#a0f1d35009a2879b238c8148c33485c89">More...</a><br /></td></tr>
+<tr class="separator:a0f1d35009a2879b238c8148c33485c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ef87ba3479827b24c6fc29c5fc3aa21"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a7ef87ba3479827b24c6fc29c5fc3aa21">addVertex</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *v)</td></tr>
+<tr class="memdesc:a7ef87ba3479827b24c6fc29c5fc3aa21"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a vertex to the graph.  <a href="#a7ef87ba3479827b24c6fc29c5fc3aa21">More...</a><br /></td></tr>
+<tr class="separator:a7ef87ba3479827b24c6fc29c5fc3aa21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74f0d7392e67762a85799db72a58a94c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a74f0d7392e67762a85799db72a58a94c">changeId</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *v, int newId)</td></tr>
+<tr class="memdesc:a74f0d7392e67762a85799db72a58a94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">changes the id of a vertex already in the graph, and updates the bookkeeping @ returns false if the vertex is not in the graph;  <a href="#a74f0d7392e67762a85799db72a58a94c">More...</a><br /></td></tr>
+<tr class="separator:a74f0d7392e67762a85799db72a58a94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b629dff2928dbd704ca81f24858e72f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a6b629dff2928dbd704ca81f24858e72f">clear</a> ()</td></tr>
+<tr class="memdesc:a6b629dff2928dbd704ca81f24858e72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">clears the graph and empties all structures.  <a href="#a6b629dff2928dbd704ca81f24858e72f">More...</a><br /></td></tr>
+<tr class="separator:a6b629dff2928dbd704ca81f24858e72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4edfd2ef4bf235cf78031c505cfd2fcc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae">EdgeSet</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a4edfd2ef4bf235cf78031c505cfd2fcc">edges</a> () const</td></tr>
+<tr class="separator:a4edfd2ef4bf235cf78031c505cfd2fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f9f023fe2fb491ef9af873b9e683006"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae">EdgeSet</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a2f9f023fe2fb491ef9af873b9e683006">edges</a> ()</td></tr>
+<tr class="separator:a2f9f023fe2fb491ef9af873b9e683006"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a833632b111cfc7cf08b842ae3cb43d41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a833632b111cfc7cf08b842ae3cb43d41">HyperGraph</a> ()</td></tr>
 <tr class="memdesc:a833632b111cfc7cf08b842ae3cb43d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructs an empty hyper graph  <a href="#a833632b111cfc7cf08b842ae3cb43d41">More...</a><br /></td></tr>
 <tr class="separator:a833632b111cfc7cf08b842ae3cb43d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ef6e1d65e0f9171a518bce3fc559693"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a0ef6e1d65e0f9171a518bce3fc559693">~HyperGraph</a> ()</td></tr>
-<tr class="memdesc:a0ef6e1d65e0f9171a518bce3fc559693"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroys the hyper-graph and all the vertices of the graph  <a href="#a0ef6e1d65e0f9171a518bce3fc559693">More...</a><br /></td></tr>
-<tr class="separator:a0ef6e1d65e0f9171a518bce3fc559693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33e5a60705ce673d647aa1613da9d99b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a33e5a60705ce673d647aa1613da9d99b">removeEdge</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_edge.html">Edge</a> *e)</td></tr>
+<tr class="memdesc:a33e5a60705ce673d647aa1613da9d99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes a vertex from the graph. Returns true on success (edge was present)  <a href="#a33e5a60705ce673d647aa1613da9d99b">More...</a><br /></td></tr>
+<tr class="separator:a33e5a60705ce673d647aa1613da9d99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97ab8302aa027d513253387bba9e0dd5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a97ab8302aa027d513253387bba9e0dd5">removeVertex</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *v)</td></tr>
+<tr class="memdesc:a97ab8302aa027d513253387bba9e0dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes a vertex from the graph. Returns true on success (vertex was present)  <a href="#a97ab8302aa027d513253387bba9e0dd5">More...</a><br /></td></tr>
+<tr class="separator:a97ab8302aa027d513253387bba9e0dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab07fe8bd9982a66ba34e83dff8317ea2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#ab07fe8bd9982a66ba34e83dff8317ea2">vertex</a> (int id)</td></tr>
 <tr class="memdesc:ab07fe8bd9982a66ba34e83dff8317ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a vertex <em>id</em> in the hyper-graph, or 0 if the vertex id is not present  <a href="#ab07fe8bd9982a66ba34e83dff8317ea2">More...</a><br /></td></tr>
 <tr class="separator:ab07fe8bd9982a66ba34e83dff8317ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac117806d17a7e7ad7f8db42f2864cac9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#ac117806d17a7e7ad7f8db42f2864cac9">vertex</a> (int id) const</td></tr>
 <tr class="memdesc:ac117806d17a7e7ad7f8db42f2864cac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns a vertex <em>id</em> in the hyper-graph, or 0 if the vertex id is not present  <a href="#ac117806d17a7e7ad7f8db42f2864cac9">More...</a><br /></td></tr>
 <tr class="separator:ac117806d17a7e7ad7f8db42f2864cac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97ab8302aa027d513253387bba9e0dd5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a97ab8302aa027d513253387bba9e0dd5">removeVertex</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *v)</td></tr>
-<tr class="memdesc:a97ab8302aa027d513253387bba9e0dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes a vertex from the graph. Returns true on success (vertex was present)  <a href="#a97ab8302aa027d513253387bba9e0dd5">More...</a><br /></td></tr>
-<tr class="separator:a97ab8302aa027d513253387bba9e0dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33e5a60705ce673d647aa1613da9d99b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a33e5a60705ce673d647aa1613da9d99b">removeEdge</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_edge.html">Edge</a> *e)</td></tr>
-<tr class="memdesc:a33e5a60705ce673d647aa1613da9d99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">removes a vertex from the graph. Returns true on success (edge was present)  <a href="#a33e5a60705ce673d647aa1613da9d99b">More...</a><br /></td></tr>
-<tr class="separator:a33e5a60705ce673d647aa1613da9d99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b629dff2928dbd704ca81f24858e72f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a6b629dff2928dbd704ca81f24858e72f">clear</a> ()</td></tr>
-<tr class="memdesc:a6b629dff2928dbd704ca81f24858e72f"><td class="mdescLeft">&#160;</td><td class="mdescRight">clears the graph and empties all structures.  <a href="#a6b629dff2928dbd704ca81f24858e72f">More...</a><br /></td></tr>
-<tr class="separator:a6b629dff2928dbd704ca81f24858e72f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95fcf7cd9d89562b2c26d99ede3548ed"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classg2o_1_1_hyper_graph.html#a97307eac064ebf4b3e2cfbf0718035b5">VertexIDMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a95fcf7cd9d89562b2c26d99ede3548ed">vertices</a> () const</td></tr>
 <tr class="separator:a95fcf7cd9d89562b2c26d99ede3548ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a650107c875ef6f43d438d7d3e2ddf797"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph.html#a97307eac064ebf4b3e2cfbf0718035b5">VertexIDMap</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a650107c875ef6f43d438d7d3e2ddf797">vertices</a> ()</td></tr>
 <tr class="separator:a650107c875ef6f43d438d7d3e2ddf797"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4edfd2ef4bf235cf78031c505cfd2fcc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae">EdgeSet</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a4edfd2ef4bf235cf78031c505cfd2fcc">edges</a> () const</td></tr>
-<tr class="separator:a4edfd2ef4bf235cf78031c505cfd2fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f9f023fe2fb491ef9af873b9e683006"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae">EdgeSet</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a2f9f023fe2fb491ef9af873b9e683006">edges</a> ()</td></tr>
-<tr class="separator:a2f9f023fe2fb491ef9af873b9e683006"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ef87ba3479827b24c6fc29c5fc3aa21"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a7ef87ba3479827b24c6fc29c5fc3aa21">addVertex</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *v)</td></tr>
-<tr class="memdesc:a7ef87ba3479827b24c6fc29c5fc3aa21"><td class="mdescLeft">&#160;</td><td class="mdescRight">adds a vertex to the graph.  <a href="#a7ef87ba3479827b24c6fc29c5fc3aa21">More...</a><br /></td></tr>
-<tr class="separator:a7ef87ba3479827b24c6fc29c5fc3aa21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f1d35009a2879b238c8148c33485c89"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a0f1d35009a2879b238c8148c33485c89">addEdge</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_edge.html">Edge</a> *e)</td></tr>
-<tr class="memdesc:a0f1d35009a2879b238c8148c33485c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an edge to the graph.  <a href="#a0f1d35009a2879b238c8148c33485c89">More...</a><br /></td></tr>
-<tr class="separator:a0f1d35009a2879b238c8148c33485c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74f0d7392e67762a85799db72a58a94c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a74f0d7392e67762a85799db72a58a94c">changeId</a> (<a class="el" href="classg2o_1_1_hyper_graph_1_1_vertex.html">Vertex</a> *v, int newId)</td></tr>
-<tr class="memdesc:a74f0d7392e67762a85799db72a58a94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">changes the id of a vertex already in the graph, and updates the bookkeeping @ returns false if the vertex is not in the graph;  <a href="#a74f0d7392e67762a85799db72a58a94c">More...</a><br /></td></tr>
-<tr class="separator:a74f0d7392e67762a85799db72a58a94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef6e1d65e0f9171a518bce3fc559693"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a0ef6e1d65e0f9171a518bce3fc559693">~HyperGraph</a> ()</td></tr>
+<tr class="memdesc:a0ef6e1d65e0f9171a518bce3fc559693"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroys the hyper-graph and all the vertices of the graph  <a href="#a0ef6e1d65e0f9171a518bce3fc559693">More...</a><br /></td></tr>
+<tr class="separator:a0ef6e1d65e0f9171a518bce3fc559693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a83132c77c8d0896581d168cbc72f673a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph.html#a97307eac064ebf4b3e2cfbf0718035b5">VertexIDMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a83132c77c8d0896581d168cbc72f673a">_vertices</a></td></tr>
-<tr class="separator:a83132c77c8d0896581d168cbc72f673a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe4ae6e9ef05c8bded2b1b30e1886b36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae">EdgeSet</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#afe4ae6e9ef05c8bded2b1b30e1886b36">_edges</a></td></tr>
 <tr class="separator:afe4ae6e9ef05c8bded2b1b30e1886b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83132c77c8d0896581d168cbc72f673a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph.html#a97307eac064ebf4b3e2cfbf0718035b5">VertexIDMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#a83132c77c8d0896581d168cbc72f673a">_vertices</a></td></tr>
+<tr class="separator:a83132c77c8d0896581d168cbc72f673a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab19a6e0681e2b30d48740cebf553c7eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#ab19a6e0681e2b30d48740cebf553c7eb">HyperGraph</a> (const <a class="el" href="classg2o_1_1_hyper_graph.html">HyperGraph</a> &amp;)</td></tr>
+<tr class="separator:ab19a6e0681e2b30d48740cebf553c7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aace0adc6b03e56bf6b554368d49dcf88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_hyper_graph.html">HyperGraph</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_hyper_graph.html#aace0adc6b03e56bf6b554368d49dcf88">operator=</a> (const <a class="el" href="classg2o_1_1_hyper_graph.html">HyperGraph</a> &amp;)</td></tr>
+<tr class="separator:aace0adc6b03e56bf6b554368d49dcf88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class that models a directed Hyper-Graph. </p>
@@ -321,6 +329,30 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>destroys the hyper-graph and all the vertices of the graph </p>
+
+</div>
+</div>
+<a id="ab19a6e0681e2b30d48740cebf553c7eb"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">g2o::HyperGraph::HyperGraph </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classg2o_1_1_hyper_graph.html">HyperGraph</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -491,6 +523,30 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>the set of edges of the hyper graph </dd></dl>
+
+</div>
+</div>
+<a id="aace0adc6b03e56bf6b554368d49dcf88"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classg2o_1_1_hyper_graph.html">HyperGraph</a>&amp; g2o::HyperGraph::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classg2o_1_1_hyper_graph.html">HyperGraph</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

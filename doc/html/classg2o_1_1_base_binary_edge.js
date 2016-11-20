@@ -24,5 +24,8 @@ var classg2o_1_1_base_binary_edge =
     [ "_hessianRowMajor", "classg2o_1_1_base_binary_edge.html#aeb5c1f09a4433a6bd76ce4ab67bd9a64", null ],
     [ "_hessianTransposed", "classg2o_1_1_base_binary_edge.html#aa61657904b00fcfa19df382094386f11", null ],
     [ "_jacobianOplusXi", "classg2o_1_1_base_binary_edge.html#aa21b9d84924ec93192374761ee0adfa7", null ],
-    [ "_jacobianOplusXj", "classg2o_1_1_base_binary_edge.html#ad448518247044496cb99c9d70bd1a363", null ]
+    [ "_jacobianOplusXj", "classg2o_1_1_base_binary_edge.html#ad448518247044496cb99c9d70bd1a363", null ],
+    [ "Di", "classg2o_1_1_base_binary_edge.html#abfe232196405a7204bc299a747c1cc8b", null ],
+    [ "Dimension", "classg2o_1_1_base_binary_edge.html#af3c134948e48c446762fa4e427d1cca5", null ],
+    [ "Dj", "classg2o_1_1_base_binary_edge.html#ab718b94950a34d589371fe6f5583b259", null ]
 ];

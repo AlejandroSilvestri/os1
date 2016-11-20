@@ -59,21 +59,46 @@ class Viewer
 public:
 	/**
 	 * Constructor único del singleton Viewer.
+	 * Se ocupa de la interfaz de usuario: presentación en pantalla y de procesar teclas y botones.
+	 * Es el consumidor único de los singletons de FrameDrawer y MapDrawer.
 	 */
     Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const std::string &strSettingPath, cv::VideoCapture* = NULL);	// Agregé el últinmo argumento
 
+    /**
+     * Método principal de Viewer, que se ejecuta en un hilo propio.
+     * Run entra en un bucle sin fin, del que sale solamente cuando se le solicita terminar con RequestFinish.
+     * En este bucle se procesan teclazos y botones de Pangolin, y se presentan en pantalla las imágenes y el mapa.
+     */
     // Main thread function. Draw points, keyframes, the current camera pose and the last processed
     // frame. Drawing is refreshed according to the camera fps. We use Pangolin.
     void Run();
 
+    /**
+     * Solicita terminar.
+     * Invocado por otro hilo.
+     */
     void RequestFinish();
 
+    /**
+     * Solicita pausar.
+     * Invocado asincrónicamente por otro hilo, que deberá consultar isStopped para confirmar que Viewer se detuvo.
+     * Viewer pausa en el bucle de Run, y reanuda luego de que otro hilo invoque Release.
+     *
+     */
     void RequestStop();
 
     bool isFinished();
 
+    /**
+     * Devuelve true si Viewer está pausado.
+     * Se consulta repetidamente luego de haber solicitado la parada con RequesStop.
+     */
     bool isStopped();
 
+    /**
+     * Solicita salir de una pausa y resumir la operación.
+     * Invocado por otro hilo, luego de haber solictado para con RequestStop.
+     */
     void Release();
 
     /* Agregados */
@@ -121,6 +146,12 @@ public:
     /** Señal para que main cargue en mapa en el thread de System y Tracking.*/
     bool cargarMapa = false;
 
+    /**
+     * Período mínimo entre cuadros, en segundos.
+     * El bucle main se asegura de demorar como mínimo este tiempo entre dos cuadros.
+     * El usuario ajusta este valor.
+     */
+    float T = 0.033;	// 30 fps
 
 private:
 

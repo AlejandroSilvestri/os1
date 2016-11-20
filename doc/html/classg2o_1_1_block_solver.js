@@ -45,5 +45,7 @@ var classg2o_1_1_block_solver =
     [ "_numLandmarks", "classg2o_1_1_block_solver.html#ab98231b7ca8e6d7f138c33d26c6f4326", null ],
     [ "_numPoses", "classg2o_1_1_block_solver.html#a709259fc290d746f4174d25410b7458a", null ],
     [ "_sizeLandmarks", "classg2o_1_1_block_solver.html#a13a49b5aac8ae3b12ed0c349fc0788e7", null ],
-    [ "_sizePoses", "classg2o_1_1_block_solver.html#a39ec000379885ce09cdd8c23ab6d4567", null ]
+    [ "_sizePoses", "classg2o_1_1_block_solver.html#a39ec000379885ce09cdd8c23ab6d4567", null ],
+    [ "LandmarkDim", "classg2o_1_1_block_solver.html#a2d5e499f65a71985a8256e98c1608dd9", null ],
+    [ "PoseDim", "classg2o_1_1_block_solver.html#a9a68f557c8e04cd76565fc45e1747e45", null ]
 ];

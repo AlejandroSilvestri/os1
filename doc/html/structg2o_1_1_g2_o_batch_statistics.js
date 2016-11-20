@@ -1,6 +1,9 @@
 var structg2o_1_1_g2_o_batch_statistics =
 [
     [ "G2OBatchStatistics", "structg2o_1_1_g2_o_batch_statistics.html#a99b348cf1d6a913ab6683c44b36a8c55", null ],
+    [ "globalStats", "structg2o_1_1_g2_o_batch_statistics.html#a06f9c667d8b48b8f0023e27011818b64", null ],
+    [ "setGlobalStats", "structg2o_1_1_g2_o_batch_statistics.html#a8c56e85d25e346ba87718621407247fc", null ],
+    [ "_globalStats", "structg2o_1_1_g2_o_batch_statistics.html#ab2afc355eadf0e686507ff621f60d3eb", null ],
     [ "chi2", "structg2o_1_1_g2_o_batch_statistics.html#a719152d550dd4fe3300d06558fe0a6d5", null ],
     [ "choleskyNNZ", "structg2o_1_1_g2_o_batch_statistics.html#a5996c5ba000bdfcbcf5c0375a3c62643", null ],
     [ "hessianDimension", "structg2o_1_1_g2_o_batch_statistics.html#a618a15ba153da1a99b19a2d779cf3764", null ],

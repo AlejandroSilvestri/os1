@@ -18,6 +18,7 @@ var hierarchy =
     [ "g2o::BlockSolverTraits< _PoseDim, _LandmarkDim >", "structg2o_1_1_block_solver_traits.html", null ],
     [ "g2o::BlockSolverTraits< Eigen::Dynamic, Eigen::Dynamic >", "structg2o_1_1_block_solver_traits_3_01_eigen_1_1_dynamic_00_01_eigen_1_1_dynamic_01_4.html", null ],
     [ "g2o::Cache::CacheKey", "classg2o_1_1_cache_1_1_cache_key.html", null ],
+    [ "g2o::anonymous_namespace{sparse_block_matrix.hpp}::CmpPairFirst< T1, T2, Pred >", "structg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03_1_1_cmp_pair_first.html", null ],
     [ "g2o::ColSort", "structg2o_1_1_col_sort.html", null ],
     [ "ORB_SLAM2::Converter", "class_o_r_b___s_l_a_m2_1_1_converter.html", null ],
     [ "g2o::HyperDijkstra::CostFunction", "structg2o_1_1_hyper_dijkstra_1_1_cost_function.html", [
@@ -203,6 +204,8 @@ var hierarchy =
     [ "DUtils::Timestamp", "class_d_utils_1_1_timestamp.html", null ],
     [ "ORB_SLAM2::Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html", null ],
     [ "g2o::HyperDijkstra::TreeAction", "structg2o_1_1_hyper_dijkstra_1_1_tree_action.html", null ],
+    [ "g2o::anonymous_namespace{sparse_block_matrix.hpp}::TripletColSort", "structg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03_1_1_triplet_col_sort.html", null ],
+    [ "g2o::anonymous_namespace{sparse_block_matrix.hpp}::TripletEntry", "structg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03_1_1_triplet_entry.html", null ],
     [ "DUtils::Random::UnrepeatedRandomizer", "class_d_utils_1_1_random_1_1_unrepeated_randomizer.html", null ],
     [ "g2o::OptimizableGraph::VertexIDCompare", "structg2o_1_1_optimizable_graph_1_1_vertex_i_d_compare.html", null ],
     [ "g2o::EstimatePropagator::VertexIDHashFunction", "classg2o_1_1_estimate_propagator_1_1_vertex_i_d_hash_function.html", null ],

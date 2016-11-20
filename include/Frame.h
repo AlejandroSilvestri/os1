@@ -230,6 +230,25 @@ public:
 	/**
 	 * Pose de la cámara.
      * Matriz de 4x4 de rototraslación en coordenadas homogéneas.
+     * Es cv:Mat(4,4,CV_32F), y sus elementos son float.
+     *
+     * La posición de la cámara (vector traslación) se obtiene de la última columna de esta matriz.
+     *
+     * La unidad de medida se establece durante la inicialización igual a la profundidad media de la escena.
+     * Esto significa que la unidad dependerá de los puntos 3D triangulados en la inicialización.
+     *
+     * El sistema de coordenadas 3D de una cámara se relaciona con el 2D de su proyección
+     * manteniendo paralelos los ejes X e Y, y estableciendo Z hacia adelante.
+     * De este modo X apunta a la derecha e Y apunta hacia abajo (en esto es contrario al sistema de coordenadas estándar).
+     * Los vectores 3D homogéneos tienen la disposición tradicional:
+     *
+     * V = [vx, vy, vz, 1]
+     *
+     * Las poses son matrices de 4x4 como ésta, sus subíndices indican sujeto y referencia.  Tcw es T de cámara respecto de world.
+     * Las poses se combinan así:
+     *
+     * Tac = Tab * Tbc
+     *
      * Su valor se actualiza mediante SetPose, que además extrae la matriz rotación y el vector traslación con UpdatePoseMatrices.
      * Estos datos extraídos se calculan para presentación, pero no son usados por el algoritmo, que sólo utiliza mTcw.
      *

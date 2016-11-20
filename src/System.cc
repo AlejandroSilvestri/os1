@@ -81,11 +81,8 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
 
     mpVocabulary = new ORBVocabulary();
-#ifdef ArchivoBowBinario
     bool bVocLoad = mpVocabulary->loadFromBinaryFile(strVocFile);
-#else
-    bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
-#endif
+    //bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
     if(!bVocLoad)
     {
         cerr << "Wrong path to vocabulary. " << endl;

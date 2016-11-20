@@ -88,6 +88,7 @@ $(document).ready(function(){initNavTree('classg2o_1_1_factory.html','');});
 <a href="#pro-types">Protected Types</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classg2o_1_1_factory-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">g2o::Factory Class Reference</div>  </div>
@@ -98,6 +99,11 @@ $(document).ready(function(){initNavTree('classg2o_1_1_factory.html','');});
  <a href="classg2o_1_1_factory.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="factory_8h_source.html">factory.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for g2o::Factory:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classg2o_1_1_factory__coll__graph.svg" width="224" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -106,39 +112,39 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aba2f2e40635fd1b996981cefdb65c346"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#aba2f2e40635fd1b996981cefdb65c346">registerType</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>, <a class="el" href="classg2o_1_1_abstract_hyper_graph_element_creator.html">AbstractHyperGraphElementCreator</a> *c)</td></tr>
-<tr class="memdesc:aba2f2e40635fd1b996981cefdb65c346"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a tag for a specific creator  <a href="#aba2f2e40635fd1b996981cefdb65c346">More...</a><br /></td></tr>
-<tr class="separator:aba2f2e40635fd1b996981cefdb65c346"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01b16c7d5a49ddab5ccd5980f76900b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a01b16c7d5a49ddab5ccd5980f76900b7">unregisterType</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>)</td></tr>
-<tr class="memdesc:a01b16c7d5a49ddab5ccd5980f76900b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister a tag for a specific creator  <a href="#a01b16c7d5a49ddab5ccd5980f76900b7">More...</a><br /></td></tr>
-<tr class="separator:a01b16c7d5a49ddab5ccd5980f76900b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa61fcb8861afb1dd4c4af5d9cc03d3ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html">HyperGraph::HyperGraphElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#aa61fcb8861afb1dd4c4af5d9cc03d3ec">construct</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>) const</td></tr>
 <tr class="memdesc:aa61fcb8861afb1dd4c4af5d9cc03d3ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct a graph element based on its tag  <a href="#aa61fcb8861afb1dd4c4af5d9cc03d3ec">More...</a><br /></td></tr>
 <tr class="separator:aa61fcb8861afb1dd4c4af5d9cc03d3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c3800dfa57718d2ceb4f6150611540d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html">HyperGraph::HyperGraphElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a8c3800dfa57718d2ceb4f6150611540d">construct</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>, const <a class="el" href="classg2o_1_1_hyper_graph.html#a7b8fda20e1b03e92aeceeac6e8218b73">HyperGraph::GraphElemBitset</a> &amp;elemsToConstruct) const</td></tr>
 <tr class="memdesc:a8c3800dfa57718d2ceb4f6150611540d"><td class="mdescLeft">&#160;</td><td class="mdescRight">construct a graph element based on its tag, but only if it's type (a bitmask) matches.  <a href="#a8c3800dfa57718d2ceb4f6150611540d">More...</a><br /></td></tr>
 <tr class="separator:a8c3800dfa57718d2ceb4f6150611540d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20292a9c8417303fec92057826ba2430"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a20292a9c8417303fec92057826ba2430">knowsTag</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>, int *elementType=0) const</td></tr>
-<tr class="memdesc:a20292a9c8417303fec92057826ba2430"><td class="mdescLeft">&#160;</td><td class="mdescRight">return whether the factory knows this tag or not  <a href="#a20292a9c8417303fec92057826ba2430">More...</a><br /></td></tr>
-<tr class="separator:a20292a9c8417303fec92057826ba2430"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6b0fb89dc45ea1e506401d349c869f0"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a> (const <a class="el" href="structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html">HyperGraph::HyperGraphElement</a> *v) const</td></tr>
-<tr class="memdesc:ae6b0fb89dc45ea1e506401d349c869f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the TAG given a vertex  <a href="#ae6b0fb89dc45ea1e506401d349c869f0">More...</a><br /></td></tr>
-<tr class="separator:ae6b0fb89dc45ea1e506401d349c869f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af31924e76d04bcfd77a53cec8f1b778c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#af31924e76d04bcfd77a53cec8f1b778c">fillKnownTypes</a> (std::vector&lt; std::string &gt; &amp;types) const</td></tr>
 <tr class="memdesc:af31924e76d04bcfd77a53cec8f1b778c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a list of all known types  <a href="#af31924e76d04bcfd77a53cec8f1b778c">More...</a><br /></td></tr>
 <tr class="separator:af31924e76d04bcfd77a53cec8f1b778c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20292a9c8417303fec92057826ba2430"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a20292a9c8417303fec92057826ba2430">knowsTag</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>, int *elementType=0) const</td></tr>
+<tr class="memdesc:a20292a9c8417303fec92057826ba2430"><td class="mdescLeft">&#160;</td><td class="mdescRight">return whether the factory knows this tag or not  <a href="#a20292a9c8417303fec92057826ba2430">More...</a><br /></td></tr>
+<tr class="separator:a20292a9c8417303fec92057826ba2430"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a564b37b3ccbdd559a386b40ca16d219b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a564b37b3ccbdd559a386b40ca16d219b">printRegisteredTypes</a> (std::ostream &amp;os, bool comment=false) const</td></tr>
 <tr class="memdesc:a564b37b3ccbdd559a386b40ca16d219b"><td class="mdescLeft">&#160;</td><td class="mdescRight">print a list of the known registered types to the given stream  <a href="#a564b37b3ccbdd559a386b40ca16d219b">More...</a><br /></td></tr>
 <tr class="separator:a564b37b3ccbdd559a386b40ca16d219b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba2f2e40635fd1b996981cefdb65c346"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#aba2f2e40635fd1b996981cefdb65c346">registerType</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>, <a class="el" href="classg2o_1_1_abstract_hyper_graph_element_creator.html">AbstractHyperGraphElementCreator</a> *c)</td></tr>
+<tr class="memdesc:aba2f2e40635fd1b996981cefdb65c346"><td class="mdescLeft">&#160;</td><td class="mdescRight">register a tag for a specific creator  <a href="#aba2f2e40635fd1b996981cefdb65c346">More...</a><br /></td></tr>
+<tr class="separator:aba2f2e40635fd1b996981cefdb65c346"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b0fb89dc45ea1e506401d349c869f0"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a> (const <a class="el" href="structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html">HyperGraph::HyperGraphElement</a> *v) const</td></tr>
+<tr class="memdesc:ae6b0fb89dc45ea1e506401d349c869f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the TAG given a vertex  <a href="#ae6b0fb89dc45ea1e506401d349c869f0">More...</a><br /></td></tr>
+<tr class="separator:ae6b0fb89dc45ea1e506401d349c869f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01b16c7d5a49ddab5ccd5980f76900b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a01b16c7d5a49ddab5ccd5980f76900b7">unregisterType</a> (const std::string &amp;<a class="el" href="classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0">tag</a>)</td></tr>
+<tr class="memdesc:a01b16c7d5a49ddab5ccd5980f76900b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">unregister a tag for a specific creator  <a href="#a01b16c7d5a49ddab5ccd5980f76900b7">More...</a><br /></td></tr>
+<tr class="separator:a01b16c7d5a49ddab5ccd5980f76900b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8a1f33e017c5ad59399cef48972578ae"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classg2o_1_1_factory.html">Factory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a8a1f33e017c5ad59399cef48972578ae">instance</a> ()</td></tr>
-<tr class="memdesc:a8a1f33e017c5ad59399cef48972578ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the instance  <a href="#a8a1f33e017c5ad59399cef48972578ae">More...</a><br /></td></tr>
-<tr class="separator:a8a1f33e017c5ad59399cef48972578ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab40f0aa18dabb91a35de7186ede9355a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#ab40f0aa18dabb91a35de7186ede9355a">destroy</a> ()</td></tr>
 <tr class="memdesc:ab40f0aa18dabb91a35de7186ede9355a"><td class="mdescLeft">&#160;</td><td class="mdescRight">free the instance  <a href="#ab40f0aa18dabb91a35de7186ede9355a">More...</a><br /></td></tr>
 <tr class="separator:ab40f0aa18dabb91a35de7186ede9355a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a1f33e017c5ad59399cef48972578ae"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classg2o_1_1_factory.html">Factory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a8a1f33e017c5ad59399cef48972578ae">instance</a> ()</td></tr>
+<tr class="memdesc:a8a1f33e017c5ad59399cef48972578ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the instance  <a href="#a8a1f33e017c5ad59399cef48972578ae">More...</a><br /></td></tr>
+<tr class="separator:a8a1f33e017c5ad59399cef48972578ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -162,6 +168,11 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a93fbd79ea000ed88101c1f23b19e6e2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_factory.html#aba274179c053b3b71dcef6a20c898496">TagLookup</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a93fbd79ea000ed88101c1f23b19e6e2a">_tagLookup</a></td></tr>
 <tr class="memdesc:a93fbd79ea000ed88101c1f23b19e6e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">reverse look-up, class name to tag  <a href="#a93fbd79ea000ed88101c1f23b19e6e2a">More...</a><br /></td></tr>
 <tr class="separator:a93fbd79ea000ed88101c1f23b19e6e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a4eab3a865dee18a71bb73246dc3e9f4b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classg2o_1_1_factory.html">Factory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_factory.html#a4eab3a865dee18a71bb73246dc3e9f4b">factoryInstance</a> = 0</td></tr>
+<tr class="separator:a4eab3a865dee18a71bb73246dc3e9f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>create vertices and edges based on TAGs in, for example, a file </p>
@@ -531,6 +542,26 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>reverse look-up, class name to tag </p>
+
+</div>
+</div>
+<a id="a4eab3a865dee18a71bb73246dc3e9f4b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classg2o_1_1_factory.html">Factory</a> * g2o::Factory::factoryInstance = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

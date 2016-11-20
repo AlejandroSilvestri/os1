@@ -222,6 +222,11 @@ int main(int argc, char **argv){
     if(videoEsArchivo){
 		video.open(rutaVideo);
 		videoEntrada = &video;
+		char fourcc[] = "    ";
+		int* fcc;
+		fcc = (int*)fourcc;
+		*fcc = static_cast<int>(video.get(cv::CAP_PROP_FOURCC));
+		cout << "FOURCC: " << fourcc << endl;
 
 	}else{
 		// No hay parámetros, no hay video, sólo webcam.
@@ -230,11 +235,10 @@ int main(int argc, char **argv){
 	}
 
     // Inicializa el sistema SLAM.
-#ifdef ArchivoBowBinario	// Mi versión de archivo binario con el vocabulario, que carga mucho más rápido porque evita el análisis sintáctico.
+    // Mi versión de archivo binario con el vocabulario, que carga mucho más rápido porque evita el análisis sintáctico.
     ORB_SLAM2::System SLAM("orbVoc.bin", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true, videoEntrada);
-#else	// Versión original que carga el vocabulario de un archivo de texto
-    ORB_SLAM2::System SLAM("../Archivos/ORBvoc.txt", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
-#endif
+	// Versión original que carga el vocabulario de un archivo de texto
+    //ORB_SLAM2::System SLAM("../Archivos/ORBvoc.txt", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
 
     // Puntero global al sistema singleton
     //ORB_SLAM2::System::sistema = &SLAM;

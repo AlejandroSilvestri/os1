@@ -17,6 +17,8 @@ var class_o_r_b___s_l_a_m2_1_1_map =
     [ "serialize", "class_o_r_b___s_l_a_m2_1_1_map.html#aa6d9c97f0bb802fd544d6abd928dba61", null ],
     [ "SetReferenceMapPoints", "class_o_r_b___s_l_a_m2_1_1_map.html#ac31706152aeb99c94ddb7f6ce452bd77", null ],
     [ "boost::serialization::access", "class_o_r_b___s_l_a_m2_1_1_map.html#ac98d07dd8f7b70e16ccb9a01abf56b9c", null ],
+    [ "keyFrameBuffer", "class_o_r_b___s_l_a_m2_1_1_map.html#a1b2a91ad784b6daa66ad8170e268ed92", null ],
+    [ "mapPointBuffer", "class_o_r_b___s_l_a_m2_1_1_map.html#a8ae2d66f4b1958c06c461cdff782e690", null ],
     [ "mMutexMap", "class_o_r_b___s_l_a_m2_1_1_map.html#a86b9fb9d5c601fb6fd88c46444bd553c", null ],
     [ "mMutexMapUpdate", "class_o_r_b___s_l_a_m2_1_1_map.html#a05544c09b3227d31163f10609b90b913", null ],
     [ "mMutexPointCreation", "class_o_r_b___s_l_a_m2_1_1_map.html#a968356226057387d8207054d56e5d35c", null ],

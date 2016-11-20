@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['anonymous_5fnamespace_7bsparse_5fblock_5fmatrix_2ehpp_7d',['anonymous_namespace{sparse_block_matrix.hpp}',['../namespaceg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03.html',1,'g2o']]],
   ['g2o',['g2o',['../namespaceg2o.html',1,'g2o'],['../group__g2o.html',1,'(Global Namespace)']]],
   ['g2o_5fattribute_5fconstructor',['G2O_ATTRIBUTE_CONSTRUCTOR',['../macros_8h.html#afe0b28d021d8c105d2dd969276f4610a',1,'macros.h']]],
   ['g2o_5fattribute_5fdeprecated',['G2O_ATTRIBUTE_DEPRECATED',['../classg2o_1_1_optimizable_graph_1_1_vertex.html#a8f22181a161d724e95631d5da742b66a',1,'g2o::OptimizableGraph::Vertex::G2O_ATTRIBUTE_DEPRECATED(tempIndex() const)'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#abdcd545b6870b37135b055d18dae7a36',1,'g2o::OptimizableGraph::Vertex::G2O_ATTRIBUTE_DEPRECATED(setTempIndex(int ti))'],['../macros_8h.html#aec1ec1c1e0488c850a48749d4dc7c46b',1,'G2O_ATTRIBUTE_DEPRECATED():&#160;macros.h']]],
@@ -27,9 +28,10 @@ var searchData=
   ['g2o_5fuse_5frobust_5fkernel',['G2O_USE_ROBUST_KERNEL',['../robust__kernel__factory_8h.html#ab56433f8002af3facebfa87587af842f',1,'robust_kernel_factory.h']]],
   ['g2o_5fuse_5ftype_5fby_5fclass_5fname',['G2O_USE_TYPE_BY_CLASS_NAME',['../factory_8h.html#a8a9dfe3b92e8018b8d19e0c512ee63d1',1,'factory.h']]],
   ['g2o_5fuse_5ftype_5fgroup',['G2O_USE_TYPE_GROUP',['../factory_8h.html#af7ab0b7b31135f39038d4152ed3f8298',1,'factory.h']]],
-  ['g2obatchstatistics',['G2OBatchStatistics',['../structg2o_1_1_g2_o_batch_statistics.html',1,'g2o']]],
   ['g2obatchstatistics',['G2OBatchStatistics',['../structg2o_1_1_g2_o_batch_statistics.html#a99b348cf1d6a913ab6683c44b36a8c55',1,'g2o::G2OBatchStatistics']]],
+  ['g2obatchstatistics',['G2OBatchStatistics',['../structg2o_1_1_g2_o_batch_statistics.html',1,'g2o']]],
   ['gaugefreedom',['gaugeFreedom',['../classg2o_1_1_sparse_optimizer.html#ac99e785f4822dd540b389ea179ce4f06',1,'g2o::SparseOptimizer']]],
+  ['gauss_5fnewton',['gauss_newton',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a4b2b11d8afbf638d8cd48d739b071073',1,'ORB_SLAM2::PnPsolver']]],
   ['generalscoring',['GeneralScoring',['../class_d_bo_w2_1_1_general_scoring.html',1,'DBoW2']]],
   ['get',['get',['../class_d_utils_1_1_random_1_1_unrepeated_randomizer.html#ae1bf6a140e322962f65b2c98dc07a3ac',1,'DUtils::Random::UnrepeatedRandomizer']]],
   ['get_5fmonotonic_5ftime',['get_monotonic_time',['../namespaceg2o.html#aa64237935c7d8411b4369234a5f661ea',1,'g2o']]],
@@ -44,6 +46,7 @@ var searchData=
   ['getconnectedkeyframes',['GetConnectedKeyFrames',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4ffdf4441477a36c42d6605c573f1cf',1,'ORB_SLAM2::KeyFrame']]],
   ['getcovisiblesbyweight',['GetCovisiblesByWeight',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#a7047bffbf130b00dd0270df99874f8a1',1,'ORB_SLAM2::KeyFrame']]],
   ['getcurrentopenglcameramatrix',['GetCurrentOpenGLCameraMatrix',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a872b93687086460e398e912191c91aca',1,'ORB_SLAM2::MapDrawer']]],
+  ['getcurrentopenglcameramatrixmodified',['GetCurrentOpenGLCameraMatrixModified',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#abfabe8a5d66f8ecc64021aeff9a14a9e',1,'ORB_SLAM2::MapDrawer']]],
   ['getdepthlevels',['getDepthLevels',['../class_d_bo_w2_1_1_templated_vocabulary.html#a5a7d1b3ad0c705705d516a9a144e3f38',1,'DBoW2::TemplatedVocabulary']]],
   ['getdescriptor',['GetDescriptor',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f9faa5b4cc513795485dcfb460ea3d0',1,'ORB_SLAM2::MapPoint']]],
   ['geteffectivelevels',['getEffectiveLevels',['../class_d_bo_w2_1_1_templated_vocabulary.html#ae67da4c7b30c15ed4faba2ad6ed4549e',1,'DBoW2::TemplatedVocabulary']]],
@@ -104,7 +107,6 @@ var searchData=
   ['grabimagemonocular',['GrabImageMonocular',['../class_o_r_b___s_l_a_m2_1_1_tracking.html#ad3de28bf6f7638c4da2248c9d595f394',1,'ORB_SLAM2::Tracking']]],
   ['graph',['graph',['../classg2o_1_1_cache.html#a1a4480a445469d2d02b8db449e6cb57c',1,'g2o::Cache::graph()'],['../classg2o_1_1_cache_container.html#a4bf79d27bb9ae377446dfa7fd048b06d',1,'g2o::CacheContainer::graph()'],['../classg2o_1_1_estimate_propagator.html#a97064a86789b496b590f4848fdb59bc8',1,'g2o::EstimatePropagator::graph()'],['../structg2o_1_1_hyper_dijkstra.html#a578a9eb1874d9802dbd37a2f1681c196',1,'g2o::HyperDijkstra::graph()'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#a8cf4be7e2442444d9d43a80cc8388b1e',1,'g2o::OptimizableGraph::Vertex::graph() const'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#a3f845c6f0ba9a87ab15caaddba5a4037',1,'g2o::OptimizableGraph::Vertex::graph()'],['../classg2o_1_1_optimizable_graph_1_1_edge.html#a3684190bf8e99f39f58ffadd0dfa6b05',1,'g2o::OptimizableGraph::Edge::graph()'],['../classg2o_1_1_optimizable_graph_1_1_edge.html#a06fdc51c984cf0050df376ca30c881e3',1,'g2o::OptimizableGraph::Edge::graph() const'],['../group__graph.html',1,'(Global Namespace)']]],
   ['graphelembitset',['GraphElemBitset',['../classg2o_1_1_hyper_graph.html#a7b8fda20e1b03e92aeceeac6e8218b73',1,'g2o::HyperGraph']]],
-  ['guardando',['GUARDANDO',['../serialize_8cpp.html#a6db88b45487dad60bac268cc054a4b75',1,'serialize.cpp']]],
   ['internal',['internal',['../namespaceg2o_1_1internal.html',1,'g2o']]],
   ['types_5fsix_5fdof_5fexpmap',['types_six_dof_expmap',['../namespaceg2o_1_1types__six__dof__expmap.html',1,'g2o']]]
 ];

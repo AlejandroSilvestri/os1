@@ -1,7 +1,7 @@
 var dir_d44c64559bbebec7f509842c48db8b23 =
 [
     [ "Converter.h", "_converter_8h.html", [
-      [ "Converter", "class_o_r_b___s_l_a_m2_1_1_converter.html", null ]
+      [ "Converter", "class_o_r_b___s_l_a_m2_1_1_converter.html", "class_o_r_b___s_l_a_m2_1_1_converter" ]
     ] ],
     [ "Frame.h", "_frame_8h.html", "_frame_8h" ],
     [ "FrameDrawer.h", "_frame_drawer_8h.html", [
@@ -32,7 +32,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html", "class_o_r_b___s_l_a_m2_1_1_map_point" ]
     ] ],
     [ "Optimizer.h", "_optimizer_8h.html", [
-      [ "Optimizer", "class_o_r_b___s_l_a_m2_1_1_optimizer.html", null ]
+      [ "Optimizer", "class_o_r_b___s_l_a_m2_1_1_optimizer.html", "class_o_r_b___s_l_a_m2_1_1_optimizer" ]
     ] ],
     [ "ORBextractor.h", "_o_r_bextractor_8h.html", [
       [ "ExtractorNode", "class_o_r_b___s_l_a_m2_1_1_extractor_node.html", "class_o_r_b___s_l_a_m2_1_1_extractor_node" ],

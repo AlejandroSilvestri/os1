@@ -188,6 +188,10 @@ private:
      *
      * Usa cv::SVD para triangular.
      *
+     * La matriz de proyección P de una cámara es una matriz de 4x3 (3 filas, 4 columnas), que combina sus matrices intrínseca y extrínseca.
+     * P = K[R|t], siendo K la matriz de cámara, R y t la rototraslación de la cámara respecto de la referencia.
+     * Premultiplicando una coordenada 3D homogénea (vector de 4 dimensiones), se obtiene su proyección en coordenadas homogéneas en píxeles.
+     *
      * Invocado sólo desde Initializer::CheckRT.
      */
     void Triangulate(const cv::KeyPoint &kp1, const cv::KeyPoint &kp2, const cv::Mat &P1, const cv::Mat &P2, cv::Mat &x3D);

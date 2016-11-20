@@ -3,7 +3,7 @@ var dir_004f071c35dfaac2458bd63a15bbc95f =
     [ "BowVector.cpp", "_bow_vector_8cpp.html", "_bow_vector_8cpp" ],
     [ "BowVector.h", "_bow_vector_8h.html", "_bow_vector_8h" ],
     [ "FClass.h", "_f_class_8h.html", [
-      [ "FClass", "class_d_bo_w2_1_1_f_class.html", null ]
+      [ "FClass", "class_d_bo_w2_1_1_f_class.html", "class_d_bo_w2_1_1_f_class" ]
     ] ],
     [ "FeatureVector.cpp", "_feature_vector_8cpp.html", "_feature_vector_8cpp" ],
     [ "FeatureVector.h", "_feature_vector_8h.html", [

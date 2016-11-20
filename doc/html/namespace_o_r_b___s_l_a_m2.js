@@ -1,6 +1,6 @@
 var namespace_o_r_b___s_l_a_m2 =
 [
-    [ "Converter", "class_o_r_b___s_l_a_m2_1_1_converter.html", null ],
+    [ "Converter", "class_o_r_b___s_l_a_m2_1_1_converter.html", "class_o_r_b___s_l_a_m2_1_1_converter" ],
     [ "ExtractorNode", "class_o_r_b___s_l_a_m2_1_1_extractor_node.html", "class_o_r_b___s_l_a_m2_1_1_extractor_node" ],
     [ "Frame", "class_o_r_b___s_l_a_m2_1_1_frame.html", "class_o_r_b___s_l_a_m2_1_1_frame" ],
     [ "FrameDrawer", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html", "class_o_r_b___s_l_a_m2_1_1_frame_drawer" ],
@@ -12,7 +12,7 @@ var namespace_o_r_b___s_l_a_m2 =
     [ "Map", "class_o_r_b___s_l_a_m2_1_1_map.html", "class_o_r_b___s_l_a_m2_1_1_map" ],
     [ "MapDrawer", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html", "class_o_r_b___s_l_a_m2_1_1_map_drawer" ],
     [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html", "class_o_r_b___s_l_a_m2_1_1_map_point" ],
-    [ "Optimizer", "class_o_r_b___s_l_a_m2_1_1_optimizer.html", null ],
+    [ "Optimizer", "class_o_r_b___s_l_a_m2_1_1_optimizer.html", "class_o_r_b___s_l_a_m2_1_1_optimizer" ],
     [ "ORBextractor", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor" ],
     [ "ORBmatcher", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher" ],
     [ "PnPsolver", "class_o_r_b___s_l_a_m2_1_1_pn_psolver.html", "class_o_r_b___s_l_a_m2_1_1_pn_psolver" ],

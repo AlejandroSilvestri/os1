@@ -22,5 +22,6 @@ var classg2o_1_1_base_edge =
     [ "setMeasurement", "classg2o_1_1_base_edge.html#a24aae7b4fc35d311158f104cfdd95aeb", null ],
     [ "_error", "classg2o_1_1_base_edge.html#af31f4b0a67bb12b4de4a32dc42467836", null ],
     [ "_information", "classg2o_1_1_base_edge.html#a49f11e3d1eaa8e666e1d4d3607279377", null ],
-    [ "_measurement", "classg2o_1_1_base_edge.html#af2a6ab1df6e91601b4cab23e0e99e034", null ]
+    [ "_measurement", "classg2o_1_1_base_edge.html#af2a6ab1df6e91601b4cab23e0e99e034", null ],
+    [ "Dimension", "classg2o_1_1_base_edge.html#ab4812acb21e0b9de80dc6d676e71cb70", null ]
 ];

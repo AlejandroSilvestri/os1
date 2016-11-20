@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('_o_r_bextractor_8cc.html','');});
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">ORBextractor.cc File Reference</div>  </div>
@@ -112,20 +113,36 @@ Macros</h2></td></tr>
 <tr class="memitem:a35931865021519a9d7a2a4d2f196e684"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_o_r_bextractor_8cc.html#a35931865021519a9d7a2a4d2f196e684">GET_VALUE</a>(idx)</td></tr>
 <tr class="separator:a35931865021519a9d7a2a4d2f196e684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ad90997cdb916a99c644c0959e08cf4df"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#ad90997cdb916a99c644c0959e08cf4df">ORB_SLAM2::computeDescriptors</a> (const Mat &amp;image, vector&lt; KeyPoint &gt; &amp;keypoints, Mat &amp;descriptors, const vector&lt; Point &gt; &amp;pattern)</td></tr>
+<tr class="separator:ad90997cdb916a99c644c0959e08cf4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a932693f631bfe871700d02c72e14c6cd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a932693f631bfe871700d02c72e14c6cd">ORB_SLAM2::computeOrbDescriptor</a> (const KeyPoint &amp;kpt, const Mat &amp;img, const Point *pattern, uchar *desc)</td></tr>
+<tr class="memdesc:a932693f631bfe871700d02c72e14c6cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extrae el descriptor ORB del punto singular.  <a href="namespace_o_r_b___s_l_a_m2.html#a932693f631bfe871700d02c72e14c6cd">More...</a><br /></td></tr>
+<tr class="separator:a932693f631bfe871700d02c72e14c6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40adb6b621d7c2dd9d2961ba88e445c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a40adb6b621d7c2dd9d2961ba88e445c8">ORB_SLAM2::computeOrientation</a> (const Mat &amp;image, vector&lt; KeyPoint &gt; &amp;keypoints, const vector&lt; int &gt; &amp;umax)</td></tr>
+<tr class="separator:a40adb6b621d7c2dd9d2961ba88e445c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac570dbdaae2d483745515b5022fd6820"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#ac570dbdaae2d483745515b5022fd6820">ORB_SLAM2::IC_Angle</a> (const Mat &amp;image, Point2f pt, const vector&lt; int &gt; &amp;u_max)</td></tr>
+<tr class="memdesc:ac570dbdaae2d483745515b5022fd6820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula la orientación de un punto singular.  <a href="namespace_o_r_b___s_l_a_m2.html#ac570dbdaae2d483745515b5022fd6820">More...</a><br /></td></tr>
+<tr class="separator:ac570dbdaae2d483745515b5022fd6820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a557e5c298c5f7164667f083494c2197a"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a557e5c298c5f7164667f083494c2197a">ORB_SLAM2::PATCH_SIZE</a> = 31</td></tr>
-<tr class="memdesc:a557e5c298c5f7164667f083494c2197a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamaño del lado del parche cuadrado, en píxeles.  <a href="namespace_o_r_b___s_l_a_m2.html#a557e5c298c5f7164667f083494c2197a">More...</a><br /></td></tr>
-<tr class="separator:a557e5c298c5f7164667f083494c2197a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa09849ae679bf2392b097abd710d8d7f"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#aa09849ae679bf2392b097abd710d8d7f">ORB_SLAM2::HALF_PATCH_SIZE</a> = 15</td></tr>
-<tr class="memdesc:aa09849ae679bf2392b097abd710d8d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Medio parche en píxeles.  <a href="namespace_o_r_b___s_l_a_m2.html#aa09849ae679bf2392b097abd710d8d7f">More...</a><br /></td></tr>
-<tr class="separator:aa09849ae679bf2392b097abd710d8d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd21ee063eca2b0bc3f5e76ceba0492"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a8dd21ee063eca2b0bc3f5e76ceba0492">ORB_SLAM2::bit_pattern_31_</a> [256 *4]</td></tr>
+<tr class="memdesc:a8dd21ee063eca2b0bc3f5e76ceba0492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordenadas BRIEF.  <a href="namespace_o_r_b___s_l_a_m2.html#a8dd21ee063eca2b0bc3f5e76ceba0492">More...</a><br /></td></tr>
+<tr class="separator:a8dd21ee063eca2b0bc3f5e76ceba0492"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec00f1ad4dea35755e3af4404282cd3b"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#aec00f1ad4dea35755e3af4404282cd3b">ORB_SLAM2::EDGE_THRESHOLD</a> = 19</td></tr>
 <tr class="memdesc:aec00f1ad4dea35755e3af4404282cd3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Umbral de los bordes, en píxeles.  <a href="namespace_o_r_b___s_l_a_m2.html#aec00f1ad4dea35755e3af4404282cd3b">More...</a><br /></td></tr>
 <tr class="separator:aec00f1ad4dea35755e3af4404282cd3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8015b470ffeb885a0c90837a03b3210f"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a8015b470ffeb885a0c90837a03b3210f">ORB_SLAM2::factorPI</a> = (float)(CV_PI/180.f)</td></tr>
 <tr class="memdesc:a8015b470ffeb885a0c90837a03b3210f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factor conversor de grados a radianes.  <a href="namespace_o_r_b___s_l_a_m2.html#a8015b470ffeb885a0c90837a03b3210f">More...</a><br /></td></tr>
 <tr class="separator:a8015b470ffeb885a0c90837a03b3210f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09849ae679bf2392b097abd710d8d7f"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#aa09849ae679bf2392b097abd710d8d7f">ORB_SLAM2::HALF_PATCH_SIZE</a> = 15</td></tr>
+<tr class="memdesc:aa09849ae679bf2392b097abd710d8d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Medio parche en píxeles.  <a href="namespace_o_r_b___s_l_a_m2.html#aa09849ae679bf2392b097abd710d8d7f">More...</a><br /></td></tr>
+<tr class="separator:aa09849ae679bf2392b097abd710d8d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a557e5c298c5f7164667f083494c2197a"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a557e5c298c5f7164667f083494c2197a">ORB_SLAM2::PATCH_SIZE</a> = 31</td></tr>
+<tr class="memdesc:a557e5c298c5f7164667f083494c2197a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tamaño del lado del parche cuadrado, en píxeles.  <a href="namespace_o_r_b___s_l_a_m2.html#a557e5c298c5f7164667f083494c2197a">More...</a><br /></td></tr>
+<tr class="separator:a557e5c298c5f7164667f083494c2197a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a35931865021519a9d7a2a4d2f196e684"></a>

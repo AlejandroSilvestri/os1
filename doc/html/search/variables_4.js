@@ -6,5 +6,6 @@ var searchData=
   ['dimension',['Dimension',['../classg2o_1_1_base_binary_edge.html#af3c134948e48c446762fa4e427d1cca5',1,'g2o::BaseBinaryEdge::Dimension()'],['../classg2o_1_1_base_edge.html#ab4812acb21e0b9de80dc6d676e71cb70',1,'g2o::BaseEdge::Dimension()'],['../classg2o_1_1_base_multi_edge.html#a3c713fe8d1cd161f777625d8e2d5695d',1,'g2o::BaseMultiEdge::Dimension()'],['../classg2o_1_1_base_unary_edge.html#a4e584cf552998a34948d8d5b484f7fd3',1,'g2o::BaseUnaryEdge::Dimension()'],['../classg2o_1_1_base_vertex.html#a9a831bfdf84cfe625d8f942bc4f1c2d1',1,'g2o::BaseVertex::Dimension()']]],
   ['distcoef',['distCoef',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a8596422190adf9c7f6e083073ad96004',1,'ORB_SLAM2::FrameDrawer']]],
   ['dj',['Dj',['../classg2o_1_1_base_binary_edge.html#ab718b94950a34d589371fe6f5583b259',1,'g2o::BaseBinaryEdge']]],
+  ['dsqr',['dsqr',['../classg2o_1_1_robust_kernel_huber.html#ada9d48b59d64f72c18b11905de8dca0d',1,'g2o::RobustKernelHuber']]],
   ['duracion',['duracion',['../class_o_r_b___s_l_a_m2_1_1_viewer.html#a17167841bf5fbad4c9dad01fe4f5bc9b',1,'ORB_SLAM2::Viewer']]]
 ];

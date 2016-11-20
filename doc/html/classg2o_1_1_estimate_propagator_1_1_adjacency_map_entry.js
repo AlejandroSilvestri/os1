@@ -13,5 +13,7 @@ var classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry =
     [ "_distance", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a3558503af9d9f56088ff1593398f86d4", null ],
     [ "_edge", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a738795d0b3989374ba51821354629d64", null ],
     [ "_frontierLevel", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a56bfab4074fa692f03378526007758f7", null ],
-    [ "_parent", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a72384502361d60e1f3ae1644de1e7379", null ]
+    [ "_parent", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a72384502361d60e1f3ae1644de1e7379", null ],
+    [ "inQueue", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a6697b7728a51b80663f843daba54e2d8", null ],
+    [ "queueIt", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a40828826b865378855fdc26fae46af11", null ]
 ];

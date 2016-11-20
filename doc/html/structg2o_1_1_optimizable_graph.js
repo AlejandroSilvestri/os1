@@ -27,6 +27,7 @@ var structg2o_1_1_optimizable_graph =
     [ "dimensions", "structg2o_1_1_optimizable_graph.html#a396e552ed234fe625e3b6785efa9c86d", null ],
     [ "discardTop", "structg2o_1_1_optimizable_graph.html#a368b5f22dbc57abd2f651a20d039f61c", null ],
     [ "discardTop", "structg2o_1_1_optimizable_graph.html#a74cbd91a3e05c1f497b4675b0e70113a", null ],
+    [ "initMultiThreading", "structg2o_1_1_optimizable_graph.html#ab4ee0fc3ecd31852276ded40b62e9c76", null ],
     [ "isSolverSuitable", "structg2o_1_1_optimizable_graph.html#a5b957f752c6afe7bc76baf00129f854e", null ],
     [ "jacobianWorkspace", "structg2o_1_1_optimizable_graph.html#aa669dbd1d6e34e49fecda711ff1b78c6", null ],
     [ "jacobianWorkspace", "structg2o_1_1_optimizable_graph.html#a21d73e7a39c731d19e6bb467cad59912", null ],

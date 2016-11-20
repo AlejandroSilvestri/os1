@@ -36,6 +36,7 @@ var class_o_r_b___s_l_a_m2_1_1_map_point =
     [ "mDescriptor", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ac2a05b8ddc806ecc6939f42d13828876", null ],
     [ "mfMaxDistance", "class_o_r_b___s_l_a_m2_1_1_map_point.html#afc04bae1b7819dd158a572de56074f63", null ],
     [ "mfMinDistance", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ac179383327d65067da6febe55cbfc32a", null ],
+    [ "mGlobalMutex", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a58d0ed9067593833efa652ea671ebf62", null ],
     [ "mMutexFeatures", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a3ab20d400977581ac45a109f5544ffda", null ],
     [ "mMutexPos", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a592b97bed3453c0a599336fa848a8cef", null ],
     [ "mnBAGlobalForKF", "class_o_r_b___s_l_a_m2_1_1_map_point.html#abcef580d7b3562ea9025ea1dc2141b92", null ],
@@ -63,5 +64,6 @@ var class_o_r_b___s_l_a_m2_1_1_map_point =
     [ "mTrackProjY", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a5ab59610931a5c2e14f502e8233571e4", null ],
     [ "mTrackViewCos", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a728107bc670ba47d79bad5ba288256d6", null ],
     [ "mWorldPos", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a39741adada8dcd302afbf45ec2e72af0", null ],
+    [ "nNextId", "class_o_r_b___s_l_a_m2_1_1_map_point.html#aa79702928d566db4fcd7716249bd96a2", null ],
     [ "nObs", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a2653a4c69121627fcc5ae812b1809a28", null ]
 ];

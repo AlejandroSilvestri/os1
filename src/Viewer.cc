@@ -25,6 +25,9 @@
 #include "System.h"
 #include <pangolin/pangolin.h>
 
+#include <opencv2/core.hpp>
+#include <opencv2/imgcodecs.hpp>
+
 #include <mutex>
 
 namespace ORB_SLAM2{
@@ -56,12 +59,13 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
 
     // Explicación de las funciones de teclado
     cout << endl << "Teclas:" << endl
-    		<< "t: Cambia el tamaño de las ventanas de imágenes.  Hay 3 tamaños: 100%, 50% y 25%." << endl
+    		<< "w: Cambia el tamaño de las ventanas de imágenes.  Hay 3 tamaños: 100%, 50% y 25%." << endl
     		<< "u: Undistort, muestra la imagen de entrada antidistorsionada." << endl
     		<< endl
     		<< "Si se procesa un archivo de video:" << endl
     		<< "espacio: Pausa el video." << endl
     		<< "r: Reversa, invierte la secuencia de imágenes del video." << endl
+    		<< "t: Tiempo entre cuadros.  Alterna entre varios períodos máximos." << endl
     		<< "" << endl
     		<< "" << endl
     		<< "" << endl
@@ -83,28 +87,31 @@ void Viewer::Run(){
     glEnable (GL_BLEND);
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    // Panel y botonera
     pangolin::CreatePanel("menu").SetBounds(0.0,1.0,0.0,pangolin::Attach::Pix(175));
     pangolin::Var<bool> menuFollowCamera("menu.Seguir la camara",true,true);
+    pangolin::Var<bool> menuPajaro("menu.Pajaro", false, true);
     pangolin::Var<bool> menuShowPoints("menu.Puntos del mapa",true,true);
     pangolin::Var<bool> menuShowKeyFrames("menu.KeyFrames",true,true);
     pangolin::Var<bool> menuShowGraph("menu.Grafo",true,true);
     pangolin::Var<bool> menuLocalizationMode("menu.Tracking, sin mapeo",false,true);
+    pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa", false, false);
+    pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa", false, false);
+    pangolin::Var<bool> menuGrabar("menu.Grabar", false, false);
     pangolin::Var<bool> menuReset("menu.Reset",false,false);
-    pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa",false,false);
-    pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa",false,false);
     //pangolin::Var<bool> menuSalir("menu.Salir",false,false);
 
 
     // Define Camera Render Object (for view / scene browsing)
     pangolin::OpenGlRenderState s_cam(
-                pangolin::ProjectionMatrix(1024,768,mViewpointF,mViewpointF,512,389,0.1,1000),
-                pangolin::ModelViewLookAt(mViewpointX,mViewpointY,mViewpointZ, 0,0,0,0.0,-1.0, 0.0)
-                );
+		pangolin::ProjectionMatrix(1024,768,mViewpointF,mViewpointF,512,389,0.1,1000),
+		pangolin::ModelViewLookAt(mViewpointX,mViewpointY,mViewpointZ, 0,0,0,0.0,-1.0, 0.0)
+    );
 
     // Add named OpenGL viewport to window and provide 3D Handler
     pangolin::View& d_cam = pangolin::CreateDisplay()
-            .SetBounds(0.0, 1.0, pangolin::Attach::Pix(175), 1.0, -1024.0f/768.0f)
-            .SetHandler(new pangolin::Handler3D(s_cam));
+		.SetBounds(0.0, 1.0, pangolin::Attach::Pix(175), 1.0, -1024.0f/768.0f)
+		.SetHandler(new pangolin::Handler3D(s_cam));
 
     pangolin::OpenGlMatrix Twc;
     Twc.SetIdentity();
@@ -124,9 +131,12 @@ void Viewer::Run(){
     if(duracion) cv::createTrackbar("tiempo", "entrada", &tiempo, video->get(CV_CAP_PROP_FRAME_COUNT));
 
 
+    // Variables controladas por el usuario
 
+    // Pangolin y orb-slam2
     bool bFollow = true;
     bool bLocalizationMode = false;
+
 
     // Registra la posición anterior, para saber si el usuario lo movió.  Se compara con la variable tiempo, que refleja la posición del trackbar.
     int trackbarPosicionAnterior = 0;
@@ -142,120 +152,21 @@ void Viewer::Run(){
     buffer.Alloc(v.w, v.h, v.w * fmt.bpp/8 );
     cv::Mat imgBuffer = cv::Mat(v.h, v.w, CV_8UC4, buffer.ptr);
 
-
+    // Grabación de video
+    cv::VideoWriter grabador;
+    bool grabando = false;
+    cv::Size tamano;
+    float factorEscala;
 
 
     // Bucle principal del visor
     while(1){
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        mpMapDrawer->GetCurrentOpenGLCameraMatrix(Twc);
-
-        if(menuFollowCamera && bFollow)
-        {
-            s_cam.Follow(Twc);
-        }
-        else if(menuFollowCamera && !bFollow)
-        {
-            s_cam.SetModelViewMatrix(pangolin::ModelViewLookAt(mViewpointX,mViewpointY,mViewpointZ, 0,0,0,0.0,-1.0, 0.0));
-            s_cam.Follow(Twc);
-            bFollow = true;
-        }
-        else if(!menuFollowCamera && bFollow)
-        {
-            bFollow = false;
-        }
-
-        if(menuLocalizationMode && !bLocalizationMode)
-        {
-            mpSystem->ActivateLocalizationMode();
-            bLocalizationMode = true;
-        }
-        else if(!menuLocalizationMode && bLocalizationMode)
-        {
-            mpSystem->DeactivateLocalizationMode();
-            bLocalizationMode = false;
-        }
-
-        // Mostrar mapa con Pangolin =========================================================
-        d_cam.Activate(s_cam);
-        glClearColor(1.0f,1.0f,1.0f,1.0f);
-        mpMapDrawer->DrawCurrentCamera(Twc);
-        if(menuShowKeyFrames || menuShowGraph)
-            mpMapDrawer->DrawKeyFrames(menuShowKeyFrames,menuShowGraph);
-        if(menuShowPoints)
-            mpMapDrawer->DrawMapPoints();
-
-        // Captura imagen de pangolin en el Mat imagen
-        glReadBuffer(GL_BACK);	// Color de relleno
-        glPixelStorei(GL_PACK_ALIGNMENT, 1);
-        glReadPixels(v.l, v.b, v.w, v.h, GL_RGBA, GL_UNSIGNED_BYTE, buffer.ptr );	// v.w es el ancho de la ventana con el panel.  buffer toma la imagen sin el panel, más angosta, y se rellena con una barra negra al a derecha.
-        cv::Mat imagen;
-        cv::cvtColor(imgBuffer, imagen,  cv::COLOR_RGBA2BGR);
-        cv::flip(imagen, imagen, 0);
-        //cv::imshow("entrada", imagen);
-
-
-        pangolin::FinishFrame();
-
-        // imshow ============================================================================
-        cv::Mat im = mpFrameDrawer->DrawFrame();
-        cv::Mat imagenParaMostrar;
-
-        // Mostrar cuadro con imshow
-        cv::resize(im, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
-        cv::imshow("ORB-SLAM2: Current Frame",imagenParaMostrar);
-
-        // Mostrar imagen de entrada
-        if(mostrarEntradaAntidistorsionada){
-        	cv::Mat imagenEntrada = mpSystem->imagenEntrada;
-        	int ancho = imagenEntrada.cols;
-        	int alto = imagenEntrada.rows;
-        	cv::Mat K = mpFrameDrawer->K;	// Matriz de calibración tomada del cuadro actual.
-        	cv::Mat distCoef = mpFrameDrawer->distCoef;
-        	cv::Mat nuevaK = cv::getOptimalNewCameraMatrix(K, distCoef, cv::Size(ancho, alto), 1.0);
-
-        	cv::undistort(imagenEntrada, imagenParaMostrar, K, distCoef, nuevaK);
-        	cv::resize(imagenParaMostrar, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
-        }else{
-            cv::resize(mpSystem->imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
-        }
-        cv::imshow("entrada", imagenParaMostrar);
-
-
-        // duración cero para entradas que no son archivos de video, y que por ende no usa el trackbar.
-        // Tampoco se procesa si el usuario movió el trackbar de tiempo, y el cambio de tiempo está en proceso.
-        if(duracion){
-        	// Es archivo de video
-
-        	// Controlar la barra de tiempo
-        	if(!tiempoAlterado){
-				if(tiempo == trackbarPosicionAnterior){
-					// El usuario no cambió el trackbar de tiempo.  Hay que reflejar la posición actual en el trackbar.
-					trackbarPosicionAnterior = video->get(CV_CAP_PROP_POS_FRAMES);
-					cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
-				}else{
-					// El usuario cambió el trackbar de tiempo
-					trackbarPosicionAnterior = tiempo;
-					tiempoAlterado = true;
-				}
-            }
-
-        	// El modo automático controla el sentido de avance del video si se pierde
-        	if(modoAutomatico){
-            	if(mpTracker->mState==Tracking::OK)
-            		tiempoReversa = sentidoModoAutomatico;
-            	else if(mpTracker->mState==Tracking::LOST)
-            		tiempoReversa = !sentidoModoAutomatico;
-        	}
-        }
-
-        // Retardo de bucle en ms, 1e3/fps
-        char tecla = cv::waitKey(mT);
-
+    	// Análisis de teclas
+        char tecla = cv::waitKey(mT);	// Retardo de bucle en ms, 1000/fps
         switch(tecla){
         // Tamaño de las ventanas de imágenes.  T cicla por los divisores 1, 2 y 4.
-        case 't':
+        case 'w':
         	if(factorEscalaImagenParaMostrar == 1.0)
         		factorEscalaImagenParaMostrar = 0.5;
         	else if(factorEscalaImagenParaMostrar == 0.5)
@@ -285,10 +196,187 @@ void Viewer::Run(){
         // Modo automático, que invierte el video cuando se pierde, y lo vuelve a invertir cuando se relocaliza.
         case 'a':
         	modoAutomatico = !modoAutomatico;
-
         	break;
 
+        // Período T entre cuadros
+        case 't':
+        		 if(T==0) T = 0.033;	// 30 fps
+        	else if(T <1) T = 1;
+        	else 		  T=0;
+        	break;
         }
+
+
+
+        // Pangolin, visor del mapa
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        	// c es la cámara.  Asumo que es el cuadro actual, quizás sea la cámara de Pangolin
+        	// Twp = Twc * Tcp
+        	//cv::Mat Tcp = (cv::Mat(4,4)_<double> << 0,1,0,0, 1,0,0,0, 0,0,1,1, 0,0,0,1);
+        	//cv::Mat Twp =  Twc * Tcp;
+        	//Twc = Twp;
+
+        mpMapDrawer->GetCurrentOpenGLCameraMatrix(Twc);
+        // Corrige la pose de la cámara de Pangolin, sólo si se está siguiendo la cámara.  Si no, queda como estaba.
+        if(menuFollowCamera){
+        	if(!bFollow){
+                s_cam.SetModelViewMatrix(pangolin::ModelViewLookAt(mViewpointX,mViewpointY,mViewpointZ, 0,0,0,0.0,-1.0, 0.0));
+                bFollow = true;
+        	}
+        	if(menuPajaro){
+        		// Rototraslación del pájaro respecto de la cámara
+        		/*cv::Mat Tcp = cv::Mat(4,4, CV_32F, {
+    					1, 0, 0, 0,
+    					0, 0,-1, 0,
+    					0, 1, 0, 1,
+    					0, 0, 0, 1
+            		});*/
+        		float matriz[] = {	1, 0, 0, 0,
+									0, 0, 1, 0,
+									0,-1, 0,-0.25,	// Desplazamiento para compensar el desplazamiento establecido para el visor de Pangolin en la inicialización
+									0, 0, 0, 1
+        		};
+        		cv::Mat Tcp = cv::Mat(4,4, CV_32F, matriz);
+        		//cout << "Tcp creada" << Tcp << endl;
+        		pangolin::OpenGlMatrix Twp;
+                mpMapDrawer->GetCurrentOpenGLCameraMatrixModified(Tcp, Twp);
+                s_cam.Follow(Twp);
+        	} else
+        		s_cam.Follow(Twc);
+        } else if(bFollow)
+        	bFollow = false;
+
+        /*if(menuFollowCamera && bFollow)
+            s_cam.Follow(Twc);
+        else if(menuFollowCamera && !bFollow){
+            s_cam.SetModelViewMatrix(pangolin::ModelViewLookAt(mViewpointX,mViewpointY,mViewpointZ, 0,0,0,0.0,-1.0, 0.0));
+            s_cam.Follow(Twc);
+            bFollow = true;
+        }else if(!menuFollowCamera && bFollow)
+            bFollow = false;*/
+
+        if(menuLocalizationMode && !bLocalizationMode){
+            mpSystem->ActivateLocalizationMode();
+            bLocalizationMode = true;
+        }else if(!menuLocalizationMode && bLocalizationMode){
+            mpSystem->DeactivateLocalizationMode();
+            bLocalizationMode = false;
+        }
+
+
+
+        // Mostrar mapa con Pangolin =========================================================
+        d_cam.Activate(s_cam);
+        glClearColor(1.0f,1.0f,1.0f,1.0f);
+        mpMapDrawer->DrawCurrentCamera(Twc);
+        if(menuShowKeyFrames || menuShowGraph)
+            mpMapDrawer->DrawKeyFrames(menuShowKeyFrames,menuShowGraph);
+        if(menuShowPoints)
+            mpMapDrawer->DrawMapPoints();
+
+        // Captura imagen de pangolin en el Mat imagen
+        glReadBuffer(GL_BACK);	// Color de relleno
+        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+        glReadPixels(v.l, v.b, v.w, v.h, GL_RGBA, GL_UNSIGNED_BYTE, buffer.ptr );	// v.w es el ancho de la ventana con el panel.  buffer toma la imagen sin el panel, más angosta, y se rellena con una barra negra al a derecha.
+        cv::Mat imagenMapa;
+        cv::cvtColor(imgBuffer, imagenMapa,  cv::COLOR_RGBA2BGR);
+        cv::flip(imagenMapa, imagenMapa, 0);
+
+
+        pangolin::FinishFrame();
+
+
+
+        // imshow ============================================================================
+
+        // Mostrar cuadro con imshow
+        {
+            cv::Mat imagenFrame = mpFrameDrawer->DrawFrame();
+            cv::Mat imagenEntrada;	// Imagen de la cámara, puede ser antidistorsionada
+            cv::Mat imagenParaMostrar;	// Imagen efímera para mostrar con imshow, con el tamaño elegido por el usuario
+
+            // Mostrar Frame
+            cv::resize(imagenFrame, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+			cv::imshow("ORB-SLAM2: Current Frame",imagenParaMostrar);
+
+			// Mostrar imagen de entrada
+			imagenEntrada = mpSystem->imagenEntrada;
+			if(mostrarEntradaAntidistorsionada){
+				int ancho = imagenEntrada.cols;
+				int alto = imagenEntrada.rows;
+				cv::Mat K = mpFrameDrawer->K;	// Matriz de calibración tomada del cuadro actual.
+				cv::Mat distCoef = mpFrameDrawer->distCoef;
+				cv::Mat nuevaK = cv::getOptimalNewCameraMatrix(K, distCoef, cv::Size(ancho, alto), 1.0);
+
+				cv::undistort(imagenEntrada, imagenParaMostrar, K, distCoef, nuevaK);
+				imagenEntrada = imagenParaMostrar;
+				cv::resize(imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+			}else{
+				cv::resize(imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+			}
+			cv::imshow("entrada", imagenParaMostrar);
+
+			// Grabar video con estas imágenes
+	        if(menuGrabar && !grabando){
+	        	// Inicia la grabación
+	        	grabando = true;
+	        	factorEscala = imagenMapa.rows/(imagenFrame.rows + imagenEntrada.rows);
+				if(factorEscala>1)
+					tamano = cv::Size(imagenFrame.cols + imagenMapa.cols / factorEscala, imagenFrame.rows + imagenEntrada.rows);
+				else
+					tamano = cv::Size(imagenFrame.cols * factorEscala + imagenMapa.cols, imagenMapa.rows);
+
+	        	//grabador.open("video.mpg", cv::VideoWriter::fourcc('M','J','P','G')	, 30.0, tamano, true);
+	        	//grabador.open("video.mpg", cv::VideoWriter::fourcc('M','P','G','4') , 30.0, tamano, true);
+				grabador.open("video.wmv", cv::VideoWriter::fourcc('W','M','V','2') , 30.0, tamano, true);
+	        } else if(!menuGrabar && grabando){
+	        	// Termina la grabación
+	        	grabando = false;
+	        	grabador.release();
+	        }
+			if(grabando){
+				cv::Mat compaginacion;
+				cv::vconcat(imagenEntrada, imagenFrame, compaginacion);
+				if(factorEscala>1)
+					cv::resize(imagenMapa, imagenMapa, cv::Size(), 1/factorEscala, 1/factorEscala);
+				else
+					cv::resize(compaginacion, compaginacion, cv::Size(), factorEscala, factorEscala);
+				cv::hconcat(compaginacion, imagenMapa, compaginacion);
+				grabador << compaginacion;
+			}
+        }
+
+
+        // Control de tiempo sobre archivos de video
+        // duración cero para entradas que no son archivos de video, y que por ende no usa el trackbar.
+        // Tampoco se procesa si el usuario movió el trackbar de tiempo, y el cambio de tiempo está en proceso.
+        if(duracion){
+        	// Es archivo de video
+
+        	// Controlar la barra de tiempo
+        	if(!tiempoAlterado){
+				if(tiempo == trackbarPosicionAnterior){
+					// El usuario no cambió el trackbar de tiempo.  Hay que reflejar la posición actual en el trackbar.
+					trackbarPosicionAnterior = video->get(CV_CAP_PROP_POS_FRAMES);
+					cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
+				}else{
+					// El usuario cambió el trackbar de tiempo
+					trackbarPosicionAnterior = tiempo;
+					tiempoAlterado = true;
+				}
+            }
+
+        	// El modo automático controla el sentido de avance del video si se pierde
+        	if(modoAutomatico){
+            	if(mpTracker->mState==Tracking::OK)
+            		tiempoReversa = sentidoModoAutomatico;
+            	else if(mpTracker->mState==Tracking::LOST)
+            		tiempoReversa = !sentidoModoAutomatico;
+        	}
+        }
+
+
+        // Acción de botones de Pangolin
 
         if(menuGuardarMapa){
         	menuGuardarMapa = false;
@@ -299,9 +387,10 @@ void Viewer::Run(){
         	menuLocalizationMode = true;
         	videoPausado = true;
 
+        	// Espera a que el mapeador pause
         	LocalMapping* mapeador = mpTracker->mpLocalMapper;
         	while(!mapeador->isStopped()){
-        		mapeador->RequestStop();	// Por las dudas
+        		//mapeador->RequestStop();	// Por las dudas
         		usleep(1000);
         	}
 
@@ -309,6 +398,7 @@ void Viewer::Run(){
         	mapa->save(archivo);
         	cout << "Mapa guardado." << endl;
         }
+
 
         if(menuCargarMapa){
         	menuCargarMapa = false;
@@ -323,8 +413,7 @@ void Viewer::Run(){
         }
 
 
-        if(menuReset)
-        {
+        if(menuReset){
         	// Reestablece los botones
             menuShowGraph = true;
             menuShowKeyFrames = true;
@@ -341,80 +430,66 @@ void Viewer::Run(){
             menuReset = false;
         }
 
-        if(Stop())
-        {
-            while(isStopped())
-            {
-                usleep(3000);
-            }
-        }
 
-        if(CheckFinish())
-            break;
+        // Realiza una pausa cuando otro hilo puso a Viewer en Stop
+        if(Stop()){
+            while(isStopped()) usleep(3000);	// Espera hasta que otro hilo retira el Stop
+            if(CheckFinish()) break;	// Si el Stop fue el paso previo al Finish, termina saliendo del bucle.
+        }
     }
 
+    // Salió del bucle sólo para terminar.
     SetFinish();
 }
 
-void Viewer::RequestFinish()
-{
+void Viewer::RequestFinish(){
     unique_lock<mutex> lock(mMutexFinish);
     mbFinishRequested = true;
 }
 
-bool Viewer::CheckFinish()
-{
+bool Viewer::CheckFinish(){
     unique_lock<mutex> lock(mMutexFinish);
     return mbFinishRequested;
 }
 
-void Viewer::SetFinish()
-{
+void Viewer::SetFinish(){
     unique_lock<mutex> lock(mMutexFinish);
     mbFinished = true;
 }
 
-bool Viewer::isFinished()
-{
+bool Viewer::isFinished(){
     unique_lock<mutex> lock(mMutexFinish);
     return mbFinished;
 }
 
-void Viewer::RequestStop()
-{
+void Viewer::RequestStop(){
     unique_lock<mutex> lock(mMutexStop);
     if(!mbStopped)
         mbStopRequested = true;
 }
 
-bool Viewer::isStopped()
-{
+bool Viewer::isStopped(){
     unique_lock<mutex> lock(mMutexStop);
     return mbStopped;
 }
 
-bool Viewer::Stop()
-{
+bool Viewer::Stop(){
     unique_lock<mutex> lock(mMutexStop);
     unique_lock<mutex> lock2(mMutexFinish);
 
     if(mbFinishRequested)
         return false;
-    else if(mbStopRequested)
-    {
+    else if(mbStopRequested){
         mbStopped = true;
         mbStopRequested = false;
         return true;
     }
 
     return false;
-
 }
 
-void Viewer::Release()
-{
+void Viewer::Release(){
     unique_lock<mutex> lock(mMutexStop);
     mbStopped = false;
 }
-
 }

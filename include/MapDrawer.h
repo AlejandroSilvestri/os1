@@ -100,11 +100,15 @@ public:
     void SetReferenceKeyFrame(KeyFrame *pKF);
 
     /**
+     * Informa Twc, la pose actual del mundo respecto de la cámara.
      *
+     * Calcula la pose actual invertida en el formato paonglin::OpenGlMatrix
      *
      * Invocado sólo desde Viewer::Run.
      */
     void GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M);
+
+    void GetCurrentOpenGLCameraMatrixModified(cv::Mat &T, pangolin::OpenGlMatrix &M);
 
     /** Método declarado y no definido.*/
     void Register(Map* pMap);

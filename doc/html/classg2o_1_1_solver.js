@@ -2,6 +2,7 @@ var classg2o_1_1_solver =
 [
     [ "Solver", "classg2o_1_1_solver.html#af097bdf5c8dc4bb017a2cec4038d5a56", null ],
     [ "~Solver", "classg2o_1_1_solver.html#a3b4a7c818ea0904772bc8bea6f1bbe86", null ],
+    [ "Solver", "classg2o_1_1_solver.html#a040c384f90e39504853a29648a71bc25", null ],
     [ "additionalVectorSpace", "classg2o_1_1_solver.html#ac32a7e75275f6595a66d948a0fc2984a", null ],
     [ "b", "classg2o_1_1_solver.html#a3212ad9d80f8f5ad15b72c2b55000095", null ],
     [ "b", "classg2o_1_1_solver.html#a812d5cad59fed145c3f47bcf99419a97", null ],
@@ -10,6 +11,7 @@ var classg2o_1_1_solver =
     [ "computeMarginals", "classg2o_1_1_solver.html#afc33768e6c024e11d9e3c9d938b59b7f", null ],
     [ "init", "classg2o_1_1_solver.html#a532174e1ee53642880d2d59c128b037b", null ],
     [ "levenberg", "classg2o_1_1_solver.html#ab472c69fa089382242a75be76e8f883e", null ],
+    [ "operator=", "classg2o_1_1_solver.html#a19a6b5b126e7bef1c99dff89567f2eff", null ],
     [ "optimizer", "classg2o_1_1_solver.html#a266bc31d289e824de6166522579ed385", null ],
     [ "resizeVector", "classg2o_1_1_solver.html#ad1f85839e85f3e2c49112fb7e2b843ad", null ],
     [ "restoreDiagonal", "classg2o_1_1_solver.html#a3c40dae9b999c4d18e57b02fd0e0ade2", null ],

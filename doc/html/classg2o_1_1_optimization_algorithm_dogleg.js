@@ -9,6 +9,7 @@ var classg2o_1_1_optimization_algorithm_dogleg =
     [ "lastStep", "classg2o_1_1_optimization_algorithm_dogleg.html#a0ca98964e7bcde0c893eb9d720a26fd1", null ],
     [ "printVerbose", "classg2o_1_1_optimization_algorithm_dogleg.html#a48f424443a7b2b6e8c532204cd7334cd", null ],
     [ "solve", "classg2o_1_1_optimization_algorithm_dogleg.html#ace62fd809c18655bd7ff104285748610", null ],
+    [ "stepType2Str", "classg2o_1_1_optimization_algorithm_dogleg.html#a65f193c6451ffcd2bd6fd8f8d19e2a12", null ],
     [ "trustRegion", "classg2o_1_1_optimization_algorithm_dogleg.html#a3c6fdb2f8296330fd754d635a67b3696", null ],
     [ "_auxVector", "classg2o_1_1_optimization_algorithm_dogleg.html#a225092fe67ce75eb64011c1f45d8d936", null ],
     [ "_currentLambda", "classg2o_1_1_optimization_algorithm_dogleg.html#aacc051a6740fc6017dac7c424dc7df3d", null ],

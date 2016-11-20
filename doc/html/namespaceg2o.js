@@ -1,5 +1,6 @@
 var namespaceg2o =
 [
+    [ "anonymous_namespace{sparse_block_matrix.hpp}", "namespaceg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03.html", "namespaceg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03" ],
     [ "AbstractHyperGraphElementCreator", "classg2o_1_1_abstract_hyper_graph_element_creator.html", "classg2o_1_1_abstract_hyper_graph_element_creator" ],
     [ "AbstractOptimizationAlgorithmCreator", "classg2o_1_1_abstract_optimization_algorithm_creator.html", "classg2o_1_1_abstract_optimization_algorithm_creator" ],
     [ "AbstractRobustKernelCreator", "classg2o_1_1_abstract_robust_kernel_creator.html", "classg2o_1_1_abstract_robust_kernel_creator" ],
