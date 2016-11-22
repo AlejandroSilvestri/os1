@@ -64,9 +64,11 @@ public:
      * Dibua todos en color negro, y luego en rojo los de referencia (los visualizados por la cámara).
      * Invocado en cada iteración de Viewer::Run.
      *
+     * @param color true para ver los puntos del mapa a color.
+     *
      * Invocado sólo desde Viewer::Run, en cada iteración.
      */
-    void DrawMapPoints();
+    void DrawMapPoints(bool color = false);
 
     /**
      * Dibuja los keyframes y el grafo en pantalla.

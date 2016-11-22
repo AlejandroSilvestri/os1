@@ -94,6 +94,7 @@ void Viewer::Run(){
     pangolin::Var<bool> menuShowPoints("menu.Puntos del mapa",true,true);
     pangolin::Var<bool> menuShowKeyFrames("menu.KeyFrames",true,true);
     pangolin::Var<bool> menuShowGraph("menu.Grafo",true,true);
+    pangolin::Var<bool> menuShowRgb("menu.Puntos a color",false,true);
     pangolin::Var<bool> menuLocalizationMode("menu.Tracking, sin mapeo",false,true);
     pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa", false, false);
     pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa", false, false);
@@ -272,7 +273,7 @@ void Viewer::Run(){
         if(menuShowKeyFrames || menuShowGraph)
             mpMapDrawer->DrawKeyFrames(menuShowKeyFrames,menuShowGraph);
         if(menuShowPoints)
-            mpMapDrawer->DrawMapPoints();
+            mpMapDrawer->DrawMapPoints(menuShowRgb);
 
         // Captura imagen de pangolin en el Mat imagen
         glReadBuffer(GL_BACK);	// Color de relleno
@@ -281,7 +282,6 @@ void Viewer::Run(){
         cv::Mat imagenMapa;
         cv::cvtColor(imgBuffer, imagenMapa,  cv::COLOR_RGBA2BGR);
         cv::flip(imagenMapa, imagenMapa, 0);
-
 
         pangolin::FinishFrame();
 

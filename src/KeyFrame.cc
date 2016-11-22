@@ -21,7 +21,11 @@
 #include "KeyFrame.h"
 #include "Converter.h"
 #include "ORBmatcher.h"
+#include "System.h"
 #include<mutex>
+
+extern ORB_SLAM2::System* Sistema;
+
 
 namespace ORB_SLAM2
 {
@@ -53,7 +57,15 @@ KeyFrame::KeyFrame(Frame &F, Map *pMap, KeyFrameDatabase *pKFDB):
             mGrid[i][j] = F.mGrid[i][j];
     }
 
-    SetPose(F.mTcw);    
+    SetPose(F.mTcw);
+
+    // Relevar los colores de los keypoints,  En este caso toma el color del píxel.  Se podría promediar el contexto.
+    if(!(Sistema->imagenEntrada.empty())){
+    	vRgb.resize(N);
+    	for(int i=0; i<N; i++)
+    		vRgb[i] = Sistema->imagenEntrada.at<cv::Vec3b>(mvKeys[i].pt);
+    	//cout << "Relevando colores para un nuevo keyframe.  Cantidad: " << vRgb.size() << "/" << N << endl;
+    }
 }
 
 void KeyFrame::ComputeBoW()

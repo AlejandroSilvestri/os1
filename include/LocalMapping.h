@@ -55,13 +55,13 @@ class Map;
  *
  * Métodos públicos para interacción con el thread
  *
- * El método Run tiene un bucle infinito, que se ejecuta en su propio thread.  Las comunicaciones con él son asincrónicas.
+ * El método Run tiene un bucle infinito, que se ejecuta en su propio thread.  Las comunicaciones con él son asincrónicas:
  *
- * LocalMapping::RequestStop solicita que pare, que haga una pausa.  LocalMapping::isStopped se puede consultar para confirmar que paró.
- * Run entra en un bucle esperando que la señal de reanudamiento.
- * LocalMapping::Release solicita que reanude luego de una pausa.
- * LocalMapping::RequestReset reinicializa el objeto limpiando variables.  Se invoca desde Tracking::Reset.  El reseteo es asincrónico, no hay señal que indique que ya ocurrió.
- * LocalMapping::RequestFinish solicita terminar.  Se puede consultar con LocalMapping::isFinished.  En la práctica no hace nada.
+ * - LocalMapping::RequestStop solicita que pare, que haga una pausa.  LocalMapping::isStopped se puede consultar para confirmar que paró.
+ * - Run entra en un bucle esperando que la señal de reanudamiento.
+ * - LocalMapping::Release solicita que reanude luego de una pausa.
+ * - LocalMapping::RequestReset reinicializa el objeto limpiando variables.  Se invoca desde Tracking::Reset.  El reseteo es asincrónico, no hay señal que indique que ya ocurrió.
+ * - LocalMapping::RequestFinish solicita terminar.  Se puede consultar con LocalMapping::isFinished.  En la práctica no hace nada.
  *
  *
  */

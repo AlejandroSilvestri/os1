@@ -83,13 +83,12 @@ public:
 	 *
 	 * @param F Frame de referencia, que se erige en KeyFrame
 	 * @param pMap Mapa local donde se encuentra este KeyFrame, necesario solamente para quitar el KeyFrame del mapa.
-	 * @param pKFDB Base de datos de keyframes donde se registran todos los keyframes, necesario solamente para quitar este KeyFrame de la base de datos.
+	 * @param pKFDB Base de datos de keyframes donde se registran todos los keyframes, necesario solamente para quitar este KeyFrame de la base de datos.  Se registra en mpKeyFrameDB.
 	 *
 	 * Este constructor copia todos los valores del Frame F.
-	 *
-	 * pMap es un puntero al mapa donde está este keyFrame, y se utiliza sólo para cuando se requiera eliminar del mapa.  Se registra en mpMap.
-	 *
-	 * pKFDB es la base de datos de keyframes.  Se registra en mpKeyFrameDB.
+	 * Se invoca sólo desde:
+	 * - Tracking::CreateInitialMapMonocular para crear los dos primeros keyframes, a partir de los dos cuadros usados en la triangulación de los primeros puntos del mapa.
+	 * - Tracking::CreateNewKeyFrame para crear todos los demás keyframes, siempre a partir del cuadro actual mCurrentFrame.
 	 *
 	 */
     KeyFrame(Frame &F, Map* pMap, KeyFrameDatabase* pKFDB);
@@ -442,6 +441,9 @@ public:
 
     /** Descriptores.  Se corresponden con los de mvKeys.*/
     const cv::Mat mDescriptors;
+
+    /** Color de los keypoints.  Para visualización solamente.  Vector cargado en el constructor de keyframe, alineado con mvKeys*/
+    vector<cv::Vec3b> vRgb;
 
     //BoW
     /** Vector de BoW obtenidos de los descriptores del keyframe.  ComputeBoW llena este vector.*/

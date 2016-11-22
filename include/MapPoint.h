@@ -57,6 +57,7 @@ class Frame;
 class MapPoint
 {
 public:
+	/** Constructor declarado pero no implementado.*/
 	MapPoint(const cv::Mat &Pos, int FirstKFid, int FirstFrame, Map* pMap);
 
 	/**
@@ -65,9 +66,12 @@ public:
 	 * @param Pos Posición en el mapa.
 	 * @param pRefKF Keyframe de referencia.
 	 * @param pMap Mapa al que pertenece el punto.  Hay un único mapa en ORB-SLAM.
+	 * @param rgb_ Color del punto.  Opcional, negro si no se proporciona.
+	 *
+	 * Este constructor se invoca sólo desde LocalMapping::CreateNewMapPoints para el agregado de puntos del SLAM.
 	 *
 	 */
-    MapPoint(const cv::Mat &Pos, KeyFrame* pRefKF, Map* pMap);
+    MapPoint(const cv::Mat &Pos, KeyFrame* pRefKF, Map* pMap, cv::Vec3b rgb = 0);
     MapPoint(const cv::Mat &Pos,  Map* pMap, Frame* pFrame, const int &idxF);
 
     /**
@@ -260,6 +264,8 @@ public:
     long unsigned int mnBAGlobalForKF;
     ///@}
     //@}
+
+    cv::Vec3b rgb = 0;
 
     static std::mutex mGlobalMutex;
 

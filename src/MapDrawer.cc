@@ -24,8 +24,7 @@
 #include <pangolin/pangolin.h>
 #include <mutex>
 
-namespace ORB_SLAM2
-{
+namespace ORB_SLAM2 {
 
 
 MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath):mpMap(pMap)
@@ -40,8 +39,7 @@ MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath):mpMap(pMap)
     mCameraLineWidth = fSettings["Viewer.CameraLineWidth"];
 }
 
-void MapDrawer::DrawMapPoints()
-{
+void MapDrawer::DrawMapPoints(bool color){
     const vector<MapPoint*> &vpMPs = mpMap->GetAllMapPoints();
     const vector<MapPoint*> &vpRefMPs = mpMap->GetReferenceMapPoints();
 
@@ -51,9 +49,29 @@ void MapDrawer::DrawMapPoints()
         return;
 
     glPointSize(mPointSize);
+    //glShadeModel(GL_SMOOTH);
     glBegin(GL_POINTS);
-    glColor3f(0.0,0.0,0.0);	// Negro
+    glColor3ub(0,0,0);
+    //glColor3f(0.0,0.0,0.0);	// Negro
 
+    for(auto vpMP : vpMPs){
+    	// Motivos para descartar el punto
+        if(vpMP->isBad() || spRefMPs.count(vpMP))
+            continue;
+
+        // Aplica color si cabe
+        //if(color){
+			auto rgb = vpMP->rgb;
+			//glColor3f((float)rgb[2]/255, (float)rgb[1]/255, (float)rgb[0]/255);
+			glColor3ub(rgb[2], rgb[1], rgb[0]);
+			cout << (int)rgb[0] << ", " << (int)rgb[1] << ", " << (int)rgb[2] << endl;
+        //}
+
+        // Agrega el punto al visor
+        cv::Mat pos = vpMP->GetWorldPos();
+        glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+    }
+    /*
     for(size_t i=0, iend=vpMPs.size(); i<iend;i++)
     {
         if(vpMPs[i]->isBad() || spRefMPs.count(vpMPs[i]))
@@ -61,12 +79,32 @@ void MapDrawer::DrawMapPoints()
         cv::Mat pos = vpMPs[i]->GetWorldPos();
         glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
     }
+     */
+
     glEnd();
 
+    //glShadeModel(GL_SMOOTH);
     glPointSize(mPointSize);
     glBegin(GL_POINTS);
-    glColor3f(0.0,1.0,0.0);	// RGB
+    glColor3ub(0,255,0);
+    //glColor3f(0.0,1.0,0.0);	// RGB
 
+    for(auto sit : spRefMPs){
+        if(sit->isBad())
+            continue;
+        // Aplica color si cabe
+        //if(color){
+			auto rgb = sit->rgb;
+			glColor3ub(rgb[2], rgb[1], rgb[0]);
+			//glColor3f((float)rgb[2]/255, (float)rgb[1]/255, (float)rgb[0]/255);
+			cout << (int)rgb[0] << ", " << (int)rgb[1] << ", " << (int)rgb[2] << endl;
+        //}
+
+        // Agrega el punto al visor
+        cv::Mat pos = sit->GetWorldPos();
+        glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+    }
+    /*
     for(set<MapPoint*>::iterator sit=spRefMPs.begin(), send=spRefMPs.end(); sit!=send; sit++)
     {
         if((*sit)->isBad())
@@ -75,7 +113,7 @@ void MapDrawer::DrawMapPoints()
         glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
 
     }
-
+     */
     glEnd();
 }
 
