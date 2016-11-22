@@ -40,81 +40,94 @@ MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath):mpMap(pMap)
 }
 
 void MapDrawer::DrawMapPoints(bool color){
+    // Puntos del mapa
     const vector<MapPoint*> &vpMPs = mpMap->GetAllMapPoints();
-    const vector<MapPoint*> &vpRefMPs = mpMap->GetReferenceMapPoints();
+    if(vpMPs.empty())
+        return;	// Salir si no hay mapa
 
+    // Puntos del mapa local
+    const vector<MapPoint*> &vpRefMPs = mpMap->GetReferenceMapPoints();
     set<MapPoint*> spRefMPs(vpRefMPs.begin(), vpRefMPs.end());
 
-    if(vpMPs.empty())
-        return;
+    size_t N = vpMPs.size() + spRefMPs.size();
 
-    glPointSize(mPointSize);
-    //glShadeModel(GL_SMOOTH);
-    glBegin(GL_POINTS);
-    glColor3ub(0,0,0);
-    //glColor3f(0.0,0.0,0.0);	// Negro
+    struct glPunto{
+    	float x;
+    	float y;
+    	float z;
+    	uchar r;
+    	uchar g;
+    	uchar b;
+    	char padding[17];	// Así la estructura es múltiplo de 32 bytes
+    };
+    glPunto glPuntos[N];
 
-    for(auto vpMP : vpMPs){
+
+    int i = 0;
+    for(auto punto : vpMPs){
     	// Motivos para descartar el punto
-        if(vpMP->isBad() || spRefMPs.count(vpMP))
+        if(punto->isBad() || spRefMPs.count(punto))
             continue;
 
-        // Aplica color si cabe
-        //if(color){
-			auto rgb = vpMP->rgb;
-			//glColor3f((float)rgb[2]/255, (float)rgb[1]/255, (float)rgb[0]/255);
-			glColor3ub(rgb[2], rgb[1], rgb[0]);
-			cout << (int)rgb[0] << ", " << (int)rgb[1] << ", " << (int)rgb[2] << endl;
-        //}
+        // Agrega el punto
+        cv::Mat pos = punto->GetWorldPos();
+        auto rgb = punto->rgb;
 
-        // Agrega el punto al visor
-        cv::Mat pos = vpMP->GetWorldPos();
-        glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+        glPunto &glp = glPuntos[i++];
+        glp.x = pos.at<float>(0);
+        glp.y = pos.at<float>(1);
+        glp.z = pos.at<float>(2);
+
+        if(color){
+			glp.r = rgb[2];
+			glp.g = rgb[1];
+			glp.b = rgb[0];
+        } else {
+			glp.r = 0;
+			glp.g = 0;
+			glp.b = 0;
+        }
     }
-    /*
-    for(size_t i=0, iend=vpMPs.size(); i<iend;i++)
-    {
-        if(vpMPs[i]->isBad() || spRefMPs.count(vpMPs[i]))
+
+
+    for(auto punto : spRefMPs){
+    	// Motivos para descartar el punto
+        if(punto->isBad())
             continue;
-        cv::Mat pos = vpMPs[i]->GetWorldPos();
-        glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+
+        // Agrega el punto
+        cv::Mat pos = punto->GetWorldPos();
+        auto rgb = punto->rgb;
+
+        glPunto &glp = glPuntos[i++];
+        glp.x = pos.at<float>(0);
+        glp.y = pos.at<float>(1);
+        glp.z = pos.at<float>(2);
+
+        if(color){
+			glp.r = rgb[2];
+			glp.g = rgb[1];
+			glp.b = rgb[0];
+        } else {
+			glp.r = 0;
+			glp.g = 192;
+			glp.b = 0;
+        }
     }
-     */
 
-    glEnd();
 
-    //glShadeModel(GL_SMOOTH);
-    glPointSize(mPointSize);
-    glBegin(GL_POINTS);
-    glColor3ub(0,255,0);
-    //glColor3f(0.0,1.0,0.0);	// RGB
 
-    for(auto sit : spRefMPs){
-        if(sit->isBad())
-            continue;
-        // Aplica color si cabe
-        //if(color){
-			auto rgb = sit->rgb;
-			glColor3ub(rgb[2], rgb[1], rgb[0]);
-			//glColor3f((float)rgb[2]/255, (float)rgb[1]/255, (float)rgb[0]/255);
-			cout << (int)rgb[0] << ", " << (int)rgb[1] << ", " << (int)rgb[2] << endl;
-        //}
+    // OpenGL
+    glPointSize(color?4:2);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(3, GL_FLOAT, sizeof(glPunto), &glPuntos[0].x);
+    glEnableClientState (GL_COLOR_ARRAY);
+    glColorPointer(3, GL_UNSIGNED_BYTE, sizeof(glPunto), &glPuntos[0].r);
 
-        // Agrega el punto al visor
-        cv::Mat pos = sit->GetWorldPos();
-        glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-    }
-    /*
-    for(set<MapPoint*>::iterator sit=spRefMPs.begin(), send=spRefMPs.end(); sit!=send; sit++)
-    {
-        if((*sit)->isBad())
-            continue;
-        cv::Mat pos = (*sit)->GetWorldPos();
-        glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+    glDrawArrays(GL_POINTS, 0, i);
 
-    }
-     */
-    glEnd();
+    glDisableClientState (GL_COLOR_ARRAY);
+    glDisableClientState (GL_VERTEX_ARRAY);
 }
 
 void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
