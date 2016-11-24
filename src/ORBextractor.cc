@@ -65,6 +65,7 @@
 
 using namespace cv;
 using namespace std;
+using namespace ORB_SLAM2;	// Bug corregido https://github.com/raulmur/ORB_SLAM2/pull/188/files
 
 namespace ORB_SLAM2
 {

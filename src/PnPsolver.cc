@@ -196,7 +196,8 @@ cv::Mat PnPsolver::iterate(int nIterations, bool &bNoMore, vector<bool> &vbInlie
 
             add_correspondence(mvP3Dw[idx].x,mvP3Dw[idx].y,mvP3Dw[idx].z,mvP2D[idx].x,mvP2D[idx].y);
 
-            vAvailableIndices[idx] = vAvailableIndices.back();
+            //vAvailableIndices[idx] = vAvailableIndices.back();	// Bug corregido
+            vAvailableIndices[randi] = vAvailableIndices.back();  // Bug corregido https://github.com/raulmur/ORB_SLAM2/pull/137/files
             vAvailableIndices.pop_back();
         }
 

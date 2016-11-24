@@ -247,15 +247,6 @@ void Viewer::Run(){
         } else if(bFollow)
         	bFollow = false;
 
-        /*if(menuFollowCamera && bFollow)
-            s_cam.Follow(Twc);
-        else if(menuFollowCamera && !bFollow){
-            s_cam.SetModelViewMatrix(pangolin::ModelViewLookAt(mViewpointX,mViewpointY,mViewpointZ, 0,0,0,0.0,-1.0, 0.0));
-            s_cam.Follow(Twc);
-            bFollow = true;
-        }else if(!menuFollowCamera && bFollow)
-            bFollow = false;*/
-
         if(menuLocalizationMode && !bLocalizationMode){
             mpSystem->ActivateLocalizationMode();
             bLocalizationMode = true;
@@ -326,9 +317,10 @@ void Viewer::Run(){
 				else
 					tamano = cv::Size(imagenFrame.cols * factorEscala + imagenMapa.cols, imagenMapa.rows);
 
-	        	//grabador.open("video.mpg", cv::VideoWriter::fourcc('M','J','P','G')	, 30.0, tamano, true);
+				cout << tamano << " y " << factorEscala << endl;
+	        	grabador.open("video.avi", cv::VideoWriter::fourcc('M','J','P','G')	, 30.0, tamano, true);
 	        	//grabador.open("video.mpg", cv::VideoWriter::fourcc('M','P','G','4') , 30.0, tamano, true);
-				grabador.open("video.wmv", cv::VideoWriter::fourcc('W','M','V','2') , 30.0, tamano, true);
+				//grabador.open("video.wmv", cv::VideoWriter::fourcc('W','M','V','2') , 30.0, tamano, true);
 	        } else if(!menuGrabar && grabando){
 	        	// Termina la grabación
 	        	grabando = false;
