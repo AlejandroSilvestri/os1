@@ -58,7 +58,7 @@ public:
 
     /** Invocado sólo por Viewer::Run para que envíe la imagen del cuadro actual a la pantalla.*/
     // Draw last processed frame.
-    cv::Mat DrawFrame();
+    cv::Mat DrawFrame(float radio = 1);
 
     /** Matriz de calibración del último frame, para undistort.*/
     cv::Mat K;

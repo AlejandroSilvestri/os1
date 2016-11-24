@@ -157,7 +157,7 @@ void Viewer::Run(){
     cv::VideoWriter grabador;
     bool grabando = false;
     cv::Size tamano;
-    float factorEscala;
+    float factorEscalaCuadro, factorEscalaMapa;
 
 
     // Bucle principal del visor
@@ -272,7 +272,9 @@ void Viewer::Run(){
         glReadPixels(v.l, v.b, v.w, v.h, GL_RGBA, GL_UNSIGNED_BYTE, buffer.ptr );	// v.w es el ancho de la ventana con el panel.  buffer toma la imagen sin el panel, más angosta, y se rellena con una barra negra al a derecha.
         cv::Mat imagenMapa;
         cv::cvtColor(imgBuffer, imagenMapa,  cv::COLOR_RGBA2BGR);
+        imagenMapa = imagenMapa.colRange(0, imagenMapa.cols - 175);	// Quita el espacio de la barra de botones, que aparece negro a la derecha
         cv::flip(imagenMapa, imagenMapa, 0);
+        //cv::imshow("entrada", imagenMapa);
 
         pangolin::FinishFrame();
 
@@ -282,7 +284,7 @@ void Viewer::Run(){
 
         // Mostrar cuadro con imshow
         {
-            cv::Mat imagenFrame = mpFrameDrawer->DrawFrame();
+            cv::Mat imagenFrame = mpFrameDrawer->DrawFrame(1/factorEscalaImagenParaMostrar);
             cv::Mat imagenEntrada;	// Imagen de la cámara, puede ser antidistorsionada
             cv::Mat imagenParaMostrar;	// Imagen efímera para mostrar con imshow, con el tamaño elegido por el usuario
 
@@ -311,14 +313,13 @@ void Viewer::Run(){
 	        if(menuGrabar && !grabando){
 	        	// Inicia la grabación
 	        	grabando = true;
-	        	factorEscala = imagenMapa.rows/(imagenFrame.rows + imagenEntrada.rows);
-				if(factorEscala>1)
-					tamano = cv::Size(imagenFrame.cols + imagenMapa.cols / factorEscala, imagenFrame.rows + imagenEntrada.rows);
-				else
-					tamano = cv::Size(imagenFrame.cols * factorEscala + imagenMapa.cols, imagenMapa.rows);
+	        	factorEscalaMapa = 720.0/imagenMapa.rows;
+	        	factorEscalaCuadro = 720.0/(imagenFrame.rows + imagenEntrada.rows);
+				tamano = cv::Size(imagenFrame.cols*factorEscalaCuadro + imagenMapa.cols*factorEscalaMapa , 720);
 
-				cout << tamano << " y " << factorEscala << endl;
-	        	grabador.open("video.avi", cv::VideoWriter::fourcc('M','J','P','G')	, 30.0, tamano, true);
+				cout << tamano << ", factorEscalaCuadro: " << factorEscalaCuadro << ", factorEscalaMapa: " << factorEscalaMapa << endl;
+	        	grabador.open("video.avi", cv::VideoWriter::fourcc('a','v','c','1')	, 30.0, tamano, true);
+	        	//grabador.open("video.avi", cv::VideoWriter::fourcc('M','J','P','G')	, 30.0, tamano, true);
 	        	//grabador.open("video.mpg", cv::VideoWriter::fourcc('M','P','G','4') , 30.0, tamano, true);
 				//grabador.open("video.wmv", cv::VideoWriter::fourcc('W','M','V','2') , 30.0, tamano, true);
 	        } else if(!menuGrabar && grabando){
@@ -329,10 +330,8 @@ void Viewer::Run(){
 			if(grabando){
 				cv::Mat compaginacion;
 				cv::vconcat(imagenEntrada, imagenFrame, compaginacion);
-				if(factorEscala>1)
-					cv::resize(imagenMapa, imagenMapa, cv::Size(), 1/factorEscala, 1/factorEscala);
-				else
-					cv::resize(compaginacion, compaginacion, cv::Size(), factorEscala, factorEscala);
+				cv::resize(compaginacion, compaginacion, cv::Size(), factorEscalaCuadro, factorEscalaCuadro);
+				cv::resize(imagenMapa, imagenMapa, cv::Size(), factorEscalaMapa, factorEscalaMapa);
 				cv::hconcat(compaginacion, imagenMapa, compaginacion);
 				grabador << compaginacion;
 			}

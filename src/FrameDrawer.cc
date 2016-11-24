@@ -50,7 +50,7 @@ FrameDrawer::FrameDrawer(Map* pMap):mpMap(pMap)
  *
  * Invocado exclusivamente desde Viewer::Run
  */
-cv::Mat FrameDrawer::DrawFrame()
+cv::Mat FrameDrawer::DrawFrame(float radio)
 {
     cv::Mat im;
     vector<cv::KeyPoint> vIniKeys; // Initialization: KeyPoints in reference frame
@@ -101,17 +101,14 @@ cv::Mat FrameDrawer::DrawFrame()
                 cv::line(im,vIniKeys[i].pt,vCurrentKeys[vMatches[i]].pt, cv::Scalar(0,255,255));
 
     // Dibuja marcas sobre puntos del mapa: verdes en estado normal, azules en VO.
-    }else if(state==Tracking::OK) //TRACKING
-    {
+    }else if(state==Tracking::OK){ //TRACKING
         mnTracked=0;
         mnTrackedVO=0;
         const float r = 5;
 
         // Recorre todos los puntos singulares, pone marcas solamente si tienen un punto de mapa asociado.
-        for(int i=0;i<N;i++)
-        {
-            if(vbVO[i] || vbMap[i])
-            {
+        for(int i=0;i<N;i++){
+            if(vbVO[i] || vbMap[i]){
                 cv::Point2f pt1,pt2;
                 pt1.x=vCurrentKeys[i].pt.x-r;
                 pt1.y=vCurrentKeys[i].pt.y-r;
@@ -119,28 +116,21 @@ cv::Mat FrameDrawer::DrawFrame()
                 pt2.y=vCurrentKeys[i].pt.y+r;
 
                 // This is a match to a MapPoint in the map
-                if(vbMap[i])
-                {
-                	//cv::Scalar color = cv::Scalar(0,255,0);
-
+                if(vbMap[i]){
                 	// Los puntos más nuevos (menos observados) se muestran amarillos, virando al verde cuanto más observados están.
                     cv::Scalar color = cv::Scalar(0,255, (obs[i]>4 && obs[i]<1)? 0:255+64-64*obs[i]);
                     //cv::rectangle(im,pt1,pt2, color);//,cv::Scalar(0,255,0));
-                    cv::circle(im,vCurrentKeys[i].pt,2, color, -1);//,cv::Scalar(0,255,0),-1);
+                    cv::circle(im, vCurrentKeys[i].pt, 2*radio , color, -1);
                     mnTracked++;
-                }
-                else // This is match to a "visual odometry" MapPoint created in the last frame
-                {
+                }else{ // This is match to a "visual odometry" MapPoint created in the last frame
                 	cv::rectangle(im,pt1,pt2,cv::Scalar(255,0,0));
-                    cv::circle(im,vCurrentKeys[i].pt,2,cv::Scalar(255,0,0),-1);
+                    cv::circle(im, vCurrentKeys[i].pt, 2*radio, cv::Scalar(255,0,0), -1);
                     mnTrackedVO++;
                 }
-            } else {
+            }else{
             	// Agregado por mí
             	// Dibuja circulitos naranja en los puntos singulares
-
-                cv::circle(im,vCurrentKeys[i].pt,1,cv::Scalar(0,128,255),1);
-
+                cv::circle(im, vCurrentKeys[i].pt, radio, cv::Scalar(0,128,255), 1);
             }
         }
     }else{
@@ -148,7 +138,7 @@ cv::Mat FrameDrawer::DrawFrame()
     	// Dibuja puntos singulares
         // Recorre todos los puntos singulares, pone marcas solamente si tienen un punto de mapa asociado.
         for(int i=0;i<N;i++)
-            cv::circle(im,vCurrentKeys[i].pt,1,cv::Scalar(0,0,255),1);
+            cv::circle(im, vCurrentKeys[i].pt, radio, cv::Scalar(0,0,255), 1);
     }
 
     // Agrega barra de información al pie de la imagen.
