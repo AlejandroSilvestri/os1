@@ -291,7 +291,7 @@ protected:
      * Right se usa solamente en estéreo; monocular usa solamente Left.
      * Ini es una versión más exigente, que durante la inicialización intenta recuperar el doble de features y macheos que lo normal.
      */
-    ORBextractor* mpORBextractorLeft, *mpORBextractorRight;
+    ORBextractor* mpORBextractorLeft;
     ORBextractor* mpIniORBextractor;
 
     //BoW
@@ -346,6 +346,10 @@ protected:
      */
     cv::Mat mDistCoef;
 
+    /**
+     * Leído del archivo de configuración, parte de los parámetros de calibración, pasado al constructor de Frame.
+     * No usado en monocular.  Ya se eliminó el código que lo usaba.  Se deja para hasta que se cambien los constructores de Frame y KeyFrame.
+     */
     float mbf;
 
     //New KeyFrame rules (according to fps)
@@ -359,13 +363,19 @@ private:
     bool _Track_full();
     bool _Track_loc_only();
 
+    /**
+     * Sólo para estéreo, el código actual no lo usa, sólo se pasa entre constructores a Frame y a KeyFrame.
+     */
     // Threshold close/far points
     // Points seen as close by the stereo/RGBD sensor are considered reliable
     // and inserted from just one frame. Far points requiere a match in two keyframes.
     float mThDepth;
 
+    /**
+     * Sólo para RGB-D
+     */
     // For RGB-D inputs only. For some datasets (e.g. TUM) the depthmap values are scaled.
-    float mDepthMapFactor;
+    //float mDepthMapFactor;
 
     //Current matches in frame
     int mnMatchesInliers;

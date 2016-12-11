@@ -64,12 +64,6 @@ public:
     // Copy constructor.
     Frame(const Frame &frame);
 
-    // Constructor for stereo cameras.
-    //Frame(const cv::Mat &imLeft, const cv::Mat &imRight, const double &timeStamp, ORBextractor* extractorLeft, ORBextractor* extractorRight, ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
-
-    // Constructor for RGB-D cameras.
-    //Frame(const cv::Mat &imGray, const cv::Mat &imDepth, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
-
     // Constructor for Monocular cameras.
     Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
     //Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor, ORBVocabulary* voc, const float &thDepth);
@@ -192,7 +186,8 @@ public:
     // "Monocular" keypoints have a negative value.
     /** -1 para monocular.*/
     std::vector<float> mvuRight;
-    /** -1 para monocular.*/
+
+    /** -1 para monocular.  Se pasa en el constructor de copia de Frame.*/
     std::vector<float> mvDepth;
 
     // Bag of Words Vector structures.
@@ -201,7 +196,7 @@ public:
     /** Vector "Feature" correspondiente a los puntos singulares.*/
     DBoW2::FeatureVector mFeatVec;
 
-	/** Descriptores ORB en el formato Mat, tal como los devuelve opencv.*/
+	/** Descriptores ORB en el formato Mat, tal como los devuelve opencv.  mDescritorRight no se usa, se pasa en el constructor de copia.*/
     // ORB descriptor, each row associated to a keypoint.
     cv::Mat mDescriptors, mDescriptorsRight;
 

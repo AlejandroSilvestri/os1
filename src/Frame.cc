@@ -105,7 +105,8 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
 
     // Set no stereo information
     mvuRight = vector<float>(N,-1);
-    mvDepth = vector<float>(N,-1);
+    //mvDepth = vector<float>(N,-1);	// No se usa
+    mvDepth = vector<float>(0);
 
     mvpMapPoints = vector<MapPoint*>(N,static_cast<MapPoint*>(NULL));
     mvbOutlier = vector<bool>(N,false);

@@ -295,7 +295,14 @@ public:
     void SetErase();
 
     // Set/check bad flag
-    /** Marca el keyframe como malo.  Los algoritmos lo ignorarán.*/
+    /**
+     * Marca el keyframe como malo.  Los algoritmos lo ignorarán.
+     *
+     * El keyframe se retira del grafo eliminándose como hijo de su padre, y como padre de sus hijos, asignándoles un nuevo padre.
+     * Luego se elimina de las listas de Map y de KeyFrameDatabase.
+     * El flag mbBad sirve cuando se accede a un keyframe que justo en ese momento se está borrando desde otro hilo.
+     *
+     */
     void SetBadFlag();
 
     /**
@@ -436,9 +443,6 @@ public:
     /** Puntos singulares con coordenadas "desdistorsionadas".  Los elementos se corresponden con los de mvKeys.*/
     const std::vector<cv::KeyPoint> mvKeysUn;
 
-    //const std::vector<float> mvuRight; // negative value for monocular points
-    //const std::vector<float> mvDepth; // negative value for monocular points
-
     /** Descriptores.  Se corresponden con los de mvKeys.*/
     const cv::Mat mDescriptors;
 
@@ -520,8 +524,6 @@ protected:
      */
     cv::Mat Ow;
 
-    //cv::Mat Cw; // Stereo middel point. Only for visualization
-
     /**
      * Puntos del mapa asociado a los puntos singulares.
      */
@@ -577,10 +579,21 @@ protected:
     std::set<KeyFrame*> mspLoopEdges;
 
     // Bad flags
-    /** Señal de no borrar.*/
+    /**
+     * Señal de no borrar.
+     * Se hace true cuando se le agrega un eje al grafo, o con SetNotErase().
+     * Se hace false con SetErase(), sólo si no tiene algún eje de bucle.
+     *
+     *
+     */
     bool mbNotErase;
 
-    /** Marca el keyframe para ser borrado.*/
+    /**
+     * Marca el keyframe para ser borrado.
+     * Los keyframes se construyen con este bit en false.
+     * Se pone true solamente con SetBadFlag, cuando mbNotErase es true.
+     * Este flag indica que el keyframe está pendiente de borrado, no se pudo borrar porque tenía eje de bucle.
+     */
     bool mbToBeErased;
 
     /**
@@ -591,9 +604,6 @@ protected:
      *
      */
     bool mbBad;    
-
-    /** No se usa en el código.*/
-    //float mHalfBaseline; // Only for visualization
 
     /** Mapa donde se encuentra el keyFrame.
      * Se recibe como argumento del constructor.
