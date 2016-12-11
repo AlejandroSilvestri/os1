@@ -69,6 +69,8 @@ Frame::Frame(const Frame &frame)
  * Constructor que crea un Frame y lo llena con los argumentos.
  * @param timeStamp Marca de tiempo, para registro.  ORB-SLAM no la utiliza.
  * @param extractor Algoritmo extractor usado para obtener los descriptores.  ORB-SLAM utiliza exclusivamente el extractor BRIEF de ORB.
+ *
+ * Se distinguen dos modos de cámara: normal si se proporcionan los coeficientes de distorsión, o fisheye sin coeficientes si se proporciona noArray()
 -
 */
 Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc,
@@ -96,6 +98,9 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
     if(mvKeys.empty())
         return;
 
+    // Deduce el modo de cámara a partir del tamaño de mDistCoef.  0 para modo 1, 5+ para modo 0, 4 para modo 2 no implementado (fisheye con distorsión)
+    camaraModo = mDistCoef.rows? 0 : 1;
+
     UndistortKeyPoints();
 
     // Set no stereo information
@@ -122,8 +127,6 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
 
         mbInitialComputations=false;
     }
-
-    //mb = mbf/fx;	// estéreo solamente
 
     AssignFeaturesToGrid();
 }
@@ -160,10 +163,7 @@ void Frame::AssignFeaturesToGrid()
  */
 void Frame::ExtractORB(int flag, const cv::Mat &im)
 {
-    //if(flag==0)
         (*mpORBextractorLeft)(im,cv::Mat(),mvKeys,mDescriptors);
-    /*else
-        (*mpORBextractorRight)(im,cv::Mat(),mvKeysRight,mDescriptorsRight);*/
 }
 
 /**
@@ -360,23 +360,27 @@ void Frame::ComputeBoW()
  */
 void Frame::UndistortKeyPoints()
 {
-    if(mDistCoef.at<float>(0)==0.0)
-    {
+    if(camaraModo == 0 && mDistCoef.at<float>(0)==0.0){
+    	// No hace falta antidistorsionar, no hay coeficientes de distorsión, y es cámara normal (no es fisheye).
         mvKeysUn=mvKeys;
         return;
     }
 
     // Fill matrix with points
     cv::Mat mat(N,2,CV_32F);
-    for(int i=0; i<N; i++)
-    {
+    for(int i=0; i<N; i++){
         mat.at<float>(i,0)=mvKeys[i].pt.x;
         mat.at<float>(i,1)=mvKeys[i].pt.y;
     }
 
     // Undistort points
     mat=mat.reshape(2);
-    cv::undistortPoints(mat,mat,mK,mDistCoef,cv::Mat(),mK);
+    if(camaraModo)
+    	// Modo 1, fisheye de proyección equidistante sin distorsión
+    	antidistorsionarProyeccionEquidistante(mat);
+    else
+    	// Modo 0, normal
+    	cv::undistortPoints(mat,mat,mK,mDistCoef,cv::Mat(),mK);
     mat=mat.reshape(1);
 
     // Fill undistorted keypoint vector
@@ -401,8 +405,7 @@ void Frame::UndistortKeyPoints()
  */
 void Frame::ComputeImageBounds(const cv::Mat &imLeft)
 {
-    if(mDistCoef.at<float>(0)!=0.0)
-    {
+    if(camaraModo!=0 || mDistCoef.at<float>(0)!=0.0){
         cv::Mat mat(4,2,CV_32F);
         mat.at<float>(0,0)=0.0; mat.at<float>(0,1)=0.0;
         mat.at<float>(1,0)=imLeft.cols; mat.at<float>(1,1)=0.0;
@@ -411,7 +414,12 @@ void Frame::ComputeImageBounds(const cv::Mat &imLeft)
 
         // Undistort corners
         mat=mat.reshape(2);
-        cv::undistortPoints(mat,mat,mK,mDistCoef,cv::Mat(),mK);
+
+        if(camaraModo) // Modo 1, fisheye de proyección equidistante sin distorsión
+        	antidistorsionarProyeccionEquidistante(mat);
+        else // Modo 0, normal
+        	cv::undistortPoints(mat,mat,mK,mDistCoef,cv::Mat(),mK);
+
         mat=mat.reshape(1);
 
         mnMinX = min(mat.at<float>(0,0),mat.at<float>(2,0));
@@ -420,8 +428,7 @@ void Frame::ComputeImageBounds(const cv::Mat &imLeft)
         mnMaxY = max(mat.at<float>(2,1),mat.at<float>(3,1));
 
     }
-    else
-    {
+    else{
         mnMinX = 0.0f;
         mnMaxX = imLeft.cols;
         mnMinY = 0.0f;
@@ -429,223 +436,43 @@ void Frame::ComputeImageBounds(const cv::Mat &imLeft)
     }
 }
 
-/*
-void Frame::ComputeStereoMatches()
-{
-    mvuRight = vector<float>(N,-1.0f);
-    mvDepth = vector<float>(N,-1.0f);
+/**
+ * Antidistorsiona puntos según el modelo de cámara fisheye de proyección equidistante sin coeficientes de distorsión.
+ * Usa mK, la matriz intrínseca, para pasar los puntos distorsionados a escala focal, y luego de antidistorsionarlos pasarlos de nuevo a escala de imagen.
+ *
+ * @param puntos Mat de nx2 float, cada par corresponde a un punto.  Entrada y salida.  Los puntos se corrigen y el resultado se guarda en el mismo lugar.
+ *
+ * Sólo usado desde Frame::UndistortKeyPoints y Frame::ComputeImageBounds
+ */
+void Frame::antidistorsionarProyeccionEquidistante(cv::Mat &puntos){
+	// foco y centro
+	cv::Vec2d f, c;
+	f = cv::Vec2f(mK.at<float>(0, 0), mK.at<float>(1, 1));
+	c = cv::Vec2f(mK.at<float>(0, 2), mK.at<float>(1, 2));
+	cv::Matx33f K((float*)mK.ptr());
 
-    const int nRows = mpORBextractorLeft->mvImagePyramid[0].rows;
+    cv::Matx33d PP;
 
-    //Assign keypoints to row table
-    vector<vector<size_t> > vRowIndices(nRows,vector<size_t>());
+    // start undistorting
+    cv::Vec2f* puntosVec = puntos.ptr<cv::Vec2f>();
 
-    for(int i=0; i<nRows; i++)
-        vRowIndices[i].reserve(200);
+    size_t n = puntos.rows;
 
-    const int Nr = mvKeysRight.size();
+    for(size_t i = 0; i < n; i++ ){
+        cv::Vec2d pi = (cv::Vec2d)puntosVec[i];  // image point
+        cv::Vec2d pw((pi[0] - c[0])/f[0], (pi[1] - c[1])/f[1]);      // world point
 
-    for(int iR=0; iR<Nr; iR++)
-    {
-        const cv::KeyPoint &kp = mvKeysRight[iR];
-        const float &kpY = kp.pt.y;
-        const float r = 2.0f*mvScaleFactors[mvKeysRight[iR].octave];
-        const int maxr = ceil(kpY+r);
-        const int minr = floor(kpY-r);
+        double theta_d = sqrt(pw[0]*pw[0] + pw[1]*pw[1]);
+        double scale = theta_d>1e-8 ? std::tan(theta_d) / theta_d : 1.0;	// scale será siempre >= 1.0
+        cv::Vec2d pu = pw * scale; //undistorted point: en escala focal
 
-        for(int yi=minr;yi<=maxr;yi++)
-            vRowIndices[yi].push_back(iR);
+        // reproject
+        cv::Vec3d pr = K * cv::Vec3d(pu[0], pu[1], 1.0); // devuelto a la escala original según K
+        cv::Vec2d fi(pr[0]/pr[2], pr[1]/pr[2]);       // final: de homogéneas a euclideanas
+
+        puntosVec[i] = fi;
     }
 
-    // Set limits for search
-    const float minZ = mb;
-    const float minD = -3;
-    const float maxD = mbf/minZ;
-
-    // For each left keypoint search a match in the right image
-    vector<pair<int, int> > vDistIdx;
-    vDistIdx.reserve(N);
-
-    for(int iL=0; iL<N; iL++)
-    {
-        const cv::KeyPoint &kpL = mvKeys[iL];
-        const int &levelL = kpL.octave;
-        const float &vL = kpL.pt.y;
-        const float &uL = kpL.pt.x;
-
-        const vector<size_t> &vCandidates = vRowIndices[vL];
-
-        if(vCandidates.empty())
-            continue;
-
-        const float minU = uL-maxD;
-        const float maxU = uL-minD;
-
-        if(maxU<0)
-            continue;
-
-        int bestDist = ORBmatcher::TH_HIGH;
-        size_t bestIdxR = 0;
-
-        const cv::Mat &dL = mDescriptors.row(iL);
-
-        // Compare descriptor to right keypoints
-        for(size_t iC=0; iC<vCandidates.size(); iC++)
-        {
-            const size_t iR = vCandidates[iC];
-            const cv::KeyPoint &kpR = mvKeysRight[iR];
-
-            if(kpR.octave<levelL-1 || kpR.octave>levelL+1)
-                continue;
-
-            const float &uR = kpR.pt.x;
-
-            if(uR>=minU && uR<=maxU)
-            {
-                const cv::Mat &dR = mDescriptorsRight.row(iR);
-                const int dist = ORBmatcher::DescriptorDistance(dL,dR);
-
-                if(dist<bestDist)
-                {
-                    bestDist = dist;
-                    bestIdxR = iR;
-                }
-            }
-        }
-
-        // Subpixel match by correlation
-        if(bestDist<ORBmatcher::TH_HIGH)
-        {
-            // coordinates in image pyramid at keypoint scale
-            const float uR0 = mvKeysRight[bestIdxR].pt.x;
-            const float scaleFactor = mvInvScaleFactors[kpL.octave];
-            const float scaleduL = round(kpL.pt.x*scaleFactor);
-            const float scaledvL = round(kpL.pt.y*scaleFactor);
-            const float scaleduR0 = round(uR0*scaleFactor);
-
-            // sliding window search
-            const int w = 5;
-            cv::Mat IL = mpORBextractorLeft->mvImagePyramid[kpL.octave].rowRange(scaledvL-w,scaledvL+w+1).colRange(scaleduL-w,scaleduL+w+1);
-            IL.convertTo(IL,CV_32F);
-            IL = IL - IL.at<float>(w,w) *cv::Mat::ones(IL.rows,IL.cols,CV_32F);
-
-            int bestDist = INT_MAX;
-            int bestincR = 0;
-            const int L = 5;
-            vector<float> vDists;
-            vDists.resize(2*L+1);
-
-            const float iniu = scaleduR0+L-w;
-            const float endu = scaleduR0+L+w+1;
-            if(iniu<0 || endu >= mpORBextractorRight->mvImagePyramid[kpL.octave].cols)
-                continue;
-
-            for(int incR=-L; incR<=+L; incR++)
-            {
-                cv::Mat IR = mpORBextractorRight->mvImagePyramid[kpL.octave].rowRange(scaledvL-w,scaledvL+w+1).colRange(scaleduR0+incR-w,scaleduR0+incR+w+1);
-                IR.convertTo(IR,CV_32F);
-                IR = IR - IR.at<float>(w,w) *cv::Mat::ones(IR.rows,IR.cols,CV_32F);
-
-                float dist = cv::norm(IL,IR,cv::NORM_L1);
-                if(dist<bestDist)
-                {
-                    bestDist =  dist;
-                    bestincR = incR;
-                }
-
-                vDists[L+incR] = dist;
-            }
-
-            if(bestincR==-L || bestincR==L)
-                continue;
-
-            // Sub-pixel match (Parabola fitting)
-            const float dist1 = vDists[L+bestincR-1];
-            const float dist2 = vDists[L+bestincR];
-            const float dist3 = vDists[L+bestincR+1];
-
-            const float deltaR = (dist1-dist3)/(2.0f*(dist1+dist3-2.0f*dist2));
-
-            if(deltaR<-1 || deltaR>1)
-                continue;
-
-            // Re-scaled coordinate
-            float bestuR = mvScaleFactors[kpL.octave]*((float)scaleduR0+(float)bestincR+deltaR);
-
-            float disparity = (uL-bestuR);
-
-            if(disparity>=0 && disparity<maxD)
-            {
-                if(disparity<=0)
-                {
-                    disparity=0.01;
-                    bestuR = uL-0.01;
-                }
-                mvDepth[iL]=mbf/disparity;
-                mvuRight[iL] = bestuR;
-                vDistIdx.push_back(pair<int,int>(bestDist,iL));
-            }
-        }
-    }
-
-    sort(vDistIdx.begin(),vDistIdx.end());
-    const float median = vDistIdx[vDistIdx.size()/2].first;
-    const float thDist = 1.5f*1.4f*median;
-
-    for(int i=vDistIdx.size()-1;i>=0;i--)
-    {
-        if(vDistIdx[i].first<thDist)
-            break;
-        else
-        {
-            mvuRight[vDistIdx[i].second]=-1;
-            mvDepth[vDistIdx[i].second]=-1;
-        }
-    }
 }
-*/
-
-/*
-void Frame::ComputeStereoFromRGBD(const cv::Mat &imDepth)
-{
-    mvuRight = vector<float>(N,-1);
-    mvDepth = vector<float>(N,-1);
-
-    for(int i=0; i<N; i++)
-    {
-        const cv::KeyPoint &kp = mvKeys[i];
-        const cv::KeyPoint &kpU = mvKeysUn[i];
-
-        const float &v = kp.pt.y;
-        const float &u = kp.pt.x;
-
-        const float d = imDepth.at<float>(v,u);
-
-        if(d>0)
-        {
-            mvDepth[i] = d;
-            mvuRight[i] = kpU.pt.x-mbf/d;
-        }
-    }
-}
-*/
-
-/*
-cv::Mat Frame::UnprojectStereo(const int &i)
-{
-    const float z = mvDepth[i];
-    if(z>0)
-    {
-        const float u = mvKeysUn[i].pt.x;
-        const float v = mvKeysUn[i].pt.y;
-        const float x = (u-cx)*z*invfx;
-        const float y = (v-cy)*z*invfy;
-        cv::Mat x3Dc = (cv::Mat_<float>(3,1) << x, y, z);
-        return mRwc*x3Dc+mOw;
-    }
-    else
-        return cv::Mat();
-}
-*/
 
 } //namespace ORB_SLAM

@@ -118,10 +118,6 @@ public:
     Tracking(System* pSys, ORBVocabulary* pVoc, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Map* pMap,
              KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor, unsigned int cantidadCuadros = 0);
 
-    /** Constructor no utilizado en ORB-SLAM2.*/
-    Tracking(System* pSys, ORBVocabulary* pVoc, Map* pMap,
-                   KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor);
-
     // Preprocess the input and call Track(). Extract features and performs stereo matching.
     //cv::Mat GrabImageStereo(const cv::Mat &imRectLeft,const cv::Mat &imRectRight, const double &timestamp);
     //cv::Mat GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const double &timestamp);
@@ -232,6 +228,14 @@ public:
     /** Público para que lo pueda ver Viewer al serializar mapas.*/
     LocalMapping* mpLocalMapper;
 
+    /**
+     * Modo de cámara.
+     * 0 normal, viene con orb-slam, la común de opencv.
+     * 1 fisheye sin distorsión, sólo aplica la deformación de la matriz intrínseca según el modelo de fisheye (equidistance projection).
+     * Su valor proviene del archivo de configuración, y se pasa a Frame.
+     */
+    int camaraModo;
+
 
 protected:
 
@@ -328,12 +332,19 @@ protected:
 
     //Calibration matrix
 
-    /** Matriz intrínseca, de cámara, de calibración K.*/
+    /** Matriz intrínseca, de cámara, de calibración K.  Mat de 3x3 CV_32F (float).*/
     cv::Mat mK;
 
-    /** Coeficientes de distorsión.*/
+    /**
+     * Coeficientes de distorsión del modelo pihole estándar de OpenCV.
+     * Mat de 8x1 CV_32F (float).
+     *
+     * Contiene los coeficientes de distorsión radial y tangencial, para ser usados exclusivamente por cv::undistortPoints
+     * en Frame::UndistortKeyPoints y Frame::ComputeImageBounds, ambos ejecutados solamente durante la construcción del Frame.
+     *
+     * Su contenido se toma de la configuración, y podría cambiarse vía Tracking::ChangeCalibration, que no se usa en esta implementación.
+     */
     cv::Mat mDistCoef;
-
 
     float mbf;
 

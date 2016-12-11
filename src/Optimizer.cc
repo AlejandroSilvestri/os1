@@ -993,6 +993,10 @@ void Optimizer::OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* p
     {
         KeyFrame* pKFi = vpKFs[i];
 
+        // Agregado según https://github.com/raulmur/ORB_SLAM2/issues/212
+        if(pKFi == NULL || pKFi->isBad())
+            continue;
+
         const int nIDi = pKFi->mnId;
 
         g2o::VertexSim3Expmap* VSim3 = static_cast<g2o::VertexSim3Expmap*>(optimizer.vertex(nIDi));

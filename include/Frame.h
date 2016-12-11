@@ -159,6 +159,9 @@ public:
 	/** Coeficientes de distorsión de cámara mDistCoef.*/
     cv::Mat mDistCoef;
 
+    /** Modo de cámara, 0 normal, 1 fisheye sin distorsión.*/
+    int camaraModo;
+
     /** No usado en monocular.*/
     // Stereo baseline multiplied by fx.
     float mbf;
@@ -180,7 +183,7 @@ public:
     // In the stereo case, mvKeysUn is redundant as images must be rectified.
     // In the RGB-D case, RGB images can be distorted.
     /** Vector de puntos singulares obtenidos por el detector, tal como los devuelve opencv.*/
-    std::vector<cv::KeyPoint> mvKeys/*, mvKeysRight*/;
+    std::vector<cv::KeyPoint> mvKeys;
 
 	/** Vector de puntos antidistorsionados, mvKeys corregidos según los coeficientes de distorsión.*/
     std::vector<cv::KeyPoint> mvKeysUn;
@@ -315,6 +318,8 @@ public:
     // Only for the RGB-D case. Stereo must be already rectified!
     // (called in the constructor).
     void UndistortKeyPoints();
+
+    void antidistorsionarProyeccionEquidistante(cv::Mat &puntos);
 
     // Computes image bounds for the undistorted image (called in the constructor).
     void ComputeImageBounds(const cv::Mat &imLeft);

@@ -298,10 +298,16 @@ void Viewer::Run(){
 				int ancho = imagenEntrada.cols;
 				int alto = imagenEntrada.rows;
 				cv::Mat K = mpFrameDrawer->K;	// Matriz de calibración tomada del cuadro actual.
-				cv::Mat distCoef = mpFrameDrawer->distCoef;
-				cv::Mat nuevaK = cv::getOptimalNewCameraMatrix(K, distCoef, cv::Size(ancho, alto), 1.0);
 
-				cv::undistort(imagenEntrada, imagenParaMostrar, K, distCoef, nuevaK);
+				if(mpTracker->camaraModo)
+					// Modo 0, fisheye sin distorsión
+					cv::fisheye::undistortImage(imagenEntrada, imagenParaMostrar, K, cv::Mat::zeros(4,1,CV_32F), K);
+				else{
+					// Modo 1, cámara normal
+					cv::Mat distCoef = mpFrameDrawer->distCoef;
+					cv::Mat nuevaK = cv::getOptimalNewCameraMatrix(K, distCoef, cv::Size(ancho, alto), 1.0);
+					cv::undistort(imagenEntrada, imagenParaMostrar, K, distCoef, nuevaK);
+				}
 				imagenEntrada = imagenParaMostrar;
 				cv::resize(imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
 			}else{
