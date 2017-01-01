@@ -1093,14 +1093,10 @@ void Tracking::SearchLocalPoints()
     for(vector<MapPoint*>::iterator vit=mCurrentFrame.mvpMapPoints.begin(), vend=mCurrentFrame.mvpMapPoints.end(); vit!=vend; vit++)
     {
         MapPoint* pMP = *vit;
-        if(pMP)
-        {
+        if(pMP){
             if(pMP->isBad())
-            {
                 *vit = static_cast<MapPoint*>(NULL);
-            }
-            else
-            {
+            else{
                 pMP->IncreaseVisible();
                 pMP->mnLastFrameSeen = mCurrentFrame.mnId;
                 pMP->mbTrackInView = false;

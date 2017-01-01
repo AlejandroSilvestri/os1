@@ -138,6 +138,7 @@ void KeyFrame::AddConnection(KeyFrame *pKF, const int &weight)
 {
     {
         unique_lock<mutex> lock(mMutexConnections);
+        if(mbBad || pKF->isBad()) return;	// Agregado por mí
         if(!mConnectedKeyFrameWeights.count(pKF))
             mConnectedKeyFrameWeights[pKF]=weight;
         else if(mConnectedKeyFrameWeights[pKF]!=weight)
@@ -377,7 +378,8 @@ void KeyFrame::UpdateConnections()
     {
         unique_lock<mutex> lockCon(mMutexConnections);
 
-        // mspConnectedKeyFrames = spConnectedKeyFrames;
+        if(mbBad) return;
+
         mConnectedKeyFrameWeights = KFcounter;
         mvpOrderedConnectedKeyFrames = vector<KeyFrame*>(lKFs.begin(),lKFs.end());
         mvOrderedWeights = vector<int>(lWs.begin(), lWs.end());
@@ -385,7 +387,7 @@ void KeyFrame::UpdateConnections()
         if(mbFirstConnection && mnId!=0)
         {
             mpParent = mvpOrderedConnectedKeyFrames.front();
-            mpParent->AddChild(this);
+            mpParent->AddChild(this);	// ChangeParent(mpParent)
             mbFirstConnection = false;
         }
 
@@ -395,7 +397,8 @@ void KeyFrame::UpdateConnections()
 void KeyFrame::AddChild(KeyFrame *pKF)
 {
     unique_lock<mutex> lockCon(mMutexConnections);
-    mspChildrens.insert(pKF);
+    if(!mbBad)	// Agregado por mí, intentando eliminar posible causa que revive keyframes muertos
+    	mspChildrens.insert(pKF);
 }
 
 void KeyFrame::EraseChild(KeyFrame *pKF)
@@ -432,6 +435,7 @@ bool KeyFrame::hasChild(KeyFrame *pKF)
 void KeyFrame::AddLoopEdge(KeyFrame *pKF)
 {
     unique_lock<mutex> lockCon(mMutexConnections);
+
     mbNotErase = true;
     mspLoopEdges.insert(pKF);
 }
@@ -467,28 +471,44 @@ void KeyFrame::SetErase()
 void KeyFrame::SetBadFlag()
 {   
     {
+    	// Verifica que no esté prohibida la eliminación por parte de la detección de bucles
         unique_lock<mutex> lock(mMutexConnections);
         if(mnId==0)
             return;
-        else if(mbNotErase)
-        {
+        else if(mbNotErase){
             mbToBeErased = true;
             return;
         }
+
+    	// Agregado por mí, para que no haya solapamiento
+        mbBad = true;
+        mpMap->EraseKeyFrame(this);
+        mpKeyFrameDB->erase(this);
+        // Se repite al final en su código original, sólo por no borrarlo.
+
     }
 
+    // Se procede con la eliminación del keyframe
+
+    // Se elimina del mapa de conexiones de los otros keyframes
     for(map<KeyFrame*,int>::iterator mit = mConnectedKeyFrameWeights.begin(), mend=mConnectedKeyFrameWeights.end(); mit!=mend; mit++)
         mit->first->EraseConnection(this);
 
+    // Se elimina de las observaciones de sus mapPoints
     for(size_t i=0; i<mvpMapPoints.size(); i++)
         if(mvpMapPoints[i])
             mvpMapPoints[i]->EraseObservation(this);
+
+    // Se quita del grafo de conexiones y lo remienda
     {
         unique_lock<mutex> lock(mMutexConnections);
         unique_lock<mutex> lock1(mMutexFeatures);
 
+        // Libera memoria
         mConnectedKeyFrameWeights.clear();
         mvpOrderedConnectedKeyFrames.clear();
+
+        // Actualiza el grafo de keyframes, buscando candidatos de padre para sus hijos
 
         // Update Spanning Tree
         set<KeyFrame*> sParentCandidates;
@@ -504,23 +524,27 @@ void KeyFrame::SetBadFlag()
             KeyFrame* pC;
             KeyFrame* pP;
 
+            // Recorre todos los hijos, con pKF.
             for(set<KeyFrame*>::iterator sit=mspChildrens.begin(), send=mspChildrens.end(); sit!=send; sit++)
             {
                 KeyFrame* pKF = *sit;
                 if(pKF->isBad())
                     continue;
 
+                // Recorre los keyframes covisibles del hijo, con vpConnected[i]
                 // Check if a parent candidate is connected to the keyframe
                 vector<KeyFrame*> vpConnected = pKF->GetVectorCovisibleKeyFrames();
                 for(size_t i=0, iend=vpConnected.size(); i<iend; i++)
                 {
+                	// Recorre los padres candidatos, con *spcit
                     for(set<KeyFrame*>::iterator spcit=sParentCandidates.begin(), spcend=sParentCandidates.end(); spcit!=spcend; spcit++)
                     {
-                        if(vpConnected[i]->mnId == (*spcit)->mnId)
-                        {
+                        if(vpConnected[i]->mnId == (*spcit)->mnId){
+                        	// Comprobó que el padre candidato está conectado, calcula la ponderación de la conexión
                             int w = pKF->GetWeight(vpConnected[i]);
                             if(w>max)
                             {
+                            	// Recuerda el par padre-hijo de mejor ponderación
                                 pC = pKF;
                                 pP = vpConnected[i];
                                 max = w;
@@ -531,31 +555,35 @@ void KeyFrame::SetBadFlag()
                 }
             }
 
-            if(bContinue)
-            {
+            if(bContinue){
+            	// Habiendo encontrado al par padre-hijo de mejor ponderación, los conecta
                 pC->ChangeParent(pP);
                 sParentCandidates.insert(pC);
                 mspChildrens.erase(pC);
             }
             else
+            	// No encontró ningún par padre-hijo, se terminó el trabajo
                 break;
         }
 
         // If a children has no covisibility links with any parent candidate, assign to the original parent of this KF
         if(!mspChildrens.empty())
+        	// Recorre los hijos que todavía no consiguieron padre, y les asigna el abuelo
             for(set<KeyFrame*>::iterator sit=mspChildrens.begin(); sit!=mspChildrens.end(); sit++)
-            {
                 (*sit)->ChangeParent(mpParent);
-            }
+
+        mspChildrens.clear();	// Agregado por mí
 
         mpParent->EraseChild(this);
+        // En este punto el keyframe está fuera del grafo de conexión.
+
         mTcp = Tcw*mpParent->GetPoseInverse();
-        mbBad = true;
+        //mbBad = true;
     }
 
 
-    mpMap->EraseKeyFrame(this);
-    mpKeyFrameDB->erase(this);
+    //mpMap->EraseKeyFrame(this);
+    //mpKeyFrameDB->erase(this);
 }
 
 bool KeyFrame::isBad()
@@ -675,5 +703,58 @@ float KeyFrame::ComputeSceneMedianDepth(const int q)
 
     return vDepths[(vDepths.size()-1)/q];
 }
+
+/**
+ * Agregado.
+ */
+std::string KeyFrame::analisis(){
+	std::string reporte = "";
+	int malos = 0;	// No hay nulos, sólo busca malos.
+
+	// Reportar keyframes y mappoints isBad
+
+	// std::map< KeyFrame *, int > 	mConnectedKeyFrameWeights
+	for(auto &par: mConnectedKeyFrameWeights)
+		if(!par.first && par.first->isBad())
+			malos++;
+
+	if(malos) reporte += "\nmConnectedKeyFrameWeights Total:" + to_string(mConnectedKeyFrameWeights.size()) + ", Bad:" + to_string(malos);
+	malos = 0;
+
+	// std::set< KeyFrame * > 	mspChildrens
+	for(auto &pKF: mspChildrens)
+		if(pKF && pKF->isBad())
+			malos++;
+
+	if(malos) reporte += "\nmspChildrens Total:" + to_string(mspChildrens.size()) + ", Bad:" + to_string(malos);
+	malos = 0;
+
+
+	// std::set< KeyFrame * > 	mspLoopEdges
+	for(auto &pKF: mspLoopEdges)
+		if(pKF && pKF->isBad())
+			malos++;
+
+	if(malos) reporte += "\nmspLoopEdges Total:" + to_string(mspLoopEdges.size()) + ", Bad:" + to_string(malos);
+	malos = 0;
+
+
+	// std::vector< MapPoint * > 	mvpMapPoints
+	for(auto &pMP: mvpMapPoints)
+		if(pMP && pMP->isBad())
+			malos++;
+
+	if(malos) reporte += "\nmvpMapPoints Total:" + to_string(mvpMapPoints.size()) + ", Bad:" + to_string(malos);
+
+	vector<KeyFrame *> todosLosKeyFrames = mpMap->GetAllKeyFrames();
+	if(std::find(todosLosKeyFrames.begin(), todosLosKeyFrames.end(), this) == todosLosKeyFrames.end())
+		reporte += "\n¡Fuera del mapa!";
+
+	if(reporte != "")
+		reporte = "\n\nKeyFrame " + to_string(mnId) + reporte;
+
+	return reporte;
+}
+
 
 } //namespace ORB_SLAM

@@ -191,6 +191,14 @@ protected:
     void MapPointCulling();
 
 
+    /**
+     * Recorre los keyframes vecinos buscando puntos para fusionar.
+     *
+     * Es el único lugar que invoca ORBmatcher::Fuse
+     * Recorre los vecinos de primer y segundo orden.
+     * SearchInNeighbors se ejecuta sólo LocalMapping::Run apenas termina de procesar todos los nuevos keyframes.
+     *
+     */
     void SearchInNeighbors();
 
     /**

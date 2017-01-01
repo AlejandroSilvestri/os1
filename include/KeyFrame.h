@@ -142,6 +142,8 @@ public:
      * @param pKF Keyframe a conectar.
      * @param weight Peso o ponderación de la conexión.
      *
+     * AddConnection agrega otro keyframe al grafo de covisibilidad de este keyframe.
+     *
      * Invocado sólo desde KeyFrame::UpdateConnections.
      */
     void AddConnection(KeyFrame* pKF, const int &weight);
@@ -156,7 +158,28 @@ public:
     /**
      * Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad.
      *
-     * Es invocado de varios módulos, entre ellos desde ProcessNewKeyFrame.
+     * Crea KeyFrame::mvpOrderedConnectedKeyFrames, KeyFrame::mvOrderedWeights y KeyFrame::mConnectedKeyFrameWeights.
+     *
+     * Recorre todos los mapPoints vistos por este keyframe, y releva todos los otros keyframes que los observan,
+     * creando así el mapa de covisibilidad KeyFrame::mConnectedKeyFrameWeights.
+     *
+     * Se agrega a sí mismo al mapa de cada keyframe relevado, invocando sus respectivos métodos KeyFrame::AddConnection.
+     * Este accionar debería garantizar la doble referencia.
+     *
+     * Es invocado por:
+     *
+     * ORB_SLAM2::Tracking::CreateInitialMapMonocular() : void (2 matches), al crear lso primeros keyframes del mapa inicial.
+     * ORB_SLAM2::LocalMapping::ProcessNewKeyFrame() : void, cuando se crea el KeyFrame (de manera asincrónica).
+     * ORB_SLAM2::LocalMapping::SearchInNeighbors() : void
+     * ORB_SLAM2::LoopClosing::CorrectLoop() : void (3 matches), al cerrar un bucle se debe rehacer el grafo de covisibilidad
+     *
+     * Quizás el cierre de bucle podría interferir con una llamada simultánea de parte de LocalMapping.  Por eso emplea mutex.
+     *
+     * Respecto del posibles solapamiento son SetBadFlag:
+     *
+     * LoopClosing marca el keyframe con SetNotErase.  Esa marca perdura en SearchInNeighbors, por lo que no hay interferencia posible.
+     * ProcessNewKeyFrame crea el keyframe, es imposible que en ese momento se marque como malo.  Tampoco hay interferencia posible.
+     *
      */
     void UpdateConnections();
 
@@ -164,8 +187,10 @@ public:
      * Actualiza los mejores covisibles.
      *
      * El grafo de covisibilidad es un mapa.
-     * Este método produce dos vectores alineados, KayFrame.mvpOrderedConnectedKeyFrames con los keyframes,
+     * Este método produce dos vectores alineados, KeyFrame::mvpOrderedConnectedKeyFrames con los keyframes,
      * y KeyFrame::mvOrderedWeights con sus respectivos pesos.
+     *
+     * Sólo usa datos de KeyFrame::mConnectedKeyFrameWeights.
      *
      *
      * Invocado cada vez que se actualiza el grafo (cada que que se agrega o elimina una conexión).
@@ -190,13 +215,26 @@ public:
 
     // Spanning tree functions
 
-    /** Agrega un keyframe hijo al grafo KeyFrame::mspChildrens. @param pKF Keyframe hijo a agregar.*/
+    /**
+     * Agrega un keyframe hijo al grafo de keyframes KeyFrame::mspChildrens.
+     * @param pKF Keyframe hijo a agregar.
+     *
+     * Invocado sólo desde
+	 * - ORB_SLAM2::KeyFrame::ChangeParent
+	 * - ORB_SLAM2::KeyFrame::UpdateConnections
+     */
     void AddChild(KeyFrame* pKF);
 
     /** Borra un keyframe hijo del grafo KeyFrame::mspChildrens. @param pKF Keyframe hijo a borrar.*/
     void EraseChild(KeyFrame* pKF);
 
-    /** Cambia el padre del keyframe.  @param pKF Nuevo keyframe padre.*/
+    /**
+     * Cambia el padre del keyframe.
+     *
+     * @param pKF Nuevo keyframe padre.
+     *
+     * Invocado sólo desde ORB_SLAM2::KeyFrame::SetBadFlag(), al remendar el grafo.
+     */
     void ChangeParent(KeyFrame* pKF);
 
     /** Devuelve los hijos de este keyframe. @returns Keyframes hijos.*/
@@ -226,10 +264,31 @@ public:
      */
     void AddMapPoint(MapPoint* pMP, const size_t &idx);
 
-    /** Reemplaza el punto del índice por NULL.  @param idx Índice del punto a eliminar.*/
+    /**
+     * Reemplaza el punto del índice por NULL en el vector mvpMapPoints.
+     *
+     * @param idx Índice del punto a eliminar.
+     *
+     * Es una función final, se limita a reemplazar el elemento indicado por NULL.
+     *
+     * Invocada sólo pro MapPoint::Replace y MapPoint::SetBadFlag.
+     *
+     */
     void EraseMapPointMatch(const size_t &idx);
 
-    /** Reemplaza el punto por NULL.  @param pMP Punto 3D a eliminar del vector de puntos 3D observados.*/
+    /**
+     * Quita el punto de la lista de puntos observados por este keyfame.
+     * Reemplaza el punto por NULL en el vector mvpMapPoints.
+     *
+     * @param pMP Punto 3D a eliminar del vector de puntos 3D observados.
+     *
+     * Si no lo encuentra no hace nada.
+     * Para borrar le punto, el keyframe debe poder encontrarse en sus observaciones.  Si no se encuentra, el punto no se borra.
+     *
+     * Es una función final, no procura coherencia con otros contenedores.
+     *
+     * Invocado sólo desde ORB_SLAM2::Optimizer::LocalBundleAdjustment para eliminar outliers.
+     */
     void EraseMapPointMatch(MapPoint* pMP);
 
     /**
@@ -243,8 +302,8 @@ public:
 
     /**
      * Devuelve los puntos 3D observados por el keyframe.
-     * Recorre el vector y genera un set, eliminando los índices NULL.
-     * @returns Puntos 3D.
+     * Recorre el vector KeyFrame::mvpMapPoints y genera un set, copiando los elementos no NULL.
+     * @returns set de puntos 3D.
      */
     std::set<MapPoint*> GetMapPoints();
 
@@ -260,7 +319,12 @@ public:
      */
     int TrackedMapPoints(const int &minObs);
 
-    /** Devuelve el punto 3D a partir del índice.  @param idx Índice.  @returns Punto 3D.*/
+    /**
+     * Devuelve el punto 3D a partir del índice.
+     *
+     * @param idx Índice para el vector KeyFrame::mvpMapPoints.
+     * @returns Punto 3D.
+     */
     MapPoint* GetMapPoint(const size_t &idx);
 
     // KeyPoint functions
@@ -288,19 +352,71 @@ public:
 
     // Enable/Disable bad flag changes
 
-    /** Marca el keyframe como imborrable.*/
+    /**
+     * Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle.
+     *
+     * Hace mbNotErase = true.
+     *
+     * LoopClosing previene el borrado de los keyframes considerados marcándolos con KeyFrame::SetNotErase antes de procesarlos,
+     * y liberándolos al final con KeyFrame::SetErase.
+     *
+     * Invocado sólo desde LoopClosing::DetectLoop y LoopClosing::ComputeSim3.
+     * DetectLoop lo invoca sólo sobre mpCurrentKF
+     */
     void SetNotErase();
 
-    /** Elimina el keyframe.*/
+    /**
+     * Libera el keyframe previamente marcado con KeyFrame::SetNotErase.
+     *
+     * Hace mbNotErase = false, sólo si el keyframe no está conectado por ejes de bucle a otros keyframes.
+     *
+     * Aprovecha el momento y verifica si el keyframe está marcado para borrado, en cuyo caso invoca SetBadFlag.
+     *
+     * SetErase es un paso anterior a SetBadFlag, invocado solamente desde LoopClosing.
+     * Invocado repetidamente sólo desde LoopClosing::DetectLoop y LoopClosing::ComputeSim3 para liberar el keyframe.
+     *
+     * DetectLoop sólo lo invoca sobre mpCurrentKF.
+     *
+     * Estos dos métodos marcan keyframes para no borrar y los liberan al final con KeyFrame::SetErase,
+     * excepto que el keyframe termine formando parte de un cierre de bucle, en cuyo caso quedará marcado para siempre.
+     */
     void SetErase();
 
     // Set/check bad flag
     /**
-     * Marca el keyframe como malo.  Los algoritmos lo ignorarán.
+     * Intenta eliminar el keyframe y marcarlo como malo.  Con esta marca los algoritmos lo ignorarán.
      *
-     * El keyframe se retira del grafo eliminándose como hijo de su padre, y como padre de sus hijos, asignándoles un nuevo padre.
-     * Luego se elimina de las listas de Map y de KeyFrameDatabase.
+     * Se se permite eliminar el keyframe:
+     * - se retira del mapa
+     * - se retira de KeyFrameDatabase
+     * - se remienda el grafo de keyframes eligiendo nuevos padres para los hijos.
+     * - se quita de las observaciones de cada MapPoint de mvpMapPoints
+     * - se marca mbBad
+     *
+     *
+     * El objeto en sí no se elimina nunca, aunque debería.  No se libera porque no tiene modo de asegurar que nadie lo está accediendo.
+     * Una manera sería crear un vector de keyframes huérfanos con un timestamp de su deceso, y comparar con timestamps de hilos que podrían usarlo.
+     *
      * El flag mbBad sirve cuando se accede a un keyframe que justo en ese momento se está borrando desde otro hilo.
+     *
+     * Si se previene la eliminación de ese keyframe (mbNotErase == true), se marca para su eliminación inmediata apenas se libere:
+     * KeyFrame::Erase libera el keyframe, verifica la marca mbToBeErase, y si es true vuelve a invocar SetBadFlag.
+     * Este sistema de prevención de eliminación se usa solamente durante el proceso de detección de bucles, de manera temporal.
+     * Cuando un keyframe queda enganchado en un bucle, este sistema prevendrá su eliminación para siempre.
+     *
+     * No tiene efecto sobre el keyframe inicial, con id 0.
+     *
+     *
+     * SetBadFlag bloquea mMutexConnections y mMutexFeatures, y marca mbBad antes de desbloquear.
+     * Curiosamente los métodos que utilizan este lock no consultan la marca mbBad antes de proceder.
+     * Esto podría explicar el bug por el que perduran en el grafo algunos keyframes marcados como malos.
+     *
+     *
+     * Invocado sólo por LocalMapping::KeyFrameCulling y KeyFrame::SetErase.
+     *
+     * TODO:
+     * Convendría realizar la eliminación del keyframe del mapa antes que nada, de manera reducir la probabilidad de que otros hilos lo encuentren.
+     * Del mismo modo, se debería marcar como Bad desde el principio.
      *
      */
     void SetBadFlag();
@@ -311,6 +427,8 @@ public:
      * Cuando el keyframe es malo, se lo ignora sin excepciones en todo orb-slam2.
      * Equivaldría a eliminar la instancia, pero eso puede romper algún puntero efímero.
      * La serialización es un buen momento para quitar los malos.
+     *
+     * Si esta marca es true, el keyframe se ha eliminado de Map, KeyFrameDatabase, de las observaciones de todos los MapPoint y del spanning tree.
      *
      */
     bool isBad();
@@ -356,6 +474,12 @@ public:
         return pKF1->mnId<pKF2->mnId;
     }
 
+    /*
+     * Provee un reporte con un análisis del contenido de la instancia.
+     */
+    std::string analisis();
+
+    bool flagNotErase();
 
     // The following variables are accesed from only 1 thread or never change (no mutex needed).
 public:
@@ -547,7 +671,12 @@ protected:
     // Grid over the image to speed up feature matching
     std::vector< std::vector <std::vector<size_t> > > mGrid;
 
-    /** Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos.  Actualizado vía KeyFrame::UpdateConnections.*/
+    /**
+     * Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos.
+     * Generado completamente vía KeyFrame::UpdateConnections, que invoca a KeyFrame::AddConnection.
+     * Se genera a partir de las observaciones de los puntos del mapa del keyframe.
+     * Al generarse se actualiza el mismo mapa de los otros keyframes.
+     */
     std::map<KeyFrame*,int> mConnectedKeyFrameWeights;
 
     /** Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles.*/
@@ -559,7 +688,8 @@ protected:
     // Spanning Tree and Loop Edges
     /**
      * Estado del autómata de inicialización.
-     * true al construirse el keyframe, false a partir de que se le agrega la siguiente conexión.
+     * true al construirse el keyframe, false a partir de que se le agrega la primer conexión,
+     * excepto que sea el keyframe de id 0, que no tiene con quién conectarse y esta marca permanece siempre en true.
      */
     bool mbFirstConnection;
 
@@ -570,20 +700,32 @@ protected:
 
     /**
      * KeyFrames hijos en el grafo.
+     *
+     * Se va poblando a medida que otros keyframes identifican a éste como padre.
+     *
+     * La identificación ocurre en el primer llamado a UpdateConnections apenas se crea el keyframe,
+     * que recorre los keyframes con puntos covisibles, y elige como padre al que comparte más puntos.
+     *
+     * Esto implica que es posible reconstruir este set ejecutando UpdateConnections en cada KeyFrame.
      */
     std::set<KeyFrame*> mspChildrens;
 
     /**
      * KeyFrames que participan de un extremo de un bucle.
+     *
+     * LoopClosing::CorrectLoop es el único método que agrega estos ejes,
+     * y que los consume indirectamente invocando Optimizer::OptimizeEssentialGraph.
+     *
+     * No es efímero.
+     *
      */
     std::set<KeyFrame*> mspLoopEdges;
 
     // Bad flags
     /**
      * Señal de no borrar.
-     * Se hace true cuando se le agrega un eje al grafo, o con SetNotErase().
+     * Se hace true cuando se le agrega un eje al grafo, o con SetNotErase() cuando se usa el keyframe en detección de bucle.
      * Se hace false con SetErase(), sólo si no tiene algún eje de bucle.
-     *
      *
      */
     bool mbNotErase;
@@ -592,15 +734,20 @@ protected:
      * Marca el keyframe para ser borrado.
      * Los keyframes se construyen con este bit en false.
      * Se pone true solamente con SetBadFlag, cuando mbNotErase es true.
-     * Este flag indica que el keyframe está pendiente de borrado, no se pudo borrar porque tenía eje de bucle.
+     * Este flag indica que el keyframe está pendiente de borrado, no se pudo borrar porque tenía eje de bucle
+     * o estaba siendo usado en una detección de bucle en ese momento.
+     *
+     * Reconstruíble: true si tiene ejes de bucle.
      */
     bool mbToBeErased;
 
     /**
      * Flag de eliminación.
-     * Cuando se elimina el KeyFrame, en lugar de quitarlo del vector de keyframe del mapa y de KeyFrameDatabase,
-     * se pone en true este flag.
-     * Todas las actividades que envuelven un keyframe consultan primero este flag antes de proceder.
+     *
+     * Cuando KeyFrame::SetBadFlag no puede elmimnar un keyframe porque está marcado con KeyFrame::mbSetNotErase,
+     * pone en true este flag, para reintentar la eliminación apenas se quite la marca mencionada.
+     *
+     * Todas las actividades que envuelven un keyframe consultan primero este flag antes de proceder, mediante KeyFrame::IsBad.
      *
      */
     bool mbBad;    
@@ -611,8 +758,35 @@ protected:
      */
     Map* mpMap;
 
+    /**
+     * mutex de acceso a la pose Tcw.
+     */
     std::mutex mMutexPose;
+
+    /**
+     * mutex de acceso al grafo de conexiones.
+     *
+     * Agregado mío:
+     * Para prevenir que el keyframe se siga usando y registrando justo cuando se está marcando como malo con SetBadFlag,
+     * los siguientes métodos que utilizan este mutex y registran el keyframe en algún lugar,
+     * sólo procederán luego de verificar la marca KeyFrame::mbBad.
+     * Los métodos con este agregado son:
+     *
+     * - KeyFrame::AddChild, evita que el keyframe vuelva al grafo de covisibilidad
+     * - KeyFrame::AddConnection, evita que el keyframe vuelva al grafo de conexiones
+     * - KeyFrame::UpdateConnections, evita volver a cargar mConnectedKeyFrameWeights, mvpOrderedConnectedKeyFrames y mvOrderedWeights
+     *
+     * - KeyFrame::UpdateBestCovisibles nunca se invocará si se acaba de ejecutar SetBadFlag
+     *
+     * No se incluyen los invocados por LoopClosing, pues éstos tienen la potestad de exigir que el KeyFrame no se elimine.
+     *
+     *
+     */
     std::mutex mMutexConnections;
+
+    /**
+     * mutex de acceso a mvpMapPoints.
+     */
     std::mutex mMutexFeatures;
 
 	/** Serialización agregada para guardar y cargar keyframes.*/

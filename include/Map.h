@@ -63,7 +63,20 @@ public:
     /** Agrega un mapa 3D al mapa.*/
     void AddMapPoint(MapPoint* pMP);
 
-    /*** Elimina un determinado punto del mapa.*/
+    /**
+     * Elimina un determinado punto del mapa.
+     *
+     * Quita el punto del contenedor mspMapPoints.
+     * Debería luego eliminar el objeto punto, pero no lo hace para evitar conflictos de concurrencia.
+     * Esta función es final, delega la responsabilidad de la coherencia de datos a la función que la invoca.
+     *
+     *
+     * @param pMP Punto del mapa a eliminar.
+     *
+     * Ejecuta mspMapPoints.erase(pMP)
+     *
+     * Se invoca sólo desde MapPoint::Replace y MapPoint::SetBadFlag.
+     */
     void EraseMapPoint(MapPoint* pMP);
 
     /** Elimina un determinado keyframe del mapa.*/
@@ -138,6 +151,26 @@ public:
      */
     void load(char* archivo);
 
+    /**
+     * Procura eliminar KeyPoints y MapPoints malos o que no están en el mapa.
+     */
+    void depurar();
+
+    /**
+     * Devuelve true si el keyframe argumento está en el mapa.
+     */
+    bool enMapa(KeyFrame*);
+
+    /**
+     * Devuelve true si el mappoint argumento está en el mapa.
+     */
+    bool enMapa(MapPoint*);
+
+    /**
+     * Agregado, análisis de nulos y malos
+     */
+    std::string analisis(bool profundo = false);
+
 
     /**
      * Buffer usado al cargar.
@@ -152,6 +185,7 @@ public:
      * Usa keyMapPointBuffer como contenedor de estos valores, accesibles por el constructor KeyFrame() durante la serialización de carga.
      */
     MapPoint* mapPointBuffer = NULL;
+
 
 protected:
     /** Puntos del mapa.*/

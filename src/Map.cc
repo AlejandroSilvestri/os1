@@ -121,4 +121,44 @@ void Map::clear()
     mvpKeyFrameOrigins.clear();
 }
 
+std::string Map::analisis(bool profundo){
+	std::string reporte;
+	int nulos = 0, malos = 0;
+
+	// Reportar keyframes y mappoints isBad
+	reporte = "\n\nMap";
+
+	// std::set<MapPoint*> mspMapPoints
+	for(auto &pMP: mspMapPoints)
+		if(!pMP)
+			nulos++;
+		else if(pMP->isBad())
+			malos++;
+
+	reporte += "\nmspMapPoints Total:" + to_string(mspMapPoints.size()) + ", Null:" + to_string(nulos) + ", Bad:" + to_string(malos);
+
+	// std::set<KeyFrame*> mspKeyFrames
+	for(auto &pKF: mspKeyFrames)
+		if(!pKF)
+			nulos++;
+		else if(pKF->isBad())
+			malos++;
+
+	reporte += "\nmspKeyFrames Total:" + to_string(mspKeyFrames.size()) + ", Null:" + to_string(nulos) + ", Bad:" + to_string(malos);
+
+	if(profundo){
+		// El análisis profundo consiste en generar el análisis de cada keyframe y cada mappoint
+
+		// std::set<MapPoint*> mspMapPoints
+		for(auto &pMP: mspMapPoints)
+			reporte += pMP->analisis();
+
+		// std::set<KeyFrame*> mspKeyFrames
+		for(auto &pKF: mspKeyFrames)
+			reporte += pKF->analisis();
+	}
+
+	return reporte;
+}
+
 } //namespace ORB_SLAM

@@ -70,8 +70,14 @@ public:
 	 *
 	 * Este constructor se invoca sólo desde LocalMapping::CreateNewMapPoints para el agregado de puntos del SLAM.
 	 *
+	 * Único constructor utilizado.
+	 *
 	 */
     MapPoint(const cv::Mat &Pos, KeyFrame* pRefKF, Map* pMap, cv::Vec3b rgb = 0);
+
+    /**
+     * Constructor no utilizado
+     */
     MapPoint(const cv::Mat &Pos,  Map* pMap, Frame* pFrame, const int &idxF);
 
     /**
@@ -111,7 +117,11 @@ public:
      */
     void SetReferenceKeyFrame(KeyFrame* pRefKF);
 
-    /** Devuelve todas las observaciones del punto.  Cada observación consiste de un mapa id a keyframe.*/
+    /**
+     * Devuelve todas las observaciones del punto.  Cada observación consiste de un mapa id a keyframe.
+     *
+     * Devuelve MapPoint::mObservations
+     */
     std::map<KeyFrame*,size_t> GetObservations();
 
     /** Informa la cantidad de observaciones que registra el punto.*/
@@ -123,23 +133,54 @@ public:
      */
     void AddObservation(KeyFrame* pKF,size_t idx);
 
-    /** Elimina del punto el registro que indicaba que fue observado por ese keyframe.  */
+    /**
+     * Elimina del punto el registro que indicaba que fue observado por ese keyframe.
+     *
+     * Elimina el keyframe del mapa mObservations y decrementa la cantidad de observaciones del punto.
+     * Si el eliminado es el keyframe de referencia, elige otro.
+     * Si el punto queda observado por sólo 2 keyframes, lo elimina con SetBadFlag.
+     *
+     * @param pKF Keyframe a eliminar.
+     *
+     * Si pKF no observa el punto, no hace nada.
+     */
     void EraseObservation(KeyFrame* pKF);
 
     /**
-     * Id del keyframe si éste observa el punto, -1 si no.
+     * Índice de este punto en el vector de features del keyframe.  -1 si el keyframe no observa este punto.
      *
      * @param pKF Keyframe a testear, para ver si observa o no el punto.
      *
-     * Devuelve el índice del keyframe argumento si el mismo está en el registro de keyframes que observan al punto.  Si no devuelve -1.
+     * Devuelve el índice idx, de modo que este punto es pKF->mvpMapPoints[idx]
      */
     int GetIndexInKeyFrame(KeyFrame* pKF);
+
+    /**
+     * Busca si este punto es observado por el keyframe argumento.
+     *
+     * @param pKF Keyframe donde buscar el punto.
+     * @returns true si encontró el punto.
+     */
     bool IsInKeyFrame(KeyFrame* pKF);
 
-    /** Elimina el punto, marcándolo como malo.*/
+    /**
+     * Elimina el punto, marcándolo como malo.
+     * Lo retira del mapa.
+     * No destruye el punto en sí, para evitar conflictos entre hilos, pero debería.
+     * Este flag es efímero, aunque por algún error algunos puntos marcados como malos y retirados del mapa perduran en otros contenedores.
+     *
+     * Con mutex marca mbBad y elimina el mapa mObservations.
+     * Fuera del mutex recorre los keyframes de mObservations para eliminar el punto de sus macheos.
+     * Finalmente elimina el punto del registro del mapa.
+     */
     void SetBadFlag();
 
-    /** Informa el flag mBad.  Todos los iteradores consultan este flag antes de considerar el punto.*/
+    /**
+     * Informa el flag mBad.
+     *
+     * Todos los iteradores consultan este flag antes de considerar el punto.
+     * Sobre un vector, preguntan primero si el puntero es nulo, y enseguida si isBad.
+     */
     bool isBad();
 
     /**  Toma las propiedades del punto argumento.*/
@@ -209,6 +250,13 @@ public:
      */
     int PredictScale(const float &currentDist, const float &logScaleFactor);
 
+
+    /*
+     * Provee un reporte con un análisis del contenido de la instancia.
+     */
+    string analisis();
+
+
 public:
     /** Identificador del punto.  Único para cada instancia.*/
     long unsigned int mnId;
@@ -216,9 +264,12 @@ public:
     /** Identificador para el próximo nuevo punto.*/
     static long unsigned int nNextId;
 
-    /** Id del primer keyframe que observa este punto.
+    /**
+     * Id del primer keyframe que observa este punto, cuyo valor es asignado en el constructor y nunca modificado.
      * Usualmente es el keyframe de referencia.
      * En el raro caso en que se elimine el keyframe de referencia, la referencia cambia, pero se preserva este id.
+     *
+     * Es utilizado solamente en LocalMapping::MapPointCulling para evitar descartar puntos desde el keyframe que lo generó ni de los dos siguientes.
      */
     long int mnFirstKFid;
 
@@ -229,17 +280,39 @@ public:
     int nObs;
 
     ///@{
-    /** Variables efímeras usadas por Tracking.*/
+    /**
+     * Variables efímeras usadas por Tracking.
+     *
+     * Varias se escriben solamente en Frame::IsInFrustum y se utiliza en OrbMatcher::SearchByProjection
+     */
     //@{
     /** Variables usadas por Tracking.*/
     // Variables used by the tracking
     float mTrackProjX;
     float mTrackProjY;
-    float mTrackProjXR;
+    //float mTrackProjXR;
     bool mbTrackInView;
     int mnTrackScaleLevel;
+
+    /**
+     * Coseno de triangulación.
+     */
     float mTrackViewCos;
+    /**
+     * Variable utilizada en Tracking::UpdateLocalPoints.
+     *
+     * Se inicializa en 0 en el constructor, y se escribe y lee sólo en Tracking::UpdateLocalPoints.
+     * Luego de la carga se puede inicializar en cero.
+     *
+     */
     long unsigned int mnTrackReferenceForFrame;
+    /**
+     * Registra el id del último frame que observó el punto.
+     *
+     * Utilizada en Tracking sólo para distinguir si se está observando en el frame actual o no.
+     *
+     * No es necesario serializar, el constructor lo inicializa en cero.
+     */
     long unsigned int mnLastFrameSeen;
     ///@}
     //@}
@@ -258,9 +331,22 @@ public:
     /** Variables usadas por LoopClosing.*/
     // Variables used by loop closing
     long unsigned int mnLoopPointForKF;
+    /**
+     * Id del último keyframe que corrigió la posición del punto.
+     * Inicializado en 0 en la construcción.
+     * Escrito por CorrectLoop, que luego invoca OptimizeEssentialGraph y lo lee.
+     */
     long unsigned int mnCorrectedByKF;
+
+    /*
+     * Escrito por CorrectLoop, que luego invoca OptimizeEssentialGraph y lo lee.
+     */
     long unsigned int mnCorrectedReference;    
     cv::Mat mPosGBA;
+
+    /**
+     * RunBundleAdjustment lo asigna y luego lo consume.
+     */
     long unsigned int mnBAGlobalForKF;
     ///@}
     //@}
@@ -289,7 +375,10 @@ protected:
 	// Best descriptor to fast matching
 	cv::Mat mDescriptor;
 
-	/** Keyframe de referencia.*/
+	/**
+	 * Keyframe de referencia.
+	 * Utilizado solamente para cerrar bucles.
+	 */
 	// Reference KeyFrame
 	KeyFrame* mpRefKF;
 

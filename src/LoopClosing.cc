@@ -222,9 +222,11 @@ bool LoopClosing::DetectLoop()
     }
     else
     {
-        return true;
+        // Continúa en ComputeSim3, mantiene mpCurrentKF con Not Erase.
+    	return true;
     }
 
+    // Entiendo que no se llega nunca hasta acá.
     mpCurrentKF->SetErase();
     return false;
 }
@@ -389,6 +391,7 @@ bool LoopClosing::ComputeSim3()
             if(mvpEnoughConsistentCandidates[i]!=mpMatchedKF)
                 mvpEnoughConsistentCandidates[i]->SetErase();
         return true;
+        // mpCurrentKF queda marcado con mbNotErase porque ahora forma parte de un bucle.
     }
     else
     {

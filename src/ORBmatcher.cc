@@ -88,12 +88,12 @@ int ORBmatcher::SearchByProjection(Frame &F, const vector<MapPoint*> &vpMapPoint
                 if(F.mvpMapPoints[idx]->Observations()>0)
                     continue;
 
-            if(F.mvuRight[idx]>0)
+            /*if(F.mvuRight[idx]>0)
             {
                 const float er = fabs(pMP->mTrackProjXR-F.mvuRight[idx]);
                 if(er>r*F.mvScaleFactors[nPredictedLevel])
                     continue;
-            }
+            }*/
 
             const cv::Mat &d = F.mDescriptors.row(idx);
 

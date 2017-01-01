@@ -62,7 +62,7 @@ namespace ORB_SLAM2
  * Solucionador Point n-Points EPnP.
  * Utiliza RANSAC para buscar la pose de un keyframe que mejor explican una serie de puntos observados, de posición conocida en el mapa.
  *
- * Esta clase se instancia repetidas veces solamente en Tracring::Relocalisation(), este este contexto:
+ * Esta clase se instancia repetidas veces solamente en Tracking::Relocalisation(), este este contexto:
  * Se evalúan varios keyframes candidatos, que obsevan presumiblemente los mismos puntos observados por el frame actual.
  * Para cada uno se correlacionan los puntos observados con BoW, del keyframe candidato se obtienen sus correspondientes coordenadas 3D,
  * y se ejecuta el solucionador para conseguir la pose que mejor explica la observación,

@@ -102,12 +102,9 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
     unique_lock<mutex> lock(mMutexFeatures);
     if(mObservations.count(pKF))
         return;
-    mObservations[pKF]=idx;
 
-    /*if(pKF->mvuRight[idx]>=0)
-        nObs+=2;
-    else*/
-        nObs++;
+    mObservations[pKF]=idx;
+    nObs++;
 }
 
 void MapPoint::EraseObservation(KeyFrame* pKF)
@@ -115,13 +112,8 @@ void MapPoint::EraseObservation(KeyFrame* pKF)
     bool bBad=false;
     {
         unique_lock<mutex> lock(mMutexFeatures);
-        if(mObservations.count(pKF))
-        {
-        	/*int idx = mObservations[pKF];
-            if(pKF->mvuRight[idx]>=0)
-                nObs-=2;
-            else*/
-                nObs--;
+        if(mObservations.count(pKF)){
+            nObs--;
 
             mObservations.erase(pKF);
 
@@ -394,5 +386,24 @@ int MapPoint::PredictScale(const float &currentDist, const float &logScaleFactor
 
     return ceil(log(ratio)/logScaleFactor);
 }
+
+/**
+ * Agregado.
+ */
+std::string MapPoint::analisis(){
+	std::string reporte = "";
+	int malos = 0;
+
+	// Reportar keyframes y mappoints isBad
+
+	// std::map< KeyFrame *, size_t > 	mObservations
+	for(auto &par: mObservations)
+		if(!par.first && par.first->isBad())
+			malos++;
+
+	if(malos) reporte = "\n\nMapPoint " + to_string(mnId) + "\nmObservations Total:" + to_string(mObservations.size()) + ", Bad:" + to_string(malos);
+	return reporte;
+}
+
 
 } //namespace ORB_SLAM

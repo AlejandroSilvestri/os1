@@ -393,9 +393,7 @@ void LocalMapping::CreateNewMapPoints()
 void LocalMapping::SearchInNeighbors()
 {
     // Retrieve neighbor keyframes
-    int nn = /*10;
-    if(mbMonocular)
-        nn=*/20;
+    int nn = 20;
     const vector<KeyFrame*> vpNeighKFs = mpCurrentKeyFrame->GetBestCovisibilityKeyFrames(nn);
     vector<KeyFrame*> vpTargetKFs;
     for(vector<KeyFrame*>::const_iterator vit=vpNeighKFs.begin(), vend=vpNeighKFs.end(); vit!=vend; vit++)
@@ -594,50 +592,31 @@ void LocalMapping::KeyFrameCulling()
             continue;
         const vector<MapPoint*> vpMapPoints = pKF->GetMapPointMatches();
 
-        int /*nObs = 2;
-        if(mbMonocular)*/
-            nObs = 3;
-        const int thObs=nObs;
+        const int thObs = 3;
         int nRedundantObservations=0;
         int nMPs=0;
-        for(size_t i=0, iend=vpMapPoints.size(); i<iend; i++)
-        {
+        for(size_t i=0, iend=vpMapPoints.size(); i<iend; i++){
             MapPoint* pMP = vpMapPoints[i];
-            if(pMP)
-            {
-                if(!pMP->isBad())
-                {
-                    /*if(!mbMonocular)
-                    {
-                        if(pKF->mvDepth[i]>pKF->mThDepth || pKF->mvDepth[i]<0)
-                            continue;
-                    }*/
+            if(pMP && !pMP->isBad()){
+				nMPs++;
+				if(pMP->Observations()>thObs){
+					const int &scaleLevel = pKF->mvKeysUn[i].octave;
+					const map<KeyFrame*, size_t> observations = pMP->GetObservations();
+					int nObs=0;
+					for(map<KeyFrame*, size_t>::const_iterator mit=observations.begin(), mend=observations.end(); mit!=mend; mit++){
+						KeyFrame* pKFi = mit->first;
+						if(pKFi==pKF)
+							continue;
 
-                    nMPs++;
-                    if(pMP->Observations()>thObs)
-                    {
-                        const int &scaleLevel = pKF->mvKeysUn[i].octave;
-                        const map<KeyFrame*, size_t> observations = pMP->GetObservations();
-                        int nObs=0;
-                        for(map<KeyFrame*, size_t>::const_iterator mit=observations.begin(), mend=observations.end(); mit!=mend; mit++)
-                        {
-                            KeyFrame* pKFi = mit->first;
-                            if(pKFi==pKF)
-                                continue;
-                            const int &scaleLeveli = pKFi->mvKeysUn[mit->second].octave;
-
-                            if(scaleLeveli<=scaleLevel+1)
-                            {
-                                nObs++;
-                                if(nObs>=thObs)
-                                    break;
-                            }
-                        }
-                        if(nObs>=thObs)
-                        {
-                            nRedundantObservations++;
-                        }
-                    }
+						const int &scaleLeveli = pKFi->mvKeysUn[mit->second].octave;
+						if(scaleLeveli<=scaleLevel+1){
+							nObs++;
+							if(nObs>=thObs)
+								break;
+						}
+					}
+					if(nObs>=thObs)
+						nRedundantObservations++;
                 }
             }
         }  
