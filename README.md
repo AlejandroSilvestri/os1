@@ -2,7 +2,7 @@
 OrbSlam2 comentado y modificado para pruebas de monocular slam.
 
 Se basa en el proyecto original ORB-SLAM2 de Raúl Mur Artal et al de la Universidad de Zaragoza.
-https://github.com/shomin/ORB_SLAM2
+https://github.com/raulmur/ORB_SLAM2
 http://webdiis.unizar.es/~raulmur/orbslam/
 
 Esta versión ejecuta orb-slam2 directamente sobre la webcam en tiempo real.
