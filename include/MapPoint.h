@@ -76,11 +76,6 @@ public:
     MapPoint(const cv::Mat &Pos, KeyFrame* pRefKF, Map* pMap, cv::Vec3b rgb = 0);
 
     /**
-     * Constructor no utilizado
-     */
-    MapPoint(const cv::Mat &Pos,  Map* pMap, Frame* pFrame, const int &idxF);
-
-    /**
      * Asigna al punto las coordenadas 3D argumento.
      *
      * @param Pos Vector con la posición que se copiará al punto.
@@ -363,7 +358,12 @@ protected:
 	// Position in absolute coordinates
 	cv::Mat mWorldPos;
 
-	/** Keyframes que observan este punto, y sus índices.*/
+	/**
+	 * Keyframes que observan este punto, y sus índices.
+	 *
+	 * El mapa tiene como índice punteros a keyframes que observan este punto.
+	 * El dato secundario asociado al índice es el índice del vector KeyFrame::mvpMapPoints, cuyo elemento es un puntero a este punto.
+	 */
 	// Keyframes observing the point and associated index in keyframe
 	std::map<KeyFrame*,size_t> mObservations;
 

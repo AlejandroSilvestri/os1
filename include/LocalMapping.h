@@ -101,7 +101,8 @@ public:
 
     /**
      * Método usado por el tracker para solicitar la inclusión de un nuevo keyframe.
-     * Este método agrega el keyframe a la cola LocalMapping.mlNewKeyFrames, que se procesa en un hilo aparte, en LocalMapping.Run por LocalMapping.ProcessNewKeyFrame.
+     * Este método agrega el keyframe a la cola LocalMapping.mlNewKeyFrames, que se procesa en un hilo aparte,
+     * en LocalMapping.Run por LocalMapping.ProcessNewKeyFrame.
      *
      * Invocado sólo desde Tracking.
      */
@@ -259,7 +260,12 @@ protected:
     /** Tracker.*/
     Tracking* mpTracker;
 
-    /** Buffer de solicitud de nuevos keyframes.*/
+    /**
+     * Buffer de solicitud de nuevos keyframes.
+     *
+     * Cola FIFO, los nuevos pedidos se agregan al final con push_back,
+     * y se procesa el keyframe obtenido de front.
+     */
     std::list<KeyFrame*> mlNewKeyFrames;
 
     /** Keyframe actual, el último keyframe nuevo que se ha procesado.*/

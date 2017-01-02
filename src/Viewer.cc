@@ -226,6 +226,12 @@ void Viewer::Run(){
 			trackbarPosicionAnterior = 1960;
 			cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);
 			tiempoAlterado = true;
+			break;
+
+		// Beep
+		case 'b':
+			cout << "\a" << endl;
+			break;
         }
 
 

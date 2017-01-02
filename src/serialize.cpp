@@ -52,13 +52,12 @@
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/set.hpp>
 #include <boost/serialization/map.hpp>
+#include <boost/serialization/split_member.hpp>
 #include <boost/serialization/utility.hpp>
 #include <boost/serialization/assume_abstract.hpp>
 
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
 
 // Clases de orb-slam2
 #include "Map.h"	// Incluye MapPoint y KeyFrame, éste incluye a KeyFrameDatabase
@@ -109,67 +108,50 @@ namespace boost{namespace serialization{
 
 // KeyPoint
 template<class Archive> void serialize(Archive & ar, cv::KeyPoint& kf, const unsigned int version){
-	try{
-		string marca = " KP ";
-		ar & marca;
-		ar & kf.angle;	// Usado en matcher
-		ar & kf.octave;	// Usado en LocalMapping y otros
-		ar & kf.pt.x;
-		ar & kf.pt.y;
-		//ar & kf.class_id;	// No usado
-		//ar & kf.response;	// Solamente se usa durante la extracción en ORBextractor::DistributeOctTree, es efímero
-	}catch(...){
-		cout << "KeyPoint." << endl;
-		throw std::invalid_argument( "KeyPoint." );
-	}
+	string marca = " KP ";
+	ar & marca;
+	ar & kf.pt.x;
+	ar & kf.pt.y;
+	ar & kf.angle;	// Usado en matcher
+	ar & kf.octave;	// Usado en LocalMapping y otros
 }
 
 // Mat: save
 template<class Archive> void save(Archive & ar, const ::cv::Mat& m, const unsigned int version){
-	try{
-		string marca;
-		marca = " Mat " + to_string(m.rows) + ", " + to_string(m.cols) + ". ";
-		ar & marca;
+	string marca;
+	marca = " Mat " + to_string(m.rows) + ", " + to_string(m.cols) + ". ";
+	ar & marca;
 
-		size_t elem_size = m.elemSize();
-		int elem_type = m.type();
+	size_t elem_size = m.elemSize();
+	int elem_type = m.type();
 
-		ar << m.cols;
-		ar << m.rows;
-		ar << elem_size;
-		ar << elem_type;
+	ar << m.cols;
+	ar << m.rows;
+	ar << elem_size;
+	ar << elem_type;
 
-		const size_t data_size = m.cols * m.rows * elem_size;
-		ar & boost::serialization::make_array(m.ptr(), data_size);
-		marca = " fin Mat.";
-		ar & marca;
-	}catch(...){
-		throw std::invalid_argument( "Mat." );
-	}
+	const size_t data_size = m.cols * m.rows * elem_size;
+	ar & boost::serialization::make_array(m.ptr(), data_size);
+	marca = " fin Mat.";
+	ar & marca;
 }
 
 // Mat: load
 template<class Archive> void load(Archive & ar, ::cv::Mat& m, const unsigned int version){
-	try{
-		int cols, rows, elem_type;
-		size_t elem_size;
+	int cols, rows, elem_type;
+	size_t elem_size;
 
-		string marca = " Mat ";
-		ar & marca;
-		ar >> cols;
-		ar >> rows;
-		ar >> elem_size;
-		ar >> elem_type;
+	string marca = " Mat ";
+	ar & marca;
+	ar >> cols;
+	ar >> rows;
+	ar >> elem_size;
+	ar >> elem_type;
 
-		m.create(rows, cols, elem_type);
-		size_t data_size = m.cols * m.rows * elem_size;
+	m.create(rows, cols, elem_type);
+	size_t data_size = m.cols * m.rows * elem_size;
 
-		ar & boost::serialization::make_array(m.ptr(), data_size);
-	}catch(...){
-		cout << "Mat." << endl;
-		throw std::invalid_argument( "Mat." );
-	}
-
+	ar & boost::serialization::make_array(m.ptr(), data_size);
 }
 
 
@@ -185,11 +167,14 @@ template<class Archivo> void Map::serialize(Archivo& ar, const unsigned int vers
 	cout << "MapPoints: " << mspMapPoints.size() << endl
 		 << "KeyFrames: " << mspKeyFrames.size() << endl;
     cout << "Último keyframe: " << mnMaxKFid << endl;
-	ar & mspMapPoints;
-    ar & mspKeyFrames;
+
+    // Propiedades
+    ar & mnMaxKFid;
+
+    // Contenedores
+	ar & mspMapPoints; cout << "MapPoints guarados." << endl;
+    ar & mspKeyFrames; cout << "Keyframes guarados." << endl;
     ar & mvpKeyFrameOrigins;
-    ar & mnMaxKFid;	//ar & const_cast<long unsigned int &> (mnMaxKFid);
-    //ar & mvpReferenceMapPoints;	// Es un vector efímero, no hace falta guardarlo, se genera durante el tracking normal.
 }
 INST_EXP(Map)
 
@@ -203,7 +188,8 @@ void Map::save(char* archivo){
 	ArchivoSalida ar(os, boost::archive::no_header);
 
 	// Guarda mappoints y keyframes
-	ar & *this;
+	//ar & *this;
+	serialize<ArchivoSalida>(ar, 0);
 }
 
 void Map::load(char* archivo){
@@ -214,7 +200,10 @@ void Map::load(char* archivo){
 	ArchivoEntrada ar(is, boost::archive::no_header);
 
 	// Carga mappoints y keyframes en Map
-	ar & *this;
+	//ar & *this;
+	serialize<ArchivoEntrada>(ar, 0);
+
+
 	// En este punto terminó la carga, se procede a la reconstrucción de lo no serializado.
 
 	/*
@@ -226,8 +215,7 @@ void Map::load(char* archivo){
 	 * mapa Única instancia del mapa de cuyo mspKeyFrames se recorrerán los keyframes
 	 */
 	KeyFrameDatabase* kfdb = Sistema->mpKeyFrameDatabase;//Map::mpKeyFrameDatabase;
-	//kfdb->clear();
-	long unsigned int maxId = 0;
+
 
 	// Recorre todos los keyframes cargados
 	for(KeyFrame* kf : mspKeyFrames){
@@ -247,7 +235,7 @@ void Map::load(char* archivo){
 	//}
 
 	// Next id para MapPoint
-	maxId = 0;
+	long unsigned int maxId = 0;
 	for(auto mp : mspMapPoints) maxId = max(maxId, mp->mnId);
 	MapPoint::nNextId = maxId + 1;
 
@@ -263,6 +251,7 @@ bool Map::enMapa(MapPoint *pMP){
 }
 
 void Map::depurar(){
+	cout << "\nDepurando..." << endl;
 	//Primero se deben eliminar los puntos del keyframe, luego los keyframes de los puntos.
 
 	// Anula puntos malos en el vector KeyFrame::mvpMapPoints
@@ -282,18 +271,19 @@ void Map::depurar(){
 			}
 			if(borrar){
 				// Para borrar el punto del vector en el keyframe, el keyframe debe poder encontrarse en las observaciones del punto.
-				pKF->EraseMapPointMatch(pMP);	// lo borra (lo pone NULL en el vector mvpMapPoints)
+				//pKF->EraseMapPointMatch(pMP);	// lo borra (lo pone NULL en el vector mvpMapPoints)
 
 				// Buscar el punto en el vector
 				int idx=pMPs.size();
 				for(; --idx>=0;){
 					auto pMP2 = pMPs[idx];
 					if(pMP2 && pMP2 == pMP){
-						// encontrado, reintentar de manera más agresiva
+						// encontrado, borrar
 						pKF->EraseMapPointMatch(idx);
-						break;
+						//break;// En vez de parar cuando lo enuentra, continúa por si aparece varias veces.
 					}
 				}
+				pMPs = pKF->GetMapPointMatches();
 				if(std::find(pMPs.begin(), pMPs.end(), pMP) != pMPs.end()){
 					cout << "¡No se borró! ";
 				}
@@ -325,7 +315,6 @@ void Map::depurar(){
 
 			}
 			if(borrar){
-
 				pMP->EraseObservation(pKF);	// se borra del mapa de observaciones
 				if(pMP->GetIndexInKeyFrame(pKF)>=0) cout << "¡No se borró! ";
 				cout << "MP " << pMP->mnId << endl;
@@ -354,35 +343,65 @@ mpReplaced(static_cast<MapPoint*>(NULL)), mfMinDistance(0), mfMaxDistance(0), mp
  * Se invoca al serializar Map::mspMapPoints y KeyFrame::mvpMapPoints, cuyos mapPoints nunca tienen mbBad true.
  */
 template<class Archivo> void MapPoint::serialize(Archivo& ar, const unsigned int version){
-	std::string marca = " MapPoint " + std::to_string(mnId);
-	ar & marca;
+	bool enMapa = mpMap->enMapa(this);
 
-	ar & mnId;	//const_cast<long unsigned int &> (mnId);
-	ar & mbBad;	//const_cast<bool &> (mbBad);
+	/*
+	std::string marca = " MapPoint " + std::to_string(mnId) + (enMapa? ". " : ": No en mapa! ") + (mbBad?": Malo. ":"");
+	ar & marca; cout << marca << endl;
+
+	if(!enMapa) mbBad = true;
+
+
 	if(mbBad){
-		cerr << "Bad.  ";
-		marca = " MP is Bad ";
-		ar & marca;
+		ar & mbBad;
+		return;
 	}
-	ar & mnFirstKFid;	//const_cast<long int &> (mnFirstKFid);
-	ar & nObs;	//const_cast<int &> (nObs);
-	ar & mnVisible;	//const_cast<int &> (mnVisible);
-	ar & mnFound;	//const_cast<int &> (mnFound);
 
-	// Punteros
-	ar & mpRefKF;
+
+	// Preparación para guardar
+	if(!CARGANDO(ar)){
+		// Depuración de mObservations.  Sólo deja los keyframes que están en el mapa.
+		for(auto it = mObservations.begin(); it != mObservations.end();){
+			KeyFrame* pKF = it->first;
+			it++;
+			if(pKF && !mpMap->enMapa(pKF)){	// Si no es nulo ni está en el mapa
+				cerr << "Keyframe fuera de mapa:" << pKF->mnId << " en MP:" << mnId << endl;
+				//EraseObservation(pKF);
+			}
+		}
+
+	}
+
+	ar & mbBad;
+	if(mbBad)
+		return;
+	*/
+
+	// Propiedades
+	ar & mnId;
+	ar & mnFirstKFid;
+	ar & nObs;
+	ar & mnVisible;
+	ar & mnFound;
+	//ar & rgb;	// ¿Serializa cv::Vec3b?
 
 	// Mat
-	ar & mWorldPos;	//const_cast<cv::Mat &> (mWorldPos);
-	ar & mDescriptor;	//const_cast<cv::Mat &> (mDescriptor);	// Reconstruíble con mp->ComputeDistinctiveDescriptors() (quizás requiere primero haber cargado los keyframes.), pero significa mucho trabajo para pocos datos.
+	ar & mWorldPos;
+	ar & mDescriptor;
+
+	// Punteros
+	//ar & mpRefKF;	// Se puede reconstruir como mpRefKF=mObservations.begin()->first;
 
 	// Contenedores
-	ar & mObservations;
+	//ar & mObservations;
 
 	// Reconstruíbles con mp->UpdateNormalAndDepth();
 	ar & const_cast<cv::Mat &> (mNormalVector); // Reconstruíble con mp->UpdateNormalAndDepth();
 	ar & const_cast<float &> (mfMinDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
 	ar & const_cast<float &> (mfMaxDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
+
+	//if(CARGANDO(ar))
+	//	mpRefKF=mObservations.begin()->first;
 }
 INST_EXP(MapPoint)
 
@@ -405,9 +424,6 @@ KeyFrame::KeyFrame():
     mnLoopQuery(0), mnLoopWords(0), mnRelocQuery(0), mnRelocWords(0), mnBAGlobalForKF(0),
 
     fx(Frame::fx), fy(Frame::fy), cx(Frame::cx), cy(Frame::cy), invfx(Frame::invfx), invfy(Frame::invfy),
-    //mbf(Sistema->mpTracker->mCurrentFrame.mbf),
-    //mb(Sistema->mpTracker->mCurrentFrame.mb),
-    //mThDepth(Sistema->mpTracker->mCurrentFrame.mThDepth),
     mbf(0.0), mb(0.0), mThDepth(0.0),	// Valores no usados en monocular, que pasan por varios constructores.
     N(0), mnScaleLevels(Sistema->mpTracker->mCurrentFrame.mnScaleLevels),
     mfScaleFactor(Sistema->mpTracker->mCurrentFrame.mfScaleFactor),
@@ -436,98 +452,102 @@ bool KeyFrame::flagNotErase(){
  *
  */
 template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int version){
-	try{
-		cout << "Keyframe " << mnId << endl;
+	bool enMapa = mpMap->enMapa(this);
 
-		vector<KeyFrame *> todosLosKeyFrames = mpMap->GetAllKeyFrames();
-		std::string marca = " KeyFrame " + std::to_string(mnId) + ": " + to_string(std::find(todosLosKeyFrames.begin(), todosLosKeyFrames.end(), this) != todosLosKeyFrames.end());
-		ar & marca;
+	/*std::string marca = " KeyFrame " + std::to_string(mnId) + (enMapa? ". " : ": No en mapa! ") + (mbBad?": Malo. ":"");
+	ar & marca; cout << marca << endl;
 
-		// Propiedades
-		ar & mnId;	//ar & const_cast<long unsigned int &> (mnId);
-		ar & mbBad;	//ar & const_cast<bool &> (mbBad);
-		if(mbBad){
-			cerr << "Bad.  ";
-			marca = " KF is Bad ";
-			ar & marca;
+	if(!enMapa) mbBad = true;
 
-			// Es malo, no continúa serializando
-			return;
-		}
+	// Propiedades
+	ar & mbBad;	//ar & const_cast<bool &> (mbBad);
+	if(mbBad)	// Es malo o no está en map, no continúa serializando.  No debería suceder si se depura antes.
+		return;
+	*/
 
-		// Punteros
-		ar & mpParent;
+	// Preparación para guardar
+	if(!CARGANDO(ar)){
+		// Recalcula mbNotErase para evitar valores true efímeros
+		mbNotErase = !mspLoopEdges.empty();
 
-
-		// Mat
-		ar & Tcw;	//ar & const_cast<cv::Mat &> (Tcw);
-		ar & const_cast<cv::Mat &> (mK);	// Mismo valor en todos los keyframes
-		ar & const_cast<cv::Mat &> (mDescriptors);
-		marca = " Fin descriptores, inicio contenedores "; ar & marca;
-
-		// Contenedores
-		marca = "Kps:" + to_string(mvKeysUn.size()) + ". "; ar & marca;
-		ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
-		marca = " EjesBucles "; ar & marca;
-		ar & mspLoopEdges;
-		marca = " Puntos "; ar & marca;
-		ar & mvpMapPoints;
-
-
-		// Sólo load
-		if(CARGANDO(ar)){
-			// Reconstrucciones
-			//int n = const_cast<int &> (N);
-			const_cast<int &> (N) = mvKeysUn.size();
-
-			mbNotErase = !mspLoopEdges.empty();
-
-			ComputeBoW();	// Sólo actúa al cargar, porque si el keyframe ya tiene los datos no hace nada.
-			SetPose(Tcw);
-			// UpdateConnections sólo se puede invocar luego de cargados todos los keyframes, para generar mConnectedKeyFrameWeights, mvpOrderedConnectedKeyFrames, mvOrderedWeights y msChildrens
-
-
-			// Reconstruir la grilla
-
-			// Dimensiona los vectores por exceso
-			std::vector<std::size_t> grid[FRAME_GRID_COLS][FRAME_GRID_ROWS];
-			int nReserve = 0.5f*N/(FRAME_GRID_COLS*FRAME_GRID_ROWS);
-			for(unsigned int i=0; i<FRAME_GRID_COLS;i++)
-				for (unsigned int j=0; j<FRAME_GRID_ROWS;j++)
-					grid[i][j].reserve(nReserve);
-
-			for(int i=0;i<N;i++){
-				const cv::KeyPoint &kp = mvKeysUn[i];
-				int posX = round((kp.pt.x-mnMinX)*mfGridElementWidthInv);
-				int posY = round((kp.pt.y-mnMinY)*mfGridElementHeightInv);
-
-				//Keypoint's coordinates are undistorted, which could cause to go out of the image
-				if(!(posX<0 || posX>=FRAME_GRID_COLS || posY<0 || posY>=FRAME_GRID_ROWS))
-					grid[posX][posY].push_back(i);
+		/*// Depuración de mvpMapPoints.  Sólo deja los que están en el mapa.
+		for(auto &pMP: mvpMapPoints)
+			if(pMP && !mpMap->enMapa(pMP)){	// Si no es nulo ni está en el mapa
+				cerr << "Punto fuera de mapa:" << pMP->mnId << " en KF:" << mnId << endl;
+				//pMP = NULL;
 			}
-
-			// Copia al vector final.  No sé si esta parte agrega valor.
-			mGrid.resize(mnGridCols);
-			for(int i=0; i<mnGridCols;i++){
-				mGrid[i].resize(mnGridRows);
-				for(int j=0; j<mnGridRows; j++)
-					mGrid[i][j] = grid[i][j];
-			}
-
-
-			/*
-			 * ,
-			 * se debe invocar UpdateConnections luego de cargar todos los keyframes y mappoints.
-			 * No se puede invocar durante la carga porque colgaría el programa al intentar acceder a objetos que no están terminados.
-			 *
-			 * UpdateBestCovisibles() genera mvpOrderedConnectedKeyFrames y mvOrderedWeights
-			 */
-		}
-	}catch(...){
-		cout << "KeyFrame." << endl;
-		throw std::invalid_argument( "KeyFrame." );
+		*/
 	}
 
+	ar & mnId;
+	ar & mbNotErase;
+
+
+	// Mat
+	ar & Tcw;	//ar & const_cast<cv::Mat &> (Tcw);
+	ar & const_cast<cv::Mat &> (mK);	// Mismo valor en todos los keyframes
+	ar & const_cast<cv::Mat &> (mDescriptors);
+
+	// Contenedores
+	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
+	ar & mvpMapPoints;
+	if(mbNotErase)
+		ar & mspLoopEdges;
+
+
+	// Punteros
+	ar & mpParent;
+
+
+	// Sólo load
+	if(CARGANDO(ar)){
+		// Reconstrucciones
+		//int n = const_cast<int &> (N);
+		const_cast<int &> (N) = mvKeysUn.size();
+
+		mbNotErase = !mspLoopEdges.empty();
+
+		ComputeBoW();	// Sólo actúa al cargar, porque si el keyframe ya tiene los datos no hace nada.
+		SetPose(Tcw);
+		// UpdateConnections sólo se puede invocar luego de cargados todos los keyframes, para generar mConnectedKeyFrameWeights, mvpOrderedConnectedKeyFrames, mvOrderedWeights y msChildrens
+
+
+		// Reconstruir la grilla
+
+		// Dimensiona los vectores por exceso
+		std::vector<std::size_t> grid[FRAME_GRID_COLS][FRAME_GRID_ROWS];
+		int nReserve = 0.5f*N/(FRAME_GRID_COLS*FRAME_GRID_ROWS);
+		for(unsigned int i=0; i<FRAME_GRID_COLS;i++)
+			for (unsigned int j=0; j<FRAME_GRID_ROWS;j++)
+				grid[i][j].reserve(nReserve);
+
+		for(int i=0;i<N;i++){
+			const cv::KeyPoint &kp = mvKeysUn[i];
+			int posX = round((kp.pt.x-mnMinX)*mfGridElementWidthInv);
+			int posY = round((kp.pt.y-mnMinY)*mfGridElementHeightInv);
+
+			//Keypoint's coordinates are undistorted, which could cause to go out of the image
+			if(!(posX<0 || posX>=FRAME_GRID_COLS || posY<0 || posY>=FRAME_GRID_ROWS))
+				grid[posX][posY].push_back(i);
+		}
+
+		// Copia al vector final.  No sé si esta parte agrega valor.
+		mGrid.resize(mnGridCols);
+		for(int i=0; i<mnGridCols;i++){
+			mGrid[i].resize(mnGridRows);
+			for(int j=0; j<mnGridRows; j++)
+				mGrid[i][j] = grid[i][j];
+		}
+
+
+		/*
+		 * ,
+		 * se debe invocar UpdateConnections luego de cargar todos los keyframes y mappoints.
+		 * No se puede invocar durante la carga porque colgaría el programa al intentar acceder a objetos que no están terminados.
+		 *
+		 * UpdateBestCovisibles() genera mvpOrderedConnectedKeyFrames y mvOrderedWeights
+		 */
+	}
 }
 INST_EXP(KeyFrame)
 

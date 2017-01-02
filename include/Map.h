@@ -172,21 +172,6 @@ public:
     std::string analisis(bool profundo = false);
 
 
-    /**
-     * Buffer usado al cargar.
-     * load carga inicialmente los valores fijos, aquéllos que se mantienen idénticos en todos los keyframes.
-     * Usa keyFrameBuffer como contenedor de estos valores, accesibles por el constructor KeyFrame() durante la serialización de carga.
-     */
-    KeyFrame* keyFrameBuffer = NULL;
-
-    /**
-     * Buffer usado al cargar.
-     * load carga inicialmente los valores fijos, aquéllos que se mantienen idénticos en todos los MapPoints.
-     * Usa keyMapPointBuffer como contenedor de estos valores, accesibles por el constructor KeyFrame() durante la serialización de carga.
-     */
-    MapPoint* mapPointBuffer = NULL;
-
-
 protected:
     /** Puntos del mapa.*/
     std::set<MapPoint*> mspMapPoints;
@@ -209,8 +194,8 @@ protected:
     /** Mutext del mapa.*/
     std::mutex mMutexMap;
 
-	friend class boost::serialization::access;
 	/** Serialización agregada para guardar y cargar mapas.*/
+	friend class boost::serialization::access;
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 };
 
