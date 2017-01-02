@@ -479,7 +479,17 @@ public:
      */
     std::string analisis();
 
+    /**
+     * Informa el estado de la marca mbNotErase, para análisis y depuracón.
+     */
     bool flagNotErase();
+
+    /**
+     * Reconstruye MapPoint::mObservations y MapPoint::mObs a partir de KeyFrame::mvpMapPoints
+     */
+    void buildObservations();
+
+
 
     // The following variables are accesed from only 1 thread or never change (no mutex needed).
 public:

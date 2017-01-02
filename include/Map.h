@@ -171,6 +171,11 @@ public:
      */
     std::string analisis(bool profundo = false);
 
+    /**
+     * Buscar un keyframe por su id
+     */
+    //KeyFrame *findKeyFrameById(long unsigned int id);
+
 
 protected:
     /** Puntos del mapa.*/

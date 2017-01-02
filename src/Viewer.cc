@@ -98,7 +98,7 @@ void Viewer::Run(){
     pangolin::Var<bool> menuLocalizationMode("menu.Tracking, sin mapeo",false,true);
     pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa", false, false);
     pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa", false, false);
-    pangolin::Var<bool> menuGrabar("menu.Grabar", false, false);
+    pangolin::Var<bool> menuGrabar("menu.Grabar video", false, false);
     pangolin::Var<bool> menuReset("menu.Reset",false,false);
     //pangolin::Var<bool> menuSalir("menu.Salir",false,false);
 
@@ -238,11 +238,6 @@ void Viewer::Run(){
 
         // Pangolin, visor del mapa
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        	// c es la cámara.  Asumo que es el cuadro actual, quizás sea la cámara de Pangolin
-        	// Twp = Twc * Tcp
-        	//cv::Mat Tcp = (cv::Mat(4,4)_<double> << 0,1,0,0, 1,0,0,0, 0,0,1,1, 0,0,0,1);
-        	//cv::Mat Twp =  Twc * Tcp;
-        	//Twc = Twp;
 
         mpMapDrawer->GetCurrentOpenGLCameraMatrix(Twc);
         // Corrige la pose de la cámara de Pangolin, sólo si se está siguiendo la cámara.  Si no, queda como estaba.
@@ -253,19 +248,12 @@ void Viewer::Run(){
         	}
         	if(menuPajaro){
         		// Rototraslación del pájaro respecto de la cámara
-        		/*cv::Mat Tcp = cv::Mat(4,4, CV_32F, {
-    					1, 0, 0, 0,
-    					0, 0,-1, 0,
-    					0, 1, 0, 1,
-    					0, 0, 0, 1
-            		});*/
         		float matriz[] = {	1, 0, 0, 0,
 									0, 0, 1, 0,
 									0,-1, 0,-0.25,	// Desplazamiento para compensar el desplazamiento establecido para el visor de Pangolin en la inicialización
 									0, 0, 0, 1
         		};
         		cv::Mat Tcp = cv::Mat(4,4, CV_32F, matriz);
-        		//cout << "Tcp creada" << Tcp << endl;
         		pangolin::OpenGlMatrix Twp;
                 mpMapDrawer->GetCurrentOpenGLCameraMatrixModified(Tcp, Twp);
                 s_cam.Follow(Twp);
@@ -404,23 +392,14 @@ void Viewer::Run(){
 
         if(menuGuardarMapa){
         	menuGuardarMapa = false;
-        	Map* mapa = mpMapDrawer->mpMap;
 
         	// Pasar a tracking para pausar el mapa
         	mpSystem->ActivateLocalizationMode();
         	menuLocalizationMode = true;
         	videoPausado = true;
 
-        	// Espera a que el mapeador pause
-        	LocalMapping* mapeador = mpTracker->mpLocalMapper;
-        	while(!mapeador->isStopped()){
-        		//mapeador->RequestStop();	// Por las dudas
-        		usleep(1000);
-        	}
-
-        	char archivo[] = "mapa.bin";
-        	mapa->save(archivo);
-        	cout << "Mapa guardado." << endl;
+        	// Señal para que main guarde el mapa
+        	guardarMapa = true;
         }
 
 

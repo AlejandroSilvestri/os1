@@ -281,9 +281,6 @@ int main(int argc, char **argv){
         else
         	cout << "No hay imagen en bucle nº " << n << endl;	// No pasa nunca
 
-        // Start cronómetro para medir duración del procesamiento
-        double ttrack = std::chrono::duration_cast<std::chrono::duration<double> >(std::chrono::steady_clock::now() - t1).count();
-
     	// Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
     	if(visor->cargarMapa){
     		visor->cargarMapa = false;
@@ -305,10 +302,24 @@ int main(int argc, char **argv){
         	SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
 
     	}
+    	if(visor->guardarMapa){
+    		visor->guardarMapa = false;
+
+    	    // Espera a que se detenga LocalMapping
+    		SLAM.mpLocalMapper->RequestStop();
+    		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
+
+        	char archivo[] = "mapa.bin";
+        	SLAM.mpMap->save(archivo);
+        	cout << "Mapa guardado." << endl;
+
+    	}
+
+        // Stop cronómetro para medir duración del procesamiento
+        double ttrack = std::chrono::duration_cast<std::chrono::duration<double> >(std::chrono::steady_clock::now() - t1).count();
 
         // Delay para 30 fps, período de 0.033 s
         if(ttrack < 0.033)
-        	//std::this_thread::sleep_for(std::chrono::milliseconds((0.033-ttrack)*1e3));
         	usleep((0.033-ttrack)*1e6);
 
     }

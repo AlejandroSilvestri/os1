@@ -146,6 +146,9 @@ public:
     /** Señal para que main cargue en mapa en el thread de System y Tracking.*/
     bool cargarMapa = false;
 
+    /** Señal para que main guarde el mapa en el thread de System y Tracking.*/
+    bool guardarMapa = false;
+
     /**
      * Período mínimo entre cuadros, en segundos.
      * El bucle main se asegura de demorar como mínimo este tiempo entre dos cuadros.

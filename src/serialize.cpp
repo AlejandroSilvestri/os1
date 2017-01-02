@@ -118,10 +118,6 @@ template<class Archive> void serialize(Archive & ar, cv::KeyPoint& kf, const uns
 
 // Mat: save
 template<class Archive> void save(Archive & ar, const ::cv::Mat& m, const unsigned int version){
-	string marca;
-	marca = " Mat " + to_string(m.rows) + ", " + to_string(m.cols) + ". ";
-	ar & marca;
-
 	size_t elem_size = m.elemSize();
 	int elem_type = m.type();
 
@@ -130,10 +126,8 @@ template<class Archive> void save(Archive & ar, const ::cv::Mat& m, const unsign
 	ar << elem_size;
 	ar << elem_type;
 
-	const size_t data_size = m.cols * m.rows * elem_size;
-	ar & boost::serialization::make_array(m.ptr(), data_size);
-	marca = " fin Mat.";
-	ar & marca;
+	size_t data_size = m.cols * m.rows * elem_size;
+	ar << boost::serialization::make_array(m.ptr(), data_size);
 }
 
 // Mat: load
@@ -141,17 +135,15 @@ template<class Archive> void load(Archive & ar, ::cv::Mat& m, const unsigned int
 	int cols, rows, elem_type;
 	size_t elem_size;
 
-	string marca = " Mat ";
-	ar & marca;
 	ar >> cols;
 	ar >> rows;
 	ar >> elem_size;
 	ar >> elem_type;
 
 	m.create(rows, cols, elem_type);
-	size_t data_size = m.cols * m.rows * elem_size;
 
-	ar & boost::serialization::make_array(m.ptr(), data_size);
+	size_t data_size = m.cols * m.rows * elem_size;
+	ar >> boost::serialization::make_array(m.ptr(), data_size);
 }
 
 
@@ -172,8 +164,8 @@ template<class Archivo> void Map::serialize(Archivo& ar, const unsigned int vers
     ar & mnMaxKFid;
 
     // Contenedores
-	ar & mspMapPoints; cout << "MapPoints guarados." << endl;
-    ar & mspKeyFrames; cout << "Keyframes guarados." << endl;
+	ar & mspMapPoints; cout << "MapPoints serializados." << endl;
+    ar & mspKeyFrames; cout << "Keyframes serializados." << endl;
     ar & mvpKeyFrameOrigins;
 }
 INST_EXP(Map)
@@ -181,62 +173,84 @@ INST_EXP(Map)
 
 
 void Map::save(char* archivo){
+	// Elimina keyframes y mappoint malos de KeyFrame::mvpMapPoints y MapPoint::mObservations
 	depurar();
+
+	// Previene la modificación del mapa por otros hilos
+	unique_lock<mutex> lock(mMutexMap);
 
 	// Abre el archivo
 	std::ofstream os(archivo);
 	ArchivoSalida ar(os, boost::archive::no_header);
 
 	// Guarda mappoints y keyframes
-	//ar & *this;
 	serialize<ArchivoSalida>(ar, 0);
 }
 
 void Map::load(char* archivo){
 	// A este punto se llega con el mapa limpio y los sistemas suspendidos para no interferir.
 
-	// Abre el archivo
-	std::ifstream is(archivo);
-	ArchivoEntrada ar(is, boost::archive::no_header);
+	{
+		// Por las dudas, se previene la modificación del mapa mientras se carga.  Se libera para la reconstrucción, por las dudas.
+		unique_lock<mutex> lock(mMutexMap);
 
-	// Carga mappoints y keyframes en Map
-	//ar & *this;
-	serialize<ArchivoEntrada>(ar, 0);
+		// Abre el archivo
+		std::ifstream is(archivo);
+		ArchivoEntrada ar(is, boost::archive::no_header);
 
-
-	// En este punto terminó la carga, se procede a la reconstrucción de lo no serializado.
-
-	/*
-	 * Reconstruye KeyFrameDatabase luego que se hayan cargado todos los keyframes.
-	 * Recorre la lista de keyframes del mapa para reconstruir su lista invertida mvInvertedFile con el método add.
-	 * No puede asignar el puntero mpKeyFrameDB del keyframe porque es protegido.  Esto se hace en el constructor de keyframe.
-	 *
-	 * kfdb Única instancia de KeyFrameDatabase, cuyo mvInvertedFile se reconstruirá
-	 * mapa Única instancia del mapa de cuyo mspKeyFrames se recorrerán los keyframes
-	 */
-	KeyFrameDatabase* kfdb = Sistema->mpKeyFrameDatabase;//Map::mpKeyFrameDatabase;
-
-
-	// Recorre todos los keyframes cargados
-	for(KeyFrame* kf : mspKeyFrames){
-		// Agrega el keyframe a la base de datos de keyframes
-		kfdb->add(kf);
-
-		// UpdateConnections para reconstruir el grafo de covisibilidad.  Conviene ejecutarlo en orden de mnId.
-		kf->UpdateConnections();
-		// kf->UpdateBestCovisibles();
+		// Carga mappoints y keyframes en Map
+		serialize<ArchivoEntrada>(ar, 0);
 	}
-	//KeyFrame::nNextId = maxId + 1;
+
+
+
+	// Reconstrucción, ya cargados todos los keyframes y mappoints.
 	KeyFrame::nNextId = mnMaxKFid + 1;	// mnMaxKFid es el id del último keyframe agregado al mapa
 
-	//for(MapPoint* mp : mspMapPoints){
-		// Reconstruye normal, profundidad y alguna otra cosa.  Requiere cargados los keyframes.
-		//mp->UpdateNormalAndDepth();
-	//}
+	/*
+	 * Recorre los keyframes del mapa:
+	 * - Reconstruye la base de datos agregándolos
+	 * - UpdateConnections para reconstruir los grafos
+	 * - MapPoint::AddObservation sobre cada punto, para reconstruir mObservations y mObs
+	 */
+	KeyFrameDatabase* kfdb = Sistema->mpKeyFrameDatabase;//Map::mpKeyFrameDatabase;
+	for(KeyFrame *pKF : mspKeyFrames){
+		// Agrega el keyframe a la base de datos de keyframes
+		kfdb->add(pKF);
 
-	// Next id para MapPoint
+		// UpdateConnections para reconstruir el grafo de covisibilidad.  Conviene ejecutarlo en orden de mnId.
+		pKF->UpdateConnections();
+
+		// Reconstruye mObservations y mObs en MapPoint
+		pKF->buildObservations();
+
+	}
+
+	/*
+	 * Recorre los MapPoints del mapa:
+	 * - Determina el id máximo, para luego establecer MapPoint::nNextId
+	 * - Reconstruye mpRefKF
+	 * - Reconstruye propiedades con UpdateNormalAndDepth (usa mpRefKF)
+	 */
 	long unsigned int maxId = 0;
-	for(auto mp : mspMapPoints) maxId = max(maxId, mp->mnId);
+	for(MapPoint *pMP : mspMapPoints){
+		// Busca el máximo id, para al final determinar nNextId
+		maxId = max(maxId, pMP->mnId);
+
+		// Reconstruye mpRefKF a partir de mnFirstKFid.  setRefKF escribe la propiedad protegida.  Requiere mObservations
+		long unsigned int id = pMP->mnFirstKFid;
+		std::set<KeyFrame*>::iterator it = std::find_if(mspKeyFrames.begin(), mspKeyFrames.end(), [id](KeyFrame *KF){return KF->mnId == id;});
+		pMP->setRefKF((it != mspKeyFrames.end())? *it : NULL);
+
+		/* Reconstruye:
+		 * - mNormalVector
+		 * - mfMinDistance
+		 * - mfMaxDistance
+		 *
+		 * mediante UpdateNormalAndDepth, que requiere haber reconstruído antes mpRefKF.
+		 */
+		pMP->UpdateNormalAndDepth();
+	}
 	MapPoint::nNextId = maxId + 1;
 
 
@@ -323,7 +337,45 @@ void Map::depurar(){
 	}
 }
 
+std::string Map::analisis(bool profundo){
+	std::string reporte;
+	int nulos = 0, malos = 0;
 
+	// Reportar keyframes y mappoints isBad
+	reporte = "\n\nMap";
+
+	// std::set<MapPoint*> mspMapPoints
+	for(auto &pMP: mspMapPoints)
+		if(!pMP)
+			nulos++;
+		else if(pMP->isBad())
+			malos++;
+
+	reporte += "\nmspMapPoints Total:" + to_string(mspMapPoints.size()) + ", Null:" + to_string(nulos) + ", Bad:" + to_string(malos);
+
+	// std::set<KeyFrame*> mspKeyFrames
+	for(auto &pKF: mspKeyFrames)
+		if(!pKF)
+			nulos++;
+		else if(pKF->isBad())
+			malos++;
+
+	reporte += "\nmspKeyFrames Total:" + to_string(mspKeyFrames.size()) + ", Null:" + to_string(nulos) + ", Bad:" + to_string(malos);
+
+	if(profundo){
+		// El análisis profundo consiste en generar el análisis de cada keyframe y cada mappoint
+
+		// std::set<MapPoint*> mspMapPoints
+		for(auto &pMP: mspMapPoints)
+			reporte += pMP->analisis();
+
+		// std::set<KeyFrame*> mspKeyFrames
+		for(auto &pKF: mspKeyFrames)
+			reporte += pKF->analisis();
+	}
+
+	return reporte;
+}
 
 // MapPoint: usando map ========================================================
 
@@ -341,71 +393,31 @@ mpReplaced(static_cast<MapPoint*>(NULL)), mfMinDistance(0), mfMaxDistance(0), mp
 /**
  * Serializador de MapPoint
  * Se invoca al serializar Map::mspMapPoints y KeyFrame::mvpMapPoints, cuyos mapPoints nunca tienen mbBad true.
+ * La serialización de MapPoint evita punteros para asegurar el guardado consecutivo de todos los puntos antes de proceder con los KeyFrames.
+ * Esto evita problemas no identificados con boost::serialization, que cuelgan la aplicación al guardar.
  */
 template<class Archivo> void MapPoint::serialize(Archivo& ar, const unsigned int version){
-	bool enMapa = mpMap->enMapa(this);
-
-	/*
-	std::string marca = " MapPoint " + std::to_string(mnId) + (enMapa? ". " : ": No en mapa! ") + (mbBad?": Malo. ":"");
-	ar & marca; cout << marca << endl;
-
-	if(!enMapa) mbBad = true;
-
-
-	if(mbBad){
-		ar & mbBad;
-		return;
-	}
-
-
-	// Preparación para guardar
-	if(!CARGANDO(ar)){
-		// Depuración de mObservations.  Sólo deja los keyframes que están en el mapa.
-		for(auto it = mObservations.begin(); it != mObservations.end();){
-			KeyFrame* pKF = it->first;
-			it++;
-			if(pKF && !mpMap->enMapa(pKF)){	// Si no es nulo ni está en el mapa
-				cerr << "Keyframe fuera de mapa:" << pKF->mnId << " en MP:" << mnId << endl;
-				//EraseObservation(pKF);
-			}
-		}
-
-	}
-
-	ar & mbBad;
-	if(mbBad)
-		return;
-	*/
-
 	// Propiedades
 	ar & mnId;
 	ar & mnFirstKFid;
-	ar & nObs;
 	ar & mnVisible;
 	ar & mnFound;
 	//ar & rgb;	// ¿Serializa cv::Vec3b?
 
 	// Mat
 	ar & mWorldPos;
-	ar & mDescriptor;
-
-	// Punteros
-	//ar & mpRefKF;	// Se puede reconstruir como mpRefKF=mObservations.begin()->first;
-
-	// Contenedores
-	//ar & mObservations;
-
-	// Reconstruíbles con mp->UpdateNormalAndDepth();
-	ar & const_cast<cv::Mat &> (mNormalVector); // Reconstruíble con mp->UpdateNormalAndDepth();
-	ar & const_cast<float &> (mfMinDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
-	ar & const_cast<float &> (mfMaxDistance); // Reconstruíble con mp->UpdateNormalAndDepth();
-
-	//if(CARGANDO(ar))
-	//	mpRefKF=mObservations.begin()->first;
+	ar & mDescriptor;	// Reconstruíble, pero con mucho trabajo
 }
 INST_EXP(MapPoint)
 
 
+void MapPoint::setRefKF(KeyFrame* pKF){
+	if(pKF)
+		mpRefKF = pKF;
+	else
+		mpRefKF = (*mObservations.begin()).first;
+
+}
 
 // KeyFrame ========================================================
 /**
@@ -444,6 +456,15 @@ bool KeyFrame::flagNotErase(){
 	return mbNotErase;
 }
 
+void KeyFrame::buildObservations(){
+	// Recorre los puntos
+	size_t largo = mvpMapPoints.size();
+	for(size_t i=0; i<largo; i++){
+		MapPoint *pMP = mvpMapPoints[i];
+		if (pMP)
+			pMP->AddObservation(this, i);
+	}
+}
 
 /**
  * Serializador para KeyFrame.
@@ -452,34 +473,16 @@ bool KeyFrame::flagNotErase(){
  *
  */
 template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int version){
-	bool enMapa = mpMap->enMapa(this);
-
-	/*std::string marca = " KeyFrame " + std::to_string(mnId) + (enMapa? ". " : ": No en mapa! ") + (mbBad?": Malo. ":"");
-	ar & marca; cout << marca << endl;
-
-	if(!enMapa) mbBad = true;
-
-	// Propiedades
-	ar & mbBad;	//ar & const_cast<bool &> (mbBad);
-	if(mbBad)	// Es malo o no está en map, no continúa serializando.  No debería suceder si se depura antes.
-		return;
-	*/
-
 	// Preparación para guardar
 	if(!CARGANDO(ar)){
 		// Recalcula mbNotErase para evitar valores true efímeros
 		mbNotErase = !mspLoopEdges.empty();
-
-		/*// Depuración de mvpMapPoints.  Sólo deja los que están en el mapa.
-		for(auto &pMP: mvpMapPoints)
-			if(pMP && !mpMap->enMapa(pMP)){	// Si no es nulo ni está en el mapa
-				cerr << "Punto fuera de mapa:" << pMP->mnId << " en KF:" << mnId << endl;
-				//pMP = NULL;
-			}
-		*/
 	}
 
+	//cout << "KeyFrame ";
 	ar & mnId;
+	//cout << mnId << endl;
+
 	ar & mbNotErase;
 
 
@@ -538,15 +541,6 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 			for(int j=0; j<mnGridRows; j++)
 				mGrid[i][j] = grid[i][j];
 		}
-
-
-		/*
-		 * ,
-		 * se debe invocar UpdateConnections luego de cargar todos los keyframes y mappoints.
-		 * No se puede invocar durante la carga porque colgaría el programa al intentar acceder a objetos que no están terminados.
-		 *
-		 * UpdateBestCovisibles() genera mvpOrderedConnectedKeyFrames y mvOrderedWeights
-		 */
 	}
 }
 INST_EXP(KeyFrame)

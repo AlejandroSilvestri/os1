@@ -246,10 +246,17 @@ public:
     int PredictScale(const float &currentDist, const float &logScaleFactor);
 
 
-    /*
-     * Provee un reporte con un análisis del contenido de la instancia.
+    /**
+     * Agregado, provee un reporte con un análisis del contenido de la instancia.
      */
     string analisis();
+
+    /**
+     * Agregado, escribe mpRefKF, usado solamente en la reconstrucción durante la carga del mapa serializado,
+     * para inicializar una propiedad protegida.
+     * Si el argumento es NULL, lo inicializa con el primer elemento de mObservations.
+     */
+    void setRefKF(KeyFrame*);
 
 
 public:
