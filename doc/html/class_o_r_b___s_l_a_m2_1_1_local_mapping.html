@@ -98,7 +98,8 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_local_mappi
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::LocalMapping:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_local_mapping__coll__graph.svg" width="3160" height="1087"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_local_mapping__coll__graph.svg" width="2795" height="1212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -185,6 +186,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a3fe34beadb62eaa9446c96d27a5d12c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa la solicitud de reinicio.  <a href="#a3fe34beadb62eaa9446c96d27a5d12c9">More...</a><br /></td></tr>
 <tr class="separator:a3fe34beadb62eaa9446c96d27a5d12c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d5e0bc6fd15d9a6bf1ca8a258f104f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a5d5e0bc6fd15d9a6bf1ca8a258f104f1">SearchInNeighbors</a> ()</td></tr>
+<tr class="memdesc:a5d5e0bc6fd15d9a6bf1ca8a258f104f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recorre los keyframes vecinos buscando puntos para fusionar.  <a href="#a5d5e0bc6fd15d9a6bf1ca8a258f104f1">More...</a><br /></td></tr>
 <tr class="separator:a5d5e0bc6fd15d9a6bf1ca8a258f104f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a6e5b76640d7584b749567d0328ccdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a1a6e5b76640d7584b749567d0328ccdc">SetFinish</a> ()</td></tr>
 <tr class="memdesc:a1a6e5b76640d7584b749567d0328ccdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marca las señales como terminado.  <a href="#a1a6e5b76640d7584b749567d0328ccdc">More...</a><br /></td></tr>
@@ -258,8 +260,14 @@ Protected Attributes</h2></td></tr>
 <p>Los métodos de computación son protegidos e invocados desde Run.</p>
 <p>No hay una entidad formal que represente el "mapa local". El mapa local es un sobconjunto del mapa global, con raíz en el keyframe de referencia, involucrando a los vecinos en el grafo.</p>
 <p>Métodos públicos para interacción con el thread</p>
-<p>El método Run tiene un bucle infinito, que se ejecuta en su propio thread. Las comunicaciones con él son asincrónicas.</p>
-<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0931d72a1f25f3e012f53f3e693e2a47" title="Solicitud de pausa. ">LocalMapping::RequestStop</a> solicita que pare, que haga una pausa. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a964b156d8dfcedf91d61e47aa51e973a" title="Informa el si LocalMapping está parado. ">LocalMapping::isStopped</a> se puede consultar para confirmar que paró. Run entra en un bucle esperando que la señal de reanudamiento. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#aec0950308ba2d828d9dc16d5be34e654" title="Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo. ">LocalMapping::Release</a> solicita que reanude luego de una pausa. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a1e2754881977ca4d9dc7b3d0c06b4eb8" title="Solicitud de reinicialización. ">LocalMapping::RequestReset</a> reinicializa el objeto limpiando variables. Se invoca desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>. El reseteo es asincrónico, no hay señal que indique que ya ocurrió. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac22bd2b73269435e04c353190eae7c13" title="Solicita terminar para cerrar el sistema. ">LocalMapping::RequestFinish</a> solicita terminar. Se puede consultar con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a06ce22a736be265a6856582d31e888d6" title="Informa si LocalMapping ha terminado. ">LocalMapping::isFinished</a>. En la práctica no hace nada. </p>
+<p>El método Run tiene un bucle infinito, que se ejecuta en su propio thread. Las comunicaciones con él son asincrónicas:</p>
+<ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0931d72a1f25f3e012f53f3e693e2a47" title="Solicitud de pausa. ">LocalMapping::RequestStop</a> solicita que pare, que haga una pausa. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a964b156d8dfcedf91d61e47aa51e973a" title="Informa el si LocalMapping está parado. ">LocalMapping::isStopped</a> se puede consultar para confirmar que paró.</li>
+<li>Run entra en un bucle esperando que la señal de reanudamiento.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#aec0950308ba2d828d9dc16d5be34e654" title="Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo. ">LocalMapping::Release</a> solicita que reanude luego de una pausa.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a1e2754881977ca4d9dc7b3d0c06b4eb8" title="Solicitud de reinicialización. ">LocalMapping::RequestReset</a> reinicializa el objeto limpiando variables. Se invoca desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>. El reseteo es asincrónico, no hay señal que indique que ya ocurrió.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac22bd2b73269435e04c353190eae7c13" title="Solicita terminar para cerrar el sistema. ">LocalMapping::RequestFinish</a> solicita terminar. Se puede consultar con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a06ce22a736be265a6856582d31e888d6" title="Informa si LocalMapping ha terminado. ">LocalMapping::isFinished</a>. En la práctica no hace nada. </li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa87b27706cc45e36cbb8c7a21c90ed23"></a>
 <div class="memitem">
@@ -748,6 +756,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Recorre los keyframes vecinos buscando puntos para fusionar. </p>
+<p>Es el único lugar que invoca <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#add796fcf9f5cae91393d4c0b767e0183" title="Proyecta puntos del mapa sobre un keyframe y busca puntos duplicados, como parte del mapeo local...">ORBmatcher::Fuse</a> Recorre los vecinos de primer y segundo orden. SearchInNeighbors se ejecuta sólo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">LocalMapping::Run</a> apenas termina de procesar todos los nuevos keyframes. </p>
+
 </div>
 </div>
 <a id="a5b29c603541a13d670c53348e59081bf"></a>
@@ -1135,6 +1146,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Buffer de solicitud de nuevos keyframes. </p>
+<p>Cola FIFO, los nuevos pedidos se agregan al final con push_back, y se procesa el keyframe obtenido de front. </p>
 
 </div>
 </div>

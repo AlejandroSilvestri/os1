@@ -6,6 +6,8 @@ var class_o_r_b___s_l_a_m2_1_1_key_frame =
     [ "AddConnection", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8d21a23485b7c104a73d6ad3cccf4e93", null ],
     [ "AddLoopEdge", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#aca519e7486b0e6f1fd6c98d7ced920b8", null ],
     [ "AddMapPoint", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a16ea4f0cfa1ca411bb3382107fe69d2d", null ],
+    [ "analisis", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2a111a515549b900cfe8b5963d0b2f36", null ],
+    [ "buildObservations", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a4fd4bcef13a79d08e78307cc3d77349b", null ],
     [ "ChangeParent", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f", null ],
     [ "ComputeBoW", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac376017c23823c05a6bb851ffb2fdd8f", null ],
     [ "ComputeSceneMedianDepth", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa4c5f9ea38d377cfa70d441e184803ae", null ],
@@ -13,6 +15,7 @@ var class_o_r_b___s_l_a_m2_1_1_key_frame =
     [ "EraseConnection", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a0a2e676f5e594cf9330e197a2c7df378", null ],
     [ "EraseMapPointMatch", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2fd38a2bca9f5ced2f1f7501b8046195", null ],
     [ "EraseMapPointMatch", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab3a775e959978e6d449386882e45b8a2", null ],
+    [ "flagNotErase", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3c117bd7e10d2ee2cfd274dc3e373ee7", null ],
     [ "GetBestCovisibilityKeyFrames", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2ecb2df01af804fb727c93948a28475f", null ],
     [ "GetCameraCenter", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a535f0f7db34aca7c55ddadc2ad9f4a5f", null ],
     [ "GetChilds", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a618ddd51eab47bf1d84a21d2e818a787", null ],
@@ -114,5 +117,6 @@ var class_o_r_b___s_l_a_m2_1_1_key_frame =
     [ "nNextId", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#acb0d220936541a8afc020a65aa675559", null ],
     [ "Ow", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3044f098f2b7d25b33b180b20c5a5fa6", null ],
     [ "Tcw", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8dc31ef9a08d34ecb196f3e58a2c09b9", null ],
-    [ "Twc", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a769de03e37e9531ab43625250287ff8c", null ]
+    [ "Twc", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a769de03e37e9531ab43625250287ff8c", null ],
+    [ "vRgb", "class_o_r_b___s_l_a_m2_1_1_key_frame.html#a71410c456b6354264ce0369883d96459", null ]
 ];

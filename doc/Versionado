@@ -18,6 +18,18 @@ TODO:
 
 
 
+
+Reemplazando Thirdparty por ilbg2o.so y libDBoW2.so
+
+Para evitar recompilar la carpeta Thirdparty, y en su lugar usar las librerías, hay que:
+
+- Compilar cada librería.  ORB-SLAM2 tiene un cmakelist.txt propio para Thirdparty que produce estas librerías.
+Alternativamente se pueden crear dos proyectos c++ shared library nuevo sobre las carpetas g2o y DBoW2, compilar Release con -fPIC (en C/C++ Build/Settings/Cross G++ Compiler/Miscellaneous/Position Independent Code (-fPIC)).
+No pude compiler g20 con eclipse, tomé su librería del cmake.
+- Copiar o mover los archivos .so a Thirdparty
+- Incluir las librerías g2o y DBOW2, y la carpeta Thirdparty (en C/C++ Build/Settings/Cross G++ Linker/Libraries).
+- Run configurations/Environment agregar la variable LD_LIBRARIES_PATH = Thirdparty
+
 =============================================================================
 Versión 2: video
 

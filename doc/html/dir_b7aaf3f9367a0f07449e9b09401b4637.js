@@ -24,8 +24,8 @@ var dir_b7aaf3f9367a0f07449e9b09401b4637 =
     [ "cache.cpp", "cache_8cpp.html", null ],
     [ "cache.h", "cache_8h.html", [
       [ "Cache", "classg2o_1_1_cache.html", "classg2o_1_1_cache" ],
-      [ "CacheKey", "classg2o_1_1_cache_1_1_cache_key.html", "classg2o_1_1_cache_1_1_cache_key" ],
-      [ "CacheContainer", "classg2o_1_1_cache_container.html", "classg2o_1_1_cache_container" ]
+      [ "CacheContainer", "classg2o_1_1_cache_container.html", "classg2o_1_1_cache_container" ],
+      [ "CacheKey", "classg2o_1_1_cache_1_1_cache_key.html", "classg2o_1_1_cache_1_1_cache_key" ]
     ] ],
     [ "creators.h", "creators_8h.html", [
       [ "AbstractHyperGraphElementCreator", "classg2o_1_1_abstract_hyper_graph_element_creator.html", "classg2o_1_1_abstract_hyper_graph_element_creator" ],
@@ -34,30 +34,30 @@ var dir_b7aaf3f9367a0f07449e9b09401b4637 =
     [ "eigen_types.h", "eigen__types_8h.html", "eigen__types_8h" ],
     [ "estimate_propagator.cpp", "estimate__propagator_8cpp.html", null ],
     [ "estimate_propagator.h", "estimate__propagator_8h.html", [
+      [ "AdjacencyMapEntry", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry" ],
+      [ "EstimatePropagator", "classg2o_1_1_estimate_propagator.html", "classg2o_1_1_estimate_propagator" ],
       [ "EstimatePropagatorCost", "classg2o_1_1_estimate_propagator_cost.html", "classg2o_1_1_estimate_propagator_cost" ],
       [ "EstimatePropagatorCostOdometry", "classg2o_1_1_estimate_propagator_cost_odometry.html", "classg2o_1_1_estimate_propagator_cost_odometry" ],
-      [ "EstimatePropagator", "classg2o_1_1_estimate_propagator.html", "classg2o_1_1_estimate_propagator" ],
-      [ "PropagateAction", "structg2o_1_1_estimate_propagator_1_1_propagate_action.html", "structg2o_1_1_estimate_propagator_1_1_propagate_action" ],
       [ "PriorityQueue", "classg2o_1_1_estimate_propagator_1_1_priority_queue.html", "classg2o_1_1_estimate_propagator_1_1_priority_queue" ],
-      [ "AdjacencyMapEntry", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry" ],
+      [ "PropagateAction", "structg2o_1_1_estimate_propagator_1_1_propagate_action.html", "structg2o_1_1_estimate_propagator_1_1_propagate_action" ],
       [ "VertexIDHashFunction", "classg2o_1_1_estimate_propagator_1_1_vertex_i_d_hash_function.html", "classg2o_1_1_estimate_propagator_1_1_vertex_i_d_hash_function" ]
     ] ],
     [ "factory.cpp", "factory_8cpp.html", null ],
     [ "factory.h", "factory_8h.html", "factory_8h" ],
     [ "hyper_dijkstra.cpp", "hyper__dijkstra_8cpp.html", "hyper__dijkstra_8cpp" ],
     [ "hyper_dijkstra.h", "hyper__dijkstra_8h.html", [
-      [ "HyperDijkstra", "structg2o_1_1_hyper_dijkstra.html", "structg2o_1_1_hyper_dijkstra" ],
-      [ "CostFunction", "structg2o_1_1_hyper_dijkstra_1_1_cost_function.html", "structg2o_1_1_hyper_dijkstra_1_1_cost_function" ],
-      [ "TreeAction", "structg2o_1_1_hyper_dijkstra_1_1_tree_action.html", "structg2o_1_1_hyper_dijkstra_1_1_tree_action" ],
       [ "AdjacencyMapEntry", "structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry.html", "structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry" ],
+      [ "CostFunction", "structg2o_1_1_hyper_dijkstra_1_1_cost_function.html", "structg2o_1_1_hyper_dijkstra_1_1_cost_function" ],
+      [ "HyperDijkstra", "structg2o_1_1_hyper_dijkstra.html", "structg2o_1_1_hyper_dijkstra" ],
+      [ "TreeAction", "structg2o_1_1_hyper_dijkstra_1_1_tree_action.html", "structg2o_1_1_hyper_dijkstra_1_1_tree_action" ],
       [ "UniformCostFunction", "structg2o_1_1_uniform_cost_function.html", "structg2o_1_1_uniform_cost_function" ]
     ] ],
     [ "hyper_graph.cpp", "hyper__graph_8cpp.html", null ],
     [ "hyper_graph.h", "hyper__graph_8h.html", [
+      [ "Edge", "classg2o_1_1_hyper_graph_1_1_edge.html", "classg2o_1_1_hyper_graph_1_1_edge" ],
       [ "HyperGraph", "classg2o_1_1_hyper_graph.html", "classg2o_1_1_hyper_graph" ],
       [ "HyperGraphElement", "structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html", "structg2o_1_1_hyper_graph_1_1_hyper_graph_element" ],
-      [ "Vertex", "classg2o_1_1_hyper_graph_1_1_vertex.html", "classg2o_1_1_hyper_graph_1_1_vertex" ],
-      [ "Edge", "classg2o_1_1_hyper_graph_1_1_edge.html", "classg2o_1_1_hyper_graph_1_1_edge" ]
+      [ "Vertex", "classg2o_1_1_hyper_graph_1_1_vertex.html", "classg2o_1_1_hyper_graph_1_1_vertex" ]
     ] ],
     [ "hyper_graph_action.cpp", "hyper__graph__action_8cpp.html", "hyper__graph__action_8cpp" ],
     [ "hyper_graph_action.h", "hyper__graph__action_8h.html", "hyper__graph__action_8h" ],
@@ -88,12 +88,12 @@ var dir_b7aaf3f9367a0f07449e9b09401b4637 =
     ] ],
     [ "optimizable_graph.cpp", "optimizable__graph_8cpp.html", null ],
     [ "optimizable_graph.h", "optimizable__graph_8h.html", [
-      [ "OptimizableGraph", "structg2o_1_1_optimizable_graph.html", "structg2o_1_1_optimizable_graph" ],
       [ "Data", "classg2o_1_1_optimizable_graph_1_1_data.html", "classg2o_1_1_optimizable_graph_1_1_data" ],
-      [ "VertexIDCompare", "structg2o_1_1_optimizable_graph_1_1_vertex_i_d_compare.html", "structg2o_1_1_optimizable_graph_1_1_vertex_i_d_compare" ],
+      [ "Edge", "classg2o_1_1_optimizable_graph_1_1_edge.html", "classg2o_1_1_optimizable_graph_1_1_edge" ],
       [ "EdgeIDCompare", "structg2o_1_1_optimizable_graph_1_1_edge_i_d_compare.html", "structg2o_1_1_optimizable_graph_1_1_edge_i_d_compare" ],
+      [ "OptimizableGraph", "structg2o_1_1_optimizable_graph.html", "structg2o_1_1_optimizable_graph" ],
       [ "Vertex", "classg2o_1_1_optimizable_graph_1_1_vertex.html", "classg2o_1_1_optimizable_graph_1_1_vertex" ],
-      [ "Edge", "classg2o_1_1_optimizable_graph_1_1_edge.html", "classg2o_1_1_optimizable_graph_1_1_edge" ]
+      [ "VertexIDCompare", "structg2o_1_1_optimizable_graph_1_1_vertex_i_d_compare.html", "structg2o_1_1_optimizable_graph_1_1_vertex_i_d_compare" ]
     ] ],
     [ "optimization_algorithm.cpp", "optimization__algorithm_8cpp.html", null ],
     [ "optimization_algorithm.h", "optimization__algorithm_8h.html", [
@@ -132,13 +132,13 @@ var dir_b7aaf3f9367a0f07449e9b09401b4637 =
     [ "robust_kernel_factory.h", "robust__kernel__factory_8h.html", "robust__kernel__factory_8h" ],
     [ "robust_kernel_impl.cpp", "robust__kernel__impl_8cpp.html", null ],
     [ "robust_kernel_impl.h", "robust__kernel__impl_8h.html", [
-      [ "RobustKernelScaleDelta", "classg2o_1_1_robust_kernel_scale_delta.html", "classg2o_1_1_robust_kernel_scale_delta" ],
-      [ "RobustKernelHuber", "classg2o_1_1_robust_kernel_huber.html", "classg2o_1_1_robust_kernel_huber" ],
-      [ "RobustKernelTukey", "classg2o_1_1_robust_kernel_tukey.html", "classg2o_1_1_robust_kernel_tukey" ],
-      [ "RobustKernelPseudoHuber", "classg2o_1_1_robust_kernel_pseudo_huber.html", "classg2o_1_1_robust_kernel_pseudo_huber" ],
       [ "RobustKernelCauchy", "classg2o_1_1_robust_kernel_cauchy.html", "classg2o_1_1_robust_kernel_cauchy" ],
+      [ "RobustKernelDCS", "classg2o_1_1_robust_kernel_d_c_s.html", "classg2o_1_1_robust_kernel_d_c_s" ],
+      [ "RobustKernelHuber", "classg2o_1_1_robust_kernel_huber.html", "classg2o_1_1_robust_kernel_huber" ],
+      [ "RobustKernelPseudoHuber", "classg2o_1_1_robust_kernel_pseudo_huber.html", "classg2o_1_1_robust_kernel_pseudo_huber" ],
       [ "RobustKernelSaturated", "classg2o_1_1_robust_kernel_saturated.html", "classg2o_1_1_robust_kernel_saturated" ],
-      [ "RobustKernelDCS", "classg2o_1_1_robust_kernel_d_c_s.html", "classg2o_1_1_robust_kernel_d_c_s" ]
+      [ "RobustKernelScaleDelta", "classg2o_1_1_robust_kernel_scale_delta.html", "classg2o_1_1_robust_kernel_scale_delta" ],
+      [ "RobustKernelTukey", "classg2o_1_1_robust_kernel_tukey.html", "classg2o_1_1_robust_kernel_tukey" ]
     ] ],
     [ "solver.cpp", "solver_8cpp.html", null ],
     [ "solver.h", "solver_8h.html", [
@@ -147,8 +147,8 @@ var dir_b7aaf3f9367a0f07449e9b09401b4637 =
     [ "sparse_block_matrix.h", "sparse__block__matrix_8h.html", "sparse__block__matrix_8h" ],
     [ "sparse_block_matrix.hpp", "sparse__block__matrix_8hpp.html", "sparse__block__matrix_8hpp" ],
     [ "sparse_block_matrix_ccs.h", "sparse__block__matrix__ccs_8h.html", [
-      [ "SparseBlockMatrixCCS", "classg2o_1_1_sparse_block_matrix_c_c_s.html", "classg2o_1_1_sparse_block_matrix_c_c_s" ],
       [ "RowBlock", "structg2o_1_1_sparse_block_matrix_c_c_s_1_1_row_block.html", "structg2o_1_1_sparse_block_matrix_c_c_s_1_1_row_block" ],
+      [ "SparseBlockMatrixCCS", "classg2o_1_1_sparse_block_matrix_c_c_s.html", "classg2o_1_1_sparse_block_matrix_c_c_s" ],
       [ "SparseBlockMatrixHashMap", "classg2o_1_1_sparse_block_matrix_hash_map.html", "classg2o_1_1_sparse_block_matrix_hash_map" ]
     ] ],
     [ "sparse_block_matrix_diagonal.h", "sparse__block__matrix__diagonal_8h.html", [

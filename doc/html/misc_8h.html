@@ -132,10 +132,19 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ada3127f4fe72b228407fabe23b72a50b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ada3127f4fe72b228407fabe23b72a50b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#ada3127f4fe72b228407fabe23b72a50b">g2o::square</a> (T x)</td></tr>
-<tr class="memdesc:ada3127f4fe72b228407fabe23b72a50b"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the square value  <a href="namespaceg2o.html#ada3127f4fe72b228407fabe23b72a50b">More...</a><br /></td></tr>
-<tr class="separator:ada3127f4fe72b228407fabe23b72a50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a123840a60e0d1dde58088d15a1e1fffa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a123840a60e0d1dde58088d15a1e1fffa">g2o::arrayHasNaN</a> (const double *array, int size, int *nanIndex=0)</td></tr>
+<tr class="memdesc:a123840a60e0d1dde58088d15a1e1fffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">tests whether there is a NaN in the array  <a href="namespaceg2o.html#a123840a60e0d1dde58088d15a1e1fffa">More...</a><br /></td></tr>
+<tr class="separator:a123840a60e0d1dde58088d15a1e1fffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f6d3c7415a89f7a5bc1875a7fa5009"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a25f6d3c7415a89f7a5bc1875a7fa5009">g2o::average_angle</a> (double theta1, double theta2)</td></tr>
+<tr class="memdesc:a25f6d3c7415a89f7a5bc1875a7fa5009"><td class="mdescLeft">&#160;</td><td class="mdescRight">average two angles  <a href="namespaceg2o.html#a25f6d3c7415a89f7a5bc1875a7fa5009">More...</a><br /></td></tr>
+<tr class="separator:a25f6d3c7415a89f7a5bc1875a7fa5009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50939862674314724dd800c41f82e7fe"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a50939862674314724dd800c41f82e7fe"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a50939862674314724dd800c41f82e7fe">g2o::clamp</a> (T l, T x, T u)</td></tr>
+<tr class="memdesc:a50939862674314724dd800c41f82e7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">clamp x to the interval [l, u]  <a href="namespaceg2o.html#a50939862674314724dd800c41f82e7fe">More...</a><br /></td></tr>
+<tr class="separator:a50939862674314724dd800c41f82e7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f29adce7d7b9855e1d0ba43835c34b3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a8f29adce7d7b9855e1d0ba43835c34b3">g2o::deg2rad</a> (double degree)</td></tr>
+<tr class="memdesc:a8f29adce7d7b9855e1d0ba43835c34b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert from degree to radian  <a href="namespaceg2o.html#a8f29adce7d7b9855e1d0ba43835c34b3">More...</a><br /></td></tr>
+<tr class="separator:a8f29adce7d7b9855e1d0ba43835c34b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a586ee8937cdc8de49303abd1611da387"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a586ee8937cdc8de49303abd1611da387"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a586ee8937cdc8de49303abd1611da387">g2o::hypot</a> (T x, T y)</td></tr>
 <tr class="memdesc:a586ee8937cdc8de49303abd1611da387"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the hypot of x and y  <a href="namespaceg2o.html#a586ee8937cdc8de49303abd1611da387">More...</a><br /></td></tr>
@@ -144,36 +153,27 @@ Functions</h2></td></tr>
 <tr class="memitem:ac2989135761e62b40066193a11950d21"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#ac2989135761e62b40066193a11950d21">g2o::hypot_sqr</a> (T x, T y)</td></tr>
 <tr class="memdesc:ac2989135761e62b40066193a11950d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the squared hypot of x and y  <a href="namespaceg2o.html#ac2989135761e62b40066193a11950d21">More...</a><br /></td></tr>
 <tr class="separator:ac2989135761e62b40066193a11950d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f29adce7d7b9855e1d0ba43835c34b3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a8f29adce7d7b9855e1d0ba43835c34b3">g2o::deg2rad</a> (double degree)</td></tr>
-<tr class="memdesc:a8f29adce7d7b9855e1d0ba43835c34b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert from degree to radian  <a href="namespaceg2o.html#a8f29adce7d7b9855e1d0ba43835c34b3">More...</a><br /></td></tr>
-<tr class="separator:a8f29adce7d7b9855e1d0ba43835c34b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3965702cbb6051fa2bdb0c75c0358126"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a3965702cbb6051fa2bdb0c75c0358126">g2o::rad2deg</a> (double rad)</td></tr>
-<tr class="memdesc:a3965702cbb6051fa2bdb0c75c0358126"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert from radian to degree  <a href="namespaceg2o.html#a3965702cbb6051fa2bdb0c75c0358126">More...</a><br /></td></tr>
-<tr class="separator:a3965702cbb6051fa2bdb0c75c0358126"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f036eb4c147ddf174aa56fa031f3867"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a9f036eb4c147ddf174aa56fa031f3867">g2o::normalize_theta</a> (double theta)</td></tr>
-<tr class="memdesc:a9f036eb4c147ddf174aa56fa031f3867"><td class="mdescLeft">&#160;</td><td class="mdescRight">normalize the angle  <a href="namespaceg2o.html#a9f036eb4c147ddf174aa56fa031f3867">More...</a><br /></td></tr>
-<tr class="separator:a9f036eb4c147ddf174aa56fa031f3867"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ae48fc8caba4b009642ca53d69a3b98"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a9ae48fc8caba4b009642ca53d69a3b98">g2o::inverse_theta</a> (double th)</td></tr>
 <tr class="memdesc:a9ae48fc8caba4b009642ca53d69a3b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">inverse of an angle, i.e., +180 degree  <a href="namespaceg2o.html#a9ae48fc8caba4b009642ca53d69a3b98">More...</a><br /></td></tr>
 <tr class="separator:a9ae48fc8caba4b009642ca53d69a3b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25f6d3c7415a89f7a5bc1875a7fa5009"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a25f6d3c7415a89f7a5bc1875a7fa5009">g2o::average_angle</a> (double theta1, double theta2)</td></tr>
-<tr class="memdesc:a25f6d3c7415a89f7a5bc1875a7fa5009"><td class="mdescLeft">&#160;</td><td class="mdescRight">average two angles  <a href="namespaceg2o.html#a25f6d3c7415a89f7a5bc1875a7fa5009">More...</a><br /></td></tr>
-<tr class="separator:a25f6d3c7415a89f7a5bc1875a7fa5009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f036eb4c147ddf174aa56fa031f3867"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a9f036eb4c147ddf174aa56fa031f3867">g2o::normalize_theta</a> (double theta)</td></tr>
+<tr class="memdesc:a9f036eb4c147ddf174aa56fa031f3867"><td class="mdescLeft">&#160;</td><td class="mdescRight">normalize the angle  <a href="namespaceg2o.html#a9f036eb4c147ddf174aa56fa031f3867">More...</a><br /></td></tr>
+<tr class="separator:a9f036eb4c147ddf174aa56fa031f3867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3965702cbb6051fa2bdb0c75c0358126"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a3965702cbb6051fa2bdb0c75c0358126">g2o::rad2deg</a> (double rad)</td></tr>
+<tr class="memdesc:a3965702cbb6051fa2bdb0c75c0358126"><td class="mdescLeft">&#160;</td><td class="mdescRight">convert from radian to degree  <a href="namespaceg2o.html#a3965702cbb6051fa2bdb0c75c0358126">More...</a><br /></td></tr>
+<tr class="separator:a3965702cbb6051fa2bdb0c75c0358126"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a821ae3df8a97b37daf8804ef3a26ef1d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a821ae3df8a97b37daf8804ef3a26ef1d"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a821ae3df8a97b37daf8804ef3a26ef1d">g2o::sign</a> (T x)</td></tr>
 <tr class="memdesc:a821ae3df8a97b37daf8804ef3a26ef1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">sign function.  <a href="namespaceg2o.html#a821ae3df8a97b37daf8804ef3a26ef1d">More...</a><br /></td></tr>
 <tr class="separator:a821ae3df8a97b37daf8804ef3a26ef1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50939862674314724dd800c41f82e7fe"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a50939862674314724dd800c41f82e7fe"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a50939862674314724dd800c41f82e7fe">g2o::clamp</a> (T l, T x, T u)</td></tr>
-<tr class="memdesc:a50939862674314724dd800c41f82e7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">clamp x to the interval [l, u]  <a href="namespaceg2o.html#a50939862674314724dd800c41f82e7fe">More...</a><br /></td></tr>
-<tr class="separator:a50939862674314724dd800c41f82e7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada3127f4fe72b228407fabe23b72a50b"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ada3127f4fe72b228407fabe23b72a50b"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#ada3127f4fe72b228407fabe23b72a50b">g2o::square</a> (T x)</td></tr>
+<tr class="memdesc:ada3127f4fe72b228407fabe23b72a50b"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the square value  <a href="namespaceg2o.html#ada3127f4fe72b228407fabe23b72a50b">More...</a><br /></td></tr>
+<tr class="separator:ada3127f4fe72b228407fabe23b72a50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a207912b4849eaff934f6384bc79d07ce"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a207912b4849eaff934f6384bc79d07ce"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a207912b4849eaff934f6384bc79d07ce">g2o::wrap</a> (T l, T x, T u)</td></tr>
 <tr class="memdesc:a207912b4849eaff934f6384bc79d07ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">wrap x to be in the interval [l, u]  <a href="namespaceg2o.html#a207912b4849eaff934f6384bc79d07ce">More...</a><br /></td></tr>
 <tr class="separator:a207912b4849eaff934f6384bc79d07ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a123840a60e0d1dde58088d15a1e1fffa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceg2o.html#a123840a60e0d1dde58088d15a1e1fffa">g2o::arrayHasNaN</a> (const double *array, int size, int *nanIndex=0)</td></tr>
-<tr class="memdesc:a123840a60e0d1dde58088d15a1e1fffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">tests whether there is a NaN in the array  <a href="namespaceg2o.html#a123840a60e0d1dde58088d15a1e1fffa">More...</a><br /></td></tr>
-<tr class="separator:a123840a60e0d1dde58088d15a1e1fffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>some general case utility functions </p>

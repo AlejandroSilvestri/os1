@@ -1,10 +1,3 @@
 <map id="ORB_SLAM2::MapDrawer" name="ORB_SLAM2::MapDrawer">
-<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. " alt="" coords="675,120,809,147"/>
-<area shape="rect" id="node3" href="$class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. " alt="" coords="1289,120,1453,147"/>
-<area shape="rect" id="node4" href="$class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. " alt="" coords="1007,244,1177,271"/>
-<area shape="rect" id="node5" href="$class_o_r_b___s_l_a_m2_1_1_key_frame_database.html" title="Lista invertida de KeyFrames, accesible por BoW. " alt="" coords="629,305,855,332"/>
-<area shape="rect" id="node6" href="$class_d_bo_w2_1_1_templated_vocabulary.html" title="Generic Vocabulary. " alt="" coords="329,255,532,297"/>
-<area shape="rect" id="node7" href="$class_d_bo_w2_1_1_general_scoring.html" title="Base class of scoring functions. " alt="" coords="5,263,171,289"/>
-<area shape="rect" id="node8" href="$class_d_bo_w2_1_1_feature_vector.html" title="Vector of nodes with indexes of local features. " alt="" coords="663,356,821,383"/>
-<area shape="rect" id="node10" href="$class_d_bo_w2_1_1_bow_vector.html" title="Vector of words to represent images. " alt="" coords="672,408,812,435"/>
+<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. " alt="" coords="26,5,161,32"/>
 </map>

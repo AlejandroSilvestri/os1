@@ -9,9 +9,13 @@ var searchData=
   ['mappoint_2ecc',['MapPoint.cc',['../_map_point_8cc.html',1,'']]],
   ['mappoint_2eh',['MapPoint.h',['../_map_point_8h.html',1,'']]],
   ['marginal_5fcovariance_5fcholesky_2ecpp',['marginal_covariance_cholesky.cpp',['../marginal__covariance__cholesky_8cpp.html',1,'']]],
+  ['marginal_5fcovariance_5fcholesky_2ed',['marginal_covariance_cholesky.d',['../g2o_2_release_2core_2marginal__covariance__cholesky_8d.html',1,'']]],
+  ['marginal_5fcovariance_5fcholesky_2ed',['marginal_covariance_cholesky.d',['../_release_2g2o_2core_2marginal__covariance__cholesky_8d.html',1,'']]],
   ['marginal_5fcovariance_5fcholesky_2eh',['marginal_covariance_cholesky.h',['../marginal__covariance__cholesky_8h.html',1,'']]],
   ['matrix_5foperations_2eh',['matrix_operations.h',['../matrix__operations_8h.html',1,'']]],
   ['matrix_5fstructure_2ecpp',['matrix_structure.cpp',['../matrix__structure_8cpp.html',1,'']]],
+  ['matrix_5fstructure_2ed',['matrix_structure.d',['../_release_2g2o_2core_2matrix__structure_8d.html',1,'']]],
+  ['matrix_5fstructure_2ed',['matrix_structure.d',['../g2o_2_release_2core_2matrix__structure_8d.html',1,'']]],
   ['matrix_5fstructure_2eh',['matrix_structure.h',['../matrix__structure_8h.html',1,'']]],
   ['misc_2eh',['misc.h',['../misc_8h.html',1,'']]]
 ];

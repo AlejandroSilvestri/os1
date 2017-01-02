@@ -72,6 +72,7 @@ var searchData=
   ['setransacparameters',['SetRansacParameters',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#adff29377dcc77891a33113080b6b1eb7',1,'ORB_SLAM2::PnPsolver::SetRansacParameters()'],['../class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#ab90d591f1b9eac3d846efd35c2c04920',1,'ORB_SLAM2::Sim3Solver::SetRansacParameters()']]],
   ['setreferencekeyframe',['SetReferenceKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ac72cc0b3e9e3a92527b38ca12230e79c',1,'ORB_SLAM2::MapDrawer::SetReferenceKeyFrame()'],['../class_o_r_b___s_l_a_m2_1_1_map_point.html#a569e91b415067d4484fe7b71f33451cf',1,'ORB_SLAM2::MapPoint::SetReferenceKeyFrame()']]],
   ['setreferencemappoints',['SetReferenceMapPoints',['../class_o_r_b___s_l_a_m2_1_1_map.html#ac31706152aeb99c94ddb7f6ce452bd77',1,'ORB_SLAM2::Map']]],
+  ['setrefkf',['setRefKF',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#ae117dc4f8b1c63e124ff0fee3557fb49',1,'ORB_SLAM2::MapPoint']]],
   ['setrenamedtypesfromstring',['setRenamedTypesFromString',['../structg2o_1_1_optimizable_graph.html#afaa77a4624619237563fe94cfd7b76fd',1,'g2o::OptimizableGraph']]],
   ['setrobustkernel',['setRobustKernel',['../classg2o_1_1_optimizable_graph_1_1_edge.html#a42955172c19f16e2cfbb30d611d1bd87',1,'g2o::OptimizableGraph::Edge']]],
   ['setrotation',['setRotation',['../classg2o_1_1_s_e3_quat.html#a1f55879ec2e4801d5de4b12b301ff59c',1,'g2o::SE3Quat']]],

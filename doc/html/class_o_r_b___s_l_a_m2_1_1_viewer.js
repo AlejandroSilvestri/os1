@@ -12,6 +12,7 @@ var class_o_r_b___s_l_a_m2_1_1_viewer =
     [ "Stop", "class_o_r_b___s_l_a_m2_1_1_viewer.html#abf0704bc29f282192c5e5c36f66fa255", null ],
     [ "cargarMapa", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a4f6ee522d15ea19986f1625007ef08cb", null ],
     [ "duracion", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a17167841bf5fbad4c9dad01fe4f5bc9b", null ],
+    [ "guardarMapa", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ab26f78e86d98cab4eb5af208bda89435", null ],
     [ "mbFinished", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ae7455c94e1109f9ecc8311583309390f", null ],
     [ "mbFinishRequested", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a5f31947755c29030a8aa6dd59d13256c", null ],
     [ "mbStopped", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a78d845b2b2e8d705686e88c8951296e7", null ],

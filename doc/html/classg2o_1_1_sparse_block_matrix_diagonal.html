@@ -98,38 +98,38 @@ $(document).ready(function(){initNavTree('classg2o_1_1_sparse_block_matrix_diago
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:a2eb7fc4130fac5c499b57f3bec855812"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; MatrixType, Eigen::aligned_allocator&lt; MatrixType &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a2eb7fc4130fac5c499b57f3bec855812">DiagonalVector</a></td></tr>
+<tr class="separator:a2eb7fc4130fac5c499b57f3bec855812"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93a57bc93d5b099fcd424ba1fc1a0585"><td class="memItemLeft" align="right" valign="top">typedef MatrixType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a93a57bc93d5b099fcd424ba1fc1a0585">SparseMatrixBlock</a></td></tr>
 <tr class="memdesc:a93a57bc93d5b099fcd424ba1fc1a0585"><td class="mdescLeft">&#160;</td><td class="mdescRight">this is the type of the elementary block, it is an Eigen::Matrix.  <a href="#a93a57bc93d5b099fcd424ba1fc1a0585">More...</a><br /></td></tr>
 <tr class="separator:a93a57bc93d5b099fcd424ba1fc1a0585"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2eb7fc4130fac5c499b57f3bec855812"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; MatrixType, Eigen::aligned_allocator&lt; MatrixType &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a2eb7fc4130fac5c499b57f3bec855812">DiagonalVector</a></td></tr>
-<tr class="separator:a2eb7fc4130fac5c499b57f3bec855812"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a625a8a22392617f6007520c28fdf9eb7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a625a8a22392617f6007520c28fdf9eb7">cols</a> () const</td></tr>
-<tr class="memdesc:a625a8a22392617f6007520c28fdf9eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">columns of the matrix  <a href="#a625a8a22392617f6007520c28fdf9eb7">More...</a><br /></td></tr>
-<tr class="separator:a625a8a22392617f6007520c28fdf9eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af87f005cff6800ef0ce640d23fb651f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#af87f005cff6800ef0ce640d23fb651f8">rows</a> () const</td></tr>
-<tr class="memdesc:af87f005cff6800ef0ce640d23fb651f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">rows of the matrix  <a href="#af87f005cff6800ef0ce640d23fb651f8">More...</a><br /></td></tr>
-<tr class="separator:af87f005cff6800ef0ce640d23fb651f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e01566c4ff881af058f366672291b27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a0e01566c4ff881af058f366672291b27">SparseBlockMatrixDiagonal</a> (const std::vector&lt; int &gt; &amp;<a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#aa900034ca8db34a7e2d2d51973cfceff">blockIndices</a>)</td></tr>
-<tr class="separator:a0e01566c4ff881af058f366672291b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04163c0b9be5658ef9e8be4ccc949e5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a04163c0b9be5658ef9e8be4ccc949e5f">dimOfBlock</a> (int r) const</td></tr>
-<tr class="memdesc:a04163c0b9be5658ef9e8be4ccc949e5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">how many rows/cols does the block at block-row / block-column r has?  <a href="#a04163c0b9be5658ef9e8be4ccc949e5f">More...</a><br /></td></tr>
-<tr class="separator:a04163c0b9be5658ef9e8be4ccc949e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4cc17dfc19f065595dd2b09de0440df5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a4cc17dfc19f065595dd2b09de0440df5">baseOfBlock</a> (int r) const</td></tr>
 <tr class="memdesc:a4cc17dfc19f065595dd2b09de0440df5"><td class="mdescLeft">&#160;</td><td class="mdescRight">where does the row /col at block-row / block-column r starts?  <a href="#a4cc17dfc19f065595dd2b09de0440df5">More...</a><br /></td></tr>
 <tr class="separator:a4cc17dfc19f065595dd2b09de0440df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa900034ca8db34a7e2d2d51973cfceff"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#aa900034ca8db34a7e2d2d51973cfceff">blockIndices</a> () const</td></tr>
+<tr class="memdesc:aa900034ca8db34a7e2d2d51973cfceff"><td class="mdescLeft">&#160;</td><td class="mdescRight">indices of the row blocks  <a href="#aa900034ca8db34a7e2d2d51973cfceff">More...</a><br /></td></tr>
+<tr class="separator:aa900034ca8db34a7e2d2d51973cfceff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a625a8a22392617f6007520c28fdf9eb7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a625a8a22392617f6007520c28fdf9eb7">cols</a> () const</td></tr>
+<tr class="memdesc:a625a8a22392617f6007520c28fdf9eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">columns of the matrix  <a href="#a625a8a22392617f6007520c28fdf9eb7">More...</a><br /></td></tr>
+<tr class="separator:a625a8a22392617f6007520c28fdf9eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9da10533727d4bd9312a591d2e1d9361"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a2eb7fc4130fac5c499b57f3bec855812">DiagonalVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a9da10533727d4bd9312a591d2e1d9361">diagonal</a> () const</td></tr>
 <tr class="memdesc:a9da10533727d4bd9312a591d2e1d9361"><td class="mdescLeft">&#160;</td><td class="mdescRight">the block matrices per block-column  <a href="#a9da10533727d4bd9312a591d2e1d9361">More...</a><br /></td></tr>
 <tr class="separator:a9da10533727d4bd9312a591d2e1d9361"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af75593896065195f7dc2342132c565cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a2eb7fc4130fac5c499b57f3bec855812">DiagonalVector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#af75593896065195f7dc2342132c565cc">diagonal</a> ()</td></tr>
 <tr class="separator:af75593896065195f7dc2342132c565cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa900034ca8db34a7e2d2d51973cfceff"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#aa900034ca8db34a7e2d2d51973cfceff">blockIndices</a> () const</td></tr>
-<tr class="memdesc:aa900034ca8db34a7e2d2d51973cfceff"><td class="mdescLeft">&#160;</td><td class="mdescRight">indices of the row blocks  <a href="#aa900034ca8db34a7e2d2d51973cfceff">More...</a><br /></td></tr>
-<tr class="separator:aa900034ca8db34a7e2d2d51973cfceff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04163c0b9be5658ef9e8be4ccc949e5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a04163c0b9be5658ef9e8be4ccc949e5f">dimOfBlock</a> (int r) const</td></tr>
+<tr class="memdesc:a04163c0b9be5658ef9e8be4ccc949e5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">how many rows/cols does the block at block-row / block-column r has?  <a href="#a04163c0b9be5658ef9e8be4ccc949e5f">More...</a><br /></td></tr>
+<tr class="separator:a04163c0b9be5658ef9e8be4ccc949e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7d969c12506cdcd1b7d54128f3b6985"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#ae7d969c12506cdcd1b7d54128f3b6985">multiply</a> (double *&amp;dest, const double *src) const</td></tr>
 <tr class="separator:ae7d969c12506cdcd1b7d54128f3b6985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87f005cff6800ef0ce640d23fb651f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#af87f005cff6800ef0ce640d23fb651f8">rows</a> () const</td></tr>
+<tr class="memdesc:af87f005cff6800ef0ce640d23fb651f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">rows of the matrix  <a href="#af87f005cff6800ef0ce640d23fb651f8">More...</a><br /></td></tr>
+<tr class="separator:af87f005cff6800ef0ce640d23fb651f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e01566c4ff881af058f366672291b27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#a0e01566c4ff881af058f366672291b27">SparseBlockMatrixDiagonal</a> (const std::vector&lt; int &gt; &amp;<a class="el" href="classg2o_1_1_sparse_block_matrix_diagonal.html#aa900034ca8db34a7e2d2d51973cfceff">blockIndices</a>)</td></tr>
+<tr class="separator:a0e01566c4ff881af058f366672291b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>

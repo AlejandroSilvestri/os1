@@ -1,10 +1,10 @@
 var class_o_r_b___s_l_a_m2_1_1_map_point =
 [
     [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ad14dd804346e01311e0676959c879555", null ],
-    [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ae8b6d24a7f79cfd260502859cb5b6901", null ],
-    [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#abbb2b679ea956845f315a69773618fa7", null ],
+    [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ae5b0a868a291c502f2632b0d1694872d", null ],
     [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a3d9788e9d5c47d86b0f614cde91e3a4f", null ],
     [ "AddObservation", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a37277ee3c7d8657976e749ab920bb13f", null ],
+    [ "analisis", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ade9bee80832ccdf9efa6ed04f14885b7", null ],
     [ "ComputeDistinctiveDescriptors", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ab4c3dfd8f5f05a4b1888021f1fac3d84", null ],
     [ "EraseObservation", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a79e6a93ea0c39329a082f4f69560f1be", null ],
     [ "GetDescriptor", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f9faa5b4cc513795485dcfb460ea3d0", null ],
@@ -28,6 +28,7 @@ var class_o_r_b___s_l_a_m2_1_1_map_point =
     [ "serialize", "class_o_r_b___s_l_a_m2_1_1_map_point.html#aef6f5c53ed3c845276473bda2437ad03", null ],
     [ "SetBadFlag", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a7ed2a66b528165d6c39cb6f84f684308", null ],
     [ "SetReferenceKeyFrame", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a569e91b415067d4484fe7b71f33451cf", null ],
+    [ "setRefKF", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ae117dc4f8b1c63e124ff0fee3557fb49", null ],
     [ "SetWorldPos", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ad65e6322e9d06314db235ff4d072509f", null ],
     [ "UpdateNormalAndDepth", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ac5b8e4ec6a7737860af57058bdd16124", null ],
     [ "boost::serialization::access", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ac98d07dd8f7b70e16ccb9a01abf56b9c", null ],
@@ -60,10 +61,10 @@ var class_o_r_b___s_l_a_m2_1_1_map_point =
     [ "mpRefKF", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a27cc4fee44b1ae77b24a8c766c617058", null ],
     [ "mpReplaced", "class_o_r_b___s_l_a_m2_1_1_map_point.html#abf1fe1c8a41919e1890b70baa18bd2fb", null ],
     [ "mTrackProjX", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a7d735552c42630c00bca4c2094fbbbf3", null ],
-    [ "mTrackProjXR", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a4f0a0671a3587e2aac0708eed07c5170", null ],
     [ "mTrackProjY", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a5ab59610931a5c2e14f502e8233571e4", null ],
     [ "mTrackViewCos", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a728107bc670ba47d79bad5ba288256d6", null ],
     [ "mWorldPos", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a39741adada8dcd302afbf45ec2e72af0", null ],
     [ "nNextId", "class_o_r_b___s_l_a_m2_1_1_map_point.html#aa79702928d566db4fcd7716249bd96a2", null ],
-    [ "nObs", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a2653a4c69121627fcc5ae812b1809a28", null ]
+    [ "nObs", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a2653a4c69121627fcc5ae812b1809a28", null ],
+    [ "rgb", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a70f6cf86b42dfb6f4968839b977cd77f", null ]
 ];

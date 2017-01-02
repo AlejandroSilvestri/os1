@@ -99,14 +99,15 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame_drawe
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::FrameDrawer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame_drawer__coll__graph.svg" width="1471" height="444"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame_drawer__coll__graph.svg" width="199" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7d2b0099c169f6944cadc2cd574a06de"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a7d2b0099c169f6944cadc2cd574a06de">DrawFrame</a> ()</td></tr>
-<tr class="memdesc:a7d2b0099c169f6944cadc2cd574a06de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> para que envíe la imagen del cuadro actual a la pantalla.  <a href="#a7d2b0099c169f6944cadc2cd574a06de">More...</a><br /></td></tr>
-<tr class="separator:a7d2b0099c169f6944cadc2cd574a06de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f237399942a23a5f28a5031559cae3"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af9f237399942a23a5f28a5031559cae3">DrawFrame</a> (float radio=1)</td></tr>
+<tr class="memdesc:af9f237399942a23a5f28a5031559cae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> para que envíe la imagen del cuadro actual a la pantalla.  <a href="#af9f237399942a23a5f28a5031559cae3">More...</a><br /></td></tr>
+<tr class="separator:af9f237399942a23a5f28a5031559cae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add0e1c3734c200a959d8ed9f225223db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add0e1c3734c200a959d8ed9f225223db">FrameDrawer</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
 <tr class="memdesc:add0e1c3734c200a959d8ed9f225223db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#add0e1c3734c200a959d8ed9f225223db">More...</a><br /></td></tr>
 <tr class="separator:add0e1c3734c200a959d8ed9f225223db"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,7 +178,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los puntos reconocidos. </p>
 <p>Utiliza imshow de opencv. Al pie de la imagen describe el estado del sistema. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">FrameDrawer</a> se accede desde dos hilos paralelos asincrónicos:</p><ul>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> invoca el método <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964" title="Invocado sólo por Tracking::Track avisando que hay un nuevo Frame para mostrar. ">FrameDrawer::Update</a> avisando que hay un nuevo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> para mostrar.</li>
-<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> invoca el método <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a7d2b0099c169f6944cadc2cd574a06de" title="Invocado sólo por Viewer::Run para que envíe la imagen del cuadro actual a la pantalla. ">FrameDrawer::DrawFrame</a> cuando es momento de actualizar la pantalla. </li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> invoca el método <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af9f237399942a23a5f28a5031559cae3" title="Invocado sólo por Viewer::Run para que envíe la imagen del cuadro actual a la pantalla. ">FrameDrawer::DrawFrame</a> cuando es momento de actualizar la pantalla. </li>
 </ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="add0e1c3734c200a959d8ed9f225223db"></a>
@@ -200,14 +201,15 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7d2b0099c169f6944cadc2cd574a06de"></a>
+<a id="af9f237399942a23a5f28a5031559cae3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">cv::Mat ORB_SLAM2::FrameDrawer::DrawFrame </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radio</em> = <code>1</code></td><td>)</td>
           <td></td>
         </tr>
       </table>

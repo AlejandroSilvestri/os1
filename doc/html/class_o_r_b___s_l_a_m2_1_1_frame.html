@@ -99,11 +99,15 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame.html'
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::Frame:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame__coll__graph.svg" width="1839" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_frame__coll__graph.svg" width="1532" height="383"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:adb622f403aea686f757df4e884ea622a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#adb622f403aea686f757df4e884ea622a">antidistorsionarProyeccionEquidistante</a> (cv::Mat &amp;puntos)</td></tr>
+<tr class="memdesc:adb622f403aea686f757df4e884ea622a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Antidistorsiona puntos según el modelo de cámara fisheye de proyección equidistante sin coeficientes de distorsión.  <a href="#adb622f403aea686f757df4e884ea622a">More...</a><br /></td></tr>
+<tr class="separator:adb622f403aea686f757df4e884ea622a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3ba21cd44638b322db024cba2b9c19e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#aa3ba21cd44638b322db024cba2b9c19e">AssignFeaturesToGrid</a> ()</td></tr>
 <tr class="memdesc:aa3ba21cd44638b322db024cba2b9c19e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asigna los puntos singulares a sus celdas de la grilla.  <a href="#aa3ba21cd44638b322db024cba2b9c19e">More...</a><br /></td></tr>
 <tr class="separator:aa3ba21cd44638b322db024cba2b9c19e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +156,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a8dc5552a9cb0f5aa8ba2c13b5e7c95fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a8dc5552a9cb0f5aa8ba2c13b5e7c95fb">camaraModo</a></td></tr>
+<tr class="memdesc:a8dc5552a9cb0f5aa8ba2c13b5e7c95fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modo de cámara, 0 normal, 1 fisheye sin distorsión.  <a href="#a8dc5552a9cb0f5aa8ba2c13b5e7c95fb">More...</a><br /></td></tr>
+<tr class="separator:a8dc5552a9cb0f5aa8ba2c13b5e7c95fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950131e5ed7fca2a73fc5a50e6d9b2de"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a950131e5ed7fca2a73fc5a50e6d9b2de">mb</a></td></tr>
 <tr class="memdesc:a950131e5ed7fca2a73fc5a50e6d9b2de"><td class="mdescLeft">&#160;</td><td class="mdescRight">No usado en monocular.  <a href="#a950131e5ed7fca2a73fc5a50e6d9b2de">More...</a><br /></td></tr>
 <tr class="separator:a950131e5ed7fca2a73fc5a50e6d9b2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -411,17 +418,43 @@ Private Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">timeStamp</td><td>Marca de tiempo, para registro. ORB-SLAM no la utiliza. </td></tr>
-    <tr><td class="paramname">extractor</td><td>Algoritmo extractor usado para obtener los descriptores. ORB-SLAM utiliza exclusivamente el extractor BRIEF de ORB.<ul>
-<li></li>
-</ul>
-</td></tr>
+    <tr><td class="paramname">extractor</td><td>Algoritmo extractor usado para obtener los descriptores. ORB-SLAM utiliza exclusivamente el extractor BRIEF de ORB.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Se distinguen dos modos de cámara: normal si se proporcionan los coeficientes de distorsión, o fisheye sin coeficientes si se proporciona noArray()</p><ul>
+<li></li>
+</ul>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="adb622f403aea686f757df4e884ea622a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::Frame::antidistorsionarProyeccionEquidistante </td>
+          <td>(</td>
+          <td class="paramtype">cv::Mat &amp;&#160;</td>
+          <td class="paramname"><em>puntos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Antidistorsiona puntos según el modelo de cámara fisheye de proyección equidistante sin coeficientes de distorsión. </p>
+<p>Usa mK, la matriz intrínseca, para pasar los puntos distorsionados a escala focal, y luego de antidistorsionarlos pasarlos de nuevo a escala de imagen.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">puntos</td><td>Mat de nx2 float, cada par corresponde a un punto. Entrada y salida. Los puntos se corrigen y el resultado se guarda en el mismo lugar.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Sólo usado desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a2a97fc690d8c1cd5e975d19440a31657" title="Calcula los puntos singulares de mvKeysUn. ">Frame::UndistortKeyPoints</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a420f0369833f856df1973410ea39b335" title="Calcula los vértices del cuadro andistorsionado. ">Frame::ComputeImageBounds</a> </p>
+
+</div>
+</div>
 <a id="aa3ba21cd44638b322db024cba2b9c19e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -750,6 +783,20 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8dc5552a9cb0f5aa8ba2c13b5e7c95fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ORB_SLAM2::Frame::camaraModo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modo de cámara, 0 normal, 1 fisheye sin distorsión. </p>
+
+</div>
+</div>
 <a id="a5f2803f215bc30016bd0833d8c7d5942"></a>
 <div class="memitem">
 <div class="memproto">
@@ -959,6 +1006,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Descriptores ORB en el formato Mat, tal como los devuelve opencv. </p>
+<p>mDescritorRight no se usa, se pasa en el constructor de copia. </p>
 
 </div>
 </div>
@@ -1433,6 +1481,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>-1 para monocular. </p>
+<p>Se pasa en el constructor de copia de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>

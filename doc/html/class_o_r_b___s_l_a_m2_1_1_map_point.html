@@ -101,7 +101,8 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_map_point.h
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::MapPoint:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_map_point__coll__graph.svg" width="1228" height="354"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_map_point__coll__graph.svg" width="1452" height="270"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -109,6 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a37277ee3c7d8657976e749ab920bb13f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a37277ee3c7d8657976e749ab920bb13f">AddObservation</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, size_t idx)</td></tr>
 <tr class="memdesc:a37277ee3c7d8657976e749ab920bb13f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cada vez que el punto es observado desde un keyframe, se registra esa observación.  <a href="#a37277ee3c7d8657976e749ab920bb13f">More...</a><br /></td></tr>
 <tr class="separator:a37277ee3c7d8657976e749ab920bb13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade9bee80832ccdf9efa6ed04f14885b7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ade9bee80832ccdf9efa6ed04f14885b7">analisis</a> ()</td></tr>
+<tr class="memdesc:ade9bee80832ccdf9efa6ed04f14885b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agregado, provee un reporte con un análisis del contenido de la instancia.  <a href="#ade9bee80832ccdf9efa6ed04f14885b7">More...</a><br /></td></tr>
+<tr class="separator:ade9bee80832ccdf9efa6ed04f14885b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c3dfd8f5f05a4b1888021f1fac3d84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ab4c3dfd8f5f05a4b1888021f1fac3d84">ComputeDistinctiveDescriptors</a> ()</td></tr>
 <tr class="memdesc:ab4c3dfd8f5f05a4b1888021f1fac3d84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elige el mejor descriptor entre todos los keyframes que observan el punto.  <a href="#ab4c3dfd8f5f05a4b1888021f1fac3d84">More...</a><br /></td></tr>
 <tr class="separator:ab4c3dfd8f5f05a4b1888021f1fac3d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,7 +129,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac1b7c69a2d9f6bd785d465380844ce10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Porcentaje de veces que el punto fue detectado, sobre el total de veces que estuvo en el fustrum.  <a href="#ac1b7c69a2d9f6bd785d465380844ce10">More...</a><br /></td></tr>
 <tr class="separator:ac1b7c69a2d9f6bd785d465380844ce10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbe3f2cf7f4d5e4596fa9f7ff0d44470"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#afbe3f2cf7f4d5e4596fa9f7ff0d44470">GetIndexInKeyFrame</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
-<tr class="memdesc:afbe3f2cf7f4d5e4596fa9f7ff0d44470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id del keyframe si éste observa el punto, -1 si no.  <a href="#afbe3f2cf7f4d5e4596fa9f7ff0d44470">More...</a><br /></td></tr>
+<tr class="memdesc:afbe3f2cf7f4d5e4596fa9f7ff0d44470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Índice de este punto en el vector de features del keyframe.  <a href="#afbe3f2cf7f4d5e4596fa9f7ff0d44470">More...</a><br /></td></tr>
 <tr class="separator:afbe3f2cf7f4d5e4596fa9f7ff0d44470"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf921da31ee4d522181bb6b8d9149fff"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#abf921da31ee4d522181bb6b8d9149fff">GetMaxDistanceInvariance</a> ()</td></tr>
 <tr class="memdesc:abf921da31ee4d522181bb6b8d9149fff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula la distancia máxima a la que puede ser observado el punto.  <a href="#abf921da31ee4d522181bb6b8d9149fff">More...</a><br /></td></tr>
@@ -157,14 +161,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a46bb6b57cd914c9ebad30007f3af469a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa el flag mBad.  <a href="#a46bb6b57cd914c9ebad30007f3af469a">More...</a><br /></td></tr>
 <tr class="separator:a46bb6b57cd914c9ebad30007f3af469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a8c48a885598ba4da3b188791dfd009"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7a8c48a885598ba4da3b188791dfd009">IsInKeyFrame</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
+<tr class="memdesc:a7a8c48a885598ba4da3b188791dfd009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca si este punto es observado por el keyframe argumento.  <a href="#a7a8c48a885598ba4da3b188791dfd009">More...</a><br /></td></tr>
 <tr class="separator:a7a8c48a885598ba4da3b188791dfd009"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad14dd804346e01311e0676959c879555"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ad14dd804346e01311e0676959c879555">MapPoint</a> (const cv::Mat &amp;Pos, int FirstKFid, int FirstFrame, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
+<tr class="memdesc:ad14dd804346e01311e0676959c879555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor declarado pero no implementado.  <a href="#ad14dd804346e01311e0676959c879555">More...</a><br /></td></tr>
 <tr class="separator:ad14dd804346e01311e0676959c879555"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8b6d24a7f79cfd260502859cb5b6901"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ae8b6d24a7f79cfd260502859cb5b6901">MapPoint</a> (const cv::Mat &amp;Pos, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pRefKF, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
-<tr class="memdesc:ae8b6d24a7f79cfd260502859cb5b6901"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor que toma los valores argumentos.  <a href="#ae8b6d24a7f79cfd260502859cb5b6901">More...</a><br /></td></tr>
-<tr class="separator:ae8b6d24a7f79cfd260502859cb5b6901"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbb2b679ea956845f315a69773618fa7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#abbb2b679ea956845f315a69773618fa7">MapPoint</a> (const cv::Mat &amp;Pos, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> *pFrame, const int &amp;idxF)</td></tr>
-<tr class="separator:abbb2b679ea956845f315a69773618fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b0a868a291c502f2632b0d1694872d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ae5b0a868a291c502f2632b0d1694872d">MapPoint</a> (const cv::Mat &amp;Pos, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pRefKF, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, cv::Vec3b <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a70f6cf86b42dfb6f4968839b977cd77f">rgb</a>=0)</td></tr>
+<tr class="memdesc:ae5b0a868a291c502f2632b0d1694872d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor que toma los valores argumentos.  <a href="#ae5b0a868a291c502f2632b0d1694872d">More...</a><br /></td></tr>
+<tr class="separator:ae5b0a868a291c502f2632b0d1694872d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fbc2a95f49eb6facdc5d5fa35de3287"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7fbc2a95f49eb6facdc5d5fa35de3287">Observations</a> ()</td></tr>
 <tr class="memdesc:a7fbc2a95f49eb6facdc5d5fa35de3287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa la cantidad de observaciones que registra el punto.  <a href="#a7fbc2a95f49eb6facdc5d5fa35de3287">More...</a><br /></td></tr>
 <tr class="separator:a7fbc2a95f49eb6facdc5d5fa35de3287"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,6 +184,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a569e91b415067d4484fe7b71f33451cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a569e91b415067d4484fe7b71f33451cf">SetReferenceKeyFrame</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pRefKF)</td></tr>
 <tr class="memdesc:a569e91b415067d4484fe7b71f33451cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece el keyframe de referencia.  <a href="#a569e91b415067d4484fe7b71f33451cf">More...</a><br /></td></tr>
 <tr class="separator:a569e91b415067d4484fe7b71f33451cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae117dc4f8b1c63e124ff0fee3557fb49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ae117dc4f8b1c63e124ff0fee3557fb49">setRefKF</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *)</td></tr>
+<tr class="memdesc:ae117dc4f8b1c63e124ff0fee3557fb49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agregado, escribe mpRefKF, usado solamente en la reconstrucción durante la carga del mapa serializado, para inicializar una propiedad protegida.  <a href="#ae117dc4f8b1c63e124ff0fee3557fb49">More...</a><br /></td></tr>
+<tr class="separator:ae117dc4f8b1c63e124ff0fee3557fb49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad65e6322e9d06314db235ff4d072509f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ad65e6322e9d06314db235ff4d072509f">SetWorldPos</a> (const cv::Mat &amp;Pos)</td></tr>
 <tr class="memdesc:ad65e6322e9d06314db235ff4d072509f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asigna al punto las coordenadas 3D argumento.  <a href="#ad65e6322e9d06314db235ff4d072509f">More...</a><br /></td></tr>
 <tr class="separator:ad65e6322e9d06314db235ff4d072509f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,7 +200,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a03c1f367dd43f384bcd066e9da65bb88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id del primer frame que observa este punto.  <a href="#a03c1f367dd43f384bcd066e9da65bb88">More...</a><br /></td></tr>
 <tr class="separator:a03c1f367dd43f384bcd066e9da65bb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae20735198e68c7ed4c0f0956322c8f7a"><td class="memItemLeft" align="right" valign="top">long int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ae20735198e68c7ed4c0f0956322c8f7a">mnFirstKFid</a></td></tr>
-<tr class="memdesc:ae20735198e68c7ed4c0f0956322c8f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id del primer keyframe que observa este punto.  <a href="#ae20735198e68c7ed4c0f0956322c8f7a">More...</a><br /></td></tr>
+<tr class="memdesc:ae20735198e68c7ed4c0f0956322c8f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id del primer keyframe que observa este punto, cuyo valor es asignado en el constructor y nunca modificado.  <a href="#ae20735198e68c7ed4c0f0956322c8f7a">More...</a><br /></td></tr>
 <tr class="separator:ae20735198e68c7ed4c0f0956322c8f7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afba2eb4d8400a0c822ee991ba445d9be"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#afba2eb4d8400a0c822ee991ba445d9be">mnId</a></td></tr>
 <tr class="memdesc:afba2eb4d8400a0c822ee991ba445d9be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identificador del punto.  <a href="#afba2eb4d8400a0c822ee991ba445d9be">More...</a><br /></td></tr>
@@ -201,23 +208,26 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a2653a4c69121627fcc5ae812b1809a28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a2653a4c69121627fcc5ae812b1809a28">nObs</a></td></tr>
 <tr class="memdesc:a2653a4c69121627fcc5ae812b1809a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de veces que fue observado.  <a href="#a2653a4c69121627fcc5ae812b1809a28">More...</a><br /></td></tr>
 <tr class="separator:a2653a4c69121627fcc5ae812b1809a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f6cf86b42dfb6f4968839b977cd77f"><td class="memItemLeft" align="right" valign="top">cv::Vec3b&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a70f6cf86b42dfb6f4968839b977cd77f">rgb</a> = 0</td></tr>
+<tr class="separator:a70f6cf86b42dfb6f4968839b977cd77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a7d735552c42630c00bca4c2094fbbbf3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7d735552c42630c00bca4c2094fbbbf3">mTrackProjX</a></td></tr>
 <tr class="memdesc:a7d735552c42630c00bca4c2094fbbbf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables efímeras usadas por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>.  <a href="#a7d735552c42630c00bca4c2094fbbbf3">More...</a><br /></td></tr>
 <tr class="separator:a7d735552c42630c00bca4c2094fbbbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ab59610931a5c2e14f502e8233571e4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a5ab59610931a5c2e14f502e8233571e4">mTrackProjY</a></td></tr>
 <tr class="separator:a5ab59610931a5c2e14f502e8233571e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f0a0671a3587e2aac0708eed07c5170"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a4f0a0671a3587e2aac0708eed07c5170">mTrackProjXR</a></td></tr>
-<tr class="separator:a4f0a0671a3587e2aac0708eed07c5170"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0187350fa3fddd0bf89ccf354acb4766"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a0187350fa3fddd0bf89ccf354acb4766">mbTrackInView</a></td></tr>
 <tr class="separator:a0187350fa3fddd0bf89ccf354acb4766"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac515bf003cea5f99737d13475c46816"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#aac515bf003cea5f99737d13475c46816">mnTrackScaleLevel</a></td></tr>
 <tr class="separator:aac515bf003cea5f99737d13475c46816"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a728107bc670ba47d79bad5ba288256d6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a728107bc670ba47d79bad5ba288256d6">mTrackViewCos</a></td></tr>
+<tr class="memdesc:a728107bc670ba47d79bad5ba288256d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coseno de triangulación.  <a href="#a728107bc670ba47d79bad5ba288256d6">More...</a><br /></td></tr>
 <tr class="separator:a728107bc670ba47d79bad5ba288256d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19152183cfddc71b63650175def6aec7"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a19152183cfddc71b63650175def6aec7">mnTrackReferenceForFrame</a></td></tr>
+<tr class="memdesc:a19152183cfddc71b63650175def6aec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable utilizada en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a25843575116bf18c065d6cc7645f5b26" title="Rehace la lista de puntos del mapa local. ">Tracking::UpdateLocalPoints</a>.  <a href="#a19152183cfddc71b63650175def6aec7">More...</a><br /></td></tr>
 <tr class="separator:a19152183cfddc71b63650175def6aec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea3a63ce27fc39e536a6ceef7c1f3473"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#aea3a63ce27fc39e536a6ceef7c1f3473">mnLastFrameSeen</a></td></tr>
+<tr class="memdesc:aea3a63ce27fc39e536a6ceef7c1f3473"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registra el id del último frame que observó el punto.  <a href="#aea3a63ce27fc39e536a6ceef7c1f3473">More...</a><br /></td></tr>
 <tr class="separator:aea3a63ce27fc39e536a6ceef7c1f3473"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ad4da26d02aa54a3e0be6a09e90fa39ec"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ad4da26d02aa54a3e0be6a09e90fa39ec">mnBALocalForKF</a></td></tr>
@@ -230,12 +240,14 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a44172716cac5a56004a60d165de8cfa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variables efímeras usadas por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a>.  <a href="#a44172716cac5a56004a60d165de8cfa2">More...</a><br /></td></tr>
 <tr class="separator:a44172716cac5a56004a60d165de8cfa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86626462be01ad9a133dca0f5b49e688"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a86626462be01ad9a133dca0f5b49e688">mnCorrectedByKF</a></td></tr>
+<tr class="memdesc:a86626462be01ad9a133dca0f5b49e688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Id del último keyframe que corrigió la posición del punto.  <a href="#a86626462be01ad9a133dca0f5b49e688">More...</a><br /></td></tr>
 <tr class="separator:a86626462be01ad9a133dca0f5b49e688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade5858af14ed7924d48dbf191ea5448c"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ade5858af14ed7924d48dbf191ea5448c">mnCorrectedReference</a></td></tr>
 <tr class="separator:ade5858af14ed7924d48dbf191ea5448c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2669d92452bb1347a6a09700e369f049"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a2669d92452bb1347a6a09700e369f049">mPosGBA</a></td></tr>
 <tr class="separator:a2669d92452bb1347a6a09700e369f049"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcef580d7b3562ea9025ea1dc2141b92"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#abcef580d7b3562ea9025ea1dc2141b92">mnBAGlobalForKF</a></td></tr>
+<tr class="memdesc:abcef580d7b3562ea9025ea1dc2141b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">RunBundleAdjustment lo asigna y luego lo consume.  <a href="#abcef580d7b3562ea9025ea1dc2141b92">More...</a><br /></td></tr>
 <tr class="separator:abcef580d7b3562ea9025ea1dc2141b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -253,7 +265,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a3d9788e9d5c47d86b0f614cde91e3a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef6f5c53ed3c845276473bda2437ad03"><td class="memTemplParams" colspan="2">template&lt;class Archivo &gt; </td></tr>
 <tr class="memitem:aef6f5c53ed3c845276473bda2437ad03"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#aef6f5c53ed3c845276473bda2437ad03">serialize</a> (Archivo &amp;, const unsigned int)</td></tr>
-<tr class="memdesc:aef6f5c53ed3c845276473bda2437ad03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializador de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a>.  <a href="#aef6f5c53ed3c845276473bda2437ad03">More...</a><br /></td></tr>
+<tr class="memdesc:aef6f5c53ed3c845276473bda2437ad03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializador de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> Se invoca al serializar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a2864c4d90418f02768c85d0255d1eca7" title="Buscar un keyframe por su id. ">Map::mspMapPoints</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>, cuyos mapPoints nunca tienen mbBad true.  <a href="#aef6f5c53ed3c845276473bda2437ad03">More...</a><br /></td></tr>
 <tr class="separator:aef6f5c53ed3c845276473bda2437ad03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -344,9 +356,11 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor declarado pero no implementado. </p>
+
 </div>
 </div>
-<a id="ae8b6d24a7f79cfd260502859cb5b6901"></a>
+<a id="ae5b0a868a291c502f2632b0d1694872d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -366,7 +380,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td>
-          <td class="paramname"><em>pMap</em>&#160;</td>
+          <td class="paramname"><em>pMap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">cv::Vec3b&#160;</td>
+          <td class="paramname"><em>rgb</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -382,47 +402,12 @@ Friends</h2></td></tr>
     <tr><td class="paramname">Pos</td><td>Posición en el mapa. </td></tr>
     <tr><td class="paramname">pRefKF</td><td>Keyframe de referencia. </td></tr>
     <tr><td class="paramname">pMap</td><td>Mapa al que pertenece el punto. Hay un único mapa en ORB-SLAM. </td></tr>
+    <tr><td class="paramname">rgb_</td><td>Color del punto. Opcional, negro si no se proporciona.</td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="abbb2b679ea956845f315a69773618fa7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ORB_SLAM2::MapPoint::MapPoint </td>
-          <td>(</td>
-          <td class="paramtype">const cv::Mat &amp;&#160;</td>
-          <td class="paramname"><em>Pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td>
-          <td class="paramname"><em>pMap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> *&#160;</td>
-          <td class="paramname"><em>pFrame</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>idxF</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Este constructor se invoca sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac06b513357429d9eff89e29d2ae58d6c" title="El ciclo de mapeo local invoca periódicamente este método, que busca macheos candidatos para su trian...">LocalMapping::CreateNewMapPoints</a> para el agregado de puntos del SLAM.</p>
+<p>Único constructor utilizado. </p>
 
 </div>
 </div>
@@ -489,6 +474,24 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a id="ade9bee80832ccdf9efa6ed04f14885b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ORB_SLAM2::MapPoint::analisis </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Agregado, provee un reporte con un análisis del contenido de la instancia. </p>
+<p>Agregado. </p>
+
+</div>
+</div>
 <a id="ab4c3dfd8f5f05a4b1888021f1fac3d84"></a>
 <div class="memitem">
 <div class="memproto">
@@ -522,6 +525,14 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Elimina del punto el registro que indicaba que fue observado por ese keyframe. </p>
+<p>Elimina el keyframe del mapa mObservations y decrementa la cantidad de observaciones del punto. Si el eliminado es el keyframe de referencia, elige otro. Si el punto queda observado por sólo 2 keyframes, lo elimina con SetBadFlag.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe a eliminar.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Si pKF no observa el punto, no hace nada. </p>
 
 </div>
 </div>
@@ -600,14 +611,15 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Id del keyframe si éste observa el punto, -1 si no. </p>
+<p>Índice de este punto en el vector de features del keyframe. </p>
+<p>-1 si el keyframe no observa este punto.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pKF</td><td>Keyframe a testear, para ver si observa o no el punto.</td></tr>
   </table>
   </dd>
 </dl>
-<p>Devuelve el índice del keyframe argumento si el mismo está en el registro de keyframes que observan al punto. Si no devuelve -1. </p>
+<p>Devuelve el índice idx, de modo que este punto es pKF-&gt;mvpMapPoints[idx] </p>
 
 </div>
 </div>
@@ -682,7 +694,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve todas las observaciones del punto. </p>
-<p>Cada observación consiste de un mapa id a keyframe. </p>
+<p>Cada observación consiste de un mapa id a keyframe.</p>
+<p>Devuelve <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a189bea541f860af75ceb60300b59d8e3" title="Keyframes que observan este punto, y sus índices. ">MapPoint::mObservations</a> </p>
 
 </div>
 </div>
@@ -787,7 +800,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Informa el flag mBad. </p>
-<p>Todos los iteradores consultan este flag antes de considerar el punto. </p>
+<p>Todos los iteradores consultan este flag antes de considerar el punto. Sobre un vector, preguntan primero si el puntero es nulo, y enseguida si isBad. </p>
 
 </div>
 </div>
@@ -804,6 +817,15 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Busca si este punto es observado por el keyframe argumento. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pKF</td><td>Keyframe donde buscar el punto. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true si encontró el punto. </dd></dl>
 
 </div>
 </div>
@@ -912,7 +934,8 @@ template&lt;class Archivo &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Serializador de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a>. </p>
+<p>Serializador de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> Se invoca al serializar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a2864c4d90418f02768c85d0255d1eca7" title="Buscar un keyframe por su id. ">Map::mspMapPoints</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>, cuyos mapPoints nunca tienen mbBad true. </p>
+<p>La serialización de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> evita punteros para asegurar el guardado consecutivo de todos los puntos antes de proceder con los KeyFrames. Esto evita problemas no identificados con <a class="el" href="namespaceboost_1_1serialization.html">boost::serialization</a>, que cuelgan la aplicación al guardar. </p>
 
 </div>
 </div>
@@ -930,6 +953,8 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Elimina el punto, marcándolo como malo. </p>
+<p>Lo retira del mapa. No destruye el punto en sí, para evitar conflictos entre hilos, pero debería. Este flag es efímero, aunque por algún error algunos puntos marcados como malos y retirados del mapa perduran en otros contenedores.</p>
+<p>Con mutex marca mbBad y elimina el mapa mObservations. Fuera del mutex recorre los keyframes de mObservations para eliminar el punto de sus macheos. Finalmente elimina el punto del registro del mapa. </p>
 
 </div>
 </div>
@@ -954,6 +979,25 @@ template&lt;class Archivo &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ae117dc4f8b1c63e124ff0fee3557fb49"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::MapPoint::setRefKF </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td>
+          <td class="paramname"><em>pKF</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Agregado, escribe mpRefKF, usado solamente en la reconstrucción durante la carga del mapa serializado, para inicializar una propiedad protegida. </p>
+<p>Si el argumento es NULL, lo inicializa con el primer elemento de mObservations. </p>
 
 </div>
 </div>
@@ -1191,6 +1235,8 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>RunBundleAdjustment lo asigna y luego lo consume. </p>
+
 </div>
 </div>
 <a id="ad4da26d02aa54a3e0be6a09e90fa39ec"></a>
@@ -1217,6 +1263,9 @@ template&lt;class Archivo &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Id del último keyframe que corrigió la posición del punto. </p>
+<p>Inicializado en 0 en la construcción. Escrito por CorrectLoop, que luego invoca OptimizeEssentialGraph y lo lee. </p>
 
 </div>
 </div>
@@ -1256,8 +1305,9 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Id del primer keyframe que observa este punto. </p>
-<p>Usualmente es el keyframe de referencia. En el raro caso en que se elimine el keyframe de referencia, la referencia cambia, pero se preserva este id. </p>
+<p>Id del primer keyframe que observa este punto, cuyo valor es asignado en el constructor y nunca modificado. </p>
+<p>Usualmente es el keyframe de referencia. En el raro caso en que se elimine el keyframe de referencia, la referencia cambia, pero se preserva este id.</p>
+<p>Es utilizado solamente en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#acbbb8f04b15e3250e0e24070825d19ae" title="Elimina por varios motivos puntos recién agregados. ">LocalMapping::MapPointCulling</a> para evitar descartar puntos desde el keyframe que lo generó ni de los dos siguientes. </p>
 
 </div>
 </div>
@@ -1320,6 +1370,10 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Registra el id del último frame que observó el punto. </p>
+<p>Utilizada en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> sólo para distinguir si se está observando en el frame actual o no.</p>
+<p>No es necesario serializar, el constructor lo inicializa en cero. </p>
+
 </div>
 </div>
 <a id="a44172716cac5a56004a60d165de8cfa2"></a>
@@ -1368,6 +1422,9 @@ template&lt;class Archivo &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Variable utilizada en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a25843575116bf18c065d6cc7645f5b26" title="Rehace la lista de puntos del mapa local. ">Tracking::UpdateLocalPoints</a>. </p>
+<p>Se inicializa en 0 en el constructor, y se escribe y lee sólo en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a25843575116bf18c065d6cc7645f5b26" title="Rehace la lista de puntos del mapa local. ">Tracking::UpdateLocalPoints</a>. Luego de la carga se puede inicializar en cero. </p>
 
 </div>
 </div>
@@ -1425,6 +1482,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Keyframes que observan este punto, y sus índices. </p>
+<p>El mapa tiene como índice punteros a keyframes que observan este punto. El dato secundario asociado al índice es el índice del vector <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>, cuyo elemento es un puntero a este punto. </p>
 
 </div>
 </div>
@@ -1482,6 +1540,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Keyframe de referencia. </p>
+<p>Utilizado solamente para cerrar bucles. </p>
 
 </div>
 </div>
@@ -1516,19 +1575,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Variables efímeras usadas por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. </p>
-<p>Variables usadas por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. </p>
-
-</div>
-</div>
-<a id="a4f0a0671a3587e2aac0708eed07c5170"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float ORB_SLAM2::MapPoint::mTrackProjXR</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Varias se escriben solamente en Frame::IsInFrustum y se utiliza en OrbMatcher::SearchByProjectionVariables usadas por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. </p>
 
 </div>
 </div>
@@ -1553,6 +1600,8 @@ template&lt;class Archivo &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Coseno de triangulación. </p>
 
 </div>
 </div>
@@ -1612,6 +1661,18 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Cantidad de veces que fue observado. </p>
+
+</div>
+</div>
+<a id="a70f6cf86b42dfb6f4968839b977cd77f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Vec3b ORB_SLAM2::MapPoint::rgb = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

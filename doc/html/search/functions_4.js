@@ -7,6 +7,7 @@ var searchData=
   ['deg2rad',['deg2rad',['../namespaceg2o.html#a8f29adce7d7b9855e1d0ba43835c34b3',1,'g2o']]],
   ['delta',['delta',['../classg2o_1_1_robust_kernel.html#affb1dacfd8507540281ff3af2ae6eeb8',1,'g2o::RobustKernel']]],
   ['deltar',['deltaR',['../namespaceg2o.html#a2e39915fb420fd7dc2d3802435e4a6a9',1,'g2o::deltaR()'],['../se3__ops_8hpp.html#ab5f76ec521211d5bba92430d1cd86e4e',1,'deltaR():&#160;se3_ops.hpp']]],
+  ['depurar',['depurar',['../class_o_r_b___s_l_a_m2_1_1_map.html#a7c99213aa7f89384db68a0d06647c23f',1,'ORB_SLAM2::Map']]],
   ['descriptordistance',['DescriptorDistance',['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a63ff10561753f23220c2bfcea9b599f3',1,'ORB_SLAM2::ORBmatcher']]],
   ['destroy',['destroy',['../classg2o_1_1_factory.html#ab40f0aa18dabb91a35de7186ede9355a',1,'g2o::Factory::destroy()'],['../classg2o_1_1_hyper_graph_action_library.html#aa235ae7c242c522518b07d019dbf8a51',1,'g2o::HyperGraphActionLibrary::destroy()'],['../classg2o_1_1_optimization_algorithm_factory.html#a80b6a74ac262e6192064ec264f965bd7',1,'g2o::OptimizationAlgorithmFactory::destroy()'],['../classg2o_1_1_robust_kernel_factory.html#a6c96f77eb4a14e5e8f5b46eb734c0393',1,'g2o::RobustKernelFactory::destroy()']]],
   ['detachparameter',['detachParameter',['../classg2o_1_1_parameter_container.html#a6e57cf684d92f0ceeba8b4923fa41864',1,'g2o::ParameterContainer']]],
@@ -25,8 +26,8 @@ var searchData=
   ['dot',['dot',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#afd58911fc21c6255ac5c541b8e4540ac',1,'ORB_SLAM2::PnPsolver']]],
   ['drawaction',['DrawAction',['../classg2o_1_1_draw_action.html#a6b876d6a30fa564176dc6a3caefa572e',1,'g2o::DrawAction']]],
   ['drawcurrentcamera',['DrawCurrentCamera',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#af8d3dec705fc048dac229cf682bfceb1',1,'ORB_SLAM2::MapDrawer']]],
-  ['drawframe',['DrawFrame',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a7d2b0099c169f6944cadc2cd574a06de',1,'ORB_SLAM2::FrameDrawer']]],
+  ['drawframe',['DrawFrame',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af9f237399942a23a5f28a5031559cae3',1,'ORB_SLAM2::FrameDrawer']]],
   ['drawkeyframes',['DrawKeyFrames',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a5e00f408c3c2d1878ca53930903caa5f',1,'ORB_SLAM2::MapDrawer']]],
-  ['drawmappoints',['DrawMapPoints',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a79991cc944076440e4ce4326436da285',1,'ORB_SLAM2::MapDrawer']]],
+  ['drawmappoints',['DrawMapPoints',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html#acde87836a1eed3d297c6524028388a3f',1,'ORB_SLAM2::MapDrawer']]],
   ['drawtextinfo',['DrawTextInfo',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a059f66cfb0702264c788a79313ec3630',1,'ORB_SLAM2::FrameDrawer']]]
 ];

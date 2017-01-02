@@ -98,7 +98,8 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_map_drawer.
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::MapDrawer:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_map_drawer__coll__graph.svg" width="1459" height="444"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_map_drawer__coll__graph.svg" width="187" height="127"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -109,9 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5e00f408c3c2d1878ca53930903caa5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a5e00f408c3c2d1878ca53930903caa5f">DrawKeyFrames</a> (const bool bDrawKF, const bool bDrawGraph)</td></tr>
 <tr class="memdesc:a5e00f408c3c2d1878ca53930903caa5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja los keyframes y el grafo en pantalla.  <a href="#a5e00f408c3c2d1878ca53930903caa5f">More...</a><br /></td></tr>
 <tr class="separator:a5e00f408c3c2d1878ca53930903caa5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79991cc944076440e4ce4326436da285"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a79991cc944076440e4ce4326436da285">DrawMapPoints</a> ()</td></tr>
-<tr class="memdesc:a79991cc944076440e4ce4326436da285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja en pantalla todos los puntos 3D del mapa.  <a href="#a79991cc944076440e4ce4326436da285">More...</a><br /></td></tr>
-<tr class="separator:a79991cc944076440e4ce4326436da285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acde87836a1eed3d297c6524028388a3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#acde87836a1eed3d297c6524028388a3f">DrawMapPoints</a> (bool color=false)</td></tr>
+<tr class="memdesc:acde87836a1eed3d297c6524028388a3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dibuja en pantalla todos los puntos 3D del mapa.  <a href="#acde87836a1eed3d297c6524028388a3f">More...</a><br /></td></tr>
+<tr class="separator:acde87836a1eed3d297c6524028388a3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a872b93687086460e398e912191c91aca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a872b93687086460e398e912191c91aca">GetCurrentOpenGLCameraMatrix</a> (pangolin::OpenGlMatrix &amp;M)</td></tr>
 <tr class="memdesc:a872b93687086460e398e912191c91aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa Twc, la pose actual del mundo respecto de la cámara.  <a href="#a872b93687086460e398e912191c91aca">More...</a><br /></td></tr>
 <tr class="separator:a872b93687086460e398e912191c91aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,14 +286,15 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a79991cc944076440e4ce4326436da285"></a>
+<a id="acde87836a1eed3d297c6524028388a3f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ORB_SLAM2::MapDrawer::DrawMapPoints </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>color</em> = <code>false</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -300,6 +302,12 @@ Private Attributes</h2></td></tr>
 
 <p>Dibuja en pantalla todos los puntos 3D del mapa. </p>
 <p>Dibua todos en color negro, y luego en rojo los de referencia (los visualizados por la cámara). Invocado en cada iteración de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>true para ver los puntos del mapa a color.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, en cada iteración. </p>
 
 </div>

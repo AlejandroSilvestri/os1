@@ -18,6 +18,7 @@ var searchData=
   ['bowvector',['BowVector',['../class_d_bo_w2_1_1_bow_vector.html#ac4da23e700adc4ee083d66b23ce86e90',1,'DBoW2::BowVector']]],
   ['buildindexmapping',['buildIndexMapping',['../classg2o_1_1_sparse_optimizer.html#a8c6af9785e85153ade1490beacad73ce',1,'g2o::SparseOptimizer']]],
   ['buildlinearstructure',['buildLinearStructure',['../classg2o_1_1_optimization_algorithm_with_hessian.html#aa84732c8554039ba0152693837bd1b4a',1,'g2o::OptimizationAlgorithmWithHessian']]],
+  ['buildobservations',['buildObservations',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#a4fd4bcef13a79d08e78307cc3d77349b',1,'ORB_SLAM2::KeyFrame']]],
   ['buildstructure',['buildStructure',['../classg2o_1_1_block_solver.html#a17e4392d3cca9a9d7cf38bb46d073b86',1,'g2o::BlockSolver::buildStructure()'],['../classg2o_1_1_solver.html#a6c93ac0f528ffe05867d33150c54f46f',1,'g2o::Solver::buildStructure()']]],
   ['buildsystem',['buildSystem',['../classg2o_1_1_block_solver.html#a2654a8d52f38e5ce23720a8de302e2e7',1,'g2o::BlockSolver::buildSystem()'],['../classg2o_1_1_solver.html#ac1565e85d5ca68a87ad7f06f8164a8c0',1,'g2o::Solver::buildSystem()']]],
   ['bundleadjustment',['BundleAdjustment',['../class_o_r_b___s_l_a_m2_1_1_optimizer.html#aac6bf926792ed8a013d64897879a89ec',1,'ORB_SLAM2::Optimizer']]]

@@ -4,7 +4,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "Frame.cc", "_frame_8cc.html", null ],
     [ "FrameDrawer.cc", "_frame_drawer_8cc.html", null ],
     [ "Initializer.cc", "_initializer_8cc.html", null ],
-    [ "KeyFrame.cc", "_key_frame_8cc.html", null ],
+    [ "KeyFrame.cc", "_key_frame_8cc.html", "_key_frame_8cc" ],
     [ "KeyFrameDatabase.cc", "_key_frame_database_8cc.html", null ],
     [ "LocalMapping.cc", "_local_mapping_8cc.html", null ],
     [ "LoopClosing.cc", "_loop_closing_8cc.html", null ],
