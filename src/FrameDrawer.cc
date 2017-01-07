@@ -133,7 +133,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
                 cv::circle(im, vCurrentKeys[i].pt, radio, cv::Scalar(0,128,255), 1);
             }
         }
-    }else{
+    }else  if(state==Tracking::LOST){
     	// Asumo que el estado es LOST
     	// Dibuja puntos singulares
         // Recorre todos los puntos singulares, pone marcas solamente si tienen un punto de mapa asociado.

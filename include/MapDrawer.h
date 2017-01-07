@@ -47,14 +47,20 @@ public:
      * @param pMap Mapa del mundo.
      * @param strSettingPath Ruta del archivo de configuración.
      *
-     * La configuración se limita a aspectos gráficos: anchos de trazos, tamaños de cámara y keyframes.
+     * La configuración se limita a aspectos gráficos: anchos de trazos, tamaños de cámara y keyframes, expresados en píxeles, para su visualización.
+     * Los parámetros son:
+     *
+     * - Viewer.KeyFrameSize: tamaño de las marcas de keyframes
+     * - Viewer.KeyFrameLineWidth: ancho de las líneas al dibujar keyframes
+     * - Viewer.GraphLineWidth: ancho de las líneas del grafo de keyframes
+     * - Viewer.PointSize: tamaño de los puntos del mapa
+     * - Viewer.CameraSize: tamaño del dibujo de la cámara
+     * - Viewer.CameraLineWidth: ancho de línea de la cámara
+     *
      *
      * Invocado sólo desde el constructor de System.
      */
 	MapDrawer(Map* pMap, const string &strSettingPath);
-
-    /** Constructor declarado no definido.*/
-    MapDrawer(const string &strSettingPath);
 
     /** Mapa del mundo.*/
     Map* mpMap;
@@ -90,7 +96,7 @@ public:
     void DrawCurrentCamera(pangolin::OpenGlMatrix &Twc);
 
     /**
-     *
+     * Informa la pose de la cámara al objeto MapDrawer, que la copia a MapDrawer::mCameraPose.
      *
      * @param Tcw Pose en el mundo, matriz de rototraslación en coordenadas homogéneas.
      *
@@ -102,18 +108,29 @@ public:
     void SetReferenceKeyFrame(KeyFrame *pKF);
 
     /**
-     * Informa Twc, la pose actual del mundo respecto de la cámara.
+     * Informa Twc, la pose actual del mundo respecto de la cámara, en formato pangolin.
      *
      * Calcula la pose actual invertida en el formato paonglin::OpenGlMatrix
+     *
+     * @param M Matriz de pose Twc convertida a matriz opengl.
+     *
+     * La pose de la cámara se encuentra convenientemente actualizada en la propiedad mCameraPose.
      *
      * Invocado sólo desde Viewer::Run.
      */
     void GetCurrentOpenGLCameraMatrix(pangolin::OpenGlMatrix &M);
 
+    /**
+     * Similar a MapDrawer::GetCurrentOpenGLCameraMAtriz, informa la pose del mundo respecto del visor, en formato pangolin.
+     * En este caso el visor p (de pájaro) no coincide con la cámara.  Se proporciona un argumento de rototraslación entre el visor y la cámara.
+     *
+     * @param T Rototraslación, pose de la cámara respecto del visor.
+     * @param M Matriz resultado, pose del mundo respecto del visor, en formato pangolin.
+     *
+     * Invocado sólo desde Viewer::Run.
+     *
+     */
     void GetCurrentOpenGLCameraMatrixModified(cv::Mat &T, pangolin::OpenGlMatrix &M);
-
-    /** Método declarado y no definido.*/
-    void Register(Map* pMap);
 
 private:
 
@@ -135,9 +152,16 @@ private:
     /** Ancho del trazo para dibujar la cámara, definido en el archivo de configuración.*/
     float mCameraLineWidth;
 
-    /** Pose de la cámara.*/
+    /**
+     * Pose de la cámara.
+     *
+     * Permanentemente actualizada con MapDrawer::SetCurrentCameraPose invocado por Viewer::Run.
+     */
     cv::Mat mCameraPose;
 
+    /**
+     * mutex que evita que cambios en la pose de la cámara cuando se le están extrayendo los vectores rotación y traslación.
+     */
     std::mutex mMutexCamera;
 };
 

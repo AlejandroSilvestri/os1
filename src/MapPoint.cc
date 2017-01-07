@@ -358,23 +358,6 @@ int MapPoint::PredictScale(const float &currentDist, const float &logScaleFactor
     return ceil(log(ratio)/logScaleFactor);
 }
 
-/**
- * Agregado.
- */
-std::string MapPoint::analisis(){
-	std::string reporte = "";
-	int malos = 0;
-
-	// Reportar keyframes y mappoints isBad
-
-	// std::map< KeyFrame *, size_t > 	mObservations
-	for(auto &par: mObservations)
-		if(!par.first && par.first->isBad())
-			malos++;
-
-	if(malos) reporte = "\n\nMapPoint " + to_string(mnId) + "\nmObservations Total:" + to_string(mObservations.size()) + ", Bad:" + to_string(malos);
-	return reporte;
-}
 
 
 } //namespace ORB_SLAM

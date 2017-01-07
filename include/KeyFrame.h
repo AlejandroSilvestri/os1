@@ -28,6 +28,7 @@
 #include "ORBextractor.h"
 #include "Frame.h"
 #include "KeyFrameDatabase.h"
+#include "Serializer.h"
 
 #include <mutex>
 #include <boost/serialization/access.hpp>
@@ -474,16 +475,6 @@ public:
         return pKF1->mnId<pKF2->mnId;
     }
 
-    /*
-     * Provee un reporte con un análisis del contenido de la instancia.
-     */
-    std::string analisis();
-
-    /**
-     * Informa el estado de la marca mbNotErase, para análisis y depuracón.
-     */
-    bool flagNotErase();
-
     /**
      * Reconstruye MapPoint::mObservations y MapPoint::mObs a partir de KeyFrame::mvpMapPoints
      */
@@ -802,6 +793,7 @@ protected:
 	/** Serialización agregada para guardar y cargar keyframes.*/
 	KeyFrame();
     friend class boost::serialization::access;
+	friend class Serializer;
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 };
 

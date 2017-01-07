@@ -206,21 +206,6 @@ void Viewer::Run(){
         	else 		  T=0;
         	break;
 
-        // Análisis común
-        case 'o':
-        	cout << mpMapDrawer->mpMap->analisis(false) << endl;
-        	break;
-
-        // Análisis profundo
-        case 'p':
-        	cout << mpMapDrawer->mpMap->analisis(true) << endl;
-        	break;
-
-		// Depuración
-		case 'd':
-			mpMapDrawer->mpMap->depurar();
-			break;
-
 		// Inicial: debug, contextual, efímero, envía el video al frame 1960, buen lugar de inicialización para un video determinado
 		case 'i':
 			trackbarPosicionAnterior = 1960;

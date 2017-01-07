@@ -114,6 +114,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpLoopCloser->SetTracker(mpTracker);
     mpLoopCloser->SetLocalMapper(mpLocalMapper);
 
+    serializer = new Serializer(mpMap);
     cout << "Terminando el constructor SLAM." << endl;
 }
 

@@ -28,6 +28,7 @@
 #include <set>
 #include <mutex>
 #include <boost/serialization/access.hpp>
+#include "Serializer.h"
 
 
 
@@ -128,54 +129,10 @@ public:
     // This avoid that two points are created simultaneously in separate threads (id conflict)
     std::mutex mMutexPointCreation;
 
-    /**
-     * Inicia el guardado del mapa completo.
-     * No corresponde al desdoblamiento de boost::serialization
-     *
-     * @param archivo Nombre del archivo donde se guardará el mapa.
-     *
-     * Se implementa en serialize.cpp
-     */
-    void save(char* archivo);
 
-    /**
-     * Inicia la carga del mapa completo (Map, MapPoints y KeyFrames), y su acomodamiento en memoria.
-     * No corresponde al desdoblamiento de boost::serialization
-     * Reconstruye KeyFrameDatabase.
-     * Acomoda el estado del sistema en relocalización.
-     *
-     * @param archivo Nombre del archivo de donde se cargará el mapa.
-     * @param sys Sistema
-     *
-     * Se implementa en serialize.cpp
-     */
-    void load(char* archivo);
 
-    /**
-     * Procura eliminar KeyPoints y MapPoints malos o que no están en el mapa.
-     */
-    void depurar();
-
-    /**
-     * Devuelve true si el keyframe argumento está en el mapa.
-     */
-    bool enMapa(KeyFrame*);
-
-    /**
-     * Devuelve true si el mappoint argumento está en el mapa.
-     */
-    bool enMapa(MapPoint*);
-
-    /**
-     * Agregado, análisis de nulos y malos
-     */
-    std::string analisis(bool profundo = false);
-
-    /**
-     * Buscar un keyframe por su id
-     */
-    //KeyFrame *findKeyFrameById(long unsigned int id);
-
+    /** Puntos lejanos.*/
+    std::set<MapPoint*> puntosLejanos;
 
 protected:
     /** Puntos del mapa.*/
@@ -201,6 +158,7 @@ protected:
 
 	/** Serialización agregada para guardar y cargar mapas.*/
 	friend class boost::serialization::access;
+	friend class Serializer;
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 };
 

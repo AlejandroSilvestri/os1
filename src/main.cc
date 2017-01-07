@@ -33,6 +33,7 @@
 #include <Viewer.h>
 #include <Tracking.h>
 #include <FrameDrawer.h>
+#include <Serializer.h>
 
 
 using namespace std;
@@ -180,7 +181,7 @@ using namespace std;
  * y el modo MONOCULAR.
  */
 
-ORB_SLAM2::System* Sistema;
+ORB_SLAM2::System *Sistema;
 
 int main(int argc, char **argv){
 
@@ -241,7 +242,6 @@ int main(int argc, char **argv){
     //ORB_SLAM2::System SLAM("../Archivos/ORBvoc.txt", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
 
     // Puntero global al sistema singleton
-    //ORB_SLAM2::System::sistema = &SLAM;
     Sistema = &SLAM;
 
     // Imagen de entrada
@@ -293,7 +293,8 @@ int main(int argc, char **argv){
     		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
 
         	char archivo[] = "mapa.bin";
-        	SLAM.mpMap->load(archivo);
+        	//SLAM.mpMap->load(archivo);
+        	SLAM.serializer->mapLoad(archivo);
         	cout << "Mapa cargado." << endl;
 
         	SLAM.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
@@ -310,7 +311,8 @@ int main(int argc, char **argv){
     		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
 
         	char archivo[] = "mapa.bin";
-        	SLAM.mpMap->save(archivo);
+        	//SLAM.mpMap->save(archivo);
+        	SLAM.serializer->mapSave(archivo);
         	cout << "Mapa guardado." << endl;
 
     	}

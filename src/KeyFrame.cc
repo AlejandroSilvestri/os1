@@ -24,11 +24,13 @@
 #include "System.h"
 #include<mutex>
 
-extern ORB_SLAM2::System* Sistema;
 
+extern ORB_SLAM2::System *Sistema;
 
 namespace ORB_SLAM2
 {
+//extern System &Sistema;
+
 
 long unsigned int KeyFrame::nNextId=0;
 
@@ -702,58 +704,6 @@ float KeyFrame::ComputeSceneMedianDepth(const int q)
     sort(vDepths.begin(),vDepths.end());
 
     return vDepths[(vDepths.size()-1)/q];
-}
-
-/**
- * Agregado.
- */
-std::string KeyFrame::analisis(){
-	std::string reporte = "";
-	int malos = 0;	// No hay nulos, sólo busca malos.
-
-	// Reportar keyframes y mappoints isBad
-
-	// std::map< KeyFrame *, int > 	mConnectedKeyFrameWeights
-	for(auto &par: mConnectedKeyFrameWeights)
-		if(!par.first && par.first->isBad())
-			malos++;
-
-	if(malos) reporte += "\nmConnectedKeyFrameWeights Total:" + to_string(mConnectedKeyFrameWeights.size()) + ", Bad:" + to_string(malos);
-	malos = 0;
-
-	// std::set< KeyFrame * > 	mspChildrens
-	for(auto &pKF: mspChildrens)
-		if(pKF && pKF->isBad())
-			malos++;
-
-	if(malos) reporte += "\nmspChildrens Total:" + to_string(mspChildrens.size()) + ", Bad:" + to_string(malos);
-	malos = 0;
-
-
-	// std::set< KeyFrame * > 	mspLoopEdges
-	for(auto &pKF: mspLoopEdges)
-		if(pKF && pKF->isBad())
-			malos++;
-
-	if(malos) reporte += "\nmspLoopEdges Total:" + to_string(mspLoopEdges.size()) + ", Bad:" + to_string(malos);
-	malos = 0;
-
-
-	// std::vector< MapPoint * > 	mvpMapPoints
-	for(auto &pMP: mvpMapPoints)
-		if(pMP && pMP->isBad())
-			malos++;
-
-	if(malos) reporte += "\nmvpMapPoints Total:" + to_string(mvpMapPoints.size()) + ", Bad:" + to_string(malos);
-
-	vector<KeyFrame *> todosLosKeyFrames = mpMap->GetAllKeyFrames();
-	if(std::find(todosLosKeyFrames.begin(), todosLosKeyFrames.end(), this) == todosLosKeyFrames.end())
-		reporte += "\n¡Fuera del mapa!";
-
-	if(reporte != "")
-		reporte = "\n\nKeyFrame " + to_string(mnId) + reporte;
-
-	return reporte;
 }
 
 

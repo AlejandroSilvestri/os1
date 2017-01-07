@@ -328,12 +328,8 @@ void MapDrawer::GetCurrentOpenGLCameraMatrixModified(cv::Mat &Tcp, pangolin::Ope
     Rwc.copyTo(Twc.rowRange(0,3).colRange(0,3));
     twc.copyTo(Twc.rowRange(0,3).col(3));
 
-    //cout << "\nTwc\n" << Twc << endl;
-
     // Modificar, transformar Twc
     cv::Mat Twp = Twc * Tcp;
-
-    //cout << "\nTwp\n" << Twp << endl;
 
 	// Convertir a matriz opengl
     for(unsigned int i=0; i<4; i++)

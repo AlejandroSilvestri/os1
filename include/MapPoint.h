@@ -24,6 +24,7 @@
 #include "KeyFrame.h"
 #include "Frame.h"
 #include "Map.h"
+#include "Serializer.h"
 
 #include <opencv2/core/core.hpp>
 #include <mutex>
@@ -246,17 +247,6 @@ public:
     int PredictScale(const float &currentDist, const float &logScaleFactor);
 
 
-    /**
-     * Agregado, provee un reporte con un análisis del contenido de la instancia.
-     */
-    string analisis();
-
-    /**
-     * Agregado, escribe mpRefKF, usado solamente en la reconstrucción durante la carga del mapa serializado,
-     * para inicializar una propiedad protegida.
-     * Si el argumento es NULL, lo inicializa con el primer elemento de mObservations.
-     */
-    void setRefKF(KeyFrame*);
 
 
 public:
@@ -422,6 +412,7 @@ protected:
 	/** Serialización agregada para guardar y cargar puntos de mapa.*/
 	MapPoint();
 	friend class boost::serialization::access;
+	friend class Serializer;
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 };
 

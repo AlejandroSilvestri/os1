@@ -29,17 +29,8 @@
 #include <mutex>
 
 
-/*
-#include "Tracking.h"
-#include "FrameDrawer.h"
-#include "MapDrawer.h"
-#include "Map.h"
-#include "LocalMapping.h"
-#include "LoopClosing.h"
-#include "KeyFrameDatabase.h"
-#include "Viewer.h"
-*/
 #include "ORBVocabulary.h"
+
 
 
 namespace ORB_SLAM2{
@@ -64,6 +55,8 @@ class LocalMapping;
 
 /** Única instancia d*/
 class LoopClosing;
+
+class Serializer;
 
 /**
  * System se instancia una única vez en main, en la variable SLAM.
@@ -247,8 +240,8 @@ public:
     /** Visor del mapa que muestra los puntos 3D y la pose de la cámara.   Usa Pangolin.*/
     MapDrawer* mpMapDrawer;
 
-    /** Referencia global al sistema singleton.*/
-    static System* sistema;
+    /** Serializador singleton.*/
+    Serializer *serializer;
 
 private:
 
