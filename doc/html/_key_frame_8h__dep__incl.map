@@ -1,11 +1,11 @@
 <map id="/home/alejandro/Desarrollo eclipse/os1/include/KeyFrame.h" name="/home/alejandro/Desarrollo eclipse/os1/include/KeyFrame.h">
 <area shape="rect" id="node2" href="$_map_point_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/MapPoint.h" alt="" coords="976,95,1183,136"/>
-<area shape="rect" id="node4" href="$_key_frame_database_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/KeyFrameDatabase.h" alt="" coords="2313,273,2581,315"/>
+<area shape="rect" id="node4" href="$_key_frame_database_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/KeyFrameDatabase.h" alt="" coords="2316,273,2584,315"/>
 <area shape="rect" id="node6" href="$_loop_closing_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/LoopClosing.h" alt="" coords="1962,452,2186,493"/>
 <area shape="rect" id="node7" href="$_local_mapping_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/LocalMapping.h" alt="" coords="2114,541,2346,583"/>
 <area shape="rect" id="node10" href="$_optimizer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Optimizer.h" alt="" coords="210,541,418,583"/>
-<area shape="rect" id="node17" href="$serialize_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/serialize.cpp" alt="" coords="2336,452,2527,493"/>
-<area shape="rect" id="node19" href="$_key_frame_database_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/KeyFrameDatabase.cc" alt="" coords="2561,363,2813,404"/>
+<area shape="rect" id="node17" href="$_serializer_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Serializer.cpp" alt="" coords="2335,452,2533,493"/>
+<area shape="rect" id="node19" href="$_key_frame_database_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/KeyFrameDatabase.cc" alt="" coords="2564,363,2816,404"/>
 <area shape="rect" id="node21" href="$_o_r_bmatcher_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/ORBmatcher.h" alt="" coords="999,273,1227,315"/>
 <area shape="rect" id="node23" href="$_key_frame_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/KeyFrame.cc" alt="" coords="1457,363,1653,404"/>
 <area shape="rect" id="node26" href="$_sim3_solver_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Sim3Solver.cc" alt="" coords="2057,363,2259,404"/>

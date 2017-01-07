@@ -9,7 +9,7 @@ var searchData=
   ['deg2rad',['deg2rad',['../namespaceg2o.html#a8f29adce7d7b9855e1d0ba43835c34b3',1,'g2o::deg2rad()'],['../macros_8h.html#a2b4f9c3a8b58ecc8e9a6cda26417ba00',1,'DEG2RAD():&#160;macros.h']]],
   ['delta',['delta',['../classg2o_1_1_robust_kernel.html#affb1dacfd8507540281ff3af2ae6eeb8',1,'g2o::RobustKernel']]],
   ['deltar',['deltaR',['../namespaceg2o.html#a2e39915fb420fd7dc2d3802435e4a6a9',1,'g2o::deltaR()'],['../se3__ops_8hpp.html#ab5f76ec521211d5bba92430d1cd86e4e',1,'deltaR():&#160;se3_ops.hpp']]],
-  ['depurar',['depurar',['../class_o_r_b___s_l_a_m2_1_1_map.html#a7c99213aa7f89384db68a0d06647c23f',1,'ORB_SLAM2::Map']]],
+  ['depurar',['depurar',['../class_o_r_b___s_l_a_m2_1_1_serializer.html#a8f9e481a572ab6b9fcb6ef5dfa517247',1,'ORB_SLAM2::Serializer']]],
   ['desc',['desc',['../structg2o_1_1_optimization_algorithm_property.html#a9390204f7ff2f092241f55656d8458b1',1,'g2o::OptimizationAlgorithmProperty']]],
   ['descriptor',['descriptor',['../struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ab785e994eeae8e6c1d67ee45ad4c8450',1,'DBoW2::TemplatedVocabulary::Node']]],
   ['descriptordistance',['DescriptorDistance',['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a63ff10561753f23220c2bfcea9b599f3',1,'ORB_SLAM2::ORBmatcher']]],

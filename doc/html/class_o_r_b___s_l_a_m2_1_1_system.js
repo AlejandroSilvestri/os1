@@ -33,6 +33,6 @@ var class_o_r_b___s_l_a_m2_1_1_system =
     [ "mpViewer", "class_o_r_b___s_l_a_m2_1_1_system.html#a4f89f0644efa2054604a53ffa8dbd4e7", null ],
     [ "mpVocabulary", "class_o_r_b___s_l_a_m2_1_1_system.html#a30df3414ecc346463295d8138c80af2f", null ],
     [ "mSensor", "class_o_r_b___s_l_a_m2_1_1_system.html#a6e2c6a2e12b887481a564e0f95912d40", null ],
-    [ "sistema", "class_o_r_b___s_l_a_m2_1_1_system.html#a2c7f38238c59c78055b60eced4988067", null ],
+    [ "serializer", "class_o_r_b___s_l_a_m2_1_1_system.html#a8507b13866c3804cbbe74ba407d0caea", null ],
     [ "video", "class_o_r_b___s_l_a_m2_1_1_system.html#a15fdbc8309a8b1255b3028053e9ba4a8", null ]
 ];

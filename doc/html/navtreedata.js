@@ -51,17 +51,17 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_bow_vector_8cpp.html",
-"class_d_bo_w2_1_1_templated_vocabulary.html#a3244d5a3d0f75ba9c9ae905c5365335d",
-"class_o_r_b___s_l_a_m2_1_1_key_frame.html#a30315bba6d290ec12227cf9c0aed5df1",
-"class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ac72cc0b3e9e3a92527b38ca12230e79c",
-"class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#ae647640668c16a2716db73a43c812e7a",
-"classg2o_1_1_base_property.html",
-"classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#afde21c6f1b41de5a73362b2fcfec056b",
-"classg2o_1_1_optimizable_graph_1_1_edge.html#a2f0b6465d6cd8b459ebc6494892c44f4",
-"classg2o_1_1_property_map.html#af5dd0defe4a5096f0d5602b38e837a78",
-"classg2o_1_1_sparse_optimizer.html#a2fba11c8572fce4a8c1bcca4fa3e43fb",
-"functions_vars_p.html",
-"se3__ops_8hpp.html#a3c5bcbab070f57ad4172726b8433fa44",
+"class_d_bo_w2_1_1_templated_vocabulary.html#a03912634600711fbf70355ed32b07f2c",
+"class_o_r_b___s_l_a_m2_1_1_key_frame.html#a16ea4f0cfa1ca411bb3382107fe69d2d",
+"class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a872b93687086460e398e912191c91aca",
+"class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#abc2d59150f4f6f446032cdb6bb77ee43",
+"classg2o_1_1_base_multi_edge.html#a761d6a3623ed2c4ce6c6535f78dac08d",
+"classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a6697b7728a51b80663f843daba54e2d8",
+"classg2o_1_1_optimizable_graph_1_1_edge.html#a08666609850240956c64c95ae5ae0f2c",
+"classg2o_1_1_property_map.html#a43df66ba15f9425abbd0e888a7b67251",
+"classg2o_1_1_sparse_optimizer.html#a06bd3e9f1576dafeae317d2697c6f532",
+"functions_vars_f.html",
+"se3__ops_8h.html",
 "structg2o_1_1_optimization_algorithm_property.html#a199f33f536f48f6ceda037f6a2ff206d"
 ];
 

@@ -27,7 +27,6 @@ var searchData=
   ['elementtype',['elementType',['../classg2o_1_1_cache.html#ace402a9e59f3fe28ae7e44854cbc5e97',1,'g2o::Cache::elementType()'],['../structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html#a1a9d7b748698c09d202373e06e413ef2',1,'g2o::HyperGraph::HyperGraphElement::elementType()'],['../classg2o_1_1_hyper_graph_1_1_vertex.html#a8f214b9065b88a3aafff7442380476ab',1,'g2o::HyperGraph::Vertex::elementType()'],['../classg2o_1_1_hyper_graph_1_1_edge.html#a04f1b4d408aebdf14ac3f0cfd247b776',1,'g2o::HyperGraph::Edge::elementType()'],['../classg2o_1_1_optimizable_graph_1_1_data.html#aa98d48f62d4c620cb62fbaeb1775389b',1,'g2o::OptimizableGraph::Data::elementType()'],['../classg2o_1_1_parameter.html#a44ace751794dcde7a5fd52d16e2f4f21',1,'g2o::Parameter::elementType()']]],
   ['elementtypebit',['elementTypeBit',['../classg2o_1_1_factory_1_1_creator_information.html#ab9fa4c8aec27d204f5ae6a7510c4e339',1,'g2o::Factory::CreatorInformation']]],
   ['empty',['empty',['../class_d_bo_w2_1_1_templated_vocabulary.html#ad7bbb3cf53f8f9f3610b9b67c551ba8e',1,'DBoW2::TemplatedVocabulary::empty()'],['../class_d_utils_1_1_random_1_1_unrepeated_randomizer.html#a4f93a3ab99e3e801d0c1d2599917a37a',1,'DUtils::Random::UnrepeatedRandomizer::empty()'],['../class_d_utils_1_1_timestamp.html#a0aaa878aee63c543dea866892c003a62',1,'DUtils::Timestamp::empty()']]],
-  ['enmapa',['enMapa',['../class_o_r_b___s_l_a_m2_1_1_map.html#a5c899a4b89fe034eae71270ce7c782ba',1,'ORB_SLAM2::Map::enMapa(KeyFrame *)'],['../class_o_r_b___s_l_a_m2_1_1_map.html#a3f416dcc9f53d3f4bd25d71d80388edd',1,'ORB_SLAM2::Map::enMapa(MapPoint *)']]],
   ['erase',['erase',['../class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#aa5b56ae1d1cb827fb4602abd61d77a06',1,'ORB_SLAM2::KeyFrameDatabase']]],
   ['erasechild',['EraseChild',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#aefdd69627fd6a204a6ef4539303b81f6',1,'ORB_SLAM2::KeyFrame']]],
   ['eraseconnection',['EraseConnection',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#a0a2e676f5e594cf9330e197a2c7df378',1,'ORB_SLAM2::KeyFrame']]],
@@ -47,16 +46,16 @@ var searchData=
   ['estimate_5fpropagator_2eh',['estimate_propagator.h',['../estimate__propagator_8h.html',1,'']]],
   ['estimate_5fr_5fand_5ft',['estimate_R_and_t',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#abf90f06f1d7218d8200b2682817ed08a',1,'ORB_SLAM2::PnPsolver']]],
   ['estimatedimension',['estimateDimension',['../classg2o_1_1_optimizable_graph_1_1_vertex.html#ae9d94367931458af6ca3d5589801b1e6',1,'g2o::OptimizableGraph::Vertex']]],
-  ['estimatepropagator',['EstimatePropagator',['../classg2o_1_1_estimate_propagator.html',1,'g2o']]],
   ['estimatepropagator',['EstimatePropagator',['../classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a84fd16bbb058a331370b1b9983896264',1,'g2o::EstimatePropagator::AdjacencyMapEntry::EstimatePropagator()'],['../classg2o_1_1_estimate_propagator.html#af245037ba41bfb02d531c11f5de4f7e8',1,'g2o::EstimatePropagator::EstimatePropagator()']]],
+  ['estimatepropagator',['EstimatePropagator',['../classg2o_1_1_estimate_propagator.html',1,'g2o']]],
   ['estimatepropagatorcost',['EstimatePropagatorCost',['../classg2o_1_1_estimate_propagator_cost.html#aebd56e3597a99b225bc3799ec8145bc9',1,'g2o::EstimatePropagatorCost']]],
   ['estimatepropagatorcost',['EstimatePropagatorCost',['../classg2o_1_1_estimate_propagator_cost.html',1,'g2o']]],
-  ['estimatepropagatorcostodometry',['EstimatePropagatorCostOdometry',['../classg2o_1_1_estimate_propagator_cost_odometry.html',1,'g2o']]],
   ['estimatepropagatorcostodometry',['EstimatePropagatorCostOdometry',['../classg2o_1_1_estimate_propagator_cost_odometry.html#a426a53e3cce07b71a129cc53754e9f1a',1,'g2o::EstimatePropagatorCostOdometry']]],
+  ['estimatepropagatorcostodometry',['EstimatePropagatorCostOdometry',['../classg2o_1_1_estimate_propagator_cost_odometry.html',1,'g2o']]],
   ['estimatetype',['EstimateType',['../classg2o_1_1_base_vertex.html#aaffb179a0d591da4769ec7c3fc7f7daa',1,'g2o::BaseVertex']]],
   ['etrackingstate',['eTrackingState',['../class_o_r_b___s_l_a_m2_1_1_tracking.html#a3995b5e23b910c6ee30b7fe21732fe36',1,'ORB_SLAM2::Tracking']]],
   ['exp',['exp',['../classg2o_1_1_s_e3_quat.html#a374a05b202889d09d5a3a25e0fb6c103',1,'g2o::SE3Quat']]],
   ['extractorb',['ExtractORB',['../class_o_r_b___s_l_a_m2_1_1_frame.html#a626aef981e9fd9caff63bf93f1abf47f',1,'ORB_SLAM2::Frame']]],
-  ['extractornode',['ExtractorNode',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html',1,'ORB_SLAM2']]],
-  ['extractornode',['ExtractorNode',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html#af1920a7d5f8166debdd4a7fe4a15a8e9',1,'ORB_SLAM2::ExtractorNode']]]
+  ['extractornode',['ExtractorNode',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html#af1920a7d5f8166debdd4a7fe4a15a8e9',1,'ORB_SLAM2::ExtractorNode']]],
+  ['extractornode',['ExtractorNode',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html',1,'ORB_SLAM2']]]
 ];

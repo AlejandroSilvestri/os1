@@ -16,7 +16,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "ORBextractor.cc", "_o_r_bextractor_8cc.html", "_o_r_bextractor_8cc" ],
     [ "ORBmatcher.cc", "_o_r_bmatcher_8cc.html", null ],
     [ "PnPsolver.cc", "_pn_psolver_8cc.html", null ],
-    [ "serialize.cpp", "serialize_8cpp.html", "serialize_8cpp" ],
+    [ "Serializer.cpp", "_serializer_8cpp.html", "_serializer_8cpp" ],
     [ "Sim3Solver.cc", "_sim3_solver_8cc.html", null ],
     [ "System.cc", "_system_8cc.html", null ],
     [ "Tracking.cc", "_tracking_8cc.html", null ],

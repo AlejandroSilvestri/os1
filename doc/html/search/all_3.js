@@ -15,7 +15,7 @@ var searchData=
   ['cam_5fmap2',['cam_map2',['../classg2o_1_1_vertex_sim3_expmap.html#aa1fea182077bd192c547d6b59c874e1e',1,'g2o::VertexSim3Expmap']]],
   ['cam_5fproject',['cam_project',['../classg2o_1_1_edge_s_e3_project_x_y_z.html#ab6d57a3a8bbeafb3405ea39c98dca768',1,'g2o::EdgeSE3ProjectXYZ::cam_project()'],['../classg2o_1_1_edge_stereo_s_e3_project_x_y_z.html#a5e1d2a6a247a6f9a95ccb7a59e3c543e',1,'g2o::EdgeStereoSE3ProjectXYZ::cam_project()'],['../classg2o_1_1_edge_s_e3_project_x_y_z_only_pose.html#ad557e880209ef1a49c4b54a60872fe68',1,'g2o::EdgeSE3ProjectXYZOnlyPose::cam_project()'],['../classg2o_1_1_edge_stereo_s_e3_project_x_y_z_only_pose.html#a6545d86fffb69bb1aa71350fe6d70846',1,'g2o::EdgeStereoSE3ProjectXYZOnlyPose::cam_project()']]],
   ['camaramodo',['camaraModo',['../class_o_r_b___s_l_a_m2_1_1_frame.html#a8dc5552a9cb0f5aa8ba2c13b5e7c95fb',1,'ORB_SLAM2::Frame::camaraModo()'],['../class_o_r_b___s_l_a_m2_1_1_tracking.html#ab87e93e3430d5a50dbca87c49955a666',1,'ORB_SLAM2::Tracking::camaraModo()']]],
-  ['cargando',['CARGANDO',['../serialize_8cpp.html#a16b53bced2ab4579dde2b0736671d96e',1,'serialize.cpp']]],
+  ['cargando',['CARGANDO',['../_serializer_8cpp.html#a16b53bced2ab4579dde2b0736671d96e',1,'Serializer.cpp']]],
   ['cargarmapa',['cargarMapa',['../class_o_r_b___s_l_a_m2_1_1_viewer.html#a4f6ee522d15ea19986f1625007ef08cb',1,'ORB_SLAM2::Viewer']]],
   ['ccs',['ccs',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#ada47673e9ff64787eda1412e35056627',1,'ORB_SLAM2::PnPsolver']]],
   ['changecalibration',['ChangeCalibration',['../class_o_r_b___s_l_a_m2_1_1_tracking.html#a7be9bebf51fda1413d253224cdacf7cd',1,'ORB_SLAM2::Tracking']]],

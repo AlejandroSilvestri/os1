@@ -55,7 +55,6 @@ var searchData=
   ['bg_5fwhite',['BG_WHITE',['../color__macros_8h.html#a6beded3f171517df3902c52f79f6fea2',1,'color_macros.h']]],
   ['bg_5fyellow',['BG_YELLOW',['../color__macros_8h.html#ab31fe3e74b1137650d30ede5c9b86218',1,'color_macros.h']]],
   ['bhattacharyya',['BHATTACHARYYA',['../namespace_d_bo_w2.html#aa252a592dd607c6e60dede06ceef2722a22de570628b33a2662630def802a23cb',1,'DBoW2']]],
-  ['bifurcacion',['BIFURCACION',['../serialize_8cpp.html#aa20820f8508907155ae78692268d3fe7',1,'serialize.cpp']]],
   ['binary',['BINARY',['../namespace_d_bo_w2.html#a5de5c8a307aca9a84ffefda2a9bc467aae517632073c3a0b980558ebb6519d759',1,'DBoW2']]],
   ['bit_5fpattern_5f31_5f',['bit_pattern_31_',['../namespace_o_r_b___s_l_a_m2.html#a8dd21ee063eca2b0bc3f5e76ceba0492',1,'ORB_SLAM2']]],
   ['bl',['BL',['../class_o_r_b___s_l_a_m2_1_1_extractor_node.html#ab31adc0d00b85307ba98b2ff434c30fc',1,'ORB_SLAM2::ExtractorNode']]],

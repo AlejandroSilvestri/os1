@@ -16,6 +16,7 @@ var namespace_o_r_b___s_l_a_m2 =
     [ "ORBextractor", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor" ],
     [ "ORBmatcher", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher" ],
     [ "PnPsolver", "class_o_r_b___s_l_a_m2_1_1_pn_psolver.html", "class_o_r_b___s_l_a_m2_1_1_pn_psolver" ],
+    [ "Serializer", "class_o_r_b___s_l_a_m2_1_1_serializer.html", "class_o_r_b___s_l_a_m2_1_1_serializer" ],
     [ "Sim3Solver", "class_o_r_b___s_l_a_m2_1_1_sim3_solver.html", "class_o_r_b___s_l_a_m2_1_1_sim3_solver" ],
     [ "System", "class_o_r_b___s_l_a_m2_1_1_system.html", "class_o_r_b___s_l_a_m2_1_1_system" ],
     [ "Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html", "class_o_r_b___s_l_a_m2_1_1_tracking" ],

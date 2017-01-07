@@ -1,6 +1,6 @@
 <map id="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/DBoW2/DBoW2/FeatureVector.h" name="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/DBoW2/DBoW2/FeatureVector.h">
 <area shape="rect" id="node2" href="$_key_frame_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/KeyFrame.h" alt="" coords="1806,317,2018,359"/>
-<area shape="rect" id="node4" href="$_frame_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Frame.h" alt="" coords="1364,496,1553,537"/>
+<area shape="rect" id="node4" href="$_frame_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Frame.h" alt="" coords="1362,496,1552,537"/>
 <area shape="rect" id="node26" href="$_o_r_bmatcher_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/ORBmatcher.cc" alt="" coords="252,675,464,716"/>
 <area shape="rect" id="node34" href="$_templated_vocabulary_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/DBoW2/DBoW2/TemplatedVocabulary.h" alt="" coords="2126,109,2388,165"/>
 <area shape="rect" id="node39" href="$_feature_vector_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/DBoW2/DBoW2/FeatureVector.cpp" alt="" coords="2412,109,2646,165"/>
@@ -9,9 +9,9 @@
 <area shape="rect" id="node7" href="$_loop_closing_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/LoopClosing.h" alt="" coords="2328,764,2552,805"/>
 <area shape="rect" id="node8" href="$_local_mapping_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/LocalMapping.h" alt="" coords="2546,853,2778,895"/>
 <area shape="rect" id="node11" href="$_optimizer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Optimizer.h" alt="" coords="1397,853,1605,895"/>
-<area shape="rect" id="node18" href="$serialize_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/serialize.cpp" alt="" coords="2112,764,2303,805"/>
+<area shape="rect" id="node18" href="$_serializer_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Serializer.cpp" alt="" coords="2106,764,2304,805"/>
 <area shape="rect" id="node20" href="$_key_frame_database_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/KeyFrameDatabase.cc" alt="" coords="2056,675,2308,716"/>
-<area shape="rect" id="node22" href="$_o_r_bmatcher_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/ORBmatcher.h" alt="" coords="623,585,851,627"/>
+<area shape="rect" id="node22" href="$_o_r_bmatcher_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/ORBmatcher.h" alt="" coords="620,585,848,627"/>
 <area shape="rect" id="node24" href="$_key_frame_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/KeyFrame.cc" alt="" coords="1582,675,1778,716"/>
 <area shape="rect" id="node27" href="$_sim3_solver_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Sim3Solver.cc" alt="" coords="25,675,228,716"/>
 <area shape="rect" id="node30" href="$_map_drawer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/MapDrawer.h" alt="" coords="2874,496,3093,537"/>
@@ -20,9 +20,9 @@
 <area shape="rect" id="node33" href="$_sim3_solver_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Sim3Solver.h" alt="" coords="17,585,236,627"/>
 <area shape="rect" id="node16" href="$_frame_drawer_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/FrameDrawer.cc" alt="" coords="2904,764,3119,805"/>
 <area shape="rect" id="node25" href="$_map_point_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/MapPoint.cc" alt="" coords="742,675,932,716"/>
-<area shape="rect" id="node28" href="$_pn_psolver_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/PnPsolver.h" alt="" coords="1350,585,1562,627"/>
+<area shape="rect" id="node28" href="$_pn_psolver_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/PnPsolver.h" alt="" coords="1351,585,1563,627"/>
 <area shape="rect" id="node6" href="$_tracking_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Tracking.h" alt="" coords="2789,675,2992,716"/>
-<area shape="rect" id="node21" href="$_initializer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Initializer.h" alt="" coords="1071,585,1275,627"/>
+<area shape="rect" id="node21" href="$_initializer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Initializer.h" alt="" coords="1072,585,1276,627"/>
 <area shape="rect" id="node23" href="$_frame_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Frame.cc" alt="" coords="956,675,1134,716"/>
 <area shape="rect" id="node10" href="$_system_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/System.cc" alt="" coords="2776,943,2957,984"/>
 <area shape="rect" id="node15" href="$_tracking_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Tracking.cc" alt="" coords="1230,943,1417,984"/>

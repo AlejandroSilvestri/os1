@@ -59,31 +59,31 @@
 </g>
 <!-- Node37 -->
 <g id="node14" class="node"><title>Node37</title>
-<g id="a_node14"><a xlink:href="serialize_8cpp.html" target="_top" xlink:title="/home/alejandro/Desarrollo\l eclipse/os1/src/serialize.cpp">
-<polygon fill="white" stroke="black" points="703.155,-134.5 703.155,-164.5 846.155,-164.5 846.155,-134.5 703.155,-134.5"/>
-<text text-anchor="start" x="711.155" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/alejandro/Desarrollo</text>
-<text text-anchor="middle" x="774.655" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00"> eclipse/os1/src/serialize.cpp</text>
+<g id="a_node14"><a xlink:href="_serializer_8cpp.html" target="_top" xlink:title="/home/alejandro/Desarrollo\l eclipse/os1/src/Serializer.cpp">
+<polygon fill="white" stroke="black" points="703.655,-134.5 703.655,-164.5 851.655,-164.5 851.655,-134.5 703.655,-134.5"/>
+<text text-anchor="start" x="711.655" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/alejandro/Desarrollo</text>
+<text text-anchor="middle" x="777.655" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00"> eclipse/os1/src/Serializer.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node24&#45;&gt;Node37 -->
 <g id="edge27" class="edge"><title>Node24&#45;&gt;Node37</title>
-<path fill="none" stroke="midnightblue" d="M645.858,-258.659C652.884,-241.022 664.451,-217.326 680.655,-201 696.445,-185.09 718.309,-172.938 736.977,-164.546"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="642.498,-257.65 642.244,-268.242 649.047,-260.12 642.498,-257.65"/>
+<path fill="none" stroke="midnightblue" d="M645.797,-258.598C652.792,-240.929 664.345,-217.22 680.655,-201 696.809,-184.934 719.132,-172.834 738.291,-164.512"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="642.43,-257.609 642.203,-268.201 648.986,-260.062 642.43,-257.609"/>
 </g>
 <!-- Node38 -->
 <g id="node15" class="node"><title>Node38</title>
 <g id="a_node15"><a xlink:href="_viewer_8cc.html" target="_top" xlink:title="/home/alejandro/Desarrollo\l eclipse/os1/src/Viewer.cc">
-<polygon fill="white" stroke="black" points="864.155,-134.5 864.155,-164.5 997.155,-164.5 997.155,-134.5 864.155,-134.5"/>
-<text text-anchor="start" x="872.155" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/alejandro/Desarrollo</text>
-<text text-anchor="middle" x="930.655" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00"> eclipse/os1/src/Viewer.cc</text>
+<polygon fill="white" stroke="black" points="870.155,-134.5 870.155,-164.5 1003.15,-164.5 1003.15,-134.5 870.155,-134.5"/>
+<text text-anchor="start" x="878.155" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">/home/alejandro/Desarrollo</text>
+<text text-anchor="middle" x="936.655" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00"> eclipse/os1/src/Viewer.cc</text>
 </a>
 </g>
 </g>
 <!-- Node24&#45;&gt;Node38 -->
 <g id="edge29" class="edge"><title>Node24&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M656.84,-260.643C676.996,-237.892 706.726,-205.008 713.655,-201 726.775,-193.41 805.185,-176.181 864.011,-163.963"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="654.158,-258.392 650.162,-268.204 659.405,-263.026 654.158,-258.392"/>
+<path fill="none" stroke="midnightblue" d="M656.835,-260.636C676.988,-237.877 706.714,-204.988 713.655,-201 727.271,-193.176 809.268,-175.728 869.901,-163.544"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="654.153,-258.386 650.159,-268.199 659.401,-263.018 654.153,-258.386"/>
 </g>
 <!-- Node39 -->
 <g id="node16" class="node"><title>Node39</title>
@@ -167,13 +167,13 @@
 </g>
 <!-- Node25&#45;&gt;Node37 -->
 <g id="edge21" class="edge"><title>Node25&#45;&gt;Node37</title>
-<path fill="none" stroke="midnightblue" d="M497.607,-200.109C560.196,-188.902 643.99,-173.897 702.98,-163.334"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="496.978,-196.666 487.751,-201.874 498.212,-203.556 496.978,-196.666"/>
+<path fill="none" stroke="midnightblue" d="M498.154,-200.138C560.561,-189.055 643.94,-174.247 703.35,-163.696"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="497.168,-196.758 487.935,-201.953 498.393,-203.65 497.168,-196.758"/>
 </g>
 <!-- Node25&#45;&gt;Node38 -->
 <g id="edge24" class="edge"><title>Node25&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M498.019,-207.59C587.488,-198.943 731.229,-183.782 854.655,-165 857.709,-164.535 860.828,-164.037 863.975,-163.515"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="497.541,-204.12 487.921,-208.56 498.21,-211.088 497.541,-204.12"/>
+<path fill="none" stroke="midnightblue" d="M497.977,-207.769C588.569,-199.194 735.004,-184.024 860.655,-165 863.709,-164.538 866.828,-164.041 869.976,-163.521"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="497.384,-204.31 487.756,-208.731 498.04,-211.279 497.384,-204.31"/>
 </g>
 <!-- Node26&#45;&gt;Node25 -->
 <g id="edge8" class="edge"><title>Node26&#45;&gt;Node25</title>

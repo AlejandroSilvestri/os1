@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['t',['t',['../structg2o_1_1_sim3.html#a3ef879fb13b88732428bd2f2a558d11c',1,'g2o::Sim3::t()'],['../class_o_r_b___s_l_a_m2_1_1_viewer.html#a875bc20035547a49b8bc3fa51d02bb85',1,'ORB_SLAM2::Viewer::T()']]],
+  ['t',['T',['../class_o_r_b___s_l_a_m2_1_1_viewer.html#a875bc20035547a49b8bc3fa51d02bb85',1,'ORB_SLAM2::Viewer::T()'],['../structg2o_1_1_sim3.html#a3ef879fb13b88732428bd2f2a558d11c',1,'g2o::Sim3::t()']]],
   ['tag',['tag',['../classg2o_1_1_factory.html#ae6b0fb89dc45ea1e506401d349c869f0',1,'g2o::Factory']]],
   ['taglookup',['TagLookup',['../classg2o_1_1_factory.html#aba274179c053b3b71dcef6a20c898496',1,'g2o::Factory']]],
   ['takepatternfromhash',['takePatternFromHash',['../classg2o_1_1_sparse_block_matrix.html#a0b1e9dc3a24b0ab41d7002396a61c833',1,'g2o::SparseBlockMatrix']]],
@@ -37,7 +37,7 @@ var searchData=
   ['timeutil_2ed',['timeutil.d',['../g2o_2_release_2stuff_2timeutil_8d.html',1,'']]],
   ['timeutil_2ed',['timeutil.d',['../_release_2g2o_2stuff_2timeutil_8d.html',1,'']]],
   ['timeutil_2eh',['timeutil.h',['../timeutil_8h.html',1,'']]],
-  ['tipos_5farchivos',['TIPOS_ARCHIVOS',['../serialize_8cpp.html#ae010f83f4f8bf5a00058a6d5870298d2',1,'serialize.cpp']]],
+  ['tipos_5farchivos',['TIPOS_ARCHIVOS',['../_serializer_8cpp.html#ae010f83f4f8bf5a00058a6d5870298d2',1,'Serializer.cpp']]],
   ['to_5fhomogeneous_5fmatrix',['to_homogeneous_matrix',['../classg2o_1_1_s_e3_quat.html#a88de9de9db852e2a0414bcd2afdc0fda',1,'g2o::SE3Quat']]],
   ['tocvmat',['toCvMat',['../class_o_r_b___s_l_a_m2_1_1_converter.html#ac9d5a9ea7de26d34047aa0afddaa2091',1,'ORB_SLAM2::Converter::toCvMat(const g2o::SE3Quat &amp;SE3)'],['../class_o_r_b___s_l_a_m2_1_1_converter.html#a4bc1702afbd33a5d90d39f1940157e08',1,'ORB_SLAM2::Converter::toCvMat(const g2o::Sim3 &amp;Sim3)'],['../class_o_r_b___s_l_a_m2_1_1_converter.html#a93055164116a8f35ecc5a9a5dcad1ca0',1,'ORB_SLAM2::Converter::toCvMat(const Eigen::Matrix&lt; double, 4, 4 &gt; &amp;m)'],['../class_o_r_b___s_l_a_m2_1_1_converter.html#a7558c9fde7b818582bee8b4a4ff00793',1,'ORB_SLAM2::Converter::toCvMat(const Eigen::Matrix3d &amp;m)'],['../class_o_r_b___s_l_a_m2_1_1_converter.html#a6748f1ecb782efc7741c1d2f6fbbed22',1,'ORB_SLAM2::Converter::toCvMat(const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;m)']]],
   ['tocvse3',['toCvSE3',['../class_o_r_b___s_l_a_m2_1_1_converter.html#a0972ca8f56ea15c1814f51be3804978f',1,'ORB_SLAM2::Converter']]],

@@ -27,7 +27,7 @@ var searchData=
   ['initmultithreading',['initMultiThreading',['../structg2o_1_1_optimizable_graph.html#ab4ee0fc3ecd31852276ded40b62e9c76',1,'g2o::OptimizableGraph']]],
   ['inqueue',['inQueue',['../classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a6697b7728a51b80663f843daba54e2d8',1,'g2o::EstimatePropagator::AdjacencyMapEntry']]],
   ['insertkeyframe',['InsertKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_local_mapping.html#af2d70466a1a217fb7e55d874931ce688',1,'ORB_SLAM2::LocalMapping::InsertKeyFrame()'],['../class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a680d0b255d764754841e622f5af97473',1,'ORB_SLAM2::LoopClosing::InsertKeyFrame()']]],
-  ['inst_5fexp',['INST_EXP',['../serialize_8cpp.html#a985119c54406f96afeb99eaf54d27923',1,'serialize.cpp']]],
+  ['inst_5fexp',['INST_EXP',['../_serializer_8cpp.html#a985119c54406f96afeb99eaf54d27923',1,'Serializer.cpp']]],
   ['installdependency',['installDependency',['../classg2o_1_1_cache.html#a776574fb98726ff61bc1280ea624c6e5',1,'g2o::Cache']]],
   ['installparameter',['installParameter',['../classg2o_1_1_optimizable_graph_1_1_edge.html#a237bea2f2fb7cc6a9cf4ee5ee6fe4d88',1,'g2o::OptimizableGraph::Edge']]],
   ['instance',['instance',['../classg2o_1_1_factory.html#a8a1f33e017c5ad59399cef48972578ae',1,'g2o::Factory::instance()'],['../classg2o_1_1_hyper_graph_action_library.html#a12074e3f4d9bcb3da20a4fe23d18b745',1,'g2o::HyperGraphActionLibrary::instance()'],['../classg2o_1_1_optimization_algorithm_factory.html#a4fe827a82f01c74ef124e7a9a9c98707',1,'g2o::OptimizationAlgorithmFactory::instance()'],['../classg2o_1_1_robust_kernel_factory.html#a9cc4361620f8d7269ad9774d3aba2fc0',1,'g2o::RobustKernelFactory::instance()']]],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['cargando',['CARGANDO',['../serialize_8cpp.html#a16b53bced2ab4579dde2b0736671d96e',1,'serialize.cpp']]],
+  ['cargando',['CARGANDO',['../_serializer_8cpp.html#a16b53bced2ab4579dde2b0736671d96e',1,'Serializer.cpp']]],
   ['cl_5fblack',['CL_BLACK',['../color__macros_8h.html#a8bfd2958827592e4e629292ef8e31d13',1,'color_macros.h']]],
   ['cl_5fblue',['CL_BLUE',['../color__macros_8h.html#a70f2cb1e701202d01374d96b08afc6b4',1,'color_macros.h']]],
   ['cl_5fgreen',['CL_GREEN',['../color__macros_8h.html#a7bf05e4355b9cae17c4ddb3653b34d06',1,'color_macros.h']]],

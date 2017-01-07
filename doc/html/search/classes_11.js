@@ -3,6 +3,7 @@ var searchData=
   ['scopedopenmpmutex',['ScopedOpenMPMutex',['../classg2o_1_1_scoped_open_m_p_mutex.html',1,'g2o']]],
   ['scopetime',['ScopeTime',['../classg2o_1_1_scope_time.html',1,'g2o']]],
   ['se3quat',['SE3Quat',['../classg2o_1_1_s_e3_quat.html',1,'g2o']]],
+  ['serializer',['Serializer',['../class_o_r_b___s_l_a_m2_1_1_serializer.html',1,'ORB_SLAM2']]],
   ['sim3',['Sim3',['../structg2o_1_1_sim3.html',1,'g2o']]],
   ['sim3solver',['Sim3Solver',['../class_o_r_b___s_l_a_m2_1_1_sim3_solver.html',1,'ORB_SLAM2']]],
   ['solver',['Solver',['../classg2o_1_1_solver.html',1,'g2o']]],

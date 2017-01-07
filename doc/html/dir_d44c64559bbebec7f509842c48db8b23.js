@@ -45,6 +45,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "PnPsolver.h", "_pn_psolver_8h.html", [
       [ "PnPsolver", "class_o_r_b___s_l_a_m2_1_1_pn_psolver.html", "class_o_r_b___s_l_a_m2_1_1_pn_psolver" ]
     ] ],
+    [ "Serializer.h", "_serializer_8h.html", [
+      [ "Serializer", "class_o_r_b___s_l_a_m2_1_1_serializer.html", "class_o_r_b___s_l_a_m2_1_1_serializer" ]
+    ] ],
     [ "Sim3Solver.h", "_sim3_solver_8h.html", [
       [ "Sim3Solver", "class_o_r_b___s_l_a_m2_1_1_sim3_solver.html", "class_o_r_b___s_l_a_m2_1_1_sim3_solver" ]
     ] ],

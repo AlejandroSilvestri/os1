@@ -179,6 +179,7 @@ var hierarchy =
     [ "g2o::ScopedOpenMPMutex", "classg2o_1_1_scoped_open_m_p_mutex.html", null ],
     [ "g2o::ScopeTime", "classg2o_1_1_scope_time.html", null ],
     [ "g2o::SE3Quat", "classg2o_1_1_s_e3_quat.html", null ],
+    [ "ORB_SLAM2::Serializer", "class_o_r_b___s_l_a_m2_1_1_serializer.html", null ],
     [ "g2o::Sim3", "structg2o_1_1_sim3.html", null ],
     [ "ORB_SLAM2::Sim3Solver", "class_o_r_b___s_l_a_m2_1_1_sim3_solver.html", null ],
     [ "SimplicialLDLT", null, [
