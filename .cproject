@@ -48,9 +48,11 @@
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.789108545" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker">
 								<option id="gnu.cpp.link.option.paths.1553241295" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="/usr/local/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/os1/Thirdparty}&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.557791995" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="opencv_core"/>
+									<listOptionValue builtIn="false" value="DBoW2"/>
 									<listOptionValue builtIn="false" value="boost_serialization"/>
 									<listOptionValue builtIn="false" value="pangolin"/>
 									<listOptionValue builtIn="false" value="opencv_features2d"/>
@@ -62,6 +64,7 @@
 									<listOptionValue builtIn="false" value="opencv_calib3d"/>
 									<listOptionValue builtIn="false" value="GL"/>
 									<listOptionValue builtIn="false" value="GLU"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="g2o"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.900648024" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -74,6 +77,9 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="Thirdparty/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

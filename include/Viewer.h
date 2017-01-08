@@ -50,9 +50,23 @@ class System;
  *
  * MapDrawer se encarga de cargar en Pangolin los puntos 3D del mundo, las poses de los keyframes y de la cámara.
  *
- * Estos dos objetos preparan lo que se muestra, la acción de llevarloa a pantalla ocurre en Viewer::Run:
+ * Estos dos objetos preparan lo que se muestra, la acción de llevarlo a a pantalla ocurre en Viewer::Run mediante:
  * - imshow
  * - pangolin::FinishFrame
+ *
+ * Pausa:
+ * El proceso del visor se puede pausar desde otro hilo:
+ * - Viewer::RequestStop para solicitar la pausa
+ * - Viewer::isStopped para verificar si está pausado
+ * - Viewer::Release para quitar la pausa y reanudar el proceso
+ *
+ * Durante la pausa el visor no se actualiza.
+ *
+ *
+ * Terminación:
+ * El proceso se termina definitivamente para cerrar la aplicación con:
+ * - Viewer::RequestFinish para solicitar la terminación
+ * - Viewer::isFinished para confirmar que ha terminado
  */
 class Viewer
 {
@@ -74,7 +88,7 @@ public:
     void Run();
 
     /**
-     * Solicita terminar.
+     * Solicita terminar para cerrar la aplicación.
      * Invocado por otro hilo.
      */
     void RequestFinish();
@@ -87,11 +101,18 @@ public:
      */
     void RequestStop();
 
+    /**
+     * Informa si Viewer ha terminado, paso previo para cerrar la aplicación.
+     *
+     * @returns Viewer::mbFinished: true si se está en proceso de terminación.
+     */
     bool isFinished();
 
     /**
      * Devuelve true si Viewer está pausado.
      * Se consulta repetidamente luego de haber solicitado la parada con RequesStop.
+     *
+     * @returns Viewer::mbStopped, que es true si Viewer::Run ya está en el bucle de pausa.
      */
     bool isStopped();
 
@@ -158,6 +179,15 @@ public:
 
 private:
 
+    /**
+     * Método privado invocado exclusivamente en el bucle principal de Viewer::Run,
+     * para ejecutar una pausa si fue solicitada.
+     *
+     * @returns true si el hilo debe detenerse, false si no.
+     *
+     * El bucle principal de Run invoca Stop y si devuelve true detiene el hilo mientras isStopped() sera true.
+     *
+     */
     bool Stop();
 
     /** Sistema.*/

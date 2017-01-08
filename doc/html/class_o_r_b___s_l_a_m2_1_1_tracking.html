@@ -353,7 +353,7 @@ Private Attributes</h2></td></tr>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a></li>
 </ul>
 <p>FramPublisher consulta los estados de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> mState y mLastState, utiliza su enum de estados, y en Update() toma datos del mCurrentFrame, mInitialFrame y mvIniMatches.</p>
-<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a164b3d0a2a75daba006469ea8aca8a63" title="Registra el tracker, la única instancia en el sistema. ">LocalMapping::SetTracker</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a20bce54d19c979511043d7c109aa741a">LoopClosing::SetTracker</a> guardan el tracking en mpTracking, y no lo utilizan.</p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a164b3d0a2a75daba006469ea8aca8a63" title="Registra el tracker, la única instancia en el sistema. ">LocalMapping::SetTracker</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a20bce54d19c979511043d7c109aa741a" title="Registra el tracker del sistema. ">LoopClosing::SetTracker</a> guardan el tracking en mpTracking, y no lo utilizan.</p>
 <p>La mayoría de los métodos del objeto son partes de un único algoritmo, dividido para mejor comprensión. Estos métodos son invocados solo desde otro método del objeto, y no desde afuera.</p>
 <p>La siguiente secuencia de métodos corresponden a un único algoritmo que podría estar en una única función: </p><pre class="fragment">GrabImageMonocular: recibe la imagen y la convierte a grises
     Track: ejecuta el autómata finito

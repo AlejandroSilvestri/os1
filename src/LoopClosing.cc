@@ -585,6 +585,7 @@ void LoopClosing::CorrectLoop()
     mLastLoopKFid = mpCurrentKF->mnId;   
 }
 
+
 void LoopClosing::SearchAndFuse(const KeyFrameAndPose &CorrectedPosesMap)
 {
     ORBmatcher matcher(0.8);
@@ -663,7 +664,6 @@ void LoopClosing::RunGlobalBundleAdjustment(unsigned long nLoopKF)
             cout << "Updating map ..." << endl;
             mpLocalMapper->RequestStop();
             // Wait until Local Mapping has effectively stopped
-
             while(!mpLocalMapper->isStopped() && !mpLocalMapper->isFinished())
             {
                 usleep(1000);

@@ -105,6 +105,7 @@ Collaboration diagram for ORB_SLAM2::Viewer:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a51c55a1f1ad05a6ba2c6b57f9133f88d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a51c55a1f1ad05a6ba2c6b57f9133f88d">isFinished</a> ()</td></tr>
+<tr class="memdesc:a51c55a1f1ad05a6ba2c6b57f9133f88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa si <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. ">Viewer</a> ha terminado, paso previo para cerrar la aplicación.  <a href="#a51c55a1f1ad05a6ba2c6b57f9133f88d">More...</a><br /></td></tr>
 <tr class="separator:a51c55a1f1ad05a6ba2c6b57f9133f88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1888ef340152348f395a814ddfb362f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#aa1888ef340152348f395a814ddfb362f">isStopped</a> ()</td></tr>
 <tr class="memdesc:aa1888ef340152348f395a814ddfb362f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve true si <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. ">Viewer</a> está pausado.  <a href="#aa1888ef340152348f395a814ddfb362f">More...</a><br /></td></tr>
@@ -113,7 +114,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2b0eeffd84b5d94a4c4f4e0db174c9fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita salir de una pausa y resumir la operación.  <a href="#a2b0eeffd84b5d94a4c4f4e0db174c9fe">More...</a><br /></td></tr>
 <tr class="separator:a2b0eeffd84b5d94a4c4f4e0db174c9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9079c4e563099cf3c8cda403c854cf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#af9079c4e563099cf3c8cda403c854cf8">RequestFinish</a> ()</td></tr>
-<tr class="memdesc:af9079c4e563099cf3c8cda403c854cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita terminar.  <a href="#af9079c4e563099cf3c8cda403c854cf8">More...</a><br /></td></tr>
+<tr class="memdesc:af9079c4e563099cf3c8cda403c854cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita terminar para cerrar la aplicación.  <a href="#af9079c4e563099cf3c8cda403c854cf8">More...</a><br /></td></tr>
 <tr class="separator:af9079c4e563099cf3c8cda403c854cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b23bbdcc2c5898d074870785a3e07c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a4b23bbdcc2c5898d074870785a3e07c5">RequestStop</a> ()</td></tr>
 <tr class="memdesc:a4b23bbdcc2c5898d074870785a3e07c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita pausar.  <a href="#a4b23bbdcc2c5898d074870785a3e07c5">More...</a><br /></td></tr>
@@ -171,6 +172,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:aa6962b0695ea6c2164e9ce2b10de80a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#aa6962b0695ea6c2164e9ce2b10de80a0">SetFinish</a> ()</td></tr>
 <tr class="separator:aa6962b0695ea6c2164e9ce2b10de80a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf0704bc29f282192c5e5c36f66fa255"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#abf0704bc29f282192c5e5c36f66fa255">Stop</a> ()</td></tr>
+<tr class="memdesc:abf0704bc29f282192c5e5c36f66fa255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método privado invocado exclusivamente en el bucle principal de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, para ejecutar una pausa si fue solicitada.  <a href="#abf0704bc29f282192c5e5c36f66fa255">More...</a><br /></td></tr>
 <tr class="separator:abf0704bc29f282192c5e5c36f66fa255"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -221,9 +223,19 @@ Private Attributes</h2></td></tr>
 <p>Se compone de dos partes, implementadas en dos clases: <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">FrameDrawer</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html" title="Esta clase contiene los métodos para dibujar en pangolin. ">MapDrawer</a>, ambos singleton.</p>
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">FrameDrawer</a> se encarga de generar la imagen procesada con los puntos del mapa y una barra de estado. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. ">Viewer</a> la muestra con imshow.</p>
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html" title="Esta clase contiene los métodos para dibujar en pangolin. ">MapDrawer</a> se encarga de cargar en Pangolin los puntos 3D del mundo, las poses de los keyframes y de la cámara.</p>
-<p>Estos dos objetos preparan lo que se muestra, la acción de llevarloa a pantalla ocurre en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>:</p><ul>
+<p>Estos dos objetos preparan lo que se muestra, la acción de llevarlo a a pantalla ocurre en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> mediante:</p><ul>
 <li>imshow</li>
-<li>pangolin::FinishFrame </li>
+<li>pangolin::FinishFrame</li>
+</ul>
+<p>Pausa: El proceso del visor se puede pausar desde otro hilo:</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a4b23bbdcc2c5898d074870785a3e07c5" title="Solicita pausar. ">Viewer::RequestStop</a> para solicitar la pausa</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#aa1888ef340152348f395a814ddfb362f" title="Devuelve true si Viewer está pausado. ">Viewer::isStopped</a> para verificar si está pausado</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a2b0eeffd84b5d94a4c4f4e0db174c9fe" title="Solicita salir de una pausa y resumir la operación. ">Viewer::Release</a> para quitar la pausa y reanudar el proceso</li>
+</ul>
+<p>Durante la pausa el visor no se actualiza.</p>
+<p>Terminación: El proceso se termina definitivamente para cerrar la aplicación con:</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#af9079c4e563099cf3c8cda403c854cf8" title="Solicita terminar para cerrar la aplicación. ">Viewer::RequestFinish</a> para solicitar la terminación</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a51c55a1f1ad05a6ba2c6b57f9133f88d" title="Informa si Viewer ha terminado, paso previo para cerrar la aplicación. ">Viewer::isFinished</a> para confirmar que ha terminado </li>
 </ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4cb74123010b48fe47265e7b371229a5"></a>
@@ -316,6 +328,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Informa si <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. ">Viewer</a> ha terminado, paso previo para cerrar la aplicación. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#ae7455c94e1109f9ecc8311583309390f">Viewer::mbFinished</a>: true si se está en proceso de terminación. </dd></dl>
+
 </div>
 </div>
 <a id="aa1888ef340152348f395a814ddfb362f"></a>
@@ -332,7 +347,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve true si <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. ">Viewer</a> está pausado. </p>
-<p>Se consulta repetidamente luego de haber solicitado la parada con RequesStop. </p>
+<p>Se consulta repetidamente luego de haber solicitado la parada con RequesStop.</p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a78d845b2b2e8d705686e88c8951296e7" title="Señal de que Viewer está parado. ">Viewer::mbStopped</a>, que es true si <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> ya está en el bucle de pausa. </dd></dl>
 
 </div>
 </div>
@@ -367,7 +383,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Solicita terminar. </p>
+<p>Solicita terminar para cerrar la aplicación. </p>
 <p>Invocado por otro hilo. </p>
 
 </div>
@@ -451,6 +467,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Método privado invocado exclusivamente en el bucle principal de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, para ejecutar una pausa si fue solicitada. </p>
+<dl class="section return"><dt>Returns</dt><dd>true si el hilo debe detenerse, false si no.</dd></dl>
+<p>El bucle principal de Run invoca Stop y si devuelve true detiene el hilo mientras <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#aa1888ef340152348f395a814ddfb362f" title="Devuelve true si Viewer está pausado. ">isStopped()</a> sera true. </p>
 
 </div>
 </div>
