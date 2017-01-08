@@ -795,6 +795,7 @@ protected:
     friend class boost::serialization::access;
 	friend class Serializer;
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
+	// Fin del agregado para serialización
 };
 
 } //namespace ORB_SLAM

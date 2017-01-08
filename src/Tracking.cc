@@ -981,40 +981,15 @@ bool Tracking::NeedNewKeyFrame()
     bool bLocalMappingIdle = mpLocalMapper->AcceptKeyFrames();
 
     // Stereo & RGB-D: Ratio of close "matches to map"/"total matches"
-    // "total matches = matches to map + visual odometry matches"
-    // Visual odometry matches will become MapPoints if we insert a keyframe.
     // This ratio measures how many MapPoints we could create if we insert a keyframe.
-    int nMap = 0;
-    int nTotal= 0;
-    /*if(mSensor!=System::MONOCULAR)
-    {
-        for(int i =0; i<mCurrentFrame.N; i++)
-        {
-            if(mCurrentFrame.mvDepth[i]>0 && mCurrentFrame.mvDepth[i]<mThDepth)
-            {
-                nTotal++;
-                if(mCurrentFrame.mvpMapPoints[i])
-                    if(mCurrentFrame.mvpMapPoints[i]->Observations()>0)
-                        nMap++;
-            }
-        }
-    }
-    else
-    {*/
-        // There are no visual odometry matches in the monocular case
-        nMap=1;
-        nTotal=1;
-    //}
+    // There are no visual odometry matches in the monocular case
+    int nMap = 1;
+    int nTotal= 1;
 
     const float ratioMap = (float)nMap/fmax(1.0f,nTotal);
 
     // Thresholds
-    float thRefRatio = 0.75f;
-    if(nKFs<2)
-        thRefRatio = 0.4f;
-
-    //if(mSensor==System::MONOCULAR)
-        thRefRatio = 0.9f;
+    float thRefRatio = 0.9f;
 
     float thMapRatio = 0.35f;
     if(mnMatchesInliers>300)
@@ -1040,15 +1015,7 @@ bool Tracking::NeedNewKeyFrame()
         else
         {
             mpLocalMapper->InterruptBA();
-            /*if(mSensor!=System::MONOCULAR)
-            {
-                if(mpLocalMapper->KeyframesInQueue()<3)
-                    return true;
-                else
-                    return false;
-            }
-            else*/
-                return false;
+            return false;
         }
     }
     else

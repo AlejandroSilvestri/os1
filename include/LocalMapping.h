@@ -282,15 +282,26 @@ protected:
     /** LocalMapping parado.*/
     bool mbStopped;
 
-    /** Parada solicitada.*/
+    /** Pausa solicitada.*/
     bool mbStopRequested;
 
     /** Señal de no parar.*/
     bool mbNotStop;
     std::mutex mMutexStop;
 
-    /** Señal para aceptar nuevos keyframes.*/
+    /**
+     * Señal para aceptar nuevos keyframes.
+     * Se escribe con LocalMapping::SetAcceptKeyFrames, y se lee con LocalMapping::AcceptKeyFrames.
+     * Leída sólo por Tracking::NeedNewKeyFrame.
+     * Escrita en el bucle principal de LocalMapping::Run,
+     * de modo que se pone en false al comienzo (indicando que el mapeo no acepta nuevos keyframes),
+     * y en true al final, justo antes de dormir por 3 s.
+     */
     bool mbAcceptKeyFrames;
+
+    /**
+     * Mutex para acceder a LocalMapping::mbAcceptKeyFrames.
+     */
     std::mutex mMutexAccept;
 };
 

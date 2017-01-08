@@ -288,9 +288,11 @@ int main(int argc, char **argv){
         	// Limpia el mapa de todos los singletons
     		SLAM.mpTracker->Reset();
 
-    	    // Espera a que se detenga LocalMapping
+    	    // Espera a que se detenga LocalMapping y  Viewer
     		SLAM.mpLocalMapper->RequestStop();
+    		SLAM.mpViewer	  ->RequestStop();
     		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
+    		while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
 
         	char archivo[] = "mapa.bin";
         	//SLAM.mpMap->load(archivo);
@@ -302,19 +304,27 @@ int main(int argc, char **argv){
         	// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST
         	SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
 
+        	// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
+        	SLAM.mpViewer->Release();
+
     	}
     	if(visor->guardarMapa){
     		visor->guardarMapa = false;
 
     	    // Espera a que se detenga LocalMapping
     		SLAM.mpLocalMapper->RequestStop();
+    		SLAM.mpViewer	  ->RequestStop();	// No parece que sea necesario para guardar, sino sólo para cargar, pues al guardar no se modifica el mapa.
+
     		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
+    		while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
 
         	char archivo[] = "mapa.bin";
         	//SLAM.mpMap->save(archivo);
         	SLAM.serializer->mapSave(archivo);
         	cout << "Mapa guardado." << endl;
 
+        	// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
+        	SLAM.mpViewer->Release();
     	}
 
         // Stop cronómetro para medir duración del procesamiento
