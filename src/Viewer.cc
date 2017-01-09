@@ -122,14 +122,14 @@ void Viewer::Run(){
 
 	cout << "Ventana para frame." << endl;
     cv::namedWindow("ORB-SLAM2: Current Frame");
+    if(duracion) cv::createTrackbar("tiempo", "ORB-SLAM2: Current Frame", &tiempo, video->get(CV_CAP_PROP_FRAME_COUNT));
 
     // Línea agregada para un trackbar paramétrico.
-    mpTracker->param = 100;
-    cv::createTrackbar("Parámetro", "ORB-SLAM2: Current Frame", &mpTracker->param, 1023);
+    //mpTracker->param = 100;
+    //cv::createTrackbar("Parámetro", "ORB-SLAM2: Current Frame", &mpTracker->param, 1023);
 
     // Video de entrada con línea de tiempo
-    cv::namedWindow("entrada");
-    if(duracion) cv::createTrackbar("tiempo", "entrada", &tiempo, video->get(CV_CAP_PROP_FRAME_COUNT));
+    //cv::namedWindow("entrada");
 
 
     // Variables controladas por el usuario
@@ -174,12 +174,11 @@ void Viewer::Run(){
         		factorEscalaImagenParaMostrar = 0.25;
         	else
         		factorEscalaImagenParaMostrar = 1.0;
-
-        	//cout << "t " << factorEscalaImagenParaMostrar << endl;
         	break;
 
         // Reversa, alterna el sentido del tiempo en archivos de video.  Inocuo en otras entradas.
         case 'r':
+        	//cout << "Reversa." << endl;
         	tiempoReversa = !tiempoReversa;
         	sentidoModoAutomatico = tiempoReversa;	// Usado en el modo automático solamente.
         	break;
@@ -192,7 +191,13 @@ void Viewer::Run(){
         // Alternar imagen antidistorsionada
         case 'u':
         	mostrarEntradaAntidistorsionada = !mostrarEntradaAntidistorsionada;
+        	mostrarEntrada = true;
         	break;
+
+            // Mostrar u ocultar imagen de entrada
+            case 'e':
+            	mostrarEntrada = !mostrarEntrada;
+            	break;
 
         // Modo automático, que invierte el video cuando se pierde, y lo vuelve a invertir cuando se relocaliza.
         case 'a':
@@ -209,7 +214,7 @@ void Viewer::Run(){
 		// Inicial: debug, contextual, efímero, envía el video al frame 1960, buen lugar de inicialización para un video determinado
 		case 'i':
 			trackbarPosicionAnterior = 1960;
-			cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);
+			cv::setTrackbarPos("tiempo", "ORB-SLAM2: Current Frame", trackbarPosicionAnterior);
 			tiempoAlterado = true;
 			break;
 
@@ -274,7 +279,6 @@ void Viewer::Run(){
         cv::cvtColor(imgBuffer, imagenMapa,  cv::COLOR_RGBA2BGR);
         imagenMapa = imagenMapa.colRange(0, imagenMapa.cols - 175);	// Quita el espacio de la barra de botones, que aparece negro a la derecha
         cv::flip(imagenMapa, imagenMapa, 0);
-        //cv::imshow("entrada", imagenMapa);
 
         pangolin::FinishFrame();
 
@@ -292,28 +296,30 @@ void Viewer::Run(){
             cv::resize(imagenFrame, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
 			cv::imshow("ORB-SLAM2: Current Frame",imagenParaMostrar);
 
-			// Mostrar imagen de entrada
-			imagenEntrada = mpSystem->imagenEntrada;
-			if(mostrarEntradaAntidistorsionada){
-				int ancho = imagenEntrada.cols;
-				int alto = imagenEntrada.rows;
-				cv::Mat K = mpFrameDrawer->K;	// Matriz de calibración tomada del cuadro actual.
+			// Mostrar imagen de entrada (si lo eligió el usuario, o si está grabando, porque la grabación la necesita.
+			if(mostrarEntrada || grabando){
+				imagenEntrada = mpSystem->imagenEntrada;
+				if(mostrarEntradaAntidistorsionada){
+					int ancho = imagenEntrada.cols;
+					int alto = imagenEntrada.rows;
+					cv::Mat K = mpFrameDrawer->K;	// Matriz de calibración tomada del cuadro actual.
 
-				if(mpTracker->camaraModo)
-					// Modo 0, fisheye sin distorsión
-					cv::fisheye::undistortImage(imagenEntrada, imagenParaMostrar, K, cv::Mat::zeros(4,1,CV_32F), K);
-				else{
-					// Modo 1, cámara normal
-					cv::Mat distCoef = mpFrameDrawer->distCoef;
-					cv::Mat nuevaK = cv::getOptimalNewCameraMatrix(K, distCoef, cv::Size(ancho, alto), 1.0);
-					cv::undistort(imagenEntrada, imagenParaMostrar, K, distCoef, nuevaK);
+					if(mpTracker->camaraModo)
+						// Modo 0, fisheye sin distorsión
+						cv::fisheye::undistortImage(imagenEntrada, imagenParaMostrar, K, cv::Mat::zeros(4,1,CV_32F), K);
+					else{
+						// Modo 1, cámara normal
+						cv::Mat distCoef = mpFrameDrawer->distCoef;
+						cv::Mat nuevaK = cv::getOptimalNewCameraMatrix(K, distCoef, cv::Size(ancho, alto), 1.0);
+						cv::undistort(imagenEntrada, imagenParaMostrar, K, distCoef, nuevaK);
+					}
+					imagenEntrada = imagenParaMostrar;
+					cv::resize(imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+				}else{
+					cv::resize(imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
 				}
-				imagenEntrada = imagenParaMostrar;
-				cv::resize(imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
-			}else{
-				cv::resize(imagenEntrada, imagenParaMostrar, cv::Size(), factorEscalaImagenParaMostrar, factorEscalaImagenParaMostrar);
+				cv::imshow("entrada", imagenParaMostrar);
 			}
-			cv::imshow("entrada", imagenParaMostrar);
 
 			// Grabar video con estas imágenes
 	        if(menuGrabar && !grabando){
@@ -355,7 +361,7 @@ void Viewer::Run(){
 				if(tiempo == trackbarPosicionAnterior){
 					// El usuario no cambió el trackbar de tiempo.  Hay que reflejar la posición actual en el trackbar.
 					trackbarPosicionAnterior = video->get(CV_CAP_PROP_POS_FRAMES);
-					cv::setTrackbarPos("tiempo", "entrada", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
+					cv::setTrackbarPos("tiempo", "ORB-SLAM2: Current Frame", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
 				}else{
 					// El usuario cambió el trackbar de tiempo
 					trackbarPosicionAnterior = tiempo;

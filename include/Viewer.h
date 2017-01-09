@@ -156,7 +156,12 @@ public:
     bool videoPausado = false;
 
     /** Señal que alterna mostrando la imagen de entrada como viene o antidistorsionada.*/
-    bool mostrarEntradaAntidistorsionada = true;
+    bool mostrarEntradaAntidistorsionada = false;
+
+    /**
+     * Control para mostrar u ocultar la imagen de entrada.
+     */
+    bool mostrarEntrada = false;
 
     /** Modo automatico que pasa a resversa cuando se pierde.  Controlado por el usuario.*/
     bool modoAutomatico = false;

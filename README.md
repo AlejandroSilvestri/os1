@@ -35,3 +35,6 @@ Librerías que se deben incluir en el proyecto:
 
 Webcam.yaml tiene la calibración de la cámara.
 
+
+#Branch PuntosLejanos
+Dedicado a la detección de puntos más allá de la órbita del mapeo tradicional.

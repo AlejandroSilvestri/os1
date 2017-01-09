@@ -532,7 +532,7 @@ void Tracking::Track()
  */
 void Tracking::MonocularInitialization()
 {
-	int minMatches = param;	// Originalmente fijado en 100
+	int minMatches = 100;	// Originalmente fijado en 100, alguna vez puse param
 
     if(!mpInitializer)
     {
