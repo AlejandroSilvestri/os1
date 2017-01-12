@@ -128,6 +128,8 @@ void Viewer::Run(){
     //mpTracker->param = 100;
     cv::createTrackbar("Parámetro", "ORB-SLAM2: Current Frame", &mpSystem->mpLocalMapper->param, 1000);
 
+    cv::setMouseCallback("ORB-SLAM2: Current Frame", FrameDrawer::onMouse, mpFrameDrawer);
+
     // Video de entrada con línea de tiempo
     //cv::namedWindow("entrada");
 
@@ -144,6 +146,7 @@ void Viewer::Run(){
 
     // Factor de escala de las imágenes
     float factorEscalaImagenParaMostrar = 1.0;
+    mpFrameDrawer->factorEscalaImagenParaMostrar = 1.0;
 
 
     // Inicialización para capturar imágenes de pangolin
@@ -174,6 +177,9 @@ void Viewer::Run(){
         		factorEscalaImagenParaMostrar = 0.25;
         	else
         		factorEscalaImagenParaMostrar = 1.0;
+
+        	// Informa al FrameDrawer
+        	mpFrameDrawer->factorEscalaImagenParaMostrar = factorEscalaImagenParaMostrar;
         	break;
 
         // Reversa, alterna el sentido del tiempo en archivos de video.  Inocuo en otras entradas.
@@ -487,3 +493,5 @@ void Viewer::Release(){
     mbStopped = false;
 }
 }
+
+

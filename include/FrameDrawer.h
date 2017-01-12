@@ -66,6 +66,27 @@ public:
     /** Coeficientes de distorsión para undistort.*/
     cv::Mat distCoef;
 
+    /**
+     * Callback, listener del clic de mouse en ventana de opencv.
+     *
+     * Función estática para que se pueda pasar como puntero a función.
+     *
+     * @param event Evento de mouse, sólo interesa clic.
+     * @param x Coordenada x del píxel donde actúa el mouse.
+     * @param y Coordenada y del píxel donde actúa el mouse.
+     * @param instancia Puntero al singleton FrameDrawer para que la función estática pueda acceder a sus miembros.
+     *
+     * Doc: http://docs.opencv.org/3.1.0/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e
+     * Ejemplo del uso: https://github.com/opencv/opencv/blob/master/samples/cpp/ffilldemo.cpp
+     *
+     */
+    static void onMouse( int event, int x, int y, int, void* instancia);
+
+    /**
+     * Copia de la variable de Viewer::Run, para corregir la posición del clic en FrameDrawer::onMouse.
+     */
+    float factorEscalaImagenParaMostrar;
+
 protected:
 
     /** Agrega una barra debajo de la imagen y escribe en ella el estado del sistema.*/
@@ -126,6 +147,11 @@ protected:
      * Copiado de mCurrentFrame en FrameDrawer::Update.
      */
     std::vector<MapPoint*> mvpMapPoints;
+
+    /**
+     * Coordenadas del frame
+     */
+    cv::Mat cameraPos, cameraPosDraw;
 };
 
 } //namespace ORB_SLAM

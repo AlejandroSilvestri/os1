@@ -254,12 +254,12 @@ public:
      * De este modo X apunta a la derecha e Y apunta hacia abajo (en esto es contrario al sistema de coordenadas estándar).
      * Los vectores 3D homogéneos tienen la disposición tradicional:
      *
-     * V = [vx, vy, vz, 1]
+     * V = [vx, vy, vz, 1]t
      *
-     * Las poses son matrices de 4x4 como ésta, sus subíndices indican sujeto y referencia.  Tcw es T de cámara respecto de world.
+     * Las poses son matrices de 4x4 como ésta, sus subíndices indican referencia y sujeto.  Tcw es T respecto de cámara, de world.
      * Las poses se combinan así:
      *
-     * Tac = Tab * Tbc
+     * Tca = Tba * Tcb
      *
      * Su valor se actualiza mediante SetPose, que además extrae la matriz rotación y el vector traslación con UpdatePoseMatrices.
      * Estos datos extraídos se calculan para presentación, pero no son usados por el algoritmo, que sólo utiliza mTcw.
@@ -341,16 +341,33 @@ private:
 
     // Rotation, translation and camera center
 
-    /** Matriz R de rotación.  Se actualizan con UpdatePoseMatrices().*/
+    /**
+     * Matriz R de rotación del mundo respecto de la cámara.
+     * Se actualiza con UpdatePoseMatrices().
+     */
     cv::Mat mRcw;
 
-    /** Vector t de traslación.  Se actualizan con UpdatePoseMatrices().*/
+    /**
+     * Vector t de traslación del origen del mundo en el sistema de referencia de la cámara.
+     * Se actualiza con UpdatePoseMatrices().
+     */
     cv::Mat mtcw;
 
-    /** Matriz de rotación inversa, del mundo respecto de la cámara.*/
+    /**
+     * Matriz de rotación inversa, de la cámara respecto del mundo.
+     * Se actualiza con UpdatePoseMatrices().
+     */
     cv::Mat mRwc;
 
-    /** Vector centro de cámara, igual al vector traslación.*/
+    /**
+     * Vector centro de cámara, posición de la cámara respecto del mundo.
+     *
+     * Es privado, se informa con Frame::GetCameraCenter.
+     *
+     * Matriz de 3x1 (vector vertical).
+     * Vector de traslación invertido.  mtcw es el vector traslación del origen del mundo en el sistema de referencia de la cámara.
+     * Se actualiza con UpdatePoseMatrices().
+     */
     cv::Mat mOw; //==mtwc
 };
 

@@ -92,6 +92,8 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
         {
             vCurrentKeys = mvCurrentKeys;
         }
+
+        cameraPos.copyTo(cameraPosDraw);
     } // destroy scoped mutex -> release mutex
 
     if(im.channels()<3) //this should be always true
@@ -230,7 +232,7 @@ void FrameDrawer::Update(Tracking *pTracker)
     observaciones = vector<int>(N,0);
     K = pTracker->mCurrentFrame.mK;
     distCoef = pTracker->mCurrentFrame.mDistCoef;
-
+    cameraPos = pTracker->mCurrentFrame.GetCameraCenter();
 
     if(pTracker->mLastProcessedState==Tracking::NOT_INITIALIZED)
     {
@@ -258,6 +260,44 @@ void FrameDrawer::Update(Tracking *pTracker)
         }
     }
     mState=static_cast<int>(pTracker->mLastProcessedState);
+}
+
+void FrameDrawer::onMouse( int event, int X, int Y, int, void* frameDrawer){
+	 if(event != cv::EVENT_LBUTTONDOWN) return;
+
+	 FrameDrawer *pFD = (FrameDrawer*) frameDrawer;
+	 float x = (float)X / pFD->factorEscalaImagenParaMostrar;
+	 float y = (float)Y / pFD->factorEscalaImagenParaMostrar;
+	 float radio = 2 / pFD->factorEscalaImagenParaMostrar;
+	 /*
+	  * FrameDrawer::mvCurrentKeys tiene los keypoints del frame en pantalla, para buscar coincidencia de coordenadas.
+	  * FrameDrawer::mvbMap es true si hay un punto asociado en esa posición del vector.
+	  * FrameDrawer::mvpMapPoints tiene los puntos del mapa.
+	  */
+
+	 // Buscar los keypoints cliqueados, pueden ser varios superpuestos
+	 cout << "\nClic x:" << x << ", y:" << y << endl;
+	 for(int i=0; i<pFD->N; i++){
+		 if(pFD->mvbMap[i]){	// Sólo considerar keypoints asociados a puntos del mapa
+			 cv::Point2f pt = pFD->mvCurrentKeys[i].pt;
+
+			 if(fabs(x-pt.x) <= radio  &&  fabs(y-pt.y) <= radio){	// clic en un cuadrado de varios píxeles de lado
+				 MapPoint *pMP = pFD->mvpMapPoints[i];
+				 //cout << "Punto econtrado" << endl;
+				 if(pMP && !pMP->isBad()){
+					 // Reporte
+					 cv::Mat pos = pMP->GetWorldPos();
+					 float distancia = cv::norm(pos - pFD->cameraPosDraw);
+					 cout << "Id:"			<< pMP->mnId
+						  << ", PL:"		<< pMP->puntoLejano
+						  << ", distancia:"	<< distancia
+						  << ", pt:"		<< pt
+						  << ", pos:"		<< pos.t() << endl;
+				 }
+			 }
+		 }
+	 }
+	 cout << endl;
 }
 
 } //namespace ORB_SLAM

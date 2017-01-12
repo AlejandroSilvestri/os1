@@ -67,7 +67,6 @@ using namespace std;
  *
  * Carpeta de Eigen en Properties for os1, c/c++ General Settings, Path and Symbols, Symbols, G++:
  * - _cplusplus 201103L
- * - ArchivoBowBinario
  * - COMPILEDWITHC11
 
  *
