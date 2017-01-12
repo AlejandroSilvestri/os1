@@ -158,6 +158,13 @@ public:
         return mlNewKeyFrames.size();
     }
 
+    /**
+     * Parámetro controlado por barra de desplazamiento de ventana de cuadro.
+     * En este momento usada para controlar el coseno umbral para la triangulación de puntos.
+     * El coseno será 0.9 + param/10000
+     */
+    int param = 1000;
+
 protected:
 
     /**
@@ -179,7 +186,7 @@ protected:
      * La búsqueda se hace triangulando puntos del keyframe actual y todos sus vecinos en el grafo.
      * Invoca a SearchForTriangulation para obtener los pares macheados.
      * Luego evalúa el paralaje para descartar el punto.
-     * Finalmente triangula son SVD y lo agrega al mapa.
+     * Finalmente triangula con SVD y lo agrega al mapa.
      * Realiza esta operación para el keyframe actual, comparado con cada uno de sus vecinos en el grafo.
      */
     void CreateNewMapPoints();

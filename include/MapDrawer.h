@@ -104,9 +104,6 @@ public:
      */
     void SetCurrentCameraPose(const cv::Mat &Tcw);
 
-    /** Método declarado y no definido.*/
-    void SetReferenceKeyFrame(KeyFrame *pKF);
-
     /**
      * Informa Twc, la pose actual del mundo respecto de la cámara, en formato pangolin.
      *

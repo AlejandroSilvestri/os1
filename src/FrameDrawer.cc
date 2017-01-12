@@ -57,6 +57,8 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
     vector<int> vMatches; // Initialization: correspondeces with reference keypoints
     vector<cv::KeyPoint> vCurrentKeys; // KeyPoints in current frame
     vector<bool> vbVO, vbMap; // Tracked MapPoints in current frame
+    //vector<int> esPL;
+    std::vector<MapPoint*> mapPoints;
     int state; // Tracking state
 
     vector<int> obs;
@@ -77,12 +79,14 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
             vIniKeys = mvIniKeys;
             vMatches = mvIniMatches;
         }
-        else if(mState==Tracking::OK)
-        {
+        else if(mState==Tracking::OK){
+        	// Se copian porque Update los cambia en cualquier momento, asincrónicamente.
             vCurrentKeys = mvCurrentKeys;
             vbVO = mvbVO;
             vbMap = mvbMap;
             obs = observaciones;
+            //esPL = esPuntoLejano;
+            mapPoints = mvpMapPoints;
         }
         else if(mState==Tracking::LOST)
         {
@@ -94,7 +98,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
         cvtColor(im,im,CV_GRAY2BGR);
 
     //Draw
-    // Dibjua líneas verdes de flujo óptico para inicialización
+    // Dibuja líneas verdes de flujo óptico para inicialización
     if(state==Tracking::NOT_INITIALIZED){ //INITIALIZING
         for(unsigned int i=0; i<vMatches.size(); i++)
             if(vMatches[i]>=0)
@@ -108,7 +112,8 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
 
         // Recorre todos los puntos singulares, pone marcas solamente si tienen un punto de mapa asociado.
         for(int i=0;i<N;i++){
-            if(vbVO[i] || vbMap[i]){
+        	MapPoint *MP = mapPoints[i];
+            if(vbVO[i] || (vbMap[i] && MP)){
                 cv::Point2f pt1,pt2;
                 pt1.x=vCurrentKeys[i].pt.x-r;
                 pt1.y=vCurrentKeys[i].pt.y-r;
@@ -118,8 +123,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
                 // This is a match to a MapPoint in the map
                 if(vbMap[i]){
                 	// Los puntos más nuevos (menos observados) se muestran amarillos, virando al verde cuanto más observados están.
-                    cv::Scalar color = cv::Scalar(0,255, (obs[i]>4 && obs[i]<1)? 0:255+64-64*obs[i]);
-                    //cv::rectangle(im,pt1,pt2, color);//,cv::Scalar(0,255,0));
+                    cv::Scalar color = MP->color();
                     cv::circle(im, vCurrentKeys[i].pt, 2*radio , color, -1);
                     mnTracked++;
                 }else{ // This is match to a "visual odometry" MapPoint created in the last frame
@@ -134,7 +138,6 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
             }
         }
     }else  if(state==Tracking::LOST){
-    	// Asumo que el estado es LOST
     	// Dibuja puntos singulares
         // Recorre todos los puntos singulares, pone marcas solamente si tienen un punto de mapa asociado.
         for(int i=0;i<N;i++)
@@ -219,7 +222,9 @@ void FrameDrawer::Update(Tracking *pTracker)
     N = mvCurrentKeys.size();
     mvbVO = vector<bool>(N,false);
     mvbMap = vector<bool>(N,false);
+    //esPuntoLejano = vector<int>(N,false);
     mbOnlyTracking = pTracker->mbOnlyTracking;
+    mvpMapPoints = pTracker->mCurrentFrame.mvpMapPoints;
 
     // Datos adicionales para viewer
     observaciones = vector<int>(N,0);
@@ -247,6 +252,7 @@ void FrameDrawer::Update(Tracking *pTracker)
                         mvbVO[i]=true;
 
                     observaciones[i] = pMP->Observations();
+                    //esPuntoLejano[i] = pMP->puntoLejano;
                 }
             }
         }

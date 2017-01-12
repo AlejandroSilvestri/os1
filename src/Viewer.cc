@@ -126,7 +126,7 @@ void Viewer::Run(){
 
     // Línea agregada para un trackbar paramétrico.
     //mpTracker->param = 100;
-    //cv::createTrackbar("Parámetro", "ORB-SLAM2: Current Frame", &mpTracker->param, 1023);
+    cv::createTrackbar("Parámetro", "ORB-SLAM2: Current Frame", &mpSystem->mpLocalMapper->param, 1000);
 
     // Video de entrada con línea de tiempo
     //cv::namedWindow("entrada");

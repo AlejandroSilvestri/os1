@@ -93,9 +93,6 @@ void KeyFrame::SetPose(const cv::Mat &Tcw_)
     Twc = cv::Mat::eye(4,4,Tcw.type());
     Rwc.copyTo(Twc.rowRange(0,3).colRange(0,3));
     Ow.copyTo(Twc.rowRange(0,3).col(3));
-
-    //cv::Mat center = (cv::Mat_<float>(4,1) << mHalfBaseline, 0 , 0, 1);
-    //Cw = Twc*center;
 }
 
 cv::Mat KeyFrame::GetPose()
@@ -115,14 +112,6 @@ cv::Mat KeyFrame::GetCameraCenter()
     unique_lock<mutex> lock(mMutexPose);
     return Ow.clone();
 }
-
-/*
-cv::Mat KeyFrame::GetStereoCenter()
-{
-    unique_lock<mutex> lock(mMutexPose);
-    return Cw.clone();
-}
-*/
 
 cv::Mat KeyFrame::GetRotation()
 {

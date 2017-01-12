@@ -60,9 +60,10 @@ class KeyFrameDatabase;
  * - T: transformación, matriz homogénea de 4x4, de rototraslación, para expresar poses
  *
  * Subíndices usuales:
+ * https://github.com/raulmur/ORB_SLAM2/issues/226
  *
- * - Tcw: "pose de Cámara respecto de World"
- * - F21: "matriz fundamental del cuadro 2 respecto de 1"
+ * - Tcw: "pose respecto de Cámara, de World".  Vc = Tcw . Vw : convierte Vw en coordenadas del mundo en Vc en coordenadas de la cámara.
+ * - F21: "matriz fundamental del cuadro 1 respecto de 2"
  *
  * Vectores:
  *
@@ -118,8 +119,6 @@ public:
 
     /** Lee el vector centro de cámara, igual al vector traslación para monocular. @returns el vector de posición de la cámara, igual a la traslación.  Es diferente sólo en estéreo.*/
     cv::Mat GetCameraCenter();
-
-    //cv::Mat GetStereoCenter();
 
     /**
      * Lee la matriz rotación 3D, obtenida de Tcw.
@@ -632,20 +631,22 @@ protected:
      * SetPose determina su valor, y GetPose lo lee.
      * GetRotation y GetTraslation obtienen la matriz de rotación y el vector traslación en coordenadas euclideanas.
      *
-     * Tcw es la transformación de coordenadas de la cámara (c) a coordenadas del mundo (w).
+     * Tcw es la transformación de coordenadas del mundo (w) a coordenadas de la cámara (c).
      * Su inversa es Twc.
      */
     cv::Mat Tcw;
 
     /**
      * Matriz de 4x4 de rototraslación en coordenadas homogéneas, con la transformación inversa de Tcw.
+     * Convierte un punto del sistema de referencia de la cámara al mundo.
      * GetPoseInverse lee su valor.
      */
     cv::Mat Twc;
 
     /**
-     * Centro de la cámara.
+     * Centro de la cámara, posición de la cámara.
      * Se obtiene con GetCameraCenter.
+     * Vector de 3x1.
      */
     cv::Mat Ow;
 

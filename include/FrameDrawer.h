@@ -87,6 +87,7 @@ protected:
      * mvbVO indica si el punto singular corresponde a un punto no agregado al mapa, para odometría visual.
      */
     vector<bool> mvbMap, mvbVO;
+    vector<int> esPuntoLejano;
     //@}
 
     /**Copia de la señal de sólo tracking (true) o tracking & mapping (false).*/
@@ -117,6 +118,14 @@ protected:
 
     /** Cantidad de observaciones de cada punto del mapa.*/
     vector<int> observaciones;
+
+    /**
+     * Vector de puntos 3D del mapa asociados a los puntos singulares.
+     * Este vector tiene la misma longitud que mvKeys y mvKeysUn.
+     * Las posiciones sin asociación son NULL.
+     * Copiado de mCurrentFrame en FrameDrawer::Update.
+     */
+    std::vector<MapPoint*> mvpMapPoints;
 };
 
 } //namespace ORB_SLAM

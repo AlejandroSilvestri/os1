@@ -180,7 +180,17 @@ class PnPsolver {
   void find_betas_approx_2(const CvMat * L_6x10, const CvMat * Rho, double * betas);
   /** Función del código original EPnP.*/
   void find_betas_approx_3(const CvMat * L_6x10, const CvMat * Rho, double * betas);
-  /** Función del código original EPnP.*/
+  /**
+   * Función del código original EPnP.
+   *
+   * Función final de la siguiente cadena de Invocaciones:
+   ORB_SLAM2::PnPsolver::qr_solve(CvMat *, CvMat *, CvMat *) : void
+	ORB_SLAM2::PnPsolver::gauss_newton(const CvMat *, const CvMat *, double *) : void
+		ORB_SLAM2::PnPsolver::compute_pose(double (*)[3], double *) : double (3 matches)
+			ORB_SLAM2::PnPsolver::Refine() : bool
+			ORB_SLAM2::PnPsolver::iterate(int, bool &, vector<bool,allocator<bool>> &, int &) : Mat
+				ORB_SLAM2::Tracking::Relocalization() : bool
+   */
   void qr_solve(CvMat * A, CvMat * b, CvMat * X);
 
   /** Función del código original EPnP.*/
@@ -229,7 +239,13 @@ class PnPsolver {
   /** */
   double cws_determinant;
 
-  /** Puntos 3D macheados.*/
+  /**
+   * Puntos 3D macheados recibidos por el constructor.
+   *
+   * Esta propiedad apenas se usa un par de veces para medir su tamaño.
+   * Su contenido es volcado a mvP3Dw por el constructor, directamente desde el parámetro.
+   * mvP3Dw es un vector de puntos 3D con las posiciones de los mappoints.
+   */
   vector<MapPoint*> mvpMapPointMatches;
 
   /** Coordenadas 2D de los puntos singulares.*/

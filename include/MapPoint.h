@@ -58,14 +58,11 @@ class Frame;
 class MapPoint
 {
 public:
-	/** Constructor declarado pero no implementado.*/
-	MapPoint(const cv::Mat &Pos, int FirstKFid, int FirstFrame, Map* pMap);
-
 	/**
 	 * Constructor que toma los valores argumentos.
 	 *
 	 * @param Pos Posición en el mapa.
-	 * @param pRefKF Keyframe de referencia.
+	 * @param pRefKF Keyframe de referencia, el keyframe actual al momento de crear el punto.
 	 * @param pMap Mapa al que pertenece el punto.  Hay un único mapa en ORB-SLAM.
 	 * @param rgb_ Color del punto.  Opcional, negro si no se proporciona.
 	 *
@@ -247,6 +244,19 @@ public:
     int PredictScale(const float &currentDist, const float &logScaleFactor);
 
 
+	/**
+	 * Color sugerido para graficación.
+	 * Invocado por MapDrawer y FrameDrawer
+	 */
+
+	cv::Scalar color();
+
+	/**
+	 * Informa si el punto es quasi-infinito.
+	 * @param true si es quasi-infinito, false si es normal.
+	 */
+	inline bool esQInf(){return cv::sum(mWorldPos)[0]>=1e5;}
+
 
 
 public:
@@ -347,10 +357,26 @@ public:
 
     static std::mutex mGlobalMutex;
 
+
+    // Puntos lejanos
+
+    /**
+     * Marca que distingue el punto lejano.
+     * Principalmente para limitar el mapa de covisibilidad, y quizás el bundle adjustment.
+     * 0. normal
+     * 1. lejano triangulado
+     * 2. muy lejano por COS
+     * 3. muy lejano por SVD
+     */
+    int puntoLejano = 0;
+
+
+
 protected:    
 
-    /** Posición en coordenadas absolutas del mapa global.
-     * Mat de opencv.
+    /**
+     * Posición en coordenadas absolutas del mapa global.
+     * Mat vertical de opencv de 3x1 (3 filas, una columna).
      */
 	// Position in absolute coordinates
 	cv::Mat mWorldPos;

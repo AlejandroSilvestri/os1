@@ -71,11 +71,62 @@ KeyFrame* MapPoint::GetReferenceKeyFrame()
 void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
 {
     unique_lock<mutex> lock(mMutexFeatures);
-    if(mObservations.count(pKF))
-        return;
+    if(!mObservations.count(pKF)){
+        mObservations[pKF]=idx;
+        nObs++;
+    }
 
-    mObservations[pKF]=idx;
-    nObs++;
+    // Si es punto lejano, medir la apertura para ver si deja de serlo
+    if(puntoLejano){
+    	// Copiado de LocalMapping::CreateNewMapPoints
+
+        const float &cx1 = pKF->cx;
+        const float &cy1 = pKF->cy;
+        const float &invfx1 = pKF->invfx;
+        const float &invfy1 = pKF->invfy;
+
+        const cv::KeyPoint &kp1 = pKF->	   mvKeysUn[idx];
+        cv::Mat xn1 = (cv::Mat_<float>(3,1) << (kp1.pt.x-cx1)*invfx1, (kp1.pt.y-cy1)*invfy1, 1.0);
+        cv::Mat Rcw1 = pKF->GetRotation();
+        cv::Mat Rwc1 = Rcw1.t();
+        cv::Mat ray1 = Rwc1*xn1;
+
+
+        const float &cx2 = mpRefKF->cx;
+        const float &cy2 = mpRefKF->cy;
+        const float &invfx2 = mpRefKF->invfx;
+        const float &invfy2 = mpRefKF->invfy;
+
+        const int &idx2 = mObservations[mpRefKF];
+        const cv::KeyPoint &kp2 = mpRefKF->mvKeysUn[idx2];
+        cv::Mat xn2 = (cv::Mat_<float>(3,1) << (kp2.pt.x-cx2)*invfx2, (kp2.pt.y-cy2)*invfy2, 1.0);
+        cv::Mat Rcw2 = mpRefKF->GetRotation();
+        cv::Mat Rwc2 = Rcw2.t();
+        cv::Mat ray2 = Rwc2*xn2;
+
+        const float cosParallaxRays = ray1.dot(ray2)/(cv::norm(ray1)*cv::norm(ray2));
+
+        if(cosParallaxRays<0.998){
+        	// No debería llegar acá a menos que puntoLejano == 1, pero llega == 2.
+        	if(puntoLejano == 1)
+        		// Punto lejano con suficiente paralaje, se convierte en normal.
+        		puntoLejano = 0;
+        	else{
+        		// Punto muy lejano!
+        		cout << "Retriangulando punto lejano " << puntoLejano;
+        		if(esQInf()){
+        			// Punto muy lejano, al infinito, ¡con paralaje!  ¿Cómo lo macheó?  ¿Por qué no lo acercó?
+        			cout << " es QInf!! mp:" << mnId << ", kf:" << pKF->mnId << ", idx:" << idx << endl;
+
+        		}else{
+        			// Punto muy lejano que se acercó por BA, y con suficiente paralaje, se convierte en normal.
+        			cout << " no es QInf, se normaliza." << endl;
+            		puntoLejano = 0;
+        		}
+
+        	}
+        }
+    }
 }
 
 void MapPoint::EraseObservation(KeyFrame* pKF)
@@ -359,5 +410,11 @@ int MapPoint::PredictScale(const float &currentDist, const float &logScaleFactor
 }
 
 
-
+cv::Scalar MapPoint::color(){
+	return
+	puntoLejano == 0? cv::Scalar(0,255,32*(nObs-3)):	// Punto del mapa amarillo verdeando con las observaciones
+	puntoLejano == 1? cv::Scalar(255,255,32*(nObs-3)) :	// Punto lejano triangulado
+	puntoLejano == 2? cv::Scalar(255,0,255 * esQInf()) :	// Punto muy lejano COS
+					  cv::Scalar(0,0,255);	// Punto muy lejano SVD
+}
 } //namespace ORB_SLAM

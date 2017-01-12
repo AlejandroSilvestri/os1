@@ -78,14 +78,17 @@ public:
                                        const unsigned long nLoopKF=0, const bool bRobust = true);
 
 
-    /** Bundle adjusment local a partir de un keyframe.
+    /**
+     * Bundle adjusment local a partir de un keyframe.
+     *
      * @param pKF Keyframe inicial, usualmente Tracking::mpCurrentKeyFrame.
      * @param pbStopFlag Señal para forzar la parada del optimizador.
+     * @param pMap Mapa del mundo.
      *
      * El BA local toma el keyframe de referencia (usualmente el actual).
      * A partir de él forma un vector de keyframes covisibles con GetVectorCovisibleKeyFrames(),
      * y un vector de puntos del mapa vistos por ellos.  Estos keyframes y puntos del mapa serán modificados por el BA.
-     * Finalmente crea un vector keyframes fijos (no afectados por el BA), con los otros keyframes que también observan esos puntos.
+     * Finalmente crea un vector de keyframes fijos (no afectados por el BA), con los otros keyframes que también observan esos puntos.
      * Con estos datos ejecuta un BA usando g2o.
      *
      * Éste es el Bundle adjustment periódico del tracking.

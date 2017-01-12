@@ -66,38 +66,11 @@ void MapDrawer::DrawMapPoints(bool color){
     int i = 0;
     for(auto punto : vpMPs){
     	// Motivos para descartar el punto
-        if(punto->isBad() || spRefMPs.count(punto))
-            continue;
-
-        // Agrega el punto
-        cv::Mat pos = punto->GetWorldPos();
-        auto rgb = punto->rgb;
-
-        glPunto &glp = glPuntos[i++];
-        glp.x = pos.at<float>(0);
-        glp.y = pos.at<float>(1);
-        glp.z = pos.at<float>(2);
-
-        if(color){
-			glp.r = rgb[2];
-			glp.g = rgb[1];
-			glp.b = rgb[0];
-        } else {
-			glp.r = 0;
-			glp.g = 0;
-			glp.b = 0;
-        }
-    }
-
-
-    for(auto punto : spRefMPs){
-    	// Motivos para descartar el punto
         if(punto->isBad())
             continue;
 
         // Agrega el punto
         cv::Mat pos = punto->GetWorldPos();
-        auto rgb = punto->rgb;
 
         glPunto &glp = glPuntos[i++];
         glp.x = pos.at<float>(0);
@@ -105,17 +78,34 @@ void MapDrawer::DrawMapPoints(bool color){
         glp.z = pos.at<float>(2);
 
         if(color){
+            auto rgb = punto->rgb;
 			glp.r = rgb[2];
 			glp.g = rgb[1];
 			glp.b = rgb[0];
-        } else {
+        } else if(punto->puntoLejano){
+        	// Punto lejano
+        	cv::Scalar color = punto->color();
+			glp.r = color[2];
+			glp.g = color[1];
+			glp.b = color[0];
+        	/*
+        	// Punto lejano: VIOLETA
+			glp.r = 192;
+			glp.g = 0;
+			glp.b = 192;
+			*/
+        } else if(spRefMPs.count(punto)){
+        	// Punto del mapa local: VERDE
 			glp.r = 0;
 			glp.g = 192;
 			glp.b = 0;
+        } else {
+        	// Punto del mapa, pero no local: NEGRO
+			glp.r = 0;
+			glp.g = 0;
+			glp.b = 0;
         }
     }
-
-
 
     // OpenGL
     glPointSize(color?4:2);

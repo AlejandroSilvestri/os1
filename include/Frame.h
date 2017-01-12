@@ -86,7 +86,11 @@ public:
         return mOw.clone();
     }
 
-    /** Devuelve la inversa de la rotación.*/
+    /**
+     * Devuelve la inversa de la rotación mRwc.
+     *
+     * Extrañamente, no dispone de GetRotation para devolver la rotación sin invertir mRcw.
+     */
     // Returns inverse of rotation
     inline cv::Mat GetRotationInverse(){
         return mRwc.clone();
@@ -100,16 +104,6 @@ public:
     bool PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY);
 
     vector<size_t> GetFeaturesInArea(const float &x, const float  &y, const float  &r, const int minLevel=-1, const int maxLevel=-1) const;
-
-    // Search a match for each keypoint in the left image to a keypoint in the right image.
-    // If there is a match, depth is computed and the right coordinate associated to the left keypoint is stored.
-    //void ComputeStereoMatches();
-
-    // Associate a "right" coordinate to a keypoint if there is valid depth in the depthmap.
-    //void ComputeStereoFromRGBD(const cv::Mat &imDepth);
-
-    // Backprojects a keypoint (if stereo/depth info available) into 3D world coordinates.
-    //cv::Mat UnprojectStereo(const int &i);
 
 public:
 	/** Vocabulario BOW para clasificar descriptores.*/
@@ -169,26 +163,46 @@ public:
     // Far points are inserted as in the monocular case from 2 views.
     float mThDepth;
 
-	/** Cantidad de puntos singulares.*/
+	/**
+	 * Cantidad de puntos singulares.
+	 *
+	 * Es el tamaño de los vectores apareados:
+	 * - mvKeys
+	 * - mvKeysUn
+	 * - mDescriptors
+	 * - mBowVec
+	 * - mFeatVec
+	 * - mvpMapPoints
+	 * - mvbOutlier
+	 *
+	 *
+	 * Todos éstos se pasan al keyframe.
+	 */
     // Number of KeyPoints.
     int N;
 
     // Vector of keypoints (original for visualization) and undistorted (actually used by the system).
     // In the stereo case, mvKeysUn is redundant as images must be rectified.
     // In the RGB-D case, RGB images can be distorted.
-    /** Vector de puntos singulares obtenidos por el detector, tal como los devuelve opencv.*/
+    /**
+     * Vector de puntos singulares obtenidos por el detector, tal como los devuelve opencv.
+     *
+     * Sus coordenadas están en píxeles, en el sistema de referencia de la imagen.
+     */
     std::vector<cv::KeyPoint> mvKeys;
 
-	/** Vector de puntos antidistorsionados, mvKeys corregidos según los coeficientes de distorsión.*/
+	/**
+	 * Vector de puntos antidistorsionados, mvKeys corregidos según los coeficientes de distorsión.
+	 *
+	 * Este vector está apareado con mvKeys, ambos de tamaño N.
+	 *
+	 * Sus coordenadas están en píxeles, en el sistema de referencia de la imagen antidistorsionada.
+	 * Los puntos se obtienen con cv::undistortPoints, reaplicando la matriz K de cámara.
+	 */
     std::vector<cv::KeyPoint> mvKeysUn;
 
-    // Corresponding stereo coordinate and depth for each keypoint.
-    // "Monocular" keypoints have a negative value.
-    /** -1 para monocular.*/
-    std::vector<float> mvuRight;
-
     /** -1 para monocular.  Se pasa en el constructor de copia de Frame.*/
-    std::vector<float> mvDepth;
+    //std::vector<float> mvDepth;
 
     // Bag of Words Vector structures.
     /** Vector BoW correspondiente a los puntos singulares.*/
@@ -198,7 +212,7 @@ public:
 
 	/** Descriptores ORB en el formato Mat, tal como los devuelve opencv.  mDescritorRight no se usa, se pasa en el constructor de copia.*/
     // ORB descriptor, each row associated to a keypoint.
-    cv::Mat mDescriptors, mDescriptorsRight;
+    cv::Mat mDescriptors;//, mDescriptorsRight;
 
 	/** Vector de puntos 3D del mapa asociados a los puntos singulares.
 	Este vector tiene la misma longitud que mvKeys y mvKeysUn.

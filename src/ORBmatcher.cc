@@ -88,13 +88,6 @@ int ORBmatcher::SearchByProjection(Frame &F, const vector<MapPoint*> &vpMapPoint
                 if(F.mvpMapPoints[idx]->Observations()>0)
                     continue;
 
-            /*if(F.mvuRight[idx]>0)
-            {
-                const float er = fabs(pMP->mTrackProjXR-F.mvuRight[idx]);
-                if(er>r*F.mvScaleFactors[nPredictedLevel])
-                    continue;
-            }*/
-
             const cv::Mat &d = F.mDescriptors.row(idx);
 
             const int dist = DescriptorDistance(MPdescriptor,d);
@@ -702,12 +695,6 @@ int ORBmatcher::SearchForTriangulation(KeyFrame *pKF1, KeyFrame *pKF2, cv::Mat F
                 if(pMP1)
                     continue;
 
-                //const bool bStereo1 = pKF1->mvuRight[idx1]>=0;	// Siempre false porque es menor a 0 para monocular.
-
-                /*if(bOnlyStereo)
-                    if(!bStereo1)
-                        continue;*/
-                
                 const cv::KeyPoint &kp1 = pKF1->mvKeysUn[idx1];
                 
                 const cv::Mat &d1 = pKF1->mDescriptors.row(idx1);
@@ -725,12 +712,6 @@ int ORBmatcher::SearchForTriangulation(KeyFrame *pKF1, KeyFrame *pKF2, cv::Mat F
                     if(vbMatched2[idx2] || pMP2)
                         continue;
 
-                    //const bool bStereo2 = pKF2->mvuRight[idx2]>=0;	// Siempre menor a 0.
-
-                    /*if(bOnlyStereo)
-                        if(!bStereo2)
-                            continue;*/
-                    
                     const cv::Mat &d2 = pKF2->mDescriptors.row(idx2);
                     
                     const int dist = DescriptorDistance(d1,d2);
@@ -740,13 +721,10 @@ int ORBmatcher::SearchForTriangulation(KeyFrame *pKF1, KeyFrame *pKF2, cv::Mat F
 
                     const cv::KeyPoint &kp2 = pKF2->mvKeysUn[idx2];
 
-                    //if(!bStereo1 && !bStereo2)
-                    //{
-                        const float distex = ex-kp2.pt.x;
-                        const float distey = ey-kp2.pt.y;
-                        if(distex*distex+distey*distey<100*pKF2->mvScaleFactors[kp2.octave])
-                            continue;
-                    //}
+					const float distex = ex-kp2.pt.x;
+					const float distey = ey-kp2.pt.y;
+					if(distex*distex+distey*distey<100*pKF2->mvScaleFactors[kp2.octave])
+						continue;
 
                     if(CheckDistEpipolarLine(kp1,kp2,F12,pKF2))
                     {
@@ -911,31 +889,14 @@ int ORBmatcher::Fuse(KeyFrame *pKF, const vector<MapPoint *> &vpMapPoints, const
             if(kpLevel<nPredictedLevel-1 || kpLevel>nPredictedLevel)
                 continue;
 
-            /*if(pKF->mvuRight[idx]>=0)
-            {
-                // Check reprojection error in stereo
-                const float &kpx = kp.pt.x;
-                const float &kpy = kp.pt.y;
-                const float &kpr = pKF->mvuRight[idx];
-                const float ex = u-kpx;
-                const float ey = v-kpy;
-                const float er = ur-kpr;
-                const float e2 = ex*ex+ey*ey+er*er;
+			const float &kpx = kp.pt.x;
+			const float &kpy = kp.pt.y;
+			const float ex = u-kpx;
+			const float ey = v-kpy;
+			const float e2 = ex*ex+ey*ey;
 
-                if(e2*pKF->mvInvLevelSigma2[kpLevel]>7.8)
-                    continue;
-            }
-            else*/
-            {
-                const float &kpx = kp.pt.x;
-                const float &kpy = kp.pt.y;
-                const float ex = u-kpx;
-                const float ey = v-kpy;
-                const float e2 = ex*ex+ey*ey;
-
-                if(e2*pKF->mvInvLevelSigma2[kpLevel]>5.99)
-                    continue;
-            }
+			if(e2*pKF->mvInvLevelSigma2[kpLevel]>5.99)
+				continue;
 
             const cv::Mat &dKF = pKF->mDescriptors.row(idx);
 
@@ -1386,15 +1347,7 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
                 // Search in a window. Size depends on scale
                 float radius = th*CurrentFrame.mvScaleFactors[nLastOctave];
 
-                vector<size_t> vIndices2;
-
-                // Determina un vector de puntos singulares de currentFrame cercanos a la proyección del punto del mapa de lastFrame.  Desactivada la parte no monocular.
-                /*if(bForward)
-                    vIndices2 = CurrentFrame.GetFeaturesInArea(u,v, radius, nLastOctave);
-                else if(bBackward)
-                    vIndices2 = CurrentFrame.GetFeaturesInArea(u,v, radius, 0, nLastOctave);
-                else*/
-                    vIndices2 = CurrentFrame.GetFeaturesInArea(u,v, radius, nLastOctave-1, nLastOctave+1);
+                vector<size_t> vIndices2 = CurrentFrame.GetFeaturesInArea(u,v, radius, nLastOctave-1, nLastOctave+1);
 
                 if(vIndices2.empty())
                     continue;
@@ -1411,14 +1364,6 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
                     if(CurrentFrame.mvpMapPoints[i2])
                         if(CurrentFrame.mvpMapPoints[i2]->Observations()>0)
                             continue;
-
-                    if(CurrentFrame.mvuRight[i2]>0)
-                    {
-                        const float ur = u - CurrentFrame.mbf*invzc;
-                        const float er = fabs(ur - CurrentFrame.mvuRight[i2]);
-                        if(er>radius)
-                            continue;
-                    }
 
                     const cv::Mat &d = CurrentFrame.mDescriptors.row(i2);
 
