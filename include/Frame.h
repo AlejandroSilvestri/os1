@@ -43,40 +43,104 @@ class ORBextractor;
 
 /**
  * Frame representa un cuadro, una imagen, con los puntos singulares detectados.
- * Frame representa una toma de cámara, con su imagen, los puntos 2D detectados, sus descriptores, su mapeo en 3D y demás.
+ *
+ * Frame representa una toma de cámara, con su imagen, los puntos 2D detectados, sus descriptores, su mapeo en 3D, su pose y demás.
+ *
+ * La posición del cuadro en el mapa se obtiene con Frame::GetCameraCenter.  La orientación con Frame::GetRotationInverse.
+ *
  * Tracking utiliza 3 Frames:
- * - mCurrentFrame
- * - mInitialFrame
- * - mLastFrame
+ * - Frame::mCurrentFrame
+ * - Frame::mInitialFrame
+ * - Frame::mLastFrame
  *
  * Cada cuadro tiene su propia matriz K de calibración.
  * Usualmente es la misma matriz (los mismos valores) para todos los cuadros y keyframes.
- * El constructor clona el Mat K, haciendo una copia propia.
  *
- * El constructor analiza la imagen, pero no la guarda.  La imagen se pierde cuando el constructor termina.
- * Parte de este análisis consiste en detectar puntos singulares, extraer sus descriptores y clasificarlos
+ * El constructor clona el Mat K, haciendo una copia propia en Frame::mK.
+ * Luego analiza la imagen, pero no la guarda.  La imagen se pierde cuando el constructor termina.
+ * Parte de este análisis consiste en detectar puntos singulares, extraer sus descriptores y clasificarlos.
+ *
+ * Puntos singulares, descriptores, BoW y puntos 3D rastreados se registran en vectores paralelos y se explican en Frame::N.
+ *
+ * El sistema de coordenadas y el significado de las matrices de posición se explica en Frame::mTcw.
+ *
+ * Esta clase no determina la pose del cuadro.  Su pose es registrada por Tracking y Optimizer.
+ *
+ * \sa SetPose
  */
 class Frame
 {
 public:
+	/**
+	 * El constructor sin argumentos crea un Frame sin inicialización.
+	 * El único dato inicializado es nNextId=0.
+	 * No usado.
+	 */
     Frame();
 
+    /**
+     * Constructor de copia, clona un frame.
+     *
+     */
     // Copy constructor.
     Frame(const Frame &frame);
 
+    /**
+     * Constructor que crea un Frame y lo llena con los argumentos.
+     * @param timeStamp Marca de tiempo, para registro.  ORB-SLAM no la utiliza.
+     * @param extractor Algoritmo extractor usado para obtener los descriptores.  ORB-SLAM utiliza exclusivamente el extractor BRIEF de ORB.
+     *
+     * Se distinguen dos modos de cámara: normal si se proporcionan los coeficientes de distorsión, o fisheye sin coeficientes si se proporciona noArray().
+     *
+     * Invocado sólo desde Tracling::GrabImageMonocular.
+     */
     // Constructor for Monocular cameras.
     Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth);
     //Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor, ORBVocabulary* voc, const float &thDepth);
 
+    /**
+     * Procede con la extracción de descriptores ORB.
+     *
+     * @param flag false para monocular, o para cámara izquierda.  true para cámara derecha.  Siempre se invoca con false.
+     * @param im Imagen sobre la que extraer los descriptores.
+     *
+     * Los descriptores se conservan en Frame::mDescriptors.
+     *
+     * Invocado sólo desde el constructor.
+     */
     // Extract ORB on the image. 0 for left image and 1 for right image.
     void ExtractORB(int flag, const cv::Mat &im);
 
+    /**
+     * Computa BoW para todos los descriptores del cuadro.
+     * Los guarda en la propiedad mBowVec, que es del tipo BowVector.
+     */
     // Compute Bag of Words representation.
     void ComputeBoW();
 
+    /**
+     * Registra la pose.
+     *
+     * Usado por varios métodos para establecer o corregir la pose del cuadro.
+     *
+     * Luego de establecer la nueva pose se recalculan sus diferentes representaciones con UpdatePoseMatrices, como el vector traslación o la matriz rotación.
+     *
+     * @param Tcw Nueva pose, matriz de rototraslación en coordenadas homogéneas, de 4x4.
+     *
+     * Registra la pose en Frame::mTcw, que correspone a la pose del origen del mundo en el sistema de coordenadas de la cámara.
+     *
+     * Este método se invoca por Tracking con posiciones aproximadas para inicializar y rastrear,
+     * y por Optimizer::PoseOptimization, el único que registra la pose optimizada.
+     */
     // Set the camera pose.
     void SetPose(cv::Mat Tcw);
 
+    /**
+     * Calcula las matrices de posición mRcw, mtcw y mOw a partir de la pose mTcw.
+     * Estas matrices son una manera de exponer la pose, no se utilizan en la operación de ORB-SLAM.
+     * UpdatePoseMatrices() extrae la inforamción de mTcw, la matriz que combina la pose completa.
+     *
+     */
     // Computes rotation, translation and camera center matrices from the camera pose.
     void UpdatePoseMatrices();
 
@@ -87,22 +151,45 @@ public:
     }
 
     /**
-     * Devuelve la inversa de la rotación mRwc.
+     * Devuelve la orientación en el mapa.
      *
-     * Extrañamente, no dispone de GetRotation para devolver la rotación sin invertir mRcw.
+     * Es la inversa de la rotación mRwc.
+     *
+     * @returns mRwc.t()
+     *
+     * No dispone de GetRotation para devolver la rotación sin invertir mRcw.
      */
     // Returns inverse of rotation
     inline cv::Mat GetRotationInverse(){
         return mRwc.clone();
     }
 
+    /**
+     * Indica si un determinado punto 3D se encuentra en el subespacio visual (frustum) del cuadro.
+     * El subespacio visual es una pirámide de base cuadrilátera, cuyos vértices son los del cuadro pero antidistorsionados.
+     * viewingCosLimit es una manera de limitar el alcance del frustum.
+     */
     // Check if a MapPoint is in the frustum of the camera
     // and fill variables of the MapPoint to be used by the tracking
     bool isInFrustum(MapPoint* pMP, float viewingCosLimit);
 
+    /**
+     * Calcula las coordenadas de la celda en la grilla, a la que pertenece un punto singular.
+     * Informa las coordenadas en los argumentos posX y posY pasados por referencia.
+     * Devuelve true si el punto está en la grilla, false si no.
+     * @param kp Punto singular "desdistorsionado".
+     * @param posX Coordenada X de la celda a la que pertence el punto.
+     * @param posY Coordenada Y de la celda a la que pertence el punto.
+     *
+     */
     // Compute the cell of a keypoint (return false if outside the grid)
     bool PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY);
 
+    /**
+     * Selecciona los puntos dentro de una ventana cuadrada de centro x,y y lado r.
+     * Recorre todos los niveles del frame filtrando los puntos por coordenadas.
+     * Se utiliza para reducir los candidatos para macheo.
+     */
     vector<size_t> GetFeaturesInArea(const float &x, const float  &y, const float  &r, const int minLevel=-1, const int maxLevel=-1) const;
 
 public:
@@ -323,16 +410,44 @@ public:
 	 */
     static bool mbInitialComputations;
 
+    /**
+     * Calcula los puntos singulares de mvKeysUn.
+     * Antidistorsiona los puntos detectados, que están en mvKeys, y los guarda en mvKeysUn en el mismo orden.
+     * Si no hay distorsión, UndistortKeyPoints retorna rápidamente unificando mvKeysUn = mvKeys en un mismo vector.
+     */
     // Undistort keypoints given OpenCV distortion parameters.
     // Only for the RGB-D case. Stereo must be already rectified!
     // (called in the constructor).
     void UndistortKeyPoints();
 
+    /**
+     * Antidistorsiona puntos según el modelo de cámara fisheye de proyección equidistante sin coeficientes de distorsión.
+     * Usa mK, la matriz intrínseca, para pasar los puntos distorsionados a escala focal, y luego de antidistorsionarlos pasarlos de nuevo a escala de imagen.
+     *
+     * @param puntos Mat de nx2 float, cada par corresponde a un punto.  Entrada y salida.  Los puntos se corrigen y el resultado se guarda en el mismo lugar.
+     *
+     * Sólo usado desde Frame::UndistortKeyPoints y Frame::ComputeImageBounds
+     */
     void antidistorsionarProyeccionEquidistante(cv::Mat &puntos);
 
+    /**
+     * Calcula los vértices del cuadro andistorsionado.
+     * Define mnMinX, mnMaxX, mnMinY, mnMaxY.
+     * Si no hay distorsión, el resultado es trivial con origen en (0,0).
+     *
+     * @param imLeft Imagen, solamente a los efectos de medir su tamaño con .rows y .cols .
+     *
+     * Invocado sólo desde el constructor.
+     */
     // Computes image bounds for the undistorted image (called in the constructor).
     void ComputeImageBounds(const cv::Mat &imLeft);
 
+    /**
+     * Asigna los puntos singulares a sus celdas de la grilla.
+     * La imagen de divide en una grilla para detectar puntos de manera más homogénea.
+     * Luego de "desdistorsionar" las coordenadas de los puntos singulares detectados,
+     * este método crea un vector de puntos singulares para cada celda de la grillam, y lo puebla.
+     */
     // Assign keypoints to the grid for speed up feature matching (called in the constructor).
     void AssignFeaturesToGrid();
 

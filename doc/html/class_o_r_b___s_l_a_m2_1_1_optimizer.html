@@ -298,11 +298,12 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pKF</td><td>Keyframe inicial, usualmente Tracking::mpCurrentKeyFrame. </td></tr>
-    <tr><td class="paramname">pbStopFlag</td><td>Señal para forzar la parada del optimizador.</td></tr>
+    <tr><td class="paramname">pbStopFlag</td><td>Señal para forzar la parada del optimizador. </td></tr>
+    <tr><td class="paramname">pMap</td><td>Mapa del mundo.</td></tr>
   </table>
   </dd>
 </dl>
-<p>El BA local toma el keyframe de referencia (usualmente el actual). A partir de él forma un vector de keyframes covisibles con GetVectorCovisibleKeyFrames(), y un vector de puntos del mapa vistos por ellos. Estos keyframes y puntos del mapa serán modificados por el BA. Finalmente crea un vector keyframes fijos (no afectados por el BA), con los otros keyframes que también observan esos puntos. Con estos datos ejecuta un BA usando <a class="el" href="namespaceg2o.html">g2o</a>.</p>
+<p>El BA local toma el keyframe de referencia (usualmente el actual). A partir de él forma un vector de keyframes covisibles con GetVectorCovisibleKeyFrames(), y un vector de puntos del mapa vistos por ellos. Estos keyframes y puntos del mapa serán modificados por el BA. Finalmente crea un vector de keyframes fijos (no afectados por el BA), con los otros keyframes que también observan esos puntos. Con estos datos ejecuta un BA usando <a class="el" href="namespaceg2o.html">g2o</a>.</p>
 <p>Éste es el Bundle adjustment periódico del tracking.</p>
 <p>Este método se invoca solamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">LocalMapping::Run()</a>.</p>
 <p>El optimizador se arma así: </p><pre class="fragment">typedef BlockSolver&lt; BlockSolverTraits&lt; Eigen::Dynamic, Eigen::Dynamic &gt; &gt; BlockSolverX;

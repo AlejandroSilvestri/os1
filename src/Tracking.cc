@@ -43,9 +43,6 @@ using namespace std;
 namespace ORB_SLAM2
 {
 
-/** Una única instancia de este objeto se ejecuta en el thread principal.
-
-*/
 Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor, unsigned int cantidadCuadros):
     mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false), mbVO(false), mpORBVocabulary(pVoc),
     mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys),
@@ -184,44 +181,9 @@ void Tracking::SetViewer(Viewer *pViewer)
     mpViewer=pViewer;
 }
 
-/**
- * Recibe una imagen para procesar, desde System, en el mismo hilo.
- * Convierte la imagen a monocromática, sabiendo de antemano por el archivo de configuración si es RGB o BGR.
- * Genera mCurrentFrame.  En modo normal usa mpORBextractorLeft (Right se usa solamente en estéreo).
- * En el modo de inicialización (NOT_INITIALIZED o NO_IMAGES_YET) usa mpIniORBextractor, que es igual al anterior pero con el doble de puntos singulares requeridos.
- * A continuación invoca Track(), la máquina de estados.
- * @param im Nueva imagen a procesar.
- * @param timestamp Marca temporal puramente para registro.  ORB-SLAM2 no la utiliza, sólo la registra en el frame.
- * @returns La pose de la cámara.
- *
- * GrabImageMonocular se invoca exclusivamente desde System::TrackMonocular, que a su vez es invocada exclusivamente desde el bucle principal en main.
- *
- * El algoritmo disparado desde TrackMonocular es extenso y se dividió en varios métodos de Tracking solamente para simplificar la lectura,
- * pues cada uno de estos métodos son invocados desde un único punto.
- *
- * La siguiente secuencia de métodos corresponden a un único algoritmo que podría estar en una única función:
- *
- * - GrabImageMonocular
- * - Track, continuación de la anterior
- * - 	MonocularInitialization
- * 			CreateInitialMapMonocular
- * - 	TrackWithMotionModel
- * - 		UpdateLastFrame
- * 		TrackLocalMap
- * 			SearchLocalPoints
- * 			UpdateLocalMap
- * 				UpdateLocalMapPoints
- * 				UpdateLocalKeyFrames
- * 		NeedNewKeyFrame
- * 		CreateNewKeyFrame
- * 		TrackReferenceKeyFrame
- * 		CheckReplacedInLastFrame
- * 		Relocalization
- */
-
 cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
 {
-    /*imagenEntrada = */mImGray = im;
+    mImGray = im;
 
     if(mImGray.channels()==3)
     {
@@ -250,39 +212,6 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
     return mCurrentFrame.mTcw.clone();
 }
 
-/**
- * Es la máquina de estados del tracking.
- * Este método implementa el autómata finito cuya variable de estado es mState,
- * y sus valores se definen en el enum eTrackingState.
- * La variable informa sobre los diversos estados para la inicialización primero,
- * y luego sobre los estados de operación.
- * ORB-SLAM opera principalmente en el estado WORKING.
- *
- *
- * Autómata:
- * -SYSTEM_NOT_READY: El sistema no está listo, algunos componentes se están inicializando.
- * -NO_IMAGES_YET: Estado inicial.  GrabImage se invoca la primera vez con una imagen, y pasa al estado siguiente.  Es el único momento en que todavía no existe mLastFrame.
- * -NOT_INITIALIZED: Recibió la primera imagen y existe un mLastFrame, e invoca repetidamente la inicialización MonocularInitialization(), hasta que logra inicializar y pasa a OK.
- * -OK: El tracking operando normalmente.  En orb-slam se llamaba WORKING.
- * -LOST: Perdido, si ocurre en los primeros 5 frames, reinicia con Reset(), y si no sigue intentando relocalizar.
- *
- * mState tiene el estado actual, mLastProcessedState tiene el estado de la ejecución anterior.
- * Si el sistema no está inicializado, se invoca MonocularInitialization.
- *
- * Inicialización: NOT_INITIALIZED
- * El estado NOT_INITIALIZED también indica que está intentando inicializar.  Usa variables propias para el autómata de inicialización.
- * Primero busca un cuadro de referencia, el primero con suficientes features para la inicialización (100 o más)
- * Luego se queda macheando con cuadros posteriores.
- * Mientras consiga suficientes macheos, intenta la inicialización invocando mpInitializer->Initialize, que retorna con éxito o fallo.
- * Si tiene éxito pasa al estado siguiente, OK.  Es la única vía para salir de la inicialización.
- * Si falla continúa macheando cuadros posteriores.
- * Si continúa fallando, la cantidad de macheos irá decreciendo y si baja del mínimo busca un nuevo cuadro de referencia.
- *
- * En modo normal (estado OK con tracking y mapeo) se invocan TrackWithMotionModel, TrackLocalMap
- * y luego se decide si es momento de agregar un nuevo KeyFrame.
- *
- * Track Se invoca únicamente desde GrabImageMonocular, podría ser parte de ese método.
- */
 void Tracking::Track()
 {
     if(mState==NO_IMAGES_YET)
@@ -502,34 +431,8 @@ void Tracking::Track()
 
         mLastFrame = Frame(mCurrentFrame);
     }
-
-    /*
-    // Store frame pose information to retrieve the complete camera trajectory afterwards.
-    if(!mCurrentFrame.mTcw.empty()){
-        cv::Mat Tcr = mCurrentFrame.mTcw*mCurrentFrame.mpReferenceKF->GetPoseInverse();
-        mlRelativeFramePoses.push_back(Tcr);
-        mlpReferences.push_back(mpReferenceKF);
-        mlFrameTimes.push_back(mCurrentFrame.mTimeStamp);
-        mlbLost.push_back(mState==LOST);
-    }
-    else{
-    	// Si el cuadro actual no tiene pose, por ejemplo porque el sistema está perdido, repite el registro de la última pose, pero marcando que está perdido.
-        // This can happen if tracking is lost
-        mlRelativeFramePoses.push_back(mlRelativeFramePoses.back());
-        mlpReferences.push_back(mlpReferences.back());
-        mlFrameTimes.push_back(mlFrameTimes.back());
-        mlbLost.push_back(mState==LOST);
-    }*/
-
 }
 
-/**
- * Incovado por el autómata Track() para intentar inicializar.
- * En la primer llamada (!mpInitializer) designa el frame actual como inicial.
- * En la segunda llamada (mpInitializer) utiliza el frame actual como el segundo, machea e intenta PnP.
- * Requiere 100 macheos.  Cambié la constante 100 por minMatches, que toma su valor de la propiedad param, controlada por trackbar.
- *
- */
 void Tracking::MonocularInitialization()
 {
 	int minMatches = 100;	// Originalmente fijado en 100, alguna vez puse param
@@ -607,18 +510,6 @@ void Tracking::MonocularInitialization()
     }
 }
 
-/**
- * Crea el mapa inicial.
- * Toma la rotación Rcw y traslación tcw argumentos para asumir la primer pose de la cámara.
- * Crea dos KeyFrames (inicial y actual) a partir de los cuadros inicial y actual.
- * Computa Bag of Words en ambos keyframes.
- * Agrega los keyframes al mapa.
- * Recorre los puntos macheados, los computa como puntos del mapa para agregarlos.
- * Esto significa que les asocia los keyframes que los observan, sus normales y profundidades, y sus descriptores distintivos.
- * Luego realiza un primer bundle adjustment.
- *
- * Invocado sólo desde MonocularInitialization.
- */
 void Tracking::CreateInitialMapMonocular()
 {
     // Create KeyFrames
@@ -721,13 +612,6 @@ void Tracking::CreateInitialMapMonocular()
     mState=OK;
 }
 
-/**
- * Revisa y actualiza mLastFrame por las dudas que el mapa local haya cambiado.
- * Recorre todos los puntos del mapa registrados en el cuadro (los puntos vistos desde ese cuadro y macheados),
- * y si alguno fue reemplazado (se sabe con punto->GetReplaced) se lo actualiza.
- *
- * Invocado sólo desde Track.
- */
 void Tracking::CheckReplacedInLastFrame()
 {
     for(int i =0; i<mLastFrame.N; i++)
@@ -745,14 +629,6 @@ void Tracking::CheckReplacedInLastFrame()
     }
 }
 
-/**
- * Una manera de hacer tracking, alternativa a TrackWithMotionModel.
- * Intenta obtener la pose de la cámara respecto del keyframe de referencia, a partir de los puntos observados.
- * El macheo se realiza por BoW.
- * Se usa si falla TrackWithMotionModel, o si no hay "motion model", por ejemplo porque recién se inicializa o se realizó una relocalización.
- * Requiere 15 macheos como mínimo, si no, falla.
- * Invocado sólo desde Track.
- */
 bool Tracking::TrackReferenceKeyFrame()
 {
     // Compute Bag of Words vector
@@ -797,11 +673,6 @@ bool Tracking::TrackReferenceKeyFrame()
     return nmatchesMap>=10;
 }
 
-/**
- * Calcula la pose de mLastFrame respecto del keyframe de referencia, y la registra en mLastFrame con .SetPose.
- * Esta función se invoca exclusivamente desde TracWithMotionModel.
- * Se empaquetó en una función aparte porque, para casos diferentes de monocular, hay mucho más trabajo.
- */
 void Tracking::UpdateLastFrame()
 {
     // Update pose according to reference keyframe
@@ -813,16 +684,6 @@ void Tracking::UpdateLastFrame()
 }
 
 
-
-/** SfM.  Función principal, que determina la performance del sistema.
-Rastrea los puntos de la imagen en el mapa, macheándolos con matcher.SearchByProjection(),
-que extiende el macheo consecutivo desde lastFrame a currentFrame, asociando los puntos 3D a los puntos singulares del cuadro actual.
-Si no logra 20 macheos, falla, retorna false.
-Con 20 o más puntos macheados calcula la nueva pose con Optimizer::PoseOptimization()
-y quita los outliers del frame.  Si no quedan al menos 10 puntos, retorna false indicando la falla.
-
-Esta función se invoca exclusivamente desde Track, según el autómata finito, siempre en el estado OK.
-*/
 bool Tracking::TrackWithMotionModel()
 {
     ORBmatcher matcher(0.9,true);
@@ -886,15 +747,6 @@ bool Tracking::TrackWithMotionModel()
     return nmatchesMap>=10;
 }
 
-/**
- * Actualiza el mapa y realiza el tracking.
- * Se invoca cuando el sistema está ubicado: tiene pose de cámara y lleva el rastro de varios puntos en el cuadro.
- * Actualiza el mapa local a partir de la pose estimada:
- * busca puntos del mapa que se deberían observar desde esa pose, usando SearchReferencePointsInFrustum().
- * Optimiza la pose a partir de los puntos observados, obteniendo la lista de inliers.
- * Incrementa la cantidad de veces que estos puntos fueron observados, para estadística.
- * Para retornar con éxito exige 30 puntos inliers, o 50 (más exigente) si hubo una relocalización reciente.
- */
 bool Tracking::TrackLocalMap()
 {
     // We have an estimation of the camera pose and some map points tracked in the frame.
@@ -942,20 +794,6 @@ bool Tracking::TrackLocalMap()
 }
 
 
-/**
- * Informa si es momento de insertar un nuevo KeyFrame en el mapa.
- * Este método implementa la inteligencia para elegir los frames ideales y mantener pequeño el mapa.
- * Para insertar un nuevo KeyFrame se tienen que dar alguna de estas condiciones:
- * - Que hayan pasado al menos mMinFrames desde el último KeyFrame, y que el frame actual tenga menos del 90% de los puntos del KeyFrame de referencia y al menos 15 inliers.
- * - Que hayan pasado mMaxFrames desde el último KeyFrame.
- *
- * No se considera insertar KeyFrame en estas situaciones:
- * - Hay un cierre de bucle en curso
- * - Desde la última relocalización no pasaron todavía una cantidad mínima de frames mMaxFrames.
- *
- * Este método se invoca solamente desde Track().
- *
- */
 bool Tracking::NeedNewKeyFrame()
 {
     if(mbOnlyTracking)
@@ -1022,13 +860,6 @@ bool Tracking::NeedNewKeyFrame()
         return false;
 }
 
-/**
- * Crea un keyframe a partir del frame actual.
- * Crea un KeyFrame usando mCurrentFrame, y lo inserta en el mapa con mpLocalMapper.
- * Lo nombra LasKeyFrame.InsertKeyFrame, y registra su mnid en mnLastKeyFrameId.
- *
- * Este método se invoca desde un único punto del código, en Track(), luego de preguntar NeedNewKeyFrame().
- */
 void Tracking::CreateNewKeyFrame()
 {
     if(!mpLocalMapper->SetNotStop(true))
@@ -1047,13 +878,6 @@ void Tracking::CreateNewKeyFrame()
     mpLastKeyFrame = pKF;
 }
 
-/**
- * Invocado por TrackLocalMap.
- *
- * 1- Recorre los puntos 3D asociados al cuadro actual, incrementa su visibilidad y marca que fueron vistos por última vez desde este cuadro.
- * 2- Cuenta los puntos que deberían haber sido vistos y no lo fueron.
- * 3- Si hay puntos no vistos, realiza un SearchByProjection
- */
 void Tracking::SearchLocalPoints()
 {
     // Do not search map points already matched
@@ -1102,12 +926,6 @@ void Tracking::SearchLocalPoints()
     }
 }
 
-/**
- * Actualiza los puntos y keyframes en el mapa local.
- * Invoca los métodos UpdateLocalKeyFrames y UpdateLocalPoints.
- * Estos métodos sólo se invocan desde aquí, podrían ser parte de UpdateLocalMap.
- * Invocada sólo desde TrackLocalMap
- */
 void Tracking::UpdateLocalMap()
 {
     // This is for visualization
@@ -1118,18 +936,6 @@ void Tracking::UpdateLocalMap()
     UpdateLocalPoints();
 }
 
-/**
- * Rehace la lista de puntos del mapa local.
- * La lista de puntos es mvpLocalMapPoints.
- * Recorre la lista de keyframes mvpLocalKeyFrames para recorrer sus puntos obtenidos con GetMapPointMatches().
- * Luego de un proceso de descarte, suma el punto a la lista.
- * Queda por interpretar los criterios de descartes.
- *
- * Primero se invoca UpdateReferenceKeyFrames, que obtiene una versión ampliada de los keyframes que observan los puntos del mapa local,
- * y luego se invoca UpdateReferencePoints, que obtiene la lista de puntos observador por esos KeyFrames, ampliando el mapa local.
- *
- * Invocada sólo desde UpdateLocalMap
- */
 void Tracking::UpdateLocalPoints()
 {
     mvpLocalMapPoints.clear();
@@ -1266,9 +1072,6 @@ void Tracking::UpdateLocalKeyFrames()
     }
 }
 
-/**
- * Dispara una relocalización.
- */
 bool Tracking::Relocalization()
 {
     // Compute Bag of Words Vector
@@ -1432,10 +1235,6 @@ bool Tracking::Relocalization()
 
 }
 
-/**
- * Reinicia el sistema.
- * Olvida el mapa y demás y pasa al estado NOT_IMAGE_YET
- */
 void Tracking::Reset()
 {
     mpViewer->RequestStop();	// No tiene ningún efecto, más que marcar mpViewer::mbStopped
@@ -1480,15 +1279,6 @@ void Tracking::Reset()
     mpViewer->Release();	// No tiene ningún efecto, más que desmarcar mpViewer::mbStopped
 }
 
-/**
- * Comando para cambiar la calibración.
- * No usado en esta implementación, pero permitiría cambiar de cámara, o usar una cámara sobre el mapa relevado por otra.
- * Sin embargo las profundidades de visualización de los puntos 3D todavía están muy vinculados a la distancia focal, y todavía no son compatibles con distancias diferentes.
- * Carga nuevos parámetros de calibración del archivo de configuración.
- *
- * @param strSettingPath Nombre del archivo de configuración.
- *
- */
 void Tracking::ChangeCalibration(const string &strSettingPath)
 {
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
@@ -1522,9 +1312,6 @@ void Tracking::ChangeCalibration(const string &strSettingPath)
     Frame::mbInitialComputations = true;
 }
 
-/**
- * Control de usuario para alternar entre tracking y mapping o solo tracking.
- */
 void Tracking::InformOnlyTracking(const bool &flag){
     mbOnlyTracking = flag;
 }

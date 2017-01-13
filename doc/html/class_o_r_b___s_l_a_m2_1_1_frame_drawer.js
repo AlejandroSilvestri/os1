@@ -3,8 +3,13 @@ var class_o_r_b___s_l_a_m2_1_1_frame_drawer =
     [ "FrameDrawer", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add0e1c3734c200a959d8ed9f225223db", null ],
     [ "DrawFrame", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af9f237399942a23a5f28a5031559cae3", null ],
     [ "DrawTextInfo", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a059f66cfb0702264c788a79313ec3630", null ],
+    [ "onMouse", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#abb8a82a9c5b293f799691ec1ddc15f27", null ],
     [ "Update", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964", null ],
+    [ "cameraPos", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a85e7dde30a77fec3380f1907468aa875", null ],
+    [ "cameraPosDraw", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af871f136e05f9214ff480b9f264ceccd", null ],
     [ "distCoef", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a8596422190adf9c7f6e083073ad96004", null ],
+    [ "esPuntoLejano", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a4391f33b2306aad3eaf107cb4c5a50b7", null ],
+    [ "factorEscalaImagenParaMostrar", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#acb73dd56cb2a01d644b519b112dcd68a", null ],
     [ "K", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ac256525bcc9b9330b439c16583ad0255", null ],
     [ "mbOnlyTracking", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad7087ccda3d514be5e0132f889c3e949", null ],
     [ "mIm", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a2b405554be1a48ade50055af97c2c2c9", null ],
@@ -18,6 +23,7 @@ var class_o_r_b___s_l_a_m2_1_1_frame_drawer =
     [ "mvCurrentKeys", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a35ec8c5aea5cffee69ac5cec6abb5871", null ],
     [ "mvIniKeys", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a890a8bd44745b16024e1d7e82ac1d3f0", null ],
     [ "mvIniMatches", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a158a3ca6cab99c6bb691a7537212764b", null ],
+    [ "mvpMapPoints", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#aa67151f2b412589a01cf4984c582e50d", null ],
     [ "N", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#adbc9489192f5485ece966b0d6d589e47", null ],
     [ "observaciones", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a44ac17e7eaa72fc541bd64c45e697265", null ]
 ];

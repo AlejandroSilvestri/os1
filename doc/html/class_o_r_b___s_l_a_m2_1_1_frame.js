@@ -28,7 +28,6 @@ var class_o_r_b___s_l_a_m2_1_1_frame =
     [ "mbInitialComputations", "class_o_r_b___s_l_a_m2_1_1_frame.html#a9f57238f88850695d8cf032b5af0dad6", null ],
     [ "mBowVec", "class_o_r_b___s_l_a_m2_1_1_frame.html#a68bbc187861a8e5c0ed9d92b5308c2cb", null ],
     [ "mDescriptors", "class_o_r_b___s_l_a_m2_1_1_frame.html#a0dfc1a363215ad0a09303e612a1ffbe7", null ],
-    [ "mDescriptorsRight", "class_o_r_b___s_l_a_m2_1_1_frame.html#afe3cee153dda7e06d5004fd959fcd88e", null ],
     [ "mDistCoef", "class_o_r_b___s_l_a_m2_1_1_frame.html#aef15cff1b0d7572f49975d3200ffd140", null ],
     [ "mFeatVec", "class_o_r_b___s_l_a_m2_1_1_frame.html#a8153622c07ed98421bd7c7b2b7451b03", null ],
     [ "mfGridElementHeightInv", "class_o_r_b___s_l_a_m2_1_1_frame.html#a010327bee872485894b5905d17462086", null ],
@@ -54,7 +53,6 @@ var class_o_r_b___s_l_a_m2_1_1_frame =
     [ "mThDepth", "class_o_r_b___s_l_a_m2_1_1_frame.html#a15e0251e1e18b84f385ad817f0e8ba1a", null ],
     [ "mTimeStamp", "class_o_r_b___s_l_a_m2_1_1_frame.html#a7987de59d3b4bf655614e19db0c90278", null ],
     [ "mvbOutlier", "class_o_r_b___s_l_a_m2_1_1_frame.html#aa05cc57f36b5b04a2e1690e576c93fc8", null ],
-    [ "mvDepth", "class_o_r_b___s_l_a_m2_1_1_frame.html#a4232b92ebf890728291ef2a66e7d39bb", null ],
     [ "mvInvLevelSigma2", "class_o_r_b___s_l_a_m2_1_1_frame.html#a1979f999e1d3a858bf7db733791a477e", null ],
     [ "mvInvScaleFactors", "class_o_r_b___s_l_a_m2_1_1_frame.html#a4c7ed1316a886b9a7c3f02ee13219b8c", null ],
     [ "mvKeys", "class_o_r_b___s_l_a_m2_1_1_frame.html#a86563de6facec0433e31f726723057e4", null ],
@@ -62,7 +60,6 @@ var class_o_r_b___s_l_a_m2_1_1_frame =
     [ "mvLevelSigma2", "class_o_r_b___s_l_a_m2_1_1_frame.html#afba8ed34e98d14761be2c1922863cd65", null ],
     [ "mvpMapPoints", "class_o_r_b___s_l_a_m2_1_1_frame.html#a48e791ae28b483211dad6b3474027935", null ],
     [ "mvScaleFactors", "class_o_r_b___s_l_a_m2_1_1_frame.html#a55d7bd3fa5d3fa8d2ecf18609e91f98e", null ],
-    [ "mvuRight", "class_o_r_b___s_l_a_m2_1_1_frame.html#a09a1957b966542e640ecabc41ec76c16", null ],
     [ "N", "class_o_r_b___s_l_a_m2_1_1_frame.html#a0035828f1744f1bdd4ae8681e7cbbd32", null ],
     [ "nNextId", "class_o_r_b___s_l_a_m2_1_1_frame.html#a1ea8a00151931d155747283850467733", null ]
 ];

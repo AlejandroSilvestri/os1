@@ -283,7 +283,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a8498b32728a10f7e7ec834576ded87cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordenadas 3D de los puntos 3D.  <a href="#a8498b32728a10f7e7ec834576ded87cf">More...</a><br /></td></tr>
 <tr class="separator:a8498b32728a10f7e7ec834576ded87cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a53aa206e4d1f799db01b5b2ef622fe"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a4a53aa206e4d1f799db01b5b2ef622fe">mvpMapPointMatches</a></td></tr>
-<tr class="memdesc:a4a53aa206e4d1f799db01b5b2ef622fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos 3D macheados.  <a href="#a4a53aa206e4d1f799db01b5b2ef622fe">More...</a><br /></td></tr>
+<tr class="memdesc:a4a53aa206e4d1f799db01b5b2ef622fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos 3D macheados recibidos por el constructor.  <a href="#a4a53aa206e4d1f799db01b5b2ef622fe">More...</a><br /></td></tr>
 <tr class="separator:a4a53aa206e4d1f799db01b5b2ef622fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7db84340cb13eff1148839ce5e77105b"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a7db84340cb13eff1148839ce5e77105b">mvSigma2</a></td></tr>
 <tr class="memdesc:a7db84340cb13eff1148839ce5e77105b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factor de escala al cuadrado, correspondiente al punto 2D.  <a href="#a7db84340cb13eff1148839ce5e77105b">More...</a><br /></td></tr>
@@ -1324,6 +1324,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Función del código original EPnP. </p>
+<p>Función final de la siguiente cadena de Invocaciones: <a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#ac9290df9524ca70b3127ea3408fb7b0d" title="Función del código original EPnP. ">ORB_SLAM2::PnPsolver::qr_solve(CvMat *, CvMat *, CvMat *)</a> : void ORB_SLAM2::PnPsolver::gauss_newton(const CvMat *, const CvMat *, double *) : void ORB_SLAM2::PnPsolver::compute_pose(double (*)[3], double *) : double (3 matches) <a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a19710728d61dcf1caa32f31d140f3327">ORB_SLAM2::PnPsolver::Refine()</a> : bool ORB_SLAM2::PnPsolver::iterate(int, bool &amp;, vector&lt;bool,allocator&lt;bool&gt;&gt; &amp;, int &amp;) : Mat <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#acd4ea9e7097bed16428a4b78fe4b6a67" title="Dispara una relocalización. ">ORB_SLAM2::Tracking::Relocalization()</a> : bool </p>
 
 </div>
 </div>
@@ -2246,7 +2247,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Puntos 3D macheados. </p>
+<p>Puntos 3D macheados recibidos por el constructor. </p>
+<p>Esta propiedad apenas se usa un par de veces para medir su tamaño. Su contenido es volcado a mvP3Dw por el constructor, directamente desde el parámetro. mvP3Dw es un vector de puntos 3D con las posiciones de los mappoints. </p>
 
 </div>
 </div>

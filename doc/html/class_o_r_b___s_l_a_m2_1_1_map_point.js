@@ -1,11 +1,12 @@
 var class_o_r_b___s_l_a_m2_1_1_map_point =
 [
-    [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ad14dd804346e01311e0676959c879555", null ],
     [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ae5b0a868a291c502f2632b0d1694872d", null ],
     [ "MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a3d9788e9d5c47d86b0f614cde91e3a4f", null ],
     [ "AddObservation", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a37277ee3c7d8657976e749ab920bb13f", null ],
+    [ "color", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a7f55f269633fcdb53e30fd50c090ecd5", null ],
     [ "ComputeDistinctiveDescriptors", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ab4c3dfd8f5f05a4b1888021f1fac3d84", null ],
     [ "EraseObservation", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a79e6a93ea0c39329a082f4f69560f1be", null ],
+    [ "esQInf", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a673e096f489ce1c8989aa1f0bb12bde2", null ],
     [ "GetDescriptor", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f9faa5b4cc513795485dcfb460ea3d0", null ],
     [ "GetFound", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a0d081d56b0f398c52581b3e0eaa1cb15", null ],
     [ "GetFoundRatio", "class_o_r_b___s_l_a_m2_1_1_map_point.html#ac1b7c69a2d9f6bd785d465380844ce10", null ],
@@ -65,5 +66,6 @@ var class_o_r_b___s_l_a_m2_1_1_map_point =
     [ "mWorldPos", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a39741adada8dcd302afbf45ec2e72af0", null ],
     [ "nNextId", "class_o_r_b___s_l_a_m2_1_1_map_point.html#aa79702928d566db4fcd7716249bd96a2", null ],
     [ "nObs", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a2653a4c69121627fcc5ae812b1809a28", null ],
+    [ "puntoLejano", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a64c42f895088dd958a5e944449fd886b", null ],
     [ "rgb", "class_o_r_b___s_l_a_m2_1_1_map_point.html#a70f6cf86b42dfb6f4968839b977cd77f", null ]
 ];

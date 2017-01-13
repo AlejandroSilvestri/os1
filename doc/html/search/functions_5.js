@@ -21,6 +21,7 @@ var searchData=
   ['eraseproperty',['eraseProperty',['../classg2o_1_1_property_map.html#a8f96ea923fe711a0ffa6e4c6479945d9',1,'g2o::PropertyMap']]],
   ['error',['error',['../classg2o_1_1_base_edge.html#ab5a17b29aa9be942157e089bb363a46c',1,'g2o::BaseEdge::error() const'],['../classg2o_1_1_base_edge.html#ad0a9e3b6d5490c8f4af794c77742faae',1,'g2o::BaseEdge::error()']]],
   ['errordata',['errorData',['../classg2o_1_1_base_edge.html#ad99fce6bad0207979b6211ac0d589015',1,'g2o::BaseEdge::errorData() const'],['../classg2o_1_1_base_edge.html#ab80452c1134036928a2af6303412a3c4',1,'g2o::BaseEdge::errorData()'],['../classg2o_1_1_optimizable_graph_1_1_edge.html#a5f2a4b6efa2d0ae600f94a28a6ba58cf',1,'g2o::OptimizableGraph::Edge::errorData() const =0'],['../classg2o_1_1_optimizable_graph_1_1_edge.html#a460a0cb0256b0a91edb131e25181f57b',1,'g2o::OptimizableGraph::Edge::errorData()=0']]],
+  ['esqinf',['esQInf',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#a673e096f489ce1c8989aa1f0bb12bde2',1,'ORB_SLAM2::MapPoint']]],
   ['estimate',['estimate',['../classg2o_1_1_base_vertex.html#afea20bbcf50eb2a7d9d598b3eae49172',1,'g2o::BaseVertex']]],
   ['estimate_5fr_5fand_5ft',['estimate_R_and_t',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#abf90f06f1d7218d8200b2682817ed08a',1,'ORB_SLAM2::PnPsolver']]],
   ['estimatedimension',['estimateDimension',['../classg2o_1_1_optimizable_graph_1_1_vertex.html#ae9d94367931458af6ca3d5589801b1e6',1,'g2o::OptimizableGraph::Vertex']]],

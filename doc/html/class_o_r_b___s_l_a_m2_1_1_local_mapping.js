@@ -48,5 +48,6 @@ var class_o_r_b___s_l_a_m2_1_1_local_mapping =
     [ "mpCurrentKeyFrame", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a1e4de53f96e97c6b94b794d0a5bc67e3", null ],
     [ "mpLoopCloser", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac71702f1061f82c457276c014eebc784", null ],
     [ "mpMap", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a7ca97c0d4a6064148315589cc96a3302", null ],
-    [ "mpTracker", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a6b4d311f49979f38d47ed96290255a2f", null ]
+    [ "mpTracker", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a6b4d311f49979f38d47ed96290255a2f", null ],
+    [ "param", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a9438f12676c05fe9d9606023d2697465", null ]
 ];

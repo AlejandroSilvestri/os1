@@ -22,6 +22,7 @@ var class_o_r_b___s_l_a_m2_1_1_viewer =
     [ "mMutexFinish", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a9633023902537fe1b320c289f6ae74fa", null ],
     [ "mMutexStop", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a9da4631859d306fc77736cbd5a8169d8", null ],
     [ "modoAutomatico", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a73f09c3764dd6d9151ce2134a7c07180", null ],
+    [ "mostrarEntrada", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a0bbf4343e6f4cbb6cd1f91422a997a8b", null ],
     [ "mostrarEntradaAntidistorsionada", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a11a0333b735379526a324a76d5e6fbc4", null ],
     [ "mpFrameDrawer", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ab73fa40df47dc6d5c289357e4ad1af9c", null ],
     [ "mpMapDrawer", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a924a16a3279742ec39c31dbe84b77291", null ],

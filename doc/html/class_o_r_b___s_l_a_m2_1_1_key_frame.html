@@ -453,7 +453,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:af4a83f5b32cf53c0ad87702226b9dff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyframes covisibles ordenados por peso, actualizado vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb8502509c136536bf8d45793f8872" title="Actualiza los mejores covisibles. ">KeyFrame::UpdateBestCovisibles</a>.  <a href="#af4a83f5b32cf53c0ad87702226b9dff8">More...</a><br /></td></tr>
 <tr class="separator:af4a83f5b32cf53c0ad87702226b9dff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3044f098f2b7d25b33b180b20c5a5fa6"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3044f098f2b7d25b33b180b20c5a5fa6">Ow</a></td></tr>
-<tr class="memdesc:a3044f098f2b7d25b33b180b20c5a5fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centro de la cámara.  <a href="#a3044f098f2b7d25b33b180b20c5a5fa6">More...</a><br /></td></tr>
+<tr class="memdesc:a3044f098f2b7d25b33b180b20c5a5fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centro de la cámara, posición de la cámara.  <a href="#a3044f098f2b7d25b33b180b20c5a5fa6">More...</a><br /></td></tr>
 <tr class="separator:a3044f098f2b7d25b33b180b20c5a5fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dc31ef9a08d34ecb196f3e58a2c09b9"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8dc31ef9a08d34ecb196f3e58a2c09b9">Tcw</a></td></tr>
 <tr class="memdesc:a8dc31ef9a08d34ecb196f3e58a2c09b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz de 4x4 de rototraslación en coordenadas homogéneas, que expresa la pose del keyframe.  <a href="#a8dc31ef9a08d34ecb196f3e58a2c09b9">More...</a><br /></td></tr>
@@ -481,10 +481,10 @@ Friends</h2></td></tr>
 <li>R: matriz de rotación, 3x3, derivada de una pose</li>
 <li>T: transformación, matriz homogénea de 4x4, de rototraslación, para expresar poses</li>
 </ul>
-<p>Subíndices usuales:</p>
+<p>Subíndices usuales: <a href="https://github.com/raulmur/ORB_SLAM2/issues/226">https://github.com/raulmur/ORB_SLAM2/issues/226</a></p>
 <ul>
-<li>Tcw: "pose de Cámara respecto de World"</li>
-<li>F21: "matriz fundamental del cuadro 2 respecto de 1"</li>
+<li>Tcw: "pose respecto de Cámara, de World". Vc = Tcw . Vw : convierte Vw en coordenadas del mundo en Vc en coordenadas de la cámara.</li>
+<li>F21: "matriz fundamental del cuadro 1 respecto de 2"</li>
 </ul>
 <p>Vectores:</p>
 <ul>
@@ -1631,7 +1631,7 @@ template&lt;class Archivo &gt; </div>
 <p>Recorre todos los mapPoints vistos por este keyframe, y releva todos los otros keyframes que los observan, creando así el mapa de covisibilidad <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a6a057195e3e9e7d3f08b97b6366e9f81" title="Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos. ">KeyFrame::mConnectedKeyFrameWeights</a>.</p>
 <p>Se agrega a sí mismo al mapa de cada keyframe relevado, invocando sus respectivos métodos <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8d21a23485b7c104a73d6ad3cccf4e93" title="Conecta el keyframe con otro en el grafo de covisibilidad. ">KeyFrame::AddConnection</a>. Este accionar debería garantizar la doble referencia.</p>
 <p>Es invocado por:</p>
-<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">ORB_SLAM2::Tracking::CreateInitialMapMonocular()</a> : void (2 matches), al crear lso primeros keyframes del mapa inicial. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22" title="Actualiza LocalMapping.mpCurrentKeyFrame, y quita el nuevo keyframe de la lista LocalMapping.mlNewKeyFrames. ">ORB_SLAM2::LocalMapping::ProcessNewKeyFrame()</a> : void, cuando se crea el <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> (de manera asincrónica). <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a5d5e0bc6fd15d9a6bf1ca8a258f104f1" title="Recorre los keyframes vecinos buscando puntos para fusionar. ">ORB_SLAM2::LocalMapping::SearchInNeighbors()</a> : void <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa007e0678582ec0de5d71280d23af540" title="Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3. ">ORB_SLAM2::LoopClosing::CorrectLoop()</a> : void (3 matches), al cerrar un bucle se debe rehacer el grafo de covisibilidad</p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">ORB_SLAM2::Tracking::CreateInitialMapMonocular()</a> : void (2 matches), al crear lso primeros keyframes del mapa inicial. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22" title="Crea un keyframe a partir del cuadro actual LocalMapping::mpCurrentKeyFrame. ">ORB_SLAM2::LocalMapping::ProcessNewKeyFrame()</a> : void, cuando se crea el <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> (de manera asincrónica). <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a5d5e0bc6fd15d9a6bf1ca8a258f104f1" title="Recorre los keyframes vecinos buscando puntos para fusionar. ">ORB_SLAM2::LocalMapping::SearchInNeighbors()</a> : void <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa007e0678582ec0de5d71280d23af540" title="Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3. ">ORB_SLAM2::LoopClosing::CorrectLoop()</a> : void (3 matches), al cerrar un bucle se debe rehacer el grafo de covisibilidad</p>
 <p>Quizás el cierre de bucle podría interferir con una llamada simultánea de parte de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a>. Por eso emplea mutex.</p>
 <p>Respecto del posibles solapamiento son SetBadFlag:</p>
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a> marca el keyframe con SetNotErase. Esa marca perdura en SearchInNeighbors, por lo que no hay interferencia posible. ProcessNewKeyFrame crea el keyframe, es imposible que en ese momento se marque como malo. Tampoco hay interferencia posible. </p>
@@ -2833,8 +2833,8 @@ template&lt;class Archivo &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Centro de la cámara. </p>
-<p>Se obtiene con GetCameraCenter. </p>
+<p>Centro de la cámara, posición de la cámara. </p>
+<p>Se obtiene con GetCameraCenter. Vector de 3x1. </p>
 
 </div>
 </div>
@@ -2858,7 +2858,7 @@ template&lt;class Archivo &gt; </div>
 
 <p>Matriz de 4x4 de rototraslación en coordenadas homogéneas, que expresa la pose del keyframe. </p>
 <p>SetPose determina su valor, y GetPose lo lee. GetRotation y GetTraslation obtienen la matriz de rotación y el vector traslación en coordenadas euclideanas.</p>
-<p>Tcw es la transformación de coordenadas de la cámara (c) a coordenadas del mundo (w). Su inversa es Twc. </p>
+<p>Tcw es la transformación de coordenadas del mundo (w) a coordenadas de la cámara (c). Su inversa es Twc. </p>
 
 </div>
 </div>
@@ -2881,7 +2881,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Matriz de 4x4 de rototraslación en coordenadas homogéneas, con la transformación inversa de Tcw. </p>
-<p>GetPoseInverse lee su valor. </p>
+<p>Convierte un punto del sistema de referencia de la cámara al mundo. GetPoseInverse lee su valor. </p>
 
 </div>
 </div>

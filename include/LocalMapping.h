@@ -46,24 +46,26 @@ class Map;
  * Estos últimos manejan autómatas finitos de interacción, usualmente iniciados desde afuera,
  * como por ejemplo vía RequestReset, RequestStop o RequestFinish.
  *
- * Los métodos de computación son protegidos e invocados desde Run.
+ * Los métodos de computación son protegidos e invocados desde LocalMapping::Run.
  *
  * No hay una entidad formal que represente el "mapa local".
  * El mapa local es un sobconjunto del mapa global, con raíz en el keyframe de referencia,
  * involucrando a los vecinos en el grafo.
  *
  *
- * Métodos públicos para interacción con el thread
+ * <h3>Métodos públicos para interacción con el thread</h3>
  *
  * El método Run tiene un bucle infinito, que se ejecuta en su propio thread.  Las comunicaciones con él son asincrónicas:
  *
- * - LocalMapping::RequestStop solicita que pare, que haga una pausa.  LocalMapping::isStopped se puede consultar para confirmar que paró.
- * - Run entra en un bucle esperando que la señal de reanudamiento.
+ * - LocalMapping::RequestStop solicita que pare, que haga una pausa.
+ *   + LocalMapping::Run entra en un bucle esperando que la señal de reanudamiento.
+ *   + LocalMapping::isStopped se puede consultar para confirmar que paró.
  * - LocalMapping::Release solicita que reanude luego de una pausa.
- * - LocalMapping::RequestReset reinicializa el objeto limpiando variables.  Se invoca desde Tracking::Reset.  El reseteo es asincrónico, no hay señal que indique que ya ocurrió.
+ * - LocalMapping::RequestReset reinicializa el objeto limpiando variables.
+ *   + Se invoca desde Tracking::Reset.  El reseteo es asincrónico, no hay señal que indique que ya ocurrió.
  * - LocalMapping::RequestFinish solicita terminar.  Se puede consultar con LocalMapping::isFinished.  En la práctica no hace nada.
  *
- *
+ * \sa Run
  */
 class LocalMapping
 {
@@ -75,7 +77,13 @@ public:
 	 */
     LocalMapping(Map* pMap, const float bMonocular);
 
-    /** Registra el LoopCloser, la única instancia en el sistema..*/
+    /**
+     * Registra el LoopCloser, la única instancia en el sistema.
+     *
+     * Se registra en LocalMapping::mpLoopCloser.
+     *
+     * Invocado sólo por el constructor de System.
+     */
     void SetLoopCloser(LoopClosing* pLoopCloser);
 
     /** Registra el tracker, la única instancia en el sistema.*/
@@ -86,15 +94,20 @@ public:
      * Recibe y procesa pedidos de control, como reset, finish, etc.
      * Cuando hay keyframes en la lista de nuevos keyframes, los procesa disparando las tareas principales del mapeo en este orden:
      *
-     * -ProcessNewKeyFrame
-     * -MapPointCulling
-     * -CreateNewMapPoints
-     * -SearchInNeighbors
-     * -Optimizer::LocalBundleAdjustment
-     * -KeyFrameCulling
+     * - LocalMapping::ProcessNewKeyFrame
+     *   + Inicia el proceso de los keyframes insertados asincŕonicamente vía LocalMapping::InsertKeyFrame
+     *   + Computa Bow y algunas propiedades del keyframe
+     * - LocalMapping::MapPointCulling
+     * - LocalMapping::CreateNewMapPoints
+     *
+     *   Sólo cuando ya no hay keyframes pendientes de proceso, procede con:
+     * - LocalMapping::SearchInNeighbors
+     *   + Busca puntos para fusionar, en keyframes vecinos.
+     * - Optimizer::LocalBundleAdjustment
+     * - LocalMapping::KeyFrameCulling
      *
      * Si hay varios nuevos keyframes en la lista, procesa de a uno por bucle.
-     * Algunas de las tareas principales listadas no se ejecutan hasta que se vacía la lista de nuevos keyframes.
+     * Cuando termina, duerme 3 segundos.
      */
     // Main function
     void Run();
@@ -134,10 +147,21 @@ public:
     /** Informa si se ha solicitado una parada.*/
     bool stopRequested();
 
-    /** Informa si LocalMapping acepta nuevos keyframes.*/
+    /**
+     * Informa si LocalMapping acepta nuevos keyframes.
+     *
+     * Informa el valor de LoalMapping::mbAcceptKeyFrames.
+     */
     bool AcceptKeyFrames();
 
-    /** Establece la aceptación de nuevos keyframes.*/
+    /**
+     * Establece la aceptación de nuevos keyframes.
+     *
+     * Este médoto escribe en LoalMapping::mbAcceptKeyFrames.
+     *
+     * Es invocado dos veces en cada bucle de Run: uno para parar la aceptación mientras el hilo está ocupado,
+     * otro para liberarla antes de dormir unos segundos.
+     */
     void SetAcceptKeyFrames(bool flag);
 
     /** Establece la señal de no parar, que ignora solicitudes de parada.  Invocado desde Tracking.*/
@@ -174,27 +198,44 @@ protected:
     bool CheckNewKeyFrames();
 
     /**
-     * Actualiza LocalMapping.mpCurrentKeyFrame, y quita el nuevo keyframe de la lista LocalMapping.mlNewKeyFrames.
-     * Para cada punto 3D visualizado computa BoW y recomputa descriptores, normal y profundidad.
+     * Crea un keyframe a partir del cuadro actual LocalMapping::mpCurrentKeyFrame.
+     *
+     * Computa BoW para todos los puntos singulares del cuadro actual y quita el nuevo keyframe de la lista LocalMapping.mlNewKeyFrames.
+     *
+     * Agrega el keyframe al mapa, y como observación a cada punto 3D a la vista, para los que recomputa descriptores, normal y profundidad.
      *
      * Invocado sólo desde LocalMapping.Run.
+     *
+     * \sa Run
      */
     void ProcessNewKeyFrame();
 
     /**
      * El ciclo de mapeo local invoca periódicamente este método, que busca macheos candidatos para su triangulación y agregado al mapa.
+     *
      * La búsqueda se hace triangulando puntos del keyframe actual y todos sus vecinos en el grafo.
-     * Invoca a SearchForTriangulation para obtener los pares macheados.
+     *
+     * Invoca a ORBmatcher::SearchForTriangulation para obtener los pares de keypoints macheados.
+     *
      * Luego evalúa el paralaje para descartar el punto.
+     *
      * Finalmente triangula con SVD y lo agrega al mapa.
-     * Realiza esta operación para el keyframe actual, comparado con cada uno de sus vecinos en el grafo.
+     *
+     * Realiza esta operación para el keyframe actual, haciendo par con cada uno de sus vecinos en el grafo.
+     *
+     * Es el único lugar del código que agrega puntos al mapa.  Invocado sólo desde LocalMapping::Run.
+     *
+     * \sa Run
      */
     void CreateNewMapPoints();
 
     /**
      * Elimina por varios motivos puntos recién agregados.
+     *
      * Los elimina si el punto es malo, o muy poco observado.
+     *
      * Se invoca desde el bucle principal de LocalMapping::Run.
+     * \sa Run
      */
     void MapPointCulling();
 
@@ -202,17 +243,23 @@ protected:
     /**
      * Recorre los keyframes vecinos buscando puntos para fusionar.
      *
-     * Es el único lugar que invoca ORBmatcher::Fuse
+     * Es el único lugar que invoca ORBmatcher::Fuse.
+     *
      * Recorre los vecinos de primer y segundo orden.
+     *
      * SearchInNeighbors se ejecuta sólo LocalMapping::Run apenas termina de procesar todos los nuevos keyframes.
      *
+     * \sa Run
      */
     void SearchInNeighbors();
 
     /**
      * Elimina keyframes redundantes, que no agregan información.
+     *
      * Busca en el mapa local solamente y elimina los keyframes con más del 90% de sus puntos observados por otros keyframes.
+     *
      * Se invoca desde el bucle principal de LocalMapping::Run.
+     * \sa Run
      */
     void KeyFrameCulling();
 
@@ -261,7 +308,11 @@ protected:
     /** Mapa del mundo.*/
     Map* mpMap;
 
-    /** Cerrador de bucles.*/
+    /**
+     * Cerrador de bucles.
+     *
+     * Se usa en el bucle principal para enviar nuevos keyframes, luego de procesador por LocalMapping.
+     */
     LoopClosing* mpLoopCloser;
 
     /** Tracker.*/

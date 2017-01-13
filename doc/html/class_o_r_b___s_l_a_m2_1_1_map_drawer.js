@@ -7,7 +7,6 @@ var class_o_r_b___s_l_a_m2_1_1_map_drawer =
     [ "GetCurrentOpenGLCameraMatrix", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a872b93687086460e398e912191c91aca", null ],
     [ "GetCurrentOpenGLCameraMatrixModified", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html#abfabe8a5d66f8ecc64021aeff9a14a9e", null ],
     [ "SetCurrentCameraPose", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ac8c03502b5878303b31816ce5dfd9c0a", null ],
-    [ "SetReferenceKeyFrame", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html#ac72cc0b3e9e3a92527b38ca12230e79c", null ],
     [ "mCameraLineWidth", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a9d9d5a9b0b0c73ac47288bb31ab02487", null ],
     [ "mCameraPose", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a1df47d70a2609cd77d7be569d053e908", null ],
     [ "mCameraSize", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html#a485491f1257e132b10a4d129b4f3f9ce", null ],

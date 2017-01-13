@@ -144,16 +144,16 @@ void LocalMapping::ProcessNewKeyFrame()
         {
             if(!pMP->isBad())
             {
-                if(!pMP->IsInKeyFrame(mpCurrentKeyFrame))
-                {
+                /*if(!pMP->IsInKeyFrame(mpCurrentKeyFrame))
+                {*/
                     pMP->AddObservation(mpCurrentKeyFrame, i);
                     pMP->UpdateNormalAndDepth();
                     pMP->ComputeDistinctiveDescriptors();
-                }
+                /*}
                 else // this can only happen for new stereo points inserted by the Tracking
                 {
                     mlpRecentAddedMapPoints.push_back(pMP);
-                }
+                }*/
             }
         }
     }    

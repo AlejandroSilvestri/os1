@@ -97,6 +97,8 @@ public:
      * 3. Machea descriptores entre los puntos singulares de CurrentFrame encontrados en una región circular con centro en la proyección.
      * 4. Asocia los puntos 3D macheados a los puntos singulares en CurrentFrame.
      *
+     * Este método no corrige pose, sólo asocia puntos singulares macheados en una región circular.  No verifica coherencia.
+     *
      * Invocado exclusivamente desde TrackWithMotionModel, que a partir de este macheo computa la pose del cuadro actual.
      */
     // Project MapPoints tracked in last frame into the current frame and search matches.

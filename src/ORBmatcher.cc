@@ -1306,10 +1306,6 @@ int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, 
 
     const cv::Mat tlc = Rlw*twc+tlw;
 
-    // Sólo para no monocular
-    //const bool bForward = tlc.at<float>(2)>CurrentFrame.mb && !bMono;
-    //const bool bBackward = -tlc.at<float>(2)>CurrentFrame.mb && !bMono;
-
     // Recorre todos los puntos singulares de LastFrame
     for(int i=0; i<LastFrame.N; i++)
     {

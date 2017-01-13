@@ -32,16 +32,9 @@ float Frame::cx, Frame::cy, Frame::fx, Frame::fy, Frame::invfx, Frame::invfy;
 float Frame::mnMinX, Frame::mnMinY, Frame::mnMaxX, Frame::mnMaxY;
 float Frame::mfGridElementWidthInv, Frame::mfGridElementHeightInv;
 
-/**
- * El constructor sin argumentos crea un Frame sin inicialización.
- * El único dato inicializado es nNextId=0.
- */
 Frame::Frame()
 {}
 
-/**
- * Constructor de copia, clona un frame.
- */
 //Copy Constructor
 Frame::Frame(const Frame &frame)
     :mpORBvocabulary(frame.mpORBvocabulary), mpORBextractorLeft(frame.mpORBextractorLeft),
@@ -64,14 +57,6 @@ Frame::Frame(const Frame &frame)
 }
 
 
-/**
- * Constructor que crea un Frame y lo llena con los argumentos.
- * @param timeStamp Marca de tiempo, para registro.  ORB-SLAM no la utiliza.
- * @param extractor Algoritmo extractor usado para obtener los descriptores.  ORB-SLAM utiliza exclusivamente el extractor BRIEF de ORB.
- *
- * Se distinguen dos modos de cámara: normal si se proporcionan los coeficientes de distorsión, o fisheye sin coeficientes si se proporciona noArray()
--
-*/
 Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc,
 		cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth)
     :mpORBvocabulary(voc),mpORBextractorLeft(extractor),//mpORBextractorRight(static_cast<ORBextractor*>(NULL)),
@@ -126,12 +111,6 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
     AssignFeaturesToGrid();
 }
 
-/**
- * Asigna los puntos singulares a sus celdas de la grilla.
- * La imagen de divide en una grilla para detectar puntos de manera más homogénea.
- * Luego de "desdistorsionar" las coordenadas de los puntos singulares detectados,
- * este método crea un vector de puntos singulares para cada celda de la grillam, y lo puebla.
- */
 void Frame::AssignFeaturesToGrid()
 {
     int nReserve = 0.5f*N/(FRAME_GRID_COLS*FRAME_GRID_ROWS);
@@ -149,39 +128,18 @@ void Frame::AssignFeaturesToGrid()
     }
 }
 
-/**
- * Procede con la extracción de descriptores ORB.
- * @param flag false para monocular, o para cámara izquierda.  true para cámara derecha.  Siempre se invoca con false.
- * @param im Imagen sobre la que extraer los descriptores.
- *
- * Los descriptores se conservan en mDescriptors.
- */
 void Frame::ExtractORB(int flag, const cv::Mat &im)
 {
         (*mpORBextractorLeft)(im,cv::Mat(),mvKeys,mDescriptors);
 }
 
-/**
- * Setter de pose.
- * Usado por varios métodos para establecer o corregir la pose del cuadro.
- * Luego de establecer la nueva pose se recalculan sus diferentes representaciones con UpdatePoseMatrices, como el vector traslación o la matriz rotación.
- *
- * @param Tcw Nueva pose, matriz de rototraslación en coordenadas homogéneas, de 4x4.
- *
- *
- */
+
 void Frame::SetPose(cv::Mat Tcw)
 {
     mTcw = Tcw.clone();
     UpdatePoseMatrices();
 }
 
-/**
- * Calcula las matrices de posición mRcw, mtcw y mOw a partir de la pose mTcw.
- * Estas matrices son una manera de exponer la pose, no se utilizan en la operación de ORB-SLAM.
- * UpdatePoseMatrices() extrae la inforamción de mTcw, la matriz que combina la pose completa.
- *
- */
 void Frame::UpdatePoseMatrices()
 { 
     mRcw = mTcw.rowRange(0,3).colRange(0,3);
@@ -190,11 +148,6 @@ void Frame::UpdatePoseMatrices()
     mOw = -mRcw.t()*mtcw;
 }
 
-/**
- * Indica si un determinado punto 3D se encuentra en el subespacio visual (frustum) del cuadro.
- * El subespacio visual es una pirámide de base cuadrilátera, cuyos vértices son los del cuadro pero antidistorsionados.
- * viewingCosLimit es una manera de limitar el alcance del frustum.
- */
 bool Frame::isInFrustum(MapPoint *pMP, float viewingCosLimit)
 {
     pMP->mbTrackInView = false;
@@ -253,11 +206,6 @@ bool Frame::isInFrustum(MapPoint *pMP, float viewingCosLimit)
     return true;
 }
 
-/**
- * Selecciona los puntos dentro de una ventana cuadrada de centro x,y y lado r.
- * Recorre todos los niveles del frame filtrando los puntos por coordenadas.
- * Se utiliza para reducir los candidatos para macheo.
- */
 vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const float  &r, const int minLevel, const int maxLevel) const
 {
     vector<size_t> vIndices;
@@ -313,15 +261,6 @@ vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const f
     return vIndices;
 }
 
-/**
- * Calcula las coordenadas de la celda en la grilla, a la que pertenece un punto singular.
- * Informa las coordenadas en los argumentos posX y posY pasados por referencia.
- * Devuelve true si el punto está en la grilla, false si no.
- * @param kp Punto singular "desdistorsionado".
- * @param posX Coordenada X de la celda a la que pertence el punto.
- * @param posY Coordenada Y de la celda a la que pertence el punto.
- *
- */
 bool Frame::PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY)
 {
     posX = round((kp.pt.x-mnMinX)*mfGridElementWidthInv);
@@ -335,10 +274,6 @@ bool Frame::PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY)
 }
 
 
-/**
- * Computa BoW para todos los descriptores del cuadro.
- * Los guarda en la propiedad mBowVec, que es del tipo BowVector.
- */
 void Frame::ComputeBoW()
 {
     if(mBowVec.empty())
@@ -348,11 +283,6 @@ void Frame::ComputeBoW()
     }
 }
 
-/**
- * Calcula los puntos singulares de mvKeysUn.
- * Antidistorsiona los puntos detectados, que están en mvKeys, y los guarda en mvKeysUn en el mismo orden.
- * Si no hay distorsión, UndistortKeyPoints retorna rápidamente unificando mvKeysUn = mvKeys en un mismo vector.
- */
 void Frame::UndistortKeyPoints()
 {
     if(camaraModo == 0 && mDistCoef.at<float>(0)==0.0){
@@ -389,15 +319,6 @@ void Frame::UndistortKeyPoints()
     }
 }
 
-/**
- * Calcula los vértices del cuadro andistorsionado.
- * Define mnMinX, mnMaxX, mnMinY, mnMaxY.
- * Si no hay distorsión, el resultado es trivial con origen en (0,0).
- *
- * @param imLeft Imagen, solamente a los efectos de medir su tamaño con .rows y .cols .
- *
- * Invocado sólo desde el constructor.
- */
 void Frame::ComputeImageBounds(const cv::Mat &imLeft)
 {
     if(camaraModo!=0 || mDistCoef.at<float>(0)!=0.0){
@@ -431,14 +352,6 @@ void Frame::ComputeImageBounds(const cv::Mat &imLeft)
     }
 }
 
-/**
- * Antidistorsiona puntos según el modelo de cámara fisheye de proyección equidistante sin coeficientes de distorsión.
- * Usa mK, la matriz intrínseca, para pasar los puntos distorsionados a escala focal, y luego de antidistorsionarlos pasarlos de nuevo a escala de imagen.
- *
- * @param puntos Mat de nx2 float, cada par corresponde a un punto.  Entrada y salida.  Los puntos se corrigen y el resultado se guarda en el mismo lugar.
- *
- * Sólo usado desde Frame::UndistortKeyPoints y Frame::ComputeImageBounds
- */
 void Frame::antidistorsionarProyeccionEquidistante(cv::Mat &puntos){
 	// foco y centro
 	cv::Vec2d f, c;

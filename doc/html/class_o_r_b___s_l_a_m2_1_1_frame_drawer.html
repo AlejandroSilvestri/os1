@@ -83,6 +83,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_frame_drawe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
@@ -114,11 +115,20 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad1bba97371be98ccab373bab862cf964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> avisando que hay un nuevo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> para mostrar.  <a href="#ad1bba97371be98ccab373bab862cf964">More...</a><br /></td></tr>
 <tr class="separator:ad1bba97371be98ccab373bab862cf964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:abb8a82a9c5b293f799691ec1ddc15f27"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#abb8a82a9c5b293f799691ec1ddc15f27">onMouse</a> (int event, int x, int y, int, void *instancia)</td></tr>
+<tr class="memdesc:abb8a82a9c5b293f799691ec1ddc15f27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback, listener del clic de mouse en ventana de opencv.  <a href="#abb8a82a9c5b293f799691ec1ddc15f27">More...</a><br /></td></tr>
+<tr class="separator:abb8a82a9c5b293f799691ec1ddc15f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8596422190adf9c7f6e083073ad96004"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a8596422190adf9c7f6e083073ad96004">distCoef</a></td></tr>
 <tr class="memdesc:a8596422190adf9c7f6e083073ad96004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coeficientes de distorsión para undistort.  <a href="#a8596422190adf9c7f6e083073ad96004">More...</a><br /></td></tr>
 <tr class="separator:a8596422190adf9c7f6e083073ad96004"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb73dd56cb2a01d644b519b112dcd68a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#acb73dd56cb2a01d644b519b112dcd68a">factorEscalaImagenParaMostrar</a></td></tr>
+<tr class="memdesc:acb73dd56cb2a01d644b519b112dcd68a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia de la variable de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, para corregir la posición del clic en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#abb8a82a9c5b293f799691ec1ddc15f27" title="Callback, listener del clic de mouse en ventana de opencv. ">FrameDrawer::onMouse</a>.  <a href="#acb73dd56cb2a01d644b519b112dcd68a">More...</a><br /></td></tr>
+<tr class="separator:acb73dd56cb2a01d644b519b112dcd68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac256525bcc9b9330b439c16583ad0255"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ac256525bcc9b9330b439c16583ad0255">K</a></td></tr>
 <tr class="memdesc:ac256525bcc9b9330b439c16583ad0255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz de calibración del último frame, para undistort.  <a href="#ac256525bcc9b9330b439c16583ad0255">More...</a><br /></td></tr>
 <tr class="separator:ac256525bcc9b9330b439c16583ad0255"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,6 +141,11 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a85e7dde30a77fec3380f1907468aa875"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a85e7dde30a77fec3380f1907468aa875">cameraPos</a></td></tr>
+<tr class="memdesc:a85e7dde30a77fec3380f1907468aa875"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordenadas del frame.  <a href="#a85e7dde30a77fec3380f1907468aa875">More...</a><br /></td></tr>
+<tr class="separator:a85e7dde30a77fec3380f1907468aa875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af871f136e05f9214ff480b9f264ceccd"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af871f136e05f9214ff480b9f264ceccd">cameraPosDraw</a></td></tr>
+<tr class="separator:af871f136e05f9214ff480b9f264ceccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7087ccda3d514be5e0132f889c3e949"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad7087ccda3d514be5e0132f889c3e949">mbOnlyTracking</a></td></tr>
 <tr class="memdesc:ad7087ccda3d514be5e0132f889c3e949"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia de la señal de sólo tracking (true) o tracking &amp; mapping (false).  <a href="#ad7087ccda3d514be5e0132f889c3e949">More...</a><br /></td></tr>
 <tr class="separator:ad7087ccda3d514be5e0132f889c3e949"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +169,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a158a3ca6cab99c6bb691a7537212764b"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a158a3ca6cab99c6bb691a7537212764b">mvIniMatches</a></td></tr>
 <tr class="memdesc:a158a3ca6cab99c6bb691a7537212764b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macheos de inicialización.  <a href="#a158a3ca6cab99c6bb691a7537212764b">More...</a><br /></td></tr>
 <tr class="separator:a158a3ca6cab99c6bb691a7537212764b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa67151f2b412589a01cf4984c582e50d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#aa67151f2b412589a01cf4984c582e50d">mvpMapPoints</a></td></tr>
+<tr class="memdesc:aa67151f2b412589a01cf4984c582e50d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de puntos 3D del mapa asociados a los puntos singulares.  <a href="#aa67151f2b412589a01cf4984c582e50d">More...</a><br /></td></tr>
+<tr class="separator:aa67151f2b412589a01cf4984c582e50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbc9489192f5485ece966b0d6d589e47"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#adbc9489192f5485ece966b0d6d589e47">N</a></td></tr>
 <tr class="memdesc:adbc9489192f5485ece966b0d6d589e47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de puntos singulares.  <a href="#adbc9489192f5485ece966b0d6d589e47">More...</a><br /></td></tr>
 <tr class="separator:adbc9489192f5485ece966b0d6d589e47"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +184,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:aa7d745757f0a81f8460236036b837b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab47bccbb2ddfa65221a968736a6bd092"><td class="memItemLeft" align="right" valign="top">vector&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ab47bccbb2ddfa65221a968736a6bd092">mvbVO</a></td></tr>
 <tr class="separator:ab47bccbb2ddfa65221a968736a6bd092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4391f33b2306aad3eaf107cb4c5a50b7"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a4391f33b2306aad3eaf107cb4c5a50b7">esPuntoLejano</a></td></tr>
+<tr class="separator:a4391f33b2306aad3eaf107cb4c5a50b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:ae111426e790338d9f5f4556434716919"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ae111426e790338d9f5f4556434716919">mnTracked</a></td></tr>
 <tr class="memdesc:ae111426e790338d9f5f4556434716919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de macheos con puntos 3D.  <a href="#ae111426e790338d9f5f4556434716919">More...</a><br /></td></tr>
@@ -273,6 +293,71 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="abb8a82a9c5b293f799691ec1ddc15f27"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::FrameDrawer::onMouse </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>event</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>instancia</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback, listener del clic de mouse en ventana de opencv. </p>
+<p>Función estática para que se pueda pasar como puntero a función.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>Evento de mouse, sólo interesa clic. </td></tr>
+    <tr><td class="paramname">x</td><td>Coordenada x del píxel donde actúa el mouse. </td></tr>
+    <tr><td class="paramname">y</td><td>Coordenada y del píxel donde actúa el mouse. </td></tr>
+    <tr><td class="paramname">instancia</td><td>Puntero al singleton <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">FrameDrawer</a> para que la función estática pueda acceder a sus miembros.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Doc: <a href="http://docs.opencv.org/3.1.0/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e">http://docs.opencv.org/3.1.0/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e</a> Ejemplo del uso: <a href="https://github.com/opencv/opencv/blob/master/samples/cpp/ffilldemo.cpp">https://github.com/opencv/opencv/blob/master/samples/cpp/ffilldemo.cpp</a> </p>
+
+</div>
+</div>
 <a id="ad1bba97371be98ccab373bab862cf964"></a>
 <div class="memitem">
 <div class="memproto">
@@ -294,6 +379,48 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a85e7dde30a77fec3380f1907468aa875"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::FrameDrawer::cameraPos</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Coordenadas del frame. </p>
+
+</div>
+</div>
+<a id="af871f136e05f9214ff480b9f264ceccd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Mat ORB_SLAM2::FrameDrawer::cameraPosDraw</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a8596422190adf9c7f6e083073ad96004"></a>
 <div class="memitem">
 <div class="memproto">
@@ -305,6 +432,40 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Coeficientes de distorsión para undistort. </p>
+
+</div>
+</div>
+<a id="a4391f33b2306aad3eaf107cb4c5a50b7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;int&gt; ORB_SLAM2::FrameDrawer::esPuntoLejano</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb73dd56cb2a01d644b519b112dcd68a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ORB_SLAM2::FrameDrawer::factorEscalaImagenParaMostrar</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copia de la variable de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a>, para corregir la posición del clic en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#abb8a82a9c5b293f799691ec1ddc15f27" title="Callback, listener del clic de mouse en ventana de opencv. ">FrameDrawer::onMouse</a>. </p>
 
 </div>
 </div>
@@ -579,6 +740,29 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Macheos de inicialización. </p>
+
+</div>
+</div>
+<a id="aa67151f2b412589a01cf4984c582e50d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a>*&gt; ORB_SLAM2::FrameDrawer::mvpMapPoints</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Vector de puntos 3D del mapa asociados a los puntos singulares. </p>
+<p>Este vector tiene la misma longitud que mvKeys y mvKeysUn. Las posiciones sin asociación son NULL. Copiado de mCurrentFrame en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964" title="Invocado sólo por Tracking::Track avisando que hay un nuevo Frame para mostrar. ">FrameDrawer::Update</a>. </p>
 
 </div>
 </div>

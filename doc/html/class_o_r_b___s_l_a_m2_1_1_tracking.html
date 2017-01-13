@@ -115,7 +115,7 @@ Public Types</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a3995b5e23b910c6ee30b7fe21732fe36affaf8b66b0b767f1eb2b0214b3f37fb2">LOST</a> =3
 <br />
- }<tr class="memdesc:a3995b5e23b910c6ee30b7fe21732fe36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado de tracking La variable de estado mState del objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> tiene uno de estos valores.  <a href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a3995b5e23b910c6ee30b7fe21732fe36">More...</a><br /></td></tr>
+ }<tr class="memdesc:a3995b5e23b910c6ee30b7fe21732fe36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado de tracking.  <a href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a3995b5e23b910c6ee30b7fe21732fe36">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a3995b5e23b910c6ee30b7fe21732fe36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -143,7 +143,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac86c2461ac6cf3bec906759f4fbea15c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registra el objeto de visualización.  <a href="#ac86c2461ac6cf3bec906759f4fbea15c">More...</a><br /></td></tr>
 <tr class="separator:ac86c2461ac6cf3bec906759f4fbea15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24f9d67b73420f419f792d2b32c69ac4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a24f9d67b73420f419f792d2b32c69ac4">Tracking</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html">System</a> *pSys, <a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *pVoc, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html">FrameDrawer</a> *pFrameDrawer, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html">MapDrawer</a> *pMapDrawer, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html">KeyFrameDatabase</a> *pKFDB, const string &amp;strSettingPath, const int sensor, unsigned int cantidadCuadros=0)</td></tr>
-<tr class="memdesc:a24f9d67b73420f419f792d2b32c69ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Una única instancia de este objeto se ejecuta en el thread principal.  <a href="#a24f9d67b73420f419f792d2b32c69ac4">More...</a><br /></td></tr>
+<tr class="memdesc:a24f9d67b73420f419f792d2b32c69ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la única instancia de este objeto se invoca continuamente en el thread principal.  <a href="#a24f9d67b73420f419f792d2b32c69ac4">More...</a><br /></td></tr>
 <tr class="separator:a24f9d67b73420f419f792d2b32c69ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -355,22 +355,36 @@ Private Attributes</h2></td></tr>
 <p>FramPublisher consulta los estados de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> mState y mLastState, utiliza su enum de estados, y en Update() toma datos del mCurrentFrame, mInitialFrame y mvIniMatches.</p>
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a164b3d0a2a75daba006469ea8aca8a63" title="Registra el tracker, la única instancia en el sistema. ">LocalMapping::SetTracker</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a20bce54d19c979511043d7c109aa741a" title="Registra el tracker del sistema. ">LoopClosing::SetTracker</a> guardan el tracking en mpTracking, y no lo utilizan.</p>
 <p>La mayoría de los métodos del objeto son partes de un único algoritmo, dividido para mejor comprensión. Estos métodos son invocados solo desde otro método del objeto, y no desde afuera.</p>
-<p>La siguiente secuencia de métodos corresponden a un único algoritmo que podría estar en una única función: </p><pre class="fragment">GrabImageMonocular: recibe la imagen y la convierte a grises
-    Track: ejecuta el autómata finito
-    MonocularInitialization: busca maches para triangular con PnP
-            CreateInitialMapMonocular: crea el mapa inicial con los puntos triangulados
-        TrackWithMotionModel: tracking normal, busca macheos según el modelo de movimiento
-        UpdateLastFrame: trivial
-        TrackLocalMap: agrega puntos nuevos al mapa local
-            SearchLocalPoints: actualiza la "visibilidad" (el conteo de vistas) de los puntos, y filtra puntos que ya están en el mapa
-            UpdateLocalMap: actualiza el mapa local: puntos y keyframes
-                UpdateLocalMapPoints: actualiza el mapa local con los puntos nuevos
-                UpdateLocalKeyFrames: actualiza los keyframes locales con los puntos nuevos
-        NeedNewKeyFrame: evalúa si hace falta un nuevo keyframe
-        CreateNewKeyFrame: crea y registra un nuevo keyframe a partir del frame actual
-        TrackReferenceKeyFrame: tracking alternativo, basado en BoW, para cuando falla el tracking normal
-        CheckReplacedInLastFrame: actualiza puntos en lastKeyFrame que pudieron haber cambiado por BA, culling u otros motivos
-        Relocalization: se invoca si el sistema perdió tracking</pre> </div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<p>La siguiente secuencia de métodos corresponden a un único algoritmo que podría estar en una única función:</p>
+<ul>
+<li>GrabImageMonocular: recibe la imagen y la convierte a grises<ul>
+<li>Track: ejecuta el autómata finito:<ul>
+<li>MonocularInitialization: busca maches para triangular con PnP<ul>
+<li>CreateInitialMapMonocular: crea el mapa inicial con los puntos triangulados</li>
+</ul>
+</li>
+<li>TrackWithMotionModel: tracking normal, busca macheos según el modelo de movimiento</li>
+<li>UpdateLastFrame: trivial</li>
+<li>TrackLocalMap: agrega puntos nuevos al mapa local<ul>
+<li>SearchLocalPoints: actualiza la "visibilidad" (el conteo de vistas) de los puntos, y filtra puntos que ya están en el mapa</li>
+<li>UpdateLocalMap: actualiza el mapa local: puntos y keyframes<ul>
+<li>UpdateLocalMapPoints: actualiza el mapa local con los puntos nuevos</li>
+<li>UpdateLocalKeyFrames: actualiza los keyframes locales con los puntos nuevos</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NeedNewKeyFrame: evalúa si hace falta un nuevo keyframe</li>
+<li>CreateNewKeyFrame: crea y registra un nuevo keyframe a partir del frame actual</li>
+<li>TrackReferenceKeyFrame: tracking alternativo, basado en BoW, para cuando falla el tracking normal</li>
+<li>CheckReplacedInLastFrame: actualiza puntos en lastKeyFrame que pudieron haber cambiado por BA, culling u otros motivos</li>
+<li>Relocalization: se invoca si el sistema perdió tracking </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a3995b5e23b910c6ee30b7fe21732fe36"></a>
 <div class="memitem">
 <div class="memproto">
@@ -381,7 +395,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Estado de tracking La variable de estado mState del objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> tiene uno de estos valores. </p>
+<p>Estado de tracking. </p>
+<p>La variable de estado mState del objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> tiene uno de estos valores. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3995b5e23b910c6ee30b7fe21732fe36a95b60cb653a85df000eb93e0c3f00ea0"></a>SYSTEM_NOT_READY&#160;</td><td class="fielddoc">
 </td></tr>
@@ -464,7 +479,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Una única instancia de este objeto se ejecuta en el thread principal. </p>
+<p>Constructor de la única instancia de este objeto se invoca continuamente en el thread principal. </p>
 
 </div>
 </div>
@@ -767,6 +782,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Dispara una relocalización. </p>
+<p>Invocado sólo desde el autómata finito en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a>. </p>
 
 </div>
 </div>
@@ -991,8 +1007,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>SfM. </p>
-<p>Función principal, que determina la performance del sistema. Rastrea los puntos de la imagen en el mapa, macheándolos con matcher.SearchByProjection(), que extiende el macheo consecutivo desde lastFrame a currentFrame, asociando los puntos 3D a los puntos singulares del cuadro actual. Si no logra 20 macheos, falla, retorna false. Con 20 o más puntos macheados calcula la nueva pose con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a7415d78b8a2323b88e108fa1ea3bf2d3" title="Cómputo de la pose de un cuadro. ">Optimizer::PoseOptimization()</a> y quita los outliers del frame. Si no quedan al menos 10 puntos, retorna false indicando la falla.</p>
-<p>Esta función se invoca exclusivamente desde Track, según el autómata finito, siempre en el estado OK. </p>
+<p>Función principal, que determina la performance del sistema. Rastrea los puntos de la imagen en el mapa, macheándolos con matcher.SearchByProjection(), que extiende el macheo consecutivo desde lastFrame a currentFrame, asociando los puntos 3D a los puntos singulares del cuadro actual. Si no logra 20 macheos, falla, retorna false. Con 20 o más puntos macheados calcula la nueva pose con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a7415d78b8a2323b88e108fa1ea3bf2d3" title="Cómputo de la pose de un cuadro. ">Optimizer::PoseOptimization()</a> (donde ocurre el verdadero SfM). y quita los outliers del frame. Si no quedan al menos 10 puntos, retorna false indicando la falla.</p>
+<dl class="section return"><dt>Returns</dt><dd>true si logró optimizar la pose, false si no.</dd></dl>
+<p>Esta función se invoca exclusivamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a>, según el autómata finito, siempre en el estado OK. </p>
 
 </div>
 </div>

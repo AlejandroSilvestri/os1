@@ -116,7 +116,7 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
         		cout << "Retriangulando punto lejano " << puntoLejano;
         		if(esQInf()){
         			// Punto muy lejano, al infinito, ¡con paralaje!  ¿Cómo lo macheó?  ¿Por qué no lo acercó?
-        			cout << " es QInf!! mp:" << mnId << ", kf:" << pKF->mnId << ", idx:" << idx << endl;
+        			cout << " es QInf!! mp:" << mnId << ", kf:" << pKF->mnId << ", idx:" << idx << ", pos:" << mWorldPos.t() << endl;
 
         		}else{
         			// Punto muy lejano que se acercó por BA, y con suficiente paralaje, se convierte en normal.
@@ -416,5 +416,9 @@ cv::Scalar MapPoint::color(){
 	puntoLejano == 1? cv::Scalar(255,255,32*(nObs-3)) :	// Punto lejano triangulado
 	puntoLejano == 2? cv::Scalar(255,0,255 * esQInf()) :	// Punto muy lejano COS
 					  cv::Scalar(0,0,255);	// Punto muy lejano SVD
+}
+
+bool MapPoint::esQInf(){
+	return cv::norm(mWorldPos)>=1e5;
 }
 } //namespace ORB_SLAM

@@ -255,7 +255,7 @@ public:
 	 * Informa si el punto es quasi-infinito.
 	 * @param true si es quasi-infinito, false si es normal.
 	 */
-	inline bool esQInf(){return cv::sum(mWorldPos)[0]>=1e5;}
+	inline bool esQInf();
 
 
 
