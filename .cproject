@@ -40,7 +40,6 @@
 								<option id="gnu.cpp.compiler.option.preprocessor.def.270791788" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="COMPILEDWITHC11"/>
 									<listOptionValue builtIn="false" value="__cplusplus=201103L"/>
-									<listOptionValue builtIn="false" value="ArchivoBowBinario"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1676706956" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

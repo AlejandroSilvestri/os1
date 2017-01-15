@@ -3,7 +3,7 @@ var class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher =
     [ "ORBmatcher", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a6ca536b80e44da0f56fcd35ff8c6a833", null ],
     [ "CheckDistEpipolarLine", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a10df000eeb05466a5bbfd7b40c7db45d", null ],
     [ "ComputeThreeMaxima", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ad6613e26706798c507b5266cdd101311", null ],
-    [ "DescriptorDistance", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a63ff10561753f23220c2bfcea9b599f3", null ],
+    [ "DescriptorDistance", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a27787e1b38e57fba355bb3d6068e6b40", null ],
     [ "Fuse", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#add796fcf9f5cae91393d4c0b767e0183", null ],
     [ "Fuse", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a16efd376a838e1edf18c04229b86059d", null ],
     [ "RadiusByViewingCos", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae6ae0904b9919f1141ef4a790cd34bfe", null ],

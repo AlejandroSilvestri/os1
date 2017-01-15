@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_system.html
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::System:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_system__coll__graph.svg" width="2516" height="1224"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_system__coll__graph.svg" width="1879" height="1060"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -138,7 +138,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa934876a230dfa99e123f62b4b54d0cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solicita el cierre del sistema.  <a href="#aa934876a230dfa99e123f62b4b54d0cb">More...</a><br /></td></tr>
 <tr class="separator:aa934876a230dfa99e123f62b4b54d0cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e9b6b0e27ac44fe16b0f35c39aa9b63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a8e9b6b0e27ac44fe16b0f35c39aa9b63">System</a> (const string &amp;strVocFile, const string &amp;strSettingsFile, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cf">eSensor</a> sensor, const bool bUseViewer=true, cv::VideoCapture *=NULL)</td></tr>
-<tr class="memdesc:a8e9b6b0e27ac44fe16b0f35c39aa9b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a8e9b6b0e27ac44fe16b0f35c39aa9b63">More...</a><br /></td></tr>
+<tr class="memdesc:a8e9b6b0e27ac44fe16b0f35c39aa9b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor único.  <a href="#a8e9b6b0e27ac44fe16b0f35c39aa9b63">More...</a><br /></td></tr>
 <tr class="separator:a8e9b6b0e27ac44fe16b0f35c39aa9b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0408659bafa31c4d0722ccd032fb9430"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a0408659bafa31c4d0722ccd032fb9430">TrackMonocular</a> (const cv::Mat &amp;im, const double &amp;timestamp)</td></tr>
 <tr class="memdesc:a0408659bafa31c4d0722ccd032fb9430"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa una imagen de la cámara.  <a href="#a0408659bafa31c4d0722ccd032fb9430">More...</a><br /></td></tr>
@@ -293,7 +293,7 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">cv::VideoCapture *&#160;</td>
-          <td class="paramname"><em>video_</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"> = <code>NULL</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -303,18 +303,13 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor. </p>
-<p>Constructor único, con argumentos obligatorios.</p>
+<p>Constructor único. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">strVocFile</td><td>Nombre del archivo con el vocabulario BoW, para abrir. </td></tr>
+    <tr><td class="paramname">strVocFile</td><td>Nombre del archivo (binario) con el vocabulario BoW, para abrir. </td></tr>
     <tr><td class="paramname">strSettingsFile</td><td>Nombre del archivo de configuración, para abrir. </td></tr>
     <tr><td class="paramname">sensor</td><td>Tipo de sensor. MONOCULAR para mono slam. </td></tr>
-    <tr><td class="paramname">bUseViewer</td><td>Señal para activar el visor.</td></tr>
-    <tr><td class="paramname">strVocFile</td><td>ruta al archivo vocabulario ORB BOW a cargar. </td></tr>
-    <tr><td class="paramname">strSettingsFile</td><td>ruta al archivo de configuración, que contiene los parámetros instrínsecos y coeficientes de la cámara. </td></tr>
-    <tr><td class="paramname">eSensor</td><td>modo de operación: mono, estéreo, rgbd. </td></tr>
-    <tr><td class="paramname">bUseViewer</td><td>indica si activar o no el visor (la gui). </td></tr>
+    <tr><td class="paramname">bUseViewer</td><td>Señal para activar el visor. </td></tr>
   </table>
   </dd>
 </dl>
@@ -336,8 +331,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Pasa a modo de sólo localización, sin mapeo (sólo tracking). </p>
-<p>Activa el modo de Localización.</p>
-<p>Inicia el autómata finito que lo activa. </p>
 
 </div>
 </div>
@@ -355,8 +348,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Pasa a modo de localización y mapeo. </p>
-<p>Desactiva el modo de Localización.</p>
-<p>Inicia el autómata finito que lo desactiva. </p>
 
 </div>
 </div>
@@ -434,8 +425,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reinicia el sistema. </p>
-<p>Inicia el autómata finito que resetea el sistema.</p>
-<p>Limpia el mapa.</p>
+<p>Limpia el mapa. </p>
 
 </div>
 </div>
@@ -487,8 +477,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Solicita el cierre del sistema. </p>
-<p>Apaga el sistema.</p>
-<p>Solicita terminar a todos los hilos, y espera hasta que terminen. Los datos permanecen en memoria. Esta función se debe invocar antesd e guardar la trayectoria.</p>
+<p>Solicita terminar a todos los hilos, y espera hasta que terminen. Los datos permanecen en memoria. Esta función se debe invocar antesd e guardar la trayectoria. </p>
 
 </div>
 </div>
@@ -518,18 +507,12 @@ Private Attributes</h2></td></tr>
 
 <p>Procesa una imagen de la cámara. </p>
 <p>Envoltorio del método principal, invocado repetidamente por el bucle principal, una vez por cada imagen del sensor.</p>
-<p>Es el método central, invocado repetidamente en el bucle principal de tracking.</p>
+<p>Chequea variables de estado que reflejan comandos de la gui.</p>
+<p>Finalmente invoca el método principal: <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#ad3de28bf6f7638c4da2248c9d595f394" title="Recibe una imagen para procesar, desde System, en el mismo hilo. ">Tracking::GrabImageMonocular</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">im</td><td>Imagen de cámara a procesar. </td></tr>
-    <tr><td class="paramname">timestamp</td><td>Marca temporal, sólo para registro, orb-slam2 no la utiliza.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Chequea variables de estado que reflejan comandos de la gui. Finalmente invoca el método principal: <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#ad3de28bf6f7638c4da2248c9d595f394" title="Recibe una imagen para procesar, desde System, en el mismo hilo. ">Tracking::GrabImageMonocular</a> </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">im</td><td>imagen a procesar </td></tr>
-    <tr><td class="paramname">timestamp</td><td>para registro de tiempos </td></tr>
+    <tr><td class="paramname">timestamp</td><td>Marca temporal, sólo para registro, orb-slam2 no la utiliza. </td></tr>
   </table>
   </dd>
 </dl>
@@ -899,9 +882,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/alejandro/Desarrollo eclipse/os1/include/<a class="el" href="_system_8h_source.html">System.h</a></li>
-<li>/home/alejandro/Desarrollo eclipse/os1/src/<a class="el" href="_system_8cc.html">System.cc</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

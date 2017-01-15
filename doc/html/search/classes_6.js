@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['g2obatchstatistics',['G2OBatchStatistics',['../structg2o_1_1_g2_o_batch_statistics.html',1,'g2o']]],
-  ['generalscoring',['GeneralScoring',['../class_d_bo_w2_1_1_general_scoring.html',1,'DBoW2']]]
+  ['map',['Map',['../class_o_r_b___s_l_a_m2_1_1_map.html',1,'ORB_SLAM2']]],
+  ['mapdrawer',['MapDrawer',['../class_o_r_b___s_l_a_m2_1_1_map_drawer.html',1,'ORB_SLAM2']]],
+  ['mappoint',['MapPoint',['../class_o_r_b___s_l_a_m2_1_1_map_point.html',1,'ORB_SLAM2']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dot_5fproduct',['DOT_PRODUCT',['../namespace_d_bo_w2.html#aa252a592dd607c6e60dede06ceef2722a14556ffa1d80b1c7540ea68506eb5b56',1,'DBoW2']]]
+  ['monocular',['MONOCULAR',['../class_o_r_b___s_l_a_m2_1_1_system.html#a3f14b84bb9663e1129e649e592bd14cfad1e5840d6aeaa77d25724ea0b27437cd',1,'ORB_SLAM2::System']]]
 ];

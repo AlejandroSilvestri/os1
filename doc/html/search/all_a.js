@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['jacobian_5fworkspace_2ecpp',['jacobian_workspace.cpp',['../jacobian__workspace_8cpp.html',1,'']]],
-  ['jacobian_5fworkspace_2ed',['jacobian_workspace.d',['../g2o_2_release_2core_2jacobian__workspace_8d.html',1,'']]],
-  ['jacobian_5fworkspace_2ed',['jacobian_workspace.d',['../_release_2g2o_2core_2jacobian__workspace_8d.html',1,'']]],
-  ['jacobian_5fworkspace_2eh',['jacobian_workspace.h',['../jacobian__workspace_8h.html',1,'']]],
-  ['jacobianoplusxi',['jacobianOplusXi',['../classg2o_1_1_base_binary_edge.html#a5232f0a5f116e7106b7968ab3bff036c',1,'g2o::BaseBinaryEdge::jacobianOplusXi()'],['../classg2o_1_1_base_unary_edge.html#a396fbab83bfc9ce2e2080b16ccc357f4',1,'g2o::BaseUnaryEdge::jacobianOplusXi()']]],
-  ['jacobianoplusxj',['jacobianOplusXj',['../classg2o_1_1_base_binary_edge.html#a71c1a583816399cf7db1a91ebe5dbf18',1,'g2o::BaseBinaryEdge']]],
-  ['jacobiantype',['JacobianType',['../classg2o_1_1_base_multi_edge.html#a43dfdf5b27df296a32ee5a11f0653d55',1,'g2o::BaseMultiEdge']]],
-  ['jacobianworkspace',['JacobianWorkspace',['../classg2o_1_1_jacobian_workspace.html',1,'g2o']]],
-  ['jacobianworkspace',['JacobianWorkspace',['../classg2o_1_1_jacobian_workspace.html#a6c20de27401a40e620ee065c80d24b9e',1,'g2o::JacobianWorkspace::JacobianWorkspace()'],['../structg2o_1_1_optimizable_graph.html#aa669dbd1d6e34e49fecda711ff1b78c6',1,'g2o::OptimizableGraph::jacobianWorkspace()'],['../structg2o_1_1_optimizable_graph.html#a21d73e7a39c731d19e6bb467cad59912',1,'g2o::OptimizableGraph::jacobianWorkspace() const']]],
-  ['jacobianxioplustype',['JacobianXiOplusType',['../classg2o_1_1_base_binary_edge.html#ab1cde84224b129603bcd95db027e0167',1,'g2o::BaseBinaryEdge::JacobianXiOplusType()'],['../classg2o_1_1_base_unary_edge.html#a24bcabd661223e15b7337f2835310f5e',1,'g2o::BaseUnaryEdge::JacobianXiOplusType()']]],
-  ['jacobianxjoplustype',['JacobianXjOplusType',['../classg2o_1_1_base_binary_edge.html#a83e5dec2135b33e86255c87be3b5d062',1,'g2o::BaseBinaryEdge']]]
+  ['k',['K',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ac256525bcc9b9330b439c16583ad0255',1,'ORB_SLAM2::FrameDrawer']]],
+  ['keyframe',['KeyFrame',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html',1,'ORB_SLAM2']]],
+  ['keyframe',['KeyFrame',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#a6b2fd06ed5e4a8f9546c515db554bcb6',1,'ORB_SLAM2::KeyFrame::KeyFrame(Frame &amp;F, Map *pMap, KeyFrameDatabase *pKFDB)'],['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3c33a6c79533849d367db9e85fe98c14',1,'ORB_SLAM2::KeyFrame::KeyFrame()']]],
+  ['keyframe_2eh',['KeyFrame.h',['../_key_frame_8h.html',1,'']]],
+  ['keyframeandpose',['KeyFrameAndPose',['../class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ae9ada143a8308ce32990a7c7b5d533ab',1,'ORB_SLAM2::LoopClosing']]],
+  ['keyframeculling',['KeyFrameCulling',['../class_o_r_b___s_l_a_m2_1_1_local_mapping.html#aca73e5b4bace436b235dfa9c9a522b19',1,'ORB_SLAM2::LocalMapping']]],
+  ['keyframedatabase',['KeyFrameDatabase',['../class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a83495a11d1fb3cd98e82fa1e2efb6920',1,'ORB_SLAM2::KeyFrameDatabase']]],
+  ['keyframedatabase',['KeyFrameDatabase',['../class_o_r_b___s_l_a_m2_1_1_key_frame_database.html',1,'ORB_SLAM2']]],
+  ['keyframedatabase_2eh',['KeyFrameDatabase.h',['../_key_frame_database_8h.html',1,'']]],
+  ['keyframesinmap',['KeyFramesInMap',['../class_o_r_b___s_l_a_m2_1_1_map.html#a9d7cb6e9a662e61eebc797feb7c18922',1,'ORB_SLAM2::Map']]],
+  ['keyframesinqueue',['KeyframesInQueue',['../class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a8299d3b0c603784de01ac2242f4916be',1,'ORB_SLAM2::LocalMapping']]]
 ];

@@ -89,37 +89,38 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_optimizer.h
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> concentra todas las operaciones con <a class="el" href="namespaceg2o.html">g2o</a>.  
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> concentra todas las operaciones con g2o.  
  <a href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_optimizer_8h_source.html">Optimizer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aac6bf926792ed8a013d64897879a89ec"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#aac6bf926792ed8a013d64897879a89ec">BundleAdjustment</a> (const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&gt; &amp;vpKF, const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMP, int nIterations=5, bool *pbStopFlag=NULL, const unsigned long nLoopKF=0, const bool bRobust=true)</td></tr>
-<tr class="memdesc:aac6bf926792ed8a013d64897879a89ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bundle adjusment sobre los keyframes y puntos el mapa pasados como argumentos.  <a href="#aac6bf926792ed8a013d64897879a89ec">More...</a><br /></td></tr>
-<tr class="separator:aac6bf926792ed8a013d64897879a89ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa9b8a4c16296bf2981b0aaf4ee3189c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#aaa9b8a4c16296bf2981b0aaf4ee3189c">GlobalBundleAdjustemnt</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, int nIterations=5, bool *pbStopFlag=NULL, const unsigned long nLoopKF=0, const bool bRobust=true)</td></tr>
-<tr class="memdesc:aaa9b8a4c16296bf2981b0aaf4ee3189c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta BundleAdjstment tomando los datos del mapa.  <a href="#aaa9b8a4c16296bf2981b0aaf4ee3189c">More...</a><br /></td></tr>
-<tr class="separator:aaa9b8a4c16296bf2981b0aaf4ee3189c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab70e0b4f366b65a0c1ae8b2def19d339"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#ab70e0b4f366b65a0c1ae8b2def19d339">LocalBundleAdjustment</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, bool *pbStopFlag, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
-<tr class="memdesc:ab70e0b4f366b65a0c1ae8b2def19d339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bundle adjusment local a partir de un keyframe.  <a href="#ab70e0b4f366b65a0c1ae8b2def19d339">More...</a><br /></td></tr>
-<tr class="separator:ab70e0b4f366b65a0c1ae8b2def19d339"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a53ab409feed7f92547eb79a2d7f6e9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a5a53ab409feed7f92547eb79a2d7f6e9">OptimizeEssentialGraph</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pLoopKF, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pCurKF, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ae9ada143a8308ce32990a7c7b5d533ab">LoopClosing::KeyFrameAndPose</a> &amp;NonCorrectedSim3, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ae9ada143a8308ce32990a7c7b5d533ab">LoopClosing::KeyFrameAndPose</a> &amp;CorrectedSim3, const map&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *, set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&gt; &gt; &amp;LoopConnections, const bool &amp;bFixScale)</td></tr>
-<tr class="memdesc:a5a53ab409feed7f92547eb79a2d7f6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimiza el grafo esencial para cerrar un bucle.  <a href="#a5a53ab409feed7f92547eb79a2d7f6e9">More...</a><br /></td></tr>
-<tr class="separator:a5a53ab409feed7f92547eb79a2d7f6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91fbb960965c99e9802a5de45515813c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a91fbb960965c99e9802a5de45515813c">OptimizeSim3</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF1, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF2, std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMatches1, <a class="el" href="structg2o_1_1_sim3.html">g2o::Sim3</a> &amp;g2oS12, const float th2, const bool bFixScale)</td></tr>
-<tr class="memdesc:a91fbb960965c99e9802a5de45515813c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determina la transformación sim3 entre dos keyframes, que mejor explica un macheo.  <a href="#a91fbb960965c99e9802a5de45515813c">More...</a><br /></td></tr>
-<tr class="separator:a91fbb960965c99e9802a5de45515813c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7415d78b8a2323b88e108fa1ea3bf2d3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a7415d78b8a2323b88e108fa1ea3bf2d3">PoseOptimization</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> *pFrame)</td></tr>
-<tr class="memdesc:a7415d78b8a2323b88e108fa1ea3bf2d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cómputo de la pose de un cuadro.  <a href="#a7415d78b8a2323b88e108fa1ea3bf2d3">More...</a><br /></td></tr>
-<tr class="separator:a7415d78b8a2323b88e108fa1ea3bf2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0588d21c6ae51444de9905b375408199"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a0588d21c6ae51444de9905b375408199">BundleAdjustment</a> (const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&gt; &amp;vpKF, const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMP, int nIterations=5, bool *pbStopFlag=NULL, const unsigned long nLoopKF=0, const bool bRobust=true)</td></tr>
+<tr class="memdesc:a0588d21c6ae51444de9905b375408199"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bundle adjusment sobre los keyframes y puntos el mapa pasados como argumentos.  <a href="#a0588d21c6ae51444de9905b375408199">More...</a><br /></td></tr>
+<tr class="separator:a0588d21c6ae51444de9905b375408199"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8659e77e695aac6097694a0014e11a94"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a8659e77e695aac6097694a0014e11a94">GlobalBundleAdjustemnt</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, int nIterations=5, bool *pbStopFlag=NULL, const unsigned long nLoopKF=0, const bool bRobust=true)</td></tr>
+<tr class="memdesc:a8659e77e695aac6097694a0014e11a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta BundleAdjstment tomando los datos del mapa.  <a href="#a8659e77e695aac6097694a0014e11a94">More...</a><br /></td></tr>
+<tr class="separator:a8659e77e695aac6097694a0014e11a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab11b1aca35d9ae2b7f65c633091256eb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#ab11b1aca35d9ae2b7f65c633091256eb">LocalBundleAdjustment</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, bool *pbStopFlag, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
+<tr class="memdesc:ab11b1aca35d9ae2b7f65c633091256eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bundle adjusment local a partir de un keyframe.  <a href="#ab11b1aca35d9ae2b7f65c633091256eb">More...</a><br /></td></tr>
+<tr class="separator:ab11b1aca35d9ae2b7f65c633091256eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bfeedf530ec3ba4894c811c665023aa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a1bfeedf530ec3ba4894c811c665023aa">OptimizeEssentialGraph</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pLoopKF, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pCurKF, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ae9ada143a8308ce32990a7c7b5d533ab">LoopClosing::KeyFrameAndPose</a> &amp;NonCorrectedSim3, const <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ae9ada143a8308ce32990a7c7b5d533ab">LoopClosing::KeyFrameAndPose</a> &amp;CorrectedSim3, const map&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *, set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&gt; &gt; &amp;LoopConnections, const bool &amp;bFixScale)</td></tr>
+<tr class="memdesc:a1bfeedf530ec3ba4894c811c665023aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimiza el grafo esencial para cerrar un bucle.  <a href="#a1bfeedf530ec3ba4894c811c665023aa">More...</a><br /></td></tr>
+<tr class="separator:a1bfeedf530ec3ba4894c811c665023aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a585fbc4427201f22671db7115a5ce1f2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a585fbc4427201f22671db7115a5ce1f2">OptimizeSim3</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF1, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF2, std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&gt; &amp;vpMatches1, g2o::Sim3 &amp;g2oS12, const float th2, const bool bFixScale)</td></tr>
+<tr class="memdesc:a585fbc4427201f22671db7115a5ce1f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determina la transformación sim3 (espacio de transformaciones de similaridad, de 7 dimensiones) entre dos keyframes, que mejor explica un macheo.  <a href="#a585fbc4427201f22671db7115a5ce1f2">More...</a><br /></td></tr>
+<tr class="separator:a585fbc4427201f22671db7115a5ce1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3863a95bd22df6fbb9deba797e0376fa"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a3863a95bd22df6fbb9deba797e0376fa">PoseOptimization</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> *pFrame)</td></tr>
+<tr class="memdesc:a3863a95bd22df6fbb9deba797e0376fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cómputo de la pose de un cuadro.  <a href="#a3863a95bd22df6fbb9deba797e0376fa">More...</a><br /></td></tr>
+<tr class="separator:a3863a95bd22df6fbb9deba797e0376fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> concentra todas las operaciones con <a class="el" href="namespaceg2o.html">g2o</a>. </p>
-<p>Esta clase no tiene propiedades, sino solamente un conjunto métodos estáticos o de clase. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> no se instancia, funciona como un espacio de nombres. Reune las seis funciones implementadas con el framwork <a class="el" href="namespaceg2o.html">g2o</a>, que incluyen bundle adjustment, pose optimization y graph optimization. </p>
+<div class="textblock"><p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> concentra todas las operaciones con g2o. </p>
+<p>Esta clase no tiene propiedades, sino solamente un conjunto métodos estáticos o de clase. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> no se instancia, funciona como un espacio de nombres.</p>
+<p>Concentra todas las funciones implementadas con el framework g2o, que incluyen bundle adjustment, pose optimization y graph optimization. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aac6bf926792ed8a013d64897879a89ec"></a>
+<a id="a0588d21c6ae51444de9905b375408199"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -127,7 +128,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ORB_SLAM2::Optimizer::BundleAdjustment </td>
+          <td class="memname">static void ORB_SLAM2::Optimizer::BundleAdjustment </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&gt; &amp;&#160;</td>
           <td class="paramname"><em>vpKF</em>, </td>
@@ -187,11 +188,22 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Este método se invoca solamente desde GlobalBundleAdjustment. </p>
+<p>Este método se invoca solamente desde GlobalBundleAdjustment.</p>
+<h3>Funcionamiento</h3>
+<p>El optimizador se arma así, exactamente igual que <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#ab11b1aca35d9ae2b7f65c633091256eb" title="Bundle adjusment local a partir de un keyframe. ">Optimizer::LocalBundleAdjustment</a>: </p><pre class="fragment">typedef BlockSolver&lt; BlockSolverTraits&lt;6, 3&gt; &gt; BlockSolver_6_3;
+g2o::SparseOptimizer optimizer;
+optimizer.setAlgorithm(
+    new g2o::OptimizationAlgorithmLevenberg(
+        new g2o::BlockSolver_6_3(
+            new g2o::LinearSolverEigen&lt;g2o::BlockSolver_6_3::PoseMatrixType&gt;()
+        )
+    )
+);
+</pre><p>BlockSolver_6_3::PoseMatrixType es MatrixXD ?, es decir de elementos double y dimensiones por definir. Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de 6 dimensiones y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen. </p>
 
 </div>
 </div>
-<a id="aaa9b8a4c16296bf2981b0aaf4ee3189c"></a>
+<a id="a8659e77e695aac6097694a0014e11a94"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -199,7 +211,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ORB_SLAM2::Optimizer::GlobalBundleAdjustemnt </td>
+          <td class="memname">static void ORB_SLAM2::Optimizer::GlobalBundleAdjustemnt </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td>
           <td class="paramname"><em>pMap</em>, </td>
@@ -256,7 +268,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab70e0b4f366b65a0c1ae8b2def19d339"></a>
+<a id="ab11b1aca35d9ae2b7f65c633091256eb"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -264,7 +276,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ORB_SLAM2::Optimizer::LocalBundleAdjustment </td>
+          <td class="memname">static void ORB_SLAM2::Optimizer::LocalBundleAdjustment </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td>
           <td class="paramname"><em>pKF</em>, </td>
@@ -303,23 +315,53 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>El BA local toma el keyframe de referencia (usualmente el actual). A partir de él forma un vector de keyframes covisibles con GetVectorCovisibleKeyFrames(), y un vector de puntos del mapa vistos por ellos. Estos keyframes y puntos del mapa serán modificados por el BA. Finalmente crea un vector de keyframes fijos (no afectados por el BA), con los otros keyframes que también observan esos puntos. Con estos datos ejecuta un BA usando <a class="el" href="namespaceg2o.html">g2o</a>.</p>
+<p>El BA local toma el keyframe de referencia (usualmente el actual). A partir de él forma un vector de keyframes covisibles con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3aef2547c443fe3c72fe386122833d57" title="Devuelve el vector de keyframes covisibles KeyFrame::mvpOrderedConnectedKeyFrames ...">KeyFrame::GetVectorCovisibleKeyFrames()</a>, y un vector de puntos del mapa vistos por ellos. Estos keyframes y puntos del mapa serán modificados por el BA. Finalmente crea un vector de keyframes fijos (no afectados por el BA), con los otros keyframes que también observan esos puntos. Con estos datos ejecuta un BA usando g2o.</p>
 <p>Éste es el Bundle adjustment periódico del tracking.</p>
 <p>Este método se invoca solamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">LocalMapping::Run()</a>.</p>
-<p>El optimizador se arma así: </p><pre class="fragment">typedef BlockSolver&lt; BlockSolverTraits&lt; Eigen::Dynamic, Eigen::Dynamic &gt; &gt; BlockSolverX;
-g2o::SparseOptimizer optimizer;
+<p>El optimizador se arma así: </p><pre class="fragment">g2o::SparseOptimizer optimizer;
 optimizer.setAlgorithm(
     new g2o::OptimizationAlgorithmLevenberg(
-        new g2o::BlockSolverX(
-            new g2o::LinearSolverEigen&lt;g2o::BlockSolverX::PoseMatrixType&gt;()
+        new g2o::BlockSolver_6_3(
+            new g2o::LinearSolverEigen&lt;g2o::BlockSolver_6_3::PoseMatrixType&gt;()
         )
     )
 );
-</pre><p>PoseMatrixType es MatrixXD, es decir de elementos double y dimensiones por definir. Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de n dimensiones y puntos de m dimensiones, usando Cholesky espaciado de la librería Eigen. </p>
+</pre><p>BlockSolver_6_3::PoseMatrixType es MatrixXD ?, es decir de elementos double y dimensiones por definir. Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque de ejes que unen poses de 6 dimensiones y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen.</p>
+<p>Las poses de los keyframes y las posiciones de los puntos 3D constituyen los vértices: </p><pre class="fragment">g2o::VertexSE3Expmap * vSE3 = new g2o::VertexSE3Expmap();
+vSE3-&gt;setEstimate(Converter::toSE3Quat(pKF-&gt;GetPose()));
+vSE3-&gt;setId(id del vertex);
+vSE3-&gt;setFixed(true o false);
+optimizer.addVertex(vSE3);
+
+g2o::VertexSBAPointXYZ* vPoint = new g2o::VertexSBAPointXYZ();
+vPoint-&gt;setEstimate(Converter::toVector3d(pMP-&gt;GetWorldPos()));
+vPoint-&gt;setId(id del vertex);
+vPoint-&gt;setMarginalized(true);
+optimizer.addVertex(vPoint);
+</pre><p>Las poses de los keyframes se expresan como g2o::VertexSE3Expmap, mapas exponenciales del grupo de simetría del espacio euclideano de 3 dimensiones (que tiene 6 grados de libertad). Se fijan las poses de los keyframes que observan a los puntos locales, sin pertenecer al grafo de covisibilidad.</p>
+<p>Las poses d elos puntos se expresan como g2o::VertexSBAPointXYZ, puntos xyz para BA espaciado.</p>
+<p>Los ejes que proyectan uno al otro son g2o::EdgeSE3ProjectXYZ;</p>
+<p>Los ejes unen keyframes con puntos, un eje para cada observación de cada punto: </p><pre class="fragment">g2o::EdgeSE3ProjectXYZ* e = new g2o::EdgeSE3ProjectXYZ();
+ e-&gt;setVertex(0, dynamic_cast&lt;g2o::OptimizableGraph::Vertex*&gt;(optimizer.vertex(id del vertex KeyFrame)));
+ e-&gt;setVertex(1, dynamic_cast&lt;g2o::OptimizableGraph::Vertex*&gt;(optimizer.vertex(id del vertex MapPoint)));
+ e-&gt;setMeasurement(coordenadas del punto singular);
+ e-&gt;setInformation(Eigen::Matrix2d::Identity()*invSigma2);  // invSigma2 correspondiente a la observación de ese punto en ese keyframe
+ e-&gt;setRobustKernel(new g2o::RobustKernelHuber);
+ rk-&gt;setDelta(sqrt(5.991));
+
+ e-&gt;fx = pKFi-&gt;fx;
+ e-&gt;fy = pKFi-&gt;fy;
+ e-&gt;cx = pKFi-&gt;cx;
+ e-&gt;cy = pKFi-&gt;cy;
+
+ optimizer.addEdge(e);
+</pre><p>La matriz de información es la identidad (2x2) multiplicada por invSigma2, la inversa cuadrada del factor de escala que corresponde al nivel de pirámide en el que se observó el punto. Esto significa que a mayor nivel de la pirámide, más difusa es la posición del punto.</p>
+<p>Aplica a la observación del punto (el punto singular 2D).</p>
+<p>El factor de escala se aplica a las coordenadas en píxeles: un factor de escala 1,2 significa un error de 1,2 píxeles en la medición. </p>
 
 </div>
 </div>
-<a id="a5a53ab409feed7f92547eb79a2d7f6e9"></a>
+<a id="a1bfeedf530ec3ba4894c811c665023aa"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -327,7 +369,7 @@ optimizer.setAlgorithm(
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ORB_SLAM2::Optimizer::OptimizeEssentialGraph </td>
+          <td class="memname">static void ORB_SLAM2::Optimizer::OptimizeEssentialGraph </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *&#160;</td>
           <td class="paramname"><em>pMap</em>, </td>
@@ -410,7 +452,7 @@ optimizer.setAlgorithm(solver);
 
 </div>
 </div>
-<a id="a91fbb960965c99e9802a5de45515813c"></a>
+<a id="a585fbc4427201f22671db7115a5ce1f2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -418,7 +460,7 @@ optimizer.setAlgorithm(solver);
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int ORB_SLAM2::Optimizer::OptimizeSim3 </td>
+          <td class="memname">static int ORB_SLAM2::Optimizer::OptimizeSim3 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td>
           <td class="paramname"><em>pKF1</em>, </td>
@@ -438,7 +480,7 @@ optimizer.setAlgorithm(solver);
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structg2o_1_1_sim3.html">g2o::Sim3</a> &amp;&#160;</td>
+          <td class="paramtype">g2o::Sim3 &amp;&#160;</td>
           <td class="paramname"><em>g2oS12</em>, </td>
         </tr>
         <tr>
@@ -466,15 +508,18 @@ optimizer.setAlgorithm(solver);
 </table>
 </div><div class="memdoc">
 
-<p>Determina la transformación sim3 entre dos keyframes, que mejor explica un macheo. </p>
-<p>Dados dos keyframes que presumiblemente observan lo mismmo y son candidatos a cierre de bucle, y dada una serie de puntos macheados observados por ambos keyframes, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a91fbb960965c99e9802a5de45515813c" title="Determina la transformación sim3 entre dos keyframes, que mejor explica un macheo. ">OptimizeSim3()</a> calcula la transformación de similaridad sim3 que compatibiliza ambas visualizaciones y permite cerrar el bucle.</p>
+<p>Determina la transformación sim3 (espacio de transformaciones de similaridad, de 7 dimensiones) entre dos keyframes, que mejor explica un macheo. </p>
+<p>Dados dos keyframes que presumiblemente observan lo mismmo y son candidatos a cierre de bucle, y dada una serie de puntos macheados observados por ambos keyframes, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a585fbc4427201f22671db7115a5ce1f2" title="Determina la transformación sim3 (espacio de transformaciones de similaridad, de 7 dimensiones) entre...">OptimizeSim3()</a> calcula la transformación de similaridad sim3 que compatibiliza ambas visualizaciones y permite cerrar el bucle.</p>
 <p>ESte método se invoca exclusivamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ab4fcf814eed5b5dd2aec96454561b078" title="Procesa la lista de candidatos intentando corregir su pose. ">LoopClosing::ComputeSim3()</a>.</p>
-<p>El optimizador se arma así, idéntico al de LocalBundleAdjustment:</p>
-<p><a class="el" href="classg2o_1_1_sparse_optimizer.html">g2o::SparseOptimizer</a> optimizer; optimizer.setAlgorithm( new <a class="el" href="classg2o_1_1_optimization_algorithm_levenberg.html" title="Implementation of the Levenberg Algorithm. ">g2o::OptimizationAlgorithmLevenberg</a>( new <a class="el" href="namespaceg2o.html#a8d3214273331c25cbb5d5266770e6c12">g2o::BlockSolverX</a>( new g2o::LinearSolverEigen&lt;g2o::BlockSolverX::PoseMatrixType&gt;() ) ) ); </p>
+<p>El optimizador se arma así:</p>
+<p>g2o::SparseOptimizer optimizer; optimizer.setAlgorithm( new g2o::OptimizationAlgorithmLevenberg( new g2o::BlockSolverX( new g2o::LinearSolverEigen&lt;g2o::BlockSolverX::PoseMatrixType&gt;() ) ) );</p>
+<p>Las poses son g2o::VertexSim3Expmap en lugar de VertexSE3Expmap.</p>
+<p>Las posiciones de los puntos son g2o::VertexSBAPointXYZ, como en todos los BA.</p>
+<p>Los ejes van de a pares, en ambos sentidos, y son de tipos g2o::EdgeSim3ProjectXYZ y g2o::EdgeInverseSim3ProjectXYZ. </p>
 
 </div>
 </div>
-<a id="a7415d78b8a2323b88e108fa1ea3bf2d3"></a>
+<a id="a3863a95bd22df6fbb9deba797e0376fa"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -482,7 +527,7 @@ optimizer.setAlgorithm(solver);
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int ORB_SLAM2::Optimizer::PoseOptimization </td>
+          <td class="memname">static int ORB_SLAM2::Optimizer::PoseOptimization </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html">Frame</a> *&#160;</td>
           <td class="paramname"><em>pFrame</em></td><td>)</td>
@@ -506,13 +551,12 @@ optimizer.setAlgorithm(solver);
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>La cantidad de correspondencias optimizadas (macheos sobrevivientes, inliers).</dd></dl>
 <p>El optimizador se arma así, idéntico al de LocalBundleAdjustment:</p>
-<p><a class="el" href="classg2o_1_1_sparse_optimizer.html">g2o::SparseOptimizer</a> optimizer; optimizer.setAlgorithm( new <a class="el" href="classg2o_1_1_optimization_algorithm_levenberg.html" title="Implementation of the Levenberg Algorithm. ">g2o::OptimizationAlgorithmLevenberg</a>( new <a class="el" href="namespaceg2o.html#a8d3214273331c25cbb5d5266770e6c12">g2o::BlockSolverX</a>( new g2o::LinearSolverDense&lt;g2o::BlockSolverX::PoseMatrixType&gt;() ) ) ); </p>
+<p>g2o::SparseOptimizer optimizer; optimizer.setAlgorithm( new g2o::OptimizationAlgorithmLevenberg( new g2o::BlockSolverX( new g2o::LinearSolverDense&lt;g2o::BlockSolverX::PoseMatrixType&gt;() ) ) ); </p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>/home/alejandro/Desarrollo eclipse/os1/include/<a class="el" href="_optimizer_8h_source.html">Optimizer.h</a></li>
-<li>/home/alejandro/Desarrollo eclipse/os1/src/<a class="el" href="_optimizer_8cc.html">Optimizer.cc</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

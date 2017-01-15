@@ -36,9 +36,11 @@ class LoopClosing;
 
 /**
  * Optimizer concentra todas las operaciones con g2o.
+ *
  * Esta clase no tiene propiedades, sino solamente un conjunto métodos estáticos o de clase.
  * Optimizer no se instancia, funciona como un espacio de nombres.
- * Reune las seis funciones implementadas con el framwork g2o, que incluyen bundle adjustment, pose optimization y graph optimization.
+ *
+ * Concentra todas las funciones implementadas con el framework g2o, que incluyen bundle adjustment, pose optimization y graph optimization.
  *
  */
 class Optimizer
@@ -56,6 +58,25 @@ public:
      * @param bRobust Señal que solicita un evaluador robusto (que admite outliers) en lugar de uno estricto (que asume que todos los puntos son válidos).
 	 *
 	 * Este método se invoca solamente desde GlobalBundleAdjustment.
+	 *
+	 *
+	 * <h3>Funcionamiento</h3>
+	 * El optimizador se arma así, exactamente igual que Optimizer::LocalBundleAdjustment:
+     *
+    		typedef BlockSolver< BlockSolverTraits<6, 3> > BlockSolver_6_3;
+        	g2o::SparseOptimizer optimizer;
+        	optimizer.setAlgorithm(
+        		new g2o::OptimizationAlgorithmLevenberg(
+        			new g2o::BlockSolver_6_3(
+        				new g2o::LinearSolverEigen<g2o::BlockSolver_6_3::PoseMatrixType>()
+        			)
+        		)
+        	);
+
+     * BlockSolver_6_3::PoseMatrixType es MatrixXD ?, es decir de elementos double y dimensiones por definir.
+     * Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de 6 dimensiones
+     * y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen.
+	 *
 	 *
 	 */
 	void static BundleAdjustment(const std::vector<KeyFrame*> &vpKF, const std::vector<MapPoint*> &vpMP,
@@ -86,7 +107,7 @@ public:
      * @param pMap Mapa del mundo.
      *
      * El BA local toma el keyframe de referencia (usualmente el actual).
-     * A partir de él forma un vector de keyframes covisibles con GetVectorCovisibleKeyFrames(),
+     * A partir de él forma un vector de keyframes covisibles con KeyFrame::GetVectorCovisibleKeyFrames(),
      * y un vector de puntos del mapa vistos por ellos.  Estos keyframes y puntos del mapa serán modificados por el BA.
      * Finalmente crea un vector de keyframes fijos (no afectados por el BA), con los otros keyframes que también observan esos puntos.
      * Con estos datos ejecuta un BA usando g2o.
@@ -97,19 +118,64 @@ public:
      *
      * El optimizador se arma así:
      *
-    		typedef BlockSolver< BlockSolverTraits< Eigen::Dynamic, Eigen::Dynamic > > BlockSolverX;
         	g2o::SparseOptimizer optimizer;
         	optimizer.setAlgorithm(
         		new g2o::OptimizationAlgorithmLevenberg(
-        			new g2o::BlockSolverX(
-        				new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>()
+        			new g2o::BlockSolver_6_3(
+        				new g2o::LinearSolverEigen<g2o::BlockSolver_6_3::PoseMatrixType>()
         			)
         		)
         	);
 
-     * PoseMatrixType es MatrixXD, es decir de elementos double y dimensiones por definir.
-     * Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de n dimensiones
-     * y puntos de m dimensiones, usando Cholesky espaciado de la librería Eigen.
+     * BlockSolver_6_3::PoseMatrixType es MatrixXD ?, es decir de elementos double y dimensiones por definir.
+     * Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque de ejes que unen poses de 6 dimensiones
+     * y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen.
+     *
+     * Las poses de los keyframes y las posiciones de los puntos 3D constituyen los vértices:
+     *
+			g2o::VertexSE3Expmap * vSE3 = new g2o::VertexSE3Expmap();
+			vSE3->setEstimate(Converter::toSE3Quat(pKF->GetPose()));
+        	vSE3->setId(id del vertex);
+        	vSE3->setFixed(true o false);
+			optimizer.addVertex(vSE3);
+
+			g2o::VertexSBAPointXYZ* vPoint = new g2o::VertexSBAPointXYZ();
+        	vPoint->setEstimate(Converter::toVector3d(pMP->GetWorldPos()));
+        	vPoint->setId(id del vertex);
+        	vPoint->setMarginalized(true);
+        	optimizer.addVertex(vPoint);
+     *
+     * Las poses de los keyframes se expresan como g2o::VertexSE3Expmap, mapas exponenciales del grupo de simetría del espacio euclideano de 3 dimensiones (que tiene 6 grados de libertad).
+     * Se fijan las poses de los keyframes que observan a los puntos locales, sin pertenecer al grafo de covisibilidad.
+     *
+     * Las poses d elos puntos se expresan como g2o::VertexSBAPointXYZ, puntos xyz para BA espaciado.
+     *
+     * Los ejes que proyectan uno al otro son g2o::EdgeSE3ProjectXYZ;
+     *
+     * Los ejes unen keyframes con puntos, un eje para cada observación de cada punto:
+     *
+			g2o::EdgeSE3ProjectXYZ* e = new g2o::EdgeSE3ProjectXYZ();
+            e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(id del vertex KeyFrame)));
+            e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(id del vertex MapPoint)));
+            e->setMeasurement(coordenadas del punto singular);
+            e->setInformation(Eigen::Matrix2d::Identity()*invSigma2);	// invSigma2 correspondiente a la observación de ese punto en ese keyframe
+            e->setRobustKernel(new g2o::RobustKernelHuber);
+            rk->setDelta(sqrt(5.991));
+
+            e->fx = pKFi->fx;
+            e->fy = pKFi->fy;
+            e->cx = pKFi->cx;
+            e->cy = pKFi->cy;
+
+            optimizer.addEdge(e);
+
+     * La matriz de información es la identidad (2x2) multiplicada por invSigma2,
+     * la inversa cuadrada del factor de escala que corresponde al nivel de pirámide en el que se observó el punto.
+     * Esto significa que a mayor nivel de la pirámide, más difusa es la posición del punto.
+     *
+     * Aplica a la observación del punto (el punto singular 2D).
+     *
+     * El factor de escala se aplica a las coordenadas en píxeles: un factor de escala 1,2 significa un error de 1,2 píxeles en la medición.
      *
      */
     void static LocalBundleAdjustment(KeyFrame* pKF, bool *pbStopFlag, Map *pMap);
@@ -199,14 +265,15 @@ public:
 
 
 
-    /** Determina la transformación sim3 entre dos keyframes, que mejor explica un macheo.
+    /**
+     * Determina la transformación sim3 (espacio de transformaciones de similaridad, de 7 dimensiones) entre dos keyframes, que mejor explica un macheo.
      * Dados dos keyframes que presumiblemente observan lo mismmo y son candidatos a cierre de bucle,
      * y dada una serie de puntos macheados observados por ambos keyframes,
      * OptimizeSim3() calcula la transformación de similaridad sim3 que compatibiliza ambas visualizaciones y permite cerrar el bucle.
      *
      * ESte método se invoca exclusivamente desde LoopClosing::ComputeSim3().
      *
-     * El optimizador se arma así, idéntico al de LocalBundleAdjustment:
+     * El optimizador se arma así:
      *
         g2o::SparseOptimizer optimizer;
         optimizer.setAlgorithm(
@@ -218,6 +285,11 @@ public:
         );
 
      *
+     * Las poses son g2o::VertexSim3Expmap en lugar de VertexSE3Expmap.
+     *
+     * Las posiciones de los puntos son g2o::VertexSBAPointXYZ, como en todos los BA.
+     *
+     * Los ejes van de a pares, en ambos sentidos, y son de tipos g2o::EdgeSim3ProjectXYZ y g2o::EdgeInverseSim3ProjectXYZ.
      */
     // if bFixScale is true, optimize SE3 (stereo,rgbd), Sim3 otherwise (mono)
     static int OptimizeSim3(KeyFrame* pKF1, KeyFrame* pKF2, std::vector<MapPoint *> &vpMatches1,

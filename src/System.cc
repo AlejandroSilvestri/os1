@@ -18,8 +18,6 @@
 * along with ORB-SLAM2. If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-
 #include "System.h"
 #include "Converter.h"
 
@@ -40,13 +38,6 @@
 namespace ORB_SLAM2
 {
 
-/**
- * Constructor único, con argumentos obligatorios.
- * @param strVocFile ruta al archivo vocabulario ORB BOW a cargar.
- * @param strSettingsFile ruta al archivo de configuración, que contiene los parámetros instrínsecos y coeficientes de la cámara.
- * @param eSensor modo de operación: mono, estéreo, rgbd.
- * @param bUseViewer indica si activar o no el visor (la gui).
- */
 System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer, cv::VideoCapture* video_)
 				:video(video_), mSensor(sensor),mbReset(false),mbActivateLocalizationMode(false),
         mbDeactivateLocalizationMode(false)
@@ -120,20 +111,9 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
 
 /**
- * Envoltorio del método principal, invocado repetidamente por el bucle principal, una vez por cada imagen del sensor.
- * Chequea variables de estado que reflejan comandos de la gui.
- * Finalmente invoca el método principal: Tracking::GrabImageMonocular
- * @param im imagen a procesar
- * @param timestamp para registro de tiempos
  */
 cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
 {
-    /*if(mSensor!=MONOCULAR)
-    {
-        cerr << "ERROR: you called TrackMonocular but input sensor was not set to Monocular." << endl;
-        exit(-1);
-    }*/
-
     // Check mode change
     {
         unique_lock<mutex> lock(mMutexMode);

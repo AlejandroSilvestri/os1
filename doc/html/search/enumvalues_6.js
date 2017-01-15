@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['idf',['IDF',['../namespace_d_bo_w2.html#a5de5c8a307aca9a84ffefda2a9bc467aa5a1c1f7cd866c8bea4551e296298c3bc',1,'DBoW2']]]
+  ['system_5fnot_5fready',['SYSTEM_NOT_READY',['../class_o_r_b___s_l_a_m2_1_1_tracking.html#a3995b5e23b910c6ee30b7fe21732fe36a95b60cb653a85df000eb93e0c3f00ea0',1,'ORB_SLAM2::Tracking']]]
 ];

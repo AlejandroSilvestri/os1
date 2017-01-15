@@ -9,7 +9,7 @@ var class_o_r_b___s_l_a_m2_1_1_frame =
     [ "ComputeImageBounds", "class_o_r_b___s_l_a_m2_1_1_frame.html#a420f0369833f856df1973410ea39b335", null ],
     [ "ExtractORB", "class_o_r_b___s_l_a_m2_1_1_frame.html#a626aef981e9fd9caff63bf93f1abf47f", null ],
     [ "GetCameraCenter", "class_o_r_b___s_l_a_m2_1_1_frame.html#a48c8983df3a521ed7439d9654b28e390", null ],
-    [ "GetFeaturesInArea", "class_o_r_b___s_l_a_m2_1_1_frame.html#a922a340f438ed0ddd2d7d2a9f95872b6", null ],
+    [ "GetFeaturesInArea", "class_o_r_b___s_l_a_m2_1_1_frame.html#aff6a8f8f3d4898cc3099d67dc64009af", null ],
     [ "GetRotationInverse", "class_o_r_b___s_l_a_m2_1_1_frame.html#a96ec2c272f2ecea3f94b8472add80478", null ],
     [ "isInFrustum", "class_o_r_b___s_l_a_m2_1_1_frame.html#a0929e100e3380dba1baba12dfa8904c4", null ],
     [ "PosInGrid", "class_o_r_b___s_l_a_m2_1_1_frame.html#ae2bc4b1482d2010511da5423d298c9bd", null ],

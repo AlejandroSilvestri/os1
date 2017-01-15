@@ -3,7 +3,7 @@ var class_o_r_b___s_l_a_m2_1_1_frame_drawer =
     [ "FrameDrawer", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add0e1c3734c200a959d8ed9f225223db", null ],
     [ "DrawFrame", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af9f237399942a23a5f28a5031559cae3", null ],
     [ "DrawTextInfo", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a059f66cfb0702264c788a79313ec3630", null ],
-    [ "onMouse", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#abb8a82a9c5b293f799691ec1ddc15f27", null ],
+    [ "onMouse", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a49ad02d8f3a83ba0a159137ca31bd5e3", null ],
     [ "Update", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964", null ],
     [ "cameraPos", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a85e7dde30a77fec3380f1907468aa875", null ],
     [ "cameraPosDraw", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af871f136e05f9214ff480b9f264ceccd", null ],

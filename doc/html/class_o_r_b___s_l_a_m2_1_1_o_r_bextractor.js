@@ -7,7 +7,7 @@ var class_o_r_b___s_l_a_m2_1_1_o_r_bextractor =
     [ "ComputeKeyPointsOctTree", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a9a543d9b2aec1e521058ee9522937adc", null ],
     [ "ComputeKeyPointsOld", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a56890a2032077fbfdf48687786985548", null ],
     [ "ComputePyramid", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a058f24d80bb0b2c7d6fc0bdd3d9144d1", null ],
-    [ "DistributeOctTree", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#ac6b7b27447324af33fa60d6dc0c8ffa0", null ],
+    [ "DistributeOctTree", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#ad09ca8553b974ee32a3a5e89f8622dec", null ],
     [ "GetInverseScaleFactors", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#aa56b36e338372ec7cba3945c9194da4a", null ],
     [ "GetInverseScaleSigmaSquares", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a1ddabdd67709d7df17000cc2966c47c7", null ],
     [ "GetLevels", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#abaad86a9c65eed8a2f8af9604b1a53ee", null ],
