@@ -34,6 +34,10 @@ namespace ORB_SLAM2
 
 long unsigned int KeyFrame::nNextId=0;
 
+bool KeyFrame::validarErrorReproyeccion(cv::Mat x3Dt) {
+	return computarErrorReproyeccion(x3Dt) <= 5.991 * mvLevelSigma2[kp.octave];
+}
+
 KeyFrame::KeyFrame(Frame &F, Map *pMap, KeyFrameDatabase *pKFDB):
     mnFrameId(F.mnId),  mTimeStamp(F.mTimeStamp), mnGridCols(FRAME_GRID_COLS), mnGridRows(FRAME_GRID_ROWS),
     mfGridElementWidthInv(F.mfGridElementWidthInv), mfGridElementHeightInv(F.mfGridElementHeightInv),
@@ -85,9 +89,15 @@ void KeyFrame::SetPose(const cv::Mat &Tcw_)
 {
     unique_lock<mutex> lock(mMutexPose);
     Tcw_.copyTo(Tcw);
+    /*
     cv::Mat Rcw = Tcw.rowRange(0,3).colRange(0,3);
     cv::Mat tcw = Tcw.rowRange(0,3).col(3);
     cv::Mat Rwc = Rcw.t();
+    */
+    Rcw = Tcw.rowRange(0,3).colRange(0,3).clone();
+    tcw = Tcw.rowRange(0,3).col(3).clone();
+    Rwc = Rcw.t();
+
     Ow = -Rwc*tcw;
 
     Twc = cv::Mat::eye(4,4,Tcw.type());
@@ -695,5 +705,31 @@ float KeyFrame::ComputeSceneMedianDepth(const int q)
     return vDepths[(vDepths.size()-1)/q];
 }
 
+cv::Mat KeyFrame::computarRayo(int indice){
+	// Código extraído de LocalMapping::CreateNewMapPoints
+    kp = mvKeysUn[indice];
+    xn = (cv::Mat_<float>(3,1) << (kp.pt.x-cx)*invfx, (kp.pt.y-cy)*invfy, 1.0);
+    rayo = Rwc * xn;
+    rayo = rayo/norm(rayo);
+
+    cv::Mat A = cv::Mat_<float>(2,4);
+    A.row(0) = xn.at<float>(0)*Tcw.row(2)-Tcw.row(0);
+    A.row(1) = xn.at<float>(1)*Tcw.row(2)-Tcw.row(1);
+
+    return rayo;
+}
+
+float KeyFrame::computarErrorReproyeccion(cv::Mat x3Dt){
+    const float x1 = Rcw.row(0).dot(x3Dt)+tcw.at<float>(0);
+    const float y1 = Rcw.row(1).dot(x3Dt)+tcw.at<float>(1);
+    const float invz1 = 1.0/z;
+
+	float u1 = fx*x1*invz1+cx;
+	float v1 = fy*y1*invz1+cy;
+	float errX1 = u1 - kp.pt.x;
+	float errY1 = v1 - kp.pt.y;
+
+	return errX1*errX1+errY1*errY1;
+}
 
 } //namespace ORB_SLAM

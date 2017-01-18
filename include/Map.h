@@ -84,7 +84,8 @@ public:
     void EraseKeyFrame(KeyFrame* pKF);
 
     /** Agrega un punto al conjunto de puntos de referencia.
-     * Esta función se invoca exclusivamente desde Tracing::UpdateReference(), para registrar aquí los puntos del mapa local.
+     * Esta función se invoca exclusivamente desde Tracing::UpdateReference(), para registrar aquí los puntos del mapa local,
+     * solamente para su visualización.
      */
     void SetReferenceMapPoints(const std::vector<MapPoint*> &vpMPs);
 

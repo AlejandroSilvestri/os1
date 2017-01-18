@@ -93,22 +93,24 @@ class Frame;
  *
  * La siguiente secuencia de métodos corresponden a un único algoritmo que podría estar en una única función:
  *
- * - GrabImageMonocular: recibe la imagen y la convierte a grises
- *  - Track: ejecuta el autómata finito:
- *    - MonocularInitialization: busca maches para triangular con PnP
- *      - CreateInitialMapMonocular: crea el mapa inicial con los puntos triangulados
- *    - TrackWithMotionModel: tracking normal, busca macheos según el modelo de movimiento
- *    - UpdateLastFrame: trivial
- *    - TrackLocalMap: agrega puntos nuevos al mapa local
- *      - SearchLocalPoints: actualiza la "visibilidad" (el conteo de vistas) de los puntos, y filtra puntos que ya están en el mapa
- *      - UpdateLocalMap: actualiza el mapa local: puntos y keyframes
- *        - UpdateLocalMapPoints: actualiza el mapa local con los puntos nuevos
- *        - UpdateLocalKeyFrames: actualiza los keyframes locales con los puntos nuevos
- *    - NeedNewKeyFrame: evalúa si hace falta un nuevo keyframe
- *    - CreateNewKeyFrame: crea y registra un nuevo keyframe a partir del frame actual
- *    - TrackReferenceKeyFrame: tracking alternativo, basado en BoW, para cuando falla el tracking normal
- *    - CheckReplacedInLastFrame: actualiza puntos en lastKeyFrame que pudieron haber cambiado por BA, culling u otros motivos
- *    - Relocalization: se invoca si el sistema perdió tracking
+ * - Tracking::GrabImageMonocular: recibe la imagen y la convierte a grises
+ *  - Tracking::Track: ejecuta el autómata finito:
+ *    - Tracking::MonocularInitialization: busca maches para triangular con PnP
+ *      - Tracking::CreateInitialMapMonocular: crea el mapa inicial con los puntos triangulados
+ *    - Tracking::TrackWithMotionModel: tracking normal, busca macheos según el modelo de movimiento
+ *      - Invoca Optimizer::PoseOptimization para obtener la primera estimación de pose del cuadro actual
+ *    - Tracking::UpdateLastFrame: trivial
+ *    - Tracking::TrackLocalMap: busca puntos no encontrados con el modelo de movimiento
+ *      - Tracking::UpdateLocalMap: genera el mapa local: puntos y keyframes
+ *        - Tracking::UpdateLocalKeyFrames: genera el mapa local de keyframes
+ *        - Tracking::UpdateLocalMapPoints: genera el mapa local con los puntos observados por los keyframes del mapa local
+ *      - Tracking::SearchLocalPoints: actualiza la "visibilidad" (el conteo de vistas) de los puntos, y filtra puntos que ya están en el mapa
+ *      - Optimizer::PoseOptimization refina la pose
+ *    - Tracking::NeedNewKeyFrame: evalúa si hace falta un nuevo keyframe
+ *    - Tracking::CreateNewKeyFrame: crea y registra un nuevo keyframe a partir del frame actual
+ *    - Tracking::TrackReferenceKeyFrame: tracking alternativo, basado en BoW, para cuando falla el tracking normal
+ *    - Tracking::CheckReplacedInLastFrame: actualiza puntos en lastKeyFrame que pudieron haber cambiado por BA, culling u otros motivos
+ *    - Tracking::Relocalization: se invoca si el sistema perdió tracking
  *
  */
 class Tracking
@@ -403,25 +405,35 @@ protected:
 
     /**
      * Actualiza los puntos y keyframes en el mapa local.
-     * Invoca los métodos UpdateLocalKeyFrames y UpdateLocalPoints.
+     * Invoca los métodos Tracking::UpdateLocalKeyFrames y Tracking::UpdateLocalPoints.
      * Estos métodos sólo se invocan desde aquí, podrían ser parte de UpdateLocalMap.
-     * Invocada sólo desde TrackLocalMap
+     *
+     * Invocada sólo desde Tracking::TrackLocalMap.
      */
     void UpdateLocalMap();
 
     /**
      * Rehace la lista de puntos del mapa local.
-     * La lista de puntos es mvpLocalMapPoints.
-     * Recorre la lista de keyframes mvpLocalKeyFrames para recorrer sus puntos obtenidos con GetMapPointMatches().
-     * Luego de un proceso de descarte, suma el punto a la lista.
-     * Queda por interpretar los criterios de descartes.
      *
-     * Primero se invoca UpdateReferenceKeyFrames, que obtiene una versión ampliada de los keyframes que observan los puntos del mapa local,
-     * y luego se invoca UpdateReferencePoints, que obtiene la lista de puntos observador por esos KeyFrames, ampliando el mapa local.
+     * La lista de puntos es Tracking::mvpLocalMapPoints.
      *
-     * Invocada sólo desde UpdateLocalMap
+     * Recorre la lista de keyframes Tracking::mvpLocalKeyFrames para recorrer sus puntos obtenidos con KeyFrame::GetMapPointMatches().
+     *
+     * Marca los puntos agregados para no volverlos a agregar, asegurando que no habrá repeticiones.
+     *
+     * Invocado sólo desde Tracking::UpdateLocalMap.
      */
     void UpdateLocalPoints();
+
+    /**
+     * Reconstruye el mapa local de keyframes.
+     *
+     * Reconstruye Tracking::mvpLocalKeyFrames, la lista de keyframes que observan los puntos rastreados, y sus vecinos.
+     *
+     * De este modo genera el mapa local.
+     *
+     * Invocado sólo desde Tracking::UpdateLocalMap.
+     */
     void UpdateLocalKeyFrames();
 
 

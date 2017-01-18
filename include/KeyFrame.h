@@ -108,6 +108,11 @@ public:
      * - tcw
      * - Ow
      *
+     * Invocado sólo desde:
+     * - constructor
+     * - optimizaciones y correcciones de pose (BA, cierre de bucle)
+     * - al crear el mapa inicial
+     *
      */
     void SetPose(const cv::Mat &Tcw);
 
@@ -424,7 +429,7 @@ public:
     /**
      * Consulta la marca mbBad.
      * true si es malo.
-     * Cuando el keyframe es malo, se lo ignora sin excepciones en todo orb-slam2.
+     * Cuando el keyframe es malo, se lo ignora sin excepciones en orb-slam2.
      * Equivaldría a eliminar la instancia, pero eso puede romper algún puntero efímero.
      * La serialización es un buen momento para quitar los malos.
      *
@@ -475,11 +480,55 @@ public:
     }
 
     /**
-     * Reconstruye MapPoint::mObservations y MapPoint::mObs a partir de KeyFrame::mvpMapPoints
+     * Reconstruye MapPoint::mObservations y MapPoint::mObs a partir de KeyFrame::mvpMapPoints, en la carga (serialización).
      */
     void buildObservations();
 
+    // Triangulación: métodos para triangulación de puntos y propiedades efímeras
 
+    /**
+     * Calcula el rayo de proyección de un punto singular, y otros datos de interés para la triangulación, que se guardan en propiedades efímeras.
+     *
+     * Lo presenta como versor, convenientemente normalizado para hacer un producto escalar con otro y obtener el coseno del ángulo.
+     *
+     * @param indice Índice del vector de puntos singulares KeyFrame::mvKeysUn
+     * @returns Mat 3x1 con el versor del rayo de proyección del punto singular indicado por el índice.
+     *
+     *
+     */
+    cv::Mat computarRayo(int indice);
+
+    /**
+     * Calcula la distancia del punto 3D al centro de la cámara.
+     */
+    inline float distancia(cv::Mat punto3D){
+    	return norm(punto3D-Ow);
+    }
+
+    /**
+     * Coordenada z del punto, en el sistema de referencia de la cámara.
+     */
+    inline float computarZ(cv::Mat x3Dt){
+        z = Rcw.row(2).dot(x3Dt)+tcw.at<float>(2);
+        return z;
+    }
+    /**
+     * @returns El error de reproyección al cuadrado.
+     *
+     * Utiliza parámetros efímeros de triangulación.
+     */
+    float computarErrorReproyeccion(cv::Mat x3Dt);
+
+    /**
+     * @returns true si el error es aceptable.
+     */
+	bool validarErrorReproyeccion(cv::Mat x3Dt);
+
+    // Propiedades efímeras, usadas durante la triangulación, y su mutex
+    cv::Mat Rcw, Rwc, tcw, xn, rayo, A;
+    cv::KeyPoint kp;
+    float z;
+    std::mutex mMutexTriangulacion;
 
     // The following variables are accesed from only 1 thread or never change (no mutex needed).
 public:

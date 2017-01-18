@@ -298,9 +298,14 @@ public:
 
     /**
      * Coseno de triangulación.
+     * Efímero.
+     * Frame::IsInFustrum lo registra, ORBmatcher::SearchByProjection lo consume.
      */
     float mTrackViewCos;
+
     /**
+     * Registra el id del último cuadro que incorporó a este punto en su mapa local.
+     *
      * Variable utilizada en Tracking::UpdateLocalPoints.
      *
      * Se inicializa en 0 en el constructor, y se escribe y lee sólo en Tracking::UpdateLocalPoints.
@@ -308,6 +313,7 @@ public:
      *
      */
     long unsigned int mnTrackReferenceForFrame;
+
     /**
      * Registra el id del último frame que observó el punto.
      *
@@ -316,6 +322,7 @@ public:
      * No es necesario serializar, el constructor lo inicializa en cero.
      */
     long unsigned int mnLastFrameSeen;
+
     ///@}
     //@}
     ///@{
@@ -361,6 +368,12 @@ public:
     // Puntos lejanos
 
     /**
+     * Sobre puntos lejanos
+     *
+     * Las propiedades de puntos lejanos tienen el prefijo pl.
+     *
+     * Los puntos normales o normalizados tienen plLejano = cercano.
+     * Los puntos normales desde su origen tienen plLejano = cercano, plCandidato = false y plOrigen = normal.
      * Marca que distingue el punto lejano.
      * Principalmente para limitar el mapa de covisibilidad, y quizás el bundle adjustment.
      * 0. normal
@@ -368,8 +381,57 @@ public:
      * 2. muy lejano por COS
      * 3. muy lejano por SVD
      */
-    int puntoLejano = 0;
 
+	/**
+	 * true si es candidato a punto lejano.
+	 * No se debe considerar en PoseOptimization ni extender el grafo de covisibilidad.
+	 */
+	bool plCandidato = false;
+
+	/**
+	 * Clasificación del punto:
+	 * - cercano para los puntos estándares de orb-slam2
+	 * - lejano para los puntos triangulados con poco paralaje
+	 * - muy lejano para los puntos en el infinito
+	 */
+	enum lejania {
+		cercano,	// 0, no lejano
+		lejano,
+		muyLejano
+	};
+	lejania plLejano = cercano;
+
+	/**
+	 * Método de triangulación del punto candidato:
+	 * - na No Aplica
+	 * - umbralCosBajo para triangulaciones ordinarias interceptadas en un umbral ad hoc
+	 * - umbralCos para triangulaciones con cos de paralaje superior a 0.9998.  Se envían al infinito.
+	 * - svdInf para infinitos según SVD
+	 */
+	enum origen {normal, umbralCosBajo, umbralCos, svdInf};
+	origen plOrigen = normal;
+
+	/**
+	 * Método que confirmó el punto candidato (dejó de ser candidato):
+	 * - na No Aplica, puntos no cofirmados.
+	 * - tiangulacionLejanaSinParalaje: triangulación con keyframes no vecinos, sin paralaje, envía el punto al infinito
+	 * - triangulacionLejana: triangulación con keyframes no vecinos, con paralaje, le da coordenadas al punto
+	 * - localBA: Optimizer::LocalBundleAdjustment le dio coordenadas al punto candidato
+	 * - observacionParalaje: detección de paralaje cuando se agrega una observación con MapPoint::AddObservation: paralaje en keyframes vecinos.
+	 * - retriangulación: LocalMapping::CreateNewMapPoints le dio coordenadas al punto candidato, por retriangulación
+	 */
+	enum confirmacion {na, tiangulacionLejanaSinParalaje, triangulacionLejana, localBA, observacionParalaje, retriangulacion};
+	confirmacion plConfirmacion = na;
+
+	/**
+	 * Registra el cos del paralaje cuando se crea el punto.
+	 */
+	float plCosOrigen;
+
+	/**
+	 * Menos coseno (mayor paralaje) obtenido luego de varias observaciones.
+	 */
+	float plCosMenor;
 
 
 protected:    

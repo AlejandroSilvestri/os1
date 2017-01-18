@@ -240,7 +240,7 @@ int Optimizer::PoseOptimization(Frame *pFrame)
     for(int i=0; i<N; i++)
     {
         MapPoint* pMP = pFrame->mvpMapPoints[i];
-        if(pMP)
+        if(pMP && !pMP->plCandidato && !pMP->isBad())	// excluir puntos candidatos
         {
 			nInitialCorrespondences++;
 			pFrame->mvbOutlier[i] = false;

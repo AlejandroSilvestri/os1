@@ -82,7 +82,7 @@ void MapDrawer::DrawMapPoints(bool color){
 			glp.r = rgb[2];
 			glp.g = rgb[1];
 			glp.b = rgb[0];
-        } else if(punto->puntoLejano){
+        } else if(punto->plCandidato){
         	// Punto lejano
         	cv::Scalar color = punto->color();
 			glp.r = color[2];

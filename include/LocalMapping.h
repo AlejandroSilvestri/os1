@@ -189,6 +189,13 @@ public:
      */
     int param = 1000;
 
+    /**
+     * Marca que activa la creación de puntos lejanos.
+     *
+     * Controlada desde Viewer, por el usuario.
+     */
+    bool creacionDePuntosLejanosActivada = false;
+
 protected:
 
     /**

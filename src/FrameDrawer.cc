@@ -85,7 +85,6 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
             vbVO = mvbVO;
             vbMap = mvbMap;
             obs = observaciones;
-            //esPL = esPuntoLejano;
             mapPoints = mvpMapPoints;
         }
         else if(mState==Tracking::LOST)
@@ -224,7 +223,6 @@ void FrameDrawer::Update(Tracking *pTracker)
     N = mvCurrentKeys.size();
     mvbVO = vector<bool>(N,false);
     mvbMap = vector<bool>(N,false);
-    //esPuntoLejano = vector<int>(N,false);
     mbOnlyTracking = pTracker->mbOnlyTracking;
     mvpMapPoints = pTracker->mCurrentFrame.mvpMapPoints;
 
@@ -254,7 +252,6 @@ void FrameDrawer::Update(Tracking *pTracker)
                         mvbVO[i]=true;
 
                     observaciones[i] = pMP->Observations();
-                    //esPuntoLejano[i] = pMP->puntoLejano;
                 }
             }
         }
@@ -289,10 +286,16 @@ void FrameDrawer::onMouse( int event, int X, int Y, int, void* frameDrawer){
 					 cv::Mat pos = pMP->GetWorldPos();
 					 float distancia = cv::norm(pos - pFD->cameraPosDraw);
 					 cout << "Id:"			<< pMP->mnId
-						  << ", PL:"		<< pMP->puntoLejano
 						  << ", distancia:"	<< distancia
 						  << ", pt:"		<< pt
 						  << ", pos:"		<< pos.t() << endl;
+					 if(pMP->plCandidato)
+						 cout << "candidato, lejano:" << pMP->plLejano
+						 	  << "origen:" << pMP->plOrigen
+						 	  << ", cos:" << pMP->plCosOrigen
+						 	  << endl;
+					 else if(pMP->plConfirmacion)
+						 cout << "confirmación:" << pMP->plConfirmacion << endl;
 				 }
 			 }
 		 }

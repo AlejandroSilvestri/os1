@@ -948,14 +948,14 @@ void Tracking::UpdateLocalPoints()
         for(vector<MapPoint*>::const_iterator itMP=vpMPs.begin(), itEndMP=vpMPs.end(); itMP!=itEndMP; itMP++)
         {
             MapPoint* pMP = *itMP;
-            if(!pMP)
+            /*if(!pMP)
                 continue;
-            if(pMP->mnTrackReferenceForFrame==mCurrentFrame.mnId)
+            if(pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId)
                 continue;
-            if(!pMP->isBad())
-            {
+            if(!pMP->isBad())*/
+            if(pMP && pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId && !pMP->isBad()){
                 mvpLocalMapPoints.push_back(pMP);
-                pMP->mnTrackReferenceForFrame=mCurrentFrame.mnId;
+                pMP->mnTrackReferenceForFrame = mCurrentFrame.mnId;
             }
         }
     }

@@ -186,7 +186,7 @@ public:
      * Además reduce el esfuerzo de macheo comparando por BoW antes de calcular distancias de descriptores.
      *
      * @param pKF1 Keyframe actual.
-     * @param pKF2 Keyframe vecino.
+     * @param pKF2 Keyframe vecino, anterior a pKF1.
      * @param F12 Matriz fundamental de pKF1 respecto de pKF2.
      * @param vMatchedPairs Resultado del algoritmo, los pares macheados.  Si tenía algo, lo borra.
      * @param bOnlyStereo Flag que indica si sólo se procesa para estéreo.
@@ -196,7 +196,7 @@ public:
      */
     // Matching to triangulate new MapPoints. Check Epipolar Constraint.
     int SearchForTriangulation(KeyFrame *pKF1, KeyFrame* pKF2, cv::Mat F12,
-                               std::vector<pair<size_t, size_t> > &vMatchedPairs, const bool bOnlyStereo);
+                               std::vector<pair<size_t, size_t> > &vMatchedPairs);//, const bool bOnlyStereo);
 
     /**
      * Compara dos keyframes candidatos al cierre de bucle.

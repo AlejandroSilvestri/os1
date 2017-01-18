@@ -76,11 +76,12 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
         nObs++;
     }
 
-    // Si es punto lejano, medir la apertura para ver si deja de serlo
-    if(puntoLejano){
+    // Si es punto lejano candidato, medir la apertura para ver si deja de serlo
+    if(plCandidato && pKF != mpRefKF){
     	// Copiado de LocalMapping::CreateNewMapPoints
 
-        const float &cx1 = pKF->cx;
+        /*
+    	const float &cx1 = pKF->cx;
         const float &cy1 = pKF->cy;
         const float &invfx1 = pKF->invfx;
         const float &invfy1 = pKF->invfy;
@@ -105,15 +106,31 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
         cv::Mat ray2 = Rwc2*xn2;
 
         const float cosParallaxRays = ray1.dot(ray2)/(cv::norm(ray1)*cv::norm(ray2));
+         */
+    	float cosParallaxRays;
+    	{
+			//cout << "AddObservation lock" << endl;
+			unique_lock<mutex> lock(pKF->mMutexTriangulacion);
+			cv::Mat ray1 = pKF->computarRayo(idx);
+			unique_lock<mutex> lock2(mpRefKF->mMutexTriangulacion);
+			cv::Mat ray2 = mpRefKF->computarRayo(mObservations[mpRefKF]);
+			cosParallaxRays = ray1.dot(ray2);
+			//cout << "AddObservation lock terminado" << endl;
+		}
 
         if(cosParallaxRays<0.998){
-        	// No debería llegar acá a menos que puntoLejano == 1, pero llega == 2.
-        	if(puntoLejano == 1)
-        		// Punto lejano con suficiente paralaje, se convierte en normal.
-        		puntoLejano = 0;
-        	else{
+			plCandidato = false;
+			plConfirmacion = observacionParalaje;
+        	if(plOrigen == umbralCosBajo){
+        		// Punto lejano con suficiente paralaje, se convierte en normal.  BA se encargará de corregirlo.
+        		plLejano = cercano;
+        	}/*else{
         		// Punto muy lejano!
-        		cout << "Retriangulando punto lejano " << puntoLejano;
+        		cout << "AddObservation: Retriangulando punto lejano " << plLejano << ", cos:" << cosParallaxRays;
+
+        		// Retriangular
+
+
         		if(esQInf()){
         			// Punto muy lejano, al infinito, ¡con paralaje!  ¿Cómo lo macheó?  ¿Por qué no lo acercó?
         			cout << " es QInf!! mp:" << mnId << ", kf:" << pKF->mnId << ", idx:" << idx << ", pos:" << mWorldPos.t() << endl;
@@ -121,10 +138,10 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
         		}else{
         			// Punto muy lejano que se acercó por BA, y con suficiente paralaje, se convierte en normal.
         			cout << " no es QInf, se normaliza." << endl;
-            		puntoLejano = 0;
+            		plCandidato = false;
+            		plLejano = cercano;
         		}
-
-        	}
+        	}*/
         }
     }
 }
@@ -411,11 +428,20 @@ int MapPoint::PredictScale(const float &currentDist, const float &logScaleFactor
 
 
 cv::Scalar MapPoint::color(){
-	return
-	puntoLejano == 0? cv::Scalar(0,255,32*(nObs-3)):	// Punto del mapa amarillo verdeando con las observaciones
-	puntoLejano == 1? cv::Scalar(255,255,32*(nObs-3)) :	// Punto lejano triangulado
-	puntoLejano == 2? cv::Scalar(255,0,255 * esQInf()) :	// Punto muy lejano COS
-					  cv::Scalar(0,0,255);	// Punto muy lejano SVD
+
+	switch(plOrigen){
+	case normal:
+		return cv::Scalar(  0, 255, 32*(nObs-3));	// Punto del mapa amarillo verdeando con las observaciones
+
+	case umbralCosBajo:
+		return cv::Scalar(255, 255, 32*(nObs-3));	// Punto lejano triangulado
+
+	case umbralCos:
+		return cv::Scalar(255,   0, 255 * esQInf());	// Punto muy lejano COS
+
+	default:	//case svdInf:
+		return cv::Scalar(  0,   0, 255);	// Punto muy lejano SVD
+	}
 }
 
 bool MapPoint::esQInf(){
