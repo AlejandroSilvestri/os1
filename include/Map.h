@@ -123,7 +123,16 @@ public:
 	 */
     vector<KeyFrame*> mvpKeyFrameOrigins;
 
-    /** Mutex para actualización del mapa.*/
+    /**
+     * Mutex para actualización del mapa.
+     *
+     * Todos los procesos de alto nivel que devienen en modificaciones al mapa usan este mutex.
+     * - Tracking::Track se ejecuta completo con este mutex.
+     * - LoopClosing::CorrectLoop esa este mutex cuando detectó el bucle y está por proceder a la corrección del mapa
+     * - Optimizer::LocalBundleAdjustment usa este mutex.
+     * - ...
+     *
+     */
     std::mutex mMutexMapUpdate;
 
     /** Mutex para agregado de nuevos puntos al mapa.*/

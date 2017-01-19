@@ -233,7 +233,7 @@ void Viewer::Run(){
 		case 'l':
 			bool &activado = mpSystem->mpLocalMapper->creacionDePuntosLejanosActivada;
 			activado = !activado;
-			cout << "Puntos lejanos:" << activado;
+			cout << "Puntos lejanos:" << activado << endl;
 			break;
         }
 

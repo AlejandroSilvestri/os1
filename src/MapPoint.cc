@@ -20,6 +20,7 @@
 
 #include "MapPoint.h"
 #include "ORBmatcher.h"
+#include "KeyFrameTriangulacion.h"
 
 #include<mutex>
 
@@ -75,7 +76,7 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
         mObservations[pKF]=idx;
         nObs++;
     }
-
+    return;
     // Si es punto lejano candidato, medir la apertura para ver si deja de serlo
     if(plCandidato && pKF != mpRefKF){
     	// Copiado de LocalMapping::CreateNewMapPoints
@@ -108,18 +109,23 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
         const float cosParallaxRays = ray1.dot(ray2)/(cv::norm(ray1)*cv::norm(ray2));
          */
     	float cosParallaxRays;
-    	{
+    	KeyFrameTriangulacion &kft1 = *new KeyFrameTriangulacion(pKF);
+    	KeyFrameTriangulacion &kft2 = *new KeyFrameTriangulacion(mpRefKF);
+		cv::Mat ray1 = kft1.rayo(idx);
+		cv::Mat ray2 = kft2.rayo(mObservations[mpRefKF]);
+		cosParallaxRays = ray1.dot(ray2);
+    	/*{
 			//cout << "AddObservation lock" << endl;
-			unique_lock<mutex> lock(pKF->mMutexTriangulacion);
+			//unique_lock<mutex> lock(pKF->mMutexTriangulacion);
 			cv::Mat ray1 = pKF->computarRayo(idx);
 			unique_lock<mutex> lock2(mpRefKF->mMutexTriangulacion);
 			cv::Mat ray2 = mpRefKF->computarRayo(mObservations[mpRefKF]);
 			cosParallaxRays = ray1.dot(ray2);
 			//cout << "AddObservation lock terminado" << endl;
-		}
+		}*/
 
         if(cosParallaxRays<0.998){
-			plCandidato = false;
+			//plCandidato = false;
 			plConfirmacion = observacionParalaje;
         	if(plOrigen == umbralCosBajo){
         		// Punto lejano con suficiente paralaje, se convierte en normal.  BA se encargará de corregirlo.

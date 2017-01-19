@@ -202,10 +202,10 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
 
     if(mState==NOT_INITIALIZED || mState==NO_IMAGES_YET)
     	// Inicialización, pide el doble de features a través de mpIniORBextractor
-        mCurrentFrame = Frame(mImGray,timestamp,mpIniORBextractor,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+        mCurrentFrame = Frame(mImGray,timestamp,mpIniORBextractor,mpORBVocabulary,mK,mDistCoef,mbf);//,mThDepth);
     else
     	// Tracking y mapping, estado normal, usa ORBextractorLeft (ORBextractorRight se usa solamente en estéreo).
-        mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
+        mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf);//,mThDepth);
 
     Track();
 
@@ -776,9 +776,6 @@ bool Tracking::TrackLocalMap()
                 else
                     mnMatchesInliers++;
             }
-            /*else if(mSensor==System::STEREO)
-                mCurrentFrame.mvpMapPoints[i] = static_cast<MapPoint*>(NULL);*/
-
         }
     }
 
@@ -953,7 +950,8 @@ void Tracking::UpdateLocalPoints()
             if(pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId)
                 continue;
             if(!pMP->isBad())*/
-            if(pMP && pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId && !pMP->isBad()){
+            if(pMP && pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId && !pMP->isBad())
+            {
                 mvpLocalMapPoints.push_back(pMP);
                 pMP->mnTrackReferenceForFrame = mCurrentFrame.mnId;
             }

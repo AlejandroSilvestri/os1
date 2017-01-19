@@ -693,7 +693,7 @@ int ORBmatcher::SearchForTriangulation(KeyFrame *pKF1, KeyFrame *pKF2, cv::Mat F
                 
                 // If there is already a MapPoint skip
                 // Saltear puntos rastreados, excepto si todavía son candidatos.
-                if(pMP1 && !pMP1->plCandidato)
+                if(pMP1)// && !pMP1->plCandidato)
                     continue;
 
                 const cv::KeyPoint &kp1 = pKF1->mvKeysUn[idx1];

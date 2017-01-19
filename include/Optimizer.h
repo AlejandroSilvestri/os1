@@ -57,7 +57,7 @@ public:
      * @param nLoopKF
      * @param bRobust Señal que solicita un evaluador robusto (que admite outliers) en lugar de uno estricto (que asume que todos los puntos son válidos).
 	 *
-	 * Este método se invoca solamente desde GlobalBundleAdjustment.
+	 * Este método se invoca solamente desde Optimizer::GlobalBundleAdjustment.
 	 *
 	 *
 	 * <h3>Funcionamiento</h3>
@@ -85,7 +85,7 @@ public:
 
 
     /**
-     * Ejecuta BundleAdjstment tomando los datos del mapa.
+     * Ejecuta BundleAdjustment sobre todo el mapa.
      * Toma todos los keyframes y todos los puntos del mapa, para ejecutar un BA.
      * @param pMap Mapa, de donde tomar todos los keyframes y los puntos.
      * @param nIterations Cantidad de iteraciones máximas para el BA, pasado tal cual a BundleAdjustment.
@@ -93,7 +93,8 @@ public:
      * @param nLoopKF
      * @param bRobust Señal que solicita un evaluador robusto (que admite outliers) en lugar de uno estricto (que asume que todos los puntos son válidos).
      *
-     * Este método se invoca solamente desde Tracking::createInitialMap al inicio del tracking, cuando el mapa es pequeno.
+     * Este método se invoca solamente desde Tracking::CreateInitialMapMonocular al inicio del tracking, cuando el mapa es pequeno,
+     * y desde LoopClosing::RunGlobalBundleAdjustment para corregir el mapa luego de cerrar un bucle.
      */
     void static GlobalBundleAdjustemnt(Map* pMap, int nIterations=5, bool *pbStopFlag=NULL,
                                        const unsigned long nLoopKF=0, const bool bRobust = true);

@@ -576,23 +576,13 @@ protected:
 
 
 private:
-    //bool ReadCameraCalibration(cv::FileStorage fSettings);
-    bool _Track_full();
-    bool _Track_loc_only();
-
     /**
      * Sólo para estéreo, el código actual no lo usa, sólo se pasa entre constructores a Frame y a KeyFrame.
      */
     // Threshold close/far points
     // Points seen as close by the stereo/RGBD sensor are considered reliable
     // and inserted from just one frame. Far points requiere a match in two keyframes.
-    float mThDepth;
-
-    /**
-     * Sólo para RGB-D
-     */
-    // For RGB-D inputs only. For some datasets (e.g. TUM) the depthmap values are scaled.
-    //float mDepthMapFactor;
+    //float mThDepth;
 
     //Current matches in frame
     int mnMatchesInliers;
