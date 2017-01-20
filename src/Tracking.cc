@@ -950,7 +950,7 @@ void Tracking::UpdateLocalPoints()
             if(pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId)
                 continue;
             if(!pMP->isBad())*/
-            if(pMP && pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId && !pMP->isBad())
+            if(pMP && pMP->mnTrackReferenceForFrame != mCurrentFrame.mnId && !pMP->isBad())
             {
                 mvpLocalMapPoints.push_back(pMP);
                 pMP->mnTrackReferenceForFrame = mCurrentFrame.mnId;

@@ -140,7 +140,7 @@ void LocalMapping::ProcessNewKeyFrame()
 
     for(size_t i=0; i<vpMapPointMatches.size(); i++){
         MapPoint* pMP = vpMapPointMatches[i];
-        if(pMP && !pMP->isBad()){
+        if(pMP && !pMP->isBad() && !pMP->IsInKeyFrame(mpCurrentKeyFrame)){
 			pMP->AddObservation(mpCurrentKeyFrame, i);
 			pMP->UpdateNormalAndDepth();
 			pMP->ComputeDistinctiveDescriptors();
