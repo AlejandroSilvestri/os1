@@ -1,4 +1,0 @@
-<map id="ORB_SLAM2::KeyFrame" name="ORB_SLAM2::KeyFrame">
-<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_key_frame_database.html" title="Lista invertida de KeyFrames, accesible por BoW. " alt="" coords="5,5,231,32"/>
-<area shape="rect" id="node3" href="$class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. " alt="" coords="255,5,389,32"/>
-</map>

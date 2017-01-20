@@ -1,6 +1,0 @@
-<map id="ORB_SLAM2::Frame" name="ORB_SLAM2::Frame">
-<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. " alt="" coords="135,95,304,121"/>
-<area shape="rect" id="node3" href="$class_o_r_b___s_l_a_m2_1_1_key_frame_database.html" title="Lista invertida de KeyFrames, accesible por BoW. " alt="" coords="5,5,231,32"/>
-<area shape="rect" id="node4" href="$class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. " alt="" coords="255,5,389,32"/>
-<area shape="rect" id="node5" href="$class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html" title="Empaqueta todos los métodos de detección de puntos singulares y extracción de descriptores. " alt="" coords="414,95,603,121"/>
-</map>
