@@ -112,7 +112,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
         const float r = 5;
 
         // Recorre todos los puntos singulares, pone marcas solamente si tienen un punto de mapa asociado.
-        for(int i=0;i<N;i++){
+        for(unsigned int i=0;i<mapPoints.size();i++){	// Originalmente N en lugar de mapPoints.size().  N no se copió en el mutex, produce error por actualización asincrónica.
         	MapPoint *MP = mapPoints[i];
             if(vbVO[i] || (vbMap[i] && MP)){
                 cv::Point2f pt1,pt2;

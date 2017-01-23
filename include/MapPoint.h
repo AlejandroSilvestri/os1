@@ -76,7 +76,7 @@ public:
     /**
      * Asigna al punto las coordenadas 3D argumento.
      *
-     * @param Pos Vector con la posición que se copiará al punto.
+     * @param Pos Vector 3x1 float con la posición que se copiará a MapPoint::mWorldPos.
      */
     void SetWorldPos(const cv::Mat &Pos);
 
@@ -426,7 +426,7 @@ public:
 	/**
 	 * Registra el cos del paralaje cuando se crea el punto.
 	 */
-	float plCosOrigen;
+	float plCosOrigen = 0.0;
 
 	/**
 	 * Menos coseno (mayor paralaje) obtenido luego de varias observaciones.

@@ -802,7 +802,7 @@ protected:
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 	// Fin del agregado para serialización
 
-	friend class KeyFrameTriangulacion;
+	//friend class KeyFrameTriangulacion;
 };
 
 } //namespace ORB_SLAM

@@ -648,7 +648,7 @@ int ORBmatcher::SearchByBoW(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint *> &
 }
 
 int ORBmatcher::SearchForTriangulation(KeyFrame *pKF1, KeyFrame *pKF2, cv::Mat F12,
-                                       vector<pair<size_t, size_t> > &vMatchedPairs)//, const bool bOnlyStereo)
+                                       vector<pair<size_t, size_t> > &vMatchedPairs)
 {    
     const DBoW2::FeatureVector &vFeatVec1 = pKF1->mFeatVec;
     const DBoW2::FeatureVector &vFeatVec2 = pKF2->mFeatVec;

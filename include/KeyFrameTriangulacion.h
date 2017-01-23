@@ -28,11 +28,24 @@ namespace ORB_SLAM2{
  *
  * 1- KeyFrameTriangulacion::KeyFrameTriangulacion: Construcción de este objeto, tomando datos de pose y calibración para asegurar su inmutabilidad
  * 2- KeyFrameTriangulacion::rayo inicializa parámetros de cálculos intermedios, necesarios en los métodos que siguen.
- * 3- KeyFrameTriangulacion::computarA proporciona filas para el armado de la matriz A que se descompondrá por SVD
+ * 3- KeyFrameTriangulacion::triangular devuelve el punto triangulado por SVD
  * 4- KeyFrameTriangulacion::coorddenadaZ calcula y recuerda la distancia del punto sobre el eje z.  Necesario para calcular el error de reproyección.
  * 4- KeyFrameTriangulacion::validarErrorReproyección decide si el error es aceptable.
  * 5- KeyFrameTriangulacion::errorReproyección calcula el error, invocado por el anterior.
  *
+ *
+ *
+ * Otra forma de uso, más completa, que construye dos objetos para triangularlos:
+ *
+ * 1- KeyFrameTriangulacion::KeyFrameTriangulacion: construye un objeto a partir de un keyframe.
+ * 2- KeyFrameTriangulacion::setKeyFrame2: construye el segundo objeto, en la propiedad kft2.
+ * 3- KeyFrameTriangulacion::setKeyPoint: determina el punto singular del keyframe de este objeto
+ * 4- KeyFrameTriangulacion::setKeyPoint2: determina el punto singular del keyframe del otro objeto, kft2
+ * 5- KeyFrameTriangulacion:: triangular: realiza toda la triangulación, presentando los resultados en propiedades
+ *
+ * Esta clase y sus métodos son usados en:
+ * - LocalMapping::CreateNewMapPoints
+ * - MapPoint::AddObservation
  *
  */
 class KeyFrameTriangulacion{
@@ -61,7 +74,7 @@ public:
      *
      * Mat 4x4 float, rototraslación 3D en coordenadas homogéneas, en el sistema de referencia del keyframe.
      */
-    cv::Mat Tcw,
+    Mat Tcw,
 
     /**
      * Posición del keyframe en el mundo, copiada en el constructor.
@@ -87,12 +100,40 @@ public:
      * Punto singular normalizado según parámetros intrínsecos, y en coordenadas homogéneas.
      */
     xn;
-    cv::KeyPoint kp;
+    KeyPoint kp;
+
 
     /**
-     * Constructor único, que copia datos de pose del keyframe argumento.
+     * Segundo objeto, representando la otra pose para triangular un punto.
+     *
+     * Usado con el segundo constructor.
+     */
+    KeyFrameTriangulacion *kft2;
+
+    /** Coseno de paralaje umbral. */
+    float umbralCosParalaje = 0.9998;
+
+    // Resultados parciales
+    /** Resultado parcial, coseno del paralaje. */
+    float cosParalaje;
+
+    Mat ray, x3D;
+
+    /** 0 para no infinito, 1 para infito por cos, 2 para infinito por SVD.*/
+    int inf;
+
+    /** Error.  0 si se trianguló exitosamente.  1 si falló Z.  2 si falló la distancia.*/
+    int error;
+
+    /**
+     * Constructor que copia datos de pose del keyframe argumento.
      */
     KeyFrameTriangulacion(KeyFrame *pKF);
+
+    /**
+     * Constructor alternativo, que construye dos objetos, uno para cada pose, y procede con la triangulación.
+     */
+    KeyFrameTriangulacion(KeyFrame *pKF1, int indice1, KeyFrame *pKF2,int indice2);
 
 
     /**
@@ -107,16 +148,23 @@ public:
      *
      */
     cv::Mat rayo(int indice);
+    cv::Mat rayo();
 
 
 
     /**
-     * Devuele el punto triangulado, en coordenadas homogéneas.
+     * Devuele el punto triangulado, en coordenadas homogéneas, matriz horizontal 1x3 x3Dt.
      *
      * Construye la matriz A de triangulación de punto y la descompone por SVD.
      */
     Mat triangular(KeyFrameTriangulacion &kft);
 
+    /**
+     * Realiza la triangulación de los dos keypoints, informando posibles errores y devolviendo el punto 3D calculado, incluyendo infinito.
+     *
+     * No implementado todavía
+     */
+    int triangularPuntos(Mat x3D);
 
     /**
      * @returns El error de reproyección al cuadrado.
@@ -150,6 +198,49 @@ public:
     inline float coordenadaZ(cv::Mat x3Dt){
     	return z = Rcw.row(2).dot(x3Dt)+tcw.at<float>(2);
     }
+
+    /**
+     * Chequea que las distancias sean coherentes.
+     *
+     * @returns true si son coherentes, false si no superó la validación.
+     *
+     * Requiere kft2.
+     */
+    bool validarDistancias();
+
+    /**
+     * Cambia el segundo keyframe contra el que triangular.
+     */
+    inline void setKeyFrame2(KeyFrame *pKF2){
+    	kft2 = new KeyFrameTriangulacion(pKF2);
+    }
+
+    /**
+     * Define el punto singular que será usado en la triangulación.
+     *
+     * @param indice del vector de keypoints del keyframe.
+     */
+    inline void setKeyPoint(int indice){
+    	kp = kf.mvKeysUn[indice];
+    }
+
+    /**
+     * Define el punto singular que será usado en la triangulación.
+     *
+     * @param indice del vector de keypoints del keyframe.
+     */
+    inline void setKeyPoint2(int indice){
+    	kft2->setKeyPoint(indice);
+    }
+
+    /**
+     * Realiza toda la triangulación basado en las propiedades definidas previamente.
+     * Devuelve los resultados en propiedades.
+     *
+     * @returns el error si no pudo triangular, 0 si lo logró.
+     */
+    int triangular();
+
 };
 
 }// ORB_SLAM2

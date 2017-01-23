@@ -76,79 +76,65 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
         mObservations[pKF]=idx;
         nObs++;
     }
-    return;
+    //return;
     // Si es punto lejano candidato, medir la apertura para ver si deja de serlo
-    if(plCandidato && pKF != mpRefKF){
-    	// Copiado de LocalMapping::CreateNewMapPoints
+    if(plCandidato && pKF != mpRefKF){// nunca debería ser mpRefKF, porque plCandidato se hace true después de invocar AddObservation de mpRefKF al crearse el punto.
 
-        /*
-    	const float &cx1 = pKF->cx;
-        const float &cy1 = pKF->cy;
-        const float &invfx1 = pKF->invfx;
-        const float &invfy1 = pKF->invfy;
+    	KeyFrameTriangulacion &kft = *new KeyFrameTriangulacion(pKF, idx, mpRefKF, mObservations[mpRefKF]);
 
-        const cv::KeyPoint &kp1 = pKF->	   mvKeysUn[idx];
-        cv::Mat xn1 = (cv::Mat_<float>(3,1) << (kp1.pt.x-cx1)*invfx1, (kp1.pt.y-cy1)*invfy1, 1.0);
-        cv::Mat Rcw1 = pKF->GetRotation();
-        cv::Mat Rwc1 = Rcw1.t();
-        cv::Mat ray1 = Rwc1*xn1;
+    	if(!kft.error && !kft.inf){
+			SetWorldPos(kft.x3D);
+			plConfirmacion = observacionParalaje;
+			plCandidato = false;
+    		if(plLejano == lejano)	// Sólo para lejanos, no para muy lejanos.
+    			plLejano = cercano;
+
+    		cout << "Punto acercado" << endl;
+		}
 
 
-        const float &cx2 = mpRefKF->cx;
-        const float &cy2 = mpRefKF->cy;
-        const float &invfx2 = mpRefKF->invfx;
-        const float &invfy2 = mpRefKF->invfy;
-
-        const int &idx2 = mObservations[mpRefKF];
-        const cv::KeyPoint &kp2 = mpRefKF->mvKeysUn[idx2];
-        cv::Mat xn2 = (cv::Mat_<float>(3,1) << (kp2.pt.x-cx2)*invfx2, (kp2.pt.y-cy2)*invfy2, 1.0);
-        cv::Mat Rcw2 = mpRefKF->GetRotation();
-        cv::Mat Rwc2 = Rcw2.t();
-        cv::Mat ray2 = Rwc2*xn2;
-
-        const float cosParallaxRays = ray1.dot(ray2)/(cv::norm(ray1)*cv::norm(ray2));
-         */
+    	/*
     	float cosParallaxRays;
     	KeyFrameTriangulacion &kft1 = *new KeyFrameTriangulacion(pKF);
     	KeyFrameTriangulacion &kft2 = *new KeyFrameTriangulacion(mpRefKF);
 		cv::Mat ray1 = kft1.rayo(idx);
 		cv::Mat ray2 = kft2.rayo(mObservations[mpRefKF]);
 		cosParallaxRays = ray1.dot(ray2);
-    	/*{
-			//cout << "AddObservation lock" << endl;
-			//unique_lock<mutex> lock(pKF->mMutexTriangulacion);
-			cv::Mat ray1 = pKF->computarRayo(idx);
-			unique_lock<mutex> lock2(mpRefKF->mMutexTriangulacion);
-			cv::Mat ray2 = mpRefKF->computarRayo(mObservations[mpRefKF]);
-			cosParallaxRays = ray1.dot(ray2);
-			//cout << "AddObservation lock terminado" << endl;
-		}*/
 
-        if(cosParallaxRays<0.998){
-			//plCandidato = false;
+        if(cosParallaxRays<0.9998){
 			plConfirmacion = observacionParalaje;
         	if(plOrigen == umbralCosBajo){
         		// Punto lejano con suficiente paralaje, se convierte en normal.  BA se encargará de corregirlo.
         		plLejano = cercano;
-        	}/*else{
-        		// Punto muy lejano!
+    			plCandidato = false;
+    			cout << "Punto lejano coseno bajo convertido a normal." << endl;
+        	}else{
+        		// Punto muy lejano!  Hay que retriangular
         		cout << "AddObservation: Retriangulando punto lejano " << plLejano << ", cos:" << cosParallaxRays;
 
         		// Retriangular
+                KeyFrameTriangulacion &kft1 = *new KeyFrameTriangulacion(mpRefKF);
+                KeyFrameTriangulacion &kft2 = *new KeyFrameTriangulacion(pKF);
+				cv::Mat x3D = kft1.triangular(kft2);
+				// Motivos para no descartar la confirmación del punto
+				if(x3D.at<float>(3) != 0){
+					x3D = x3D.rowRange(0,3)/x3D.at<float>(3);
+					cv::Mat x3Dt = x3D.t();
+					if(    kft1.coordenadaZ(x3Dt)>0
+						&& kft2.coordenadaZ(x3Dt)>0
+						&& kft1.validarErrorReproyeccion(x3Dt)
+						&& kft2.validarErrorReproyeccion(x3Dt)
+					){
+						// Esta observación proviene de un tracking, por eso no chequeo la relación de distancias y octavas: lo asumo chequeado - habría que confirmarlo.
+						SetWorldPos(x3D);
+		    			plCandidato = false;
+		        		plLejano = cercano;
+		        		cout << "Punto muy lejano acercóse." << endl;
+					}
+				}
+        	}
+        }*/
 
-
-        		if(esQInf()){
-        			// Punto muy lejano, al infinito, ¡con paralaje!  ¿Cómo lo macheó?  ¿Por qué no lo acercó?
-        			cout << " es QInf!! mp:" << mnId << ", kf:" << pKF->mnId << ", idx:" << idx << ", pos:" << mWorldPos.t() << endl;
-
-        		}else{
-        			// Punto muy lejano que se acercó por BA, y con suficiente paralaje, se convierte en normal.
-        			cout << " no es QInf, se normaliza." << endl;
-            		plCandidato = false;
-            		plLejano = cercano;
-        		}
-        	}*/
-        }
     }
 }
 
@@ -440,13 +426,13 @@ cv::Scalar MapPoint::color(){
 		return cv::Scalar(  0, 255, 32*(nObs-3));	// Punto del mapa amarillo verdeando con las observaciones
 
 	case umbralCosBajo:
-		return cv::Scalar(255, 255, 32*(nObs-3));	// Punto lejano triangulado
+		return cv::Scalar(255, 255, 32*(nObs-3));	// Punto lejano triangulado, turquesa blanqueando con las observaciones
 
 	case umbralCos:
-		return cv::Scalar(255,   0, 255 * esQInf());	// Punto muy lejano COS
+		return cv::Scalar(255,   0, 255 * esQInf());	// Punto muy lejano COS, violeta al azul cuando se acerca
 
 	default:	//case svdInf:
-		return cv::Scalar(  0,   0, 255);	// Punto muy lejano SVD
+		return cv::Scalar(0, 128*!esQInf(), 255);	// Punto muy lejano SVD, rojo al naranja cuando se acerca
 	}
 }
 
