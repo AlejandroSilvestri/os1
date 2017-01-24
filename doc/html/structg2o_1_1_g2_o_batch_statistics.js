@@ -1,0 +1,28 @@
+var structg2o_1_1_g2_o_batch_statistics =
+[
+    [ "G2OBatchStatistics", "structg2o_1_1_g2_o_batch_statistics.html#a99b348cf1d6a913ab6683c44b36a8c55", null ],
+    [ "globalStats", "structg2o_1_1_g2_o_batch_statistics.html#a06f9c667d8b48b8f0023e27011818b64", null ],
+    [ "setGlobalStats", "structg2o_1_1_g2_o_batch_statistics.html#a8c56e85d25e346ba87718621407247fc", null ],
+    [ "_globalStats", "structg2o_1_1_g2_o_batch_statistics.html#ab2afc355eadf0e686507ff621f60d3eb", null ],
+    [ "chi2", "structg2o_1_1_g2_o_batch_statistics.html#a719152d550dd4fe3300d06558fe0a6d5", null ],
+    [ "choleskyNNZ", "structg2o_1_1_g2_o_batch_statistics.html#a5996c5ba000bdfcbcf5c0375a3c62643", null ],
+    [ "hessianDimension", "structg2o_1_1_g2_o_batch_statistics.html#a618a15ba153da1a99b19a2d779cf3764", null ],
+    [ "hessianLandmarkDimension", "structg2o_1_1_g2_o_batch_statistics.html#a0cfa7018402074f47defb9cd5d9d4b64", null ],
+    [ "hessianPoseDimension", "structg2o_1_1_g2_o_batch_statistics.html#ae2af64720e3f99557924b9cf92ab6f20", null ],
+    [ "iteration", "structg2o_1_1_g2_o_batch_statistics.html#a63e30077b9dad65c321b322a2a6f0aea", null ],
+    [ "iterationsLinearSolver", "structg2o_1_1_g2_o_batch_statistics.html#a0ef94423b56f6d842e33a7c277c930a0", null ],
+    [ "levenbergIterations", "structg2o_1_1_g2_o_batch_statistics.html#acd6b82e7401ec8c04e00b14bf76892a9", null ],
+    [ "numEdges", "structg2o_1_1_g2_o_batch_statistics.html#ae8924cd0e0e7fee183cba73b706eb5a5", null ],
+    [ "numVertices", "structg2o_1_1_g2_o_batch_statistics.html#a2a3ecd684cb9e60c34afeee0d8f35d23", null ],
+    [ "timeIteration", "structg2o_1_1_g2_o_batch_statistics.html#a60fbec94ce0b7f26ed99d3f6d2080e47", null ],
+    [ "timeLinearize", "structg2o_1_1_g2_o_batch_statistics.html#ac288190f875b8777b3c24c860a3741d7", null ],
+    [ "timeLinearSolution", "structg2o_1_1_g2_o_batch_statistics.html#a01fea9876aab94b1e69a6a03c20fd98f", null ],
+    [ "timeLinearSolver", "structg2o_1_1_g2_o_batch_statistics.html#adb423c3dac9262b7f4a315bbb108464a", null ],
+    [ "timeMarginals", "structg2o_1_1_g2_o_batch_statistics.html#a58e5d0960dc35e682424dce2b50e4fa9", null ],
+    [ "timeNumericDecomposition", "structg2o_1_1_g2_o_batch_statistics.html#a31f4a361dba1f3eb8dba2ca2aa326905", null ],
+    [ "timeQuadraticForm", "structg2o_1_1_g2_o_batch_statistics.html#af949afd7e25ceef08379220ed242aa36", null ],
+    [ "timeResiduals", "structg2o_1_1_g2_o_batch_statistics.html#a1815f0fb0a84cd1977d72c83cefdb76b", null ],
+    [ "timeSchurComplement", "structg2o_1_1_g2_o_batch_statistics.html#a79d8935c9af46d716ef2b85b777fabe1", null ],
+    [ "timeSymbolicDecomposition", "structg2o_1_1_g2_o_batch_statistics.html#a456a521ccb1e4c69940475a92a1f5d29", null ],
+    [ "timeUpdate", "structg2o_1_1_g2_o_batch_statistics.html#a510e287e5a3e1f608219147b53e6dc69", null ]
+];

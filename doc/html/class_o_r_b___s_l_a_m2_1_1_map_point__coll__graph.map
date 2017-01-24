@@ -1,0 +1,9 @@
+<map id="ORB_SLAM2::MapPoint" name="ORB_SLAM2::MapPoint">
+<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. " alt="" coords="1004,128,1173,155"/>
+<area shape="rect" id="node3" href="$class_o_r_b___s_l_a_m2_1_1_key_frame_database.html" title="Lista invertida de KeyFrames, accesible por BoW. " alt="" coords="629,119,855,145"/>
+<area shape="rect" id="node4" href="$class_d_bo_w2_1_1_templated_vocabulary.html" title="Generic Vocabulary. " alt="" coords="329,77,532,118"/>
+<area shape="rect" id="node5" href="$class_d_bo_w2_1_1_general_scoring.html" title="Base class of scoring functions. " alt="" coords="5,84,171,111"/>
+<area shape="rect" id="node6" href="$class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. " alt="" coords="675,237,809,264"/>
+<area shape="rect" id="node7" href="$class_d_bo_w2_1_1_feature_vector.html" title="Vector of nodes with indexes of local features. " alt="" coords="663,169,821,196"/>
+<area shape="rect" id="node9" href="$class_d_bo_w2_1_1_bow_vector.html" title="Vector of words to represent images. " alt="" coords="672,5,812,32"/>
+</map>

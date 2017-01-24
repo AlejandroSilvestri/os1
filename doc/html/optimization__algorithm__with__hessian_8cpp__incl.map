@@ -1,0 +1,22 @@
+<map id="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/optimization_algorithm_with_hessian.cpp" name="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/optimization_algorithm_with_hessian.cpp">
+<area shape="rect" id="node2" href="$optimization__algorithm__with__hessian_8h.html" title="optimization_algorithm\l_with_hessian.h" alt="" coords="1005,124,1157,165"/>
+<area shape="rect" id="node32" href="$solver_8h.html" title="solver.h" alt="" coords="1187,213,1255,240"/>
+<area shape="rect" id="node34" href="$optimizable__graph_8h.html" title="optimizable_graph.h" alt="" coords="2087,213,2225,240"/>
+<area shape="rect" id="node43" href="$sparse__optimizer_8h.html" title="sparse_optimizer.h" alt="" coords="745,131,877,158"/>
+<area shape="rect" id="node3" href="$optimization__algorithm_8h.html" title="optimization_algorithm.h" alt="" coords="1000,213,1163,240"/>
+<area shape="rect" id="node7" href="$property_8h.html" title="../stuff/property.h" alt="" coords="71,288,193,315"/>
+<area shape="rect" id="node15" href="$hyper__graph_8h.html" title="hyper_graph.h" alt="" coords="2277,370,2381,397"/>
+<area shape="rect" id="node22" href="$sparse__block__matrix_8h.html" title="sparse_block_matrix.h" alt="" coords="1005,288,1158,315"/>
+<area shape="rect" id="node11" href="$string__tools_8h.html" title="string_tools.h" alt="" coords="87,370,187,397"/>
+<area shape="rect" id="node13" href="$macros_8h.html" title="macros.h" alt="" coords="99,452,175,479"/>
+<area shape="rect" id="node27" href="$sparse__block__matrix__ccs_8h.html" title="sparse_block_matrix\l_ccs.h" alt="" coords="1441,363,1583,404"/>
+<area shape="rect" id="node28" href="$config_8h.html" title="../../config.h" alt="" coords="1542,452,1634,479"/>
+<area shape="rect" id="node29" href="$matrix__operations_8h.html" title="matrix_operations.h" alt="" coords="1331,452,1467,479"/>
+<area shape="rect" id="node30" href="$matrix__structure_8h.html" title="matrix_structure.h" alt="" coords="794,370,921,397"/>
+<area shape="rect" id="node31" href="$sparse__block__matrix_8hpp.html" title="sparse_block_matrix.hpp" alt="" coords="945,370,1111,397"/>
+<area shape="rect" id="node33" href="$batch__stats_8h.html" title="batch_stats.h" alt="" coords="419,288,520,315"/>
+<area shape="rect" id="node38" href="$openmp__mutex_8h.html" title="openmp_mutex.h" alt="" coords="1845,370,1968,397"/>
+<area shape="rect" id="node39" href="$parameter_8h.html" title="parameter.h" alt="" coords="2235,288,2325,315"/>
+<area shape="rect" id="node40" href="$parameter__container_8h.html" title="parameter_container.h" alt="" coords="1367,288,1518,315"/>
+<area shape="rect" id="node41" href="$jacobian__workspace_8h.html" title="jacobian_workspace.h" alt="" coords="1958,288,2109,315"/>
+</map>

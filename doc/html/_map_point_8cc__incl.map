@@ -1,0 +1,19 @@
+<map id="/home/alejandro/Desarrollo eclipse/os1/src/MapPoint.cc" name="/home/alejandro/Desarrollo eclipse/os1/src/MapPoint.cc">
+<area shape="rect" id="node2" href="$_map_point_8h.html" title="MapPoint.h" alt="" coords="790,177,878,203"/>
+<area shape="rect" id="node33" href="$_o_r_bmatcher_8h.html" title="ORBmatcher.h" alt="" coords="966,95,1075,121"/>
+<area shape="rect" id="node35" href="$_key_frame_triangulacion_8h.html" title="KeyFrameTriangulacion.h" alt="" coords="582,95,753,121"/>
+<area shape="rect" id="node3" href="$_key_frame_8h.html" title="KeyFrame.h" alt="" coords="597,259,690,285"/>
+<area shape="rect" id="node25" href="$_frame_8h.html" title="Frame.h" alt="" coords="1088,423,1159,449"/>
+<area shape="rect" id="node30" href="$_serializer_8h.html" title="Serializer.h" alt="" coords="724,341,811,367"/>
+<area shape="rect" id="node32" href="$_map_8h.html" title="Map.h" alt="" coords="805,259,863,285"/>
+<area shape="rect" id="node4" href="$_bow_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/BowVector.h" alt="" coords="219,751,369,792"/>
+<area shape="rect" id="node8" href="$_feature_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FeatureVector.h" alt="" coords="45,661,215,703"/>
+<area shape="rect" id="node9" href="$_o_r_b_vocabulary_8h.html" title="ORBVocabulary.h" alt="" coords="579,497,705,524"/>
+<area shape="rect" id="node23" href="$_o_r_bextractor_8h.html" title="ORBextractor.h" alt="" coords="484,341,597,367"/>
+<area shape="rect" id="node27" href="$_key_frame_database_8h.html" title="KeyFrameDatabase.h" alt="" coords="310,341,459,367"/>
+<area shape="rect" id="node10" href="$_f_o_r_b_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FORB.h" alt="" coords="1307,572,1449,613"/>
+<area shape="rect" id="node14" href="$_templated_vocabulary_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/TemplatedVocabulary.h" alt="" coords="718,572,931,613"/>
+<area shape="rect" id="node13" href="$_f_class_8h.html" title="FClass.h" alt="" coords="1341,669,1415,695"/>
+<area shape="rect" id="node20" href="$_scoring_object_8h.html" title="ScoringObject.h" alt="" coords="341,669,455,695"/>
+<area shape="rect" id="node21" href="$_random_8h.html" title="../DUtils/Random.h" alt="" coords="757,669,892,695"/>
+</map>

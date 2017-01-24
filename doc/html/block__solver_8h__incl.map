@@ -1,0 +1,23 @@
+<map id="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/block_solver.h" name="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/block_solver.h">
+<area shape="rect" id="node3" href="$solver_8h.html" title="solver.h" alt="" coords="1558,184,1626,211"/>
+<area shape="rect" id="node15" href="$sparse__block__matrix_8h.html" title="sparse_block_matrix.h" alt="" coords="859,259,1013,285"/>
+<area shape="rect" id="node19" href="$config_8h.html" title="../../config.h" alt="" coords="819,423,911,449"/>
+<area shape="rect" id="node23" href="$linear__solver_8h.html" title="linear_solver.h" alt="" coords="677,184,784,211"/>
+<area shape="rect" id="node24" href="$sparse__block__matrix__diagonal_8h.html" title="sparse_block_matrix\l_diagonal.h" alt="" coords="311,333,454,375"/>
+<area shape="rect" id="node26" href="$openmp__mutex_8h.html" title="openmp_mutex.h" alt="" coords="1205,341,1328,367"/>
+<area shape="rect" id="node27" href="$block__solver_8hpp.html" title="block_solver.hpp" alt="" coords="2119,109,2239,136"/>
+<area shape="rect" id="node4" href="$hyper__graph_8h.html" title="hyper_graph.h" alt="" coords="1737,423,1841,449"/>
+<area shape="rect" id="node13" href="$batch__stats_8h.html" title="batch_stats.h" alt="" coords="1640,259,1741,285"/>
+<area shape="rect" id="node18" href="$sparse__block__matrix__ccs_8h.html" title="sparse_block_matrix\l_ccs.h" alt="" coords="145,333,287,375"/>
+<area shape="rect" id="node20" href="$matrix__operations_8h.html" title="matrix_operations.h" alt="" coords="93,423,229,449"/>
+<area shape="rect" id="node21" href="$matrix__structure_8h.html" title="matrix_structure.h" alt="" coords="530,341,657,367"/>
+<area shape="rect" id="node22" href="$sparse__block__matrix_8hpp.html" title="sparse_block_matrix.hpp" alt="" coords="681,341,847,367"/>
+<area shape="rect" id="node28" href="$sparse__optimizer_8h.html" title="sparse_optimizer.h" alt="" coords="2061,184,2193,211"/>
+<area shape="rect" id="node29" href="$macros_8h.html" title="../stuff/macros.h" alt="" coords="2558,341,2677,367"/>
+<area shape="rect" id="node41" href="$timeutil_8h.html" title="utility functions for handling time related stuff " alt="" coords="2476,184,2593,211"/>
+<area shape="rect" id="node43" href="$misc_8h.html" title="some general case utility functions " alt="" coords="2477,259,2579,285"/>
+<area shape="rect" id="node31" href="$optimizable__graph_8h.html" title="optimizable_graph.h" alt="" coords="2020,259,2159,285"/>
+<area shape="rect" id="node35" href="$parameter_8h.html" title="parameter.h" alt="" coords="1877,341,1968,367"/>
+<area shape="rect" id="node37" href="$parameter__container_8h.html" title="parameter_container.h" alt="" coords="2250,341,2401,367"/>
+<area shape="rect" id="node39" href="$jacobian__workspace_8h.html" title="jacobian_workspace.h" alt="" coords="1403,341,1554,367"/>
+</map>

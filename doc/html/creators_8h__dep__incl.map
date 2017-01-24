@@ -1,0 +1,32 @@
+<map id="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/creators.h" name="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/creators.h">
+<area shape="rect" id="node2" href="$base__vertex_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/base_vertex.h" alt="" coords="1695,109,1881,165"/>
+<area shape="rect" id="node27" href="$factory_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/factory.h" alt="" coords="2218,109,2395,165"/>
+<area shape="rect" id="node29" href="$factory_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/factory.cpp" alt="" coords="2693,221,2870,277"/>
+<area shape="rect" id="node3" href="$types__six__dof__expmap_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_six\l_dof_expmap.h" alt="" coords="1763,332,1941,403"/>
+<area shape="rect" id="node12" href="$types__seven__dof__expmap_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_seven\l_dof_expmap.h" alt="" coords="1468,451,1655,521"/>
+<area shape="rect" id="node25" href="$types__sba_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_sba.h" alt="" coords="1631,221,1814,277"/>
+<area shape="rect" id="node4" href="$_converter_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Converter.h" alt="" coords="1758,688,1967,729"/>
+<area shape="rect" id="node9" href="$_optimizer_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Optimizer.cc" alt="" coords="1624,777,1816,819"/>
+<area shape="rect" id="node24" href="$types__six__dof__expmap_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_six\l_dof_expmap.cpp" alt="" coords="1890,451,2067,521"/>
+<area shape="rect" id="node5" href="$_converter_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Converter.cc" alt="" coords="2365,777,2558,819"/>
+<area shape="rect" id="node6" href="$_frame_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Frame.cc" alt="" coords="1891,777,2069,819"/>
+<area shape="rect" id="node7" href="$_key_frame_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/KeyFrame.cc" alt="" coords="2093,777,2289,819"/>
+<area shape="rect" id="node8" href="$_loop_closing_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/LoopClosing.cc" alt="" coords="1392,777,1600,819"/>
+<area shape="rect" id="node10" href="$_system_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/System.cc" alt="" coords="869,867,1051,908"/>
+<area shape="rect" id="node11" href="$_tracking_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Tracking.cc" alt="" coords="1261,867,1448,908"/>
+<area shape="rect" id="node13" href="$_loop_closing_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/LoopClosing.h" alt="" coords="836,584,1060,625"/>
+<area shape="rect" id="node21" href="$_optimizer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Optimizer.h" alt="" coords="1251,688,1459,729"/>
+<area shape="rect" id="node23" href="$types__seven__dof__expmap_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_seven\l_dof_expmap.cpp" alt="" coords="1337,569,1524,640"/>
+<area shape="rect" id="node14" href="$_local_mapping_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/LocalMapping.h" alt="" coords="679,688,911,729"/>
+<area shape="rect" id="node15" href="$_tracking_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/include/Tracking.h" alt="" coords="543,777,745,819"/>
+<area shape="rect" id="node20" href="$_local_mapping_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/LocalMapping.cc" alt="" coords="888,777,1104,819"/>
+<area shape="rect" id="node16" href="$_frame_drawer_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/FrameDrawer.cc" alt="" coords="429,867,643,908"/>
+<area shape="rect" id="node17" href="$main_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/main.cc" alt="" coords="667,867,845,908"/>
+<area shape="rect" id="node18" href="$_serializer_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Serializer.cpp" alt="" coords="5,867,203,908"/>
+<area shape="rect" id="node19" href="$_viewer_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Viewer.cc" alt="" coords="227,867,405,908"/>
+<area shape="rect" id="node22" href="$_initializer_8cc.html" title="/home/alejandro/Desarrollo\l eclipse/os1/src/Initializer.cc" alt="" coords="1129,777,1317,819"/>
+<area shape="rect" id="node26" href="$types__sba_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_sba.cpp" alt="" coords="1541,339,1739,395"/>
+<area shape="rect" id="node28" href="$cache_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/cache.cpp" alt="" coords="2017,221,2194,277"/>
+<area shape="rect" id="node30" href="$optimizable__graph_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimizable\l_graph.cpp" alt="" coords="2218,213,2395,284"/>
+<area shape="rect" id="node31" href="$parameter__container_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/parameter_container.cpp" alt="" coords="2420,221,2668,277"/>
+</map>

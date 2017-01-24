@@ -1,0 +1,8 @@
+<map id="g2o::BaseEdge&lt; D, E &gt;" name="g2o::BaseEdge&lt; D, E &gt;">
+<area shape="rect" id="node5" href="$classg2o_1_1_base_binary_edge.html" title="g2o::BaseBinaryEdge\l\&lt; D, E \&gt;" alt="" coords="5,333,153,375"/>
+<area shape="rect" id="node6" href="$classg2o_1_1_base_multi_edge.html" title="base class to represent an edge connecting an arbitrary number of nodes " alt="" coords="178,333,317,375"/>
+<area shape="rect" id="node7" href="$classg2o_1_1_base_unary_edge.html" title="g2o::BaseUnaryEdge\l\&lt; D, E \&gt;" alt="" coords="341,333,487,375"/>
+<area shape="rect" id="node2" href="$classg2o_1_1_optimizable_graph_1_1_edge.html" title="g2o::OptimizableGraph\l::Edge" alt="" coords="170,169,325,211"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_hyper_graph_1_1_edge.html" title="Abstract Edge class. " alt="" coords="168,95,327,121"/>
+<area shape="rect" id="node4" href="$structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html" title="base hyper graph element, specialized in vertex and edge " alt="" coords="148,5,347,47"/>
+</map>

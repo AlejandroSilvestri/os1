@@ -1,0 +1,9 @@
+<map id="g2o::RobustKernel" name="g2o::RobustKernel">
+<area shape="rect" id="node2" href="$classg2o_1_1_robust_kernel_cauchy.html" title="Cauchy cost function. " alt="" coords="201,5,376,32"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_robust_kernel_d_c_s.html" title="Dynamic covariance scaling &#45; DCS. " alt="" coords="209,56,368,83"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_robust_kernel_huber.html" title="Huber Cost Function. " alt="" coords="206,107,371,133"/>
+<area shape="rect" id="node5" href="$classg2o_1_1_robust_kernel_pseudo_huber.html" title="Pseudo Huber Cost Function. " alt="" coords="184,157,393,184"/>
+<area shape="rect" id="node6" href="$classg2o_1_1_robust_kernel_saturated.html" title="Saturated cost function. " alt="" coords="195,208,382,235"/>
+<area shape="rect" id="node7" href="$classg2o_1_1_robust_kernel_scale_delta.html" title="scale a robust kernel to another delta (window size) " alt="" coords="191,259,386,285"/>
+<area shape="rect" id="node8" href="$classg2o_1_1_robust_kernel_tukey.html" title="Tukey Cost Function. " alt="" coords="205,309,372,336"/>
+</map>

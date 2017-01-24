@@ -1,0 +1,20 @@
+<map id="ORB_SLAM2::System" name="ORB_SLAM2::System">
+<area shape="rect" id="node15" href="$class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). " alt="" coords="1691,527,1849,553"/>
+<area shape="rect" id="node20" href="$class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. " alt="" coords="2011,320,2160,347"/>
+<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ..." alt="" coords="1018,303,1206,329"/>
+<area shape="rect" id="node3" href="$class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. " alt="" coords="675,343,809,369"/>
+<area shape="rect" id="node7" href="$class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. " alt="" coords="1995,661,2176,688"/>
+<area shape="rect" id="node8" href="$class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. " alt="" coords="1027,993,1197,1020"/>
+<area shape="rect" id="node14" href="$class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. " alt="" coords="2321,556,2511,583"/>
+<area shape="rect" id="node17" href="$class_o_r_b___s_l_a_m2_1_1_map_drawer.html" title="Esta clase contiene los métodos para dibujar en pangolin. " alt="" coords="1024,376,1200,403"/>
+<area shape="rect" id="node21" href="$class_o_r_b___s_l_a_m2_1_1_serializer.html" title="Clase encargada de la serialización (guarda y carga) del mapa. " alt="" coords="1031,109,1193,136"/>
+<area shape="rect" id="node4" href="$class_o_r_b___s_l_a_m2_1_1_key_frame_database.html" title="Lista invertida de KeyFrames, accesible por BoW. " alt="" coords="629,745,855,772"/>
+<area shape="rect" id="node5" href="$class_d_bo_w2_1_1_templated_vocabulary.html" title="Generic Vocabulary. " alt="" coords="329,770,532,811"/>
+<area shape="rect" id="node18" href="$class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. " alt="" coords="1387,885,1534,912"/>
+<area shape="rect" id="node6" href="$class_d_bo_w2_1_1_general_scoring.html" title="Base class of scoring functions. " alt="" coords="5,777,171,804"/>
+<area shape="rect" id="node9" href="$class_d_bo_w2_1_1_feature_vector.html" title="Vector of nodes with indexes of local features. " alt="" coords="663,1051,821,1077"/>
+<area shape="rect" id="node11" href="$class_d_bo_w2_1_1_bow_vector.html" title="Vector of words to represent images. " alt="" coords="672,988,812,1015"/>
+<area shape="rect" id="node13" href="$structg2o_1_1_sim3.html" title="g2o::Sim3" alt="" coords="1729,735,1811,761"/>
+<area shape="rect" id="node16" href="$class_o_r_b___s_l_a_m2_1_1_initializer.html" title="Inicializador de mapa en modo monocular. " alt="" coords="1380,531,1541,557"/>
+<area shape="rect" id="node19" href="$class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html" title="Empaqueta todos los métodos de detección de puntos singulares y extracción de descriptores. " alt="" coords="1017,791,1207,817"/>
+</map>

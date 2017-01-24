@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classg2o_1_1_optimization_algorithm.html" title="Generic interface for a non&#45;linear solver operating on a graph. " alt="" coords="5,78,184,105"/>
+<area shape="rect" id="node2" href="$classg2o_1_1_optimization_algorithm_with_hessian.html" title="Base for solvers operating on the approximated Hessian, e.g., Gauss&#45;Newton, Levenberg. " alt="" coords="232,71,411,112"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_optimization_algorithm_dogleg.html" title="Implementation of Powell&#39;s Dogleg Algorithm. " alt="" coords="459,5,637,47"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_optimization_algorithm_gauss_newton.html" title="Implementation of the Gauss Newton Algorithm. " alt="" coords="459,71,637,112"/>
+<area shape="rect" id="node5" href="$classg2o_1_1_optimization_algorithm_levenberg.html" title="Implementation of the Levenberg Algorithm. " alt="" coords="459,136,637,177"/>
+</map>

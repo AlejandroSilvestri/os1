@@ -1,0 +1,4 @@
+<map id="g2o::OptimizationAlgorithmGaussNewton" name="g2o::OptimizationAlgorithmGaussNewton">
+<area shape="rect" id="node2" href="$classg2o_1_1_optimization_algorithm_with_hessian.html" title="Base for solvers operating on the approximated Hessian, e.g., Gauss&#45;Newton, Levenberg. " alt="" coords="5,80,184,121"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_optimization_algorithm.html" title="Generic interface for a non&#45;linear solver operating on a graph. " alt="" coords="5,5,184,32"/>
+</map>

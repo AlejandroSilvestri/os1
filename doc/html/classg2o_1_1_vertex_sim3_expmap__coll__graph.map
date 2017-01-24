@@ -1,0 +1,14 @@
+<map id="g2o::VertexSim3Expmap" name="g2o::VertexSim3Expmap">
+<area shape="rect" id="node2" href="$classg2o_1_1_base_vertex.html" title="g2o::BaseVertex\&lt; 7,\l Sim3 \&gt;" alt="" coords="1304,190,1447,231"/>
+<area shape="rect" id="node3" href="$classg2o_1_1_optimizable_graph_1_1_vertex.html" title="A general case Vertex for optimization. " alt="" coords="977,129,1131,170"/>
+<area shape="rect" id="node6" href="$classg2o_1_1_cache_container.html" title="g2o::CacheContainer" alt="" coords="1303,91,1448,117"/>
+<area shape="rect" id="node4" href="$classg2o_1_1_hyper_graph_1_1_vertex.html" title="abstract Vertex, your types must derive from that one " alt="" coords="611,5,777,32"/>
+<area shape="rect" id="node5" href="$structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html" title="base hyper graph element, specialized in vertex and edge " alt="" coords="239,29,437,70"/>
+<area shape="rect" id="node14" href="$classg2o_1_1_optimizable_graph_1_1_data.html" title="data packet for a vertex. " alt="" coords="617,95,771,137"/>
+<area shape="rect" id="node8" href="$structg2o_1_1_optimizable_graph.html" title="This is an abstract class that represents one optimization problem. " alt="" coords="617,161,771,188"/>
+<area shape="rect" id="node9" href="$classg2o_1_1_hyper_graph.html" title="Class that models a directed Hyper&#45;Graph. " alt="" coords="277,111,399,137"/>
+<area shape="rect" id="node10" href="$classg2o_1_1_jacobian_workspace.html" title="provide memory workspace for computing the Jacobians " alt="" coords="253,161,423,188"/>
+<area shape="rect" id="node11" href="$classg2o_1_1_parameter_container.html" title="map id to parameters " alt="" coords="255,212,421,239"/>
+<area shape="rect" id="node13" href="$classg2o_1_1_open_m_p_mutex.html" title="g2o::OpenMPMutex" alt="" coords="625,212,763,239"/>
+<area shape="rect" id="node15" href="$structg2o_1_1_sim3.html" title="g2o::Sim3" alt="" coords="1013,215,1095,241"/>
+</map>

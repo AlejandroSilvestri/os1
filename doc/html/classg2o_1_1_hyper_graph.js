@@ -1,0 +1,37 @@
+var classg2o_1_1_hyper_graph =
+[
+    [ "Edge", "classg2o_1_1_hyper_graph_1_1_edge.html", "classg2o_1_1_hyper_graph_1_1_edge" ],
+    [ "HyperGraphElement", "structg2o_1_1_hyper_graph_1_1_hyper_graph_element.html", "structg2o_1_1_hyper_graph_1_1_hyper_graph_element" ],
+    [ "Vertex", "classg2o_1_1_hyper_graph_1_1_vertex.html", "classg2o_1_1_hyper_graph_1_1_vertex" ],
+    [ "EdgeSet", "classg2o_1_1_hyper_graph.html#a5e2970e236c0dcb4eff7c205d7b6b4ae", null ],
+    [ "GraphElemBitset", "classg2o_1_1_hyper_graph.html#a7b8fda20e1b03e92aeceeac6e8218b73", null ],
+    [ "VertexContainer", "classg2o_1_1_hyper_graph.html#a9339534c99300a0ddac87ba976ef188c", null ],
+    [ "VertexIDMap", "classg2o_1_1_hyper_graph.html#a97307eac064ebf4b3e2cfbf0718035b5", null ],
+    [ "VertexSet", "classg2o_1_1_hyper_graph.html#a703938cdb4bb636860eed55a2489d70c", null ],
+    [ "HyperGraphElementType", "classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69e", [
+      [ "HGET_VERTEX", "classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69ea4a278c79154a0d4c381a7e265d7048f5", null ],
+      [ "HGET_EDGE", "classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69ea32ab1204ad3640d91c59ce6fffe2e580", null ],
+      [ "HGET_PARAMETER", "classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69eaec8dd0de424ff24a18d3ba5ed3864f79", null ],
+      [ "HGET_CACHE", "classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69eafdb05add70f035dced2b173de8431408", null ],
+      [ "HGET_DATA", "classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69eac780d65b4de763d230e9cad4378c46fa", null ],
+      [ "HGET_NUM_ELEMS", "classg2o_1_1_hyper_graph.html#af603119d5d3475aed6e34ee9d701b69eafe77ef3192f9be61982957b0a3e2f6a6", null ]
+    ] ],
+    [ "HyperGraph", "classg2o_1_1_hyper_graph.html#a833632b111cfc7cf08b842ae3cb43d41", null ],
+    [ "~HyperGraph", "classg2o_1_1_hyper_graph.html#a0ef6e1d65e0f9171a518bce3fc559693", null ],
+    [ "HyperGraph", "classg2o_1_1_hyper_graph.html#ab19a6e0681e2b30d48740cebf553c7eb", null ],
+    [ "addEdge", "classg2o_1_1_hyper_graph.html#a0f1d35009a2879b238c8148c33485c89", null ],
+    [ "addVertex", "classg2o_1_1_hyper_graph.html#a7ef87ba3479827b24c6fc29c5fc3aa21", null ],
+    [ "changeId", "classg2o_1_1_hyper_graph.html#a74f0d7392e67762a85799db72a58a94c", null ],
+    [ "clear", "classg2o_1_1_hyper_graph.html#a6b629dff2928dbd704ca81f24858e72f", null ],
+    [ "edges", "classg2o_1_1_hyper_graph.html#a4edfd2ef4bf235cf78031c505cfd2fcc", null ],
+    [ "edges", "classg2o_1_1_hyper_graph.html#a2f9f023fe2fb491ef9af873b9e683006", null ],
+    [ "operator=", "classg2o_1_1_hyper_graph.html#aace0adc6b03e56bf6b554368d49dcf88", null ],
+    [ "removeEdge", "classg2o_1_1_hyper_graph.html#a33e5a60705ce673d647aa1613da9d99b", null ],
+    [ "removeVertex", "classg2o_1_1_hyper_graph.html#a97ab8302aa027d513253387bba9e0dd5", null ],
+    [ "vertex", "classg2o_1_1_hyper_graph.html#ab07fe8bd9982a66ba34e83dff8317ea2", null ],
+    [ "vertex", "classg2o_1_1_hyper_graph.html#ac117806d17a7e7ad7f8db42f2864cac9", null ],
+    [ "vertices", "classg2o_1_1_hyper_graph.html#a95fcf7cd9d89562b2c26d99ede3548ed", null ],
+    [ "vertices", "classg2o_1_1_hyper_graph.html#a650107c875ef6f43d438d7d3e2ddf797", null ],
+    [ "_edges", "classg2o_1_1_hyper_graph.html#afe4ae6e9ef05c8bded2b1b30e1886b36", null ],
+    [ "_vertices", "classg2o_1_1_hyper_graph.html#a83132c77c8d0896581d168cbc72f673a", null ]
+];
