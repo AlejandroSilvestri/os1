@@ -157,6 +157,8 @@ public:
      * Elimina del grafo de covisibilidad la conexión con el keyframe dado.
      *
      * @param pKF Keyframe a desconectar.
+     *
+     * Invocado sólo desde KeyFrame::SetBadFlag.
      */
     void EraseConnection(KeyFrame* pKF);
 
@@ -192,24 +194,34 @@ public:
      * Actualiza los mejores covisibles.
      *
      * El grafo de covisibilidad es un mapa.
-     * Este método produce dos vectores alineados, KeyFrame::mvpOrderedConnectedKeyFrames con los keyframes,
-     * y KeyFrame::mvOrderedWeights con sus respectivos pesos.
+     * Este método produce dos vectores alineados:
+     * - KeyFrame::mvpOrderedConnectedKeyFrames con los keyframes
+     * - KeyFrame::mvOrderedWeights con sus respectivos pesos
      *
      * Sólo usa datos de KeyFrame::mConnectedKeyFrameWeights.
      *
      *
-     * Invocado cada vez que se actualiza el grafo (cada que que se agrega o elimina una conexión).
+     * Invocado cada vez que se actualiza el grafo (cada que que se agrega o elimina una conexión), desde:
+     * - KeyFrame::AddConnection
+     * - KeyFrame::EraseConnection
      */
     void UpdateBestCovisibles();
 
 
-    /** Devuelve un conjunto de keyframes conectados a éste por el grafo esencial.*/
+    /**
+     * Devuelve un conjunto de keyframes conectados a éste por el grafo esencial.
+     */
     std::set<KeyFrame *> GetConnectedKeyFrames();
 
     /** Devuelve el vector de keyframes covisibles KeyFrame::mvpOrderedConnectedKeyFrames .*/
     std::vector<KeyFrame* > GetVectorCovisibleKeyFrames();
 
-    /** Devuelve los primeros y mejores N elementos del vector de keyframes covisibles KeyFrame::mvpOrderedConnectedKeyFrames .  @param N Cantidad máxima de keyframes a devolver.*/
+    /**
+     * Devuelve los primeros y mejores N elementos del vector de keyframes covisibles KeyFrame::mvpOrderedConnectedKeyFrames.
+     * @param N Cantidad máxima de keyframes a devolver.
+     *
+     * Ordena las conexiones por peso.
+     */
     std::vector<KeyFrame*> GetBestCovisibilityKeyFrames(const int &N);
 
     /** Devuelve los mejores elementos del vector de keyframes covisibles, con peso mejor al de referencia.  @param w Peso de referencia.*/
@@ -685,10 +697,16 @@ protected:
      */
     std::map<KeyFrame*,int> mConnectedKeyFrameWeights;
 
-    /** Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles.*/
+    /**
+     * Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles.
+     *
+     * Este vector está alineado con KeyFrame::mvOrderedWeights, con los respectivos pesos de cada conexión.
+     */
     std::vector<KeyFrame*> mvpOrderedConnectedKeyFrames;
 
-    /** Pesos de los keyframes de KeyFrame::mvpOrderedConnectedKeyFrames.*/
+    /**
+     * Pesos de los keyframes de KeyFrame::mvpOrderedConnectedKeyFrames.
+     */
     std::vector<int> mvOrderedWeights;
 
     // Spanning Tree and Loop Edges
@@ -705,7 +723,7 @@ protected:
     KeyFrame* mpParent;
 
     /**
-     * KeyFrames hijos en el grafo.
+     * KeyFrames hijos en el grafo, que conforman el spanning tree del grado esencial.
      *
      * Se va poblando a medida que otros keyframes identifican a éste como padre.
      *
@@ -713,6 +731,19 @@ protected:
      * que recorre los keyframes con puntos covisibles, y elige como padre al que comparte más puntos.
      *
      * Esto implica que es posible reconstruir este set ejecutando UpdateConnections en cada KeyFrame.
+     *
+     * mspChildrens se usa con los siguientes métodos:
+     * - KeyFrame::AddChild
+     * - KeyFrame::EraseChild
+     * - KeyFrame::GetChilds
+     * - KeyFrame::hasChild
+     * - KeyFrame::SetBadFlag
+     *
+     * El grafo esencial dispone de estos otros métodos para su administración:
+     * - KeyFrame::GetParent
+     * - KeyFrame::ChangeParent
+     * - KeyFrame::UpdateConnections
+     *
      */
     std::set<KeyFrame*> mspChildrens;
 

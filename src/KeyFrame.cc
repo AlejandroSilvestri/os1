@@ -310,10 +310,7 @@ void KeyFrame::UpdateConnections()
     {
         MapPoint* pMP = *vit;
 
-        if(!pMP)
-            continue;
-
-        if(pMP->isBad())
+        if(!pMP || pMP->isBad() || pMP->plCandidato || pMP->plLejano)// Puntos lejanos: excluídos del grafo de covisibilidad
             continue;
 
         map<KeyFrame*,size_t> observations = pMP->GetObservations();

@@ -103,8 +103,9 @@ class Frame;
  *    - Tracking::TrackLocalMap: busca puntos no encontrados con el modelo de movimiento
  *      - Tracking::UpdateLocalMap: genera el mapa local: puntos y keyframes
  *        - Tracking::UpdateLocalKeyFrames: genera el mapa local de keyframes
- *        - Tracking::UpdateLocalMapPoints: genera el mapa local con los puntos observados por los keyframes del mapa local
+ *        - Tracking::UpdateLocalPoints: genera el mapa local con los puntos observados por los keyframes del mapa local
  *      - Tracking::SearchLocalPoints: actualiza la "visibilidad" (el conteo de vistas) de los puntos, y filtra puntos que ya están en el mapa
+ *        - ORBmatcher::SearchByProjection busca puntos que se deberían observar
  *      - Optimizer::PoseOptimization refina la pose
  *    - Tracking::NeedNewKeyFrame: evalúa si hace falta un nuevo keyframe
  *    - Tracking::CreateNewKeyFrame: crea y registra un nuevo keyframe a partir del frame actual
@@ -384,7 +385,7 @@ protected:
 
     /**
      * SfM.  Función principal, que determina la performance del sistema.
-     * Rastrea los puntos de la imagen en el mapa, macheándolos con matcher.SearchByProjection(),
+     * Rastrea los puntos de la imagen en el mapa, macheándolos con ORBmatcher::SearchByProjection,
      * que extiende el macheo consecutivo desde lastFrame a currentFrame, asociando los puntos 3D a los puntos singulares del cuadro actual.
      * Si no logra 20 macheos, falla, retorna false.
      * Con 20 o más puntos macheados calcula la nueva pose con Optimizer::PoseOptimization() (donde ocurre el verdadero SfM).
@@ -441,7 +442,7 @@ protected:
      * Actualiza el mapa y realiza el tracking.
      * Se invoca cuando el sistema está ubicado: tiene pose de cámara y lleva el rastro de varios puntos en el cuadro.
      * Actualiza el mapa local a partir de la pose estimada:
-     * busca puntos del mapa que se deberían observar desde esa pose, usando SearchReferencePointsInFrustum().
+     * busca puntos del mapa que se deberían observar desde esa pose, usando Tracking::SearchLocalPoints().
      * Optimiza la pose a partir de los puntos observados, obteniendo la lista de inliers.
      * Incrementa la cantidad de veces que estos puntos fueron observados, para estadística.
      * Para retornar con éxito exige 30 puntos inliers, o 50 (más exigente) si hubo una relocalización reciente.
@@ -453,7 +454,7 @@ protected:
      *
      * 1- Recorre los puntos 3D asociados al cuadro actual, incrementa su visibilidad y marca que fueron vistos por última vez desde este cuadro.
      * 2- Cuenta los puntos que deberían haber sido vistos y no lo fueron.
-     * 3- Si hay puntos no vistos, realiza un SearchByProjection
+     * 3- Si hay puntos no vistos, realiza un ORBmatcher::SearchByProjection
      */
     void SearchLocalPoints();
 
