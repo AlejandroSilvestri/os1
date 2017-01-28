@@ -60,7 +60,9 @@ int ORBmatcher::SearchByProjection(Frame &F, const vector<MapPoint*> &vpMapPoint
         const int &nPredictedLevel = pMP->mnTrackScaleLevel;
 
         // The size of the window will depend on the viewing direction
-        float r = RadiusByViewingCos(pMP->mTrackViewCos);
+        float r = pMP->plCandidato?
+        		4.0 :
+        		RadiusByViewingCos(pMP->mTrackViewCos);
 
         if(bFactor)
             r*=th;
@@ -1287,7 +1289,7 @@ int ORBmatcher::SearchBySim3(KeyFrame *pKF1, KeyFrame *pKF2, vector<MapPoint*> &
     return nFound;
 }
 
-int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, const float th, const bool bMono)
+int ORBmatcher::SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, const float th)
 {
     int nmatches = 0;
 

@@ -47,6 +47,11 @@ namespace ORB_SLAM2
  * ORBmatcher se ocupa de machear de diversas maneras:
  *
  * - SearchByProjection parte de una pose, proyecta los puntos del mapa local que deberían ser visibles, y realiza un macheo circular.
+ * Hay 4 SearchByProjection especializados en:
+ * 	- puntos rastreados
+ * 	- puntos proyectados no rastreados
+ * 	- candidatos para relocalización
+ * 	- candidatos para cierre de bucle
  * - SearchByBoW machea primero por BoW, y luego por descriptores cuando hay varios candidatos con el mismo BoW.
  * - SearchForInitialization machea para encontrar los primeros puntos del mapa.
  * - SearchForTriangulation machea para encontrar nuevos puntos 3D.
@@ -69,13 +74,17 @@ public:
     static int DescriptorDistance(const cv::Mat &a, const cv::Mat &b);
 
     /**
-     * Macheo circular entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos.
-     * Supongo que evita reprocesar los puntos que ya fueron vistos en LastFrame y que han sido asignados al cuadro actual en TrackWithMotionModel.
+     * Macheo en ventana cuadrada entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos.
+     * Evita reprocesar los puntos que ya fueron vistos en LastFrame y que han sido asignados al cuadro actual en TrackWithMotionModel.
+     *
+     * Estos puntos tienen la marca efímera MapPoint::mbTrackInView.
+     *
      * Agrega los puntos nuevos al registro de puntos vistos del cuadro actual mvpMapPoints.
      *
      * @param F Cuadro actual
      * @param vpMapPoints Mapa local
-     * @param th Threshold, umbral.
+     * @param th Threshold, umbral, base para calcular el radio de búsqueda.  Es 1, excepto luego de una relocalización, que es 5.
+     * El radio se obtiene multiplicando th * ORBmatcher::RadiusByViewingCos, que normalmente es 4, pero es 2,5 cuando no hay paralaje.
      *
      * Invocado exclusivamente desde Tracking::SearchLocalPoints.
      */
@@ -84,13 +93,16 @@ public:
     int SearchByProjection(Frame &F, const std::vector<MapPoint*> &vpMapPoints, const float th=3);
 
     /**
-     * Macheo ad hoc circular entre descriptores de puntos singulares del cuadro actual
+     * Macheo en ventana cuadrada entre descriptores de puntos singulares del cuadro actual
      * con los puntos singulares del cuadro anterior asociados a algún punto del mapa local.
+     *
      * Crea la lista de puntos del mapa local vistos desde el cuadro actual CurrentFrame.mvpMapPoints.
      *
      * @param CurrentFrame Cuadro actual, con sus puntos singulares detectados.
      * @param LastFrame Cuadro anterior, con sus puntos singulares y sus puntos de mapa local asociados.
-     * @param bMono Flag que indica si es monocular (true) o no.  En esta versión modificada (os1) siempre es monocular.
+     * @param th Umbral que determina el radio del área donde machear.  El radio dependerá el nivel de la pirámide donde se busque.
+     *
+     * Se invoca con 15, y si se consiguieron pocos macheos se repite con 30.
      *
      * 1. Aplica el modelo de movimiento para pronosticar una pose.
      * 2. Proyecta puntos del mapa detectados en LastFrame.
@@ -99,11 +111,11 @@ public:
      *
      * Este método no corrige pose, sólo asocia puntos singulares macheados en una región circular.  No verifica coherencia.
      *
-     * Invocado exclusivamente desde TrackWithMotionModel, que a partir de este macheo computa la pose del cuadro actual.
+     * Invocado exclusivamente desde Tracking::TrackWithMotionModel, que a partir de este macheo computa la pose del cuadro actual.
      */
     // Project MapPoints tracked in last frame into the current frame and search matches.
     // Used to track from previous frame (Tracking)
-    int SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, const float th, const bool bMono);
+    int SearchByProjection(Frame &CurrentFrame, const Frame &LastFrame, const float th);
 
     /**
      * Busca en el cuadro actual los puntos vistos en el keyFrame candidato para relocalización.
@@ -121,7 +133,7 @@ public:
     int SearchByProjection(Frame &CurrentFrame, KeyFrame* pKF, const std::set<MapPoint*> &sAlreadyFound, const float th, const int ORBdist);
 
     /**
-     * Ante una detección de bucle con vaios macheos y una pose propuesta, este método aumenta la cantidad de macheos
+     * Ante una detección de bucle con varios macheos y una pose propuesta, este método aumenta la cantidad de macheos
      * comparando contra otros puntos que deberían ser vistos desde el keyframe actual.
      *
      * @param pKF Keyframe actual, candidato a cerrar bucle.
@@ -138,12 +150,13 @@ public:
 
     /**
      * Machea puntos del cuadro actual con los de un keyframe.
-     * Machea por BoW y luego por descriptores.
+     * Macheo de fuerza bruta, primero por BoW y luego por descriptores.
      *
      * @param pKF Keyframe candidato a explicar el cuadro actual.  Es el keyframe de referencia para tracking, o uno de varios candidatos en relocalización.
      * @param F Cuadro actual que se intenta ubicar.
      * @param vpMapPointMatches Resultado, puntos 3D macheados.
      * @returns Cantidad de puntos macheados.
+     *
      * Invocado sólo por Tracking::Relocalization y Tracking::TrackByReferencieKeyFrame.
      */
     // Search matches between MapPoints in a KeyFrame and ORB in a Frame.
@@ -158,6 +171,7 @@ public:
      * @param pKF2 Keyframe candidato al cierre de bucle.
      * @param vpMatches12 Resultado de la búsqueda, puntos del mapa macheados.
      * @returns Cantidad de macheos.
+     *
      * Invocado sólo desde LoopClosing::ComputeSim3.
      */
     int SearchByBoW(KeyFrame *pKF1, KeyFrame* pKF2, std::vector<MapPoint*> &vpMatches12);
@@ -189,8 +203,13 @@ public:
      * @param pKF2 Keyframe vecino, anterior a pKF1.
      * @param F12 Matriz fundamental de pKF1 respecto de pKF2.
      * @param vMatchedPairs Resultado del algoritmo, los pares macheados.  Si tenía algo, lo borra.
-     * @param bOnlyStereo Flag que indica si sólo se procesa para estéreo.
      * @returns Cantidad de macheos encontrados.
+     *
+     * Primero utiliza KeyFrame::mFeatVec para encontrar conjuntos de puntos singulares con el mismo BoW.
+     *
+     * Luego, en estos conjuntos compara distancias por "fuerza bruta".
+     *
+     * Finalmente realiza una verificación epipolar.
      *
      * Invocado sólo desde LocalMapping::CreateNewMapPoints
      */
@@ -288,9 +307,11 @@ protected:
     bool CheckDistEpipolarLine(const cv::KeyPoint &kp1, const cv::KeyPoint &kp2, const cv::Mat &F12, const KeyFrame *pKF);
 
     /**
-     * Empaqueta la decisión del radio en búsqueda circular, según el coseno de la triangulación.
+     * Empaqueta la decisión del radio en búsqueda en ventana caudrada, según el coseno de la triangulación.
      * A mayor paralaje, menor radio, la búsqueda será más estricta.
-     * Invocado sólo desde SearchByProjection entre keyframe y mapa.
+     * @param viewCos Coseno del ángulo de visión del punto.
+     *
+     * Invocado sólo desde ORBmatcher::SearchByProjection entre keyframe y mapa.
      */
     float RadiusByViewingCos(const float &viewCos);
 

@@ -91,50 +91,6 @@ void MapPoint::AddObservation(KeyFrame* pKF, size_t idx)
 
     		cout << "Punto acercado" << endl;
 		}
-
-
-    	/*
-    	float cosParallaxRays;
-    	KeyFrameTriangulacion &kft1 = *new KeyFrameTriangulacion(pKF);
-    	KeyFrameTriangulacion &kft2 = *new KeyFrameTriangulacion(mpRefKF);
-		cv::Mat ray1 = kft1.rayo(idx);
-		cv::Mat ray2 = kft2.rayo(mObservations[mpRefKF]);
-		cosParallaxRays = ray1.dot(ray2);
-
-        if(cosParallaxRays<0.9998){
-			plConfirmacion = observacionParalaje;
-        	if(plOrigen == umbralCosBajo){
-        		// Punto lejano con suficiente paralaje, se convierte en normal.  BA se encargará de corregirlo.
-        		plLejano = cercano;
-    			plCandidato = false;
-    			cout << "Punto lejano coseno bajo convertido a normal." << endl;
-        	}else{
-        		// Punto muy lejano!  Hay que retriangular
-        		cout << "AddObservation: Retriangulando punto lejano " << plLejano << ", cos:" << cosParallaxRays;
-
-        		// Retriangular
-                KeyFrameTriangulacion &kft1 = *new KeyFrameTriangulacion(mpRefKF);
-                KeyFrameTriangulacion &kft2 = *new KeyFrameTriangulacion(pKF);
-				cv::Mat x3D = kft1.triangular(kft2);
-				// Motivos para no descartar la confirmación del punto
-				if(x3D.at<float>(3) != 0){
-					x3D = x3D.rowRange(0,3)/x3D.at<float>(3);
-					cv::Mat x3Dt = x3D.t();
-					if(    kft1.coordenadaZ(x3Dt)>0
-						&& kft2.coordenadaZ(x3Dt)>0
-						&& kft1.validarErrorReproyeccion(x3Dt)
-						&& kft2.validarErrorReproyeccion(x3Dt)
-					){
-						// Esta observación proviene de un tracking, por eso no chequeo la relación de distancias y octavas: lo asumo chequeado - habría que confirmarlo.
-						SetWorldPos(x3D);
-		    			plCandidato = false;
-		        		plLejano = cercano;
-		        		cout << "Punto muy lejano acercóse." << endl;
-					}
-				}
-        	}
-        }*/
-
     }
 }
 
@@ -429,7 +385,9 @@ cv::Scalar MapPoint::color(){
 		return cv::Scalar(255, 255, 32*(nObs-3));	// Punto lejano triangulado, turquesa blanqueando con las observaciones
 
 	case umbralCos:
-		return cv::Scalar(255,   0, 255 * esQInf());	// Punto muy lejano COS, violeta al azul cuando se acerca
+		// Punto muy lejano COS, violeta al azul cuando se acerca
+		// Tirando a celeste o turquesa "oscuro" si fue reducido a normal por BA
+		return cv::Scalar(255,   128*(plConfirmacion != observacionParalaje), 255 * esQInf());
 
 	default:	//case svdInf:
 		return cv::Scalar(0, 128*!esQInf(), 255);	// Punto muy lejano SVD, rojo al naranja cuando se acerca

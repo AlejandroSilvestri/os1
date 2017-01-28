@@ -678,7 +678,6 @@ void Tracking::UpdateLastFrame()
     // Update pose according to reference keyframe
     KeyFrame* pRef = mLastFrame.mpReferenceKF;
     cv::Mat Tlr = mLastFrame.mTcw*pRef->GetPoseInverse();
-    //cv::Mat Tlr = mlRelativeFramePoses.back();
 
     mLastFrame.SetPose((cv::Mat)(Tlr*pRef->GetPose()));
 }
@@ -697,18 +696,14 @@ bool Tracking::TrackWithMotionModel()
     fill(mCurrentFrame.mvpMapPoints.begin(),mCurrentFrame.mvpMapPoints.end(),static_cast<MapPoint*>(NULL));
 
     // Project points seen in previous frame
-    int th;
-    //if(mSensor!=System::STEREO)
-        th=15;
-    //else
-    //    th=7;
-    int nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,th,true);//mSensor==System::MONOCULAR);
+    int th=15;
+    int nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,th);
 
     // If few matches, uses a wider window search
     if(nmatches<20)
     {
         fill(mCurrentFrame.mvpMapPoints.begin(),mCurrentFrame.mvpMapPoints.end(),static_cast<MapPoint*>(NULL));
-        nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,2*th,true);//mSensor==System::MONOCULAR);
+        nmatches = matcher.SearchByProjection(mCurrentFrame,mLastFrame,2*th);
     }
 
     if(nmatches<20)
@@ -835,7 +830,7 @@ bool Tracking::NeedNewKeyFrame()
     // Condition 1b: More than "MinFrames" have passed and Local Mapping is idle
     const bool c1b = (mCurrentFrame.mnId>=mnLastKeyFrameId+mMinFrames && bLocalMappingIdle);
     //Condition 1c: tracking is weak
-    const bool c1c = false;// mSensor!=System::MONOCULAR && (mnMatchesInliers<nRefMatches*0.25 || ratioMap<0.3f) ;
+    const bool c1c = false;
     // Condition 2: Few tracked points compared to reference keyframe. Lots of visual odometry compared to map matches.
     const bool c2 = ((mnMatchesInliers<nRefMatches*thRefRatio|| ratioMap<thMapRatio) && mnMatchesInliers>15);
 
@@ -914,7 +909,6 @@ void Tracking::SearchLocalPoints()
     {
         ORBmatcher matcher(0.8);
         int th = 1;
-        //if(mSensor==System::RGBD) th=3;
 
         // If the camera has been relocalised recently, perform a coarser search
         if(mCurrentFrame.mnId<mnLastRelocFrameId+2)
@@ -945,13 +939,7 @@ void Tracking::UpdateLocalPoints()
         for(vector<MapPoint*>::const_iterator itMP=vpMPs.begin(), itEndMP=vpMPs.end(); itMP!=itEndMP; itMP++)
         {
             MapPoint* pMP = *itMP;
-            /*if(!pMP)
-                continue;
-            if(pMP->mnTrackReferenceForFrame == mCurrentFrame.mnId)
-                continue;
-            if(!pMP->isBad())*/
-            if(pMP && pMP->mnTrackReferenceForFrame != mCurrentFrame.mnId && !pMP->isBad())
-            {
+            if(pMP && pMP->mnTrackReferenceForFrame != mCurrentFrame.mnId && !pMP->isBad()){
                 mvpLocalMapPoints.push_back(pMP);
                 pMP->mnTrackReferenceForFrame = mCurrentFrame.mnId;
             }

@@ -90,6 +90,17 @@ public:
 	 * Intenta relocalizar a partir de un cuadro.
 	 * @param F Cuadro actual cuya pose se pretende localizar.
 	 * @returns Vector de KeyFrames candidatos a relocalización, en los que se encontraron suficiente coincidencias BoW.
+	 *
+	 * Busca todos los keyframes que comparten algún BoW con el frame actual argumento.
+	 *
+	 * Identifica el que más BoWs tiene en común, y arma un conjunto con los keyframes con al menos 80% de ese máximo.
+	 *
+	 * Para cada keyframe calcula un puntaje de similaridad al comparar su conjunto de BoWs con el del cuadro actual.
+	 *
+	 * Luego acumula en cada keyframe el puntaje de todos los keyframes covisibles.
+	 *
+	 * Finalmente devuelve los keyframes con al menos 75% del mejor puntaje.
+	 *
 	 * Estos candidatos luego deben pasar una prueba de pose.
 	 */
 	// Relocalization

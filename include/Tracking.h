@@ -400,6 +400,10 @@ protected:
     /**
      * Dispara una relocalización.
      *
+     * Machea keyframes por BoW, obteniendo un conjunto de puntos 3D compatible con los BoW del cuadro actual.
+     *
+     * Luego se intenta resolver la pose con PnPsolver.
+     *
      * Invocado sólo desde el autómata finito en Tracking::Track.
      */
     bool Relocalization();
@@ -452,9 +456,9 @@ protected:
     /**
      * Invocado por TrackLocalMap.
      *
-     * 1- Recorre los puntos 3D asociados al cuadro actual, incrementa su visibilidad y marca que fueron vistos por última vez desde este cuadro.
-     * 2- Cuenta los puntos que deberían haber sido vistos y no lo fueron.
-     * 3- Si hay puntos no vistos, realiza un ORBmatcher::SearchByProjection
+     * 1. Recorre los puntos 3D asociados al cuadro actual, incrementa su visibilidad y marca que fueron vistos por última vez desde este cuadro.
+     * 2. Cuenta los puntos que deberían haber sido vistos y no lo fueron.
+     * 3. Si hay puntos no vistos, realiza un ORBmatcher::SearchByProjection
      */
     void SearchLocalPoints();
 

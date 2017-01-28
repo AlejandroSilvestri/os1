@@ -572,7 +572,11 @@ public:
     const float fx, fy, cx, cy, invfx, invfy, mbf, mb, mThDepth;
 
     // Number of KeyPoints
-    /** Cantidad de puntos singulares.*/
+    /**
+     * Cantidad de puntos singulares.
+     *
+     * Tamaño de KeyFrame::mKeys, KeyFrame::mKeysUn y KeyFrame::mDescriptors.
+     */
     const int N;
 
     // KeyPoints, stereo coordinate and descriptors (all associated by an index)
@@ -580,7 +584,7 @@ public:
     /** Puntos singulares visualizados por el keyframe.*/
     const std::vector<cv::KeyPoint> mvKeys;
 
-    /** Puntos singulares con coordenadas "desdistorsionadas".  Los elementos se corresponden con los de mvKeys.*/
+    /** Puntos singulares con coordenadas "antidistorsionadas".  Los elementos se corresponden con los de mvKeys.*/
     const std::vector<cv::KeyPoint> mvKeysUn;
 
     /** Descriptores.  Se corresponden con los de mvKeys.*/
@@ -590,9 +594,28 @@ public:
     vector<cv::Vec3b> vRgb;
 
     //BoW
-    /** Vector de BoW obtenidos de los descriptores del keyframe.  ComputeBoW llena este vector.*/
+    /**
+     * Vector de BoW obtenidos de los descriptores del keyframe.  ComputeBoW llena este vector.
+     *
+     * BowVector es un mapa de Word Id (unsigned int) a Word value (double), que representa un peso.
+     *
+     * Este peso se utiliza solamente para relocalización y cierre de bucle,
+     * siempre a través de ORBVocabulary::score, que compara dos BowVector completos.
+     *
+     * Word Id es la palabra BoW.
+     */
     DBoW2::BowVector mBowVec;
-    /** Vector de Features de DBoW2.  ComputeBoW llena este vector.*/
+
+    /**
+     * Vector de Features de DBoW2.
+     * KeyFrame::ComputeBoW llena este vector.
+     *
+     * FeatureVector es un mapa de nodos (BoW, entero) con un vector de índices de puntos singulares asociados.
+     *
+     * A este vector no se accede por el índice de un punto singular, sino al revés:
+     * se accede por BoW, y se obtienen los índices de todos los puntos singulares con ese BoW.
+     *
+     */
     DBoW2::FeatureVector mFeatVec;
 
     // Pose relative to parent (this is computed when bad flag is activated)

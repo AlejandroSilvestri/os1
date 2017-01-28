@@ -120,7 +120,7 @@ protected:
      * mnTracked indica la cantidad de macheos entre puntos singulares del cuadro y puntos del mapa.
      * mnTrackedVO indica la cantidad de macheos entre puntos singulares del cuadro y puntos 3D de odometría visual, no agregados al mapa.
      */
-    int mnTracked, mnTrackedVO;
+    int mnTracked, mnTrackedVO, candidatos;
     //@}
 
     /** Puntos singulares de inicialización.*/

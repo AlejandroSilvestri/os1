@@ -113,7 +113,15 @@ public:
 
     /**
      * Computa BoW para todos los descriptores del cuadro.
-     * Los guarda en la propiedad mBowVec, que es del tipo BowVector.
+     * Los guarda en la propiedad mBowVec, que es del tipo BowVector, y en mFeatVec, del tipo FeatureVector.
+     *
+     * Si mBowVec no está vacío el método retorna sin hacer nada, evitando el recómputo.
+     *
+     * Se computa BoW para un cuadro cuando se erige en keyframe, y cuando se intenta relocalizar.
+     *
+     * DBoW2 se documenta en http://webdiis.unizar.es/~dorian/doc/dbow2/annotated.html
+     *
+     *
      */
     // Compute Bag of Words representation.
     void ComputeBoW();
@@ -186,9 +194,19 @@ public:
     bool PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY);
 
     /**
-     * Selecciona los puntos dentro de una ventana cuadrada de centro x,y y lado r.
+     * Selecciona los puntos dentro de una ventana cuadrada de centro x,y y radio r (lado 2r).
+     *
      * Recorre todos los niveles del frame filtrando los puntos por coordenadas.
+     *
      * Se utiliza para reducir los candidatos para macheo.
+     *
+     * @param x Coordenada x del centro del área
+     * @param y Coordenada y del centro del área
+     * @param r Radio del área cuadrada
+     * @param minLevel Nivel mínimo de la pirámide donde buscar los puntos singulares.  Negativo si no hay mínimo.
+     * @param maxLevel Nivel máximo de la pirámide donde buscar los puntos singulares.  Negativo si no hay máximo.
+     *
+     * Invocado sólo por métodos varios de ORBmatcher.
      */
     vector<size_t> GetFeaturesInArea(const float &x, const float  &y, const float  &r, const int minLevel=-1, const int maxLevel=-1) const;
 
@@ -292,9 +310,16 @@ public:
     //std::vector<float> mvDepth;
 
     // Bag of Words Vector structures.
-    /** Vector BoW correspondiente a los puntos singulares.*/
+    /**
+     * Vector BoW correspondiente a los puntos singulares.
+     *
+     * BowVector es un mapa de Word Id (unsigned int) a Word value (double), que representa un peso.
+     */
     DBoW2::BowVector mBowVec;
-    /** Vector "Feature" correspondiente a los puntos singulares.*/
+
+    /**
+     * Vector "Feature" correspondiente a los puntos singulares.
+     */
     DBoW2::FeatureVector mFeatVec;
 
 	/** Descriptores ORB en el formato Mat, tal como los devuelve opencv.  mDescritorRight no se usa, se pasa en el constructor de copia.*/

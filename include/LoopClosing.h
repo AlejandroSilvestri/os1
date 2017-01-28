@@ -48,10 +48,10 @@ class KeyFrameDatabase;
  * Si lo detecta, computa su pose (LoopClosing::ComputeSim3), corrige el mapa (LoopClosing::CorrectLoop) usando en la etapa final LoopClosing::SearchAndFuse.
  *
  * Terminación del hilo, para cerrar la aplicación:
- * 1- Un hilo externo invoca LoopClosing::RequestFinish, que marca mbFinishedRequested
- * 2- En el bucle principal de LoopClosing::Run, LoopClosing::CheckFinish informa que se ha solicitado la finalización y sale del bucle
- * 3- Antes de terminar el hilo, LoopClosing::Run invoca LoopClosing::SetFinish(), que marca LoopClosing::mbFinished.
- * 4- LoopClosing::isFinished() informa esa marca a otros hilos que pregunten.
+ * 1. Un hilo externo invoca LoopClosing::RequestFinish, que marca mbFinishedRequested
+ * 2. En el bucle principal de LoopClosing::Run, LoopClosing::CheckFinish informa que se ha solicitado la finalización y sale del bucle
+ * 3. Antes de terminar el hilo, LoopClosing::Run invoca LoopClosing::SetFinish(), que marca LoopClosing::mbFinished.
+ * 4. LoopClosing::isFinished() informa esa marca a otros hilos que pregunten.
  *
  * Reset:
  * Ante una mala inicialziación, Tracking::Reset invoca LoopClosing::RequestReset, que bloquea el hilo de Tracking hasta que concluye la reinicialización de LoopClosing.

@@ -66,10 +66,10 @@
  *
  *	Este bucle principal es un algoritmo largo, separado en métodos por prolijidad, la mayoría de los cuales se invocan desde un único lugar.
  *	La secuencia de invocaciones es:
- *	1- System::TrackMonocular, pasando la imagen a color de la cámara
- *	2- Tracking::GrabImageMonocular, pasando la imagen Mat en escala de grises, crea el currentFrame a partir de la imagen
- *	3- Tracking::Track, autómata finito que despacha métodos de acuerdo al estado.
- *	4- Tracking::TrackWithMotionModel, invocado en el estado OK
+ *	1. System::TrackMonocular, pasando la imagen a color de la cámara
+ *	2. Tracking::GrabImageMonocular, pasando la imagen Mat en escala de grises, crea el currentFrame a partir de la imagen
+ *	3. Tracking::Track, autómata finito que despacha métodos de acuerdo al estado.
+ *	4. Tracking::TrackWithMotionModel, invocado en el estado OK
  *
  * \section clas Clasificación de las clases
  *	ORB-SLAM2 tiene un archivo .h y otro .cc para cada clase, todas declaradas en el espacio de nombres ORB-SLAM2.

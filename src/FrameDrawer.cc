@@ -109,6 +109,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
     }else if(state==Tracking::OK){ //TRACKING
         mnTracked=0;
         mnTrackedVO=0;
+        candidatos=0;
         const float r = 5;
 
         // Recorre todos los puntos singulares, pone marcas solamente si tienen un punto de mapa asociado.
@@ -127,6 +128,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
                     cv::Scalar color = MP->color();
                     cv::circle(im, vCurrentKeys[i].pt, 2*radio , color, -1);
                     mnTracked++;
+                    if(MP->plCandidato) candidatos++;
                 }else{ // This is match to a "visual odometry" MapPoint created in the last frame
                 	cv::rectangle(im,pt1,pt2,cv::Scalar(255,0,0));
                     cv::circle(im, vCurrentKeys[i].pt, 2*radio, cv::Scalar(255,0,0), -1);
@@ -177,14 +179,13 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
         if(!mbOnlyTracking){
             s << "SLAM |  ";
             color = cv::Scalar(0,mnTracked,0);
-            //cout << color << endl;
         }else{
             s << "LOCALIZACIÓN | ";
             color = cv::Scalar(64,64,0);
         }
         int nKFs = mpMap->KeyFramesInMap();
         int nMPs = mpMap->MapPointsInMap();
-        s << "KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked;
+        s << "KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked << ", Candidatos: " << candidatos;
         if(mnTrackedVO>0)
             s << ", + VO matches: " << mnTrackedVO;
     }

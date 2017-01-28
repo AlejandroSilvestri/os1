@@ -26,22 +26,22 @@ namespace ORB_SLAM2{
  *
  * La secuencia de uso es la siguiente:
  *
- * 1- KeyFrameTriangulacion::KeyFrameTriangulacion: Construcción de este objeto, tomando datos de pose y calibración para asegurar su inmutabilidad
- * 2- KeyFrameTriangulacion::rayo inicializa parámetros de cálculos intermedios, necesarios en los métodos que siguen.
- * 3- KeyFrameTriangulacion::triangular devuelve el punto triangulado por SVD
- * 4- KeyFrameTriangulacion::coorddenadaZ calcula y recuerda la distancia del punto sobre el eje z.  Necesario para calcular el error de reproyección.
- * 4- KeyFrameTriangulacion::validarErrorReproyección decide si el error es aceptable.
- * 5- KeyFrameTriangulacion::errorReproyección calcula el error, invocado por el anterior.
+ * 1. KeyFrameTriangulacion::KeyFrameTriangulacion: Construcción de este objeto, tomando datos de pose y calibración para asegurar su inmutabilidad
+ * 2. KeyFrameTriangulacion::rayo inicializa parámetros de cálculos intermedios, necesarios en los métodos que siguen.
+ * 3. KeyFrameTriangulacion::triangular devuelve el punto triangulado por SVD
+ * 4. KeyFrameTriangulacion::coorddenadaZ calcula y recuerda la distancia del punto sobre el eje z.  Necesario para calcular el error de reproyección.
+ * 4. KeyFrameTriangulacion::validarErrorReproyección decide si el error es aceptable.
+ * 5. KeyFrameTriangulacion::errorReproyección calcula el error, invocado por el anterior.
  *
  *
  *
  * Otra forma de uso, más completa, que construye dos objetos para triangularlos:
  *
- * 1- KeyFrameTriangulacion::KeyFrameTriangulacion: construye un objeto a partir de un keyframe.
- * 2- KeyFrameTriangulacion::setKeyFrame2: construye el segundo objeto, en la propiedad kft2.
- * 3- KeyFrameTriangulacion::setKeyPoint: determina el punto singular del keyframe de este objeto
- * 4- KeyFrameTriangulacion::setKeyPoint2: determina el punto singular del keyframe del otro objeto, kft2
- * 5- KeyFrameTriangulacion:: triangular: realiza toda la triangulación, presentando los resultados en propiedades
+ * 1. KeyFrameTriangulacion::KeyFrameTriangulacion: construye un objeto a partir de un keyframe.
+ * 2. KeyFrameTriangulacion::setKeyFrame2: construye el segundo objeto, en la propiedad kft2.
+ * 3. KeyFrameTriangulacion::setKeyPoint: determina el punto singular del keyframe de este objeto
+ * 4. KeyFrameTriangulacion::setKeyPoint2: determina el punto singular del keyframe del otro objeto, kft2
+ * 5. KeyFrameTriangulacion:: triangular: realiza toda la triangulación, presentando los resultados en propiedades
  *
  * Esta clase y sus métodos son usados en:
  * - LocalMapping::CreateNewMapPoints
