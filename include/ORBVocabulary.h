@@ -29,7 +29,7 @@ namespace ORB_SLAM2
 {
 /** Vocabulario que mapea descriptores ORB con Bow.
  * OBRVocabulary es un tipo basado en plantilla que define un tipo de descriptores y una clase de funciones DBOW2 para manipularlos.
- * OBRVocabulary usa Mat como descriptor (TDescriptor es Mat), y la clase FORB como implementación específicas para ORB
+ * OBRVocabulary usa Mat como descriptor (DBoW2::FORB::TDescriptor es Mat), y la clase DBoW2::FORB como implementación específica para ORB
  * de las funciones generales de manipulación de descriptores que requiere DBOW2.
  *
  * main.cc crea la única instancia de este objeto, carga su vocabulario desde un archivo,

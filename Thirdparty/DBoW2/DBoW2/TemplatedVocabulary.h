@@ -1143,7 +1143,7 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
   
   typename vector<TDescriptor>::const_iterator fit;
   
-  if(m_weighting == TF || m_weighting == TF_IDF)
+  if(m_weighting == TF || m_weighting == TF_IDF)	// TF_IDF
   {
     unsigned int i_feature = 0;
     for(fit = features.begin(); fit < features.end(); ++fit, ++i_feature)
@@ -1455,6 +1455,21 @@ bool TemplatedVocabulary<TDescriptor,F>::loadFromTextFile(const std::string &fil
  * El archivo binario con el vocabulario ocupa un tercio del de texto, y carga infinitamente más rápido al evitar el parse.
  * Al cargar el descriptor, utiliza FORB::fromArray en lugar de FORB::fromString.
  * fromArray es una versión modificada para esto, inspirada en fromString.
+ *
+ * Estructura del archivo binario
+ *
+ * Encabezado: 4 bytes
+ * 1. m_k, 10
+ * 2. m_L, 6
+ * 3. m_scoring, 0: L1-NORM
+ * 4. m_weighting, 0:TF_IDF, term frequency - inverse document frequency
+ *
+ * Registros: 45 bytes
+ *
+ * 1. Nodo padre, int
+ * 2. nIsLeaf, char, 0 si es nodo, !=0 si es hoja
+ * 3. Descriptor, 32 bytes
+ * 4. Peso, double, válido si es hoja, 0 si no
  */
 
 template<class TDescriptor, class F>
@@ -1471,10 +1486,10 @@ bool TemplatedVocabulary<TDescriptor,F>::loadFromBinaryFile(const std::string &f
     // 1ª fila, 4 números int para las propiedaes m_k, m_L, m_scoring (vía n1) y m_weighting (vía n2)
     archivoBinario.read((char*)buffer, 4);
     int n1, n2;
-    m_k = buffer[0];
-    m_L = buffer[1];
-    n1 = buffer[2];
-    n2 = buffer[3];
+    m_k = buffer[0];	// 10
+    m_L = buffer[1];	// 6
+    n1  = buffer[2];	// 0
+    n2  = buffer[3];	// 0
 
     // Si alguno de los 4 números está fuera de rango, aborta
     if(m_k<0 || m_k>20 || m_L<1 || m_L>10 || n1<0 || n1>5 || n2<0 || n2>3)
@@ -1507,7 +1522,7 @@ bool TemplatedVocabulary<TDescriptor,F>::loadFromBinaryFile(const std::string &f
         m_nodes.resize(m_nodes.size()+1);
         m_nodes[nid].id = nid;
 
-        // Primer valor de la línea: nº de nodo, en pid
+        // Primer valor de la línea: nº de nodo del padre, en pid
         int pid = *((int*)buffer);
         m_nodes[nid].parent = pid;
         m_nodes[pid].children.push_back(nid);

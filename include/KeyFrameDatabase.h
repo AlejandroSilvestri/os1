@@ -25,8 +25,8 @@
 #include <list>
 #include <set>
 
-#include "KeyFrame.h"
-#include "Frame.h"
+//#include "KeyFrame.h"
+//#include "Frame.h"
 #include "ORBVocabulary.h"
 
 #include<mutex>
@@ -96,6 +96,7 @@ public:
 	 * Identifica el que más BoWs tiene en común, y arma un conjunto con los keyframes con al menos 80% de ese máximo.
 	 *
 	 * Para cada keyframe calcula un puntaje de similaridad al comparar su conjunto de BoWs con el del cuadro actual.
+	 * El puntaje es la suma de los pesos de los BoW coincidentes.
 	 *
 	 * Luego acumula en cada keyframe el puntaje de todos los keyframes covisibles.
 	 *
@@ -122,7 +123,7 @@ protected:
 	* Se utiliza para cierre de bucles y relocalización.
 	*/
 	// Inverted file
-	std::vector<list<KeyFrame*> > mvInvertedFile;
+	std::vector<std::list<KeyFrame*> > mvInvertedFile;
 
 	// Mutex
 	std::mutex mMutex;
