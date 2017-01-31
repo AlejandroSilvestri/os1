@@ -146,6 +146,14 @@ public:
     BowVector &v, FeatureVector &fv, int levelsup) const;
 
   /**
+   * Versión modificada de transform, que genera los vectores bow y bowPesos.
+   */
+  virtual void transform(const std::vector<TDescriptor>& features,
+    BowVector &v, FeatureVector &fv, vector<WordId> &bows, vector<WordValue> &bowPesos,
+    int levelsup) const;
+
+
+  /**
    * Transforms a single feature into a word (without weight)
    * @param feature
    * @return word id
@@ -1192,6 +1200,85 @@ void TemplatedVocabulary<TDescriptor,F>::transform(
   } // if m_weighting == ...
   
   if(must) v.normalize(norm);
+}
+
+// --------------------------------------------------------------------------
+/**
+ * Versión modificada.
+ *
+ * Asume L1.
+ */
+template<class TDescriptor, class F>
+void TemplatedVocabulary<TDescriptor,F>::transform(
+  const std::vector<TDescriptor>& features,
+  BowVector &v, FeatureVector &fv, vector<WordId> &bows, vector<WordValue> &bowPesos, int levelsup) const
+{
+  v.clear();
+  fv.clear();
+
+  if(empty()) // safe for subclasses
+  {
+    return;
+  }
+
+  // normalize
+  LNorm norm;
+  bool must = m_scoring_object->mustNormalize(norm);
+
+  typename vector<TDescriptor>::const_iterator fit;
+
+  //if(m_weighting == TF || m_weighting == TF_IDF)	// TF_IDF
+  {
+    unsigned int i_feature = 0;
+    for(fit = features.begin(); fit < features.end(); ++fit, ++i_feature)
+    {
+      WordId id;
+      NodeId nid;
+      WordValue w;
+      // w is the idf value
+
+      transform(*fit, id, w, &nid, levelsup);
+
+      //if(w > 0) // not stopped: por vocabulario, w nunca es cero.
+      {
+        v.addWeight(id, w);
+        fv.addFeature(nid, i_feature);
+        int i = distance(features.begin(), fit);
+        bows[i] = id;
+        bowPesos[i] = w;
+      }
+    }
+
+    if(!v.empty() && !must)
+    {
+      // unnecessary when normalizing
+      const double nd = v.size();
+      for(BowVector::iterator vit = v.begin(); vit != v.end(); vit++)
+        vit->second /= nd;
+    }
+
+  }
+  /*else // IDF || BINARY
+  {
+    unsigned int i_feature = 0;
+    for(fit = features.begin(); fit < features.end(); ++fit, ++i_feature)
+    {
+      WordId id;
+      NodeId nid;
+      WordValue w;
+      // w is idf if IDF, or 1 if BINARY
+
+      transform(*fit, id, w, &nid, levelsup);
+
+      if(w > 0) // not stopped
+      {
+        v.addIfNotExist(id, w);
+        fv.addFeature(nid, i_feature);
+      }
+    }
+  } // if m_weighting == ...
+   */
+  /*if(must)*/ v.normalize(norm);
 }
 
 // --------------------------------------------------------------------------

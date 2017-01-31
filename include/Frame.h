@@ -28,7 +28,7 @@
 #include "../Thirdparty/DBoW2/DBoW2/FeatureVector.h"
 #include "ORBVocabulary.h"
 //#include "KeyFrame.h"
-//#include "ORBextractor.h"
+#include "ORBextractor.h"
 
 #include <opencv2/opencv.hpp>
 
@@ -219,7 +219,7 @@ public:
 
     /** Extractor usado para extraer descriptores.*/
     // Feature extractor. The right is used only in the stereo case.
-    ORBextractor* mpORBextractorLeft;//, *mpORBextractorRight;
+    ORBextractor* mpORBextractorLeft;
 
     /**
      * Time stamp de la captura de la imagen.

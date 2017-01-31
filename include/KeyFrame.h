@@ -21,12 +21,12 @@
 #ifndef KEYFRAME_H
 #define KEYFRAME_H
 
-#include "MapPoint.h"
+//#include "MapPoint.h"
 #include "../Thirdparty/DBoW2/DBoW2/BowVector.h"
 #include "../Thirdparty/DBoW2/DBoW2/FeatureVector.h"
 #include "ORBVocabulary.h"
-#include "ORBextractor.h"
-#include "Frame.h"
+//#include "ORBextractor.h"
+//#include "Frame.h"
 #include "KeyFrameDatabase.h"
 #include "Serializer.h"
 
@@ -136,6 +136,22 @@ public:
     /** Lee el vector traslación, obtenido de Tcw.*/
     cv::Mat GetTranslation();
 
+    /**
+     * Computa BoW para los descriptores del keyframe.
+     *
+     * Genera los mapas KeyFrame::mBowVec y KeyFrame::mFeatVec, el primero con los BoW y sus pesos,
+     * el segundo con la lista de puntos singulares correspondiente a cada BoW.
+     *
+     * Frame::ComputeBoW hace exactamente lo mismo, pero no se ejecuta para todos los cuadros,
+     * solamente para el cuadro actual cuando está perdido y se necesita relocalizar.
+     * El constructor de KeyFrame copia los mapas de BoW, y este método evita recomputarlos si casualmente ya se computaron para el cuadro.
+     *
+     * Es invocado sólo desde:
+     * - LocalMapping::ProcessNewKeyFrame
+     * - Tracking::CreateInitialMapMonocular
+     *
+     *
+     */
     // Bag of Words Representation
     void ComputeBoW();
 
@@ -575,7 +591,7 @@ public:
     /**
      * Cantidad de puntos singulares.
      *
-     * Tamaño de KeyFrame::mKeys, KeyFrame::mKeysUn y KeyFrame::mDescriptors.
+     * Tamaño de los vectores alineados KeyFrame::mKeys, KeyFrame::mKeysUn y KeyFrame::mDescriptors.
      */
     const int N;
 
@@ -610,13 +626,43 @@ public:
      * Vector de Features de DBoW2.
      * KeyFrame::ComputeBoW llena este vector.
      *
-     * FeatureVector es un mapa de nodos (BoW, entero) con un vector de índices de puntos singulares asociados.
+     * FeatureVector es un mapa de nodos (NodeId, entero) con un vector de índices de puntos singulares asociados.
      *
      * A este vector no se accede por el índice de un punto singular, sino al revés:
-     * se accede por BoW, y se obtienen los índices de todos los puntos singulares con ese BoW.
+     * se accede por NodoId, y se obtienen los índices de todos los puntos singulares con ese NodeId.
+     *
+     * Cada BoW tiene un NodeId biunívoco.  Pero hay NodeId sin BoW, pues no son hojas del árbol de vocabulario.
      *
      */
     DBoW2::FeatureVector mFeatVec;
+
+    /**
+     * Vector alineado de BoW.
+     *
+     * Cada elemento es un BoW, correspondiente a un punto singular.
+     *
+     * DBoW2::WordId es unsigned int.
+     *
+     * Generado por la versión modificada de KeyFrame::ComputeBow.
+     *
+     * Usado exclusivamente para puntos lejanos.
+     */
+    vector<DBoW2::WordId> bows;
+
+    /**
+     * Vector alineado de pesos de BoW.
+     *
+     * Cada elemento es un peso, correspondiente al BoW del punto singular.
+     *
+     * DBoW2::WordValue es double.
+     *
+     * Generado por la versión modificada de KeyFrame::ComputeBow.
+     *
+     * Usado exclusivamente para puntos lejanos.
+     */
+    vector<DBoW2::WordValue> bowPesos;
+
+
 
     // Pose relative to parent (this is computed when bad flag is activated)
     /** Pose de cámara relativa a su padre. */

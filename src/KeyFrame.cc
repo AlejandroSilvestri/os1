@@ -21,15 +21,18 @@
 #include "KeyFrame.h"
 #include "Converter.h"
 #include "ORBmatcher.h"
+#include "ORBextractor.h"
 #include "System.h"
-#include<mutex>
+#include "MapPoint.h"
+#include "Frame.h"
+#include "KeyFrameDatabase.h"
+#include <mutex>
 
 
 extern ORB_SLAM2::System *Sistema;
 
 namespace ORB_SLAM2
 {
-//extern System &Sistema;
 
 
 long unsigned int KeyFrame::nNextId=0;
@@ -41,13 +44,13 @@ KeyFrame::KeyFrame(Frame &F, Map *pMap, KeyFrameDatabase *pKFDB):
     mnLoopQuery(0), mnLoopWords(0), mnRelocQuery(0), mnRelocWords(0), mnBAGlobalForKF(0),
     fx(F.fx), fy(F.fy), cx(F.cx), cy(F.cy), invfx(F.invfx), invfy(F.invfy),
     mbf(F.mbf), mb(F.mb), mThDepth(F.mThDepth), N(F.N), mvKeys(F.mvKeys), mvKeysUn(F.mvKeysUn),
-    /*mvuRight(F.mvuRight), mvDepth(F.mvDepth),*/ mDescriptors(F.mDescriptors.clone()),
+    mDescriptors(F.mDescriptors.clone()),
     mBowVec(F.mBowVec), mFeatVec(F.mFeatVec), mnScaleLevels(F.mnScaleLevels), mfScaleFactor(F.mfScaleFactor),
     mfLogScaleFactor(F.mfLogScaleFactor), mvScaleFactors(F.mvScaleFactors), mvLevelSigma2(F.mvLevelSigma2),
     mvInvLevelSigma2(F.mvInvLevelSigma2), mnMinX(F.mnMinX), mnMinY(F.mnMinY), mnMaxX(F.mnMaxX),
     mnMaxY(F.mnMaxY), mK(F.mK), mvpMapPoints(F.mvpMapPoints), mpKeyFrameDB(pKFDB),
     mpORBvocabulary(F.mpORBvocabulary), mbFirstConnection(true), mpParent(NULL), mbNotErase(false),
-    mbToBeErased(false), mbBad(false), /*mHalfBaseline(F.mb/2),*/ mpMap(pMap)
+    mbToBeErased(false), mbBad(false), mpMap(pMap)
 {
     mnId=nNextId++;
 
@@ -66,7 +69,6 @@ KeyFrame::KeyFrame(Frame &F, Map *pMap, KeyFrameDatabase *pKFDB):
     	vRgb.resize(N);
     	for(int i=0; i<N; i++)
     		vRgb[i] = Sistema->imagenEntrada.at<cv::Vec3b>(mvKeys[i].pt);
-    	//cout << "Relevando colores para un nuevo keyframe.  Cantidad: " << vRgb.size() << "/" << N << endl;
     }
 }
 
@@ -75,6 +77,9 @@ void KeyFrame::ComputeBoW()
     if(mBowVec.empty() || mFeatVec.empty())
     {
         vector<cv::Mat> vCurrentDesc = Converter::toDescriptorVector(mDescriptors);
+        bows.assign(N, static_cast<unsigned int>(NULL));
+        bowPesos.assign(N, static_cast<double>(NULL));
+
         // Feature vector associate features with nodes in the 4th level (from leaves up)
         // We assume the vocabulary tree has 6 levels, change the 4 otherwise
         mpORBvocabulary->transform(vCurrentDesc,mBowVec,mFeatVec,4);
