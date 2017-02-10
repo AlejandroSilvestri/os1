@@ -70,7 +70,7 @@ public:
     /**
      * Único constructor invocado por el constructor de System para crear el singleton.
      */
-    LoopClosing(Map* pMap, KeyFrameDatabase* pDB, ORBVocabulary* pVoc,const bool bFixScale);
+    LoopClosing(Map* pMap, KeyFrameDatabase* pDB, ORBVocabulary* pVoc);//,const bool bFixScale);
 
     /**
      * Registra el tracker del sistema.
@@ -356,7 +356,7 @@ protected:
      * Siempre false en monocular.
      */
     // Fix scale in the stereo/RGB-D case
-    bool mbFixScale;
+    //bool mbFixScale;
 };
 
 } //namespace ORB_SLAM

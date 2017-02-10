@@ -345,7 +345,6 @@ protected:
 
     /**
      * Crea el mapa inicial.
-     * Toma la rotación Rcw y traslación tcw argumentos para asumir la primer pose de la cámara.
      * Crea dos KeyFrames (inicial y actual) a partir de los cuadros inicial y actual.
      * Computa Bag of Words en ambos keyframes.
      * Agrega los keyframes al mapa.

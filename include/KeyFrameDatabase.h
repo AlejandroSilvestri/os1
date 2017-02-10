@@ -55,8 +55,11 @@ public:
 
     /**
      * Agrega un KeyFrame a la base de datos.
-     * Lo agrega a las listas listas de keyframes de cada BoW que tenga registrado.
+     * Lo agrega a las listas de keyframes de cada BoW que tenga registrado.
      * @param pKF KeyFrame
+     *
+     * Invocado sólo desde LoopClosing::DetectLoop, un método que se invoca durante la creación de cada keyframe,
+     * en el hilo de LoopClosing.
      */
     void add(KeyFrame* pKF);
 
@@ -68,7 +71,7 @@ public:
     void erase(KeyFrame* pKF);
 
     /**
-     * Libera su memoria, invocado desde Tracking::Reset.
+     * Libera el vocabulario y asigna memoria para volver a cargarlo, invocado sólo desde Tracking::Reset.
      */
     void clear();
 

@@ -267,23 +267,30 @@ public:
 
 
     /**
-     * Determina la transformación sim3 (espacio de transformaciones de similaridad, de 7 dimensiones) entre dos keyframes, que mejor explica un macheo.
+     * Depura la transformación sim3 (espacio de transformaciones de similaridad, de 7 dimensiones) entre dos keyframes, que mejor explica un macheo.
      * Dados dos keyframes que presumiblemente observan lo mismmo y son candidatos a cierre de bucle,
      * y dada una serie de puntos macheados observados por ambos keyframes,
      * OptimizeSim3() calcula la transformación de similaridad sim3 que compatibiliza ambas visualizaciones y permite cerrar el bucle.
+     *
+     * @param pKF1 KeyFrame actual, candidato a cerrar el bucle.
+     * @param pKF2 KeyFrame preexistente, el otro extremo el bucle.
+     * @param vpMatches1 Puntos 3D observados desde ambos keyframes.
+     * @param g2oS12 Estimación inicial y resultado, transformación sim3 que alinea los keyframes.
+     * @param th2 Umbral, siempre 10.
+     * @param bFixScale Siempre false para monocular.
      *
      * ESte método se invoca exclusivamente desde LoopClosing::ComputeSim3().
      *
      * El optimizador se arma así:
      *
-        g2o::SparseOptimizer optimizer;
-        optimizer.setAlgorithm(
-        	new g2o::OptimizationAlgorithmLevenberg(
-        		new g2o::BlockSolverX(
-        			new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>()
-        		)
-        	)
-        );
+				g2o::SparseOptimizer optimizer;
+				optimizer.setAlgorithm(
+					new g2o::OptimizationAlgorithmLevenberg(
+						new g2o::BlockSolverX(
+							new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>()
+						)
+					)
+				);
 
      *
      * Las poses son g2o::VertexSim3Expmap en lugar de VertexSE3Expmap.
@@ -291,10 +298,17 @@ public:
      * Las posiciones de los puntos son g2o::VertexSBAPointXYZ, como en todos los BA.
      *
      * Los ejes van de a pares, en ambos sentidos, y son de tipos g2o::EdgeSim3ProjectXYZ y g2o::EdgeInverseSim3ProjectXYZ.
+     *
+     * OptimizeSim3 construye un vertex VertexSim3Expmap, consituído por una transformación de similaridad inicial que explica las poses entre dos keyframes.
+     * Es el único vertex a optimizar.
+     *
+     * El resto de los vertex son fijos, corresponden a los puntos 3D observados desde el pKF2 (el keyframe preexistente).
+     *
+     * De este modo la transformación resultante es la que se aplicará al keyframe actual para cerrar el bucle.
      */
     // if bFixScale is true, optimize SE3 (stereo,rgbd), Sim3 otherwise (mono)
     static int OptimizeSim3(KeyFrame* pKF1, KeyFrame* pKF2, std::vector<MapPoint *> &vpMatches1,
-                            g2o::Sim3 &g2oS12, const float th2, const bool bFixScale);
+                            g2o::Sim3 &g2oS12, const float th2);//, const bool bFixScale);
 };
 
 } //namespace ORB_SLAM

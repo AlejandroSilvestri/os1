@@ -169,7 +169,7 @@ public:
      * Machea por BoW y luego por descriptores.
      * @param pKF1 Keyframe actual.
      * @param pKF2 Keyframe candidato al cierre de bucle.
-     * @param vpMatches12 Resultado de la búsqueda, puntos del mapa macheados.
+     * @param vpMatches12 Resultado de la búsqueda, puntos del mapa macheados.  Es un vector alineado con el vector de puntos de pKF1, conteniendo los puntos macheados por BoW y descriptores, observador por pKF2.
      * @returns Cantidad de macheos.
      *
      * Invocado sólo desde LoopClosing::ComputeSim3.
@@ -218,17 +218,21 @@ public:
                                std::vector<pair<size_t, size_t> > &vMatchedPairs);//, const bool bOnlyStereo);
 
     /**
-     * Compara dos keyframes candidatos al cierre de bucle.
+     * Compara dos keyframes candidatos al cierre de bucle y buscando aumentar los puntos macheados por aspecto.
+     *
+     * Se proporcionan los keyframes, un vector de puntos observador por un keyframe y machedos en el otro por aspecto,
+     * y la transformación de similaridad que corrige la pose entre ellos.
      *
      * @param pKF1 Keyframe actual.
      * @param pKF2 Keyframe candidato a cerrar el bucle.
-     * @param vpMatches12 Puntos 3D vistos desde ambas cámaras.
+     * @param vpMatches12 Dato y resultado.  Puntos 3D vistos desde pKF2 y macheados por BoW y descriptores en pKF1.  Vector alineado con los de pKF1.
      * @param s12 Escala de pFK1 respecto de pKF2.
      * @param R12 Matriz rotación de pFK1 respecto de pKF2.
      * @param t12 Traslación de pFK1 respecto de pKF2.
      * @param th Radio en píxeles donde buscar puntos singulares para machear.
      * @returns Cantidad de puntos macheados y explicados por la Sim3.
      *
+     * Como resultado de la operación se modifica el argumento vpMatches, que se ve aumentado con nuevos macheos encontrados.
      *
      * Invocado sólo desde LoopClosing::ComputeSim3.
      */

@@ -632,6 +632,8 @@ public:
      * se accede por NodoId, y se obtienen los índices de todos los puntos singulares con ese NodeId.
      *
      * Cada BoW tiene un NodeId biunívoco.  Pero hay NodeId sin BoW, pues no son hojas del árbol de vocabulario.
+     * Sin embargo ORBVocabulary::transform sólo registra nodos hoja, es decir con BoW asociado.
+     * mFeacVec y mBowVec tienen el mismo tamaño.  Si bien se pueblan alineados, al ser mapas el orden se altera.
      *
      */
     DBoW2::FeatureVector mFeatVec;
@@ -661,6 +663,7 @@ public:
      * Usado exclusivamente para puntos lejanos.
      */
     vector<DBoW2::WordValue> bowPesos;
+
 
 
 
