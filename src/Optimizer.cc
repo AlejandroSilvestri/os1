@@ -616,6 +616,8 @@ void Optimizer::OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* p
     const int minFeat = 100;
 
     // Set KeyFrame vertices
+    // Cada keyframe del mapa es un vertex, con el mismo id del keyframe, marginalized false, y con estimación de sim3 dada por la pose.
+    // El único vertex fijo es el cierre del bucle.
     for(size_t i=0, iend=vpKFs.size(); i<iend;i++)
     {
         KeyFrame* pKF = vpKFs[i];
@@ -634,6 +636,7 @@ void Optimizer::OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* p
         }
         else
         {
+        	// Transformación sim3 hecha como se3 con escala 1.
             Eigen::Matrix<double,3,3> Rcw = Converter::toMatrix3d(pKF->GetRotation());
             Eigen::Matrix<double,3,1> tcw = Converter::toVector3d(pKF->GetTranslation());
             g2o::Sim3 Siw(Rcw,tcw,1.0);
@@ -690,6 +693,8 @@ void Optimizer::OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* p
     }
 
     // Set normal edges
+    // Establece un eje para cada keyframe del mapa con su respectivo padre, con los covisibles, y con los bucles.
+    // Todos los keyframes del mapa participan de la optimización.
     for(size_t i=0, iend=vpKFs.size(); i<iend; i++)
     {
         KeyFrame* pKF = vpKFs[i];
@@ -721,14 +726,14 @@ void Optimizer::OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* p
             else
                 Sjw = vScw[nIDj];
 
-            g2o::Sim3 Sji = Sjw * Swi;
+            g2o::Sim3 Sji = Sjw * Swi;	// Transformación sim3 del padre al hijo.
 
             g2o::EdgeSim3* e = new g2o::EdgeSim3();
             e->setVertex(1, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(nIDj)));
             e->setVertex(0, dynamic_cast<g2o::OptimizableGraph::Vertex*>(optimizer.vertex(nIDi)));
             e->setMeasurement(Sji);
 
-            e->information() = matLambda;
+            e->information() = matLambda;	// Identidad
             optimizer.addEdge(e);
         }
 

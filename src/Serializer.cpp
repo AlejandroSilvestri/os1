@@ -164,7 +164,7 @@ namespace ORB_SLAM2{
 MapPoint::MapPoint():
 nObs(0), mnTrackReferenceForFrame(0),
 mnLastFrameSeen(0), mnBALocalForKF(0), mnFuseCandidateForKF(0), mnLoopPointForKF(0), mnCorrectedByKF(0),
-mnCorrectedReference(0), mnBAGlobalForKF(0),mnVisible(1), mnFound(1), mbBad(false),
+mnCorrectedReference(0), mnBAGlobalForKF(0), mpRefKF(NULL), mnVisible(1), mnFound(1), mbBad(false),
 mpReplaced(static_cast<MapPoint*>(NULL)), mfMinDistance(0), mfMaxDistance(0), mpMap(Sistema->mpMap)//Map::mpMap)
 {}
 
@@ -219,7 +219,8 @@ KeyFrame::KeyFrame():
     mpKeyFrameDB(Sistema->mpKeyFrameDatabase),
     mpORBvocabulary(Sistema->mpVocabulary),
     mbFirstConnection(true),
-    mpMap(Sistema->mpMap)
+	mpParent(NULL),
+	mpMap(Sistema->mpMap)
 {}
 
 void KeyFrame::buildObservations(){
@@ -260,11 +261,20 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	// Contenedores
 	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
 	ar & mvpMapPoints;
-	if(mbNotErase)
+	if(mbNotErase){
+		cout << "KF con ejes de bucle " << mnId << endl;
 		ar & mspLoopEdges;
+	}
 
 
 	// Punteros
+
+	// mpParent, al guardar lo pasa a NULL si no está en el mapa.  Al cargar se regenerará con UpdateConnections.
+	if(mpParent)	// NULL si está cargando
+		if(mpParent->isBad() || !mpMap->isInMap(mpParent)){
+			mpParent = NULL;	// Evita que se serialice un KF fuera de mapa.
+			cout << "Padre anulado por no estar en el mapa, se serializa como NULL" << endl;
+		}
 	ar & mpParent;
 
 
@@ -413,7 +423,14 @@ void Serializer::mapLoad(char* archivo){
 				pMP->AddObservation(pKF, i);
 		}
 
-
+		/*
+		 * Verificar que todos los ejes de bucle estén en el mapa.
+		 */
+		for(auto pKFLoop: pKF->mspLoopEdges)
+			if(mapa->isInMap(pKFLoop)){
+				cout << "Eliminado de grafo de bucle KF " << pKF->mnId << endl;
+				pKF->mspLoopEdges.erase(pKFLoop);
+			}
 	}
 
 	/*
@@ -435,7 +452,8 @@ void Serializer::mapLoad(char* archivo){
 		else
 			pMP->mpRefKF = (*pMP->mObservations.begin()).first;
 
-
+		if(!pMP->mpRefKF)
+			cout << "MP sin mpRefKF" << pMP->mnId << ", ¿está en el mapa? " << mapa->isInMap(pMP) <<endl;
 
 		/* Reconstruye:
 		 * - mNormalVector
@@ -447,6 +465,7 @@ void Serializer::mapLoad(char* archivo){
 		pMP->UpdateNormalAndDepth();
 	}
 	MapPoint::nNextId = maxId + 1;
+
 
 }
 
@@ -470,70 +489,33 @@ void Serializer::depurar(){
 
 	// Anula puntos malos en el vector KeyFrame::mvpMapPoints
 	for(auto &pKF: mapa->mspKeyFrames){	// Keyframes del mapa, en Map::mspKeyFrames
+
+		// Anula puntos malos, y advierte si no está en el mapa.
+		// Usualmente no encuentra nada.
 		auto pMPs = pKF->GetMapPointMatches();	// Vector KeyFrame::mvpMapPoints
-		for(auto pMP: pMPs){	// Puntos macheados en el keyframe.
-			bool borrar = false;
+		for(int i=pMPs.size(); --i>=0;){
+			auto pMP = pMPs[i];
 
 			if(!pMP) continue;	// Saltear si es NULL
+
 			if(pMP->isBad()){	// Si el mappoint es malo...
 				cout << "Mal MP:" << pMP->mnId << ". ";
-				borrar = true;
-			}
-			if(!mapa->mspMapPoints.count(pMP)){
-				cout << "MP no en mapa:" << pMP->mnId << ". ";
-				//borrar = true;
-			}
-			if(borrar){
-				// Para borrar el punto del vector en el keyframe, el keyframe debe poder encontrarse en las observaciones del punto.
-				//pKF->EraseMapPointMatch(pMP);	// lo borra (lo pone NULL en el vector mvpMapPoints)
-
-				// Buscar el punto en el vector
-				int idx=pMPs.size();
-				for(; --idx>=0;){
-					auto pMP2 = pMPs[idx];
-					if(pMP2 && pMP2 == pMP){
-						// encontrado, borrar
-						pKF->EraseMapPointMatch(idx);
-						//break;// En vez de parar cuando lo enuentra, continúa por si aparece varias veces.
-					}
-				}
-				pMPs = pKF->GetMapPointMatches();
-				if(std::find(pMPs.begin(), pMPs.end(), pMP) != pMPs.end()){
-					cout << "¡No se borró! ";
-				}
-
+				pKF->EraseMapPointMatch(i);	// Lo reemplaza por NULL
 				cout << "KF " << pKF->mnId << endl;
+			} else if(!mapa->isInMap(pMP)){	// Agregar al mapa
+				mapa->AddMapPoint(pMP);
+				cout << "MP agregado al mapa:" << pMP->mnId << ". ";
 			}
 		}
-	}
 
-	// Elimina keyframes malos en mObservations
-	for(auto &pMP: mapa->mspMapPoints){	// Set de puntos del mapa
-		auto obs = pMP->GetObservations();	// map, sin null, devuelve el mapa mObservations, mapa de keyframes que observan al punto
-		for(auto it = obs.begin(); it != obs.end();){	// Keyframes que observan el punto.  Bucle para borrar selectivamente.
-			KeyFrame* pKF = it->first;
-			it++;
-			bool borrar = false;
+		// Anula de los ejes de bucle los KF malos o que no estén en el mapa
+		for(auto pKFLoop: pKF->mspLoopEdges)
+			if(pKFLoop->isBad() || !mapa->isInMap(pKFLoop)){
+				pKF->mspLoopEdges.erase(pKFLoop);
+				cout << "Eliminado de grafo de bucle KF " << pKF->mnId << endl;
+			}
 
-			if(pKF->isBad()){	// it->first es el keyframe, y si es malo...
-				cout << "Mal KF:" << pKF->mnId << ". ";
-				borrar = true;
-			}
-			if(!mapa->mspKeyFrames.count(pKF)){
-				cout << "KF no en mapa:" << pKF->mnId << ". ";
-				//borrar = true;
-			}
-			if(pKF->mbNotErase){
-				cout << "Not Erase:" << pKF->mnId << ". ";
-				borrar = false;
-
-			}
-			if(borrar){
-				pMP->EraseObservation(pKF);	// se borra del mapa de observaciones
-				if(pMP->GetIndexInKeyFrame(pKF)>=0) cout << "¡No se borró! ";
-				cout << "MP " << pMP->mnId << endl;
-			}
-		}
+		// Revisa
 	}
 }
 

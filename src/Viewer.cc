@@ -301,7 +301,10 @@ void Viewer::Run(){
 
         // Mostrar cuadro con imshow
         {
-            cv::Mat imagenFrame = mpFrameDrawer->DrawFrame(1/factorEscalaImagenParaMostrar);
+            cv::Mat imagenFrame = mpFrameDrawer->DrawFrame(
+            		1/factorEscalaImagenParaMostrar,
+					mpSystem->mpLocalMapper->AcceptKeyFrames()? -1 :  mpSystem->mpLocalMapper->KeyframesInQueue()
+			);
             cv::Mat imagenEntrada;	// Imagen de la cámara, puede ser antidistorsionada
             cv::Mat imagenParaMostrar;	// Imagen efímera para mostrar con imshow, con el tamaño elegido por el usuario
 

@@ -121,4 +121,12 @@ void Map::clear()
     mvpKeyFrameOrigins.clear();
 }
 
+bool Map::isInMap(KeyFrame *pKF){
+	return mspKeyFrames.count(pKF);
+}
+bool Map::isInMap(MapPoint *pMP){
+	return mspMapPoints.count(pMP);
+}
+
+
 } //namespace ORB_SLAM

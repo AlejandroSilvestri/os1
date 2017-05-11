@@ -56,8 +56,11 @@ public:
 	Map();
 
 	/** Agrega un nuevo keyframe al mapa.
+	 *
 	 * Registra el nuevo keyframe en el vector de keyframes del mapa,
 	 * y actualiza el registro mnMaxKFid del id del último keyframe.
+	 *
+	 * Se invoca sólo desde Tracking::CreateInitialMapMonocular y LocalMapping::ProcessNewKeyFrame.
 	 */
     void AddKeyFrame(KeyFrame* pKF);
 
@@ -115,6 +118,14 @@ public:
      * Elimina puntos y keyframes del mapa (es decir, del sistema), y limpia los vectores de puntos y keyframes.
      */
     void clear();
+
+
+    /**
+     * Indica si el punto o el keyframe está en el mapa
+     * Agregado por mí.
+     */
+    bool isInMap(KeyFrame *KF);
+    bool isInMap(MapPoint *MP);
 
 	/**
 	 * Registro de los keyframes iniciales.

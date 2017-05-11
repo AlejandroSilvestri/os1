@@ -160,6 +160,7 @@ void MapPoint::Replace(MapPoint* pMP)
     if(pMP->mnId==this->mnId)
         return;
 
+    // Aísla los datos haciendo una copia en el mutex.  Libera rápido el mutex y se dedica a procesar luego sobre los valores copiados.
     int nvisible, nfound;
     map<KeyFrame*,size_t> obs;
     {
@@ -192,13 +193,16 @@ void MapPoint::Replace(MapPoint* pMP)
     pMP->IncreaseVisible(nvisible);
     pMP->ComputeDistinctiveDescriptors();
 
+    // Aunque no lo hace, el método EraseMapPoint está pensado para eliminar el punto también.
     mpMap->EraseMapPoint(this);
 }
 
 bool MapPoint::isBad()
 {
+	/* Creo que no se debería bloquear el acceso a este flag, y que los mutex no tienen propósito, aunque ocasionan problemas.
     unique_lock<mutex> lock(mMutexFeatures);
     unique_lock<mutex> lock2(mMutexPos);
+     */
     return mbBad;
 }
 

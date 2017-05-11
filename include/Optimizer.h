@@ -220,15 +220,24 @@ public:
 
 
     /** Optimiza el grafo esencial para cerrar un bucle.
+     * El cierre de bucle se realiza según se describe en el paper Scale Drift-Aware Large Scale Monocular SLAM, Strasdat et al, 2010.
+     *
+     * La corrección minimizando el error de las transformaciones sim3 se describe en IV.B.Loop Closure Correction (24).
+     *
+     * Realiza una corrección de pose solamente (en sim3) minimizando la diferencia (o error)
+     * entre las transformaciones originales con drifting y las propuestas que cierran el bucle,
+     * sin considerar los puntos observados.
+     *
      * Al detectar un cierre de bucle, se unen los extremos.
+     *
      * Este método realiza un "pose graph optimization"; ejecuta un BA para repartir el error cuadrático medio a lo largo del grafo esencial.
      * @param pMap Mapa completo.
      * @param pLoopKF Keyframe del extremo anterior del bucle.
      * @param pCurKF Keyframe actual, del extremo posterior del bucle.
-     * @param Scurw Transformación Sim3 necesaria para adaptar el extremo posterior al anterior.  No utilizado.
      * @param NonCorrectedSim3 KeyframeAndPose de los keyframes actual y vecinos, versión sin transformar sim3.
      * @param CorrectedSim3 KeyframeAndPose de los keyframes vecinos, versión corregida por sim3.
-     * @param LoopConnections Conjunto de keyframes conectados gracias al cierre del bucle.
+     * @param LoopConnections Conjunto de keyframes conectados gracias al cierre del bucle.  Para cada keyframe que cierra el bucle, asocia un conjunto de keyframes asociados del otro lado del bucle.
+     * @param bFixScale false para monocular.  Si es true computa sobre 6 grados de libertad, si es false sobre 7 grados de libertad (porque incluye escala).
      *
      * Este método se invoca exclusivamente en la etapa final de LoopClosing::CorrectLoop().
      *
@@ -293,7 +302,9 @@ public:
 				);
 
      *
-     * Las poses son g2o::VertexSim3Expmap en lugar de VertexSE3Expmap.
+     * Las poses son g2o::VertexSim3Expmap en lugar de VertexSE3Expmap,
+     * pues son poses de similaridad (sim3) en lugar de rototraslación (SE3, Special Euclidean).
+     * Expmap son mapas exponenciales.
      *
      * Las posiciones de los puntos son g2o::VertexSBAPointXYZ, como en todos los BA.
      *

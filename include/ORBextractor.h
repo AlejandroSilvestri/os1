@@ -30,19 +30,36 @@
 namespace ORB_SLAM2
 {
 /**
- * Pendiente de documentación.
- * Objeto usado exclusivamente en DistributeOctTree.
+ * Cada instancia es un nodo de un árbol QuadTree, que divide un rectángulo de una imagen en cuatro rectángulos similares.
+ * ORBextractor utiliza una versión simplificada de Octree (en rigor es un Quadtree),
+ * creando un árbol cuyos nodos representan un rectángulo de una imagen y sus cuatro hijos representan un cuarto de esa imagen.
+ * ExtractorNode es la clase de esos nodos, que registran las coordenadas de los vértices del rectángulo asociado,
+ * y la lista de puntos singulares en él.
+ *
+ * El método de búsqueda de zonas consiste en seguir dividiendo los rectángulos hasta que contengan un o ningún punto singular.
+ * El árbol termina cuando se alcanza una cantidad máxima de nodos esperados, o cuando ningún nodo tiene más de un puntos singular.
+ *
+ * Objeto usado exclusivamente en ORBextactor::DistributeOctTree.
  */
 class ExtractorNode
 {
 public:
+	/**
+	 * Constructor único que sólo inicialia bNoMore = false.
+	 * El resto de las propiedades se debe inicializar luego de la construcción.
+	 */
     ExtractorNode():bNoMore(false){}
 
     /**
      * Divide el nodo en 4: n1, n2, n3 y n4.
+     * Notar que este método no construye los cuatro nodos derivados, éstos son construidos por el método que invoca.
      */
     void DivideNode(ExtractorNode &n1, ExtractorNode &n2, ExtractorNode &n3, ExtractorNode &n4);
 
+    /**
+     * Vector de puntos singulares de este nodo.
+     * vKeys.empty() responde si el nodo tiene o no puntos singulares.
+     */
     std::vector<cv::KeyPoint> vKeys;
 
     ///@{
@@ -52,19 +69,24 @@ public:
      * U: upper, B: bottom,
      * L: left,  R: right
      *
+     * El procedimiento que invoca la construcción de un objeto ExtractorNode debe luego inicializar esta propiedad.
      */
     cv::Point2i UL, UR, BL, BR;
     ///@}
     //@}
 
     /**
-     *
+     * Iterador que apunta a la posición del propio nodo en una lista.
+     * El procedimiento que invoca la construcción de un objeto ExtractorNode debe luego inicializar esta propiedad.
      */
     std::list<ExtractorNode>::iterator lit;
 
     /**
      * Señal que indica que el nodo tiene exactamente un punto asignado.
      * Se inicializa como false, diversos métodos verifican y lo ponen en true cuando tiene un único punto.
+     * Diversos métodos evalúan el nodo para determinar si tienen un único punto singular (bNoMore == true) y no requiere más análisis,
+     * ningún punto singular (vKeys.empty() == true) lo que hace al nodo eliminable,
+     * o en otro caso contiene más de un punto singular con lo que se puede seguir procesando.
      */
     bool bNoMore;
 };
@@ -80,7 +102,55 @@ public:
  * Tracking crea las únicas dos instancias de este objeto, de larga vida, mpORBextractorLeft y mpIniORBextractor,
  * el primero como parte inicial del proceso de tracking en estado OK, y el segundo para inicializar.
  *
- * La descripción de ORBextractor::ComputeKeyPointsOctTree contiene una buena descripción de los puntos singulares.
+ * Con la excepción de mvImagePyramid, todas las propiedades son protegidas, se establecen durante la construcción y no cambian.
+ *
+ *
+ * ORBextractor::ComputeKeyPointsOctTree contiene una buena descripción de los puntos singulares.
+ *
+ *
+ *
+ *
+ * La clase usa las siguientes funciones globales exclusivas:
+ *
+ * IC_Angle(const Mat& image, Point2f pt,  const vector<int> & u_max)
+ * Determina el ángulo del parche circular con centro en pt, y diámetro PATH_SIZE = 31.
+ * Es el ángulo del vector que une pt con el baricentro del parche.
+ * u_max es un vector con los extremos línea por línea de la circunferencia pixelada.
+ * Devuelve el ángulo en radianes.
+ *
+ *
+ *
+ * computeOrientation(const Mat& image, vector<KeyPoint>& keypoints, const vector<int>& umax)
+ * Determina el ángulo de cada keypoints con IC_Angle.
+ * Guarda el resultado en keypoints[].angle .
+ *
+ *
+ *
+ * computeOrbDescriptor(const KeyPoint& kpt, const Mat& img, const Point* pattern, uchar* desc)
+ * Extrae el descriptor ORB del punto singular.
+ * @param kpt Punto singular.  Su ángulo expresa la orientación.
+ * @param img Imagen sobre la que se extraerá el descriptor.
+ * @param pattern Siempre el mismo, patrón de coordenadas para la evaluación BRIEF.
+ * @param desc Descriptor resultado, de 256 bits (32 bytes, 4 int).
+ * Invocado sólo desde computeDescriptors.
+ *
+ *
+ *
+ * static int bit_pattern_31_[256*4]
+ * Coordenadas BRIEF.
+ * Cada renglón contiene un par de coordenadas x,y cuyas intensidades se comparan para obtener un bit del descriptor binario.
+ * Hay 256 renglones para los 256 bits del BRIEF.
+ * Las coordenadas son relativas al punto singular a considerar, y a su orientación.
+ * Esto significa que estas coordenadas patrón se rototrasladan para obtener las coordenadas reales para extraer un descriptor.
+ * Los valores son enteros y varían entre -13 y 13.  Quizás estén todos en un círculo de diámetro 31 denominado parche.
+ *
+ *
+ * const float factorPI = (float)(CV_PI/180.f)
+ * Factor conversor de grados a radianes.
+ * Al multiplicar un ángulo en grados, se obtiene el ángulo en radianes.
+ *
+ *
+ *
  */
 class ORBextractor
 {
@@ -106,6 +176,8 @@ public:
 	 * @param mask Máscara.  No implementada.
 	 * @param keypoints Puntos singulares detectados como resultado de la operación.
 	 * @param descriptors Descriptores extraídos como resultado de la operación.
+	 *
+	 * Invocado sólo desde Frame::ExtractORB
      */
     // Compute the ORB features and descriptors on an image.
     // ORB are dispersed on the image using an octree.
@@ -116,18 +188,24 @@ public:
 
     /**
      * Devuelve el atributo protegido nlevels, la cantidad de niveles en la pirámide, establecida por el constructor y de sólo lectura.
+     *
+     * Invocado sólo desde el constructor de Frame.
      */
     int inline GetLevels(){
         return nlevels;}
 
     /**
      * Devuelve el atributo protegido scaleFactor, el factor de escala entre niveles de la pirámide, establecido por el constructor y de sólo lectura.
+     *
+     * Invocado sólo desde el constructor de Frame.
      */
     float inline GetScaleFactor(){
         return scaleFactor;}
 
     /**
      * Devuelve el atributo protegido mvScaleFactor.
+     *
+     * Invocado sólo desde el constructor de Frame.
      */
     std::vector<float> inline GetScaleFactors(){
         return mvScaleFactor;
@@ -135,6 +213,8 @@ public:
 
     /**
      * Devuelve el atributo protegido mvInvScaleFactor.
+     *
+     * Invocado sólo desde el constructor de Frame.
      */
     std::vector<float> inline GetInverseScaleFactors(){
         return mvInvScaleFactor;
@@ -142,6 +222,8 @@ public:
 
     /**
      * Devuelve el atributo protegido mvLevelSigma2.
+     *
+     * Invocado sólo desde el constructor de Frame.
      */
     std::vector<float> inline GetScaleSigmaSquares(){
         return mvLevelSigma2;
@@ -149,13 +231,15 @@ public:
 
     /**
      * Devuelve el atributo protegido mvInvLevelSigma2.
+     *
+     * Invocado sólo desde el constructor de Frame.
      */
     std::vector<float> inline GetInverseScaleSigmaSquares(){
         return mvInvLevelSigma2;
     }
 
     /**
-     * Imágenes de la pirámide.
+     * Imágenes de la pirámide, a las que se aplica FAST.
      * Producida por ComputePyramid, es un vector de ´nlevels´ imágenes.
      */
     std::vector<cv::Mat> mvImagePyramid;
@@ -165,6 +249,7 @@ protected:
     /**
      * Genera las imágenes de la pirámide y las guarda en el vector mvImagePyramid.
      * @param image Imagen a procesar, obtenida de la cámara.
+     *
      * Invocado sólo desde el constructor.
      */
     void ComputePyramid(cv::Mat image);
@@ -179,6 +264,8 @@ protected:
      * - angle, orientación obtenida con IC_Angle.
      * - octave, nivel de la pirámide.
      * - size, tamaño según el factor de escala del nivel de la pirámide.
+     *
+     * Invocado sólo desde ORBextractor::operator()
      */
     void ComputeKeyPointsOctTree(std::vector<std::vector<cv::KeyPoint> >& allKeypoints);
 
@@ -196,15 +283,11 @@ protected:
      * @param nFeatures Cantidad deseada de puntos singulaes.
      * @param level Nivel de la pirámide a procesar.
      * @returns Puntos singulares distribuídos.
+     *
+     * Invocado sólo desde ORBextractor::ComputeKeyPointsOctTree .
      */
     std::vector<cv::KeyPoint> DistributeOctTree(const std::vector<cv::KeyPoint>& vToDistributeKeys, const int &minX,
                                            const int &maxX, const int &minY, const int &maxY, const int &nFeatures, const int &level);
-
-    /**
-     * Antiguo método para detectar puntos singulares, reemplazado por ComputeKeyPointsOctTree.
-     * Método no usado.
-     */
-    void ComputeKeyPointsOld(std::vector<std::vector<cv::KeyPoint> >& allKeypoints);
 
     /**
      * Coordenadas BRIEF.
@@ -264,23 +347,27 @@ protected:
 
     /**
      * Factor de escala abosluto de cada nivel de la pirámide, calculado a partir de scaleFactor.
+     * El vector se escribe solamente en el constructor.
      * Vector de longitud nlevels.
      */
     std::vector<float> mvScaleFactor;
 
     /**
      * Inversa precalculada de mvScaleFactor.
+     * El vector se escribe solamente en el constructor.
      * Vector de longitud nlevels.
      */
     std::vector<float> mvInvScaleFactor;
 
     /**
      * Cuadrado de mvScaleFactor.
+     * El vector se escribe solamente en el constructor.
      */
     std::vector<float> mvLevelSigma2;
 
     /**
      * Inversa precalculada de mvLevelSigma2.
+     * El vector se escribe solamente en el constructor.
      */
     std::vector<float> mvInvLevelSigma2;
 };

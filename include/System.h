@@ -88,12 +88,14 @@
  *
  *
  *	Hay varios tipos de clase:
- *	- Clases que se instancian repetidas veces:
- *		- Frame
- *		- KeyFrame
- *		- MapPoint
+ *	- Clases que se instancian repetidas veces y perduran:
+ *		- Frame: hay 3 instancias: Tracking::mCurrentFrame, Tracking::mLastFrame y Tracking::mInitialFrame.
+ *		- KeyFrame: varias instancias registradas en Map::mspKeyFrames
+ *		- MapPoint: varias instancias registradas en Map::mspMapPoints
+ *	- Clases efímeras que se instancias repetidas veces y se destruyen:
+ *		- ExtractorNode: varios nodos creados en ORBextractor.
  *		- Initializer
- *		- ORBextractor
+ *		- ORBextractor: creado para la extracción de puntos singulares y descriptores, y luego destruído.
  *		- ORBmatcher
  *	- Clases que se instancian una única vez y se asocian a un thread:
  *		- Tracking
@@ -110,34 +112,73 @@
  *		- Converter
  *		- Optimizer
  *
- * Excepciones:
- * ORBVocabulary.h es una excepción a esta regla, no define una clase sino un simple typedef.
- * ORBExtractor.h define dos clases, incluyendo ExtractorNode.
+ * Cada clase se define en su propio archivo .h homónimo, excepto ORBExtractor.h define también ExtractorNode.
+ * El único archivo include/ *.h que no define una clase es ORBVocabulary.h, que contiene un simple typedef.
+ *
  * La carpeta Thirparty contiene versiones podadas de DBoW2 y g2o con estilos propios.
  *
  *
  * \section conc Conceptos de ORB-SLAM y sus clases
  *
- * Frame:
+ * \subsection Frame Frame
+ *
  * A partir de cada imagen de la cámara se crea un objeto Frame efímero.
+ *
  * Usualmente perduran el cuadro actual y el anterior solamente, habiendo sólo dos instancias de esta clase simultáneamente en el sistema.
+ *
  * El objeto Frame tiene los puntos singulares detectados, su versión antidistorsionada, sus descriptores y los puntos del mapa asociados.
+ *
  * La clase proporciona los métodos para su construcción a partir de la imagen.
  *
- * KeyFrame:
- * Los KeyFrame se crean a partir de un Frame cuando el sistema entiende que éste aporta información al mapa.
- * Mientras un Frame es efímero, un KeyFrame es de larga vida, es la manera en que un Frame se convierte en parte del mapa.
- * Cuando se crea un KeyFrame, copia la información principal del Frame actual, y computa más datos, como por ejemplo los BoW de cada descriptor.
- * La documentación de KeyFrame explica la notación de matrices utilizadas en ésta y otras clases.
+ * Hay sólo tres instancias de esta clase:
+ * - Tracking::mCurrentFrame con el cuadro más reciente
+ * - Tracking::mLastFrame con el cuadro inmediato anterior al más reciente
+ * - Tracking::mInitialFrame con el cuadro inicial, que participó en la inicialización del mapa
  *
- * MapPoint:
+ * Mientras las instancias mCurrentFrame y mLastFrame perduran, su contenido no lo hace, sino que rota.
+ * Cada nueva imagen se vuelca sobre mCurrentFrame, reemplazando a la anterior.
+ *
+ *
+ * \subsection KeyFrame KeyFrame
+ *
+ * Los KeyFrame se crean a partir de un Frame cuando el sistema entiende que éste aporta información al mapa.
+ *
+ * Un KeyFrame es de larga vida, es la manera en que un Frame se convierte en parte del mapa.
+ *
+ * Cuando se crea un KeyFrame, copia la información principal del Frame actual, y computa más datos, como por ejemplo los BoW de cada descriptor.
+ *
+ * Los keyframes se registran en Map::mspKeyFrames.
+ *
+ * La documentación de KeyFrame explica la notación de matrices de pose utilizadas en KeyFrame y en Frame.
+ *
+ *
+ *
+ * \subsection MapPoint MapPoint
  * Punto 3D del mapa del mundo.  No sólo tiene las coordenadas del punto, sino también la lista de KeyFrames que lo observan,
  * la lista de descriptores asociados al punto (un descriptor por cada KeyFrame que lo observa), entre otros.
  *
- * Map:
- * Mapa del mundo.  Tiene una lista de MapPoitns, una lista de KeyFrames, y métodos para la administración del mapa.
+ * Los mapPoints se registran en Map::mspMapPoints.
  *
  *
+ * \subsection Map Map
+ * Mapa del mundo.  Tiene una lista de MapPoints, una lista de KeyFrames, y métodos para la administración del mapa.
+ *
+ * \subsection System System
+ * \subsection KeyFrameDatabase KeyFrameDatabase
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
+ * \subsection
  *
  * \section hilos Descripción de los hilos
  * ORB-SLAM tiene cuatro hilos paralelos, cada uno con su propio bucle.

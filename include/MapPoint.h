@@ -100,6 +100,8 @@ public:
      * Devuelve el keyframe de referencia.
      *
      * @returns Keyframe de referencia.
+     *
+     * Devuelve mpRefKF.
      */
     KeyFrame* GetReferenceKeyFrame();
 
@@ -176,8 +178,18 @@ public:
      */
     bool isBad();
 
-    /**  Toma las propiedades del punto argumento.*/
-    void Replace(MapPoint* pMP);    
+    /**
+     * Reemplaza este punto por el punto argumento, en una fusión.
+     *
+     * @param pMP Punto argumento que reemplazará al actual.
+     *
+     * Las observaciones de este punto se agregan al punto argumento.  También se suman las visualizaciones y encuentros.
+     *
+     * Actualiza todas las visualizaciones en los keyframes que obervan este punto, para que observen al punto argumento.
+     *
+     * Invocado por tres métodos que fusionan puntos: LoopCosing::CorrectLoop, LoopClosing::SearchAndFuse y ORBmatcher::Fuse.
+     */
+    void Replace(MapPoint* pMP);
     MapPoint* GetReplaced();
 
     /** Incrementa el contador de cantidad de veces que fue observado el punto.*/
@@ -462,7 +474,9 @@ protected:
 
 	/**
 	 * Keyframe de referencia.
-	 * Utilizado solamente para cerrar bucles.
+	 *
+	 * Comienza siendo el keyframe que creó el punto, aunque rota si ese keyframe se elimina.
+	 * Utilizado al optimizar el mapa esencial y en BA para cerrar bucles.
 	 */
 	// Reference KeyFrame
 	KeyFrame* mpRefKF;
@@ -476,9 +490,18 @@ protected:
 	/** Cantidad de veces que fue visible, y pudo ser detectado.*/
 	int mnFound;
 
-	/** Flag de borrado.  Los puntos eliminados no se quitan del vector, para evitar rearmar el vector.*/
+	/**
+	 * Flag de borrado.
+	 * Los puntos eliminados se quitan de las visualizaciones en keyframes, y del mapa.
+	 * La instancia en sí no se elimina, no hay control de quién puede estar apuntándola.
+	 */
 	// Bad flag (we do not currently erase MapPoint from memory)
 	bool mbBad;
+
+	/**
+	 * Punto que reemplazó a éste en una fusión.
+	 * Éste quedó marcado como malo.
+	 */
 	MapPoint* mpReplaced;
 
 	/* Rango de distancias (mínima y máxima) en la que puede ser observado y reconocido por su descriptor.*/
