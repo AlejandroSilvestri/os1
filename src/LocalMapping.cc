@@ -196,7 +196,6 @@ void LocalMapping::CreateNewMapPoints()
     // Retrieve neighbor keyframes in covisibility graph
     int nn = 20;
     const vector<KeyFrame*> vpNeighKFs = mpCurrentKeyFrame->GetBestCovisibilityKeyFrames(nn);
-    //cout << "CreateNewMapPoints invocado.  KF vecinos:" << vpNeighKFs.size() << endl;
     ORBmatcher matcher(0.6,false);
 
     cv::Mat Ow1 = mpCurrentKeyFrame->GetCameraCenter();
@@ -326,20 +325,25 @@ void LocalMapping::CreateNewMapPoints()
              * mpCurrentKeyFrame será el keyframe de referencia.
              * Lo observan mpCurrentKeyFrame y pKF2.
              */
-            MapPoint* pMP = mpCurrentKeyFrame->GetMapPoint(idx1);
+
+            MapPoint* pMP;
+            /* pMP = mpCurrentKeyFrame->GetMapPoint(idx1);
 
             // Si el punto existe es porque era candidato, y se debe actualizar.  Si no, se crea uno nuevo.
-            /*if(pMP){
+            if(pMP){
             	pMP->SetWorldPos(x3D);
-            } else*/ if(mpCurrentKeyFrame->vRgb.size()){
+            } else*/
+
+            // Se crea el punto.  Se crea diferente dependiendo de si se dispone o no de la información de color del punto.
+            if(mpCurrentKeyFrame->vRgb.size()){
             	pMP = new MapPoint(x3D,mpCurrentKeyFrame,mpMap, mpCurrentKeyFrame->vRgb[idx1]);
             }else
             	pMP = new MapPoint(x3D,mpCurrentKeyFrame,mpMap);
 
             pMP->AddObservation(mpCurrentKeyFrame,idx1);
-            pMP->AddObservation(pKF2,idx2);
-
             mpCurrentKeyFrame->AddMapPoint(pMP,idx1);
+
+            pMP->AddObservation(pKF2,idx2);
             pKF2->AddMapPoint(pMP,idx2);
 
             pMP->ComputeDistinctiveDescriptors();

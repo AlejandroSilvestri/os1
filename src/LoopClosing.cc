@@ -256,14 +256,15 @@ bool LoopClosing::ComputeSim3()
     {
         KeyFrame* pKF = mvpEnoughConsistentCandidates[i];
 
-        // avoid that local mapping erase it while it is being processed in this thread
-        pKF->SetNotErase();
 
-        if(pKF->isBad())
-        {
+        if(pKF->isBad()){
             vbDiscarded[i] = true;
             continue;
         }
+
+        // avoid that local mapping erase it while it is being processed in this thread
+        // Esta línea estaba antes de verificar si isBad.  La puse después, para que ningún KF malo se marque para no borrar.
+        pKF->SetNotErase();
 
         int nmatches = matcher.SearchByBoW(mpCurrentKF,pKF,vvpMapPointMatches[i]);
 
@@ -441,10 +442,13 @@ void LoopClosing::CorrectLoop()
     cv::Mat Twc = mpCurrentKF->GetPoseInverse();
 
 
+    // Comienza la corrección
     {
         // Get Map Mutex
         unique_lock<mutex> lock(mpMap->mMutexMapUpdate);
 
+
+        // Releva las poses de los keyframes del mapa de covisibilidad, centrado en el keyframe que cierra el bucle, cuya pose es corrige para coincidir con el otro extremo.
         for(vector<KeyFrame*>::iterator vit=mvpCurrentConnectedKFs.begin(), vend=mvpCurrentConnectedKFs.end(); vit!=vend; vit++)
         {
             KeyFrame* pKFi = *vit;
@@ -453,11 +457,11 @@ void LoopClosing::CorrectLoop()
 
             if(pKFi!=mpCurrentKF)
             {
-                cv::Mat Tic = Tiw*Twc;
+                cv::Mat Tic = Tiw*Twc;	// Pose relativa al keyframe actual
                 cv::Mat Ric = Tic.rowRange(0,3).colRange(0,3);
                 cv::Mat tic = Tic.rowRange(0,3).col(3);
-                g2o::Sim3 g2oSic(Converter::toMatrix3d(Ric),Converter::toVector3d(tic),1.0);
-                g2o::Sim3 g2oCorrectedSiw = g2oSic*mg2oScw;
+                g2o::Sim3 g2oSic(Converter::toMatrix3d(Ric),Converter::toVector3d(tic),1.0);	// Transformación sim3 relativa al keyframe actual, con factor de escala 1.
+                g2o::Sim3 g2oCorrectedSiw = g2oSic*mg2oScw;	// Transformación sim3 absoluta
                 //Pose corrected with the Sim3 of the loop closure
                 CorrectedSim3[pKFi]=g2oCorrectedSiw;
             }
@@ -469,7 +473,7 @@ void LoopClosing::CorrectLoop()
             NonCorrectedSim3[pKFi]=g2oSiw;
         }
 
-        // Correct all MapPoints obsrved by current keyframe and neighbors, so that they align with the other side of the loop
+        // Correct all MapPoints observed by current keyframe and neighbors, so that they align with the other side of the loop
         for(KeyFrameAndPose::iterator mit=CorrectedSim3.begin(), mend=CorrectedSim3.end(); mit!=mend; mit++)
         {
             KeyFrame* pKFi = mit->first;
@@ -544,6 +548,8 @@ void LoopClosing::CorrectLoop()
 
 
     // After the MapPoint fusion, new links in the covisibility graph will appear attaching both sides of the loop
+    // El for siguiente realiza un KeyFrame::UpdateConnections sobre cada keyframe, y obtiene las nuevas conexiones en LoopConnections,
+    // partiendo de todas y restando las anteriores al UpdateConnections.
     map<KeyFrame*, set<KeyFrame*> > LoopConnections;
 
     for(vector<KeyFrame*>::iterator vit=mvpCurrentConnectedKFs.begin(), vend=mvpCurrentConnectedKFs.end(); vit!=vend; vit++)
@@ -565,7 +571,7 @@ void LoopClosing::CorrectLoop()
     }
 
     // Optimize graph
-    Optimizer::OptimizeEssentialGraph(mpMap, mpMatchedKF, mpCurrentKF, NonCorrectedSim3, CorrectedSim3, LoopConnections, false);//, mbFixScale);
+    Optimizer::OptimizeEssentialGraph(mpMap, mpMatchedKF, mpCurrentKF, NonCorrectedSim3, CorrectedSim3, LoopConnections, false);
 
     // Add loop edge
     mpMatchedKF->AddLoopEdge(mpCurrentKF);

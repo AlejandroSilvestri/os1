@@ -50,7 +50,7 @@ FrameDrawer::FrameDrawer(Map* pMap):mpMap(pMap)
  *
  * Invocado exclusivamente desde Viewer::Run
  */
-cv::Mat FrameDrawer::DrawFrame(float radio)
+cv::Mat FrameDrawer::DrawFrame(float radio, int nKF)
 {
     cv::Mat im;
     vector<cv::KeyPoint> vIniKeys; // Initialization: KeyPoints in reference frame
@@ -60,6 +60,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio)
     //vector<int> esPL;
     std::vector<MapPoint*> mapPoints;
     int state; // Tracking state
+    nKFPendientes = nKF;	// Cantidad de KF en la cola de LocalMapping, para mostrar con DrawTextInfo.
 
     vector<int> obs;
 
@@ -185,7 +186,11 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
         }
         int nKFs = mpMap->KeyFramesInMap();
         int nMPs = mpMap->MapPointsInMap();
-        s << "KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked << ", Candidatos: " << candidatos;
+        s << "KFs: " << nKFs << ", MPs: " << nMPs
+				<< ", Matches: " << mnTracked << ", Candidatos: " << candidatos
+        		//<<  ", KF pendientes: " << nKFPendientes
+        		<< ((nKFPendientes >= 0)? "" : ", LocalMapping ocioso")
+        		;
         if(mnTrackedVO>0)
             s << ", + VO matches: " << mnTrackedVO;
     }

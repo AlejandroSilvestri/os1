@@ -56,9 +56,16 @@ public:
     // Update info from the last processed frame.
     void Update(Tracking *pTracker);
 
-    /** Invocado sólo por Viewer::Run para que envíe la imagen del cuadro actual a la pantalla.*/
+    /**
+     * Invocado sólo por Viewer::Run para que envíe la imagen del cuadro actual a la pantalla.
+     *
+     * Originalmente sin argumentos, uso los argumentos como una vía de enviar datos para mostrar en pantalla o para controlar aspectos gráficos.
+     *
+     * @param radio Radio del los features a mostrar en pantalla.
+     * @param nKF Cantidad de keyframes pendientes de procesamiento en LocalMapping, dato para mostrar en pantalla.
+     */
     // Draw last processed frame.
-    cv::Mat DrawFrame(float radio = 1);
+    cv::Mat DrawFrame(float radio = 1, int nKF = 0);
 
     /** Matriz de calibración del último frame, para undistort.*/
     cv::Mat K;
@@ -152,6 +159,11 @@ protected:
      * Coordenadas del frame
      */
     cv::Mat cameraPos, cameraPosDraw;
+
+    /*
+     * Auxiliar para mostrar en pantalla
+     */
+    int nKFPendientes;
 };
 
 } //namespace ORB_SLAM

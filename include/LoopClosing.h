@@ -44,8 +44,12 @@ class KeyFrameDatabase;
 /**
  * Cierre de bucles.
  * Este objeto singleton ejecuta el método LoopClosing::Run en un thread exclusivo.
+ *
  * Cada vez que se agrega un keyframe al mapa (LoopClosing::CheckNewKeyFrames), intenta detectar un bucle (LoopClosing::DetectLoop).
  * Si lo detecta, computa su pose (LoopClosing::ComputeSim3), corrige el mapa (LoopClosing::CorrectLoop) usando en la etapa final LoopClosing::SearchAndFuse.
+ *
+ * El cierre de bucle se realiza según se describe en el paper Scale Drift-Aware Large Scale Monocular SLAM, Strasdat et al, 2010.
+ *
  *
  * Terminación del hilo, para cerrar la aplicación:
  * 1. Un hilo externo invoca LoopClosing::RequestFinish, que marca mbFinishedRequested
@@ -61,7 +65,17 @@ class LoopClosing
 {
 public:
 
-    typedef pair<set<KeyFrame*>,int> ConsistentGroup;    
+    /**
+     * Par de entero y conjunto de keyframes.
+     */
+	typedef pair<set<KeyFrame*>,int> ConsistentGroup;
+
+	/**
+	 * Mapa de keyframe a pose sim3.
+	 *
+	 * El mapa se ordena por el puntero a keyframe.  Se provee un allocator propio de Eigen.
+	 *
+	 */
     typedef map<KeyFrame*,g2o::Sim3,std::less<KeyFrame*>,
         Eigen::aligned_allocator<std::pair<const KeyFrame*, g2o::Sim3> > > KeyFrameAndPose;
 
@@ -171,11 +185,24 @@ protected:
      * sobre el keyframe actual y vecinos usando las poses corregidas.
      * Fusiona duplicados.
      *
+     * @param CorrectedPosesMap Mapa de poses de los keyframes del mapa de covisibilidad del keyframe actual, que cierra el bucle.
+     *
+     * Invocado sólo desde LoopClosing::CorrectLoop.
+     *
      */
     void SearchAndFuse(const KeyFrameAndPose &CorrectedPosesMap);
 
     /**
      * Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3.
+     *
+     * Luego de cerrar el bucle ejecuta un BA global LoopClosing::RunGlobalBundleAdjustment.
+     *
+     * Pasos de la corrección de bucle:
+     *
+     * 1- Reposicionar el mapa de covisibilidad (puntos y keyframes) del keyframe actual (ya reposicionado para cerrar el bucle).
+     * 2- Fusionar puntos coincidentes con el otro extremo del bucle.
+     * 3- Replantear el mapa de covisibilidad luego de la fusión, incorporando el otro extremo del bucle.
+     * 4- Optimizer::OptimizeEssentialGraph corrige el bucle desparramando el error .
      */
     void CorrectLoop();
 

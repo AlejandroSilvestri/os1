@@ -133,9 +133,10 @@ cv::Mat KeyFrame::GetTranslation()
 
 void KeyFrame::AddConnection(KeyFrame *pKF, const int &weight)
 {
+    if(mbBad || pKF->isBad()) return;	// Agregado por mí
+
     {
         unique_lock<mutex> lock(mMutexConnections);
-        if(mbBad || pKF->isBad()) return;	// Agregado por mí
         if(!mConnectedKeyFrameWeights.count(pKF))
             mConnectedKeyFrameWeights[pKF]=weight;
         else if(mConnectedKeyFrameWeights[pKF]!=weight)
@@ -212,7 +213,8 @@ vector<KeyFrame*> KeyFrame::GetCovisiblesByWeight(const int &w)
 
 int KeyFrame::GetWeight(KeyFrame *pKF)
 {
-    unique_lock<mutex> lock(mMutexConnections);
+    // Quizás no es necesario el mutex
+	unique_lock<mutex> lock(mMutexConnections);
     if(mConnectedKeyFrameWeights.count(pKF))
         return mConnectedKeyFrameWeights[pKF];
     else
@@ -378,7 +380,8 @@ void KeyFrame::UpdateConnections()
         mvpOrderedConnectedKeyFrames = vector<KeyFrame*>(lKFs.begin(),lKFs.end());
         mvOrderedWeights = vector<int>(lWs.begin(), lWs.end());
 
-        if(mbFirstConnection && mnId!=0)
+        // Agrego la condición de no tener padre
+        if((mbFirstConnection || !mpParent) && mnId!=0)
         {
             mpParent = mvpOrderedConnectedKeyFrames.front();
             mpParent->AddChild(this);	// ChangeParent(mpParent)
@@ -386,12 +389,21 @@ void KeyFrame::UpdateConnections()
         }
 
     }
+
+    /* Han aparecido KF sin padre (padre NULL), y os1 se cuelga cuando se lo marca como malo con SetBadFlag.
+     * El padre se asigna aquí y también en SetBadFlag cuando se elimina punto, le cambian a sus hijos el padre por el abuelo.
+     * Acá se controla que no salga ningún KF sin padre, excepto el primero.
+     */
+
+    if(mnId!=0 && !mpParent)
+    	cout << "UpdateConnections deja huérfano al KF " << mnId << endl;
+
 }
 
 void KeyFrame::AddChild(KeyFrame *pKF)
 {
     unique_lock<mutex> lockCon(mMutexConnections);
-    if(!mbBad)	// Agregado por mí, intentando eliminar posible causa que revive keyframes muertos
+    if(!mbBad && !pKF->isBad())	// Agregado por mí, intentando eliminar posible causa que revive keyframes muertos
     	mspChildrens.insert(pKF);
 }
 
@@ -463,7 +475,7 @@ void KeyFrame::SetErase()
 }
 
 void KeyFrame::SetBadFlag()
-{   
+{
     {
     	// Verifica que no esté prohibida la eliminación por parte de la detección de bucles
         unique_lock<mutex> lock(mMutexConnections);
@@ -473,6 +485,16 @@ void KeyFrame::SetBadFlag()
             mbToBeErased = true;
             return;
         }
+
+        if(!mpParent)
+        	cout << "SetBadFlag invocado sobre KF sin padre " << mnId << endl;
+
+        if(mbBad){
+        	cout << "SetBadFlag invocado sobre KF malo " << mnId << endl;
+        	return;
+        }
+
+
 
     	// Agregado por mí, para que no haya solapamiento
         mbBad = true;
@@ -506,7 +528,11 @@ void KeyFrame::SetBadFlag()
 
         // Update Spanning Tree
         set<KeyFrame*> sParentCandidates;
-        sParentCandidates.insert(mpParent);
+        if(mpParent)	// Aislando conflictos, buscando la causa por la que algunos KF no tienen padre
+        	sParentCandidates.insert(mpParent);
+
+        if(!mpParent && !mspChildrens.empty())
+        	cout << "KF sin padre y con hijos que quedarán huérfanos: " << mnId << endl;
 
         // Assign at each iteration one children with a parent (the pair with highest covisibility weight)
         // Include that children as new parent candidate for the rest
@@ -568,11 +594,16 @@ void KeyFrame::SetBadFlag()
 
         mspChildrens.clear();	// Agregado por mí
 
-        mpParent->EraseChild(this);
-        // En este punto el keyframe está fuera del grafo de conexión.
+        if(mpParent)	// Aislando conflictos, buscando la causa por la que algunos KF no tienen padre
+        	mpParent->EraseChild(this);
 
-        mTcp = Tcw*mpParent->GetPoseInverse();
-        //mbBad = true;
+        // En este momento el keyframe está fuera del grafo de conexión.
+
+        // ¿Para qué?
+        //mTcp = Tcw*mpParent->GetPoseInverse();
+
+
+        //mbBad = true;	// Movido al principio
     }
 
 
@@ -580,9 +611,9 @@ void KeyFrame::SetBadFlag()
     //mpKeyFrameDB->erase(this);
 }
 
-bool KeyFrame::isBad()
-{
-    unique_lock<mutex> lock(mMutexConnections);
+bool KeyFrame::isBad(){
+	// Parece que este mutex no hace falta.
+    //unique_lock<mutex> lock(mMutexConnections);
     return mbBad;
 }
 

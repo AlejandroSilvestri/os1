@@ -77,7 +77,41 @@ class KeyFrameDatabase;
  * y la escala por la distancia entre las cámaras de inicialización que triangularon los primeros puntos.
  *
  *
+ * Grafos
  *
+ * Los keyframes se ordenan en tres grafos:
+ * - árbol de expansión (spanning tree) mínimo con raíz en el primer keyframe.
+ * - grafo de covisibilidad, consistente en ejes ponderados, entre keyframes.
+ * - grafo esencial, árbol de expansión con una poda del grafo de covisibilidad
+ *
+ * El árbol de expansión conecta todos los keyframes sin redundancia.
+ * Cada keyframe registra su padre en KeyFrame::mpParent y sus hijos en KeyFrame::mspChildrens.
+ * Se administra con:
+ * - KeyFrame::AddChild
+ * - KeyFrame::EraseChild
+ * - KeyFrame::ChangeParent
+ * - KeyFrame::GetChilds
+ * - KeyFrame::GetParent
+ * - KeyFrame::hasChild
+ *
+ * El grafo de covisibilidad consiste en una conexión desde un keyframe hacia cada keyframe que observa algún punto en común.
+ * Las conexiones (ejes del grafo) son ponderadas y se registran en
+ * - KeyFrame::mConnectedKeyFrameWeights
+ * - KeyFrame::mvpOrderedConnectedKeyFrames
+ * - KeyFrame::mvOrderedWeight
+ *
+ * y se administran con
+ * - KeyFrame::AddConnection
+ * - KeyFrame::EraseConnection
+ * - KeyFrame::GetVectorCovisibleKeyframes
+ * - KeyFrame::GetCovisiblesByWight
+ *
+ * El grafo esencial está formado por el árbol de expansión, las conexiones fuertes de covisibilidad, y las conexiones de bucle.
+ * - KeyFrame::GetBestCovisibleKeyFrames
+ * - KeyFrame::AddLoopEdge
+ * - KeyFrame::GetLoopEdges
+ *
+ * El grafo esencial se utiliza en Optimizer::OptimizeEssentialGraph.
  */
 class KeyFrame
 {
@@ -191,10 +225,10 @@ public:
      *
      * Es invocado por:
      *
-     * ORB_SLAM2::Tracking::CreateInitialMapMonocular() : void (2 matches), al crear lso primeros keyframes del mapa inicial.
-     * ORB_SLAM2::LocalMapping::ProcessNewKeyFrame() : void, cuando se crea el KeyFrame (de manera asincrónica).
-     * ORB_SLAM2::LocalMapping::SearchInNeighbors() : void
-     * ORB_SLAM2::LoopClosing::CorrectLoop() : void (3 matches), al cerrar un bucle se debe rehacer el grafo de covisibilidad
+     * - ORB_SLAM2::Tracking::CreateInitialMapMonocular() : void (2 matches), al crear lso primeros keyframes del mapa inicial.
+     * - ORB_SLAM2::LocalMapping::ProcessNewKeyFrame() : void, cuando se crea el KeyFrame (de manera asincrónica).
+     * - ORB_SLAM2::LocalMapping::SearchInNeighbors() : void.
+     * - ORB_SLAM2::LoopClosing::CorrectLoop() : void (3 matches), al cerrar un bucle se debe rehacer el grafo de covisibilidad.
      *
      * Quizás el cierre de bucle podría interferir con una llamada simultánea de parte de LocalMapping.  Por eso emplea mutex.
      *
@@ -262,9 +296,11 @@ public:
     void EraseChild(KeyFrame* pKF);
 
     /**
-     * Cambia el padre del keyframe.
+     * Cambia el padre del keyframe en el grafo.
      *
      * @param pKF Nuevo keyframe padre.
+     *
+     * Este método cambia el valor de KeyFrame::mpParent.
      *
      * Invocado sólo desde ORB_SLAM2::KeyFrame::SetBadFlag(), al remendar el grafo.
      */
@@ -280,7 +316,13 @@ public:
     bool hasChild(KeyFrame* pKF);
 
     // Loop Edges
-    /** Agrega un eje al grafo de covisibilidad, a partir de una detección de bucle.  @param pKF Keyframe con el que tender el eje.*/
+    /**
+     * Agrega un eje al grafo de covisibilidad, a partir de una detección de bucle.
+     *
+     * @param pKF Keyframe con el que tender el eje.
+     *
+     * Sólo invocado por LoopClosing::CorrectLoop().
+     */
     void AddLoopEdge(KeyFrame* pKF);
 
     /** Informa los keyframes conectados con ejes de bucle. @returns Keyframes conectados por ejes de bucles.*/
@@ -340,7 +382,13 @@ public:
      */
     std::set<MapPoint*> GetMapPoints();
 
-    /** Devuelve el vector de puntos 3D.  @returns KeyFrame::mvpMapPoints.*/
+    /**
+     * Devuelve una copia del vector de puntos 3D.
+     *
+     * @returns Copia de KeyFrame::mvpMapPoints.
+     *
+     * Es ampliamente utilizado.
+     */
     std::vector<MapPoint*> GetMapPointMatches();
 
 
@@ -386,7 +434,7 @@ public:
     // Enable/Disable bad flag changes
 
     /**
-     * Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle.
+     * Previene la eliminación del keyframe mientras se utiliza en una detección de bucle.
      *
      * Hace mbNotErase = true.
      *
@@ -668,8 +716,14 @@ public:
 
 
     // Pose relative to parent (this is computed when bad flag is activated)
-    /** Pose de cámara relativa a su padre. */
-    cv::Mat mTcp;
+    /**
+     * Pose de cámara relativa a su padre.
+     *
+     * Se computa cuando el keyframe se marca como malo, y no lo usa nadie.
+     *
+     * En OS1 se desactivó.
+     */
+    //cv::Mat mTcp;
 
     // Scale
     /** Cantidad de niveles de la pirámide.*/
@@ -791,6 +845,9 @@ protected:
 
     /**
      * KeyFrame padre en el grafo.
+     * Los keyframes se construyen con mpParent = NULL,
+     * KeyFrame::UpdateConnections adopta la primer conexión como padre.
+     * El primer keyframe no tiene padre.
      */
     KeyFrame* mpParent;
 
@@ -827,6 +884,9 @@ protected:
      *
      * No es efímero.
      *
+     * Todos los keyframes de este set están marcados para no borrar con KeyFrame::SetNotErase.
+     * Esto significa que no pueden ser malos.
+     *
      */
     std::set<KeyFrame*> mspLoopEdges;
 
@@ -835,6 +895,8 @@ protected:
      * Señal de no borrar.
      * Se hace true cuando se le agrega un eje al grafo, o con SetNotErase() cuando se usa el keyframe en detección de bucle.
      * Se hace false con SetErase(), sólo si no tiene algún eje de bucle.
+     * Los keyframes se marcan para no borrar momentáneamente cuando se consideran en un bucle, y se desmarcan cuando falla el cierre.
+     * Si el bucle se cierra, los keyframes invoclucrados quedan marcados para siempre.
      *
      */
     bool mbNotErase;
@@ -869,11 +931,23 @@ protected:
 
     /**
      * mutex de acceso a la pose Tcw.
+     *
+     * KeyFrame::SetPose realiza varias operaciones matriciales.
+     *
+     * Este mutex se incluye en los métodos que clonan matrices de pose.
+     * Las matrices de pose no se deben acceder durante esta operación, pues la clonación como las operaciones matriciales no son monolíticas.
      */
     std::mutex mMutexPose;
 
     /**
      * mutex de acceso al grafo de conexiones.
+     *
+     * KeyFrame::UpdateBestCovisibles y KeyFrame::SetBadFlag operan en bucle construyendo o remendando el grafo de conexiones.
+     *
+     * Durante estas operaciones se deben prevenir modificaciones a variables del grafo.
+     * Este mutex está aplicado en todos los métodos que deben esperar la finalización de las operaciones mencionadas.
+     *
+     *
      *
      * Agregado mío:
      * Para prevenir que el keyframe se siga usando y registrando justo cuando se está marcando como malo con SetBadFlag,
@@ -895,6 +969,13 @@ protected:
 
     /**
      * mutex de acceso a mvpMapPoints.
+     *
+     * Controla el acceso de escritura al vector mvpMapPoints.
+     * Previene que se lo modifique mientras se lo copia con KeyFrame::GetMapPointMatches.
+     *
+     * KeyFrame::SetBadFlag usa este mutex.
+     *
+
      */
     std::mutex mMutexFeatures;
 
@@ -905,7 +986,18 @@ protected:
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 	// Fin del agregado para serialización
 
-	//friend class KeyFrameTriangulacion;
+public:
+	/**
+	 * Functor de comparación para ordenar un set de KeyFrame*, por su mnId.
+	 *
+	 * Se usa en el mapa de keyframes, para que se serialicen ordenadamente.
+	 */
+	struct lessPointer{
+		bool operator()(const KeyFrame* k1, const KeyFrame* k2) const{
+			return k1->mnId < k2->mnId;
+		}
+	};
+
 };
 
 } //namespace ORB_SLAM

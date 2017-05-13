@@ -639,7 +639,8 @@ bool Initializer::ReconstructH(vector<bool> &vbMatchesInliers, cv::Mat &H21, cv:
         cv::Mat np(3,1,CV_32F);
         np.at<float>(0)=x1[i];
         np.at<float>(1)=0;
-        np.at<float>(2)=x3[i];
+        //np.at<float>(2)=x3[i];	// Código original, sin el signo menos, cuestionado en https://github.com/raulmur/ORB_SLAM2/issues/289
+        np.at<float>(2)=-x3[i];	// Código modificado, quitado el signo menos
 
         cv::Mat n = V*np;
         if(n.at<float>(2)<0)

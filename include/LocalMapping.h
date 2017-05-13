@@ -149,8 +149,11 @@ public:
 
     /**
      * Informa si LocalMapping acepta nuevos keyframes.
+     * Indica que LocalMapping está ocioso.
+     * En rigor siempre acepta nuevos keyframes, que van a la cola para ser procesados.
+     * Informa el valor de LocalMapping::mbAcceptKeyFrames.
      *
-     * Informa el valor de LoalMapping::mbAcceptKeyFrames.
+     * Sólo invocado por Tracking::NeedNewKeyFrame.
      */
     bool AcceptKeyFrames();
 
