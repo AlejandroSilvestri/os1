@@ -123,6 +123,8 @@ public:
 
     /**
      * Bundle adjustment sobre todo el mapa luego de cerrar el bucle.
+     *
+     * Invocado sólo desde LoopClosing::CorrectLoop
      */
     // This function will run in a separate thread
     void RunGlobalBundleAdjustment(unsigned long nLoopKF);

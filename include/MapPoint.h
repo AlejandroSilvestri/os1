@@ -106,9 +106,11 @@ public:
     KeyFrame* GetReferenceKeyFrame();
 
     /**
-     * Establece el keyframe de referencia.
+     * Establece el keyframe de referencia mpRefKF.
      *
      * @param pRefKF Keyframe de referencia.
+     *
+     * Este método no se utiliza.
      */
     void SetReferenceKeyFrame(KeyFrame* pRefKF);
 
@@ -476,7 +478,7 @@ protected:
 	 * Keyframe de referencia.
 	 *
 	 * Comienza siendo el keyframe que creó el punto, aunque rota si ese keyframe se elimina.
-	 * Utilizado al optimizar el mapa esencial y en BA para cerrar bucles.
+	 * Utilizado al optimizar el grafo esencial y en BA para cerrar bucles.
 	 */
 	// Reference KeyFrame
 	KeyFrame* mpRefKF;
