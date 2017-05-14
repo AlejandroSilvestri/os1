@@ -106,7 +106,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1b3a362116e3ecf2cd7e151be2ca3fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> a la base de datos.  <a href="#a1b3a362116e3ecf2cd7e151be2ca3fcb">More...</a><br /></td></tr>
 <tr class="separator:a1b3a362116e3ecf2cd7e151be2ca3fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3eccf99ba2e387d0273f919fd0574ea2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a3eccf99ba2e387d0273f919fd0574ea2">clear</a> ()</td></tr>
-<tr class="memdesc:a3eccf99ba2e387d0273f919fd0574ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera su memoria, invocado desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>.  <a href="#a3eccf99ba2e387d0273f919fd0574ea2">More...</a><br /></td></tr>
+<tr class="memdesc:a3eccf99ba2e387d0273f919fd0574ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera el vocabulario y asigna memoria para volver a cargarlo, invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>.  <a href="#a3eccf99ba2e387d0273f919fd0574ea2">More...</a><br /></td></tr>
 <tr class="separator:a3eccf99ba2e387d0273f919fd0574ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d396aae02c4318ea8c7e7eff8059c69"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a2d396aae02c4318ea8c7e7eff8059c69">DetectLoopCandidates</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF, float minScore)</td></tr>
 <tr class="memdesc:a2d396aae02c4318ea8c7e7eff8059c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">A partir de un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> intenta detectar un bucle.  <a href="#a2d396aae02c4318ea8c7e7eff8059c69">More...</a><br /></td></tr>
@@ -128,9 +128,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ad11a653313a5f0ef6f6fbc4880df0b7d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#ad11a653313a5f0ef6f6fbc4880df0b7d">mpVoc</a></td></tr>
 <tr class="memdesc:ad11a653313a5f0ef6f6fbc4880df0b7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vocabulario BoW.  <a href="#ad11a653313a5f0ef6f6fbc4880df0b7d">More...</a><br /></td></tr>
 <tr class="separator:ad11a653313a5f0ef6f6fbc4880df0b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b6d73823fcd1b96f3ba5a66be0b2227"><td class="memItemLeft" align="right" valign="top">std::vector&lt; list&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a3b6d73823fcd1b96f3ba5a66be0b2227">mvInvertedFile</a></td></tr>
-<tr class="memdesc:a3b6d73823fcd1b96f3ba5a66be0b2227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cada elemento del vector corresponde a una palabra del vocabulario BoW.  <a href="#a3b6d73823fcd1b96f3ba5a66be0b2227">More...</a><br /></td></tr>
-<tr class="separator:a3b6d73823fcd1b96f3ba5a66be0b2227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67693c447ad3afefd38c80aa3b2777cf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::list&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a67693c447ad3afefd38c80aa3b2777cf">mvInvertedFile</a></td></tr>
+<tr class="memdesc:a67693c447ad3afefd38c80aa3b2777cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cada elemento del vector corresponde a una palabra del vocabulario BoW.  <a href="#a67693c447ad3afefd38c80aa3b2777cf">More...</a><br /></td></tr>
+<tr class="separator:a67693c447ad3afefd38c80aa3b2777cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Lista invertida de KeyFrames, accesible por BoW. </p>
@@ -171,12 +171,13 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Agrega un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> a la base de datos. </p>
-<p>Lo agrega a las listas listas de keyframes de cada BoW que tenga registrado. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Lo agrega a las listas de keyframes de cada BoW que tenga registrado. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pKF</td><td><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> </td></tr>
+    <tr><td class="paramname">pKF</td><td><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a></td></tr>
   </table>
   </dd>
 </dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa8110ca79cebaf509e378d30e55f1381" title="Procesa los keyframes de la cola, buscando bucles. ">LoopClosing::DetectLoop</a>, un método que se invoca durante la creación de cada keyframe, en el hilo de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a>. </p>
 
 </div>
 </div>
@@ -193,7 +194,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Libera su memoria, invocado desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>. </p>
+<p>Libera el vocabulario y asigna memoria para volver a cargarlo, invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>. </p>
 
 </div>
 </div>
@@ -256,7 +257,13 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Vector de KeyFrames candidatos a relocalización, en los que se encontraron suficiente coincidencias BoW. Estos candidatos luego deben pasar una prueba de pose. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector de KeyFrames candidatos a relocalización, en los que se encontraron suficiente coincidencias BoW.</dd></dl>
+<p>Busca todos los keyframes que comparten algún BoW con el frame actual argumento.</p>
+<p>Identifica el que más BoWs tiene en común, y arma un conjunto con los keyframes con al menos 80% de ese máximo.</p>
+<p>Para cada keyframe calcula un puntaje de similaridad al comparar su conjunto de BoWs con el del cuadro actual. El puntaje es la suma de los pesos de los BoW coincidentes.</p>
+<p>Luego acumula en cada keyframe el puntaje de todos los keyframes covisibles.</p>
+<p>Finalmente devuelve los keyframes con al menos 75% del mejor puntaje.</p>
+<p>Estos candidatos luego deben pasar una prueba de pose. </p>
 
 </div>
 </div>
@@ -327,7 +334,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3b6d73823fcd1b96f3ba5a66be0b2227"></a>
+<a id="a67693c447ad3afefd38c80aa3b2777cf"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -335,7 +342,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;list&lt;<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a>*&gt; &gt; ORB_SLAM2::KeyFrameDatabase::mvInvertedFile</td>
+          <td class="memname">std::vector&lt;std::list&lt;<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a>*&gt; &gt; ORB_SLAM2::KeyFrameDatabase::mvInvertedFile</td>
         </tr>
       </table>
   </td>

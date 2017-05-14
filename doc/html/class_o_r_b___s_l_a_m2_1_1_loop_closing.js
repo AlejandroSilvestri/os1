@@ -2,7 +2,7 @@ var class_o_r_b___s_l_a_m2_1_1_loop_closing =
 [
     [ "ConsistentGroup", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a8efed418be885643d3c43113ff1d7bb2", null ],
     [ "KeyFrameAndPose", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ae9ada143a8308ce32990a7c7b5d533ab", null ],
-    [ "LoopClosing", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#af5f7b8a43efa8bc771a5227ed2fbf460", null ],
+    [ "LoopClosing", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ad50766e39c7107eb9970a8f26ddaae90", null ],
     [ "CheckFinish", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ac13b01270b4daef9be2a098f82e9f64f", null ],
     [ "CheckNewKeyFrames", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ac0c81e654509eb9384abe5e769db4f41", null ],
     [ "ComputeSim3", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ab4fcf814eed5b5dd2aec96454561b078", null ],
@@ -24,7 +24,6 @@ var class_o_r_b___s_l_a_m2_1_1_loop_closing =
     [ "mbFinished", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a6d8de49d49b647c33f3616f4cc95c42c", null ],
     [ "mbFinishedGBA", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#acdfbeff51644bd4c3d2d54c637d95e6c", null ],
     [ "mbFinishRequested", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a9e3dfbee3d1635fe11e600f94b0f60dc", null ],
-    [ "mbFixScale", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a11865c48bbad102b5177e4350de71bd4", null ],
     [ "mbResetRequested", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ae9bac1131984f7915ab1fdf220912b0b", null ],
     [ "mbRunningGBA", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ad04c8ddd2135b81fabfa45891ab66add", null ],
     [ "mbStopGBA", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a7e24710761d1788f395fafc16a1a8e80", null ],

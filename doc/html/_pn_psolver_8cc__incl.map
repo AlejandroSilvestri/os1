@@ -1,18 +1,18 @@
 <map id="/home/alejandro/Desarrollo eclipse/os1/src/PnPsolver.cc" name="/home/alejandro/Desarrollo eclipse/os1/src/PnPsolver.cc">
-<area shape="rect" id="node3" href="$_pn_psolver_8h.html" title="PnPsolver.h" alt="" coords="1279,95,1372,121"/>
-<area shape="rect" id="node22" href="$_random_8h.html" title="../DUtils/Random.h" alt="" coords="1810,654,1945,681"/>
-<area shape="rect" id="node5" href="$_map_point_8h.html" title="MapPoint.h" alt="" coords="1005,169,1093,196"/>
-<area shape="rect" id="node26" href="$_frame_8h.html" title="Frame.h" alt="" coords="403,408,474,435"/>
-<area shape="rect" id="node6" href="$_key_frame_8h.html" title="KeyFrame.h" alt="" coords="821,244,915,271"/>
-<area shape="rect" id="node31" href="$_serializer_8h.html" title="Serializer.h" alt="" coords="1054,326,1141,353"/>
-<area shape="rect" id="node33" href="$_map_8h.html" title="Map.h" alt="" coords="1249,244,1308,271"/>
-<area shape="rect" id="node7" href="$_bow_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/BowVector.h" alt="" coords="289,736,439,777"/>
-<area shape="rect" id="node10" href="$_feature_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FeatureVector.h" alt="" coords="43,647,213,688"/>
-<area shape="rect" id="node11" href="$_o_r_b_vocabulary_8h.html" title="ORBVocabulary.h" alt="" coords="863,483,990,509"/>
-<area shape="rect" id="node24" href="$_o_r_bextractor_8h.html" title="ORBextractor.h" alt="" coords="763,326,877,353"/>
-<area shape="rect" id="node28" href="$_key_frame_database_8h.html" title="KeyFrameDatabase.h" alt="" coords="589,326,739,353"/>
-<area shape="rect" id="node12" href="$_f_o_r_b_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FORB.h" alt="" coords="1223,557,1366,599"/>
-<area shape="rect" id="node15" href="$_templated_vocabulary_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/TemplatedVocabulary.h" alt="" coords="823,557,1036,599"/>
-<area shape="rect" id="node14" href="$_f_class_8h.html" title="FClass.h" alt="" coords="1257,654,1332,681"/>
-<area shape="rect" id="node21" href="$_scoring_object_8h.html" title="ScoringObject.h" alt="" coords="616,654,731,681"/>
+<area shape="rect" id="node3" href="$_pn_psolver_8h.html" title="PnPsolver.h" alt="" coords="1729,95,1823,121"/>
+<area shape="rect" id="node22" href="$_random_8h.html" title="../DUtils/Random.h" alt="" coords="1957,579,2091,606"/>
+<area shape="rect" id="node5" href="$_map_point_8h.html" title="MapPoint.h" alt="" coords="479,169,567,196"/>
+<area shape="rect" id="node30" href="$_frame_8h.html" title="Frame.h" alt="" coords="943,326,1014,353"/>
+<area shape="rect" id="node6" href="$_key_frame_8h.html" title="KeyFrame.h" alt="" coords="476,244,569,271"/>
+<area shape="rect" id="node28" href="$_serializer_8h.html" title="Serializer.h" alt="" coords="145,326,231,353"/>
+<area shape="rect" id="node33" href="$_map_8h.html" title="Map.h" alt="" coords="291,244,349,271"/>
+<area shape="rect" id="node7" href="$_bow_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/BowVector.h" alt="" coords="455,661,606,703"/>
+<area shape="rect" id="node10" href="$_feature_vector_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FeatureVector.h" alt="" coords="467,572,637,613"/>
+<area shape="rect" id="node11" href="$_o_r_b_vocabulary_8h.html" title="ORBVocabulary.h" alt="" coords="763,408,890,435"/>
+<area shape="rect" id="node24" href="$_key_frame_database_8h.html" title="KeyFrameDatabase.h" alt="" coords="611,326,760,353"/>
+<area shape="rect" id="node12" href="$_f_o_r_b_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/FORB.h" alt="" coords="1370,483,1513,524"/>
+<area shape="rect" id="node15" href="$_templated_vocabulary_8h.html" title="../Thirdparty/DBoW2\l/DBoW2/TemplatedVocabulary.h" alt="" coords="1016,483,1229,524"/>
+<area shape="rect" id="node14" href="$_f_class_8h.html" title="FClass.h" alt="" coords="1404,579,1479,606"/>
+<area shape="rect" id="node21" href="$_scoring_object_8h.html" title="ScoringObject.h" alt="" coords="763,579,877,606"/>
+<area shape="rect" id="node31" href="$_o_r_bextractor_8h.html" title="ORBextractor.h" alt="" coords="1418,408,1531,435"/>
 </map>

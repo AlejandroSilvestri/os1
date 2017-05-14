@@ -7,8 +7,8 @@ var hierarchy =
     [ "g2o::AbstractRobustKernelCreator", "classg2o_1_1_abstract_robust_kernel_creator.html", [
       [ "g2o::RobustKernelCreator< T >", "classg2o_1_1_robust_kernel_creator.html", null ]
     ] ],
-    [ "g2o::EstimatePropagator::AdjacencyMapEntry", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html", null ],
     [ "g2o::HyperDijkstra::AdjacencyMapEntry", "structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry.html", null ],
+    [ "g2o::EstimatePropagator::AdjacencyMapEntry", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html", null ],
     [ "g2o::BaseProperty", "classg2o_1_1_base_property.html", [
       [ "g2o::Property< T >", "classg2o_1_1_property.html", null ],
       [ "g2o::Property< bool >", "classg2o_1_1_property.html", null ],
@@ -112,6 +112,7 @@ var hierarchy =
     [ "ORB_SLAM2::KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html", null ],
     [ "ORB_SLAM2::KeyFrameDatabase", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html", null ],
     [ "ORB_SLAM2::KeyFrameTriangulacion", "class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html", null ],
+    [ "ORB_SLAM2::KeyFrame::lessPointer", "struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html", null ],
     [ "g2o::LinearSolver< MatrixType >", "classg2o_1_1_linear_solver.html", [
       [ "g2o::LinearSolverCCS< MatrixType >", "classg2o_1_1_linear_solver_c_c_s.html", null ],
       [ "g2o::LinearSolverDense< MatrixType >", "classg2o_1_1_linear_solver_dense.html", null ],
@@ -120,7 +121,6 @@ var hierarchy =
     [ "g2o::LinearSolver< PoseMatrixType >", "classg2o_1_1_linear_solver.html", null ],
     [ "ORB_SLAM2::LocalMapping", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html", null ],
     [ "ORB_SLAM2::LoopClosing", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html", null ],
-    [ "ORB_SLAM2::Map", "class_o_r_b___s_l_a_m2_1_1_map.html", null ],
     [ "map", null, [
       [ "DBoW2::BowVector", "class_d_bo_w2_1_1_bow_vector.html", null ],
       [ "DBoW2::FeatureVector", "class_d_bo_w2_1_1_feature_vector.html", null ],
@@ -130,6 +130,7 @@ var hierarchy =
         [ "g2o::DrawAction::Parameters", "classg2o_1_1_draw_action_1_1_parameters.html", null ]
       ] ]
     ] ],
+    [ "ORB_SLAM2::Map", "class_o_r_b___s_l_a_m2_1_1_map.html", null ],
     [ "ORB_SLAM2::MapDrawer", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html", null ],
     [ "ORB_SLAM2::MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html", null ],
     [ "g2o::MarginalCovarianceCholesky", "classg2o_1_1_marginal_covariance_cholesky.html", null ],
@@ -152,15 +153,17 @@ var hierarchy =
     [ "ORB_SLAM2::Optimizer", "class_o_r_b___s_l_a_m2_1_1_optimizer.html", null ],
     [ "ORB_SLAM2::ORBextractor", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html", null ],
     [ "ORB_SLAM2::ORBmatcher", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html", null ],
-    [ "g2o::HyperGraphAction::Parameters", "classg2o_1_1_hyper_graph_action_1_1_parameters.html", [
-      [ "g2o::HyperGraphAction::ParametersIteration", "classg2o_1_1_hyper_graph_action_1_1_parameters_iteration.html", null ]
-    ] ],
     [ "g2o::HyperGraphElementAction::Parameters", "structg2o_1_1_hyper_graph_element_action_1_1_parameters.html", [
       [ "g2o::DrawAction::Parameters", "classg2o_1_1_draw_action_1_1_parameters.html", null ],
       [ "g2o::WriteGnuplotAction::Parameters", "structg2o_1_1_write_gnuplot_action_1_1_parameters.html", null ]
     ] ],
+    [ "g2o::HyperGraphAction::Parameters", "classg2o_1_1_hyper_graph_action_1_1_parameters.html", [
+      [ "g2o::HyperGraphAction::ParametersIteration", "classg2o_1_1_hyper_graph_action_1_1_parameters_iteration.html", null ]
+    ] ],
     [ "ORB_SLAM2::PnPsolver", "class_o_r_b___s_l_a_m2_1_1_pn_psolver.html", null ],
     [ "g2o::EstimatePropagator::PropagateAction", "structg2o_1_1_estimate_propagator_1_1_propagate_action.html", null ],
+    [ "ORB_SLAM2::PuntoLejano", "class_o_r_b___s_l_a_m2_1_1_punto_lejano.html", null ],
+    [ "ORB_SLAM2::PuntosLejanosDB", "class_o_r_b___s_l_a_m2_1_1_puntos_lejanos_d_b.html", null ],
     [ "DUtils::Random", "class_d_utils_1_1_random.html", null ],
     [ "g2o::RegisterActionProxy< T >", "classg2o_1_1_register_action_proxy.html", null ],
     [ "g2o::RegisterOptimizationAlgorithmProxy", "classg2o_1_1_register_optimization_algorithm_proxy.html", null ],

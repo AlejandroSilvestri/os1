@@ -137,7 +137,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a57f88e0959582dde9ae5bdee1fe3de65"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::Mat &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a57f88e0959582dde9ae5bdee1fe3de65">mvImagePyramid</a></td></tr>
-<tr class="memdesc:a57f88e0959582dde9ae5bdee1fe3de65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imágenes de la pirámide.  <a href="#a57f88e0959582dde9ae5bdee1fe3de65">More...</a><br /></td></tr>
+<tr class="memdesc:a57f88e0959582dde9ae5bdee1fe3de65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imágenes de la pirámide, a las que se aplica FAST.  <a href="#a57f88e0959582dde9ae5bdee1fe3de65">More...</a><br /></td></tr>
 <tr class="separator:a57f88e0959582dde9ae5bdee1fe3de65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -145,9 +145,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a9a543d9b2aec1e521058ee9522937adc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a9a543d9b2aec1e521058ee9522937adc">ComputeKeyPointsOctTree</a> (std::vector&lt; std::vector&lt; cv::KeyPoint &gt; &gt; &amp;allKeypoints)</td></tr>
 <tr class="memdesc:a9a543d9b2aec1e521058ee9522937adc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detecta puntos singulares, y los dispersa con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#ac6b7b27447324af33fa60d6dc0c8ffa0" title="Distribuye puntos singulares con un octTree. ">ORBextractor::DistributeOctTree</a>.  <a href="#a9a543d9b2aec1e521058ee9522937adc">More...</a><br /></td></tr>
 <tr class="separator:a9a543d9b2aec1e521058ee9522937adc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56890a2032077fbfdf48687786985548"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a56890a2032077fbfdf48687786985548">ComputeKeyPointsOld</a> (std::vector&lt; std::vector&lt; cv::KeyPoint &gt; &gt; &amp;allKeypoints)</td></tr>
-<tr class="memdesc:a56890a2032077fbfdf48687786985548"><td class="mdescLeft">&#160;</td><td class="mdescRight">Antiguo método para detectar puntos singulares, reemplazado por ComputeKeyPointsOctTree.  <a href="#a56890a2032077fbfdf48687786985548">More...</a><br /></td></tr>
-<tr class="separator:a56890a2032077fbfdf48687786985548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a058f24d80bb0b2c7d6fc0bdd3d9144d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a058f24d80bb0b2c7d6fc0bdd3d9144d1">ComputePyramid</a> (cv::Mat image)</td></tr>
 <tr class="memdesc:a058f24d80bb0b2c7d6fc0bdd3d9144d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera las imágenes de la pirámide y las guarda en el vector mvImagePyramid.  <a href="#a058f24d80bb0b2c7d6fc0bdd3d9144d1">More...</a><br /></td></tr>
 <tr class="separator:a058f24d80bb0b2c7d6fc0bdd3d9144d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,7 +199,22 @@ Protected Attributes</h2></td></tr>
 <li>extrayendo sus descriptores</li>
 </ul>
 <p>El objeto administra las pirámides y la grilla de celdas en la que se divide la imagen para homogeneizar la distribución de puntos singulares. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> crea las únicas dos instancias de este objeto, de larga vida, mpORBextractorLeft y mpIniORBextractor, el primero como parte inicial del proceso de tracking en estado OK, y el segundo para inicializar.</p>
-<p>La descripción de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a9a543d9b2aec1e521058ee9522937adc" title="Detecta puntos singulares, y los dispersa con ORBextractor::DistributeOctTree. ">ORBextractor::ComputeKeyPointsOctTree</a> contiene una buena descripción de los puntos singulares. </p>
+<p>Con la excepción de mvImagePyramid, todas las propiedades son protegidas, se establecen durante la construcción y no cambian.</p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a9a543d9b2aec1e521058ee9522937adc" title="Detecta puntos singulares, y los dispersa con ORBextractor::DistributeOctTree. ">ORBextractor::ComputeKeyPointsOctTree</a> contiene una buena descripción de los puntos singulares.</p>
+<p>La clase usa las siguientes funciones globales exclusivas:</p>
+<p><a class="el" href="namespace_o_r_b___s_l_a_m2.html#ac570dbdaae2d483745515b5022fd6820" title="Calcula la orientación de un punto singular. ">IC_Angle(const Mat&amp; image, Point2f pt,  const vector&lt;int&gt; &amp; u_max)</a> Determina el ángulo del parche circular con centro en pt, y diámetro PATH_SIZE = 31. Es el ángulo del vector que une pt con el baricentro del parche. u_max es un vector con los extremos línea por línea de la circunferencia pixelada. Devuelve el ángulo en radianes.</p>
+<p><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a40adb6b621d7c2dd9d2961ba88e445c8">computeOrientation(const Mat&amp; image, vector&lt;KeyPoint&gt;&amp; keypoints, const vector&lt;int&gt;&amp; umax)</a> Determina el ángulo de cada keypoints con IC_Angle. Guarda el resultado en keypoints[].angle .</p>
+<p><a class="el" href="namespace_o_r_b___s_l_a_m2.html#a932693f631bfe871700d02c72e14c6cd" title="Extrae el descriptor ORB del punto singular. ">computeOrbDescriptor(const KeyPoint&amp; kpt, const Mat&amp; img, const Point* pattern, uchar* desc)</a> Extrae el descriptor ORB del punto singular. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kpt</td><td>Punto singular. Su ángulo expresa la orientación. </td></tr>
+    <tr><td class="paramname">img</td><td>Imagen sobre la que se extraerá el descriptor. </td></tr>
+    <tr><td class="paramname">pattern</td><td>Siempre el mismo, patrón de coordenadas para la evaluación BRIEF. </td></tr>
+    <tr><td class="paramname">desc</td><td>Descriptor resultado, de 256 bits (32 bytes, 4 int). Invocado sólo desde computeDescriptors.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>static int bit_pattern_31_[256*4] Coordenadas BRIEF. Cada renglón contiene un par de coordenadas x,y cuyas intensidades se comparan para obtener un bit del descriptor binario. Hay 256 renglones para los 256 bits del BRIEF. Las coordenadas son relativas al punto singular a considerar, y a su orientación. Esto significa que estas coordenadas patrón se rototrasladan para obtener las coordenadas reales para extraer un descriptor. Los valores son enteros y varían entre -13 y 13. Quizás estén todos en un círculo de diámetro 31 denominado parche.</p>
+<p>const float factorPI = (float)(CV_PI/180.f) Factor conversor de grados a radianes. Al multiplicar un ángulo en grados, se obtiene el ángulo en radianes. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a5f326a8b3ba190c121dcdeea1d287f69"></a>
 <div class="memitem">
@@ -326,35 +338,9 @@ Protected Attributes</h2></td></tr>
 <li>pt, coordenadas del punto singular sobre la imagen.</li>
 <li>angle, orientación obtenida con IC_Angle.</li>
 <li>octave, nivel de la pirámide.</li>
-<li>size, tamaño según el factor de escala del nivel de la pirámide. </li>
+<li>size, tamaño según el factor de escala del nivel de la pirámide.</li>
 </ul>
-
-</div>
-</div>
-<a id="a56890a2032077fbfdf48687786985548"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ORB_SLAM2::ORBextractor::ComputeKeyPointsOld </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; std::vector&lt; cv::KeyPoint &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>allKeypoints</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Antiguo método para detectar puntos singulares, reemplazado por ComputeKeyPointsOctTree. </p>
-<p>Método no usado. </p>
+<p>Invocado sólo desde ORBextractor::operator() </p>
 
 </div>
 </div>
@@ -383,10 +369,11 @@ Protected Attributes</h2></td></tr>
 <p>Genera las imágenes de la pirámide y las guarda en el vector mvImagePyramid. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">image</td><td>Imagen a procesar, obtenida de la cámara. Invocado sólo desde el constructor. </td></tr>
+    <tr><td class="paramname">image</td><td>Imagen a procesar, obtenida de la cámara.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Invocado sólo desde el constructor. </p>
 
 </div>
 </div>
@@ -466,7 +453,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Puntos singulares distribuídos. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Puntos singulares distribuídos.</dd></dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a9a543d9b2aec1e521058ee9522937adc" title="Detecta puntos singulares, y los dispersa con ORBextractor::DistributeOctTree. ">ORBextractor::ComputeKeyPointsOctTree</a> . </p>
 
 </div>
 </div>
@@ -492,6 +480,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve el atributo protegido mvInvScaleFactor. </p>
+<p>Invocado sólo desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>
@@ -517,6 +506,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve el atributo protegido mvInvLevelSigma2. </p>
+<p>Invocado sólo desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>
@@ -542,6 +532,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve el atributo protegido nlevels, la cantidad de niveles en la pirámide, establecida por el constructor y de sólo lectura. </p>
+<p>Invocado sólo desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>
@@ -567,6 +558,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve el atributo protegido scaleFactor, el factor de escala entre niveles de la pirámide, establecido por el constructor y de sólo lectura. </p>
+<p>Invocado sólo desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>
@@ -592,6 +584,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve el atributo protegido mvScaleFactor. </p>
+<p>Invocado sólo desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>
@@ -617,6 +610,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve el atributo protegido mvLevelSigma2. </p>
+<p>Invocado sólo desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>
@@ -667,10 +661,11 @@ Protected Attributes</h2></td></tr>
     <tr><td class="paramname">image</td><td>Imagen a procesar. </td></tr>
     <tr><td class="paramname">mask</td><td>Máscara. No implementada. </td></tr>
     <tr><td class="paramname">keypoints</td><td>Puntos singulares detectados como resultado de la operación. </td></tr>
-    <tr><td class="paramname">descriptors</td><td>Descriptores extraídos como resultado de la operación. </td></tr>
+    <tr><td class="paramname">descriptors</td><td>Descriptores extraídos como resultado de la operación.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a626aef981e9fd9caff63bf93f1abf47f" title="Procede con la extracción de descriptores ORB. ">Frame::ExtractORB</a> </p>
 
 </div>
 </div>
@@ -754,7 +749,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Imágenes de la pirámide. </p>
+<p>Imágenes de la pirámide, a las que se aplica FAST. </p>
 <p>Producida por ComputePyramid, es un vector de ´nlevels´ imágenes. </p>
 
 </div>
@@ -778,6 +773,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inversa precalculada de mvLevelSigma2. </p>
+<p>El vector se escribe solamente en el constructor. </p>
 
 </div>
 </div>
@@ -800,7 +796,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Inversa precalculada de mvScaleFactor. </p>
-<p>Vector de longitud nlevels. </p>
+<p>El vector se escribe solamente en el constructor. Vector de longitud nlevels. </p>
 
 </div>
 </div>
@@ -823,6 +819,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cuadrado de mvScaleFactor. </p>
+<p>El vector se escribe solamente en el constructor. </p>
 
 </div>
 </div>
@@ -845,7 +842,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Factor de escala abosluto de cada nivel de la pirámide, calculado a partir de scaleFactor. </p>
-<p>Vector de longitud nlevels. </p>
+<p>El vector se escribe solamente en el constructor. Vector de longitud nlevels. </p>
 
 </div>
 </div>

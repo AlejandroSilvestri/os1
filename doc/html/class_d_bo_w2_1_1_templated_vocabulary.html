@@ -207,6 +207,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af3815440ed610974afc5a2836f54fe07"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_bo_w2_1_1_templated_vocabulary.html#af3815440ed610974afc5a2836f54fe07">transform</a> (const std::vector&lt; TDescriptor &gt; &amp;features, <a class="el" href="class_d_bo_w2_1_1_bow_vector.html">BowVector</a> &amp;v, <a class="el" href="class_d_bo_w2_1_1_feature_vector.html">FeatureVector</a> &amp;fv, int levelsup) const</td></tr>
 <tr class="memdesc:af3815440ed610974afc5a2836f54fe07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a set of descriptors into a bow vector and a feature vector.  <a href="#af3815440ed610974afc5a2836f54fe07">More...</a><br /></td></tr>
 <tr class="separator:af3815440ed610974afc5a2836f54fe07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9903f08db24b669742cd5304fcfcb72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_bo_w2_1_1_templated_vocabulary.html#af9903f08db24b669742cd5304fcfcb72">transform</a> (const std::vector&lt; TDescriptor &gt; &amp;features, <a class="el" href="class_d_bo_w2_1_1_bow_vector.html">BowVector</a> &amp;v, <a class="el" href="class_d_bo_w2_1_1_feature_vector.html">FeatureVector</a> &amp;fv, vector&lt; <a class="el" href="namespace_d_bo_w2.html#ab1a0d3283b2d4690a383372ed20bfeb5">WordId</a> &gt; &amp;bows, vector&lt; <a class="el" href="namespace_d_bo_w2.html#a55fcd7333e591a38e96b91f41bc182f6">WordValue</a> &gt; &amp;bowPesos, int levelsup) const</td></tr>
+<tr class="memdesc:af9903f08db24b669742cd5304fcfcb72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Versión modificada de transform, que genera los vectores bow y bowPesos.  <a href="#af9903f08db24b669742cd5304fcfcb72">More...</a><br /></td></tr>
+<tr class="separator:af9903f08db24b669742cd5304fcfcb72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5003af19aacb6a322f7fdc0535eb149"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespace_d_bo_w2.html#ab1a0d3283b2d4690a383372ed20bfeb5">WordId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_d_bo_w2_1_1_templated_vocabulary.html#aa5003af19aacb6a322f7fdc0535eb149">transform</a> (const TDescriptor &amp;feature) const</td></tr>
 <tr class="memdesc:aa5003af19aacb6a322f7fdc0535eb149"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a single feature into a word (without weight)  <a href="#aa5003af19aacb6a322f7fdc0535eb149">More...</a><br /></td></tr>
 <tr class="separator:aa5003af19aacb6a322f7fdc0535eb149"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1247,7 +1250,21 @@ template&lt;class TDescriptor , class F &gt; </div>
 </div><div class="memdoc">
 
 <p>Inspirado en loadFromTextFile, realiza las mismas operaciones pero abriendo un archivo binario. </p>
-<p>El archivo binario con el vocabulario ocupa un tercio del de texto, y carga infinitamente más rápido al evitar el parse. Al cargar el descriptor, utiliza <a class="el" href="class_d_bo_w2_1_1_f_o_r_b.html#afa1b3415e0289849d56bffd0205be4d8" title="Devuelve un descriptor a partir de sus datos binarios en un array. ">FORB::fromArray</a> en lugar de <a class="el" href="class_d_bo_w2_1_1_f_o_r_b.html#a4023e7775d0691b44f6708f865b6b8d7" title="Returns a descriptor from a string. ">FORB::fromString</a>. fromArray es una versión modificada para esto, inspirada en fromString. </p>
+<p>El archivo binario con el vocabulario ocupa un tercio del de texto, y carga infinitamente más rápido al evitar el parse. Al cargar el descriptor, utiliza <a class="el" href="class_d_bo_w2_1_1_f_o_r_b.html#afa1b3415e0289849d56bffd0205be4d8" title="Devuelve un descriptor a partir de sus datos binarios en un array. ">FORB::fromArray</a> en lugar de <a class="el" href="class_d_bo_w2_1_1_f_o_r_b.html#a4023e7775d0691b44f6708f865b6b8d7" title="Returns a descriptor from a string. ">FORB::fromString</a>. fromArray es una versión modificada para esto, inspirada en fromString.</p>
+<p>Estructura del archivo binario</p>
+<p>Encabezado: 4 bytes</p><ol type="1">
+<li>m_k, 10</li>
+<li>m_L, 6</li>
+<li>m_scoring, 0: L1-NORM</li>
+<li>m_weighting, 0:TF_IDF, term frequency - inverse document frequency</li>
+</ol>
+<p>Registros: 45 bytes</p>
+<ol type="1">
+<li>Nodo padre, int</li>
+<li>nIsLeaf, char, 0 si es nodo, !=0 si es hoja</li>
+<li>Descriptor, 32 bytes</li>
+<li>Peso, double, válido si es hoja, 0 si no </li>
+</ol>
 
 </div>
 </div>
@@ -1708,6 +1725,70 @@ template&lt;class TDescriptor , class F &gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af9903f08db24b669742cd5304fcfcb72"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TDescriptor , class F &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_d_bo_w2_1_1_templated_vocabulary.html">DBoW2::TemplatedVocabulary</a>&lt; TDescriptor, F &gt;::transform </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; TDescriptor &gt; &amp;&#160;</td>
+          <td class="paramname"><em>features</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_bo_w2_1_1_bow_vector.html">BowVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_d_bo_w2_1_1_feature_vector.html">FeatureVector</a> &amp;&#160;</td>
+          <td class="paramname"><em>fv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="namespace_d_bo_w2.html#ab1a0d3283b2d4690a383372ed20bfeb5">WordId</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>bows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; <a class="el" href="namespace_d_bo_w2.html#a55fcd7333e591a38e96b91f41bc182f6">WordValue</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>bowPesos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>levelsup</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Versión modificada de transform, que genera los vectores bow y bowPesos. </p>
+<p>Versión modificada.</p>
+<p>Asume L1. </p>
 
 </div>
 </div>

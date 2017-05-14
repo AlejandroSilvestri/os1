@@ -10,6 +10,8 @@ var class_o_r_b___s_l_a_m2_1_1_map =
     [ "GetAllMapPoints", "class_o_r_b___s_l_a_m2_1_1_map.html#a09f346e647d3d36ec644f96d878b0c9b", null ],
     [ "GetMaxKFid", "class_o_r_b___s_l_a_m2_1_1_map.html#a1c93202df313c1245056e01dbb070dca", null ],
     [ "GetReferenceMapPoints", "class_o_r_b___s_l_a_m2_1_1_map.html#a56e1d96a4e1d669609e2c2a493f133c2", null ],
+    [ "isInMap", "class_o_r_b___s_l_a_m2_1_1_map.html#a9e7ddef2b07d57714cd7dbf66a7eb99b", null ],
+    [ "isInMap", "class_o_r_b___s_l_a_m2_1_1_map.html#ad2ae11adc554e0f595531422eb1a4325", null ],
     [ "KeyFramesInMap", "class_o_r_b___s_l_a_m2_1_1_map.html#a3440f5e9e93ca7231bde3c5138ab5f5c", null ],
     [ "MapPointsInMap", "class_o_r_b___s_l_a_m2_1_1_map.html#ad2d7846734c8cb0421d67ff3907649ad", null ],
     [ "serialize", "class_o_r_b___s_l_a_m2_1_1_map.html#aa6d9c97f0bb802fd544d6abd928dba61", null ],

@@ -82,6 +82,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_key_frame.h
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
@@ -105,6 +106,12 @@ Collaboration diagram for ORB_SLAM2::KeyFrame:</div>
 <div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_key_frame__coll__graph.svg" width="1179" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html">lessPointer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functor de comparación para ordenar un set de KeyFrame*, por su mnId.  <a href="struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2394adfb627d9cf87ed8da78f6b0d709"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2394adfb627d9cf87ed8da78f6b0d709">AddChild</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
@@ -123,9 +130,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4fd4bcef13a79d08e78307cc3d77349b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruye <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a189bea541f860af75ceb60300b59d8e3" title="Keyframes que observan este punto, y sus índices. ">MapPoint::mObservations</a> y MapPoint::mObs a partir de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>, en la carga (serialización).  <a href="#a4fd4bcef13a79d08e78307cc3d77349b">More...</a><br /></td></tr>
 <tr class="separator:a4fd4bcef13a79d08e78307cc3d77349b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3232df2495062749da1344db3e5a487f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f">ChangeParent</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
-<tr class="memdesc:a3232df2495062749da1344db3e5a487f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el padre del keyframe.  <a href="#a3232df2495062749da1344db3e5a487f">More...</a><br /></td></tr>
+<tr class="memdesc:a3232df2495062749da1344db3e5a487f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el padre del keyframe en el grafo.  <a href="#a3232df2495062749da1344db3e5a487f">More...</a><br /></td></tr>
 <tr class="separator:a3232df2495062749da1344db3e5a487f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac376017c23823c05a6bb851ffb2fdd8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac376017c23823c05a6bb851ffb2fdd8f">ComputeBoW</a> ()</td></tr>
+<tr class="memdesc:ac376017c23823c05a6bb851ffb2fdd8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computa BoW para los descriptores del keyframe.  <a href="#ac376017c23823c05a6bb851ffb2fdd8f">More...</a><br /></td></tr>
 <tr class="separator:ac376017c23823c05a6bb851ffb2fdd8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c5f9ea38d377cfa70d441e184803ae"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa4c5f9ea38d377cfa70d441e184803ae">ComputeSceneMedianDepth</a> (const int q)</td></tr>
 <tr class="memdesc:aa4c5f9ea38d377cfa70d441e184803ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computa la profundidad del punto mediano de la escena.  <a href="#aa4c5f9ea38d377cfa70d441e184803ae">More...</a><br /></td></tr>
@@ -167,7 +175,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab85915f3e647334634d8a4d489c63ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el punto 3D a partir del índice.  <a href="#ab85915f3e647334634d8a4d489c63ffd">More...</a><br /></td></tr>
 <tr class="separator:ab85915f3e647334634d8a4d489c63ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabc5f6491c32999d9f546669737547bf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aabc5f6491c32999d9f546669737547bf">GetMapPointMatches</a> ()</td></tr>
-<tr class="memdesc:aabc5f6491c32999d9f546669737547bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el vector de puntos 3D.  <a href="#aabc5f6491c32999d9f546669737547bf">More...</a><br /></td></tr>
+<tr class="memdesc:aabc5f6491c32999d9f546669737547bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve una copia del vector de puntos 3D.  <a href="#aabc5f6491c32999d9f546669737547bf">More...</a><br /></td></tr>
 <tr class="separator:aabc5f6491c32999d9f546669737547bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09cb77a8377be3fa8c85c7b5ee45e913"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb77a8377be3fa8c85c7b5ee45e913">GetMapPoints</a> ()</td></tr>
 <tr class="memdesc:a09cb77a8377be3fa8c85c7b5ee45e913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve los puntos 3D observados por el keyframe.  <a href="#a09cb77a8377be3fa8c85c7b5ee45e913">More...</a><br /></td></tr>
@@ -216,10 +224,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a365ec4d06acbbcd668aa5a069c69fdaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intenta eliminar el keyframe y marcarlo como malo.  <a href="#a365ec4d06acbbcd668aa5a069c69fdaa">More...</a><br /></td></tr>
 <tr class="separator:a365ec4d06acbbcd668aa5a069c69fdaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9424cf54c979bc87df12b48e3827e834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9424cf54c979bc87df12b48e3827e834">SetErase</a> ()</td></tr>
-<tr class="memdesc:a9424cf54c979bc87df12b48e3827e834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera el keyframe previamente marcado con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle. ">KeyFrame::SetNotErase</a>.  <a href="#a9424cf54c979bc87df12b48e3827e834">More...</a><br /></td></tr>
+<tr class="memdesc:a9424cf54c979bc87df12b48e3827e834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera el keyframe previamente marcado con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminación del keyframe mientras se utiliza en una detección de bucle. ">KeyFrame::SetNotErase</a>.  <a href="#a9424cf54c979bc87df12b48e3827e834">More...</a><br /></td></tr>
 <tr class="separator:a9424cf54c979bc87df12b48e3827e834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa64c7adb5f80f260cb7e997f68881b09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09">SetNotErase</a> ()</td></tr>
-<tr class="memdesc:aa64c7adb5f80f260cb7e997f68881b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle.  <a href="#aa64c7adb5f80f260cb7e997f68881b09">More...</a><br /></td></tr>
+<tr class="memdesc:aa64c7adb5f80f260cb7e997f68881b09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previene la eliminación del keyframe mientras se utiliza en una detección de bucle.  <a href="#aa64c7adb5f80f260cb7e997f68881b09">More...</a><br /></td></tr>
 <tr class="separator:aa64c7adb5f80f260cb7e997f68881b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa799150fa33f3b9a404226454b96c95a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa799150fa33f3b9a404226454b96c95a">SetPose</a> (const cv::Mat &amp;<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8dc31ef9a08d34ecb196f3e58a2c09b9">Tcw</a>)</td></tr>
 <tr class="memdesc:aa799150fa33f3b9a404226454b96c95a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece Tcw, la pose del keyframe.  <a href="#aa799150fa33f3b9a404226454b96c95a">More...</a><br /></td></tr>
@@ -245,6 +253,12 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a44b4e47236003fc55a655092b28b18f3"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="namespace_d_bo_w2.html#a55fcd7333e591a38e96b91f41bc182f6">DBoW2::WordValue</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a44b4e47236003fc55a655092b28b18f3">bowPesos</a></td></tr>
+<tr class="memdesc:a44b4e47236003fc55a655092b28b18f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector alineado de pesos de BoW.  <a href="#a44b4e47236003fc55a655092b28b18f3">More...</a><br /></td></tr>
+<tr class="separator:a44b4e47236003fc55a655092b28b18f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf26de59fea866af8efad6006250c40c"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="namespace_d_bo_w2.html#ab1a0d3283b2d4690a383372ed20bfeb5">DBoW2::WordId</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aaf26de59fea866af8efad6006250c40c">bows</a></td></tr>
+<tr class="memdesc:aaf26de59fea866af8efad6006250c40c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector alineado de BoW.  <a href="#aaf26de59fea866af8efad6006250c40c">More...</a><br /></td></tr>
+<tr class="separator:aaf26de59fea866af8efad6006250c40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70011d4f3a151dd374c684e258aab4a8"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a70011d4f3a151dd374c684e258aab4a8">cx</a></td></tr>
 <tr class="separator:a70011d4f3a151dd374c684e258aab4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae78735c57b92b2d5960ed21c97dfe6a8"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ae78735c57b92b2d5960ed21c97dfe6a8">cy</a></td></tr>
@@ -338,7 +352,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a0b1f8023efe8ddf58ac5d1d2cf41c0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable efímera usadas por la base de datos de keyframes.  <a href="#a0b1f8023efe8ddf58ac5d1d2cf41c0cf">More...</a><br /></td></tr>
 <tr class="separator:a0b1f8023efe8ddf58ac5d1d2cf41c0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd3b2544330774672483656955e0ca03"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#abd3b2544330774672483656955e0ca03">mnScaleLevels</a></td></tr>
-<tr class="memdesc:abd3b2544330774672483656955e0ca03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de niveles de la pirámide.  <a href="#abd3b2544330774672483656955e0ca03">More...</a><br /></td></tr>
+<tr class="memdesc:abd3b2544330774672483656955e0ca03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pose de cámara relativa a su padre.  <a href="#abd3b2544330774672483656955e0ca03">More...</a><br /></td></tr>
 <tr class="separator:abd3b2544330774672483656955e0ca03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c775159303dc3435fc05e73f30f2865"><td class="memItemLeft" align="right" valign="top">long unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a1c775159303dc3435fc05e73f30f2865">mnTrackReferenceForFrame</a></td></tr>
 <tr class="memdesc:a1c775159303dc3435fc05e73f30f2865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable efímera usadas por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>.  <a href="#a1c775159303dc3435fc05e73f30f2865">More...</a><br /></td></tr>
@@ -346,9 +360,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a78f768a3601ac95f99dff3fd511f2a6e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a78f768a3601ac95f99dff3fd511f2a6e">mRelocScore</a></td></tr>
 <tr class="memdesc:a78f768a3601ac95f99dff3fd511f2a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable efímera usadas por la base de datos de keyframes.  <a href="#a78f768a3601ac95f99dff3fd511f2a6e">More...</a><br /></td></tr>
 <tr class="separator:a78f768a3601ac95f99dff3fd511f2a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab9c8e2e4aa4757ad0be28b2f49a3cf7"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aab9c8e2e4aa4757ad0be28b2f49a3cf7">mTcp</a></td></tr>
-<tr class="memdesc:aab9c8e2e4aa4757ad0be28b2f49a3cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pose de cámara relativa a su padre.  <a href="#aab9c8e2e4aa4757ad0be28b2f49a3cf7">More...</a><br /></td></tr>
-<tr class="separator:aab9c8e2e4aa4757ad0be28b2f49a3cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a6fb84afa3701dcc6b1e3e76ccb36fa"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a4a6fb84afa3701dcc6b1e3e76ccb36fa">mTcwBefGBA</a></td></tr>
 <tr class="memdesc:a4a6fb84afa3701dcc6b1e3e76ccb36fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable usada en cierre de bucle.  <a href="#a4a6fb84afa3701dcc6b1e3e76ccb36fa">More...</a><br /></td></tr>
 <tr class="separator:a4a6fb84afa3701dcc6b1e3e76ccb36fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -367,7 +378,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:aa1bcd5810e62ec163a3f38ccb806d04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos singulares visualizados por el keyframe.  <a href="#aa1bcd5810e62ec163a3f38ccb806d04a">More...</a><br /></td></tr>
 <tr class="separator:aa1bcd5810e62ec163a3f38ccb806d04a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf6c65fc098f41ff418a65934f514ce3"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; cv::KeyPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aaf6c65fc098f41ff418a65934f514ce3">mvKeysUn</a></td></tr>
-<tr class="memdesc:aaf6c65fc098f41ff418a65934f514ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos singulares con coordenadas "desdistorsionadas".  <a href="#aaf6c65fc098f41ff418a65934f514ce3">More...</a><br /></td></tr>
+<tr class="memdesc:aaf6c65fc098f41ff418a65934f514ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos singulares con coordenadas "antidistorsionadas".  <a href="#aaf6c65fc098f41ff418a65934f514ce3">More...</a><br /></td></tr>
 <tr class="separator:aaf6c65fc098f41ff418a65934f514ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4a9029bf7ea62953ac38644756fcd3b"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa4a9029bf7ea62953ac38644756fcd3b">mvLevelSigma2</a></td></tr>
 <tr class="memdesc:aa4a9029bf7ea62953ac38644756fcd3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sigma cuadrado (cuadrado de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8cdc02a7bccd3b75e61351a1f14f9c04" title="Factores de escala absolutos para cada nivel de la pirámide. ">KeyFrame::mvScaleFactors</a>) para cada nivel de la pirámide.  <a href="#aa4a9029bf7ea62953ac38644756fcd3b">More...</a><br /></td></tr>
@@ -491,7 +502,38 @@ Friends</h2></td></tr>
 <li>t: traslación, derivada de una pose</li>
 </ul>
 <p>Origen de coordenadas:</p>
-<p>El origen de coordenadas por defecto es el mundo, cuyo origen está dado por la pose de la primer cámara, y la escala por la distancia entre las cámaras de inicialización que triangularon los primeros puntos. </p>
+<p>El origen de coordenadas por defecto es el mundo, cuyo origen está dado por la pose de la primer cámara, y la escala por la distancia entre las cámaras de inicialización que triangularon los primeros puntos.</p>
+<p>Grafos</p>
+<p>Los keyframes se ordenan en tres grafos:</p><ul>
+<li>árbol de expansión (spanning tree) mínimo con raíz en el primer keyframe.</li>
+<li>grafo de covisibilidad, consistente en ejes ponderados, entre keyframes.</li>
+<li>grafo esencial, árbol de expansión con una poda del grafo de covisibilidad</li>
+</ul>
+<p>El árbol de expansión conecta todos los keyframes sin redundancia. Cada keyframe registra su padre en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a94bbb0261caf3f1ed0c434c9fca1e886" title="KeyFrame padre en el grafo. ">KeyFrame::mpParent</a> y sus hijos en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac647a33b4a6d158b640c5482ed57bbfe" title="KeyFrames hijos en el grafo, que conforman el spanning tree del grado esencial. ">KeyFrame::mspChildrens</a>. Se administra con:</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2394adfb627d9cf87ed8da78f6b0d709" title="Agrega un keyframe hijo al grafo de keyframes KeyFrame::mspChildrens. ">KeyFrame::AddChild</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aefdd69627fd6a204a6ef4539303b81f6" title="Borra un keyframe hijo del grafo KeyFrame::mspChildrens. ">KeyFrame::EraseChild</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f" title="Cambia el padre del keyframe en el grafo. ">KeyFrame::ChangeParent</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a618ddd51eab47bf1d84a21d2e818a787" title="Devuelve los hijos de este keyframe. ">KeyFrame::GetChilds</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a660cfc9a6ccf87e5497356d0d98ef06f" title="Informa el keyframe padre. ">KeyFrame::GetParent</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2276fdbae634194e790878adebba7861" title="Indica si un keyframe es hijo de éste. ">KeyFrame::hasChild</a></li>
+</ul>
+<p>El grafo de covisibilidad consiste en una conexión desde un keyframe hacia cada keyframe que observa algún punto en común. Las conexiones (ejes del grafo) son ponderadas y se registran en</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a6a057195e3e9e7d3f08b97b6366e9f81" title="Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos. ">KeyFrame::mConnectedKeyFrameWeights</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#af4a83f5b32cf53c0ad87702226b9dff8" title="Keyframes covisibles ordenados por peso, actualizado vía KeyFrame::UpdateBestCovisibles. ">KeyFrame::mvpOrderedConnectedKeyFrames</a></li>
+<li>KeyFrame::mvOrderedWeight</li>
+</ul>
+<p>y se administran con</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8d21a23485b7c104a73d6ad3cccf4e93" title="Conecta el keyframe con otro en el grafo de covisibilidad. ">KeyFrame::AddConnection</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a0a2e676f5e594cf9330e197a2c7df378" title="Elimina del grafo de covisibilidad la conexión con el keyframe dado. ">KeyFrame::EraseConnection</a></li>
+<li>KeyFrame::GetVectorCovisibleKeyframes</li>
+<li>KeyFrame::GetCovisiblesByWight</li>
+</ul>
+<p>El grafo esencial está formado por el árbol de expansión, las conexiones fuertes de covisibilidad, y las conexiones de bucle.</p><ul>
+<li>KeyFrame::GetBestCovisibleKeyFrames</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aca519e7486b0e6f1fd6c98d7ced920b8" title="Agrega un eje al grafo de covisibilidad, a partir de una detección de bucle. ">KeyFrame::AddLoopEdge</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab3109e85b0ab224efdc23e51b5d2c3fa" title="Informa los keyframes conectados con ejes de bucle. ">KeyFrame::GetLoopEdges</a></li>
+</ul>
+<p>El grafo esencial se utiliza en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a5a53ab409feed7f92547eb79a2d7f6e9" title="Optimiza el grafo esencial para cerrar un bucle. ">Optimizer::OptimizeEssentialGraph</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6b2fd06ed5e4a8f9546c515db554bcb6"></a>
 <div class="memitem">
@@ -589,7 +631,7 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <p>Invocado sólo desde</p><ul>
-<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f" title="Cambia el padre del keyframe. ">ORB_SLAM2::KeyFrame::ChangeParent</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f" title="Cambia el padre del keyframe en el grafo. ">ORB_SLAM2::KeyFrame::ChangeParent</a></li>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#afe7026956c91d4e0a01812be9dc7e8d5" title="Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad. ">ORB_SLAM2::KeyFrame::UpdateConnections</a> </li>
 </ul>
 
@@ -650,10 +692,11 @@ Friends</h2></td></tr>
 <p>Agrega un eje al grafo de covisibilidad, a partir de una detección de bucle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pKF</td><td>Keyframe con el que tender el eje. </td></tr>
+    <tr><td class="paramname">pKF</td><td>Keyframe con el que tender el eje.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Sólo invocado por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa007e0678582ec0de5d71280d23af540" title="Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3. ">LoopClosing::CorrectLoop()</a>. </p>
 
 </div>
 </div>
@@ -723,13 +766,14 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Cambia el padre del keyframe. </p>
+<p>Cambia el padre del keyframe en el grafo. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pKF</td><td>Nuevo keyframe padre.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Este método cambia el valor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a94bbb0261caf3f1ed0c434c9fca1e886" title="KeyFrame padre en el grafo. ">KeyFrame::mpParent</a>.</p>
 <p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a365ec4d06acbbcd668aa5a069c69fdaa" title="Intenta eliminar el keyframe y marcarlo como malo. ">ORB_SLAM2::KeyFrame::SetBadFlag()</a>, al remendar el grafo. </p>
 
 </div>
@@ -746,6 +790,14 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Computa BoW para los descriptores del keyframe. </p>
+<p>Genera los mapas <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a70cb0dee48e804c5b1f30afd0ce99787" title="Vector de BoW obtenidos de los descriptores del keyframe. ">KeyFrame::mBowVec</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3588bf0a927e8ab838c614565ee7de20" title="Vector de Features de DBoW2. ">KeyFrame::mFeatVec</a>, el primero con los BoW y sus pesos, el segundo con la lista de puntos singulares correspondiente a cada BoW.</p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#ac748d2318f9a409406dba4910ff5ef8e" title="Computa BoW para todos los descriptores del cuadro. ">Frame::ComputeBoW</a> hace exactamente lo mismo, pero no se ejecuta para todos los cuadros, solamente para el cuadro actual cuando está perdido y se necesita relocalizar. El constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> copia los mapas de BoW, y este método evita recomputarlos si casualmente ya se computaron para el cuadro.</p>
+<p>Es invocado sólo desde:</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22" title="Crea un keyframe a partir del cuadro actual LocalMapping::mpCurrentKeyFrame. ">LocalMapping::ProcessNewKeyFrame</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">Tracking::CreateInitialMapMonocular</a> </li>
+</ul>
 
 </div>
 </div>
@@ -851,7 +903,7 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <p>Es una función final, se limita a reemplazar el elemento indicado por NULL.</p>
-<p>Invocada sólo pro <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f2e205afcfae3dc70196bcd29194440" title="Toma las propiedades del punto argumento. ">MapPoint::Replace</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7ed2a66b528165d6c39cb6f84f684308" title="Elimina el punto, marcándolo como malo. ">MapPoint::SetBadFlag</a>. </p>
+<p>Invocada sólo pro <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f2e205afcfae3dc70196bcd29194440" title="Reemplaza este punto por el punto argumento, en una fusión. ">MapPoint::Replace</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7ed2a66b528165d6c39cb6f84f684308" title="Elimina el punto, marcándolo como malo. ">MapPoint::SetBadFlag</a>. </p>
 
 </div>
 </div>
@@ -1084,8 +1136,9 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Devuelve el vector de puntos 3D. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>. </dd></dl>
+<p>Devuelve una copia del vector de puntos 3D. </p>
+<dl class="section return"><dt>Returns</dt><dd>Copia de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>.</dd></dl>
+<p>Es ampliamente utilizado. </p>
 
 </div>
 </div>
@@ -1510,7 +1563,7 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Libera el keyframe previamente marcado con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle. ">KeyFrame::SetNotErase</a>. </p>
+<p>Libera el keyframe previamente marcado con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminación del keyframe mientras se utiliza en una detección de bucle. ">KeyFrame::SetNotErase</a>. </p>
 <p>Hace mbNotErase = false, sólo si el keyframe no está conectado por ejes de bucle a otros keyframes.</p>
 <p>Aprovecha el momento y verifica si el keyframe está marcado para borrado, en cuyo caso invoca SetBadFlag.</p>
 <p>SetErase es un paso anterior a SetBadFlag, invocado solamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a>. Invocado repetidamente sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa8110ca79cebaf509e378d30e55f1381" title="Procesa los keyframes de la cola, buscando bucles. ">LoopClosing::DetectLoop</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ab4fcf814eed5b5dd2aec96454561b078" title="Procesa la lista de candidatos intentando corregir su pose. ">LoopClosing::ComputeSim3</a> para liberar el keyframe.</p>
@@ -1532,9 +1585,9 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle. </p>
+<p>Previene la eliminación del keyframe mientras se utiliza en una detección de bucle. </p>
 <p>Hace mbNotErase = true.</p>
-<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a> previene el borrado de los keyframes considerados marcándolos con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle. ">KeyFrame::SetNotErase</a> antes de procesarlos, y liberándolos al final con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9424cf54c979bc87df12b48e3827e834" title="Libera el keyframe previamente marcado con KeyFrame::SetNotErase. ">KeyFrame::SetErase</a>.</p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a> previene el borrado de los keyframes considerados marcándolos con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminación del keyframe mientras se utiliza en una detección de bucle. ">KeyFrame::SetNotErase</a> antes de procesarlos, y liberándolos al final con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9424cf54c979bc87df12b48e3827e834" title="Libera el keyframe previamente marcado con KeyFrame::SetNotErase. ">KeyFrame::SetErase</a>.</p>
 <p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa8110ca79cebaf509e378d30e55f1381" title="Procesa los keyframes de la cola, buscando bucles. ">LoopClosing::DetectLoop</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#ab4fcf814eed5b5dd2aec96454561b078" title="Procesa la lista de candidatos intentando corregir su pose. ">LoopClosing::ComputeSim3</a>. DetectLoop lo invoca sólo sobre mpCurrentKF </p>
 
 </div>
@@ -1642,7 +1695,12 @@ template&lt;class Archivo &gt; </div>
 <p>Recorre todos los mapPoints vistos por este keyframe, y releva todos los otros keyframes que los observan, creando así el mapa de covisibilidad <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a6a057195e3e9e7d3f08b97b6366e9f81" title="Mapa de covisibilidad, que vincula los keyframes covisibles con sus pesos. ">KeyFrame::mConnectedKeyFrameWeights</a>.</p>
 <p>Se agrega a sí mismo al mapa de cada keyframe relevado, invocando sus respectivos métodos <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a8d21a23485b7c104a73d6ad3cccf4e93" title="Conecta el keyframe con otro en el grafo de covisibilidad. ">KeyFrame::AddConnection</a>. Este accionar debería garantizar la doble referencia.</p>
 <p>Es invocado por:</p>
-<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">ORB_SLAM2::Tracking::CreateInitialMapMonocular()</a> : void (2 matches), al crear lso primeros keyframes del mapa inicial. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22" title="Crea un keyframe a partir del cuadro actual LocalMapping::mpCurrentKeyFrame. ">ORB_SLAM2::LocalMapping::ProcessNewKeyFrame()</a> : void, cuando se crea el <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> (de manera asincrónica). <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a5d5e0bc6fd15d9a6bf1ca8a258f104f1" title="Recorre los keyframes vecinos buscando puntos para fusionar. ">ORB_SLAM2::LocalMapping::SearchInNeighbors()</a> : void <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa007e0678582ec0de5d71280d23af540" title="Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3. ">ORB_SLAM2::LoopClosing::CorrectLoop()</a> : void (3 matches), al cerrar un bucle se debe rehacer el grafo de covisibilidad</p>
+<ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">ORB_SLAM2::Tracking::CreateInitialMapMonocular()</a> : void (2 matches), al crear lso primeros keyframes del mapa inicial.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22" title="Crea un keyframe a partir del cuadro actual LocalMapping::mpCurrentKeyFrame. ">ORB_SLAM2::LocalMapping::ProcessNewKeyFrame()</a> : void, cuando se crea el <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> (de manera asincrónica).</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a5d5e0bc6fd15d9a6bf1ca8a258f104f1" title="Recorre los keyframes vecinos buscando puntos para fusionar. ">ORB_SLAM2::LocalMapping::SearchInNeighbors()</a> : void.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa007e0678582ec0de5d71280d23af540" title="Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3. ">ORB_SLAM2::LoopClosing::CorrectLoop()</a> : void (3 matches), al cerrar un bucle se debe rehacer el grafo de covisibilidad.</li>
+</ul>
 <p>Quizás el cierre de bucle podría interferir con una llamada simultánea de parte de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a>. Por eso emplea mutex.</p>
 <p>Respecto del posibles solapamiento son SetBadFlag:</p>
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a> marca el keyframe con SetNotErase. Esa marca perdura en SearchInNeighbors, por lo que no hay interferencia posible. ProcessNewKeyFrame crea el keyframe, es imposible que en ese momento se marque como malo. Tampoco hay interferencia posible. </p>
@@ -1735,6 +1793,42 @@ template&lt;class Archivo &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a44b4e47236003fc55a655092b28b18f3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="namespace_d_bo_w2.html#a55fcd7333e591a38e96b91f41bc182f6">DBoW2::WordValue</a>&gt; ORB_SLAM2::KeyFrame::bowPesos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vector alineado de pesos de BoW. </p>
+<p>Cada elemento es un peso, correspondiente al BoW del punto singular.</p>
+<p><a class="el" href="namespace_d_bo_w2.html#a55fcd7333e591a38e96b91f41bc182f6" title="Value of a word. ">DBoW2::WordValue</a> es double.</p>
+<p>Generado por la versión modificada de KeyFrame::ComputeBow.</p>
+<p>Usado exclusivamente para puntos lejanos. </p>
+
+</div>
+</div>
+<a id="aaf26de59fea866af8efad6006250c40c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="namespace_d_bo_w2.html#ab1a0d3283b2d4690a383372ed20bfeb5">DBoW2::WordId</a>&gt; ORB_SLAM2::KeyFrame::bows</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vector alineado de BoW. </p>
+<p>Cada elemento es un BoW, correspondiente a un punto singular.</p>
+<p><a class="el" href="namespace_d_bo_w2.html#ab1a0d3283b2d4690a383372ed20bfeb5" title="Id of words. ">DBoW2::WordId</a> es unsigned int.</p>
+<p>Generado por la versión modificada de KeyFrame::ComputeBow.</p>
+<p>Usado exclusivamente para puntos lejanos. </p>
+
+</div>
+</div>
 <a id="a70011d4f3a151dd374c684e258aab4a8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1899,7 +1993,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Señal de no borrar. </p>
-<p>Se hace true cuando se le agrega un eje al grafo, o con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminaqción del keyframe mientras se utiliza en una detección de bucle. ">SetNotErase()</a> cuando se usa el keyframe en detección de bucle. Se hace false con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9424cf54c979bc87df12b48e3827e834" title="Libera el keyframe previamente marcado con KeyFrame::SetNotErase. ">SetErase()</a>, sólo si no tiene algún eje de bucle. </p>
+<p>Se hace true cuando se le agrega un eje al grafo, o con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminación del keyframe mientras se utiliza en una detección de bucle. ">SetNotErase()</a> cuando se usa el keyframe en detección de bucle. Se hace false con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9424cf54c979bc87df12b48e3827e834" title="Libera el keyframe previamente marcado con KeyFrame::SetNotErase. ">SetErase()</a>, sólo si no tiene algún eje de bucle. Los keyframes se marcan para no borrar momentáneamente cuando se consideran en un bucle, y se desmarcan cuando falla el cierre. Si el bucle se cierra, los keyframes invoclucrados quedan marcados para siempre. </p>
 
 </div>
 </div>
@@ -1914,7 +2008,10 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Vector de BoW obtenidos de los descriptores del keyframe. </p>
-<p>ComputeBoW llena este vector. </p>
+<p>ComputeBoW llena este vector.</p>
+<p>BowVector es un mapa de Word Id (unsigned int) a Word value (double), que representa un peso.</p>
+<p>Este peso se utiliza solamente para relocalización y cierre de bucle, siempre a través de <a class="el" href="class_d_bo_w2_1_1_templated_vocabulary.html#aedde9cc3255e41fd0441055eeb640346" title="Returns the score of two vectors. ">ORBVocabulary::score</a>, que compara dos BowVector completos.</p>
+<p>Word Id es la palabra BoW. </p>
 
 </div>
 </div>
@@ -1991,7 +2088,10 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Vector de Features de <a class="el" href="namespace_d_bo_w2.html" title="File: BowVector.cpp Date: March 2011 Author: Dorian Galvez-Lopez Description: bag of words vector Lic...">DBoW2</a>. </p>
-<p>ComputeBoW llena este vector. </p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac376017c23823c05a6bb851ffb2fdd8f" title="Computa BoW para los descriptores del keyframe. ">KeyFrame::ComputeBoW</a> llena este vector.</p>
+<p>FeatureVector es un mapa de nodos (NodeId, entero) con un vector de índices de puntos singulares asociados.</p>
+<p>A este vector no se accede por el índice de un punto singular, sino al revés: se accede por NodoId, y se obtienen los índices de todos los puntos singulares con ese NodeId.</p>
+<p>Cada BoW tiene un NodeId biunívoco. Pero hay NodeId sin BoW, pues no son hojas del árbol de vocabulario. Sin embargo <a class="el" href="class_d_bo_w2_1_1_templated_vocabulary.html#a01de3bebec37624439c7d3baf6651ff0" title="Transforms a set of descriptores into a bow vector. ">ORBVocabulary::transform</a> sólo registra nodos hoja, es decir con BoW asociado. mFeacVec y mBowVec tienen el mismo tamaño. Si bien se pueblan alineados, al ser mapas el orden se altera. </p>
 
 </div>
 </div>
@@ -2120,6 +2220,8 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>mutex de acceso al grafo de conexiones. </p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a09cb8502509c136536bf8d45793f8872" title="Actualiza los mejores covisibles. ">KeyFrame::UpdateBestCovisibles</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a365ec4d06acbbcd668aa5a069c69fdaa" title="Intenta eliminar el keyframe y marcarlo como malo. ">KeyFrame::SetBadFlag</a> operan en bucle construyendo o remendando el grafo de conexiones.</p>
+<p>Durante estas operaciones se deben prevenir modificaciones a variables del grafo. Este mutex está aplicado en todos los métodos que deben esperar la finalización de las operaciones mencionadas.</p>
 <p>Agregado mío: Para prevenir que el keyframe se siga usando y registrando justo cuando se está marcando como malo con SetBadFlag, los siguientes métodos que utilizan este mutex y registran el keyframe en algún lugar, sólo procederán luego de verificar la marca <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9ed66ca840fb2288ee6b700bb4fc6858" title="Flag de eliminación. ">KeyFrame::mbBad</a>. Los métodos con este agregado son:</p>
 <ul>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2394adfb627d9cf87ed8da78f6b0d709" title="Agrega un keyframe hijo al grafo de keyframes KeyFrame::mspChildrens. ">KeyFrame::AddChild</a>, evita que el keyframe vuelva al grafo de covisibilidad</li>
@@ -2150,6 +2252,8 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>mutex de acceso a mvpMapPoints. </p>
+<p>Controla el acceso de escritura al vector mvpMapPoints. Previene que se lo modifique mientras se lo copia con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aabc5f6491c32999d9f546669737547bf" title="Devuelve una copia del vector de puntos 3D. ">KeyFrame::GetMapPointMatches</a>.</p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a365ec4d06acbbcd668aa5a069c69fdaa" title="Intenta eliminar el keyframe y marcarlo como malo. ">KeyFrame::SetBadFlag</a> usa este mutex. </p>
 
 </div>
 </div>
@@ -2172,6 +2276,8 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>mutex de acceso a la pose Tcw. </p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa799150fa33f3b9a404226454b96c95a" title="Establece Tcw, la pose del keyframe. ">KeyFrame::SetPose</a> realiza varias operaciones matriciales.</p>
+<p>Este mutex se incluye en los métodos que clonan matrices de pose. Las matrices de pose no se deben acceder durante esta operación, pues la clonación como las operaciones matriciales no son monolíticas. </p>
 
 </div>
 </div>
@@ -2413,7 +2519,9 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Cantidad de niveles de la pirámide. </p>
+<p>Pose de cámara relativa a su padre. </p>
+<p>Se computa cuando el keyframe se marca como malo, y no lo usa nadie.</p>
+<p>En OS1 se desactivó.Cantidad de niveles de la pirámide. </p>
 
 </div>
 </div>
@@ -2519,6 +2627,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> padre en el grafo. </p>
+<p>Los keyframes se construyen con mpParent = NULL, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#afe7026956c91d4e0a01812be9dc7e8d5" title="Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad. ">KeyFrame::UpdateConnections</a> adopta la primer conexión como padre. El primer keyframe no tiene padre. </p>
 
 </div>
 </div>
@@ -2567,7 +2676,7 @@ template&lt;class Archivo &gt; </div>
 </ul>
 <p>El grafo esencial dispone de estos otros métodos para su administración:</p><ul>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a660cfc9a6ccf87e5497356d0d98ef06f" title="Informa el keyframe padre. ">KeyFrame::GetParent</a></li>
-<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f" title="Cambia el padre del keyframe. ">KeyFrame::ChangeParent</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f" title="Cambia el padre del keyframe en el grafo. ">KeyFrame::ChangeParent</a></li>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#afe7026956c91d4e0a01812be9dc7e8d5" title="Releva la covisibilidad y crea las conexiones en el grafo de covisibilidad. ">KeyFrame::UpdateConnections</a> </li>
 </ul>
 
@@ -2593,21 +2702,8 @@ template&lt;class Archivo &gt; </div>
 
 <p>KeyFrames que participan de un extremo de un bucle. </p>
 <p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa007e0678582ec0de5d71280d23af540" title="Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3. ">LoopClosing::CorrectLoop</a> es el único método que agrega estos ejes, y que los consume indirectamente invocando <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a5a53ab409feed7f92547eb79a2d7f6e9" title="Optimiza el grafo esencial para cerrar un bucle. ">Optimizer::OptimizeEssentialGraph</a>.</p>
-<p>No es efímero. </p>
-
-</div>
-</div>
-<a id="aab9c8e2e4aa4757ad0be28b2f49a3cf7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">cv::Mat ORB_SLAM2::KeyFrame::mTcp</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Pose de cámara relativa a su padre. </p>
+<p>No es efímero.</p>
+<p>Todos los keyframes de este set están marcados para no borrar con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aa64c7adb5f80f260cb7e997f68881b09" title="Previene la eliminación del keyframe mientras se utiliza en una detección de bucle. ">KeyFrame::SetNotErase</a>. Esto significa que no pueden ser malos. </p>
 
 </div>
 </div>
@@ -2703,7 +2799,7 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Puntos singulares con coordenadas "desdistorsionadas". </p>
+<p>Puntos singulares con coordenadas "antidistorsionadas". </p>
 <p>Los elementos se corresponden con los de mvKeys. </p>
 
 </div>
@@ -2814,6 +2910,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Cantidad de puntos singulares. </p>
+<p>Tamaño de los vectores alineados KeyFrame::mKeys, KeyFrame::mKeysUn y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ae08ac0ce59e2c003c182f946de3b3bc0" title="Descriptores. ">KeyFrame::mDescriptors</a>. </p>
 
 </div>
 </div>

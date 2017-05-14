@@ -132,7 +132,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a48c8983df3a521ed7439d9654b28e390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el vector de la posición de la cámara, el centro de la cámara.  <a href="#a48c8983df3a521ed7439d9654b28e390">More...</a><br /></td></tr>
 <tr class="separator:a48c8983df3a521ed7439d9654b28e390"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="memItemLeft" align="right" valign="top">vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a922a340f438ed0ddd2d7d2a9f95872b6">GetFeaturesInArea</a> (const float &amp;x, const float &amp;y, const float &amp;r, const int minLevel=-1, const int maxLevel=-1) const</td></tr>
-<tr class="memdesc:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona los puntos dentro de una ventana cuadrada de centro x,y y lado r.  <a href="#a922a340f438ed0ddd2d7d2a9f95872b6">More...</a><br /></td></tr>
+<tr class="memdesc:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona los puntos dentro de una ventana cuadrada de centro x,y y radio r (lado 2r).  <a href="#a922a340f438ed0ddd2d7d2a9f95872b6">More...</a><br /></td></tr>
 <tr class="separator:a922a340f438ed0ddd2d7d2a9f95872b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96ec2c272f2ecea3f94b8472add80478"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html#a96ec2c272f2ecea3f94b8472add80478">GetRotationInverse</a> ()</td></tr>
 <tr class="memdesc:a96ec2c272f2ecea3f94b8472add80478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve la orientación en el mapa.  <a href="#a96ec2c272f2ecea3f94b8472add80478">More...</a><br /></td></tr>
@@ -477,7 +477,10 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Computa BoW para todos los descriptores del cuadro. </p>
-<p>Los guarda en la propiedad mBowVec, que es del tipo BowVector. </p>
+<p>Los guarda en la propiedad mBowVec, que es del tipo BowVector, y en mFeatVec, del tipo FeatureVector.</p>
+<p>Si mBowVec no está vacío el método retorna sin hacer nada, evitando el recómputo.</p>
+<p>Se computa BoW para un cuadro cuando se erige en keyframe, y cuando se intenta relocalizar.</p>
+<p><a class="el" href="namespace_d_bo_w2.html" title="File: BowVector.cpp Date: March 2011 Author: Dorian Galvez-Lopez Description: bag of words vector Lic...">DBoW2</a> se documenta en <a href="http://webdiis.unizar.es/~dorian/doc/dbow2/annotated.html">http://webdiis.unizar.es/~dorian/doc/dbow2/annotated.html</a> </p>
 
 </div>
 </div>
@@ -611,8 +614,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Selecciona los puntos dentro de una ventana cuadrada de centro x,y y lado r. </p>
-<p>Recorre todos los niveles del frame filtrando los puntos por coordenadas. Se utiliza para reducir los candidatos para macheo. </p>
+<p>Selecciona los puntos dentro de una ventana cuadrada de centro x,y y radio r (lado 2r). </p>
+<p>Recorre todos los niveles del frame filtrando los puntos por coordenadas.</p>
+<p>Se utiliza para reducir los candidatos para macheo.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Coordenada x del centro del área </td></tr>
+    <tr><td class="paramname">y</td><td>Coordenada y del centro del área </td></tr>
+    <tr><td class="paramname">r</td><td>Radio del área cuadrada </td></tr>
+    <tr><td class="paramname">minLevel</td><td>Nivel mínimo de la pirámide donde buscar los puntos singulares. Negativo si no hay mínimo. </td></tr>
+    <tr><td class="paramname">maxLevel</td><td>Nivel máximo de la pirámide donde buscar los puntos singulares. Negativo si no hay máximo.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Invocado sólo por métodos varios de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html" title="ORBmatcher empaqueta todos los métodos de macheo de descriptores. ">ORBmatcher</a>. </p>
 
 </div>
 </div>
@@ -989,7 +1004,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>-1 para monocular. </p>
-<p>Se pasa en el constructor de copia de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. Vector BoW correspondiente a los puntos singulares. </p>
+<p>Se pasa en el constructor de copia de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. Vector BoW correspondiente a los puntos singulares.</p>
+<p>BowVector es un mapa de Word Id (unsigned int) a Word value (double), que representa un peso. </p>
 
 </div>
 </div>

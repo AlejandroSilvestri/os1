@@ -42,6 +42,7 @@ var class_d_bo_w2_1_1_templated_vocabulary =
     [ "stopWords", "class_d_bo_w2_1_1_templated_vocabulary.html#a0b6721fde54bd8cd008f6a120398741e", null ],
     [ "transform", "class_d_bo_w2_1_1_templated_vocabulary.html#a01de3bebec37624439c7d3baf6651ff0", null ],
     [ "transform", "class_d_bo_w2_1_1_templated_vocabulary.html#af3815440ed610974afc5a2836f54fe07", null ],
+    [ "transform", "class_d_bo_w2_1_1_templated_vocabulary.html#af9903f08db24b669742cd5304fcfcb72", null ],
     [ "transform", "class_d_bo_w2_1_1_templated_vocabulary.html#aa5003af19aacb6a322f7fdc0535eb149", null ],
     [ "transform", "class_d_bo_w2_1_1_templated_vocabulary.html#a5af7e18ab438c3fbbb51bd9930c43444", null ],
     [ "transform", "class_d_bo_w2_1_1_templated_vocabulary.html#a48a53ffe060c205e44ddd2e173eb96c4", null ],

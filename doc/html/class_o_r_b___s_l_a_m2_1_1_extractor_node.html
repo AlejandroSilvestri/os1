@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_extractor_n
 </div><!--header-->
 <div class="contents">
 
-<p>Pendiente de documentación.  
+<p>Cada instancia es un nodo de un árbol QuadTree, que divide un rectángulo de una imagen en cuatro rectángulos similares.  
  <a href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_o_r_bextractor_8h_source.html">ORBextractor.h</a>&gt;</code></p>
@@ -101,6 +101,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad560af26a7bab99551eab2e5c08f6535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide el nodo en 4: n1, n2, n3 y n4.  <a href="#ad560af26a7bab99551eab2e5c08f6535">More...</a><br /></td></tr>
 <tr class="separator:ad560af26a7bab99551eab2e5c08f6535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1920a7d5f8166debdd4a7fe4a15a8e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html#af1920a7d5f8166debdd4a7fe4a15a8e9">ExtractorNode</a> ()</td></tr>
+<tr class="memdesc:af1920a7d5f8166debdd4a7fe4a15a8e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor único que sólo inicialia bNoMore = false.  <a href="#af1920a7d5f8166debdd4a7fe4a15a8e9">More...</a><br /></td></tr>
 <tr class="separator:af1920a7d5f8166debdd4a7fe4a15a8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -109,8 +110,10 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ada60a6ca3a5874204dcb3245ac7d2d97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Señal que indica que el nodo tiene exactamente un punto asignado.  <a href="#ada60a6ca3a5874204dcb3245ac7d2d97">More...</a><br /></td></tr>
 <tr class="separator:ada60a6ca3a5874204dcb3245ac7d2d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5301b76ea0e33bb066a46776810d742c"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html">ExtractorNode</a> &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html#a5301b76ea0e33bb066a46776810d742c">lit</a></td></tr>
+<tr class="memdesc:a5301b76ea0e33bb066a46776810d742c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterador que apunta a la posición del propio nodo en una lista.  <a href="#a5301b76ea0e33bb066a46776810d742c">More...</a><br /></td></tr>
 <tr class="separator:a5301b76ea0e33bb066a46776810d742c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34dda34415caa0e996148e53f8b174ce"><td class="memItemLeft" align="right" valign="top">std::vector&lt; cv::KeyPoint &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html#a34dda34415caa0e996148e53f8b174ce">vKeys</a></td></tr>
+<tr class="memdesc:a34dda34415caa0e996148e53f8b174ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de puntos singulares de este nodo.  <a href="#a34dda34415caa0e996148e53f8b174ce">More...</a><br /></td></tr>
 <tr class="separator:a34dda34415caa0e996148e53f8b174ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a3f3ae5685a8a2b2cd42fbd08e7563c3d"><td class="memItemLeft" align="right" valign="top">cv::Point2i&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html#a3f3ae5685a8a2b2cd42fbd08e7563c3d">UL</a></td></tr>
@@ -124,8 +127,10 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a8530a1f5934122f24382859c156a441d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Pendiente de documentación. </p>
-<p>Objeto usado exclusivamente en DistributeOctTree. </p>
+<div class="textblock"><p>Cada instancia es un nodo de un árbol QuadTree, que divide un rectángulo de una imagen en cuatro rectángulos similares. </p>
+<p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html" title="Empaqueta todos los métodos de detección de puntos singulares y extracción de descriptores. ">ORBextractor</a> utiliza una versión simplificada de Octree (en rigor es un Quadtree), creando un árbol cuyos nodos representan un rectángulo de una imagen y sus cuatro hijos representan un cuarto de esa imagen. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html" title="Cada instancia es un nodo de un árbol QuadTree, que divide un rectángulo de una imagen en cuatro rect...">ExtractorNode</a> es la clase de esos nodos, que registran las coordenadas de los vértices del rectángulo asociado, y la lista de puntos singulares en él.</p>
+<p>El método de búsqueda de zonas consiste en seguir dividiendo los rectángulos hasta que contengan un o ningún punto singular. El árbol termina cuando se alcanza una cantidad máxima de nodos esperados, o cuando ningún nodo tiene más de un puntos singular.</p>
+<p>Objeto usado exclusivamente en ORBextactor::DistributeOctTree. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af1920a7d5f8166debdd4a7fe4a15a8e9"></a>
 <div class="memitem">
@@ -147,6 +152,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructor único que sólo inicialia bNoMore = false. </p>
+<p>El resto de las propiedades se debe inicializar luego de la construcción. </p>
 
 </div>
 </div>
@@ -188,6 +196,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Divide el nodo en 4: n1, n2, n3 y n4. </p>
+<p>Notar que este método no construye los cuatro nodos derivados, éstos son construidos por el método que invoca. </p>
 
 </div>
 </div>
@@ -215,7 +224,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Señal que indica que el nodo tiene exactamente un punto asignado. </p>
-<p>Se inicializa como false, diversos métodos verifican y lo ponen en true cuando tiene un único punto. </p>
+<p>Se inicializa como false, diversos métodos verifican y lo ponen en true cuando tiene un único punto. Diversos métodos evalúan el nodo para determinar si tienen un único punto singular (bNoMore == true) y no requiere más análisis, ningún punto singular (vKeys.empty() == true) lo que hace al nodo eliminable, o en otro caso contiene más de un punto singular con lo que se puede seguir procesando. </p>
 
 </div>
 </div>
@@ -241,6 +250,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Iterador que apunta a la posición del propio nodo en una lista. </p>
+<p>El procedimiento que invoca la construcción de un objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html" title="Cada instancia es un nodo de un árbol QuadTree, que divide un rectángulo de una imagen en cuatro rect...">ExtractorNode</a> debe luego inicializar esta propiedad. </p>
+
 </div>
 </div>
 <a id="a3f3ae5685a8a2b2cd42fbd08e7563c3d"></a>
@@ -254,6 +266,7 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Vértice del rectángulo límite: U: upper, B: bottom, L: left, R: right. </p>
+<p>El procedimiento que invoca la construcción de un objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_extractor_node.html" title="Cada instancia es un nodo de un árbol QuadTree, que divide un rectángulo de una imagen en cuatro rect...">ExtractorNode</a> debe luego inicializar esta propiedad. </p>
 
 </div>
 </div>
@@ -278,6 +291,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Vector de puntos singulares de este nodo. </p>
+<p>vKeys.empty() responde si el nodo tiene o no puntos singulares. </p>
 
 </div>
 </div>

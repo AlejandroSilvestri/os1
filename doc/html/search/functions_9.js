@@ -33,6 +33,7 @@ var searchData=
   ['isinfrustum',['isInFrustum',['../class_o_r_b___s_l_a_m2_1_1_frame.html#a0929e100e3380dba1baba12dfa8904c4',1,'ORB_SLAM2::Frame']]],
   ['isinimage',['IsInImage',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab3be661e9ce7fb1809bb39a5e6fde7fd',1,'ORB_SLAM2::KeyFrame']]],
   ['isinkeyframe',['IsInKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#a7a8c48a885598ba4da3b188791dfd009',1,'ORB_SLAM2::MapPoint']]],
+  ['isinmap',['isInMap',['../class_o_r_b___s_l_a_m2_1_1_map.html#a9e7ddef2b07d57714cd7dbf66a7eb99b',1,'ORB_SLAM2::Map::isInMap(KeyFrame *KF)'],['../class_o_r_b___s_l_a_m2_1_1_map.html#ad2ae11adc554e0f595531422eb1a4325',1,'ORB_SLAM2::Map::isInMap(MapPoint *MP)']]],
   ['isleaf',['isLeaf',['../struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a050a0ee173dd58475dd2ab84e6f215e8',1,'DBoW2::TemplatedVocabulary::Node']]],
   ['ismainstorage',['isMainStorage',['../classg2o_1_1_parameter_container.html#a201d0b120e7b8d54c99d73c8f4d04846',1,'g2o::ParameterContainer']]],
   ['isrunninggba',['isRunningGBA',['../class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a4ddc6674aa54db7d38946f73eb9776f2',1,'ORB_SLAM2::LoopClosing']]],

@@ -10,7 +10,7 @@ var class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher =
     [ "SearchByBoW", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a024fe40fa89785df914ef0a59cdf605d", null ],
     [ "SearchByBoW", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ad62ee37a7d926719f16ddd17f7e48e10", null ],
     [ "SearchByProjection", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196", null ],
-    [ "SearchByProjection", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a0dba0b2bed7d16ca56e27ff4df00f557", null ],
+    [ "SearchByProjection", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a5aa0921aedad59335052ecb2bc583dfe", null ],
     [ "SearchByProjection", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#af83a014848a63b5a3b3086386f7a865e", null ],
     [ "SearchByProjection", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ac1c0dcdeed922c9a96760aa9a76a2fdb", null ],
     [ "SearchBySim3", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a9b9c641423a8075aa2a6f1d5bab4d211", null ],

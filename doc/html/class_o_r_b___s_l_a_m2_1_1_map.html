@@ -127,6 +127,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a56e1d96a4e1d669609e2c2a493f133c2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a56e1d96a4e1d669609e2c2a493f133c2">GetReferenceMapPoints</a> ()</td></tr>
 <tr class="memdesc:a56e1d96a4e1d669609e2c2a493f133c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve un vector de puntos a graficar.  <a href="#a56e1d96a4e1d669609e2c2a493f133c2">More...</a><br /></td></tr>
 <tr class="separator:a56e1d96a4e1d669609e2c2a493f133c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7ddef2b07d57714cd7dbf66a7eb99b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a9e7ddef2b07d57714cd7dbf66a7eb99b">isInMap</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *KF)</td></tr>
+<tr class="memdesc:a9e7ddef2b07d57714cd7dbf66a7eb99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica si el punto o el keyframe está en el mapa Agregado por mí.  <a href="#a9e7ddef2b07d57714cd7dbf66a7eb99b">More...</a><br /></td></tr>
+<tr class="separator:a9e7ddef2b07d57714cd7dbf66a7eb99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2ae11adc554e0f595531422eb1a4325"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#ad2ae11adc554e0f595531422eb1a4325">isInMap</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *MP)</td></tr>
+<tr class="separator:ad2ae11adc554e0f595531422eb1a4325"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3440f5e9e93ca7231bde3c5138ab5f5c"><td class="memItemLeft" align="right" valign="top">long unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a3440f5e9e93ca7231bde3c5138ab5f5c">KeyFramesInMap</a> ()</td></tr>
 <tr class="memdesc:a3440f5e9e93ca7231bde3c5138ab5f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informa la cantidad de keyframes en el mapa.  <a href="#a3440f5e9e93ca7231bde3c5138ab5f5c">More...</a><br /></td></tr>
 <tr class="separator:a3440f5e9e93ca7231bde3c5138ab5f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,7 +230,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Agrega un nuevo keyframe al mapa. </p>
-<p>Registra el nuevo keyframe en el vector de keyframes del mapa, y actualiza el registro mnMaxKFid del id del último keyframe. </p>
+<p>Registra el nuevo keyframe en el vector de keyframes del mapa, y actualiza el registro mnMaxKFid del id del último keyframe.</p>
+<p>Se invoca sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">Tracking::CreateInitialMapMonocular</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a84eea8f268cce9d919a4906ae634dd22" title="Crea un keyframe a partir del cuadro actual LocalMapping::mpCurrentKeyFrame. ">LocalMapping::ProcessNewKeyFrame</a>. </p>
 
 </div>
 </div>
@@ -306,7 +312,7 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <p>Ejecuta mspMapPoints.erase(pMP)</p>
-<p>Se invoca sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f2e205afcfae3dc70196bcd29194440" title="Toma las propiedades del punto argumento. ">MapPoint::Replace</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7ed2a66b528165d6c39cb6f84f684308" title="Elimina el punto, marcándolo como malo. ">MapPoint::SetBadFlag</a>. </p>
+<p>Se invoca sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f2e205afcfae3dc70196bcd29194440" title="Reemplaza este punto por el punto argumento, en una fusión. ">MapPoint::Replace</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7ed2a66b528165d6c39cb6f84f684308" title="Elimina el punto, marcándolo como malo. ">MapPoint::SetBadFlag</a>. </p>
 
 </div>
 </div>
@@ -376,6 +382,40 @@ Friends</h2></td></tr>
 
 <p>Devuelve un vector de puntos a graficar. </p>
 <p>Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html#acde87836a1eed3d297c6524028388a3f" title="Dibuja en pantalla todos los puntos 3D del mapa. ">MapDrawer::DrawMapPoints</a>, estos puntos se grafican en rojo, representando el mapa local. </p>
+
+</div>
+</div>
+<a id="a9e7ddef2b07d57714cd7dbf66a7eb99b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ORB_SLAM2::Map::isInMap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *&#160;</td>
+          <td class="paramname"><em>KF</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indica si el punto o el keyframe está en el mapa Agregado por mí. </p>
+
+</div>
+</div>
+<a id="ad2ae11adc554e0f595531422eb1a4325"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ORB_SLAM2::Map::isInMap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&#160;</td>
+          <td class="paramname"><em>MP</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

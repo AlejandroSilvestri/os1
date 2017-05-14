@@ -130,7 +130,12 @@ Secuencia inicial del algoritmo ORB-SLAM2</h1>
 </ul>
 </li>
 <li><p class="startli">entra en el bucle principal while(true) que ejecutará el proceso entero por cada cuadro de la cámara</p>
-<p class="startli">Este bucle principal es un algoritmo largo, separado en métodos por prolijidad, la mayoría de los cuales se invocan desde un único lugar. La secuencia de invocaciones es: 1- System::TrackMonocular, pasando la imagen a color de la cámara 2- Tracking::GrabImageMonocular, pasando la imagen Mat en escala de grises, crea el currentFrame a partir de la imagen 3- Tracking::Track, autómata finito que despacha métodos de acuerdo al estado. 4- Tracking::TrackWithMotionModel, invocado en el estado OK</p>
+<p class="startli">Este bucle principal es un algoritmo largo, separado en métodos por prolijidad, la mayoría de los cuales se invocan desde un único lugar. La secuencia de invocaciones es:</p><ol type="1">
+<li>System::TrackMonocular, pasando la imagen a color de la cámara</li>
+<li>Tracking::GrabImageMonocular, pasando la imagen Mat en escala de grises, crea el currentFrame a partir de la imagen</li>
+<li>Tracking::Track, autómata finito que despacha métodos de acuerdo al estado.</li>
+<li>Tracking::TrackWithMotionModel, invocado en el estado OK</li>
+</ol>
 </li>
 </ul>
 <h1><a class="anchor" id="clas"></a>
@@ -148,12 +153,16 @@ Clasificación de las clases</h1>
 <li>mnId es un miembro entero Id.</li>
 </ul>
 <p>Hay varios tipos de clase:</p><ul>
-<li>Clases que se instancian repetidas veces:<ul>
-<li>Frame</li>
-<li>KeyFrame</li>
-<li>MapPoint</li>
+<li>Clases que se instancian repetidas veces y perduran:<ul>
+<li>Frame: hay 3 instancias: Tracking::mCurrentFrame, Tracking::mLastFrame y Tracking::mInitialFrame.</li>
+<li>KeyFrame: varias instancias registradas en Map::mspKeyFrames</li>
+<li>MapPoint: varias instancias registradas en Map::mspMapPoints</li>
+</ul>
+</li>
+<li>Clases efímeras que se instancias repetidas veces y se destruyen:<ul>
+<li>ExtractorNode: varios nodos creados en ORBextractor.</li>
 <li>Initializer</li>
-<li>ORBextractor</li>
+<li>ORBextractor: creado para la extracción de puntos singulares y descriptores, y luego destruído.</li>
 <li>ORBmatcher</li>
 </ul>
 </li>
@@ -178,13 +187,54 @@ Clasificación de las clases</h1>
 </ul>
 </li>
 </ul>
-<p>Excepciones: <a class="el" href="_o_r_b_vocabulary_8h.html">ORBVocabulary.h</a> es una excepción a esta regla, no define una clase sino un simple typedef. <a class="el" href="_o_r_bextractor_8h.html">ORBExtractor.h</a> define dos clases, incluyendo ExtractorNode. La carpeta Thirparty contiene versiones podadas de <a class="el" href="namespace_d_bo_w2.html" title="File: BowVector.cpp Date: March 2011 Author: Dorian Galvez-Lopez Description: bag of words vector Lic...">DBoW2</a> y <a class="el" href="namespaceg2o.html">g2o</a> con estilos propios.</p>
+<p>Cada clase se define en su propio archivo .h homónimo, excepto <a class="el" href="_o_r_bextractor_8h.html">ORBExtractor.h</a> define también ExtractorNode. El único archivo include/ *.h que no define una clase es <a class="el" href="_o_r_b_vocabulary_8h.html">ORBVocabulary.h</a>, que contiene un simple typedef.</p>
+<p>La carpeta Thirparty contiene versiones podadas de <a class="el" href="namespace_d_bo_w2.html" title="File: BowVector.cpp Date: March 2011 Author: Dorian Galvez-Lopez Description: bag of words vector Lic...">DBoW2</a> y <a class="el" href="namespaceg2o.html">g2o</a> con estilos propios.</p>
 <h1><a class="anchor" id="conc"></a>
 Conceptos de ORB-SLAM y sus clases</h1>
-<p>Frame: A partir de cada imagen de la cámara se crea un objeto Frame efímero. Usualmente perduran el cuadro actual y el anterior solamente, habiendo sólo dos instancias de esta clase simultáneamente en el sistema. El objeto Frame tiene los puntos singulares detectados, su versión antidistorsionada, sus descriptores y los puntos del mapa asociados. La clase proporciona los métodos para su construcción a partir de la imagen.</p>
-<p>KeyFrame: Los KeyFrame se crean a partir de un Frame cuando el sistema entiende que éste aporta información al mapa. Mientras un Frame es efímero, un KeyFrame es de larga vida, es la manera en que un Frame se convierte en parte del mapa. Cuando se crea un KeyFrame, copia la información principal del Frame actual, y computa más datos, como por ejemplo los BoW de cada descriptor. La documentación de KeyFrame explica la notación de matrices utilizadas en ésta y otras clases.</p>
-<p>MapPoint: Punto 3D del mapa del mundo. No sólo tiene las coordenadas del punto, sino también la lista de KeyFrames que lo observan, la lista de descriptores asociados al punto (un descriptor por cada KeyFrame que lo observa), entre otros.</p>
-<p>Map: Mapa del mundo. Tiene una lista de MapPoitns, una lista de KeyFrames, y métodos para la administración del mapa.</p>
+<h2><a class="anchor" id="Frame"></a>
+Frame</h2>
+<p>A partir de cada imagen de la cámara se crea un objeto Frame efímero.</p>
+<p>Usualmente perduran el cuadro actual y el anterior solamente, habiendo sólo dos instancias de esta clase simultáneamente en el sistema.</p>
+<p>El objeto Frame tiene los puntos singulares detectados, su versión antidistorsionada, sus descriptores y los puntos del mapa asociados.</p>
+<p>La clase proporciona los métodos para su construcción a partir de la imagen.</p>
+<p>Hay sólo tres instancias de esta clase:</p><ul>
+<li>Tracking::mCurrentFrame con el cuadro más reciente</li>
+<li>Tracking::mLastFrame con el cuadro inmediato anterior al más reciente</li>
+<li>Tracking::mInitialFrame con el cuadro inicial, que participó en la inicialización del mapa</li>
+</ul>
+<p>Mientras las instancias mCurrentFrame y mLastFrame perduran, su contenido no lo hace, sino que rota. Cada nueva imagen se vuelca sobre mCurrentFrame, reemplazando a la anterior.</p>
+<h2><a class="anchor" id="KeyFrame"></a>
+KeyFrame</h2>
+<p>Los KeyFrame se crean a partir de un Frame cuando el sistema entiende que éste aporta información al mapa.</p>
+<p>Un KeyFrame es de larga vida, es la manera en que un Frame se convierte en parte del mapa.</p>
+<p>Cuando se crea un KeyFrame, copia la información principal del Frame actual, y computa más datos, como por ejemplo los BoW de cada descriptor.</p>
+<p>Los keyframes se registran en Map::mspKeyFrames.</p>
+<p>La documentación de KeyFrame explica la notación de matrices de pose utilizadas en KeyFrame y en Frame.</p>
+<h2><a class="anchor" id="MapPoint"></a>
+MapPoint</h2>
+<p>Punto 3D del mapa del mundo. No sólo tiene las coordenadas del punto, sino también la lista de KeyFrames que lo observan, la lista de descriptores asociados al punto (un descriptor por cada KeyFrame que lo observa), entre otros.</p>
+<p>Los mapPoints se registran en Map::mspMapPoints.</p>
+<h2><a class="anchor" id="Map"></a>
+Map</h2>
+<p>Mapa del mundo. Tiene una lista de MapPoints, una lista de KeyFrames, y métodos para la administración del mapa.</p>
+<h2><a class="anchor" id="System"></a>
+System</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
+<h2><a class="anchor" id="KeyFrameDatabase"></a>
+KeyFrameDatabase</h2>
 <h1><a class="anchor" id="hilos"></a>
 Descripción de los hilos</h1>
 <p>ORB-SLAM tiene cuatro hilos paralelos, cada uno con su propio bucle.</p>

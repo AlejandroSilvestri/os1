@@ -204,13 +204,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa1aa077560ef0cf2dee409f2a574370b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Predice la escala (el nivel de la pirámide) en que se encontrará el punto, a partir de la distancia de observación.  <a href="#aa1aa077560ef0cf2dee409f2a574370b">More...</a><br /></td></tr>
 <tr class="separator:aa1aa077560ef0cf2dee409f2a574370b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f2e205afcfae3dc70196bcd29194440"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a8f2e205afcfae3dc70196bcd29194440">Replace</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *pMP)</td></tr>
-<tr class="memdesc:a8f2e205afcfae3dc70196bcd29194440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toma las propiedades del punto argumento.  <a href="#a8f2e205afcfae3dc70196bcd29194440">More...</a><br /></td></tr>
+<tr class="memdesc:a8f2e205afcfae3dc70196bcd29194440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reemplaza este punto por el punto argumento, en una fusión.  <a href="#a8f2e205afcfae3dc70196bcd29194440">More...</a><br /></td></tr>
 <tr class="separator:a8f2e205afcfae3dc70196bcd29194440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ed2a66b528165d6c39cb6f84f684308"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a7ed2a66b528165d6c39cb6f84f684308">SetBadFlag</a> ()</td></tr>
 <tr class="memdesc:a7ed2a66b528165d6c39cb6f84f684308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina el punto, marcándolo como malo.  <a href="#a7ed2a66b528165d6c39cb6f84f684308">More...</a><br /></td></tr>
 <tr class="separator:a7ed2a66b528165d6c39cb6f84f684308"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a569e91b415067d4484fe7b71f33451cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a569e91b415067d4484fe7b71f33451cf">SetReferenceKeyFrame</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pRefKF)</td></tr>
-<tr class="memdesc:a569e91b415067d4484fe7b71f33451cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece el keyframe de referencia.  <a href="#a569e91b415067d4484fe7b71f33451cf">More...</a><br /></td></tr>
+<tr class="memdesc:a569e91b415067d4484fe7b71f33451cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece el keyframe de referencia mpRefKF.  <a href="#a569e91b415067d4484fe7b71f33451cf">More...</a><br /></td></tr>
 <tr class="separator:a569e91b415067d4484fe7b71f33451cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad65e6322e9d06314db235ff4d072509f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#ad65e6322e9d06314db235ff4d072509f">SetWorldPos</a> (const cv::Mat &amp;Pos)</td></tr>
 <tr class="memdesc:ad65e6322e9d06314db235ff4d072509f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asigna al punto las coordenadas 3D argumento.  <a href="#ad65e6322e9d06314db235ff4d072509f">More...</a><br /></td></tr>
@@ -345,6 +345,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a27cc4fee44b1ae77b24a8c766c617058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keyframe de referencia.  <a href="#a27cc4fee44b1ae77b24a8c766c617058">More...</a><br /></td></tr>
 <tr class="separator:a27cc4fee44b1ae77b24a8c766c617058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf1fe1c8a41919e1890b70baa18bd2fb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html">MapPoint</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#abf1fe1c8a41919e1890b70baa18bd2fb">mpReplaced</a></td></tr>
+<tr class="memdesc:abf1fe1c8a41919e1890b70baa18bd2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Punto que reemplazó a éste en una fusión.  <a href="#abf1fe1c8a41919e1890b70baa18bd2fb">More...</a><br /></td></tr>
 <tr class="separator:abf1fe1c8a41919e1890b70baa18bd2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39741adada8dcd302afbf45ec2e72af0"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a39741adada8dcd302afbf45ec2e72af0">mWorldPos</a></td></tr>
 <tr class="memdesc:a39741adada8dcd302afbf45ec2e72af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posición en coordenadas absolutas del mapa global.  <a href="#a39741adada8dcd302afbf45ec2e72af0">More...</a><br /></td></tr>
@@ -840,7 +841,8 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Devuelve el keyframe de referencia. </p>
-<dl class="section return"><dt>Returns</dt><dd>Keyframe de referencia. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Keyframe de referencia.</dd></dl>
+<p>Devuelve mpRefKF. </p>
 
 </div>
 </div>
@@ -1023,7 +1025,16 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Toma las propiedades del punto argumento. </p>
+<p>Reemplaza este punto por el punto argumento, en una fusión. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMP</td><td>Punto argumento que reemplazará al actual.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Las observaciones de este punto se agregan al punto argumento. También se suman las visualizaciones y encuentros.</p>
+<p>Actualiza todas las visualizaciones en los keyframes que obervan este punto, para que observen al punto argumento.</p>
+<p>Invocado por tres métodos que fusionan puntos: LoopCosing::CorrectLoop, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aabe9d9b913f36b607c67b0ed0df42a1d" title="Proyecta los puntos observados en la vecindad del keyframe del bucle, sobre el keyframe actual y veci...">LoopClosing::SearchAndFuse</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#add796fcf9f5cae91393d4c0b767e0183" title="Proyecta puntos del mapa sobre un keyframe y busca puntos duplicados, como parte del mapeo local...">ORBmatcher::Fuse</a>. </p>
 
 </div>
 </div>
@@ -1099,13 +1110,14 @@ template&lt;class Archivo &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Establece el keyframe de referencia. </p>
+<p>Establece el keyframe de referencia mpRefKF. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pRefKF</td><td>Keyframe de referencia. </td></tr>
+    <tr><td class="paramname">pRefKF</td><td>Keyframe de referencia.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Este método no se utiliza. </p>
 
 </div>
 </div>
@@ -1211,7 +1223,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Flag de borrado. </p>
-<p>Los puntos eliminados no se quitan del vector, para evitar rearmar el vector. </p>
+<p>Los puntos eliminados se quitan de las visualizaciones en keyframes, y del mapa. La instancia en sí no se elimina, no hay control de quién puede estar apuntándola. </p>
 
 </div>
 </div>
@@ -1669,7 +1681,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Keyframe de referencia. </p>
-<p>Utilizado solamente para cerrar bucles. </p>
+<p>Comienza siendo el keyframe que creó el punto, aunque rota si ese keyframe se elimina. Utilizado al optimizar el grafo esencial y en BA para cerrar bucles. </p>
 
 </div>
 </div>
@@ -1690,6 +1702,9 @@ template&lt;class Archivo &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Punto que reemplazó a éste en una fusión. </p>
+<p>Éste quedó marcado como malo. </p>
 
 </div>
 </div>
@@ -1731,7 +1746,7 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Coseno de triangulación. </p>
-<p>Efímero. Frame::IsInFustrum lo registra, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo circular entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos...">ORBmatcher::SearchByProjection</a> lo consume. </p>
+<p>Efímero. Frame::IsInFustrum lo registra, <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo en ventana cuadrada entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos. ">ORBmatcher::SearchByProjection</a> lo consume. </p>
 
 </div>
 </div>

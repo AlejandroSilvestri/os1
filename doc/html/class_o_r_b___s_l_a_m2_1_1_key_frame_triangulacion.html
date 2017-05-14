@@ -97,8 +97,7 @@ $(document).ready(function(){initNavTree('class_o_r_b___s_l_a_m2_1_1_key_frame_t
 <div class="dynheader">
 Collaboration diagram for ORB_SLAM2::KeyFrameTriangulacion:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion__coll__graph.svg" width="1490" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion__coll__graph.svg" width="1490" height="242"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -216,9 +215,24 @@ Public Attributes</h2></td></tr>
 <p>Esta clase se construye tomando los datos del keyframe paredro (pasado como argumento), para evitar las consecuencias de que otros hilos los cambien durante la operación.</p>
 <p>Algunos métodos buscan datos inmutables en el keyframe.</p>
 <p>La secuencia de uso es la siguiente:</p>
-<p>1- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a6c8ec5480826e40284f19694eb277663" title="Constructor que copia datos de pose del keyframe argumento. ">KeyFrameTriangulacion::KeyFrameTriangulacion</a>: Construcción de este objeto, tomando datos de pose y calibración para asegurar su inmutabilidad 2- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#ad3927f5392abd88eede926df5c4310ad" title="Calcula el rayo de proyección de un punto singular, y otros datos de interés para la triangulación...">KeyFrameTriangulacion::rayo</a> inicializa parámetros de cálculos intermedios, necesarios en los métodos que siguen. 3- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a014746ffc12d3a912614de9a3dfe8bf3" title="Devuele el punto triangulado, en coordenadas homogéneas, matriz horizontal 1x3 x3Dt. ">KeyFrameTriangulacion::triangular</a> devuelve el punto triangulado por SVD 4- KeyFrameTriangulacion::coorddenadaZ calcula y recuerda la distancia del punto sobre el eje z. Necesario para calcular el error de reproyección. 4- KeyFrameTriangulacion::validarErrorReproyección decide si el error es aceptable. 5- KeyFrameTriangulacion::errorReproyección calcula el error, invocado por el anterior.</p>
+<ol type="1">
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a6c8ec5480826e40284f19694eb277663" title="Constructor que copia datos de pose del keyframe argumento. ">KeyFrameTriangulacion::KeyFrameTriangulacion</a>: Construcción de este objeto, tomando datos de pose y calibración para asegurar su inmutabilidad</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#ad3927f5392abd88eede926df5c4310ad" title="Calcula el rayo de proyección de un punto singular, y otros datos de interés para la triangulación...">KeyFrameTriangulacion::rayo</a> inicializa parámetros de cálculos intermedios, necesarios en los métodos que siguen.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a014746ffc12d3a912614de9a3dfe8bf3" title="Devuele el punto triangulado, en coordenadas homogéneas, matriz horizontal 1x3 x3Dt. ">KeyFrameTriangulacion::triangular</a> devuelve el punto triangulado por SVD</li>
+<li>KeyFrameTriangulacion::coorddenadaZ calcula y recuerda la distancia del punto sobre el eje z. Necesario para calcular el error de reproyección.</li>
+</ol>
+<ol type="1">
+<li>KeyFrameTriangulacion::validarErrorReproyección decide si el error es aceptable.</li>
+<li>KeyFrameTriangulacion::errorReproyección calcula el error, invocado por el anterior.</li>
+</ol>
 <p>Otra forma de uso, más completa, que construye dos objetos para triangularlos:</p>
-<p>1- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a6c8ec5480826e40284f19694eb277663" title="Constructor que copia datos de pose del keyframe argumento. ">KeyFrameTriangulacion::KeyFrameTriangulacion</a>: construye un objeto a partir de un keyframe. 2- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#adc5b52a86702817786c80269f4e95fbc" title="Cambia el segundo keyframe contra el que triangular. ">KeyFrameTriangulacion::setKeyFrame2</a>: construye el segundo objeto, en la propiedad kft2. 3- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a645682d8113bb7ab772c7a0c18f3f67a" title="Define el punto singular que será usado en la triangulación. ">KeyFrameTriangulacion::setKeyPoint</a>: determina el punto singular del keyframe de este objeto 4- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#af9d18a6d42bb37c2d1dbf0c8f729cb37" title="Define el punto singular que será usado en la triangulación. ">KeyFrameTriangulacion::setKeyPoint2</a>: determina el punto singular del keyframe del otro objeto, kft2 5- <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html" title="Clase para triangulación de rayos. ">KeyFrameTriangulacion</a>:: triangular: realiza toda la triangulación, presentando los resultados en propiedades</p>
+<ol type="1">
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a6c8ec5480826e40284f19694eb277663" title="Constructor que copia datos de pose del keyframe argumento. ">KeyFrameTriangulacion::KeyFrameTriangulacion</a>: construye un objeto a partir de un keyframe.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#adc5b52a86702817786c80269f4e95fbc" title="Cambia el segundo keyframe contra el que triangular. ">KeyFrameTriangulacion::setKeyFrame2</a>: construye el segundo objeto, en la propiedad kft2.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a645682d8113bb7ab772c7a0c18f3f67a" title="Define el punto singular que será usado en la triangulación. ">KeyFrameTriangulacion::setKeyPoint</a>: determina el punto singular del keyframe de este objeto</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#af9d18a6d42bb37c2d1dbf0c8f729cb37" title="Define el punto singular que será usado en la triangulación. ">KeyFrameTriangulacion::setKeyPoint2</a>: determina el punto singular del keyframe del otro objeto, kft2</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html" title="Clase para triangulación de rayos. ">KeyFrameTriangulacion</a>:: triangular: realiza toda la triangulación, presentando los resultados en propiedades</li>
+</ol>
 <p>Esta clase y sus métodos son usados en:</p><ul>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac06b513357429d9eff89e29d2ae58d6c" title="El ciclo de mapeo local invoca periódicamente este método, que busca macheos candidatos para su trian...">LocalMapping::CreateNewMapPoints</a></li>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a37277ee3c7d8657976e749ab920bb13f" title="Cada vez que el punto es observado desde un keyframe, se registra esa observación. ">MapPoint::AddObservation</a> </li>
@@ -372,7 +386,7 @@ Public Attributes</h2></td></tr>
 <p>Lo presenta como versor en el sistema de referencia del mundo, convenientemente normalizado para hacer un producto escalar con otro y obtener el coseno del ángulo.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">indice</td><td>Índice del vector de puntos singulares <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aaf6c65fc098f41ff418a65934f514ce3" title="Puntos singulares con coordenadas &quot;desdistorsionadas&quot;. ">KeyFrame::mvKeysUn</a> </td></tr>
+    <tr><td class="paramname">indice</td><td>Índice del vector de puntos singulares <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aaf6c65fc098f41ff418a65934f514ce3" title="Puntos singulares con coordenadas &quot;antidistorsionadas&quot;. ">KeyFrame::mvKeysUn</a> </td></tr>
   </table>
   </dd>
 </dl>

@@ -11,7 +11,8 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "Initializer", "class_o_r_b___s_l_a_m2_1_1_initializer.html", "class_o_r_b___s_l_a_m2_1_1_initializer" ]
     ] ],
     [ "KeyFrame.h", "_key_frame_8h.html", [
-      [ "KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html", "class_o_r_b___s_l_a_m2_1_1_key_frame" ]
+      [ "KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html", "class_o_r_b___s_l_a_m2_1_1_key_frame" ],
+      [ "lessPointer", "struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html", "struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer" ]
     ] ],
     [ "KeyFrameDatabase.h", "_key_frame_database_8h.html", [
       [ "KeyFrameDatabase", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html", "class_o_r_b___s_l_a_m2_1_1_key_frame_database" ]
@@ -45,6 +46,10 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "ORBVocabulary.h", "_o_r_b_vocabulary_8h.html", "_o_r_b_vocabulary_8h" ],
     [ "PnPsolver.h", "_pn_psolver_8h.html", [
       [ "PnPsolver", "class_o_r_b___s_l_a_m2_1_1_pn_psolver.html", "class_o_r_b___s_l_a_m2_1_1_pn_psolver" ]
+    ] ],
+    [ "PuntoLejano.h", "_punto_lejano_8h.html", "_punto_lejano_8h" ],
+    [ "PuntosLejanosDB.h", "_puntos_lejanos_d_b_8h.html", [
+      [ "PuntosLejanosDB", "class_o_r_b___s_l_a_m2_1_1_puntos_lejanos_d_b.html", "class_o_r_b___s_l_a_m2_1_1_puntos_lejanos_d_b" ]
     ] ],
     [ "Serializer.h", "_serializer_8h.html", [
       [ "Serializer", "class_o_r_b___s_l_a_m2_1_1_serializer.html", "class_o_r_b___s_l_a_m2_1_1_serializer" ]

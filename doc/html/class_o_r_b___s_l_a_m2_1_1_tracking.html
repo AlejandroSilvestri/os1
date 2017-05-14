@@ -365,7 +365,7 @@ Private Attributes</h2></td></tr>
 </ul>
 </li>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a451c0e5372c24645c7634fcebc8fa847" title="Invocado por TrackLocalMap. ">Tracking::SearchLocalPoints</a>: actualiza la "visibilidad" (el conteo de vistas) de los puntos, y filtra puntos que ya están en el mapa<ul>
-<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo circular entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos...">ORBmatcher::SearchByProjection</a> busca puntos que se deberían observar</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo en ventana cuadrada entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos. ">ORBmatcher::SearchByProjection</a> busca puntos que se deberían observar</li>
 </ul>
 </li>
 <li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a7415d78b8a2323b88e108fa1ea3bf2d3" title="Cómputo de la pose de un cuadro. ">Optimizer::PoseOptimization</a> refina la pose</li>
@@ -555,7 +555,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Crea el mapa inicial. </p>
-<p>Toma la rotación Rcw y traslación tcw argumentos para asumir la primer pose de la cámara. Crea dos KeyFrames (inicial y actual) a partir de los cuadros inicial y actual. Computa Bag of Words en ambos keyframes. Agrega los keyframes al mapa. Recorre los puntos macheados, los computa como puntos del mapa para agregarlos. Esto significa que les asocia los keyframes que los observan, sus normales y profundidades, y sus descriptores distintivos. Luego realiza un primer bundle adjustment.</p>
+<p>Crea dos KeyFrames (inicial y actual) a partir de los cuadros inicial y actual. Computa Bag of Words en ambos keyframes. Agrega los keyframes al mapa. Recorre los puntos macheados, los computa como puntos del mapa para agregarlos. Esto significa que les asocia los keyframes que los observan, sus normales y profundidades, y sus descriptores distintivos. Luego realiza un primer bundle adjustment.</p>
 <p>Invocado sólo desde MonocularInitialization. </p>
 
 </div>
@@ -733,6 +733,8 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Dispara una relocalización. </p>
+<p>Machea keyframes por BoW, obteniendo un conjunto de puntos 3D compatible con los BoW del cuadro actual.</p>
+<p>Luego se intenta resolver la pose con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_pn_psolver.html" title="Solucionador Point n-Points EPnP. ">PnPsolver</a>.</p>
 <p>Invocado sólo desde el autómata finito en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a>. </p>
 
 </div>
@@ -777,7 +779,11 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Invocado por TrackLocalMap. </p>
-<p>1- Recorre los puntos 3D asociados al cuadro actual, incrementa su visibilidad y marca que fueron vistos por última vez desde este cuadro. 2- Cuenta los puntos que deberían haber sido vistos y no lo fueron. 3- Si hay puntos no vistos, realiza un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo circular entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos...">ORBmatcher::SearchByProjection</a> </p>
+<ol type="1">
+<li>Recorre los puntos 3D asociados al cuadro actual, incrementa su visibilidad y marca que fueron vistos por última vez desde este cuadro.</li>
+<li>Cuenta los puntos que deberían haber sido vistos y no lo fueron.</li>
+<li>Si hay puntos no vistos, realiza un <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo en ventana cuadrada entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos. ">ORBmatcher::SearchByProjection</a> </li>
+</ol>
 
 </div>
 </div>
@@ -958,7 +964,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>SfM. </p>
-<p>Función principal, que determina la performance del sistema. Rastrea los puntos de la imagen en el mapa, macheándolos con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo circular entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos...">ORBmatcher::SearchByProjection</a>, que extiende el macheo consecutivo desde lastFrame a currentFrame, asociando los puntos 3D a los puntos singulares del cuadro actual. Si no logra 20 macheos, falla, retorna false. Con 20 o más puntos macheados calcula la nueva pose con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a7415d78b8a2323b88e108fa1ea3bf2d3" title="Cómputo de la pose de un cuadro. ">Optimizer::PoseOptimization()</a> (donde ocurre el verdadero SfM). y quita los outliers del frame. Si no quedan al menos 10 puntos, retorna false indicando la falla.</p>
+<p>Función principal, que determina la performance del sistema. Rastrea los puntos de la imagen en el mapa, macheándolos con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#ae43d042858a3a3ca4238bb4ca519f196" title="Macheo en ventana cuadrada entre puntos singulares detectados en el cuadro actual, y la proyección de los puntos del mapa que deberían ser vistos. ">ORBmatcher::SearchByProjection</a>, que extiende el macheo consecutivo desde lastFrame a currentFrame, asociando los puntos 3D a los puntos singulares del cuadro actual. Si no logra 20 macheos, falla, retorna false. Con 20 o más puntos macheados calcula la nueva pose con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#a7415d78b8a2323b88e108fa1ea3bf2d3" title="Cómputo de la pose de un cuadro. ">Optimizer::PoseOptimization()</a> (donde ocurre el verdadero SfM). y quita los outliers del frame. Si no quedan al menos 10 puntos, retorna false indicando la falla.</p>
 <dl class="section return"><dt>Returns</dt><dd>true si logró optimizar la pose, false si no.</dd></dl>
 <p>Esta función se invoca exclusivamente desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a>, según el autómata finito, siempre en el estado OK. </p>
 
@@ -1068,7 +1074,7 @@ Private Attributes</h2></td></tr>
 
 <p>Rehace la lista de puntos del mapa local. </p>
 <p>La lista de puntos es <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a89074acc520094ba0d0fc7f4c0f8cf09" title="Mapa local, lista de puntos 3D. ">Tracking::mvpLocalMapPoints</a>.</p>
-<p>Recorre la lista de keyframes <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a46ade9f7ec2c89544ae77f2906000b3a" title="Lista del keyframes locales, parte del mapa local. ">Tracking::mvpLocalKeyFrames</a> para recorrer sus puntos obtenidos con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aabc5f6491c32999d9f546669737547bf" title="Devuelve el vector de puntos 3D. ">KeyFrame::GetMapPointMatches()</a>.</p>
+<p>Recorre la lista de keyframes <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a46ade9f7ec2c89544ae77f2906000b3a" title="Lista del keyframes locales, parte del mapa local. ">Tracking::mvpLocalKeyFrames</a> para recorrer sus puntos obtenidos con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#aabc5f6491c32999d9f546669737547bf" title="Devuelve una copia del vector de puntos 3D. ">KeyFrame::GetMapPointMatches()</a>.</p>
 <p>Marca los puntos agregados para no volverlos a agregar, asegurando que no habrá repeticiones.</p>
 <p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a22723e9972c18a888dd51a82eec27b0a" title="Actualiza los puntos y keyframes en el mapa local. ">Tracking::UpdateLocalMap</a>. </p>
 
