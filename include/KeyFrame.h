@@ -300,7 +300,9 @@ public:
      *
      * @param pKF Nuevo keyframe padre.
      *
-     * Este método cambia el valor de KeyFrame::mpParent.
+     * Este método cambia el valor de KeyFrame::mpParent, y se registra como hijo del nuevo padre.
+     *
+     * No se desregistra del viejo padre, que usualmente dejó de existir.
      *
      * Invocado sólo desde ORB_SLAM2::KeyFrame::SetBadFlag(), al remendar el grafo.
      */

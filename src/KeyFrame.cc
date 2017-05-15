@@ -381,7 +381,8 @@ void KeyFrame::UpdateConnections()
         mvOrderedWeights = vector<int>(lWs.begin(), lWs.end());
 
         // Agrego la condición de no tener padre
-        if((mbFirstConnection || !mpParent) && mnId!=0)
+        //if((mbFirstConnection || !mpParent) && mnId!=0)
+        if(mbFirstConnection && mnId!=0)
         {
             mpParent = mvpOrderedConnectedKeyFrames.front();
             mpParent->AddChild(this);	// ChangeParent(mpParent)
@@ -395,8 +396,8 @@ void KeyFrame::UpdateConnections()
      * Acá se controla que no salga ningún KF sin padre, excepto el primero.
      */
 
-    if(mnId!=0 && !mpParent)
-    	cout << "UpdateConnections deja huérfano al KF " << mnId << endl;
+    //if(mnId!=0 && !mpParent)
+    	//cout << "UpdateConnections deja huérfano al KF " << mnId << endl;
 
 }
 

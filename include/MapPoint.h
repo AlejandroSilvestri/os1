@@ -282,10 +282,13 @@ public:
 
     /**
      * Id del primer keyframe que observa este punto, cuyo valor es asignado en el constructor y nunca modificado.
-     * Usualmente es el keyframe de referencia.
-     * En el raro caso en que se elimine el keyframe de referencia, la referencia cambia, pero se preserva este id.
+     *
+     * Es el id del keyframe de referencia, pero es efímero y tiene utilidad hasta que se genera el 4º keyframe posterior al de referencia.
+     * En el caso que se elimine el keyframe de referencia, la referencia cambia, pero se preserva este id.
      *
      * Es utilizado solamente en LocalMapping::MapPointCulling para evitar descartar puntos desde el keyframe que lo generó ni de los dos siguientes.
+     *
+     * Se puede reconstruir luego de una serialiación haciendo cero su valor.
      */
     long int mnFirstKFid;
 

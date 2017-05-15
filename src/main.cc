@@ -165,11 +165,12 @@ int main(int argc, char **argv){
 
         	SLAM.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
 
-        	// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST
-        	SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
-
         	// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
         	SLAM.mpViewer->Release();
+
+        	// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST.
+        	// Como tiene un mutex, por las dudas lo invoco después de viewer.release.
+        	SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
 
     	}
     	if(visor->guardarMapa){
