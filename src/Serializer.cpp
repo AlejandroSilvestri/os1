@@ -259,11 +259,40 @@ template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int
 	// Mat
 	ar & Tcw;	//ar & const_cast<cv::Mat &> (Tcw);
 	ar & const_cast<cv::Mat &> (mK);	// Mismo valor en todos los keyframes
-	ar & const_cast<cv::Mat &> (mDescriptors);
 
 	// Contenedores
-	ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
-	ar & mvpMapPoints;
+	if(Sistema->guardadoFlags && 1 && !CARGANDO(ar)){
+		// Guardar archivo minimizado: eliminar keypoints no asociados a mappoints
+
+		// Cuenta la cantidad de puntos en mvpMapPoints
+		size_t cantidad = count_if(mvpMapPoints.begin(), mvpMapPoints.end(), [](MapPoint *MP){return MP;});
+
+		// Define los vectores alternativos para guardar.  Estos vectores contendrán una cantidad mínima de datos para guardar un archivo menor.  No afecta al sistema.
+		cv::Mat mDescriptors2;
+		vector<cv::KeyPoint> mvKeysUn2(cantidad);
+		vector<MapPoint*> mvpMapPoints2(cantidad);
+
+		// Copia los valores a preservar
+		int i, j=0;
+		for(i=0; i<N; i++){
+			if(mvpMapPoints[i]){
+				mDescriptors2.push_back(mDescriptors.row(i));
+				mvKeysUn2[j] = mvKeysUn[i];
+				mvpMapPoints2[j] = mvpMapPoints[i];
+				j++;
+			}
+		}
+
+		ar & const_cast<cv::Mat &> (mDescriptors2);
+		ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn2);
+		ar & mvpMapPoints2;
+
+	} else {
+		ar & const_cast<cv::Mat &> (mDescriptors);
+		ar & const_cast<std::vector<cv::KeyPoint> &> (mvKeysUn);
+		ar & mvpMapPoints;
+	}
+
 	if(mbNotErase){
 		cout << "KF con ejes de bucle " << mnId << endl;
 		ar & mspLoopEdges;
@@ -382,7 +411,8 @@ template<class Archivo> void Serializer::serialize(Archivo& ar, const unsigned i
 }
 
 
-void Serializer::mapSave(char* archivo){
+//void Serializer::mapSave(char* archivo){
+void Serializer::mapSave(std::string archivo){
 	// Elimina keyframes y mappoint malos de KeyFrame::mvpMapPoints y MapPoint::mObservations
 	depurar();
 
@@ -411,7 +441,8 @@ void Serializer::mapSave(char* archivo){
  * Es necesario asegurar que otros hilos no modifiquen el mapa ni sus elementos (keyframes y mappoints) durante la carga,
  * pues pueden corromper los datos en memoria, con alta probabilidad de abortar la aplicación por Seg Fault.
  */
-void Serializer::mapLoad(char* archivo){
+//void Serializer::mapLoad(char* archivo){
+void Serializer::mapLoad(std::string archivo){
 	// A este punto se llega con el mapa limpio y los sistemas suspendidos para no interferir.
 
 	{
@@ -438,7 +469,7 @@ void Serializer::mapLoad(char* archivo){
 	 * - UpdateConnections para reconstruir los grafos
 	 * - MapPoint::AddObservation sobre cada punto, para reconstruir mObservations y mObs
 	 */
-	cout << "Reconstruyendo DB, grafo de conexinoes y observaciones de puntos 3D..." << endl;
+	cout << "Reconstruyendo DB, grafo de conexiones y observaciones de puntos 3D..." << endl;
 	KeyFrameDatabase* kfdb = Sistema->mpKeyFrameDatabase;//Map::mpKeyFrameDatabase;
 	for(KeyFrame *pKF : mapa->mspKeyFrames){
 		// Agrega el keyframe a la base de datos de keyframes

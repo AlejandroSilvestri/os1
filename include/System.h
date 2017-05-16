@@ -382,6 +382,12 @@ public:
     /** Imagen de entrada.*/
     cv::Mat imagenEntrada;
 
+    /**
+     * Flags para guardar archivos.
+     *
+     * 1- Guardar archivo en formato mínimo: opera sobre KeyFrame.
+     */
+    unsigned int guardadoFlags = 0;
 
     // Hice públicos los singletons, para que se puedan obtener vía System
 

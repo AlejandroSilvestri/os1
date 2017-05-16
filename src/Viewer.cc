@@ -201,9 +201,9 @@ void Viewer::Run(){
         	break;
 
             // Mostrar u ocultar imagen de entrada
-            case 'e':
-            	mostrarEntrada = !mostrarEntrada;
-            	break;
+		case 'e':
+			mostrarEntrada = !mostrarEntrada;
+			break;
 
         // Modo automático, que invierte el video cuando se pierde, y lo vuelve a invertir cuando se relocaliza.
         case 'a':
@@ -229,12 +229,22 @@ void Viewer::Run(){
 			cout << "\a" << endl;
 			break;
 
+		// Archivo en versión comprimida (eliminando keypoints inútiles).  Alterna el flag
+		case 'c':
+			mpSystem->guardadoFlags ^= 1;
+			cout << "Flag de guardado (impar para guardado comprimido): " << mpSystem->guardadoFlags << endl;
+			break;
+
+/*
 		// Cambiar la activación de la creación de puntos lejanos
 		case 'l':
 			bool &activado = mpSystem->mpLocalMapper->creacionDePuntosLejanosActivada;
 			activado = !activado;
 			cout << "Puntos lejanos:" << activado << endl;
 			break;
+*/
+
+
         }
 
 

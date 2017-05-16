@@ -55,7 +55,8 @@ public:
 	 * Depura el mapa, eliminando elementos remanentes que perduran por error.
 	 * Abre el archivo y guarda el mapa en binario.
 	 */
-	void mapSave(char* archivo);
+	//void mapSave(char* archivo);
+	void mapSave(std::string archivo);
 
 	/**
 	 * Carga el mapa desde el archivo binario.
@@ -70,7 +71,8 @@ public:
 	 * pues pueden corromper los datos en memoria, con alta probabilidad de abortar la aplicación por Seg Fault.
 	 * Los otros hilos deben detenerse antes de invocar save.
 	 */
-	void mapLoad(char* archivo);
+	//void mapLoad(char* archivo);
+	void mapLoad(std::string archivo);
 
 
 protected:

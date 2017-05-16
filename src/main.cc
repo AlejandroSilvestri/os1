@@ -155,23 +155,31 @@ int main(int argc, char **argv){
     	    // Espera a que se detenga LocalMapping y  Viewer
     		SLAM.mpLocalMapper->RequestStop();
     		SLAM.mpViewer	  ->RequestStop();
-    		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
-    		while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
 
-        	char archivo[] = "mapa.bin";
-        	//SLAM.mpMap->load(archivo);
-        	SLAM.serializer->mapLoad(archivo);
-        	cout << "Mapa cargado." << endl;
+        	char charchivo[1024];
+        	FILE *f = popen("zenity --file-selection", "r");
+        	fgets(charchivo, 1024, f);
 
-        	SLAM.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
+        	if(charchivo[0]){
+            	while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
+    			while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
 
-        	// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
-        	SLAM.mpViewer->Release();
+				std::string nombreArchivo(charchivo);
+				nombreArchivo.pop_back();	// Quita el \n final
+				cout << "Abriendo archivo " << nombreArchivo << endl;
 
-        	// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST.
-        	// Como tiene un mutex, por las dudas lo invoco después de viewer.release.
-        	SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
+				SLAM.serializer->mapLoad(nombreArchivo);
+				cout << "Mapa cargado." << endl;
 
+        	}
+			SLAM.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
+
+			// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
+			SLAM.mpViewer->Release();
+
+			// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST.
+			// Como tiene un mutex, por las dudas lo invoco después de viewer.release.
+			SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
     	}
     	if(visor->guardarMapa){
     		visor->guardarMapa = false;
@@ -180,13 +188,22 @@ int main(int argc, char **argv){
     		SLAM.mpLocalMapper->RequestStop();
     		SLAM.mpViewer	  ->RequestStop();	// No parece que sea necesario para guardar, sino sólo para cargar, pues al guardar no se modifica el mapa.
 
-    		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
-    		while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
+        	//char archivo[] = "mapa.bin";
+        	char charchivo[1024];
+        	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa.osMap", "r");
+        	fgets(charchivo, 1024, f);
 
-        	char archivo[] = "mapa.bin";
-        	//SLAM.mpMap->save(archivo);
-        	SLAM.serializer->mapSave(archivo);
-        	cout << "Mapa guardado." << endl;
+        	if(charchivo[0]){
+        		while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
+        		while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
+
+				std::string nombreArchivo(charchivo);
+				nombreArchivo.pop_back();	// Quita el \n final
+				cout << "Guardando archivo " << nombreArchivo << endl;
+
+            	SLAM.serializer->mapSave(nombreArchivo);
+            	cout << "Mapa guardado." << endl;
+        	}
 
         	// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
         	SLAM.mpViewer->Release();
