@@ -78,8 +78,11 @@
 
 // Aquí se define el tipo de archivo: binary, text, xml...
 TIPOS_ARCHIVOS(binary)
+
+// Versiones de serialización al guardar
 BOOST_CLASS_VERSION(ORB_SLAM2::MapPoint, 1)
 BOOST_CLASS_VERSION(ORB_SLAM2::KeyFrame, 1)
+BOOST_CLASS_VERSION(ORB_SLAM2::Serializer, 1)
 
 
 /**
@@ -383,19 +386,26 @@ template<class T> struct lessId{
 
 
 template<class Archivo> void Serializer::serialize(Archivo& ar, const unsigned int version){
-	string marca = "";
-	//ar & marca;
 
-	// Propiedades
-	ar & mapa->mnMaxKFid;
+	if(version){
+		// Encabezado, a partir de la versión 1
+		string marca = "Mapa de OS1 - ORB-SLAM2.  Versión Map " + to_string(version) + ".";
+		ar & marca;
 
-	// Contenedores
+		int flags = 0;
+		ar & flags;
+	} else {
+		// Única propiedad, sólo en versión 0, porque es reconstruíble
+		ar & mapa->mnMaxKFid;
+	}
+
+	// Puntos del mapa
 	ar & mapa->mspMapPoints;
 	cout << "MapPoints serializados: " << mapa->mspMapPoints.size() << endl;
 
 
 
-	// Contenedores de KeyFrames
+	// KeyFrames del mapa
 	if(CARGANDO(ar)){
 		ar & mapa->mspKeyFrames;
 	} else {
@@ -407,7 +417,8 @@ template<class Archivo> void Serializer::serialize(Archivo& ar, const unsigned i
 	cout << "Último keyframe: " << mapa->mnMaxKFid << endl;
 
 
-	ar & mapa->mvpKeyFrameOrigins;
+	if(version == 0)
+		ar & mapa->mvpKeyFrameOrigins;
 }
 
 
@@ -461,7 +472,7 @@ void Serializer::mapLoad(std::string archivo){
 
 	// Reconstrucción, ya cargados todos los keyframes y mappoints.
 
-	KeyFrame::nNextId = mapa->mnMaxKFid + 1;	// mnMaxKFid es el id del último keyframe agregado al mapa
+	long unsigned int maxId = 0;
 
 	/*
 	 * Recorre los keyframes del mapa:
@@ -472,6 +483,9 @@ void Serializer::mapLoad(std::string archivo){
 	cout << "Reconstruyendo DB, grafo de conexiones y observaciones de puntos 3D..." << endl;
 	KeyFrameDatabase* kfdb = Sistema->mpKeyFrameDatabase;//Map::mpKeyFrameDatabase;
 	for(KeyFrame *pKF : mapa->mspKeyFrames){
+		// Busca el máximo id, para al final determinar nNextId
+		maxId = max(maxId, pKF->mnId);
+
 		// Agrega el keyframe a la base de datos de keyframes
 		kfdb->add(pKF);
 
@@ -501,6 +515,10 @@ void Serializer::mapLoad(std::string archivo){
 			}
 	}
 
+	mapa->mnMaxKFid = maxId;	// Último KF del mapa
+	KeyFrame::nNextId = maxId + 1;	// Próximo KF
+
+
 	/**
  	 * Genera un spanning tree asignando mpParent a cada KeyFrame
  	 * Asigna un padre a cada KF (excepto al mnId 0).
@@ -510,8 +528,11 @@ void Serializer::mapLoad(std::string archivo){
 
 	cout << "Reconstruyendo árbol de expansión (spanning tree) de keyframes..." << endl;
 
-	// Set de keyframes ordenados por mnId
+	// Set de keyframes ordenados por mnId.
 	std::set<KeyFrame*, lessId<KeyFrame>> KFOrdenados(mapa->mspKeyFrames.begin(), mapa->mspKeyFrames.end());
+
+	// Este vector debería estar vacío, y se le agrega el único elemento, que es el primer keyframe.
+	mapa->mvpKeyFrameOrigins.push_back(*KFOrdenados.begin());
 
 	//KFOrdenados.begin()->mpParent;
 
@@ -540,7 +561,6 @@ void Serializer::mapLoad(std::string archivo){
 	 * - Reconstruye propiedades con UpdateNormalAndDepth (usa mpRefKF)
 	 */
 	cout << "Reconstruyendo keyframes de referencia de cada punto 3D..." << endl;
-	long unsigned int maxId = 0;
 	for(MapPoint *pMP : mapa->mspMapPoints){
 		// Busca el máximo id, para al final determinar nNextId
 		maxId = max(maxId, pMP->mnId);

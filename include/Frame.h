@@ -437,6 +437,7 @@ public:
 
     /**
      * Calcula los puntos singulares de mvKeysUn.
+     *
      * Antidistorsiona los puntos detectados, que están en mvKeys, y los guarda en mvKeysUn en el mismo orden.
      * Si no hay distorsión, UndistortKeyPoints retorna rápidamente unificando mvKeysUn = mvKeys en un mismo vector.
      */

@@ -135,7 +135,9 @@ public:
     void RequestReset();
 
 
-    /** Invocado en el bucle principal de Run, para procesar pedidos de parada.  Si hay un pedido de parada, devuelve true.*/
+    /**
+     * Invocado en el bucle principal de Run, para procesar pedidos de parada.  Si hay un pedido de parada, devuelve true.
+     */
     bool Stop();
 
     /** Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo.*/
@@ -167,7 +169,20 @@ public:
      */
     void SetAcceptKeyFrames(bool flag);
 
-    /** Establece la señal de no parar, que ignora solicitudes de parada.  Invocado desde Tracking.*/
+    /**
+     * Establece la señal de no parar, que ignora solicitudes de parada.
+     *
+     * @param flag true para activar la señal de no parar, false para desactivarla.
+     * @returns Informa si pudo ajustar la señal de no parar.
+     *
+     * Si ya está parado no deja activar esta señal.
+     *
+     * Ajusta mbNonStopFlag.
+     *
+     * Invocado sólo desde Tracking::CreateNewKeyFrame, para activar y luego desactivar la señal.
+     *
+     *
+     */
     bool SetNotStop(bool flag);
 
     /** Solicita interrupción de BA.  Invocado desde Tracking.*/
@@ -279,7 +294,7 @@ protected:
      * @param pKF2 Segundo keyframe
      * @returns La matriz fundamental F12.
      *
-     * Invocado sólo desde CreateNewMapPoints.
+     * Invocado sólo desde LocalMapping::CreateNewMapPoints.
      */
     cv::Mat ComputeF12(KeyFrame* &pKF1, KeyFrame* &pKF2);
 
@@ -355,6 +370,10 @@ protected:
 
     /** Señal de no parar.*/
     bool mbNotStop;
+
+    /**
+     *
+     */
     std::mutex mMutexStop;
 
     /**
@@ -369,6 +388,10 @@ protected:
 
     /**
      * Mutex para acceder a LocalMapping::mbAcceptKeyFrames.
+     *
+     * Evita escritura y lectura concurrete.
+     *
+     * Da la impresión de que podría quitarse este mutex sin ningún efecto.
      */
     std::mutex mMutexAccept;
 };

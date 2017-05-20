@@ -647,7 +647,13 @@ public:
     /** Puntos singulares visualizados por el keyframe.*/
     const std::vector<cv::KeyPoint> mvKeys;
 
-    /** Puntos singulares con coordenadas "antidistorsionadas".  Los elementos se corresponden con los de mvKeys.*/
+    /**
+     * Puntos singulares con coordenadas "antidistorsionadas".
+     *
+     * Los elementos se corresponden con los de mvKeys.
+     *
+     *
+     */
     const std::vector<cv::KeyPoint> mvKeysUn;
 
     /** Descriptores.  Se corresponden con los de mvKeys.*/

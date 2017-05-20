@@ -171,7 +171,15 @@ protected:
      */
     std::vector<MapPoint*> mvpReferenceMapPoints;
 
-    /** Id del último keyframe agregado.*/
+    /**
+     * Id del último keyframe agregado.
+     *
+     * Se usa para evitar agregar un keyframe al mapa dos veces.
+     *
+     * Difiere de KeyFrame::nextID en que pueden existir keyframes que todavía no están en el mapa.
+     *
+     * Invocado desde Map::AddKeyFrame, entre otros.
+     */
     long unsigned int mnMaxKFid;
 
     /** Mutext del mapa.*/
