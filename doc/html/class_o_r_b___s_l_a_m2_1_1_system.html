@@ -127,7 +127,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a28715073ef3ddbc8aececc634173f931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve un puntero al objeto de tracking.  <a href="#a28715073ef3ddbc8aececc634173f931">More...</a><br /></td></tr>
 <tr class="separator:a28715073ef3ddbc8aececc634173f931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f5eb6f33d14cdda2a889fe06d6619e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a33f5eb6f33d14cdda2a889fe06d6619e">Reset</a> ()</td></tr>
-<tr class="memdesc:a33f5eb6f33d14cdda2a889fe06d6619e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinicia el sistema.  <a href="#a33f5eb6f33d14cdda2a889fe06d6619e">More...</a><br /></td></tr>
+<tr class="memdesc:a33f5eb6f33d14cdda2a889fe06d6619e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Comando para reiniciar el sistema, que entre otras cosas limpia el mapa.  <a href="#a33f5eb6f33d14cdda2a889fe06d6619e">More...</a><br /></td></tr>
 <tr class="separator:a33f5eb6f33d14cdda2a889fe06d6619e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6435a029f66a34103c434aa16e80eae3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a6435a029f66a34103c434aa16e80eae3">SaveKeyFrameTrajectoryTUM</a> (const string &amp;filename)</td></tr>
 <tr class="separator:a6435a029f66a34103c434aa16e80eae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,6 +146,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
+<tr class="memitem:a93ae2356ad6438dc5ed5c438363159cb"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a93ae2356ad6438dc5ed5c438363159cb">guardadoFlags</a> = 0</td></tr>
+<tr class="memdesc:a93ae2356ad6438dc5ed5c438363159cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flags para guardar archivos.  <a href="#a93ae2356ad6438dc5ed5c438363159cb">More...</a><br /></td></tr>
+<tr class="separator:a93ae2356ad6438dc5ed5c438363159cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60b15b1f4e0299fa9398801abc143070"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a60b15b1f4e0299fa9398801abc143070">imagenEntrada</a></td></tr>
 <tr class="memdesc:a60b15b1f4e0299fa9398801abc143070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Imagen de entrada.  <a href="#a60b15b1f4e0299fa9398801abc143070">More...</a><br /></td></tr>
 <tr class="separator:a60b15b1f4e0299fa9398801abc143070"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -428,9 +431,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reinicia el sistema. </p>
+<p>Comando para reiniciar el sistema, que entre otras cosas limpia el mapa. </p>
 <p>Inicia el autómata finito que resetea el sistema.</p>
-<p>Limpia el mapa.</p>
+<p>Marca el flag mbReset = true, para que lo procese <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a0408659bafa31c4d0722ccd032fb9430" title="Procesa una imagen de la cámara. ">System::TrackMonocular</a>, que está en el while principal. Éste siplemente resetea el flag e invoca <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>, donde realmente comienza el reseteo.</p>
+<p>El sistema recién reseteado se pone en modo de inicialización, pero la carga de un mapa lo puede pasar directamente a relocalización.</p>
+<p>Invocado sólo desde:</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> cada vez que falla la inicialización.</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> invocado por el usuario, desde otro hilo.</li>
+</ul>
 
 </div>
 </div>
@@ -526,6 +534,21 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a93ae2356ad6438dc5ed5c438363159cb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int ORB_SLAM2::System::guardadoFlags = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flags para guardar archivos. </p>
+<p>1- Guardar archivo en formato mínimo: opera sobre <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a>. </p>
+
+</div>
+</div>
 <a id="a60b15b1f4e0299fa9398801abc143070"></a>
 <div class="memitem">
 <div class="memproto">

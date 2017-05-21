@@ -127,7 +127,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a16ea4f0cfa1ca411bb3382107fe69d2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega un punto 3D a la lista de puntos observados.  <a href="#a16ea4f0cfa1ca411bb3382107fe69d2d">More...</a><br /></td></tr>
 <tr class="separator:a16ea4f0cfa1ca411bb3382107fe69d2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fd4bcef13a79d08e78307cc3d77349b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a4fd4bcef13a79d08e78307cc3d77349b">buildObservations</a> ()</td></tr>
-<tr class="memdesc:a4fd4bcef13a79d08e78307cc3d77349b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruye <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a189bea541f860af75ceb60300b59d8e3" title="Keyframes que observan este punto, y sus índices. ">MapPoint::mObservations</a> y MapPoint::mObs a partir de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>, en la carga (serialización).  <a href="#a4fd4bcef13a79d08e78307cc3d77349b">More...</a><br /></td></tr>
+<tr class="memdesc:a4fd4bcef13a79d08e78307cc3d77349b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruye las observaciones de los puntos observados por el keyframe.  <a href="#a4fd4bcef13a79d08e78307cc3d77349b">More...</a><br /></td></tr>
 <tr class="separator:a4fd4bcef13a79d08e78307cc3d77349b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3232df2495062749da1344db3e5a487f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3232df2495062749da1344db3e5a487f">ChangeParent</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html">KeyFrame</a> *pKF)</td></tr>
 <tr class="memdesc:a3232df2495062749da1344db3e5a487f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el padre del keyframe en el grafo.  <a href="#a3232df2495062749da1344db3e5a487f">More...</a><br /></td></tr>
@@ -218,7 +218,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a35779a4eb4f5cec346780bbbdf377298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="memTemplParams" colspan="2">template&lt;class Archive &gt; </td></tr>
 <tr class="memitem:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a338bacd1855d45c7a1cc38b9ba47a46e">serialize</a> (Archive &amp;ar, const unsigned int version)</td></tr>
-<tr class="memdesc:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializador para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a>.  <a href="#a338bacd1855d45c7a1cc38b9ba47a46e">More...</a><br /></td></tr>
 <tr class="separator:a338bacd1855d45c7a1cc38b9ba47a46e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a365ec4d06acbbcd668aa5a069c69fdaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a365ec4d06acbbcd668aa5a069c69fdaa">SetBadFlag</a> ()</td></tr>
 <tr class="memdesc:a365ec4d06acbbcd668aa5a069c69fdaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intenta eliminar el keyframe y marcarlo como malo.  <a href="#a365ec4d06acbbcd668aa5a069c69fdaa">More...</a><br /></td></tr>
@@ -402,10 +401,11 @@ Static Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a3c33a6c79533849d367db9e85fe98c14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a3c33a6c79533849d367db9e85fe98c14">KeyFrame</a> ()</td></tr>
-<tr class="memdesc:a3c33a6c79533849d367db9e85fe98c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialización agregada para guardar y cargar keyframes.  <a href="#a3c33a6c79533849d367db9e85fe98c14">More...</a><br /></td></tr>
+<tr class="memdesc:a3c33a6c79533849d367db9e85fe98c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor por defecto para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> Se ocupa de inicializar los atributos const, para que el compilador no chille.  <a href="#a3c33a6c79533849d367db9e85fe98c14">More...</a><br /></td></tr>
 <tr class="separator:a3c33a6c79533849d367db9e85fe98c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03bbcbd5f862204ac10985a51d8cd74f"><td class="memTemplParams" colspan="2">template&lt;class Archivo &gt; </td></tr>
 <tr class="memitem:a03bbcbd5f862204ac10985a51d8cd74f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a03bbcbd5f862204ac10985a51d8cd74f">serialize</a> (Archivo &amp;, const unsigned int)</td></tr>
+<tr class="memdesc:a03bbcbd5f862204ac10985a51d8cd74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializador para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a>.  <a href="#a03bbcbd5f862204ac10985a51d8cd74f">More...</a><br /></td></tr>
 <tr class="separator:a03bbcbd5f862204ac10985a51d8cd74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -602,8 +602,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Serialización agregada para guardar y cargar keyframes. </p>
-<p>Constructor por defecto para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> Se ocupa de inicializar los atributos const, para que el compilador no chille.</p>
+<p>Constructor por defecto para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> Se ocupa de inicializar los atributos const, para que el compilador no chille. </p>
 <p>Entre ellos inicializa los atributos no serializables (todos punteros a singletons). Luego serialize se encarga de cambiarle los valores, aunque sean const. </p>
 
 </div>
@@ -748,7 +747,10 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reconstruye <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a189bea541f860af75ceb60300b59d8e3" title="Keyframes que observan este punto, y sus índices. ">MapPoint::mObservations</a> y MapPoint::mObs a partir de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>, en la carga (serialización). </p>
+<p>Reconstruye las observaciones de los puntos observados por el keyframe. </p>
+<p>Usado exclusivamente en la serialización, para reconstruir datos redundantes.</p>
+<p>Los keyframes registran los puntos obervados, y éstos registran los keyframes que los observan. Sólo los primeros se serializan, los segundos se reconstruyen con este método.</p>
+<p>Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_serializer.html#a0abab31e1f3f6597b18de573701cb14b" title="Carga el mapa desde el archivo binario. ">Serializer::mapLoad</a> </p>
 
 </div>
 </div>
@@ -773,7 +775,8 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Este método cambia el valor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a94bbb0261caf3f1ed0c434c9fca1e886" title="KeyFrame padre en el grafo. ">KeyFrame::mpParent</a>.</p>
+<p>Este método cambia el valor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a94bbb0261caf3f1ed0c434c9fca1e886" title="KeyFrame padre en el grafo. ">KeyFrame::mpParent</a>, y se registra como hijo del nuevo padre.</p>
+<p>No se desregistra del viejo padre, que usualmente dejó de existir.</p>
 <p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a365ec4d06acbbcd668aa5a069c69fdaa" title="Intenta eliminar el keyframe y marcarlo como malo. ">ORB_SLAM2::KeyFrame::SetBadFlag()</a>, al remendar el grafo. </p>
 
 </div>
@@ -1477,9 +1480,6 @@ template&lt;class Archive &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Serializador para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a>. </p>
-<p>Invocado al serializar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#abf1d31c2cb4df61d232bb7fbd7cfb61d" title="KeyFrames del mapa. ">Map::mspKeyFrames</a>. No guarda mpKeyFrameDB, que se debe asignar de otro modo. </p>
-
 </div>
 </div>
 <a id="a03bbcbd5f862204ac10985a51d8cd74f"></a>
@@ -1515,6 +1515,9 @@ template&lt;class Archivo &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Serializador para <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a>. </p>
+<p>Invocado al serializar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#abf1d31c2cb4df61d232bb7fbd7cfb61d" title="KeyFrames del mapa. ">Map::mspKeyFrames</a>. No guarda mpKeyFrameDB, que se debe asignar de otro modo. </p>
 
 </div>
 </div>

@@ -14,6 +14,7 @@ var class_o_r_b___s_l_a_m2_1_1_system =
     [ "SetStatus", "class_o_r_b___s_l_a_m2_1_1_system.html#a63af12168389966ddb02d3b4ddff3212", null ],
     [ "Shutdown", "class_o_r_b___s_l_a_m2_1_1_system.html#aa934876a230dfa99e123f62b4b54d0cb", null ],
     [ "TrackMonocular", "class_o_r_b___s_l_a_m2_1_1_system.html#a0408659bafa31c4d0722ccd032fb9430", null ],
+    [ "guardadoFlags", "class_o_r_b___s_l_a_m2_1_1_system.html#a93ae2356ad6438dc5ed5c438363159cb", null ],
     [ "imagenEntrada", "class_o_r_b___s_l_a_m2_1_1_system.html#a60b15b1f4e0299fa9398801abc143070", null ],
     [ "mbActivateLocalizationMode", "class_o_r_b___s_l_a_m2_1_1_system.html#a375f5e834f834d35227d8500be331d4d", null ],
     [ "mbDeactivateLocalizationMode", "class_o_r_b___s_l_a_m2_1_1_system.html#a3ddf79ff90f548529490fa6910f52bb8", null ],

@@ -627,6 +627,9 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Id del último keyframe agregado. </p>
+<p>Se usa para evitar agregar un keyframe al mapa dos veces.</p>
+<p>Difiere de KeyFrame::nextID en que pueden existir keyframes que todavía no están en el mapa.</p>
+<p>Invocado desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a688de3b072e0176bb288bb70d36cd0e9" title="Agrega un nuevo keyframe al mapa. ">Map::AddKeyFrame</a>, entre otros. </p>
 
 </div>
 </div>

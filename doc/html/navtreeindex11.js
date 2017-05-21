@@ -1,5 +1,6 @@
 var NAVTREEINDEX11 =
 {
+"misc_8h.html#a3be76fea59d320255e89425439f18f48":[6,0,2,1,0,3,2,2],
 "misc_8h.html#a50939862674314724dd800c41f82e7fe":[6,0,2,1,0,3,2,5],
 "misc_8h.html#a586ee8937cdc8de49303abd1611da387":[6,0,2,1,0,3,2,7],
 "misc_8h.html#a821ae3df8a97b37daf8804ef3a26ef1d":[6,0,2,1,0,3,2,12],
@@ -13,17 +14,17 @@ var NAVTREEINDEX11 =
 "modules.html":[3],
 "namespace_d_bo_w2.html":[4,0,1],
 "namespace_d_bo_w2.html":[5,0,1],
-"namespace_d_utils.html":[4,0,2],
 "namespace_d_utils.html":[5,0,2],
+"namespace_d_utils.html":[4,0,2],
 "namespace_o_r_b___s_l_a_m2.html":[5,0,4],
 "namespace_o_r_b___s_l_a_m2.html":[4,0,5],
-"namespaceboost.html":[5,0,0],
 "namespaceboost.html":[4,0,0],
+"namespaceboost.html":[5,0,0],
 "namespaceboost_1_1serialization.html":[4,0,0,0],
-"namespaceg2o.html":[4,0,3],
 "namespaceg2o.html":[5,0,3],
-"namespaceg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03.html":[4,0,3,0],
+"namespaceg2o.html":[4,0,3],
 "namespaceg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03.html":[5,0,3,0],
+"namespaceg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03.html":[4,0,3,0],
 "namespaceg2o_1_1internal.html":[4,0,3,1],
 "namespaceg2o_1_1types__six__dof__expmap.html":[4,0,3,2],
 "namespaceinternal.html":[4,0,4],
@@ -183,6 +184,8 @@ var NAVTREEINDEX11 =
 "struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#ae1e261135cb7af400f1c4c4795cdba41":[5,0,1,5,0,7],
 "struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html":[5,0,4,5,0],
 "struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html#a0ae1e02a2ab3bd53a29266291389f217":[5,0,4,5,0,0],
+"struct_o_r_b___s_l_a_m2_1_1less_id.html":[5,0,4,8],
+"struct_o_r_b___s_l_a_m2_1_1less_id.html#a6bc582fac42a105b0de310ffb262f0c1":[5,0,4,8,0],
 "structg2o_1_1_base_multi_edge_1_1_hessian_helper.html":[5,0,3,6,0],
 "structg2o_1_1_base_multi_edge_1_1_hessian_helper.html#a5a76a58b21ca39ea6ca1e274b588fad0":[5,0,3,6,0,0],
 "structg2o_1_1_base_multi_edge_1_1_hessian_helper.html#ab9eab8a9c5bf6e7814173d1955d7a01c":[5,0,3,6,0,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX11 =
 "structg2o_1_1_hyper_dijkstra.html":[5,0,3,31],
 "structg2o_1_1_hyper_dijkstra.html#a00d978615ff1bbb9917351e9cba0b4ba":[5,0,3,31,11],
 "structg2o_1_1_hyper_dijkstra.html#a1bf21d65ddd6e0feeb6a76f58d7f2c6e":[5,0,3,31,15],
-"structg2o_1_1_hyper_dijkstra.html#a2cb453ed6f1bf6069186bd269a6464da":[5,0,3,31,13],
-"structg2o_1_1_hyper_dijkstra.html#a55e844f4b596290cb36a0d9fe4140966":[5,0,3,31,4],
-"structg2o_1_1_hyper_dijkstra.html#a578a9eb1874d9802dbd37a2f1681c196":[5,0,3,31,8],
-"structg2o_1_1_hyper_dijkstra.html#a846232e98c8175ec2fff784fc3271ad7":[5,0,3,31,7]
+"structg2o_1_1_hyper_dijkstra.html#a2cb453ed6f1bf6069186bd269a6464da":[5,0,3,31,13]
 };

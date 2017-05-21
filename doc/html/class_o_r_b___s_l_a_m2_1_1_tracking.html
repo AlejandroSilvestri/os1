@@ -753,7 +753,20 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reinicia el sistema. </p>
-<p>Olvida el mapa y demás y pasa al estado NOT_IMAGE_YET </p>
+<p>Olvida el mapa y demás y pasa al estado NOT_IMAGE_YET.</p>
+<p>Este método:</p><ul>
+<li>pausa <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. ">Viewer</a></li>
+<li>resetea <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a></li>
+<li>resetea <a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. ">LoopClosing</a></li>
+<li>resetea KeyFrameDB</li>
+<li>resetea <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. ">Map</a></li>
+<li>resetea <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a> eliminando propiedades</li>
+</ul>
+<p>Finalmente, reanuda <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html" title="Viewer representa la interfaz de usuario. ">Viewer</a>.</p>
+<p>Al terminar el método, el sistema se encuentra reseteado.</p>
+<p>El reseteo del los otros hilos hace esperar hasta que el hilo termina de resetearlo. Podría paralelizare, pero no es un proceso que requiera mayor velocidad.</p>
+<p>Invocado indirectamente por el usuario vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a33f5eb6f33d14cdda2a889fe06d6619e" title="Comando para reiniciar el sistema, que entre otras cosas limpia el mapa. ">System::Reset</a>.</p>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a0408659bafa31c4d0722ccd032fb9430" title="Procesa una imagen de la cámara. ">System::TrackMonocular</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#afeb077c81cd700d779348b80698086e8" title="Crea el mapa inicial. ">Tracking::CreateInitialMapMonocular</a>. </p>
 
 </div>
 </div>

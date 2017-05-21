@@ -301,7 +301,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a3d9788e9d5c47d86b0f614cde91e3a4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#a3d9788e9d5c47d86b0f614cde91e3a4f">MapPoint</a> ()</td></tr>
-<tr class="memdesc:a3d9788e9d5c47d86b0f614cde91e3a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialización agregada para guardar y cargar puntos de mapa.  <a href="#a3d9788e9d5c47d86b0f614cde91e3a4f">More...</a><br /></td></tr>
+<tr class="memdesc:a3d9788e9d5c47d86b0f614cde91e3a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor por defecto de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> para el serializador.  <a href="#a3d9788e9d5c47d86b0f614cde91e3a4f">More...</a><br /></td></tr>
 <tr class="separator:a3d9788e9d5c47d86b0f614cde91e3a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef6f5c53ed3c845276473bda2437ad03"><td class="memTemplParams" colspan="2">template&lt;class Archivo &gt; </td></tr>
 <tr class="memitem:aef6f5c53ed3c845276473bda2437ad03"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html#aef6f5c53ed3c845276473bda2437ad03">serialize</a> (Archivo &amp;, const unsigned int)</td></tr>
@@ -529,8 +529,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Serialización agregada para guardar y cargar puntos de mapa. </p>
-<p>Constructor por defecto de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> para el serializador.</p>
+<p>Constructor por defecto de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> para el serializador. </p>
 <p>Se encarga de inicializar las variables const, para que el compilador no chille. </p>
 
 </div>
@@ -1073,7 +1072,8 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Serializador de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> Se invoca al serializar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html#a2864c4d90418f02768c85d0255d1eca7" title="Puntos del mapa. ">Map::mspMapPoints</a> y <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a777aab9cb7c1fd8e83f143e77a9f1b03" title="Puntos del mapa asociado a los puntos singulares. ">KeyFrame::mvpMapPoints</a>, cuyos mapPoints nunca tienen mbBad true. </p>
-<p>La serialización de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> evita punteros para asegurar el guardado consecutivo de todos los puntos antes de proceder con los KeyFrames. Esto evita problemas no identificados con <a class="el" href="namespaceboost_1_1serialization.html">boost::serialization</a>, que cuelgan la aplicación al guardar. </p>
+<p>La serialización de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_map_point.html" title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">MapPoint</a> evita punteros para asegurar el guardado consecutivo de todos los puntos antes de proceder con los KeyFrames. Esto evita problemas no identificados con <a class="el" href="namespaceboost_1_1serialization.html">boost::serialization</a>, que cuelgan la aplicación al guardar.</p>
+<p>Versionado: La versión 1 reconstruye mRefKF, y ya no guarda mnFirstKFid. </p>
 
 </div>
 </div>
@@ -1446,8 +1446,9 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Id del primer keyframe que observa este punto, cuyo valor es asignado en el constructor y nunca modificado. </p>
-<p>Usualmente es el keyframe de referencia. En el raro caso en que se elimine el keyframe de referencia, la referencia cambia, pero se preserva este id.</p>
-<p>Es utilizado solamente en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#acbbb8f04b15e3250e0e24070825d19ae" title="Elimina por varios motivos puntos recién agregados. ">LocalMapping::MapPointCulling</a> para evitar descartar puntos desde el keyframe que lo generó ni de los dos siguientes. </p>
+<p>Es el id del keyframe de referencia, pero es efímero y tiene utilidad hasta que se genera el 4º keyframe posterior al de referencia. En el caso que se elimine el keyframe de referencia, la referencia cambia, pero se preserva este id.</p>
+<p>Es utilizado solamente en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#acbbb8f04b15e3250e0e24070825d19ae" title="Elimina por varios motivos puntos recién agregados. ">LocalMapping::MapPointCulling</a> para evitar descartar puntos desde el keyframe que lo generó ni de los dos siguientes.</p>
+<p>Se puede reconstruir luego de una serialiación haciendo cero su valor. </p>
 
 </div>
 </div>

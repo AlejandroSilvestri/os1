@@ -1,5 +1,6 @@
 var NAVTREEINDEX7 =
 {
+"classg2o_1_1_linear_solver.html":[5,0,3,39],
 "classg2o_1_1_linear_solver.html#a252e3658b3ba0c3577c33f846c514535":[5,0,3,39,5],
 "classg2o_1_1_linear_solver.html#a5157e1221534fae13989c8443adab1ec":[5,0,3,39,1],
 "classg2o_1_1_linear_solver.html#a741928aa64f4b6416c9990892e3ede7a":[5,0,3,39,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX7 =
 "classg2o_1_1_optimization_algorithm_dogleg.html#aacc051a6740fc6017dac7c424dc7df3d":[5,0,3,49,12],
 "classg2o_1_1_optimization_algorithm_dogleg.html#aaf433c824153a7bd76b27690eb53113b":[5,0,3,49,14],
 "classg2o_1_1_optimization_algorithm_dogleg.html#ab332f8fb049d1a1fecba18105083052a":[5,0,3,49,4],
-"classg2o_1_1_optimization_algorithm_dogleg.html#ac5ebd46eeca170f6a923c75556504d2b":[5,0,3,49,5],
-"classg2o_1_1_optimization_algorithm_dogleg.html#ace62fd809c18655bd7ff104285748610":[5,0,3,49,8]
+"classg2o_1_1_optimization_algorithm_dogleg.html#ac5ebd46eeca170f6a923c75556504d2b":[5,0,3,49,5]
 };

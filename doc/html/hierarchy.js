@@ -112,6 +112,7 @@ var hierarchy =
     [ "ORB_SLAM2::KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html", null ],
     [ "ORB_SLAM2::KeyFrameDatabase", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html", null ],
     [ "ORB_SLAM2::KeyFrameTriangulacion", "class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html", null ],
+    [ "ORB_SLAM2::lessId< T >", "struct_o_r_b___s_l_a_m2_1_1less_id.html", null ],
     [ "ORB_SLAM2::KeyFrame::lessPointer", "struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html", null ],
     [ "g2o::LinearSolver< MatrixType >", "classg2o_1_1_linear_solver.html", [
       [ "g2o::LinearSolverCCS< MatrixType >", "classg2o_1_1_linear_solver_c_c_s.html", null ],
@@ -153,12 +154,12 @@ var hierarchy =
     [ "ORB_SLAM2::Optimizer", "class_o_r_b___s_l_a_m2_1_1_optimizer.html", null ],
     [ "ORB_SLAM2::ORBextractor", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html", null ],
     [ "ORB_SLAM2::ORBmatcher", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html", null ],
+    [ "g2o::HyperGraphAction::Parameters", "classg2o_1_1_hyper_graph_action_1_1_parameters.html", [
+      [ "g2o::HyperGraphAction::ParametersIteration", "classg2o_1_1_hyper_graph_action_1_1_parameters_iteration.html", null ]
+    ] ],
     [ "g2o::HyperGraphElementAction::Parameters", "structg2o_1_1_hyper_graph_element_action_1_1_parameters.html", [
       [ "g2o::DrawAction::Parameters", "classg2o_1_1_draw_action_1_1_parameters.html", null ],
       [ "g2o::WriteGnuplotAction::Parameters", "structg2o_1_1_write_gnuplot_action_1_1_parameters.html", null ]
-    ] ],
-    [ "g2o::HyperGraphAction::Parameters", "classg2o_1_1_hyper_graph_action_1_1_parameters.html", [
-      [ "g2o::HyperGraphAction::ParametersIteration", "classg2o_1_1_hyper_graph_action_1_1_parameters_iteration.html", null ]
     ] ],
     [ "ORB_SLAM2::PnPsolver", "class_o_r_b___s_l_a_m2_1_1_pn_psolver.html", null ],
     [ "g2o::EstimatePropagator::PropagateAction", "structg2o_1_1_estimate_propagator_1_1_propagate_action.html", null ],

@@ -433,7 +433,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>La matriz fundamental F12.</dd></dl>
-<p>Invocado sólo desde CreateNewMapPoints. </p>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ac06b513357429d9eff89e29d2ae58d6c" title="El ciclo de mapeo local invoca periódicamente este método, que busca macheos candidatos para su trian...">LocalMapping::CreateNewMapPoints</a>. </p>
 
 </div>
 </div>
@@ -663,6 +663,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo. </p>
+<p>Otros hilos pausan <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> vía <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0931d72a1f25f3e012f53f3e693e2a47" title="Solicitud de pausa. ">LocalMapping::RequestStop</a>, y lo reaundan con este método sincrónico.</p>
+<p>Al terminar este método <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> ya está corriendo nuevamente. </p>
 
 </div>
 </div>
@@ -697,6 +699,9 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Solicitud de reinicialización. </p>
+<p>Este método se invoca desde otro hilo, el reseteo de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> se hace de manera asincrónica.</p>
+<p>No obstante, el método no termina hasta que confirma la conclusión del reseteo.</p>
+<p>Levanta el flag mbResetRequested, consultado en el bucle principal de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> para invocar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a3fe34beadb62eaa9446c96d27a5d12c9" title="Procesa la solicitud de reinicio. ">LocalMapping::ResetIfRequested</a>, que al terminar baja el flag.</p>
 <p>Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a899967ca49b1c3446854ecce3873323c" title="Reinicia el sistema. ">Tracking::Reset</a>. </p>
 
 </div>
@@ -715,7 +720,15 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Solicitud de pausa. </p>
-<p>Otros hilos solicitan detener momentáneamente <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> para interactuar con el mapa, generalmente para BA. Se invoca también cuando se pasa a modo solo tracking, sin mapeo. Luego de solicitar la parada, esperan que se cumpla consultando <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a964b156d8dfcedf91d61e47aa51e973a" title="Informa el si LocalMapping está parado. ">LocalMapping::isStopped</a>. Para reanudar el mapeo, hay que invocar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#aec0950308ba2d828d9dc16d5be34e654" title="Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo. ">LocalMapping::Release</a>. </p>
+<p>Otros hilos solicitan detener momentáneamente <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html" title="LocalMapping tiene una única instancia ejecutando el método Run en su propio thread. ">LocalMapping</a> para interactuar con el mapa, generalmente para BA.</p>
+<p>Se invoca también cuando se pasa a modo solo tracking, sin mapeo. Luego de solicitar la parada, esperan que se cumpla consultando <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a964b156d8dfcedf91d61e47aa51e973a" title="Informa el si LocalMapping está parado. ">LocalMapping::isStopped</a>.</p>
+<p>Para reanudar el mapeo, hay que invocar <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#aec0950308ba2d828d9dc16d5be34e654" title="Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo. ">LocalMapping::Release</a>.</p>
+<p>Invocado por varios hilos:</p><ul>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html#a0408659bafa31c4d0722ccd032fb9430" title="Procesa una imagen de la cámara. ">System::TrackMonocular</a></li>
+<li>main, antes de serializar el mapa</li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#aa007e0678582ec0de5d71280d23af540" title="Corrige el bucle con los encastres elaborados por LoopClosing::ComputeSim3. ">LoopClosing::CorrectLoop</a></li>
+<li><a class="el" href="class_o_r_b___s_l_a_m2_1_1_loop_closing.html#a4b10a9c18541818c9490a62447ef7f18" title="Bundle adjustment sobre todo el mapa luego de cerrar el bucle. ">LoopClosing::RunGlobalBundleAdjustment</a> </li>
+</ul>
 
 </div>
 </div>
@@ -741,6 +754,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Procesa la solicitud de reinicio. </p>
+<p>Invocado en el bucle principal, si el flag mbResetRequested está levantado, procede al reseteo y luego lo baja.</p>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">LocalMapping::Run</a>. </p>
 
 </div>
 </div>
@@ -889,7 +904,16 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Establece la señal de no parar, que ignora solicitudes de parada. </p>
-<p>Invocado desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html" title="Objeto único que se ejecuta en su propio Trhead, y se inicia con Run(). ">Tracking</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flag</td><td>true para activar la señal de no parar, false para desactivarla. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Informa si pudo ajustar la señal de no parar.</dd></dl>
+<p>Si ya está parado no deja activar esta señal.</p>
+<p>Ajusta mbNonStopFlag.</p>
+<p>Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#a8c7fb6c4b1f952524512023df690bf4d" title="Crea un keyframe a partir del frame actual. ">Tracking::CreateNewKeyFrame</a>, para activar y luego desactivar la señal. </p>
 
 </div>
 </div>
@@ -1259,6 +1283,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Mutex para acceder a <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#ade846d251f505560c45d109c348b39e5" title="Señal para aceptar nuevos keyframes. ">LocalMapping::mbAcceptKeyFrames</a>. </p>
+<p>Evita escritura y lectura concurrete.</p>
+<p>Da la impresión de que podría quitarse este mutex sin ningún efecto. </p>
 
 </div>
 </div>

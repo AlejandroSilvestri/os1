@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"classg2o_1_1_optimization_algorithm_dogleg.html#ace62fd809c18655bd7ff104285748610":[5,0,3,49,8],
 "classg2o_1_1_optimization_algorithm_dogleg.html#ae77ffaea89872affeb61f122f20efeb9":[5,0,3,49,21],
 "classg2o_1_1_optimization_algorithm_dogleg.html#aeab37f3f587dc8b37b5a42d36fd8217c":[5,0,3,49,18],
 "classg2o_1_1_optimization_algorithm_dogleg.html#af921ebbebaf059f73e410fc751616ec2":[5,0,3,49,22],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "classg2o_1_1_sparse_block_matrix.html#a06dc97167a923119bdf99818033104d8":[5,0,3,78,26],
 "classg2o_1_1_sparse_block_matrix.html#a0b1e9dc3a24b0ab41d7002396a61c833":[5,0,3,78,36],
 "classg2o_1_1_sparse_block_matrix.html#a0dcf826fe329e922eae1ea92c73c7b23":[5,0,3,78,35],
-"classg2o_1_1_sparse_block_matrix.html#a1dc1115273da4863f4625b1dc9569d89":[5,0,3,78,13],
-"classg2o_1_1_sparse_block_matrix.html#a21725f29b3f1bbc4e4ba77ee3f960ddc":[5,0,3,78,38]
+"classg2o_1_1_sparse_block_matrix.html#a1dc1115273da4863f4625b1dc9569d89":[5,0,3,78,13]
 };

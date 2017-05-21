@@ -8,6 +8,7 @@ var namespace_o_r_b___s_l_a_m2 =
     [ "KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html", "class_o_r_b___s_l_a_m2_1_1_key_frame" ],
     [ "KeyFrameDatabase", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html", "class_o_r_b___s_l_a_m2_1_1_key_frame_database" ],
     [ "KeyFrameTriangulacion", "class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html", "class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion" ],
+    [ "lessId", "struct_o_r_b___s_l_a_m2_1_1less_id.html", "struct_o_r_b___s_l_a_m2_1_1less_id" ],
     [ "LocalMapping", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html", "class_o_r_b___s_l_a_m2_1_1_local_mapping" ],
     [ "LoopClosing", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html", "class_o_r_b___s_l_a_m2_1_1_loop_closing" ],
     [ "Map", "class_o_r_b___s_l_a_m2_1_1_map.html", "class_o_r_b___s_l_a_m2_1_1_map" ],

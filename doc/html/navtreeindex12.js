@@ -1,5 +1,8 @@
 var NAVTREEINDEX12 =
 {
+"structg2o_1_1_hyper_dijkstra.html#a55e844f4b596290cb36a0d9fe4140966":[5,0,3,31,4],
+"structg2o_1_1_hyper_dijkstra.html#a578a9eb1874d9802dbd37a2f1681c196":[5,0,3,31,8],
+"structg2o_1_1_hyper_dijkstra.html#a846232e98c8175ec2fff784fc3271ad7":[5,0,3,31,7],
 "structg2o_1_1_hyper_dijkstra.html#a84a1d7288e1d76369442f89604c5d6de":[5,0,3,31,6],
 "structg2o_1_1_hyper_dijkstra.html#aa73ae495f10f81823b16f26715f32c58":[5,0,3,31,12],
 "structg2o_1_1_hyper_dijkstra.html#ace002e09514a2eeb76a7b569f9e30f6c":[5,0,3,31,5],

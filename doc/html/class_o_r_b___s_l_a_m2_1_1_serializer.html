@@ -103,18 +103,18 @@ Collaboration diagram for ORB_SLAM2::Serializer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af9cd9cd73878f4b43173fabc517192ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_serializer.html#af9cd9cd73878f4b43173fabc517192ac">mapLoad</a> (char *archivo)</td></tr>
-<tr class="memdesc:af9cd9cd73878f4b43173fabc517192ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carga el mapa desde el archivo binario.  <a href="#af9cd9cd73878f4b43173fabc517192ac">More...</a><br /></td></tr>
-<tr class="separator:af9cd9cd73878f4b43173fabc517192ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0abaef3cecf639cbf9bb87b2d918adf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_serializer.html#a0abaef3cecf639cbf9bb87b2d918adf9">mapSave</a> (char *archivo)</td></tr>
-<tr class="memdesc:a0abaef3cecf639cbf9bb87b2d918adf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guarda el mapa desde el archivo binario.  <a href="#a0abaef3cecf639cbf9bb87b2d918adf9">More...</a><br /></td></tr>
-<tr class="separator:a0abaef3cecf639cbf9bb87b2d918adf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0abab31e1f3f6597b18de573701cb14b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_serializer.html#a0abab31e1f3f6597b18de573701cb14b">mapLoad</a> (std::string archivo)</td></tr>
+<tr class="memdesc:a0abab31e1f3f6597b18de573701cb14b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carga el mapa desde el archivo binario.  <a href="#a0abab31e1f3f6597b18de573701cb14b">More...</a><br /></td></tr>
+<tr class="separator:a0abab31e1f3f6597b18de573701cb14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa4759dd4c8907bbdbc7d3d39c487a46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_serializer.html#aaa4759dd4c8907bbdbc7d3d39c487a46">mapSave</a> (std::string archivo)</td></tr>
+<tr class="memdesc:aaa4759dd4c8907bbdbc7d3d39c487a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guarda el mapa desde el archivo binario.  <a href="#aaa4759dd4c8907bbdbc7d3d39c487a46">More...</a><br /></td></tr>
+<tr class="separator:aaa4759dd4c8907bbdbc7d3d39c487a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31f1f39fde23533ded56ef7599fadbfd"><td class="memTemplParams" colspan="2">template&lt;class Archivo &gt; </td></tr>
 <tr class="memitem:a31f1f39fde23533ded56ef7599fadbfd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_serializer.html#a31f1f39fde23533ded56ef7599fadbfd">serialize</a> (Archivo &amp;ar, const unsigned int version)</td></tr>
 <tr class="memdesc:a31f1f39fde23533ded56ef7599fadbfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializa el mapa.  <a href="#a31f1f39fde23533ded56ef7599fadbfd">More...</a><br /></td></tr>
 <tr class="separator:a31f1f39fde23533ded56ef7599fadbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36d4457ad9acf4272e1d578b1fd41cb0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_serializer.html#a36d4457ad9acf4272e1d578b1fd41cb0">Serializer</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *)</td></tr>
-<tr class="memdesc:a36d4457ad9acf4272e1d578b1fd41cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor único y por defecto.  <a href="#a36d4457ad9acf4272e1d578b1fd41cb0">More...</a><br /></td></tr>
+<tr class="memdesc:a36d4457ad9acf4272e1d578b1fd41cb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clase encargada de la serialización (guarda y carga) del mapa.  <a href="#a36d4457ad9acf4272e1d578b1fd41cb0">More...</a><br /></td></tr>
 <tr class="separator:a36d4457ad9acf4272e1d578b1fd41cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -148,9 +148,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor único y por defecto. </p>
-<p>Clase encargada de la serialización (guarda y carga) del mapa-&gt;</p>
-<p>Sólo inicializa la propiedad mapa. </p>
+<p>Clase encargada de la serialización (guarda y carga) del mapa. </p>
+<p>Ordena los keyframes por orden de mnId. Constructor único y por defecto. Sólo inicializa la propiedad mapa. </p>
 
 </div>
 </div>
@@ -188,14 +187,14 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af9cd9cd73878f4b43173fabc517192ac"></a>
+<a id="a0abab31e1f3f6597b18de573701cb14b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ORB_SLAM2::Serializer::mapLoad </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>archivo</em></td><td>)</td>
           <td></td>
         </tr>
@@ -211,28 +210,19 @@ Protected Attributes</h2></td></tr>
 </dl>
 <p>Abre el archivo binario y carga su contenido.</p>
 <p>Omite propiedades efímeras y reconstruíbles.</p>
-<p>Es necesario asegurar que otros hilos no modifiquen el mapa ni sus elementos (keyframes y mappoints) durante la carga, pues pueden corromper los datos en memoria, con alta probabilidad de abortar la aplicación por Seg Fault. Los otros hilos deben detenerse antes de invocar save.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">archivo</td><td>es el nombre del archivo binario a abrir.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Abre el archivo binario y carga su contenido.</p>
-<p>Luego reconstruye propiedades y grafos necesarios.</p>
-<p>Omite propiedades efímeras, limitándose a inicializarlas en el constructor por defecto.</p>
-<p>Es necesario asegurar que otros hilos no modifiquen el mapa ni sus elementos (keyframes y mappoints) durante la carga, pues pueden corromper los datos en memoria, con alta probabilidad de abortar la aplicación por Seg Fault. </p>
+<p>Es necesario asegurar que otros hilos no modifiquen el mapa ni sus elementos (keyframes y mappoints) durante la carga, pues pueden corromper los datos en memoria, con alta probabilidad de abortar la aplicación por Seg Fault. Los otros hilos deben detenerse antes de invocar save. </p>
+<p>Genera un spanning tree asignando mpParent a cada <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html" title="Cuadro clave, keyframe. ">KeyFrame</a> Asigna un padre a cada KF (excepto al mnId 0). El padre no puede ser huérfano. Itera, y termina cuando ya no asigna ningún padre, o cuando ya asignó a todos los KF.</p>
 
 </div>
 </div>
-<a id="a0abaef3cecf639cbf9bb87b2d918adf9"></a>
+<a id="aaa4759dd4c8907bbdbc7d3d39c487a46"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void ORB_SLAM2::Serializer::mapSave </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>archivo</em></td><td>)</td>
           <td></td>
         </tr>
