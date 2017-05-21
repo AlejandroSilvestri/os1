@@ -555,7 +555,14 @@ public:
     }
 
     /**
-     * Reconstruye MapPoint::mObservations y MapPoint::mObs a partir de KeyFrame::mvpMapPoints, en la carga (serialización).
+     * Reconstruye las observaciones de los puntos observados por el keyframe.
+     *
+     * Usado exclusivamente en la serialización, para reconstruir datos redundantes.
+     *
+     * Los keyframes registran los puntos obervados, y éstos registran los keyframes que los observan.
+     * Sólo los primeros se serializan, los segundos se reconstruyen con este método.
+     *
+     * Invocado sólo por Serializer::mapLoad
      */
     void buildObservations();
 
@@ -984,10 +991,22 @@ protected:
      */
     std::mutex mMutexFeatures;
 
-	/** Serialización agregada para guardar y cargar keyframes.*/
+    /**
+     * Constructor por defecto para KeyFrame
+     * Se ocupa de inicializar los atributos const, para que el compilador no chille.
+     * Entre ellos inicializa los atributos no serializables (todos punteros a singletons).
+     * Luego serialize se encarga de cambiarle los valores, aunque sean const.
+     */
 	KeyFrame();
     friend class boost::serialization::access;
 	friend class Serializer;
+
+	/**
+	 * Serializador para KeyFrame.
+	 * Invocado al serializar Map::mspKeyFrames.
+	 * No guarda mpKeyFrameDB, que se debe asignar de otro modo.
+	 *
+	 */
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 	// Fin del agregado para serialización
 

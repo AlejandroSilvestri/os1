@@ -164,10 +164,6 @@ namespace ORB_SLAM2{
 
 // MapPoint: usando map ========================================================
 
-/**
- * Constructor por defecto de MapPoint para el serializador.
- * Se encarga de inicializar las variables const, para que el compilador no chille.
- */
 MapPoint::MapPoint():
 mnFirstKFid(0), nObs(0), mnTrackReferenceForFrame(0),
 mnLastFrameSeen(0), mnBALocalForKF(0), mnFuseCandidateForKF(0), mnLoopPointForKF(0), mnCorrectedByKF(0),
@@ -175,15 +171,6 @@ mnCorrectedReference(0), mnBAGlobalForKF(0), mpRefKF(NULL), mnVisible(1), mnFoun
 mpReplaced(static_cast<MapPoint*>(NULL)), mfMinDistance(0), mfMaxDistance(0), mpMap(Sistema->mpMap)//Map::mpMap)
 {}
 
-/**
- * Serializador de MapPoint
- * Se invoca al serializar Map::mspMapPoints y KeyFrame::mvpMapPoints, cuyos mapPoints nunca tienen mbBad true.
- * La serialización de MapPoint evita punteros para asegurar el guardado consecutivo de todos los puntos antes de proceder con los KeyFrames.
- * Esto evita problemas no identificados con boost::serialization, que cuelgan la aplicación al guardar.
- *
- * Versionado:
- * La versión 1 reconstruye mRefKF, y ya no guarda mnFirstKFid.
- */
 template<class Archivo> void MapPoint::serialize(Archivo& ar, const unsigned int version){
 	// Propiedades
 	ar & mnId;
@@ -200,12 +187,6 @@ INST_EXP(MapPoint)
 
 
 // KeyFrame ========================================================
-/**
- * Constructor por defecto para KeyFrame
- * Se ocupa de inicializar los atributos const, para que el compilador no chille.
- * Entre ellos inicializa los atributos no serializables (todos punteros a singletons).
- * Luego serialize se encarga de cambiarle los valores, aunque sean const.
- */
 KeyFrame::KeyFrame():
 	// Públicas
     mnFrameId(0),  mTimeStamp(0.0), mnGridCols(FRAME_GRID_COLS), mnGridRows(FRAME_GRID_ROWS),
@@ -244,12 +225,6 @@ void KeyFrame::buildObservations(){
 	}
 }
 
-/**
- * Serializador para KeyFrame.
- * Invocado al serializar Map::mspKeyFrames.
- * No guarda mpKeyFrameDB, que se debe asignar de otro modo.
- *
- */
 template<class Archive> void KeyFrame::serialize(Archive& ar, const unsigned int version){
 	// Preparación para guardar
 	if(!CARGANDO(ar)){
@@ -364,12 +339,6 @@ INST_EXP(KeyFrame)
 
 
 
-/**
- * Clase encargada de la serialización (guarda y carga) del mapa.
- *
- * Ordena los keyframes por orden de mnId.
- */
-
 Serializer::Serializer(Map *mapa_):mapa(mapa_){}
 
 /**
@@ -422,7 +391,6 @@ template<class Archivo> void Serializer::serialize(Archivo& ar, const unsigned i
 }
 
 
-//void Serializer::mapSave(char* archivo){
 void Serializer::mapSave(std::string archivo){
 	// Elimina keyframes y mappoint malos de KeyFrame::mvpMapPoints y MapPoint::mObservations
 	depurar();
@@ -438,21 +406,7 @@ void Serializer::mapSave(std::string archivo){
 	serialize<ArchivoSalida>(ar, 0);
 }
 
-/**
- * Carga el mapa desde el archivo binario.
- *
- * @param archivo es el nombre del archivo binario a abrir.
- *
- * Abre el archivo binario y carga su contenido.
- *
- * Luego reconstruye propiedades y grafos necesarios.
- *
- * Omite propiedades efímeras, limitándose a inicializarlas en el constructor por defecto.
- *
- * Es necesario asegurar que otros hilos no modifiquen el mapa ni sus elementos (keyframes y mappoints) durante la carga,
- * pues pueden corromper los datos en memoria, con alta probabilidad de abortar la aplicación por Seg Fault.
- */
-//void Serializer::mapLoad(char* archivo){
+
 void Serializer::mapLoad(std::string archivo){
 	// A este punto se llega con el mapa limpio y los sistemas suspendidos para no interferir.
 
@@ -565,16 +519,6 @@ void Serializer::mapLoad(std::string archivo){
 		// Busca el máximo id, para al final determinar nNextId
 		maxId = max(maxId, pMP->mnId);
 
-
-		/*
-		// Reconstruye mpRefKF a partir de mnFirstKFid.  setRefKF escribe la propiedad protegida.  Requiere mObservations
-		long unsigned int id = pMP->mnFirstKFid;
-		std::set<KeyFrame*>::iterator it = std::find_if(mapa->mspKeyFrames.begin(), mapa->mspKeyFrames.end(), [id](KeyFrame *KF){return KF->mnId == id;});
-		if(it != mapa->mspKeyFrames.end())
-			pMP->mpRefKF = *it;
-		else
-			pMP->mpRefKF = (*pMP->mObservations.begin()).first;
-		 */
 
 		// Reconstruye mpRefKF.  Requiere mObservations
 		if(pMP->mObservations.empty()){

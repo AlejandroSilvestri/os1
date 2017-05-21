@@ -149,8 +149,12 @@ int main(int argc, char **argv){
     	if(visor->cargarMapa){
     		visor->cargarMapa = false;
 
+    		// El reset subsiguiente requiere que LocalMapping no esté pausado.
+    		SLAM.mpLocalMapper->Release();
+
         	// Limpia el mapa de todos los singletons
     		SLAM.mpTracker->Reset();
+    		// En este punto el sistema está reseteado.
 
     	    // Espera a que se detenga LocalMapping y  Viewer
     		SLAM.mpLocalMapper->RequestStop();

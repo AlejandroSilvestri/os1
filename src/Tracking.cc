@@ -1262,7 +1262,7 @@ void Tracking::Reset()
     mlFrameTimes.clear();
     mlbLost.clear();
 
-    mpViewer->Release();	// No tiene ningún efecto, más que desmarcar mpViewer::mbStopped
+    mpViewer->Release();
 }
 
 void Tracking::ChangeCalibration(const string &strSettingPath)

@@ -325,7 +325,18 @@ public:
     // This resumes local mapping thread and performs SLAM again.
     void DeactivateLocalizationMode();
 
-    /** Reinicia el sistema.  Limpia el mapa.*/
+    /**
+     * Comando para reiniciar el sistema, que entre otras cosas limpia el mapa.
+     *
+     * Marca el flag mbReset = true, para que lo procese System::TrackMonocular, que está en el while principal.
+     * Éste siplemente resetea el flag e invoca Tracking::Reset, donde realmente comienza el reseteo.
+     *
+     * El sistema recién reseteado se pone en modo de inicialización, pero la carga de un mapa lo puede pasar directamente a relocalización.
+     *
+     * Invocado sólo desde:
+     * - Tracking::Track cada vez que falla la inicialización.
+     * - Viewer::Run invocado por el usuario, desde otro hilo.
+     */
     // Reset the system (clear map)
     void Reset();
 

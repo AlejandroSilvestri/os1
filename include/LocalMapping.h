@@ -124,14 +124,35 @@ public:
     // Thread Synch
     /**
      * Solicitud de pausa.
+     *
      * Otros hilos solicitan detener momentáneamente LocalMapping para interactuar con el mapa, generalmente para BA.
+     *
      * Se invoca también cuando se pasa a modo solo tracking, sin mapeo.
      * Luego de solicitar la parada, esperan que se cumpla consultando LocalMapping::isStopped.
+     *
      * Para reanudar el mapeo, hay que invocar LocalMapping::Release.
+     *
+     * Invocado por varios hilos:
+     * - System::TrackMonocular
+     * - main, antes de serializar el mapa
+     * - LoopClosing::CorrectLoop
+     * - LoopClosing::RunGlobalBundleAdjustment
      */
     void RequestStop();
 
-    /** Solicitud de reinicialización.  Invocado sólo por Tracking::Reset.*/
+    /**
+     * Solicitud de reinicialización.
+     *
+     * Este método se invoca desde otro hilo, el reseteo de LocalMapping se hace de manera asincrónica.
+     *
+     * No obstante, el método no termina hasta que confirma la conclusión del reseteo.
+     *
+     * Levanta el flag mbResetRequested, consultado en el bucle principal de LocalMapping
+     * para invocar LocalMapping::ResetIfRequested, que al terminar baja el flag.
+     *
+     *
+     * Invocado sólo por Tracking::Reset.
+     */
     void RequestReset();
 
 
@@ -140,7 +161,13 @@ public:
      */
     bool Stop();
 
-    /** Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo.*/
+    /**
+     * Invocado desde otros hilos, limpia el buffer de keyframes nuevos y reanuda el mapeo.
+     *
+     * Otros hilos pausan LocalMapping vía LocalMapping::RequestStop, y lo reaundan con este método sincrónico.
+     *
+     * Al terminar este método LocalMapping ya está corriendo nuevamente.
+     */
     void Release();
 
     /** Informa el si LocalMapping está parado.*/
@@ -310,7 +337,13 @@ protected:
     /** Señal de modo monocular.*/
     bool mbMonocular;
 
-    /** Procesa la solicitud de reinicio.*/
+    /**
+     * Procesa la solicitud de reinicio.
+     *
+     * Invocado en el bucle principal, si el flag mbResetRequested está levantado, procede al reseteo y luego lo baja.
+     *
+     * Invocado sólo desde LocalMapping::Run.
+     */
     void ResetIfRequested();
 
     /** Reinicio solicitado.*/

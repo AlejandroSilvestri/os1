@@ -276,7 +276,27 @@ public:
 
     /**
      * Reinicia el sistema.
-     * Olvida el mapa y demás y pasa al estado NOT_IMAGE_YET
+     * Olvida el mapa y demás y pasa al estado NOT_IMAGE_YET.
+     *
+     * Este método:
+     * - pausa Viewer
+     * - resetea LocalMapping
+     * - resetea LoopClosing
+     * - resetea KeyFrameDB
+     * - resetea Map
+     * - resetea Tracking eliminando propiedades
+     *
+     * Finalmente, reanuda Viewer.
+     *
+     * Al terminar el método, el sistema se encuentra reseteado.
+     *
+     * El reseteo del los otros hilos hace esperar hasta que el hilo termina de resetearlo.
+     * Podría paralelizare, pero no es un proceso que requiera mayor velocidad.
+     *
+     * Invocado indirectamente por el usuario vía System::Reset.
+     *
+     * Invocado sólo desde System::TrackMonocular y Tracking::CreateInitialMapMonocular.
+     *
      */
     void Reset();
 
