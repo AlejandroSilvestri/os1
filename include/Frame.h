@@ -42,29 +42,29 @@ class KeyFrame;
 class ORBextractor;
 
 /**
- * Frame representa un cuadro, una imagen, con los puntos singulares detectados.
+ * Frame represents a frame, an image, with singular points detected.
  *
- * Frame representa una toma de cámara, con su imagen, los puntos 2D detectados, sus descriptores, su mapeo en 3D, su pose y demás.
+ * Frame represents a camara shoot, with its image, 2D points detectaded, its descriptors, its 3D mapping, its, etc.
  *
- * La posición del cuadro en el mapa se obtiene con Frame::GetCameraCenter.  La orientación con Frame::GetRotationInverse.
+ * The frame position in the map is obtained with Frame::GetCameraCenter. The orientation with Frame::GetRotationInverse.
  *
- * Tracking utiliza 3 Frames:
+ * Tracking uses 3 Frames:
  * - Frame::mCurrentFrame
  * - Frame::mInitialFrame
  * - Frame::mLastFrame
  *
- * Cada cuadro tiene su propia matriz K de calibración.
- * Usualmente es la misma matriz (los mismos valores) para todos los cuadros y keyframes.
+ * Each frame has its own K calibration matrix.
+ * It's usually the same matrix (same values) for all frames and keyframes.
  *
- * El constructor clona el Mat K, haciendo una copia propia en Frame::mK.
- * Luego analiza la imagen, pero no la guarda.  La imagen se pierde cuando el constructor termina.
- * Parte de este análisis consiste en detectar puntos singulares, extraer sus descriptores y clasificarlos.
+ * The constructor clones the K Mat, generating an own copy in Frame::mK.
+ * It then analyzes de image, but does not save it. The image will be lost when the constructor finishes.
+ * Part of this analysis cosists in detecting singular, extract its descriptors and classify them.
  *
- * Puntos singulares, descriptores, BoW y puntos 3D rastreados se registran en vectores paralelos y se explican en Frame::N.
+ * Singular points, descriptors, BoW and tracked 3D points are registered in parallel vectors and explained in Frame::N.
  *
- * El sistema de coordenadas y el significado de las matrices de posición se explica en Frame::mTcw.
+ * The coordinate system and the position matrices meaning is explained in Frame::mTcw.
  *
- * Esta clase no determina la pose del cuadro.  Su pose es registrada por Tracking y Optimizer.
+ * This class does not determine the frame position. Its position is tracked by Tracking and Optimizer.
  *
  * \sa SetPose
  */
@@ -72,54 +72,53 @@ class Frame
 {
 public:
 	/**
-	 * El constructor sin argumentos crea un Frame sin inicialización.
-	 * El único dato inicializado es nNextId=0.
-	 * No usado.
+	 * The constructor with no arguments creates a Frame with no initialization. The only initialated data is nNextId=0.
+	 * Not used.
 	 */
     Frame();
 
     /**
-     * Constructor de copia, clona un frame.
+     * Copy constructor, clones a frame.
      *
      */
     // Copy constructor.
     Frame(const Frame &frame);
 
     /**
-     * Constructor que crea un Frame y lo llena con los argumentos.
-     * @param timeStamp Marca de tiempo, para registro.  ORB-SLAM no la utiliza.
-     * @param extractor Algoritmo extractor usado para obtener los descriptores.  ORB-SLAM utiliza exclusivamente el extractor BRIEF de ORB.
+     * Constructor that crates a Frame and fills it with arguments.
+     * @param timeStamp Marks time, for record.  ORB-SLAM does not use it.
+     * @param extractor Extractor algorithm used to obtain descriptors.  ORB-SLAM uses the ORB extractor from BRIEF exclusively.ing
      *
-     * Se distinguen dos modos de cámara: normal si se proporcionan los coeficientes de distorsión, o fisheye sin coeficientes si se proporciona noArray().
+     * Two camera modes are distinguished: normal if distortion coeficients are delivered, or fisheye without coeficients if noArray() is delivered.
      *
-     * Invocado sólo desde Tracling::GrabImageMonocular.
+     * Invoked just from Tracling::GrabImageMonocular.
      */
     // Constructor for Monocular cameras.
     Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf);//, const float &thDepth);
     //Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor, ORBVocabulary* voc, const float &thDepth);
 
     /**
-     * Procede con la extracción de descriptores ORB.
+     * Proceeds with the extraction of ORB descriptors.
      *
-     * @param flag false para monocular, o para cámara izquierda.  true para cámara derecha.  Siempre se invoca con false.
-     * @param im Imagen sobre la que extraer los descriptores.
+     * @param flag false for monocular, or for left camera.  true for right camera.  Always invoke with false.
+     * @param im Image above to which extract descriptors.
      *
-     * Los descriptores se conservan en Frame::mDescriptors.
+     * Descriptors are conserved in Frame::mDescriptors.
      *
-     * Invocado sólo desde el constructor.
+     * Invoked only from the constructor.
      */
     // Extract ORB on the image. 0 for left image and 1 for right image.
     void ExtractORB(int flag, const cv::Mat &im);
 
     /**
-     * Computa BoW para todos los descriptores del cuadro.
-     * Los guarda en la propiedad mBowVec, que es del tipo BowVector, y en mFeatVec, del tipo FeatureVector.
+     * Computing BoW for all frame descriptors.
+     * Its saved in the mBowVec property, BowVectorn type, and in mFeatVec, FeatureVector type.
      *
-     * Si mBowVec no está vacío el método retorna sin hacer nada, evitando el recómputo.
+     * If mBowVec is not empty the method returns without doing anything, avoiding the rebound.
      *
-     * Se computa BoW para un cuadro cuando se erige en keyframe, y cuando se intenta relocalizar.
+     * Its computed BoW for a frame when set up in keyframe, and when to relocate.
      *
-     * DBoW2 se documenta en http://webdiis.unizar.es/~dorian/doc/dbow2/annotated.html
+     * DBoW2 is documented in http://webdiis.unizar.es/~dorian/doc/dbow2/annotated.html
      *
      *
      */
@@ -127,45 +126,45 @@ public:
     void ComputeBoW();
 
     /**
-     * Registra la pose.
+     * Registers pose.
      *
-     * Usado por varios métodos para establecer o corregir la pose del cuadro.
+     * Used by various methods to establish or correct the frame pose.
      *
-     * Luego de establecer la nueva pose se recalculan sus diferentes representaciones con UpdatePoseMatrices, como el vector traslación o la matriz rotación.
+     * After establishing the new pose the different representations are recalculated with UpdatePoseMatrices, such as the traslation or rotation vector.
      *
-     * @param Tcw Nueva pose, matriz de rototraslación en coordenadas homogéneas, de 4x4.
+     * @param Tcw New pose, rototraslation matrix in homogeneous coordinates, of 4x4.
      *
-     * Registra la pose en Frame::mTcw, que correspone a la pose del origen del mundo en el sistema de coordenadas de la cámara.
+     * Registers the pose in Frame::mTcw, that corresponds to the world origin pose in the camera coordinate system.
      *
-     * Este método se invoca por Tracking con posiciones aproximadas para inicializar y rastrear,
-     * y por Optimizer::PoseOptimization, el único que registra la pose optimizada.
+     * This method is invoked by Tracking with aproximate positions to initialize and track,
+     * and by Optimizer::PoseOptimization, the only one that tracks the optimized pose.
      */
     // Set the camera pose.
     void SetPose(cv::Mat Tcw);
 
     /**
-     * Calcula las matrices de posición mRcw, mtcw y mOw a partir de la pose mTcw.
-     * Estas matrices son una manera de exponer la pose, no se utilizan en la operación de ORB-SLAM.
-     * UpdatePoseMatrices() extrae la inforamción de mTcw, la matriz que combina la pose completa.
+     * Calculates the position matrices mRcw, mtcw y mOw from mTcw pose.
+     * This matrices are a way to espose the pose, are not used in the ORB-SLAM operation.
+     * UpdatePoseMatrices() extracts the mTcw information, the matrix that combines the complete pose.
      *
      */
     // Computes rotation, translation and camera center matrices from the camera pose.
     void UpdatePoseMatrices();
 
-    /** Devuelve el vector de la posición de la cámara, el centro de la cámara.*/
-    // Returns the camera center.
+    /** Brings back the camera position vector, the camera center.*/
+    // Brings back the camera center.
     inline cv::Mat GetCameraCenter(){
         return mOw.clone();
     }
 
     /**
-     * Devuelve la orientación en el mapa.
+     * Brings back the map orientation.
      *
-     * Es la inversa de la rotación mRwc.
+     * Its the rotation mRwc inverse.
      *
      * @returns mRwc.t()
      *
-     * No dispone de GetRotation para devolver la rotación sin invertir mRcw.
+     * Does not has GetRotation to bring back the rotation without inverting mRcw.
      */
     // Returns inverse of rotation
     inline cv::Mat GetRotationInverse(){
@@ -173,32 +172,32 @@ public:
     }
 
     /**
-     * Indica si un determinado punto 3D se encuentra en el subespacio visual (frustum) del cuadro.
-     * El subespacio visual es una pirámide de base cuadrilátera, cuyos vértices son los del cuadro pero antidistorsionados.
-     * viewingCosLimit es una manera de limitar el alcance del frustum.
+     * Indicates if a specific 3D point is found in the frame visual subspace (frustum).
+     * The visual subspace is a quadrilateral base pyramid, whichs vertices are those from the frame but antidistortioned.
+     * viewingCosLimit is a way to limitate the frustum reach.
      */
     // Check if a MapPoint is in the frustum of the camera
     // and fill variables of the MapPoint to be used by the tracking
     bool isInFrustum(MapPoint* pMP, float viewingCosLimit);
 
     /**
-     * Calcula las coordenadas de la celda en la grilla, a la que pertenece un punto singular.
-     * Informa las coordenadas en los argumentos posX y posY pasados por referencia.
-     * Devuelve true si el punto está en la grilla, false si no.
-     * @param kp Punto singular "desdistorsionado".
-     * @param posX Coordenada X de la celda a la que pertence el punto.
-     * @param posY Coordenada Y de la celda a la que pertence el punto.
+     * Calculates the cell coordinates in the grid, to which it belongs a singular point.
+     * Informs the coordinates in posX and posY arguments.
+     * Gives back true if the point is in the grid, false if not.
+     * @param kp "Desdistortioned" singular point.
+     * @param posX X coordinate of the cell to which the point belongs.
+     * @param posY Y coordinate of the cell to which the point belongs.
      *
      */
     // Compute the cell of a keypoint (return false if outside the grid)
     bool PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY);
 
     /**
-     * Selecciona los puntos dentro de una ventana cuadrada de centro x,y y radio r (lado 2r).
+     * It selects the point inside a square window of center x,y and radio r (side 2r).
      *
-     * Recorre todos los niveles del frame filtrando los puntos por coordenadas.
+     * It goes through all frame levels filtering the points by coordinates.
      *
-     * Se utiliza para reducir los candidatos para macheo.
+     * Its used to reduce candidates by matching.
      *
      * @param x Coordenada x del centro del área
      * @param y Coordenada y del centro del área
@@ -235,43 +234,43 @@ public:
     // Calibration matrix and OpenCV distortion parameters.
     cv::Mat mK;
 
-	/** Parámetros intrínsecos fx, fy, cx, cy.*/
-	/** Parámetro intrínseco.*/
+	/** Intrinsic parameters fx, fy, cx, cy.*/
+	/** Intrinsic parameter.*/
     static float fx;
-	/** Parámetro intrínseco.*/
+	/** Intrinsic parameter.*/
     static float fy;
-	/** Parámetro intrínseco.*/
+	/** Intrinsic parameter.*/
     static float cx;
-	/** Parámetro intrínseco.*/
+	/** PIntrinsic parameter.*/
     static float cy;
-	/** Inversa del parámetro intrínseco.*/
+	/** Intrinsic parameter inverse.*/
     static float invfx;
-	/** Parámetro intrínseco.*/
+	/** Intrinsic parameter.*/
     static float invfy;
 
-	/** Coeficientes de distorsión de cámara mDistCoef.*/
+	/** mDistCoef camera distortion coeficients.*/
     cv::Mat mDistCoef;
 
-    /** Modo de cámara, 0 normal, 1 fisheye sin distorsión.*/
+    /** Camera mode, 0 normal, 1 fisheye without distortion.*/
     int camaraModo;
 
-    /** No usado en monocular.*/
+    /** Not used in monocular.*/
     // Stereo baseline multiplied by fx.
     float mbf;
 
-    /** No usado en monocular.*/
+    /** Not used in monocular.*/
     // Stereo baseline in meters.
     float mb;
 
-    /** No usado en monocular.*/
+    /** Not used in monocular.*/
     // Threshold close/far points. Close points are inserted from 1 view.
     // Far points are inserted as in the monocular case from 2 views.
     float mThDepth;
 
 	/**
-	 * Cantidad de puntos singulares.
+	 * Amount of singular points.
 	 *
-	 * Es el tamaño de los vectores apareados:
+	 * It's de size of paired vectors:
 	 * - mvKeys
 	 * - mvKeysUn
 	 * - mDescriptors
@@ -281,7 +280,7 @@ public:
 	 * - mvbOutlier
 	 *
 	 *
-	 * Todos éstos se pasan al keyframe.
+	 * All these are passed to keyframe.
 	 */
     // Number of KeyPoints.
     int N;
@@ -290,156 +289,156 @@ public:
     // In the stereo case, mvKeysUn is redundant as images must be rectified.
     // In the RGB-D case, RGB images can be distorted.
     /**
-     * Vector de puntos singulares obtenidos por el detector, tal como los devuelve opencv.
+     * Singular points vector obtained from detector, as returned by opencv.
      *
-     * Sus coordenadas están en píxeles, en el sistema de referencia de la imagen.
+     * Its coordinates are in pixels, in the image reference system.
      */
     std::vector<cv::KeyPoint> mvKeys;
 
 	/**
-	 * Vector de puntos antidistorsionados, mvKeys corregidos según los coeficientes de distorsión.
+	 * Antidistortioned points' vector, mvKeys corrected according to the distortion coeficients.
 	 *
-	 * Este vector está apareado con mvKeys, ambos de tamaño N.
+	 * This vector is paired with mvKeys, both of N size.
 	 *
-	 * Sus coordenadas están en píxeles, en el sistema de referencia de la imagen antidistorsionada.
-	 * Los puntos se obtienen con cv::undistortPoints, reaplicando la matriz K de cámara.
+	 * Its coordinates are in pixels, in the antidistortioned image system of reference.
+	 * Points are obtained with cv::undistortPoints, reaplicando la matriz K de cámara.
 	 */
     std::vector<cv::KeyPoint> mvKeysUn;
 
-    /** -1 para monocular.  Se pasa en el constructor de copia de Frame.*/
+    /** -1 for monocular.  Its passed in the Frame copy constructor.*/
     //std::vector<float> mvDepth;
 
     // Bag of Words Vector structures.
     /**
-     * Vector BoW correspondiente a los puntos singulares.
+     * Vector BoW corresponding to singular points.
      *
-     * BowVector es un mapa de Word Id (unsigned int) a Word value (double), que representa un peso.
+     * BowVector is a Word Id map (unsigned int) a Word value (double), that represents a weight.
      */
     DBoW2::BowVector mBowVec;
 
     /**
-     * Vector "Feature" correspondiente a los puntos singulares.
+     * "Feature" vector corresponding to singular points.
      */
     DBoW2::FeatureVector mFeatVec;
 
-	/** Descriptores ORB en el formato Mat, tal como los devuelve opencv.  mDescritorRight no se usa, se pasa en el constructor de copia.*/
+	/** ORB descriptors in Mat format, as given back by opencv.  mDescritorRight is not used, its passed in the copy constructor.*/
     // ORB descriptor, each row associated to a keypoint.
     cv::Mat mDescriptors;//, mDescriptorsRight;
 
-	/** Vector de puntos 3D del mapa asociados a los puntos singulares.
-	Este vector tiene la misma longitud que mvKeys y mvKeysUn.
-	Las posiciones sin asociación son NULL.
+	/** 3D map points vector associated to singular points.
+	This vector has the same length as mvKeys and mvKeysUn.
+	Positions with no association are NULL.
 	*/
     // MapPoints associated to keypoints, NULL pointer if no association.
     std::vector<MapPoint*> mvpMapPoints;
 
-	/** Flag que indica si hay outliers asociados en mvpMapPoints.*/
+	/** Flag that indicates if there's associated outliers in mvpMapPoints.*/
     // Flag to identify outlier associations.
     std::vector<bool> mvbOutlier;
 
-	/** mfGridElementWidthInv es la inversa del ancho de la celda en píxeles.
-	 * Los puntos de la imagen antidistorsionada se dividen en celdas con una grilla de FRAME_GRID_COLS por FRAME_GRID_ROWS,
-	 * para reducir la complejidad del macheo.
+	/** mfGridElementWidthInv is the cell width inverse in pixels.
+	 * Antidistortioned image points are divided in cells with a FRAME_GRID_COLS by FRAME_GRID_ROWS grid,
+	 * to reduce matching complexity.
 	 */
     // Keypoints are assigned to cells in a grid to reduce matching complexity when projecting MapPoints.
     static float mfGridElementWidthInv;
 
-	/** mfGridElementHeightInv es la inversa del altoo de la celda en píxeles.
-	 * Los puntos de la imagen antidistorsionada se dividen en celdas con una grilla de FRAME_GRID_COLS por FRAME_GRID_ROWS,
-	 * para reducir la complejidad del macheo.
+	/** mfGridElementHeightInv is the cell height inverse in pixels.
+	 * Antidistortioned image points are divided in cells with a FRAME_GRID_COLS by FRAME_GRID_ROWS grid,
+	 * to reduce matching complexity.
 	 */
     static float mfGridElementHeightInv;
     std::vector<std::size_t> mGrid[FRAME_GRID_COLS][FRAME_GRID_ROWS];
 
 	/**
-	 * Pose de la cámara.
-     * Matriz de 4x4 de rototraslación en coordenadas homogéneas.
-     * Es cv:Mat(4,4,CV_32F), y sus elementos son float.
+	 * Camera pose.
+     * 4x4 rototraslation matrix in homogeneous coordinates
+     * It's cv:Mat(4,4,CV_32F), and its elements are float.
      *
-     * La posición de la cámara (vector traslación) se obtiene de la última columna de esta matriz.
+     * Camera position (traslation vector) is obtained from the last matrix column.
      *
-     * La unidad de medida se establece durante la inicialización igual a la profundidad media de la escena.
-     * Esto significa que la unidad dependerá de los puntos 3D triangulados en la inicialización.
+     * Metric unit is set during the initializatin, same as the average scene depth.
+     * This means that the unit will depend of 3D points triangulated in initialization.
      *
-     * El sistema de coordenadas 3D de una cámara se relaciona con el 2D de su proyección
-     * manteniendo paralelos los ejes X e Y, y estableciendo Z hacia adelante.
-     * De este modo X apunta a la derecha e Y apunta hacia abajo (en esto es contrario al sistema de coordenadas estándar).
-     * Los vectores 3D homogéneos tienen la disposición tradicional:
+     * A camera 3D coordinate system is related with its 2D projection.
+     * keeping the X and Y axes parallel, and establishing Z forwards.
+     * This way, X points right and Y point down (it's contrary to the standard coordinate system).
+     * Homogeneous 3D vectors have the traditinoal disposition:
      *
      * V = [vx, vy, vz, 1]t
      *
-     * Las poses son matrices de 4x4 como ésta, sus subíndices indican referencia y sujeto.  Tcw es T respecto de cámara, de world.
-     * Las poses se combinan así:
+     * Poses are 4x4 matrices like this one, its subindexes indicate reference and subject.  Tcw is T regarding the camera, from world.
+     * Poses are combined like this:
      *
      * Tca = Tba * Tcb
      *
-     * Su valor se actualiza mediante SetPose, que además extrae la matriz rotación y el vector traslación con UpdatePoseMatrices.
-     * Estos datos extraídos se calculan para presentación, pero no son usados por el algoritmo, que sólo utiliza mTcw.
+     * Its value is updated through SetPose, which in addition extracts the rotation matrix and the traslation vector with UpdatePoseMatrices.
+     * These extracter data are calculated for presentation, but are not used by the algorithm, that only uses mTcw.
      *
-     * Frame no calcula mTcw.  Esta matriz es calculada y pasada al cuadro con SetPose, en:
-     * - Tracking, copiando de un cuadro anterior, inicializando con la pose cartesiana, o estimando por modelo de movimiento.
-     * - Optimizer::PoseOptimization, invocado desde varios métodos de Tracking.  Aquí es donde se hace el verdadero cálculo de pose.
+     * Frame does not calculate mTcw.  This matrix is calculated and passed to the frame with SetPose, in:
+     * - Tracking, copying from a previous frame, initializing with the cartesion pose, or estimating by movement model.
+     * - Optimizer::PoseOptimization, invoked from various Tracking methods.  Here's where the real pose calculus us made.
      * -
 	 */
     // Camera pose.
     cv::Mat mTcw;
 
-	/** Id incremental con el valor para el frame siguiente.
-	 * Es una variable de clase que lleva la cuenta del número de id.
-	 * El id de un Frame se asigna con
+	/** Id incremental with the value for next frame.
+	 * Is a class variable that keeps the id number count.
+	 * The Frame id is assigned with
 	 *     mnId=nNextId++;
 	 */
     // Current and Next Frame id.
     static long unsigned int nNextId;
 
-	/** Id incremental que identifica a este frame.*/
+	/** Id incremental that identifies this frame.*/
     long unsigned int mnId;
 
-	/** KeyFrame de referencia.*/
+	/** Reference KeyFrame.*/
     // Reference Keyframe.
     KeyFrame* mpReferenceKF;
 
-	/** Cantidad de niveles en la pirámide.*/
+	/** Amount of pyramid levels.*/
     // Scale pyramid info.
     int mnScaleLevels;
 
-	/** Factor de escala entre niveles de la pirámide.*/
+	/** Scale factor between pyramid levels.*/
     float mfScaleFactor;
 
-    /** Factor de escala logarítmico.*/
+    /** Logarithmic scale factor.*/
     float mfLogScaleFactor;
 
-	/** Vector de factores de escala de cada nivel de la pirámide.*/
+	/** Scale factor vector of each pyramid level.*/
     vector<float> mvScaleFactors;
-	/** Inversa de mvScaleFactors.*/
+	/** mvScaleFactors inverse.*/
     vector<float> mvInvScaleFactors;
-    /** Cuadrado de mvScaleFactos.*/
+    /** mvScaleFactos square.*/
     vector<float> mvLevelSigma2;
-    /** Inversa de mvLevelSigma2.*/
+    /** mvLevelSigma2 inverse.*/
     vector<float> mvInvLevelSigma2;
 
 
-	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     // Undistorted Image Bounds (computed once).
     static float mnMinX;
-	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMaxX;
-	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMinY;
-	/** Vértices de la imagen antidistorsionada: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMaxY;
 
 	/**
-	 * Esta variable se pone en uno con un argumento del constructor solamente cuando se crea el primer Frame.
-	 * true para cálculos de variables de clase, que no cambian luego.
+	 * This variables is one with a contructor argument only when the first Frame is created.
+	 * true for class variable calculus, that do not change later.
 	 */
     static bool mbInitialComputations;
 
     /**
-     * Calcula los puntos singulares de mvKeysUn.
+     * Calculates mvKeysUn singular points.
      *
-     * Antidistorsiona los puntos detectados, que están en mvKeys, y los guarda en mvKeysUn en el mismo orden.
-     * Si no hay distorsión, UndistortKeyPoints retorna rápidamente unificando mvKeysUn = mvKeys en un mismo vector.
+     * Antidistortions detected points, that are in mvKeys, and keeps them in mvKeysUn in the same order.
+     * If there's no distortion, UndistortKeyPoints goes back quikly unifying mvKeysUn = mvKeys in a same vector.
      */
     // Undistort keypoints given OpenCV distortion parameters.
     // Only for the RGB-D case. Stereo must be already rectified!
@@ -447,32 +446,32 @@ public:
     void UndistortKeyPoints();
 
     /**
-     * Antidistorsiona puntos según el modelo de cámara fisheye de proyección equidistante sin coeficientes de distorsión.
-     * Usa mK, la matriz intrínseca, para pasar los puntos distorsionados a escala focal, y luego de antidistorsionarlos pasarlos de nuevo a escala de imagen.
+     * Antidistortions points according to the fisheye camera equidistant projection with no distortion coeficients model.
+     * Uses mK, intrinsec matrix, to pass the distortione points to focal scale, and after antidistortion them, pass them once again to image scale.
      *
-     * @param puntos Mat de nx2 float, cada par corresponde a un punto.  Entrada y salida.  Los puntos se corrigen y el resultado se guarda en el mismo lugar.
+     * @param  Mat point of nx2 float, each pair corresponds to a point.  Input and output.  Points are corrected and the rsult kept in the same place.
      *
-     * Sólo usado desde Frame::UndistortKeyPoints y Frame::ComputeImageBounds
+     * Used only form Frame::UndistortKeyPoints and Frame::ComputeImageBounds
      */
     void antidistorsionarProyeccionEquidistante(cv::Mat &puntos);
 
     /**
-     * Calcula los vértices del cuadro andistorsionado.
-     * Define mnMinX, mnMaxX, mnMinY, mnMaxY.
-     * Si no hay distorsión, el resultado es trivial con origen en (0,0).
+     * Calculates the antidistortioned frame vertices.
+     * Defines mnMinX, mnMaxX, mnMinY, mnMaxY.
+     * If there's no distortion, the result is trivial with origin in (0,0).
      *
-     * @param imLeft Imagen, solamente a los efectos de medir su tamaño con .rows y .cols .
+     * @param imLeft Imagen, only to the effects of measuring its size with .rows y .cols .
      *
-     * Invocado sólo desde el constructor.
+     * Invoked only from the constructor.
      */
     // Computes image bounds for the undistorted image (called in the constructor).
     void ComputeImageBounds(const cv::Mat &imLeft);
 
     /**
-     * Asigna los puntos singulares a sus celdas de la grilla.
-     * La imagen de divide en una grilla para detectar puntos de manera más homogénea.
-     * Luego de "desdistorsionar" las coordenadas de los puntos singulares detectados,
-     * este método crea un vector de puntos singulares para cada celda de la grillam, y lo puebla.
+     * Asignes singular points to its grid cells.
+     * The image is divided in a grid to detect point in a more homogeneous way.
+     * The singular point detecter are later 'dedistortioned',
+     * this method creates a singular points vector for each grid cell, and tests it.
      */
     // Assign keypoints to the grid for speed up feature matching (called in the constructor).
     void AssignFeaturesToGrid();
@@ -483,31 +482,31 @@ private:
     // Rotation, translation and camera center
 
     /**
-     * Matriz R de rotación del mundo respecto de la cámara.
-     * Se actualiza con UpdatePoseMatrices().
+     * World rotation R Matrix  regarding the camera.
+     * It's updated with UpdatePoseMatrices().
      */
     cv::Mat mRcw;
 
     /**
-     * Vector t de traslación del origen del mundo en el sistema de referencia de la cámara.
-     * Se actualiza con UpdatePoseMatrices().
+     * World origin traslation vector t in the camera system of reference.
+     * It's updated with UpdatePoseMatrices().
      */
     cv::Mat mtcw;
 
     /**
-     * Matriz de rotación inversa, de la cámara respecto del mundo.
-     * Se actualiza con UpdatePoseMatrices().
+     * Inverse rotation matrix of the camera regarding the world.
+     * It's updated with UpdatePoseMatrices().
      */
     cv::Mat mRwc;
 
     /**
-     * Vector centro de cámara, posición de la cámara respecto del mundo.
+     * Center camera vector, camera position regarding the world.
      *
-     * Es privado, se informa con Frame::GetCameraCenter.
+     * It's private, informed with Frame::GetCameraCenter.
      *
-     * Matriz de 3x1 (vector vertical).
-     * Vector de traslación invertido.  mtcw es el vector traslación del origen del mundo en el sistema de referencia de la cámara.
-     * Se actualiza con UpdatePoseMatrices().
+     * 3x1 matrix (vertical vector).
+     * Inverted traslation vector. mtcw is the world origin traslation vector in the camera system of reference.
+     * It's updated with UpdatePoseMatrices().
      */
     cv::Mat mOw; //==mtwc
 };
