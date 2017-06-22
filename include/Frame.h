@@ -42,9 +42,9 @@ class KeyFrame;
 class ORBextractor;
 
 /**
- * Frame represents a frame, an image, with singular points detected.
+ * Frame represents a frame, an image, with feature detection.
  *
- * Frame represents a camara shoot, with its image, 2D points detectaded, its descriptors, its 3D mapping, its, etc.
+ * Frame represents a camara shoot, with its image, 2D points detected, its descriptors, its 3D mapping, its, etc.
  *
  * The frame position in the map is obtained with Frame::GetCameraCenter. The orientation with Frame::GetRotationInverse.
  *
@@ -58,9 +58,9 @@ class ORBextractor;
  *
  * The constructor clones the K Mat, generating an own copy in Frame::mK.
  * It then analyzes de image, but does not save it. The image will be lost when the constructor finishes.
- * Part of this analysis cosists in detecting singular, extract its descriptors and classify them.
+ * Part of this analysis consists in feature detection, extract its descriptors and classify them.
  *
- * Singular points, descriptors, BoW and tracked 3D points are registered in parallel vectors and explained in Frame::N.
+ * Keypoints, descriptors, BoW and tracked 3D points are registered in parallel vectors and explained in Frame::N.
  *
  * The coordinate system and the position matrices meaning is explained in Frame::mTcw.
  *
@@ -173,7 +173,7 @@ public:
 
     /**
      * Indicates if a specific 3D point is found in the frame visual subspace (frustum).
-     * The visual subspace is a quadrilateral base pyramid, whichs vertices are those from the frame but antidistortioned.
+     * The visual subspace is a quadrilateral base pyramid, whichs vertices are those from the frame but undistorted.
      * viewingCosLimit is a way to limitate the frustum reach.
      */
     // Check if a MapPoint is in the frustum of the camera
@@ -181,10 +181,10 @@ public:
     bool isInFrustum(MapPoint* pMP, float viewingCosLimit);
 
     /**
-     * Calculates the cell coordinates in the grid, to which it belongs a singular point.
+     * Calculates the cell coordinates in the grid, to which it belongs a keypoint.
      * Informs the coordinates in posX and posY arguments.
      * Gives back true if the point is in the grid, false if not.
-     * @param kp "Desdistortioned" singular point.
+     * @param kp "Undistorted" keypoint.
      * @param posX X coordinate of the cell to which the point belongs.
      * @param posY Y coordinate of the cell to which the point belongs.
      *
@@ -199,37 +199,37 @@ public:
      *
      * Its used to reduce candidates by matching.
      *
-     * @param x Coordenada x del centro del área
-     * @param y Coordenada y del centro del área
-     * @param r Radio del área cuadrada
-     * @param minLevel Nivel mínimo de la pirámide donde buscar los puntos singulares.  Negativo si no hay mínimo.
-     * @param maxLevel Nivel máximo de la pirámide donde buscar los puntos singulares.  Negativo si no hay máximo.
+     * @param x Coordinate x from the area center
+     * @param y Coordinate y from the area center
+     * @param r square area radius
+     * @param minLevel Pyramid minimum level where to search for keypoints.  Negative if there's no minimum.
+     * @param maxLevel Pyramid maximum level where to search for keypoints.  Negative if there's no maximum.
      *
-     * Invocado sólo por métodos varios de ORBmatcher.
+     * Invoked only by various ORBmarcher methods. 
      */
     vector<size_t> GetFeaturesInArea(const float &x, const float  &y, const float  &r, const int minLevel=-1, const int maxLevel=-1) const;
 
 public:
-	/** Vocabulario BOW para clasificar descriptores.*/
+	/** BOW vocabulary to classify descriptors.*/
     // Vocabulary used for relocalization.
 
-    /** "Algoritmo" para extraer los descriptores.  El framework permite al programador probar diferentes extractores; ORB-SLAM utiliza solamente ORBextractor.*/
+    /** "Algorithm" to extract descriptors.  The framework allows the programmer to try different extractors; ORB-SLAM uses only ORBextractor.*/
     ORBVocabulary* mpORBvocabulary;
 
-    /** Extractor usado para extraer descriptores.*/
+    /** Extractor used to extract descriptors.*/
     // Feature extractor. The right is used only in the stereo case.
     ORBextractor* mpORBextractorLeft;
 
     /**
-     * Time stamp de la captura de la imagen.
-     * Sólo para propósitos de registro e investigación, el algoritmo no lo utiliza.
+     * Time stamp of the image capture.
+     * Only for research and register purposes, the algorithm does not use it.
      */
     // Frame timestamp.
     double mTimeStamp;
 
 	/**
-	 * Matriz K intrínseca, de cámara.
-	 * Coeficientes de distorsión mDistCoef, parámetros intrínsecos fx, fy, cx, cy.
+	 * Camera intrinsec K Matrix.
+	 * Distrortion mDistCoef coefficients, intrinsic parameters fx, fy, cx, cy.
 	 */
     // Calibration matrix and OpenCV distortion parameters.
     cv::Mat mK;
@@ -263,12 +263,12 @@ public:
     float mb;
 
     /** Not used in monocular.*/
-    // Threshold close/far points. Close points are inserted from 1 view.
+    // Thereshold close/far points. Close points are inserted from 1 view.
     // Far points are inserted as in the monocular case from 2 views.
     float mThDepth;
 
 	/**
-	 * Amount of singular points.
+	 * Amount of keypoints.
 	 *
 	 * It's de size of paired vectors:
 	 * - mvKeys
@@ -289,35 +289,35 @@ public:
     // In the stereo case, mvKeysUn is redundant as images must be rectified.
     // In the RGB-D case, RGB images can be distorted.
     /**
-     * Singular points vector obtained from detector, as returned by opencv.
+     * Keypoins vector obtained from detector, as returned by opencv.
      *
      * Its coordinates are in pixels, in the image reference system.
      */
     std::vector<cv::KeyPoint> mvKeys;
 
 	/**
-	 * Antidistortioned points' vector, mvKeys corrected according to the distortion coeficients.
+	 * Undistorted points' vector, mvKeys corrected according to the distortion coeficients.
 	 *
 	 * This vector is paired with mvKeys, both of N size.
 	 *
-	 * Its coordinates are in pixels, in the antidistortioned image system of reference.
-	 * Points are obtained with cv::undistortPoints, reaplicando la matriz K de cámara.
+	 * Its coordinates are in pixels, in the undistorted image system of reference.
+	 * Points are obtained with cv::undistortPoints, reapplying the camera k matrix.
 	 */
     std::vector<cv::KeyPoint> mvKeysUn;
 
-    /** -1 for monocular.  Its passed in the Frame copy constructor.*/
+    /** -1 for monocular.  It's passed in the Frame copy constructor.*/
     //std::vector<float> mvDepth;
 
     // Bag of Words Vector structures.
     /**
-     * Vector BoW corresponding to singular points.
+     * Vector BoW corresponding to skeypoints.
      *
      * BowVector is a Word Id map (unsigned int) a Word value (double), that represents a weight.
      */
     DBoW2::BowVector mBowVec;
 
     /**
-     * "Feature" vector corresponding to singular points.
+     * "Feature" vector corresponding to keypoints.
      */
     DBoW2::FeatureVector mFeatVec;
 
@@ -325,7 +325,7 @@ public:
     // ORB descriptor, each row associated to a keypoint.
     cv::Mat mDescriptors;//, mDescriptorsRight;
 
-	/** 3D map points vector associated to singular points.
+	/** 3D map points vector associated to keypoints.
 	This vector has the same length as mvKeys and mvKeysUn.
 	Positions with no association are NULL.
 	*/
@@ -337,14 +337,14 @@ public:
     std::vector<bool> mvbOutlier;
 
 	/** mfGridElementWidthInv is the cell width inverse in pixels.
-	 * Antidistortioned image points are divided in cells with a FRAME_GRID_COLS by FRAME_GRID_ROWS grid,
+	 * Undistorted image points are divided in cells with a FRAME_GRID_COLS by FRAME_GRID_ROWS grid,
 	 * to reduce matching complexity.
 	 */
     // Keypoints are assigned to cells in a grid to reduce matching complexity when projecting MapPoints.
     static float mfGridElementWidthInv;
 
 	/** mfGridElementHeightInv is the cell height inverse in pixels.
-	 * Antidistortioned image points are divided in cells with a FRAME_GRID_COLS by FRAME_GRID_ROWS grid,
+	 * Undistorted image points are divided in cells with a FRAME_GRID_COLS by FRAME_GRID_ROWS grid,
 	 * to reduce matching complexity.
 	 */
     static float mfGridElementHeightInv;
@@ -418,14 +418,14 @@ public:
     vector<float> mvInvLevelSigma2;
 
 
-	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Undistorted image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     // Undistorted Image Bounds (computed once).
     static float mnMinX;
-	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Undistorted image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMaxX;
-	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Undistorted image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMinY;
-	/** Antidistortioned image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
+	/** Undistorted image vertices: mnMinX, mnMinY, mnMaxX, mnMaxY.*/
     static float mnMaxY;
 
 	/**
@@ -435,9 +435,9 @@ public:
     static bool mbInitialComputations;
 
     /**
-     * Calculates mvKeysUn singular points.
+     * Calculates mvKeysUn keypoints.
      *
-     * Antidistortions detected points, that are in mvKeys, and keeps them in mvKeysUn in the same order.
+     * Undistorted detected points, that are in mvKeys, and keeps them in mvKeysUn in the same order.
      * If there's no distortion, UndistortKeyPoints goes back quikly unifying mvKeysUn = mvKeys in a same vector.
      */
     // Undistort keypoints given OpenCV distortion parameters.
@@ -446,17 +446,17 @@ public:
     void UndistortKeyPoints();
 
     /**
-     * Antidistortions points according to the fisheye camera equidistant projection with no distortion coeficients model.
-     * Uses mK, intrinsec matrix, to pass the distortione points to focal scale, and after antidistortion them, pass them once again to image scale.
+     * Undistorted points according to the fisheye camera equidistant projection with no distortion coeficients model.
+     * Uses mK, intrinsec matrix, to pass the distortione points to focal scale, and after undistortioning them, pass them once again to image scale.
      *
-     * @param  Mat point of nx2 float, each pair corresponds to a point.  Input and output.  Points are corrected and the rsult kept in the same place.
+     * @param  Mat point of nx2 float, each pair corresponds to a point.  Input and output.  Points are corrected and the result kept in the same place.
      *
      * Used only form Frame::UndistortKeyPoints and Frame::ComputeImageBounds
      */
     void antidistorsionarProyeccionEquidistante(cv::Mat &puntos);
 
     /**
-     * Calculates the antidistortioned frame vertices.
+     * Calculates the undistorted frame's vertices.
      * Defines mnMinX, mnMaxX, mnMinY, mnMaxY.
      * If there's no distortion, the result is trivial with origin in (0,0).
      *
@@ -468,10 +468,10 @@ public:
     void ComputeImageBounds(const cv::Mat &imLeft);
 
     /**
-     * Asignes singular points to its grid cells.
+     * Assignes keypoints to its grid cells.
      * The image is divided in a grid to detect point in a more homogeneous way.
-     * The singular point detecter are later 'dedistortioned',
-     * this method creates a singular points vector for each grid cell, and tests it.
+     * The keypoint detecter is later 'undistorted',
+     * this method creates a keypoint vector for each grid cell, and tests it.
      */
     // Assign keypoints to the grid for speed up feature matching (called in the constructor).
     void AssignFeaturesToGrid();
