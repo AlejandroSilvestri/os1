@@ -42,6 +42,8 @@ class LoopClosing;
  *
  * Concentra todas las funciones implementadas con el framework g2o, que incluyen bundle adjustment, pose optimization y graph optimization.
  *
+ * Los métodos de bundle adjustment utilizan g2o de la misma manera, descrita en Optimizer::LocalBundleAdjustment.
+ *
  */
 class Optimizer
 {
@@ -76,7 +78,17 @@ public:
      * BlockSolver_6_3::PoseMatrixType es MatrixXD ?, es decir de elementos double y dimensiones por definir.
      * Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de 6 dimensiones
      * y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen.
+     *
+     * Vértices:
+     * - g2o::VertexSE3Expmap: pose de keyframe
+     * - g2o::VertexSBAPointXYZ: posición del mappoint
 	 *
+	 * Ejes:
+	 * - g2o::EdgeSE3ProjectXYZ
+	 *   - vértice 0: mappoint
+	 *   - vértice 1: keyframe
+	 *   - medición: coordenadas del keypoint
+	 *   - información: invSigma2 de la octava del keypoint
 	 *
 	 */
 	void static BundleAdjustment(const std::vector<KeyFrame*> &vpKF, const std::vector<MapPoint*> &vpMP,
@@ -178,6 +190,18 @@ public:
      *
      * El factor de escala se aplica a las coordenadas en píxeles: un factor de escala 1,2 significa un error de 1,2 píxeles en la medición.
      *
+     *
+     * Vértices:
+     * - g2o::VertexSE3Expmap: pose de keyframe
+     * - g2o::VertexSBAPointXYZ: posición del mappoint
+	 *
+	 * Ejes:
+	 * - g2o::EdgeSE3ProjectXYZ
+	 *   - vértice 0: mappoint
+	 *   - vértice 1: keyframe
+	 *   - medición: coordenadas del keypoint
+	 *   - información: invSigma2 de la octava del keypoint
+	 *
      */
     void static LocalBundleAdjustment(KeyFrame* pKF, bool *pbStopFlag, Map *pMap);
 
@@ -202,7 +226,7 @@ public:
      * @param pFrame Cuadro con macheos contra puntos del mapa, cuya pose se quiere calcular.  La pose se guarda en pFrame->mTcw.  En OrbSlam siempre es el cuadro actual.
      * @returns La cantidad de correspondencias optimizadas (macheos sobrevivientes, inliers).
      *
-     * El optimizador se arma así, idéntico al de LocalBundleAdjustment:
+     * El optimizador se arma así:
      *
         g2o::SparseOptimizer optimizer;
         optimizer.setAlgorithm(
@@ -212,6 +236,17 @@ public:
     		    )
     	    )
         );
+     *
+     * Único vértice:
+     * - g2o::VertexSE3Expmap: pose del frame
+     *
+     * Ejes de un sólo vértice común:
+     * - g2o::EdgeSE3ProjectXYZOnlyPose
+     * - g2o::RobustKernelHuber, delta sqrt(5.991)
+     * - medición: coordenadas del keypoint
+     * - información: invSigma2 de la octava
+     * - xW: coordenadas del mappoint
+     * - matriz de calibración
      */
     int static PoseOptimization(Frame* pFrame);
 
@@ -264,6 +299,14 @@ public:
      *
      * A diferencia de PoseOptimization y LocalBundleAdjustment, se usa un BlockSolver_7_3 en lugar del BlockSolverX, y se le ajusta el LambdaInit.
      *
+     *
+     * Vértices:
+     * - g2o::VertexSim3Expmap: pose de keyframe
+     *
+     * Ejes:
+     * - g2o::EdgeSim3: ejes entre dos poses de keyframes
+     * - medición: g2o::Sim3, pose relativa entre dos keyframes
+     * - información: 1
      */
     // if bFixScale is true, 6DoF optimization (stereo,rgbd), 7DoF otherwise (mono)
     void static OptimizeEssentialGraph(Map* pMap, KeyFrame* pLoopKF, KeyFrame* pCurKF,
@@ -296,11 +339,20 @@ public:
 				optimizer.setAlgorithm(
 					new g2o::OptimizationAlgorithmLevenberg(
 						new g2o::BlockSolverX(
-							new g2o::LinearSolverEigen<g2o::BlockSolverX::PoseMatrixType>()
+							new g2o::LinearSolverDense<g2o::BlockSolverX::PoseMatrixType>()
 						)
 					)
 				);
 
+     *
+     * Vértices:
+     * - g2o::VertexSim3Expmap: pose sim3 entre ambos keyframe.  Único vertex a optimizar
+     * - g2o::VertexSBAPointXYZ: posición de los mappoints
+     *
+     * Ejes:
+     * - g2o::EdgeSim3ProjectXYZ: eje del keyframe a un mappoint
+     * - g2o::EdgeInverseSim3ProjectXYZ: eje de un mappoint al keyframe
+     *
      *
      * Las poses son g2o::VertexSim3Expmap en lugar de VertexSE3Expmap,
      * pues son poses de similaridad (sim3) en lugar de rototraslación (SE3, Special Euclidean).
@@ -310,12 +362,15 @@ public:
      *
      * Los ejes van de a pares, en ambos sentidos, y son de tipos g2o::EdgeSim3ProjectXYZ y g2o::EdgeInverseSim3ProjectXYZ.
      *
-     * OptimizeSim3 construye un vertex VertexSim3Expmap, consituído por una transformación de similaridad inicial que explica las poses entre dos keyframes.
+     * OptimizeSim3 construye un vertex VertexSim3Expmap, consituido por una transformación de similaridad inicial que explica las poses entre dos keyframes.
      * Es el único vertex a optimizar.
      *
      * El resto de los vertex son fijos, corresponden a los puntos 3D observados desde el pKF2 (el keyframe preexistente).
      *
      * De este modo la transformación resultante es la que se aplicará al keyframe actual para cerrar el bucle.
+     *
+     *
+     *
      */
     // if bFixScale is true, optimize SE3 (stereo,rgbd), Sim3 otherwise (mono)
     static int OptimizeSim3(KeyFrame* pKF1, KeyFrame* pKF2, std::vector<MapPoint *> &vpMatches1,

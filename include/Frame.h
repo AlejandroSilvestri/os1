@@ -66,7 +66,10 @@ class ORBextractor;
  *
  * Esta clase no determina la pose del cuadro.  Su pose es registrada por Tracking y Optimizer.
  *
+ * En Frame::mTcw se explica la matriz de pose.
+ *
  * \sa SetPose
+ * \sa mTcw
  */
 class Frame
 {
@@ -364,6 +367,7 @@ public:
      * El sistema de coordenadas 3D de una cámara se relaciona con el 2D de su proyección
      * manteniendo paralelos los ejes X e Y, y estableciendo Z hacia adelante.
      * De este modo X apunta a la derecha e Y apunta hacia abajo (en esto es contrario al sistema de coordenadas estándar).
+     * Este sistema de coordenadas se conoce como _optical:  http://www.ros.org/reps/rep-0103.html#axis-orientation
      * Los vectores 3D homogéneos tienen la disposición tradicional:
      *
      * V = [vx, vy, vz, 1]t
