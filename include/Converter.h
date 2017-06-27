@@ -32,51 +32,51 @@ namespace ORB_SLAM2
 {
 
 /**
- * Converter between g2o and opencv.
- * Not instantiated class, with no properties, class methods' set.
- * Converts elements between opencv and g2o forms of expression.
- * Converts in both directions Point, Vector, Mat, Egien::Matrix, g2o::sim3, g2o::SE2Quat.
+ * Convertidor entre g2o y opencv.
+ * Clase no instanciada, sin propiedades, conjunto de métodos de clase.
+ * Convierte elementos entre las formas de expresión de opencv y g2o.
+ * Convierte en ambas direcciones Point, Vector, Mat, Egien::Matrix, g2o::sim3, g2o::SE2Quat.
  */
 class Converter
 {
 public:
-	/** Converts a Mat descriptor matrix into a Mat descriptor vector.*/
+	/** Convierte una matriz Mat de descriptores en un vector de descriptores Mat.*/
     static std::vector<cv::Mat> toDescriptorVector(const cv::Mat &Descriptors);
 
-    /** Converts Mat into SE3Quat.*/
+    /** Convierte un Mat a SE3Quat.*/
     static g2o::SE3Quat toSE3Quat(const cv::Mat &cvT);
 
-    /** Converts from Sim3 to SE3Quat.*/
+    /** Convierte de Sim3 a SE3Quat.*/
     static g2o::SE3Quat toSE3Quat(const g2o::Sim3 &gSim3);
 
-    /** Converts SE3Quat into Mat.*/
+    /** Convierte SE3Quat a Mat.*/
     static cv::Mat toCvMat(const g2o::SE3Quat &SE3);
 
-    /** Converts Sim3 into Mat.*/
+    /** Convierte Sim3 a Mat.*/
     static cv::Mat toCvMat(const g2o::Sim3 &Sim3);
 
-    /** Converts Eigen matrices into Mat.*/
+    /** Convierte matrices Eigen a Mat.*/
     static cv::Mat toCvMat(const Eigen::Matrix<double,4,4> &m);
 
-    /** Converts Eigen matrices into Mat.*/
+    /** Convierte matrices Eigen a Mat.*/
     static cv::Mat toCvMat(const Eigen::Matrix3d &m);
 
-    /** Converts Eigen matrices into Mat.*/
+    /** Convierte matrices Eigen a Mat.*/
     static cv::Mat toCvMat(const Eigen::Matrix<double,3,1> &m);
 
-    /** Converts Eligen SE3 matrices into Mat.*/
+    /** Convierte matrices SE3 de Eigen a Mat.*/
     static cv::Mat toCvSE3(const Eigen::Matrix<double,3,3> &R, const Eigen::Matrix<double,3,1> &t);
 
-    /** Converts a 3D Mat vector into Eigen.*/
+    /** Convierte un vector 3D de Mat a Eigen.*/
     static Eigen::Matrix<double,3,1> toVector3d(const cv::Mat &cvVector);
 
-    /** Converts Point3f into Eigen.*/
+    /** Convierte Point3f a Eigen.*/
     static Eigen::Matrix<double,3,1> toVector3d(const cv::Point3f &cvPoint);
 
-    /** Converts Mat into Eigen.*/
+    /** Convierte Mat a Eigen.*/
     static Eigen::Matrix<double,3,3> toMatrix3d(const cv::Mat &cvMat3);
 
-    /** Converts Mat into vector.*/
+    /** Convierte Mat a vector.*/
     static std::vector<float> toQuaternion(const cv::Mat &M);
 };
 
