@@ -50,9 +50,11 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
 {
     // Load camera parameters from settings file
 
-    cv::FileStorage fSettings(strSettingPath.c_str(), cv::FileStorage::READ);
+	ChangeCalibration(strSettingPath);
+	cv::FileStorage fSettings(strSettingPath.c_str(), cv::FileStorage::READ);
 
 
+/*
     // Matriz intrínseca
     float fx = fSettings["Camera.fx"];
     float fy = fSettings["Camera.fy"];
@@ -104,7 +106,7 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
 
 
 
-    mbf = fSettings["Camera.bf"];
+    //mbf = fSettings["Camera.bf"];
 
     float fps = fSettings["Camera.fps"];
     if(fps==0)
@@ -143,7 +145,7 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
         cout << "- color order: RGB (ignored if grayscale)" << endl;
     else
         cout << "- color order: BGR (ignored if grayscale)" << endl;
-
+*/
     // Load ORB parameters
 
     int nFeatures = fSettings["ORBextractor.nFeatures"];
@@ -202,10 +204,10 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
 
     if(mState==NOT_INITIALIZED || mState==NO_IMAGES_YET)
     	// Inicialización, pide el doble de features a través de mpIniORBextractor
-        mCurrentFrame = Frame(mImGray,timestamp,mpIniORBextractor,mpORBVocabulary,mK,mDistCoef,mbf);//,mThDepth);
+        mCurrentFrame = Frame(mImGray,timestamp,mpIniORBextractor,mpORBVocabulary,mK,mDistCoef);//,mbf,mThDepth);
     else
     	// Tracking y mapping, estado normal, usa ORBextractorLeft (ORBextractorRight se usa solamente en estéreo).
-        mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf);//,mThDepth);
+        mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef);//,mbf);//,mThDepth);
 
     Track();
 
@@ -1267,7 +1269,14 @@ void Tracking::Reset()
 
 void Tracking::ChangeCalibration(const string &strSettingPath)
 {
+    //Check settings file
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
+    if(!fSettings.isOpened()){
+       cerr << "No se encuentra el archivo de calibración " << strSettingPath << endl;
+       return;
+    }
+
+    // Matriz intrínseca
     float fx = fSettings["Camera.fx"];
     float fy = fSettings["Camera.fy"];
     float cx = fSettings["Camera.cx"];
@@ -1280,20 +1289,82 @@ void Tracking::ChangeCalibration(const string &strSettingPath)
     K.at<float>(1,2) = cy;
     K.copyTo(mK);
 
-    cv::Mat DistCoef(4,1,CV_32F);
-    DistCoef.at<float>(0) = fSettings["Camera.k1"];
-    DistCoef.at<float>(1) = fSettings["Camera.k2"];
-    DistCoef.at<float>(2) = fSettings["Camera.p1"];
-    DistCoef.at<float>(3) = fSettings["Camera.p2"];
-    const float k3 = fSettings["Camera.k3"];
-    if(k3!=0)
-    {
-        DistCoef.resize(5);
-        DistCoef.at<float>(4) = k3;
-    }
-    DistCoef.copyTo(mDistCoef);
 
-    mbf = fSettings["Camera.bf"];
+    // Modo de cámara y coeficientes de distorsión
+    //cv::FileNode fn = fSettings["Camera.modo"];
+    camaraModo = fSettings["Camera.modo"];
+    //if(fn.isNone() || (int)fn == 0){
+    if(camaraModo == 0){
+    	// Modo normal
+
+        cv::Mat DistCoef(8,1,CV_32F);
+        DistCoef.at<float>(0) = fSettings["Camera.k1"];
+        DistCoef.at<float>(1) = fSettings["Camera.k2"];
+        DistCoef.at<float>(2) = fSettings["Camera.p1"];
+        DistCoef.at<float>(3) = fSettings["Camera.p2"];
+        const float k3 = DistCoef.at<float>(4) = fSettings["Camera.k3"];
+        const float k4 = DistCoef.at<float>(5) = fSettings["Camera.k4"];
+        const float k5 = DistCoef.at<float>(6) = fSettings["Camera.k5"];
+        const float k6 = DistCoef.at<float>(7) = fSettings["Camera.k6"];
+
+        // UndistortPoints acorta su fórmula polinómica si el vector de coeficientes es más corto.  Las longitudes son 4, 5 u 8.
+        if(k5==0 && k6==0 && k4==0){
+    		if(k3==0){
+    			DistCoef.resize(4);
+    			cout << "2 coeficientes de distorsión radial." << endl;
+    		}else{
+    			DistCoef.resize(5);
+    			cout << "3 coeficientes de distorsión radial." << endl;
+    		}
+        } else
+    		cout << "6 coeficientes de distorsión radial." << endl;
+
+        DistCoef.copyTo(mDistCoef);
+    }else if(camaraModo == 1){
+		// fiseye, proyección equidistante (sin parámetros de distorsión)
+		mDistCoef = cv::Mat();//::zeros(4,1,CV_32F);
+    }
+
+
+
+    float fps = fSettings["Camera.fps"];
+    if(fps==0)
+        fps=30;
+
+    // Max/Min Frames to insert keyframes and to check relocalisation
+    mMinFrames = 0;
+    mMaxFrames = fps;
+
+    cout << endl << "Camera Parameters: " << endl;
+    cout << "- fx: " << fx << endl;
+    cout << "- fy: " << fy << endl;
+    cout << "- cx: " << cx << endl;
+    cout << "- cy: " << cy << endl;
+    if(camaraModo == 0){
+		cout << "- k1: " << mDistCoef.at<float>(0) << endl;
+		cout << "- k2: " << mDistCoef.at<float>(1) << endl;
+		if(mDistCoef.rows>4){
+			cout << "- k3: " << mDistCoef.at<float>(4) << endl;
+			if(mDistCoef.rows>5){
+				cout << "- k4: " << mDistCoef.at<float>(5) << endl;
+				cout << "- k5: " << mDistCoef.at<float>(6) << endl;
+				cout << "- k6: " << mDistCoef.at<float>(7) << endl;
+			}
+		}
+		cout << "- p1: " << mDistCoef.at<float>(2) << endl;
+		cout << "- p2: " << mDistCoef.at<float>(3) << endl;
+    }
+    cout << "- fps: " << fps << endl;
+
+
+    int nRGB = fSettings["Camera.RGB"];
+    mbRGB = nRGB;
+
+    if(mbRGB)
+        cout << "- color order: RGB (ignored if grayscale)" << endl;
+    else
+        cout << "- color order: BGR (ignored if grayscale)" << endl;
+
 
     Frame::mbInitialComputations = true;
 }

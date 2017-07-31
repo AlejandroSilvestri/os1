@@ -238,6 +238,8 @@ void FrameDrawer::Update(Tracking *pTracker)
     distCoef = pTracker->mCurrentFrame.mDistCoef;
     cameraPos = pTracker->mCurrentFrame.GetCameraCenter();
 
+    timestamp = pTracker->mCurrentFrame.mTimeStamp;
+
     if(pTracker->mLastProcessedState==Tracking::NOT_INITIALIZED)
     {
         mvIniKeys=pTracker->mInitialFrame.mvKeys;

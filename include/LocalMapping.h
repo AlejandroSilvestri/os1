@@ -277,6 +277,27 @@ protected:
      *
      * Es el único lugar del código que agrega puntos al mapa.  Invocado sólo desde LocalMapping::Run.
      *
+     * Descripción de los pasos:
+     * - Recorre todos los keyframes vecinos.
+     * - Descarta el keyframe vecino si no se distancia al menos un 1% de la profundidad mediana de la escena.
+     * - Computa la matriz fundamental para machear pares sobre la línea epipolar, con ORBmatcher::SearchForTriangulation.
+     * - Recorre los pares macheados.
+     * - Calcula los rayos 3D del par de puntos macheado.
+     * - Exige un paralaje de cos<0.9998.  Extrañamente exige que el coseno de ambos rayos no sea negativo (esto puede ser un error).
+     * - Triangula los rayos por SVD, obteniendo las coordenadas del nuevo punto.
+     * - Si la 4ª coordenada homogénea es cero, se descarta el punto en el infinito.
+     * - Se comprueba que el punto esté delante de ambas cámaras.  De lo contrario se descarta.
+     * - Que el error de reproyección sobre ambos keyframes sea menor a 5.991 píxel^2.
+     * - Que el punto no se encuentre sobre el foco de alguna cámara.
+     * - Que los niveles de pirámides del punto en cada cámara sea consistente con las distancias del punto 3D a las cámaras.
+     *
+     * Luego de superar todas las comprobaciones, se:
+     * - agrega al mapa
+     * - agrega a las observaciones de los keyframes
+     * - computa un descriptor distintivo
+     * - calcula la profundidad o rango de visión, la normal, y el cos visual de originación
+     * - agrega a la lista de puntos nuevos, que serán revisados más tarde por LocalMapping::MapPointCulling
+     *
      * \sa Run
      */
     void CreateNewMapPoints();

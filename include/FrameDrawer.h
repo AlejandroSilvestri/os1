@@ -48,11 +48,21 @@ class Map;
 class FrameDrawer
 {
 public:
-	/** Constructor.*/
+	/**
+	 * Constructor único.
+	 *
+	 * @param pMap puntero al mapa, de donde tomará mappoints y keyframes para graficarlos.
+	 */
     FrameDrawer(Map* pMap);
     //FrameDrawer();
 
-    /** Invocado sólo por Tracking::Track avisando que hay un nuevo Frame para mostrar.*/
+    /**
+     * Invocado sólo por Tracking::Track avisando que hay un nuevo Frame para mostrar.
+     *
+     * @param pTracker puntero al único Tracker.
+     *
+     * El parámetro es siempre el mismo, se podría convertir en un parámetro del constructor en lugar de estar acá.
+     */
     // Update info from the last processed frame.
     void Update(Tracking *pTracker);
 
@@ -93,6 +103,12 @@ public:
      * Copia de la variable de Viewer::Run, para corregir la posición del clic en FrameDrawer::onMouse.
      */
     float factorEscalaImagenParaMostrar;
+
+    /**
+     * Marca temporal del Frame
+     */
+    double timestamp = 0;
+
 
 protected:
 

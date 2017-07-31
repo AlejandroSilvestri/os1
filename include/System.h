@@ -201,7 +201,7 @@
 #include <string>
 #include <thread>
 #include <opencv2/core.hpp>
-#include <opencv2/videoio.hpp>
+//#include <opencv2/videoio.hpp>
 #include <mutex>
 
 
@@ -296,7 +296,7 @@ public:
      *
      */
     // Initialize the SLAM system. It launches the Local Mapping, Loop Closing and Viewer threads.
-    System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer = true, cv::VideoCapture* = NULL);
+    System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer = true);
 
 
     /**
@@ -388,7 +388,7 @@ public:
     /* Agregados */
 
     /** Video de entrada.*/
-    cv::VideoCapture* video;
+    //cv::VideoCapture* video;
 
     /** Imagen de entrada.*/
     cv::Mat imagenEntrada;

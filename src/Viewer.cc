@@ -23,17 +23,17 @@
 #include "MapDrawer.h"
 #include "Tracking.h"
 #include "System.h"
+//#include "Video.h"
 #include <pangolin/pangolin.h>
 
-#include <opencv2/core.hpp>
+//#include <opencv2/core.hpp>	// Cargado en Video.h
 #include <opencv2/imgcodecs.hpp>
 
 #include <mutex>
 
 namespace ORB_SLAM2{
 
-Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath, cv::VideoCapture* video_):
-	video(video_),
+Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath):
     mpSystem(pSystem), mpFrameDrawer(pFrameDrawer),mpMapDrawer(pMapDrawer), mpTracker(pTracking),
     mbFinishRequested(false), mbFinished(true), mbStopped(false), mbStopRequested(false)
 {
@@ -96,11 +96,12 @@ void Viewer::Run(){
     pangolin::Var<bool> menuShowGraph("menu.Grafo",true,true);
     pangolin::Var<bool> menuShowRgb("menu.Puntos a color",false,true);
     pangolin::Var<bool> menuLocalizationMode("menu.Tracking, sin mapeo",false,true);
-    pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa", false, false);
     pangolin::Var<bool> menuCargarMapa("menu.Cargar mapa", false, false);
+    pangolin::Var<bool> menuGuardarMapa("menu.Guardar mapa", false, false);
+    pangolin::Var<bool> menuAbrirVideo("menu.Abrir video", false, false);
     pangolin::Var<bool> menuGrabar("menu.Grabar video", false, false);
     pangolin::Var<bool> menuReset("menu.Reset",false,false);
-    //pangolin::Var<bool> menuSalir("menu.Salir",false,false);
+    pangolin::Var<bool> menuSalir("menu.Salir",false,false);
 
 
     // Define Camera Render Object (for view / scene browsing)
@@ -122,16 +123,16 @@ void Viewer::Run(){
 
 	cout << "Ventana para frame." << endl;
     cv::namedWindow("ORB-SLAM2: Current Frame");
-    if(duracion) cv::createTrackbar("tiempo", "ORB-SLAM2: Current Frame", &tiempo, video->get(CV_CAP_PROP_FRAME_COUNT));
+    {
+    	unique_lock<mutex> lock(mutexIniTrackbar);
+    	cv::createTrackbar("tiempo", "ORB-SLAM2: Current Frame", &tiempo, duracion? duracion:1);	//Duración 1 para inicializar.  Luego se corrige con setDuracion
+    	iniTrackbar = true;
+    }
 
     // Línea agregada para un trackbar paramétrico.
-    //mpTracker->param = 100;
     cv::createTrackbar("Parámetro", "ORB-SLAM2: Current Frame", &mpSystem->mpLocalMapper->param, 1000);
 
     cv::setMouseCallback("ORB-SLAM2: Current Frame", FrameDrawer::onMouse, mpFrameDrawer);
-
-    // Video de entrada con línea de tiempo
-    //cv::namedWindow("entrada");
 
 
     // Variables controladas por el usuario
@@ -386,7 +387,7 @@ void Viewer::Run(){
         	if(!tiempoAlterado){
 				if(tiempo == trackbarPosicionAnterior){
 					// El usuario no cambió el trackbar de tiempo.  Hay que reflejar la posición actual en el trackbar.
-					trackbarPosicionAnterior = video->get(CV_CAP_PROP_POS_FRAMES);
+					trackbarPosicionAnterior = mpFrameDrawer->timestamp;
 					cv::setTrackbarPos("tiempo", "ORB-SLAM2: Current Frame", trackbarPosicionAnterior);	// indirectamente se asigna también a la variable tiempo
 				}else{
 					// El usuario cambió el trackbar de tiempo
@@ -432,6 +433,10 @@ void Viewer::Run(){
         	cargarMapa = true;
         }
 
+        if(menuAbrirVideo){
+        	abrirVideo = true;
+        	menuAbrirVideo = false;
+        }
 
         if(menuReset){
         	// Reestablece los botones
@@ -448,6 +453,11 @@ void Viewer::Run(){
             // Solicita resetear el sistema, retorna inmediatamente.
             mpSystem->Reset();
             menuReset = false;
+        }
+
+        if(menuSalir){
+        	// Termina, cierra OS1
+        	exit(0);
         }
 
 
@@ -512,6 +522,11 @@ void Viewer::Release(){
     unique_lock<mutex> lock(mMutexStop);
     mbStopped = false;
 }
+
+void Viewer::setDuracion(int T){
+	unique_lock<mutex> lock(mutexIniTrackbar);
+	duracion = T;
+	if(iniTrackbar) cv::setTrackbarMax("tiempo", "ORB-SLAM2: Current Frame", T<1? 1:T);
 }
 
-
+}	// namespace ORB_SLAM2

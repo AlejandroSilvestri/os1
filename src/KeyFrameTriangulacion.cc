@@ -12,11 +12,10 @@ using namespace cv;
 namespace ORB_SLAM2{
 
 KeyFrameTriangulacion::KeyFrameTriangulacion(KeyFrame *pKF):
-	kf(*pKF), fx(kf.fx), fy(kf.fy), cx(kf.cx), cy(kf.cy), invfx(kf.invfx), invfy(kf.invfy)/*,
-	Tcw(kf.Tcw), Ow(kf.Ow)*/
+	kf(*pKF), fx(kf.fx), fy(kf.fy), cx(kf.cx), cy(kf.cy), invfx(kf.invfx), invfy(kf.invfy)
 {
 	Tcw = kf.GetPose();
-	Rcw = kf.GetRotation();	//Tcw.rowRange(0,3).colRange(0,3).copyTo(Rcw);
+	Rcw = kf.GetRotation();
 	Rwc = Rcw.t();
 	Ow = kf.GetCameraCenter();
 	Tcw.rowRange(0,3).col(3).copyTo(tcw);

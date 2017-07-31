@@ -98,7 +98,7 @@ public:
      * Invocado sólo desde Tracling::GrabImageMonocular.
      */
     // Constructor for Monocular cameras.
-    Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf);//, const float &thDepth);
+    Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef);//, const float &bf, const float &thDepth);
     //Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor, ORBVocabulary* voc, const float &thDepth);
 
     /**
@@ -260,16 +260,16 @@ public:
 
     /** No usado en monocular.*/
     // Stereo baseline multiplied by fx.
-    float mbf;
+    //float mbf;
 
     /** No usado en monocular.*/
     // Stereo baseline in meters.
-    float mb;
+    //float mb;
 
     /** No usado en monocular.*/
     // Threshold close/far points. Close points are inserted from 1 view.
     // Far points are inserted as in the monocular case from 2 views.
-    float mThDepth;
+    //float mThDepth;
 
 	/**
 	 * Cantidad de puntos singulares.
@@ -383,7 +383,7 @@ public:
      * Frame no calcula mTcw.  Esta matriz es calculada y pasada al cuadro con SetPose, en:
      * - Tracking, copiando de un cuadro anterior, inicializando con la pose cartesiana, o estimando por modelo de movimiento.
      * - Optimizer::PoseOptimization, invocado desde varios métodos de Tracking.  Aquí es donde se hace el verdadero cálculo de pose.
-     * -
+     *
 	 */
     // Camera pose.
     cv::Mat mTcw;

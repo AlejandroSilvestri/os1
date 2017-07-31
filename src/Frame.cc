@@ -39,7 +39,7 @@ Frame::Frame()
 Frame::Frame(const Frame &frame)
     :mpORBvocabulary(frame.mpORBvocabulary), mpORBextractorLeft(frame.mpORBextractorLeft),
      mTimeStamp(frame.mTimeStamp), mK(frame.mK.clone()), mDistCoef(frame.mDistCoef.clone()),
-     mbf(frame.mbf), mb(frame.mb), mThDepth(frame.mThDepth), N(frame.N), mvKeys(frame.mvKeys),
+     /*mbf(frame.mbf), mb(frame.mb), mThDepth(frame.mThDepth), */N(frame.N), mvKeys(frame.mvKeys),
      mvKeysUn(frame.mvKeysUn), mBowVec(frame.mBowVec), mFeatVec(frame.mFeatVec),
      mDescriptors(frame.mDescriptors.clone()),
      mvpMapPoints(frame.mvpMapPoints), mvbOutlier(frame.mvbOutlier), mnId(frame.mnId),
@@ -58,9 +58,9 @@ Frame::Frame(const Frame &frame)
 
 
 Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc,
-		cv::Mat &K, cv::Mat &distCoef, const float &bf)//, const float &thDepth)
+		cv::Mat &K, cv::Mat &distCoef)//, const float &bf, const float &thDepth)
     :mpORBvocabulary(voc),mpORBextractorLeft(extractor),//mpORBextractorRight(static_cast<ORBextractor*>(NULL)),
-     mTimeStamp(timeStamp), mK(K.clone()),mDistCoef(distCoef.clone()), mbf(bf)//, mThDepth(thDepth)
+     mTimeStamp(timeStamp), mK(K.clone()),mDistCoef(distCoef.clone())//, mbf(bf), mThDepth(thDepth)
 {
     // Frame ID
     mnId=nNextId++;

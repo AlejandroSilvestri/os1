@@ -639,7 +639,7 @@ public:
 
     // Calibration parameters
     /** Parámetros de calibración.*/
-    const float fx, fy, cx, cy, invfx, invfy, mbf, mb, mThDepth;
+    const float fx, fy, cx, cy, invfx, invfy;//, mbf, mb, mThDepth;
 
     // Number of KeyPoints
     /**

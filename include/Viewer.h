@@ -28,7 +28,7 @@
 #include "Tracking.h"
 #include "System.h"
 */
-#include <opencv2/videoio.hpp>
+//#include <opencv2/videoio.hpp>
 
 #include <string>
 #include <mutex>
@@ -40,6 +40,7 @@ class Tracking;
 class FrameDrawer;
 class MapDrawer;
 class System;
+//class Video;
 
 /**
  * Viewer representa la interfaz de usuario.
@@ -76,7 +77,7 @@ public:
 	 * Se ocupa de la interfaz de usuario: presentación en pantalla y de procesar teclas y botones.
 	 * Es el consumidor único de los singletons de FrameDrawer y MapDrawer.
 	 */
-    Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const std::string &strSettingPath, cv::VideoCapture* = NULL);	// Agregé el últinmo argumento
+    Viewer(System* pSystem, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Tracking *pTracking, const std::string &strSettingPath);	// Agregé el últinmo argumento
 
     /**
      * Método principal de Viewer, que se ejecuta en un hilo propio.
@@ -124,8 +125,19 @@ public:
 
     /* Agregados */
 
+    /**
+     * Recibe la duración del video de archivo, y dimensiona el trackbar de tiempo.
+     * Si el trackbar no se creó, se limita a actualizar la propiedad duracion.
+     *
+     * @param T Duración en cantidad de cuadros.  0 para desactivar el trackbar, usualmente para flujos sin barra de tiempo.
+     */
+    void setDuracion(int T=0);
+
     /** Flujo de entrada de video.  NULL si no proviene de un archivo.  Usado para manipular el tiempo con un trackbar.  Definido en el constructor.*/
-    cv::VideoCapture* video;
+    //cv::VideoCapture* video;
+
+    /** Singleton Video, fuente de entrada de video a procesar. */
+    //Video *video;
 
     /**
      * Posición del trackbar de tiempo de entrada, expresado en cuadros.
@@ -139,7 +151,7 @@ public:
      * 0 si no la entrada no es de un archivo.
      * Definido en el constructor de viewer.
      */
-    int duracion;
+    int duracion = 0;
 
     /**
      * Señal para main, indicando que el usuario cambió el tiempo con el trackbar.
@@ -174,6 +186,9 @@ public:
 
     /** Señal para que main guarde el mapa en el thread de System y Tracking.*/
     bool guardarMapa = false;
+
+    /** Señal para que main abra un archivo de video.*/
+    bool abrirVideo = false;
 
     /**
      * Período mínimo entre cuadros, en segundos.
@@ -232,6 +247,13 @@ private:
      */
     bool mbStopRequested;
     std::mutex mMutexStop;
+
+    /**
+     * Flag que indica si el trackbar de tiempo ya se creó y está disponible.
+     * Es usado solamente por la inicialización y por setDuracion, para evitar que este método intente cambiar el tamaño de la barra cuando no se creoó todavía.
+     */
+    bool iniTrackbar = false;
+    std::mutex mutexIniTrackbar;
 
 };
 

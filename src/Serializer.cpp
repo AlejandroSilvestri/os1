@@ -197,7 +197,7 @@ KeyFrame::KeyFrame():
     mnLoopQuery(0), mnLoopWords(0), mnRelocQuery(0), mnRelocWords(0), mnBAGlobalForKF(0),
 
     fx(Frame::fx), fy(Frame::fy), cx(Frame::cx), cy(Frame::cy), invfx(Frame::invfx), invfy(Frame::invfy),
-    mbf(0.0), mb(0.0), mThDepth(0.0),	// Valores no usados en monocular, que pasan por varios constructores.
+    /*mbf(0.0), mb(0.0), mThDepth(0.0),*/	// Valores no usados en monocular, que pasan por varios constructores.
     N(0), mnScaleLevels(Sistema->mpTracker->mCurrentFrame.mnScaleLevels),
     mfScaleFactor(Sistema->mpTracker->mCurrentFrame.mfScaleFactor),
     mfLogScaleFactor(Sistema->mpTracker->mCurrentFrame.mfLogScaleFactor),

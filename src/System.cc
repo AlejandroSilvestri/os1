@@ -38,8 +38,8 @@
 namespace ORB_SLAM2
 {
 
-System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer, cv::VideoCapture* video_)
-				:video(video_), mSensor(sensor),mbReset(false),mbActivateLocalizationMode(false),
+System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer)
+				:mSensor(sensor),mbReset(false),mbActivateLocalizationMode(false),
         mbDeactivateLocalizationMode(false)
 {
     //Check settings file
@@ -89,7 +89,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mptLoopClosing = new thread(&ORB_SLAM2::LoopClosing::Run, mpLoopCloser);
 
     //Initialize the Viewer thread and launch
-    mpViewer = new Viewer(this, mpFrameDrawer,mpMapDrawer,mpTracker,strSettingsFile, video);
+    mpViewer = new Viewer(this, mpFrameDrawer,mpMapDrawer,mpTracker,strSettingsFile);
     if(bUseViewer)
         mptViewer = new thread(&Viewer::Run, mpViewer);
 

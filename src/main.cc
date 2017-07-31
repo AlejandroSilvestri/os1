@@ -41,6 +41,7 @@
 #include <Tracking.h>
 #include <FrameDrawer.h>
 #include <Serializer.h>
+#include <Video.h>
 
 
 using namespace std;
@@ -51,10 +52,6 @@ int main(int argc, char **argv){
 
 	cout	<< "Iniciando ORB-SLAM.  Línea de comando:" << endl
 			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl;
-
-    cv::VideoCapture video,					// Entrada de video desde un archivo
-    			 	 webcam;				// Entrada de video desde una webcam
-    cv::VideoCapture* videoEntrada = NULL;	// Entrada de video seleccionada, una de las de arriba
 
     // Parámetros de la línea de comando
 
@@ -70,8 +67,6 @@ int main(int argc, char **argv){
 
 	case 2:	// Un argumento, archivo de configuración  NO IMPLEMENTADO
 		rutaConfiguracion = argv[1];
-	    //cv::FileStorage fSettings(rutaConfiguracion, cv::FileStorage::READ);
-	    //rutaVideo = fSettings["rutaVideo"];// No sé cargar una string de yaml
 		break;
 
 	case 3:	// Dos argumentos, archivo de configuración y ruta de video
@@ -82,28 +77,10 @@ int main(int argc, char **argv){
 
 	}
 
-	// Indica si la entrada de video corresponde a un archivo, y por lo tanto su base de tiempo es controlable
-	bool videoEsArchivo = rutaVideo;
-    if(videoEsArchivo){
-		video.open(rutaVideo);
-		videoEntrada = &video;
-		char fourcc[] = "    ";
-		int* fcc;
-		fcc = (int*)fourcc;
-		*fcc = static_cast<int>(video.get(cv::CAP_PROP_FOURCC));
-		cout << "FOURCC: " << fourcc << endl;
 
-	}else{
-		// No hay parámetros, no hay video, sólo webcam.
-		webcam.open(0);
-		videoEntrada = &webcam;
-	}
-
-    // Inicializa el sistema SLAM.
+	// Inicializa el sistema SLAM.
     // Mi versión de archivo binario con el vocabulario, que carga mucho más rápido porque evita el análisis sintáctico.
-    ORB_SLAM2::System SLAM("orbVoc.bin", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true, videoEntrada);
-	// Versión original que carga el vocabulario de un archivo de texto
-    //ORB_SLAM2::System SLAM("../Archivos/ORBvoc.txt", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
+    ORB_SLAM2::System SLAM("orbVoc.bin", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
 
     // Puntero global al sistema singleton
     Sistema = &SLAM;
@@ -112,38 +89,52 @@ int main(int argc, char **argv){
     cv::Mat im;
 
     ORB_SLAM2::Viewer* visor = SLAM.mpViewer;
-	// Número de cuadro procesado, monótonamente creciente, para espaciar mensajes de consola.
-    int n = 0;
-    while(true){
-        // Leer nuevo cuadro
-    	bool hayImagen;
 
-    	if(videoEsArchivo){
+    // Arranca el hilo de Video
+    ORB_SLAM2::Video video;
+    new thread(&ORB_SLAM2::Video::Run, &video);
+
+	// Indica si la entrada de video corresponde a un archivo, y por lo tanto su base de tiempo es controlable
+	bool videoEsArchivo = rutaVideo;
+    if(videoEsArchivo){
+		video.abrirVideo(rutaVideo);
+		visor->setDuracion(video.cantidadCuadros);
+	}else{
+		// No hay parámetros, no hay video, sólo webcam.
+		video.abrirCamara(0);
+		visor->setDuracion();
+	}
+
+
+
+
+    while(true){
+
+        // Leer nuevo cuadro, controlar el tiempo del video
+    	if(video.flujo == ORB_SLAM2::Video::VIDEO || video.flujo == ORB_SLAM2::Video::VIDEO_RT){
     		if(visor->tiempoAlterado){
 				// El usuario movió el trackbar: hay que cambiar el frame.
-				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, visor->tiempo);
+				video.setCuadroPos(visor->tiempo);
 				visor->tiempoAlterado = false;	// Bajar la señal.
-			} else if (visor->tiempoReversa && !visor->videoPausado){
+			} else if(visor->tiempoReversa && !visor->videoPausado){
 				// La película va marcha atrás
-				int pos = videoEntrada->get(cv::CAP_PROP_POS_FRAMES);
-				videoEntrada->set(cv::CAP_PROP_POS_FRAMES, pos>=2? pos-2 : 0);
-				if(pos<2)
+				if(video.posCuadro<2){
 					// Si llega al inicio del video, recomienza hacia adelante
+					video.setCuadroPos(0);
 					visor->tiempoReversa = false;
+				} else {
+					video.setCuadroPos(video.posCuadro-1);
+				}
 			}
     	}
-
-   		if(!visor->videoPausado)
-   			hayImagen = videoEntrada->read(im);
 
     	// t1 está en segundos, con doble precisión.  El bucle para inicialización demora entre 1 y 2 centésimas de segundo.
     	std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
 
         // Pass the image to the SLAM system
-        if(hayImagen)
-        	SLAM.TrackMonocular(im,0);
-        else
-        	cout << "No hay imagen en bucle nº " << n << endl;	// No pasa nunca
+        if(video.imagenDisponible)
+        	SLAM.TrackMonocular(video.getImagen(),(double)video.posCuadro);
+
 
     	// Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
     	if(visor->cargarMapa){
@@ -211,6 +202,29 @@ int main(int argc, char **argv){
 
         	// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
         	SLAM.mpViewer->Release();
+    	}
+
+
+    	// Abrir un archivo de video
+    	if(visor->abrirVideo){
+    		visor->abrirVideo = false;
+        	char charchivo[1024];
+        	FILE *f = popen("zenity --file-selection", "r");
+        	fgets(charchivo, 1024, f);
+        	if(charchivo[0]){
+				std::string nombreArchivo(charchivo);
+				nombreArchivo.pop_back();	// Quita el \n final
+				cout << "Abriendo video " << nombreArchivo << endl;
+				video.abrirVideo(nombreArchivo);
+				cout << "Video abierto." << endl;
+
+				// Abrir archivo de calibración, que es igual al de configuración pero sólo se leen los parámetros de cámara
+				Sistema->mpTracker->ChangeCalibration(
+						// Hay que cambiar la extensión del nombre del archivo de video por .yaml
+						(nombreArchivo.erase(nombreArchivo.find_last_of('.'))).append(".yaml")
+				);
+        	}
+
     	}
 
         // Stop cronómetro para medir duración del procesamiento
