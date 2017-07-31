@@ -1,15 +1,18 @@
 var searchData=
 [
   ['c',['c',['../structg2o_1_1_matrix_elem.html#a32574586352669720ba955c1b8cafbc4',1,'g2o::MatrixElem::c()'],['../structg2o_1_1anonymous__namespace_02sparse__block__matrix_8hpp_03_1_1_triplet_entry.html#a3c423a9ef45d82b5a0df3801a29b38f7',1,'g2o::anonymous_namespace{sparse_block_matrix.hpp}::TripletEntry::c()']]],
+  ['camara',['camara',['../class_o_r_b___s_l_a_m2_1_1_video.html#acd128e104b6e0ae4a3303f1255d6cd39',1,'ORB_SLAM2::Video']]],
   ['camaramodo',['camaraModo',['../class_o_r_b___s_l_a_m2_1_1_frame.html#a8dc5552a9cb0f5aa8ba2c13b5e7c95fb',1,'ORB_SLAM2::Frame::camaraModo()'],['../class_o_r_b___s_l_a_m2_1_1_tracking.html#ab87e93e3430d5a50dbca87c49955a666',1,'ORB_SLAM2::Tracking::camaraModo()']]],
   ['camerapos',['cameraPos',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a85e7dde30a77fec3380f1907468aa875',1,'ORB_SLAM2::FrameDrawer']]],
   ['cameraposdraw',['cameraPosDraw',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#af871f136e05f9214ff480b9f264ceccd',1,'ORB_SLAM2::FrameDrawer']]],
   ['candidatos',['candidatos',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a82daaecea853986d3be07e19dbcc7b45',1,'ORB_SLAM2::FrameDrawer']]],
+  ['cantidadcuadros',['cantidadCuadros',['../class_o_r_b___s_l_a_m2_1_1_video.html#a56696776f062bd143e6a3db1ec130315',1,'ORB_SLAM2::Video']]],
   ['cargarmapa',['cargarMapa',['../class_o_r_b___s_l_a_m2_1_1_viewer.html#a4f6ee522d15ea19986f1625007ef08cb',1,'ORB_SLAM2::Viewer']]],
   ['ccs',['ccs',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#ada47673e9ff64787eda1412e35056627',1,'ORB_SLAM2::PnPsolver']]],
   ['chi2',['chi2',['../structg2o_1_1_g2_o_batch_statistics.html#a719152d550dd4fe3300d06558fe0a6d5',1,'g2o::G2OBatchStatistics']]],
   ['children',['children',['../struct_d_bo_w2_1_1_templated_vocabulary_1_1_node.html#a0305ad0a8964947347da1d38ef0363ed',1,'DBoW2::TemplatedVocabulary::Node']]],
   ['choleskynnz',['choleskyNNZ',['../structg2o_1_1_g2_o_batch_statistics.html#a5996c5ba000bdfcbcf5c0375a3c62643',1,'g2o::G2OBatchStatistics']]],
+  ['convarespera',['conVarEspera',['../class_o_r_b___s_l_a_m2_1_1_video.html#a1b79f0ad76cbea3dad05a01eadedb1a0',1,'ORB_SLAM2::Video']]],
   ['cosparalaje',['cosParalaje',['../class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html#a32a52f658dc751fe728d480e519f4cba',1,'ORB_SLAM2::KeyFrameTriangulacion']]],
   ['creaciondepuntoslejanosactivada',['creacionDePuntosLejanosActivada',['../class_o_r_b___s_l_a_m2_1_1_local_mapping.html#abf02143b76dc45206210fdfa4934dcec',1,'ORB_SLAM2::LocalMapping']]],
   ['creator',['creator',['../classg2o_1_1_factory_1_1_creator_information.html#a9fd5a1087992c17f869f1d59bc519c23',1,'g2o::Factory::CreatorInformation']]],

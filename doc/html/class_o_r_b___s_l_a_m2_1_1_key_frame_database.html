@@ -120,6 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a83495a11d1fb3cd98e82fa1e2efb6920"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a83495a11d1fb3cd98e82fa1e2efb6920">KeyFrameDatabase</a> (const <a class="el" href="namespace_o_r_b___s_l_a_m2.html#a2fafba714858cab1bb18d438e2e83c5d">ORBVocabulary</a> &amp;voc)</td></tr>
 <tr class="memdesc:a83495a11d1fb3cd98e82fa1e2efb6920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor que dimensiona mvInvertedFile del mismo tamaño del vocabulario.  <a href="#a83495a11d1fb3cd98e82fa1e2efb6920">More...</a><br /></td></tr>
 <tr class="separator:a83495a11d1fb3cd98e82fa1e2efb6920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ca6799c8d2b118fe5dc04c9d4e05a47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a2ca6799c8d2b118fe5dc04c9d4e05a47">resizeInvertedFile</a> (size_t)</td></tr>
+<tr class="memdesc:a2ca6799c8d2b118fe5dc04c9d4e05a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agregado, para postergar la carga del vocabulario desde archivo.  <a href="#a2ca6799c8d2b118fe5dc04c9d4e05a47">More...</a><br /></td></tr>
+<tr class="separator:a2ca6799c8d2b118fe5dc04c9d4e05a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -288,6 +291,25 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a2ca6799c8d2b118fe5dc04c9d4e05a47"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ORB_SLAM2::KeyFrameDatabase::resizeInvertedFile </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>tamanio</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Agregado, para postergar la carga del vocabulario desde archivo. </p>
+<p>mvInvertedFile ajusta su tamaño durante la construcción. Este método permite construir el singleton antes de contar con el vocabulario. Se invoca desde el constructor de <a class="el" href="class_o_r_b___s_l_a_m2_1_1_system.html" title="System se instancia una única vez en main, en la variable SLAM. ">System</a>. </p>
 
 </div>
 </div>

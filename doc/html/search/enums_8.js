@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['weightingtype',['WeightingType',['../namespace_d_bo_w2.html#a5de5c8a307aca9a84ffefda2a9bc467a',1,'DBoW2']]]
+  ['toptions',['tOptions',['../class_d_utils_1_1_timestamp.html#a5a8a3cb7f9e0f73bf11fce42688b06c8',1,'DUtils::Timestamp']]]
 ];

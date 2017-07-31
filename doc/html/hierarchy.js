@@ -215,5 +215,6 @@ var hierarchy =
     [ "DUtils::Random::UnrepeatedRandomizer", "class_d_utils_1_1_random_1_1_unrepeated_randomizer.html", null ],
     [ "g2o::OptimizableGraph::VertexIDCompare", "structg2o_1_1_optimizable_graph_1_1_vertex_i_d_compare.html", null ],
     [ "g2o::EstimatePropagator::VertexIDHashFunction", "classg2o_1_1_estimate_propagator_1_1_vertex_i_d_hash_function.html", null ],
+    [ "ORB_SLAM2::Video", "class_o_r_b___s_l_a_m2_1_1_video.html", null ],
     [ "ORB_SLAM2::Viewer", "class_o_r_b___s_l_a_m2_1_1_viewer.html", null ]
 ];

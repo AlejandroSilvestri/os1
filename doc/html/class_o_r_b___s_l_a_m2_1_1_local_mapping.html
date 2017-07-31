@@ -465,6 +465,27 @@ Protected Attributes</h2></td></tr>
 <p>Finalmente triangula con SVD y lo agrega al mapa.</p>
 <p>Realiza esta operación para el keyframe actual, haciendo par con cada uno de sus vecinos en el grafo.</p>
 <p>Es el único lugar del código que agrega puntos al mapa. Invocado sólo desde <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">LocalMapping::Run</a>.</p>
+<p>Descripción de los pasos:</p><ul>
+<li>Recorre todos los keyframes vecinos.</li>
+<li>Descarta el keyframe vecino si no se distancia al menos un 1% de la profundidad mediana de la escena.</li>
+<li>Computa la matriz fundamental para machear pares sobre la línea epipolar, con <a class="el" href="class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a3feb387bd622e78dc8f596f90726d1c4" title="Machea puntos singulares entre el keyframe actual y un vecino, con el propósito posterior de triangul...">ORBmatcher::SearchForTriangulation</a>.</li>
+<li>Recorre los pares macheados.</li>
+<li>Calcula los rayos 3D del par de puntos macheado.</li>
+<li>Exige un paralaje de cos&lt;0.9998. Extrañamente exige que el coseno de ambos rayos no sea negativo (esto puede ser un error).</li>
+<li>Triangula los rayos por SVD, obteniendo las coordenadas del nuevo punto.</li>
+<li>Si la 4ª coordenada homogénea es cero, se descarta el punto en el infinito.</li>
+<li>Se comprueba que el punto esté delante de ambas cámaras. De lo contrario se descarta.</li>
+<li>Que el error de reproyección sobre ambos keyframes sea menor a 5.991 píxel^2.</li>
+<li>Que el punto no se encuentre sobre el foco de alguna cámara.</li>
+<li>Que los niveles de pirámides del punto en cada cámara sea consistente con las distancias del punto 3D a las cámaras.</li>
+</ul>
+<p>Luego de superar todas las comprobaciones, se:</p><ul>
+<li>agrega al mapa</li>
+<li>agrega a las observaciones de los keyframes</li>
+<li>computa un descriptor distintivo</li>
+<li>calcula la profundidad o rango de visión, la normal, y el cos visual de originación</li>
+<li>agrega a la lista de puntos nuevos, que serán revisados más tarde por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#acbbb8f04b15e3250e0e24070825d19ae" title="Elimina por varios motivos puntos recién agregados. ">LocalMapping::MapPointCulling</a></li>
+</ul>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="class_o_r_b___s_l_a_m2_1_1_local_mapping.html#a0f9fa8a0236f55629b0f485db05deb2c" title="Bucle principal del thread de mapeo local. ">Run</a> </dd></dl>
 
 </div>

@@ -63,6 +63,9 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
     [ "Tracking.h", "_tracking_8h.html", [
       [ "Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html", "class_o_r_b___s_l_a_m2_1_1_tracking" ]
     ] ],
+    [ "Video.h", "_video_8h.html", [
+      [ "Video", "class_o_r_b___s_l_a_m2_1_1_video.html", "class_o_r_b___s_l_a_m2_1_1_video" ]
+    ] ],
     [ "Viewer.h", "_viewer_8h.html", [
       [ "Viewer", "class_o_r_b___s_l_a_m2_1_1_viewer.html", "class_o_r_b___s_l_a_m2_1_1_viewer" ]
     ] ]

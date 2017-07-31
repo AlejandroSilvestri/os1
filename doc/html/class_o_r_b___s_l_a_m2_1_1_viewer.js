@@ -1,6 +1,6 @@
 var class_o_r_b___s_l_a_m2_1_1_viewer =
 [
-    [ "Viewer", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a4cb74123010b48fe47265e7b371229a5", null ],
+    [ "Viewer", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a249062025338d7b2831a18e5c71ffd6c", null ],
     [ "CheckFinish", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ad8085f7f51887cea273e0f6357137439", null ],
     [ "isFinished", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a51c55a1f1ad05a6ba2c6b57f9133f88d", null ],
     [ "isStopped", "class_o_r_b___s_l_a_m2_1_1_viewer.html#aa1888ef340152348f395a814ddfb362f", null ],
@@ -8,11 +8,14 @@ var class_o_r_b___s_l_a_m2_1_1_viewer =
     [ "RequestFinish", "class_o_r_b___s_l_a_m2_1_1_viewer.html#af9079c4e563099cf3c8cda403c854cf8", null ],
     [ "RequestStop", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a4b23bbdcc2c5898d074870785a3e07c5", null ],
     [ "Run", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947", null ],
+    [ "setDuracion", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a382e3505a184613d292ae8772b7f52d8", null ],
     [ "SetFinish", "class_o_r_b___s_l_a_m2_1_1_viewer.html#aa6962b0695ea6c2164e9ce2b10de80a0", null ],
     [ "Stop", "class_o_r_b___s_l_a_m2_1_1_viewer.html#abf0704bc29f282192c5e5c36f66fa255", null ],
+    [ "abrirVideo", "class_o_r_b___s_l_a_m2_1_1_viewer.html#aba4cb6e64174ea18058b727d3ccb9d12", null ],
     [ "cargarMapa", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a4f6ee522d15ea19986f1625007ef08cb", null ],
     [ "duracion", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a17167841bf5fbad4c9dad01fe4f5bc9b", null ],
     [ "guardarMapa", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ab26f78e86d98cab4eb5af208bda89435", null ],
+    [ "iniTrackbar", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a31fbca252e3b635db614b7a5f814395b", null ],
     [ "mbFinished", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ae7455c94e1109f9ecc8311583309390f", null ],
     [ "mbFinishRequested", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a5f31947755c29030a8aa6dd59d13256c", null ],
     [ "mbStopped", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a78d845b2b2e8d705686e88c8951296e7", null ],
@@ -29,6 +32,7 @@ var class_o_r_b___s_l_a_m2_1_1_viewer =
     [ "mpSystem", "class_o_r_b___s_l_a_m2_1_1_viewer.html#aaacd5e9192cde4d09b686fb35a618eb8", null ],
     [ "mpTracker", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a2090b65a559e20262c716b57f87cf8dd", null ],
     [ "mT", "class_o_r_b___s_l_a_m2_1_1_viewer.html#adb85f4094a154172711b1acf9f36c209", null ],
+    [ "mutexIniTrackbar", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a561b6f8b6aba3d0aec3262008c9d92a7", null ],
     [ "mViewpointF", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ada580026f9435541a53b408821a34e56", null ],
     [ "mViewpointX", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a30986dd20e162b6c064e6515486ae5f7", null ],
     [ "mViewpointY", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a3f351e4be6077fa437a9fd59e3e179c3", null ],
@@ -38,6 +42,5 @@ var class_o_r_b___s_l_a_m2_1_1_viewer =
     [ "tiempo", "class_o_r_b___s_l_a_m2_1_1_viewer.html#af0800c2a74e96b5763d20f0ce467b790", null ],
     [ "tiempoAlterado", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ab1c7002d36bc59e061b3761ca33c249a", null ],
     [ "tiempoReversa", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a3e08b723db61880cc2fe465e358e957d", null ],
-    [ "video", "class_o_r_b___s_l_a_m2_1_1_viewer.html#ac390ea9ca316634285059efd5168d97c", null ],
     [ "videoPausado", "class_o_r_b___s_l_a_m2_1_1_viewer.html#a793c83b18167adbeebde82bc26c3e17f", null ]
 ];

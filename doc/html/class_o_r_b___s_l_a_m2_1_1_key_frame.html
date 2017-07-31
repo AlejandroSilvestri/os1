@@ -271,10 +271,6 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a00ce06c4d206f7ddb1daeeb7c43eb074"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b96f772fad3b9b816dae9f8a719a15d"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a7b96f772fad3b9b816dae9f8a719a15d">invfy</a></td></tr>
 <tr class="separator:a7b96f772fad3b9b816dae9f8a719a15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ad155ef1d46eacccd088a55760926cf"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a9ad155ef1d46eacccd088a55760926cf">mb</a></td></tr>
-<tr class="separator:a9ad155ef1d46eacccd088a55760926cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5653a9c7ccbb7703a131e0bff11c1f60"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a5653a9c7ccbb7703a131e0bff11c1f60">mbf</a></td></tr>
-<tr class="separator:a5653a9c7ccbb7703a131e0bff11c1f60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70cb0dee48e804c5b1f30afd0ce99787"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_d_bo_w2_1_1_bow_vector.html">DBoW2::BowVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a70cb0dee48e804c5b1f30afd0ce99787">mBowVec</a></td></tr>
 <tr class="memdesc:a70cb0dee48e804c5b1f30afd0ce99787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector de BoW obtenidos de los descriptores del keyframe.  <a href="#a70cb0dee48e804c5b1f30afd0ce99787">More...</a><br /></td></tr>
 <tr class="separator:a70cb0dee48e804c5b1f30afd0ce99787"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -365,8 +361,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ac9bdd885bb078b5e1910c2317e9aa112"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ac9bdd885bb078b5e1910c2317e9aa112">mTcwGBA</a></td></tr>
 <tr class="memdesc:ac9bdd885bb078b5e1910c2317e9aa112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable usada en cierre de bucle.  <a href="#ac9bdd885bb078b5e1910c2317e9aa112">More...</a><br /></td></tr>
 <tr class="separator:ac9bdd885bb078b5e1910c2317e9aa112"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16a3c245370ba4efb5b473059c7f4362"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a16a3c245370ba4efb5b473059c7f4362">mThDepth</a></td></tr>
-<tr class="separator:a16a3c245370ba4efb5b473059c7f4362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4fa3d61a524547cfe2be2523d199833"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#ab4fa3d61a524547cfe2be2523d199833">mTimeStamp</a></td></tr>
 <tr class="memdesc:ab4fa3d61a524547cfe2be2523d199833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time stamp.  <a href="#ab4fa3d61a524547cfe2be2523d199833">More...</a><br /></td></tr>
 <tr class="separator:ab4fa3d61a524547cfe2be2523d199833"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1906,18 +1900,6 @@ template&lt;class Archivo &gt; </div>
 
 </div>
 </div>
-<a id="a9ad155ef1d46eacccd088a55760926cf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const float ORB_SLAM2::KeyFrame::mb</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9ed66ca840fb2288ee6b700bb4fc6858"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1939,18 +1921,6 @@ template&lt;class Archivo &gt; </div>
 <p>Flag de eliminación. </p>
 <p>Cuando <a class="el" href="class_o_r_b___s_l_a_m2_1_1_key_frame.html#a365ec4d06acbbcd668aa5a069c69fdaa" title="Intenta eliminar el keyframe y marcarlo como malo. ">KeyFrame::SetBadFlag</a> no puede elmimnar un keyframe porque está marcado con KeyFrame::mbSetNotErase, pone en true este flag, para reintentar la eliminación apenas se quite la marca mencionada.</p>
 <p>Todas las actividades que envuelven un keyframe consultan primero este flag antes de proceder, mediante KeyFrame::IsBad. </p>
-
-</div>
-</div>
-<a id="a5653a9c7ccbb7703a131e0bff11c1f60"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const float ORB_SLAM2::KeyFrame::mbf</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -2735,18 +2705,6 @@ template&lt;class Archivo &gt; </div>
 </div><div class="memdoc">
 
 <p>Variable usada en cierre de bucle. </p>
-
-</div>
-</div>
-<a id="a16a3c245370ba4efb5b473059c7f4362"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const float ORB_SLAM2::KeyFrame::mThDepth</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

@@ -118,7 +118,8 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> concentra todas las operaciones con <a class="el" href="namespaceg2o.html">g2o</a>. </p>
 <p>Esta clase no tiene propiedades, sino solamente un conjunto métodos estáticos o de clase. <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html" title="Optimizer concentra todas las operaciones con g2o. ">Optimizer</a> no se instancia, funciona como un espacio de nombres.</p>
-<p>Concentra todas las funciones implementadas con el framework <a class="el" href="namespaceg2o.html">g2o</a>, que incluyen bundle adjustment, pose optimization y graph optimization. </p>
+<p>Concentra todas las funciones implementadas con el framework <a class="el" href="namespaceg2o.html">g2o</a>, que incluyen bundle adjustment, pose optimization y graph optimization.</p>
+<p>Los métodos de bundle adjustment utilizan <a class="el" href="namespaceg2o.html">g2o</a> de la misma manera, descrita en <a class="el" href="class_o_r_b___s_l_a_m2_1_1_optimizer.html#ab70e0b4f366b65a0c1ae8b2def19d339" title="Bundle adjusment local a partir de un keyframe. ">Optimizer::LocalBundleAdjustment</a>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aac6bf926792ed8a013d64897879a89ec"></a>
 <div class="memitem">
@@ -199,7 +200,20 @@ optimizer.setAlgorithm(
         )
     )
 );
-</pre><p>BlockSolver_6_3::PoseMatrixType es MatrixXD ?, es decir de elementos double y dimensiones por definir. Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de 6 dimensiones y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen. </p>
+</pre><p>BlockSolver_6_3::PoseMatrixType es MatrixXD ?, es decir de elementos double y dimensiones por definir. Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de 6 dimensiones y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen.</p>
+<p>Vértices:</p><ul>
+<li><a class="el" href="classg2o_1_1_vertex_s_e3_expmap.html" title="SE3 Vertex parameterized internally with a transformation matrix and externally with its exponential ...">g2o::VertexSE3Expmap</a>: pose de keyframe</li>
+<li><a class="el" href="classg2o_1_1_vertex_s_b_a_point_x_y_z.html" title="Point vertex, XYZ. ">g2o::VertexSBAPointXYZ</a>: posición del mappoint</li>
+</ul>
+<p>Ejes:</p><ul>
+<li><a class="el" href="classg2o_1_1_edge_s_e3_project_x_y_z.html">g2o::EdgeSE3ProjectXYZ</a><ul>
+<li>vértice 0: mappoint</li>
+<li>vértice 1: keyframe</li>
+<li>medición: coordenadas del keypoint</li>
+<li>información: invSigma2 de la octava del keypoint </li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -357,7 +371,20 @@ optimizer.addVertex(vPoint);
  optimizer.addEdge(e);
 </pre><p>La matriz de información es la identidad (2x2) multiplicada por invSigma2, la inversa cuadrada del factor de escala que corresponde al nivel de pirámide en el que se observó el punto. Esto significa que a mayor nivel de la pirámide, más difusa es la posición del punto.</p>
 <p>Aplica a la observación del punto (el punto singular 2D).</p>
-<p>El factor de escala se aplica a las coordenadas en píxeles: un factor de escala 1,2 significa un error de 1,2 píxeles en la medición. </p>
+<p>El factor de escala se aplica a las coordenadas en píxeles: un factor de escala 1,2 significa un error de 1,2 píxeles en la medición.</p>
+<p>Vértices:</p><ul>
+<li><a class="el" href="classg2o_1_1_vertex_s_e3_expmap.html" title="SE3 Vertex parameterized internally with a transformation matrix and externally with its exponential ...">g2o::VertexSE3Expmap</a>: pose de keyframe</li>
+<li><a class="el" href="classg2o_1_1_vertex_s_b_a_point_x_y_z.html" title="Point vertex, XYZ. ">g2o::VertexSBAPointXYZ</a>: posición del mappoint</li>
+</ul>
+<p>Ejes:</p><ul>
+<li><a class="el" href="classg2o_1_1_edge_s_e3_project_x_y_z.html">g2o::EdgeSE3ProjectXYZ</a><ul>
+<li>vértice 0: mappoint</li>
+<li>vértice 1: keyframe</li>
+<li>medición: coordenadas del keypoint</li>
+<li>información: invSigma2 de la octava del keypoint </li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -452,7 +479,15 @@ g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLeve
 solver-&gt;setUserLambdaInit(1e-16);
 optimizer.setAlgorithm(solver);
 </pre><p>PoseMatrixType significa que para el hessiano de puntos se usan matrices double de 3x3, y para el hessiano de poses matrices double de 7x7. Este código significa: optimizador espaciado, con algoritmo LM, solucionador de bloque para poses de 7 dimensiones y puntos de 3 dimensiones, usando Cholesky espaciado de la librería Eigen.</p>
-<p>A diferencia de PoseOptimization y LocalBundleAdjustment, se usa un BlockSolver_7_3 en lugar del BlockSolverX, y se le ajusta el LambdaInit. </p>
+<p>A diferencia de PoseOptimization y LocalBundleAdjustment, se usa un BlockSolver_7_3 en lugar del BlockSolverX, y se le ajusta el LambdaInit.</p>
+<p>Vértices:</p><ul>
+<li><a class="el" href="classg2o_1_1_vertex_sim3_expmap.html" title="Sim3 Vertex, (x,y,z,qw,qx,qy,qz) the parameterization for the increments constructed is a 7d vector (...">g2o::VertexSim3Expmap</a>: pose de keyframe</li>
+</ul>
+<p>Ejes:</p><ul>
+<li><a class="el" href="classg2o_1_1_edge_sim3.html" title="7D edge between two Vertex7 ">g2o::EdgeSim3</a>: ejes entre dos poses de keyframes</li>
+<li>medición: <a class="el" href="structg2o_1_1_sim3.html">g2o::Sim3</a>, pose relativa entre dos keyframes</li>
+<li>información: 1 </li>
+</ul>
 
 </div>
 </div>
@@ -524,14 +559,22 @@ optimizer.setAlgorithm(solver);
     optimizer.setAlgorithm(
         new g2o::OptimizationAlgorithmLevenberg(
             new g2o::BlockSolverX(
-                new g2o::LinearSolverEigen&lt;g2o::BlockSolverX::PoseMatrixType&gt;()
+                new g2o::LinearSolverDense&lt;g2o::BlockSolverX::PoseMatrixType&gt;()
             )
         )
     );
-</pre><p>Las poses son <a class="el" href="classg2o_1_1_vertex_sim3_expmap.html" title="Sim3 Vertex, (x,y,z,qw,qx,qy,qz) the parameterization for the increments constructed is a 7d vector (...">g2o::VertexSim3Expmap</a> en lugar de VertexSE3Expmap, pues son poses de similaridad (sim3) en lugar de rototraslación (SE3, Special Euclidean). Expmap son mapas exponenciales.</p>
+</pre><p>Vértices:</p><ul>
+<li><a class="el" href="classg2o_1_1_vertex_sim3_expmap.html" title="Sim3 Vertex, (x,y,z,qw,qx,qy,qz) the parameterization for the increments constructed is a 7d vector (...">g2o::VertexSim3Expmap</a>: pose sim3 entre ambos keyframe. Único vertex a optimizar</li>
+<li><a class="el" href="classg2o_1_1_vertex_s_b_a_point_x_y_z.html" title="Point vertex, XYZ. ">g2o::VertexSBAPointXYZ</a>: posición de los mappoints</li>
+</ul>
+<p>Ejes:</p><ul>
+<li><a class="el" href="classg2o_1_1_edge_sim3_project_x_y_z.html">g2o::EdgeSim3ProjectXYZ</a>: eje del keyframe a un mappoint</li>
+<li><a class="el" href="classg2o_1_1_edge_inverse_sim3_project_x_y_z.html">g2o::EdgeInverseSim3ProjectXYZ</a>: eje de un mappoint al keyframe</li>
+</ul>
+<p>Las poses son <a class="el" href="classg2o_1_1_vertex_sim3_expmap.html" title="Sim3 Vertex, (x,y,z,qw,qx,qy,qz) the parameterization for the increments constructed is a 7d vector (...">g2o::VertexSim3Expmap</a> en lugar de VertexSE3Expmap, pues son poses de similaridad (sim3) en lugar de rototraslación (SE3, Special Euclidean). Expmap son mapas exponenciales.</p>
 <p>Las posiciones de los puntos son <a class="el" href="classg2o_1_1_vertex_s_b_a_point_x_y_z.html" title="Point vertex, XYZ. ">g2o::VertexSBAPointXYZ</a>, como en todos los BA.</p>
 <p>Los ejes van de a pares, en ambos sentidos, y son de tipos <a class="el" href="classg2o_1_1_edge_sim3_project_x_y_z.html">g2o::EdgeSim3ProjectXYZ</a> y <a class="el" href="classg2o_1_1_edge_inverse_sim3_project_x_y_z.html">g2o::EdgeInverseSim3ProjectXYZ</a>.</p>
-<p>OptimizeSim3 construye un vertex VertexSim3Expmap, consituído por una transformación de similaridad inicial que explica las poses entre dos keyframes. Es el único vertex a optimizar.</p>
+<p>OptimizeSim3 construye un vertex VertexSim3Expmap, consituido por una transformación de similaridad inicial que explica las poses entre dos keyframes. Es el único vertex a optimizar.</p>
 <p>El resto de los vertex son fijos, corresponden a los puntos 3D observados desde el pKF2 (el keyframe preexistente).</p>
 <p>De este modo la transformación resultante es la que se aplicará al keyframe actual para cerrar el bucle. </p>
 
@@ -568,8 +611,19 @@ optimizer.setAlgorithm(solver);
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>La cantidad de correspondencias optimizadas (macheos sobrevivientes, inliers).</dd></dl>
-<p>El optimizador se arma así, idéntico al de LocalBundleAdjustment:</p>
-<p><a class="el" href="classg2o_1_1_sparse_optimizer.html">g2o::SparseOptimizer</a> optimizer; optimizer.setAlgorithm( new <a class="el" href="classg2o_1_1_optimization_algorithm_levenberg.html" title="Implementation of the Levenberg Algorithm. ">g2o::OptimizationAlgorithmLevenberg</a>( new <a class="el" href="namespaceg2o.html#a8d3214273331c25cbb5d5266770e6c12">g2o::BlockSolverX</a>( new g2o::LinearSolverDense&lt;g2o::BlockSolverX::PoseMatrixType&gt;() ) ) ); </p>
+<p>El optimizador se arma así:</p>
+<p><a class="el" href="classg2o_1_1_sparse_optimizer.html">g2o::SparseOptimizer</a> optimizer; optimizer.setAlgorithm( new <a class="el" href="classg2o_1_1_optimization_algorithm_levenberg.html" title="Implementation of the Levenberg Algorithm. ">g2o::OptimizationAlgorithmLevenberg</a>( new <a class="el" href="namespaceg2o.html#a8d3214273331c25cbb5d5266770e6c12">g2o::BlockSolverX</a>( new g2o::LinearSolverDense&lt;g2o::BlockSolverX::PoseMatrixType&gt;() ) ) );</p>
+<p>Único vértice:</p><ul>
+<li><a class="el" href="classg2o_1_1_vertex_s_e3_expmap.html" title="SE3 Vertex parameterized internally with a transformation matrix and externally with its exponential ...">g2o::VertexSE3Expmap</a>: pose del frame</li>
+</ul>
+<p>Ejes de un sólo vértice común:</p><ul>
+<li><a class="el" href="classg2o_1_1_edge_s_e3_project_x_y_z_only_pose.html">g2o::EdgeSE3ProjectXYZOnlyPose</a></li>
+<li><a class="el" href="classg2o_1_1_robust_kernel_huber.html" title="Huber Cost Function. ">g2o::RobustKernelHuber</a>, delta sqrt(5.991)</li>
+<li>medición: coordenadas del keypoint</li>
+<li>información: invSigma2 de la octava</li>
+<li>xW: coordenadas del mappoint</li>
+<li>matriz de calibración </li>
+</ul>
 
 </div>
 </div>

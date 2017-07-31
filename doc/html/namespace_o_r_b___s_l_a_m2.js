@@ -24,5 +24,6 @@ var namespace_o_r_b___s_l_a_m2 =
     [ "Sim3Solver", "class_o_r_b___s_l_a_m2_1_1_sim3_solver.html", "class_o_r_b___s_l_a_m2_1_1_sim3_solver" ],
     [ "System", "class_o_r_b___s_l_a_m2_1_1_system.html", "class_o_r_b___s_l_a_m2_1_1_system" ],
     [ "Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html", "class_o_r_b___s_l_a_m2_1_1_tracking" ],
+    [ "Video", "class_o_r_b___s_l_a_m2_1_1_video.html", "class_o_r_b___s_l_a_m2_1_1_video" ],
     [ "Viewer", "class_o_r_b___s_l_a_m2_1_1_viewer.html", "class_o_r_b___s_l_a_m2_1_1_viewer" ]
 ];

@@ -59,6 +59,7 @@ var searchData=
   ['getfloattime',['getFloatTime',['../class_d_utils_1_1_timestamp.html#a360ea9b3a339c315f1a1eb2416787088',1,'DUtils::Timestamp']]],
   ['getfound',['GetFound',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#a0d081d56b0f398c52581b3e0eaa1cb15',1,'ORB_SLAM2::MapPoint']]],
   ['getfoundratio',['GetFoundRatio',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#ac1b7c69a2d9f6bd785d465380844ce10',1,'ORB_SLAM2::MapPoint']]],
+  ['getimagen',['getImagen',['../class_o_r_b___s_l_a_m2_1_1_video.html#a4870b67c768cc6ee81b333f43d710d7c',1,'ORB_SLAM2::Video']]],
   ['getindexinkeyframe',['GetIndexInKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#afbe3f2cf7f4d5e4596fa9f7ff0d44470',1,'ORB_SLAM2::MapPoint']]],
   ['getinversescalefactors',['GetInverseScaleFactors',['../class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#aa56b36e338372ec7cba3945c9194da4a',1,'ORB_SLAM2::ORBextractor']]],
   ['getinversescalesigmasquares',['GetInverseScaleSigmaSquares',['../class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#a1ddabdd67709d7df17000cc2966c47c7',1,'ORB_SLAM2::ORBextractor']]],

@@ -109,7 +109,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3a6196d0c0382e5f5234c61462d9554c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_viewer.html#a68c269890714298034997be622f09947" title="Método principal de Viewer, que se ejecuta en un hilo propio. ">Viewer::Run</a> para que envíe la imagen del cuadro actual a la pantalla.  <a href="#a3a6196d0c0382e5f5234c61462d9554c">More...</a><br /></td></tr>
 <tr class="separator:a3a6196d0c0382e5f5234c61462d9554c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add0e1c3734c200a959d8ed9f225223db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add0e1c3734c200a959d8ed9f225223db">FrameDrawer</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_map.html">Map</a> *pMap)</td></tr>
-<tr class="memdesc:add0e1c3734c200a959d8ed9f225223db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#add0e1c3734c200a959d8ed9f225223db">More...</a><br /></td></tr>
+<tr class="memdesc:add0e1c3734c200a959d8ed9f225223db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor único.  <a href="#add0e1c3734c200a959d8ed9f225223db">More...</a><br /></td></tr>
 <tr class="separator:add0e1c3734c200a959d8ed9f225223db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1bba97371be98ccab373bab862cf964"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ad1bba97371be98ccab373bab862cf964">Update</a> (<a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html">Tracking</a> *pTracker)</td></tr>
 <tr class="memdesc:ad1bba97371be98ccab373bab862cf964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> avisando que hay un nuevo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> para mostrar.  <a href="#ad1bba97371be98ccab373bab862cf964">More...</a><br /></td></tr>
@@ -132,6 +132,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ac256525bcc9b9330b439c16583ad0255"><td class="memItemLeft" align="right" valign="top">cv::Mat&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ac256525bcc9b9330b439c16583ad0255">K</a></td></tr>
 <tr class="memdesc:ac256525bcc9b9330b439c16583ad0255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz de calibración del último frame, para undistort.  <a href="#ac256525bcc9b9330b439c16583ad0255">More...</a><br /></td></tr>
 <tr class="separator:ac256525bcc9b9330b439c16583ad0255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add82f4451e608ce2ae36c2cba8a8e78b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add82f4451e608ce2ae36c2cba8a8e78b">timestamp</a> = 0</td></tr>
+<tr class="memdesc:add82f4451e608ce2ae36c2cba8a8e78b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marca temporal del <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>.  <a href="#add82f4451e608ce2ae36c2cba8a8e78b">More...</a><br /></td></tr>
+<tr class="separator:add82f4451e608ce2ae36c2cba8a8e78b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -218,8 +221,14 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor. </p>
+<p>Constructor único. </p>
 <p>Constructor, que inicia el contenedor de la imagen a color a mostrar.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMap</td><td>puntero al mapa, de donde tomará mappoints y keyframes para graficarlos. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -396,6 +405,13 @@ Protected Attributes</h2></td></tr>
 
 <p>Invocado sólo por <a class="el" href="class_o_r_b___s_l_a_m2_1_1_tracking.html#af1f2c9c533642d8c33854540e90d1918" title="Es la máquina de estados del tracking. ">Tracking::Track</a> avisando que hay un nuevo <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a> para mostrar. </p>
 <p>Track invoca este método avisando que se terminó de procesar un cuadro.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pTracker</td><td>puntero al único Tracker.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>El parámetro es siempre el mismo, se podría convertir en un parámetro del constructor en lugar de estar acá.</p>
 <p>Cuando se invoque DrawFrame, el objeto <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame_drawer.html" title="Clase de instancia única que se ocupa de mostrar la imagen de la cámara, con marcas verdes sobre los ...">FrameDrawer</a> tendrá los datos del último cuadro procesado. Invocada sólo desde Track. </p>
 
 </div>
@@ -869,6 +885,20 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Cantidad de observaciones de cada punto del mapa. </p>
+
+</div>
+</div>
+<a id="add82f4451e608ce2ae36c2cba8a8e78b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double ORB_SLAM2::FrameDrawer::timestamp = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Marca temporal del <a class="el" href="class_o_r_b___s_l_a_m2_1_1_frame.html" title="Frame representa un cuadro, una imagen, con los puntos singulares detectados. ">Frame</a>. </p>
 
 </div>
 </div>

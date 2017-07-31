@@ -9,8 +9,8 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 35)">
 <title>Graphical Class Hierarchy</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-35 319,-35 319,4 -4,4"/>
-<!-- Node24 -->
-<g id="node1" class="node"><title>Node24</title>
+<!-- Node25 -->
+<g id="node1" class="node"><title>Node25</title>
 <polygon fill="white" stroke="#bfbfbf" points="0,-6 0,-25 83,-25 83,-6 0,-6"/>
 <text text-anchor="middle" x="41.5" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">SimplicialLDLT</text>
 </g>
@@ -23,8 +23,8 @@
 </a>
 </g>
 </g>
-<!-- Node24&#45;&gt;Node0 -->
-<g id="edge1" class="edge"><title>Node24&#45;&gt;Node0</title>
+<!-- Node25&#45;&gt;Node0 -->
+<g id="edge1" class="edge"><title>Node25&#45;&gt;Node0</title>
 <path fill="none" stroke="midnightblue" d="M93.2357,-15.5C101.418,-15.5 110.119,-15.5 118.966,-15.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="93.1781,-12.0001 83.178,-15.5 93.178,-19.0001 93.1781,-12.0001"/>
 </g>
