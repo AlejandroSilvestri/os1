@@ -110,6 +110,14 @@ public:
 	// Relocalization
 	std::vector<KeyFrame*> DetectRelocalizationCandidates(Frame* F);
 
+	/**
+	 * Agregado, para postergar la carga del vocabulario desde archivo.
+	 * mvInvertedFile ajusta su tamaño durante la construcción.
+	 * Este método permite construir el singleton antes de contar con el vocabulario.
+	 * Se invoca desde el constructor de System.
+	 */
+	void resizeInvertedFile(size_t);
+
 protected:
 
 	/**

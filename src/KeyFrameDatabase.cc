@@ -310,4 +310,9 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
     return vpRelocCandidates;
 }
 
+
+void KeyFrameDatabase::resizeInvertedFile(size_t tamanio){
+    mvInvertedFile.resize(tamanio);
+}
+
 } //namespace ORB_SLAM

@@ -51,19 +51,8 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     }
 
 
-    //Load ORB Vocabulary
-    cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
 
     mpVocabulary = new ORBVocabulary();
-    bool bVocLoad = mpVocabulary->loadFromBinaryFile(strVocFile);
-    //bool bVocLoad = mpVocabulary->loadFromTextFile(strVocFile);
-    if(!bVocLoad)
-    {
-        cerr << "Wrong path to vocabulary. " << endl;
-        cerr << "Falied to open at: " << strVocFile << endl;
-        exit(-1);
-    }
-    cout << "Vocabulary loaded!" << endl << endl;
 
     //Create KeyFrame Database
     mpKeyFrameDatabase = new KeyFrameDatabase(*mpVocabulary);
@@ -106,6 +95,21 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpLoopCloser->SetLocalMapper(mpLocalMapper);
 
     serializer = new Serializer(mpMap);
+
+
+    //Load ORB Vocabulary
+    cout << endl << "Loading ORB Vocabulary. This could take a while..." << endl;
+    bool bVocLoad = mpVocabulary->loadFromBinaryFile(strVocFile);
+    if(!bVocLoad){
+        cerr << "Wrong path to vocabulary. " << endl;
+        cerr << "Falied to open at: " << strVocFile << endl;
+        Shutdown();
+        exit(-1);
+    }
+    mpKeyFrameDatabase->resizeInvertedFile(mpVocabulary->size());
+    cout << "Vocabulary loaded!" << endl << endl;
+
+
     cout << "Terminando el constructor SLAM." << endl;
 }
 

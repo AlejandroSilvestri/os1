@@ -344,7 +344,7 @@ public:
     /**
      * Solicita el cierre del sistema.
      * Solicita terminar a todos los hilos, y espera hasta que terminen.
-     * Los datos permanecen en memoria.  Esta función se debe invocar antesd e guardar la trayectoria.
+     * Los datos permanecen en memoria.  Esta función se debe invocar antes de guardar la trayectoria.
      */
     // All threads will be requested to finish.
     // It waits until all threads have finished.

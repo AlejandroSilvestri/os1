@@ -36,5 +36,6 @@ Librerías que se deben incluir en el proyecto:
 Webcam.yaml tiene la calibración de la cámara.
 
 
-#Branch PuntosLejanos
-Dedicado a la detección de puntos más allá de la órbita del mapeo tradicional.
+#Notas
+El branch Video es el más actualizado.
+Se ejecuta en Linux.  Utiliza zenity como cuadro de diálogo para abrir y guardar archivos.  Una migración a otro sistema operativo requiere al menos reemplazar zenity por otro medio.
