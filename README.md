@@ -35,6 +35,10 @@ Librerías que se deben incluir en el proyecto:
 
 Webcam.yaml tiene la calibración de la cámara.
 
+Línea de comando:
+
+    os1 conf.yaml video.mp4
+
 
 #Notas
 El branch Video es el más actualizado.
