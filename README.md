@@ -35,9 +35,18 @@ Librerías que se deben incluir en el proyecto:
 
 Webcam.yaml tiene la calibración de la cámara.
 
-Línea de comando:
+#Uso
 
-    os1 conf.yaml video.mp4
+Líneas de comando:
+
+    1) $ os1 conf.yaml video.mp4
+    2) $ os1
+
+1) La primera versión carga la configuración del archivo conf.yaml y procesa el archivo de video video,mp4.
+
+2) La segunda versión, sin argumentos, carga la configuración directamente del archivo webcam.yaml y procesa la entrada de la cámara 0.  Para abrir otra cámara hay que modificar el código.
+
+La carpeta de trabajo debe ser la del ejecutable os1.
 
 
 #Notas
