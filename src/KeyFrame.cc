@@ -65,11 +65,13 @@ KeyFrame::KeyFrame(Frame &F, Map *pMap, KeyFrameDatabase *pKFDB):
     SetPose(F.mTcw);
 
     // Relevar los colores de los keypoints,  En este caso toma el color del píxel.  Se podría promediar el contexto.
+    /*
     if(!(Sistema->imagenEntrada.empty())){
     	vRgb.resize(N);
     	for(int i=0; i<N; i++)
     		vRgb[i] = Sistema->imagenEntrada.at<cv::Vec3b>(mvKeys[i].pt);
     }
+    */
 }
 
 void KeyFrame::ComputeBoW()
@@ -418,7 +420,8 @@ void KeyFrame::ChangeParent(KeyFrame *pKF)
 {
     unique_lock<mutex> lockCon(mMutexConnections);
     mpParent = pKF;
-    pKF->AddChild(this);
+    if(pKF)	// Evita errores si pKF es 0x0.  No debería, pero pasa luego de depurar el mapa.
+    	pKF->AddChild(this);
 }
 
 set<KeyFrame*> KeyFrame::GetChilds()

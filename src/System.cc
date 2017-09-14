@@ -29,6 +29,7 @@
 #include "LoopClosing.h"
 #include "KeyFrameDatabase.h"
 #include "Viewer.h"
+#include "Serializer.h"
 
 
 #include <thread>
@@ -94,7 +95,9 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
     mpLoopCloser->SetTracker(mpTracker);
     mpLoopCloser->SetLocalMapper(mpLocalMapper);
 
-    serializer = new Serializer(mpMap);
+    //serializer = Serializer::getInstance(this);
+    Serializer::init(this);
+
 
 
     //Load ORB Vocabulary

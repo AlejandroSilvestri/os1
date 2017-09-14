@@ -27,8 +27,8 @@
 #include "ORBVocabulary.h"
 #include <set>
 #include <mutex>
-#include <boost/serialization/access.hpp>
-#include "Serializer.h"
+//#include <boost/serialization/access.hpp>
+//#include "Serializer.h"
 
 
 
@@ -185,10 +185,13 @@ protected:
     /** Mutext del mapa.*/
     std::mutex mMutexMap;
 
+
+
+
 	/** Serialización agregada para guardar y cargar mapas.*/
-	friend class boost::serialization::access;
-	friend class Serializer;
-	template<class Archivo> void serialize(Archivo&, const unsigned int);
+	//friend class boost::serialization::access;
+	//friend class Serializer;
+	//template<class Archivo> void serialize(Archivo&, const unsigned int);
 	// Fin del agregado para serialización
 };
 

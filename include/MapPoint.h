@@ -24,11 +24,11 @@
 #include "KeyFrame.h"
 #include "Frame.h"
 #include "Map.h"
-#include "Serializer.h"
+//#include "Serializer.h"
 
 #include <opencv2/core/core.hpp>
 #include <mutex>
-#include <boost/serialization/access.hpp>
+//#include <boost/serialization/access.hpp>
 
 namespace ORB_SLAM2
 {
@@ -530,9 +530,9 @@ protected:
 	 *
 	 * Se encarga de inicializar las variables const, para que el compilador no chille.
 	 */
-	MapPoint();
-	friend class boost::serialization::access;
-	friend class Serializer;
+	//MapPoint();
+	//friend class boost::serialization::access;
+	//friend class Serializer;
 
 	/**
 	 * Serializador de MapPoint
@@ -543,7 +543,7 @@ protected:
 	 * Versionado:
 	 * La versión 1 reconstruye mRefKF, y ya no guarda mnFirstKFid.
 	 */
-	template<class Archivo> void serialize(Archivo&, const unsigned int);
+	//template<class Archivo> void serialize(Archivo&, const unsigned int);
 	// Fin del agregado para serialización
 };
 

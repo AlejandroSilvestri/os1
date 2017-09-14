@@ -259,7 +259,10 @@ public:
     Frame mInitialFrame;
 
     ///@{
-    /** Listas para registrar la trayectoria de la cámara, para guardarla al terminar la aplicación.*/
+    /**
+     * Listas para registrar la trayectoria de la cámara, para guardarla al terminar la aplicación.
+     * En OS1 no se usan, sólo invocadas en Tracking::Reset.
+     */
     // Lists used to recover the full camera trajectory at the end of the execution.
     // Basically we store the reference keyframe for each frame and its relative transformation
     list<cv::Mat> mlRelativeFramePoses;

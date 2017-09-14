@@ -201,7 +201,6 @@
 #include <string>
 #include <thread>
 #include <opencv2/core.hpp>
-//#include <opencv2/videoio.hpp>
 #include <mutex>
 
 
@@ -440,7 +439,7 @@ public:
     MapDrawer* mpMapDrawer;
 
     /** Serializador singleton.*/
-    Serializer *serializer;
+    //Serializer *serializer;
 
 private:
 

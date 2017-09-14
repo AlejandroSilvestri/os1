@@ -25,10 +25,10 @@
 #include "../Thirdparty/DBoW2/DBoW2/FeatureVector.h"
 #include "ORBVocabulary.h"
 #include "KeyFrameDatabase.h"
-#include "Serializer.h"
+//#include "Serializer.h"
 
 #include <mutex>
-#include <boost/serialization/access.hpp>
+//#include <boost/serialization/access.hpp>
 
 class KeyFrameTriangulacion;
 
@@ -564,7 +564,7 @@ public:
      *
      * Invocado sólo por Serializer::mapLoad
      */
-    void buildObservations();
+    //void buildObservations();
 
 
     // The following variables are accesed from only 1 thread or never change (no mutex needed).
@@ -997,9 +997,9 @@ protected:
      * Entre ellos inicializa los atributos no serializables (todos punteros a singletons).
      * Luego serialize se encarga de cambiarle los valores, aunque sean const.
      */
-	KeyFrame();
-    friend class boost::serialization::access;
-	friend class Serializer;
+	//KeyFrame();
+    //friend class boost::serialization::access;
+	//friend class Serializer;
 
 	/**
 	 * Serializador para KeyFrame.
@@ -1007,7 +1007,7 @@ protected:
 	 * No guarda mpKeyFrameDB, que se debe asignar de otro modo.
 	 *
 	 */
-	template<class Archivo> void serialize(Archivo&, const unsigned int);
+	//template<class Archivo> void serialize(Archivo&, const unsigned int);
 	// Fin del agregado para serialización
 
 public:
@@ -1016,11 +1016,13 @@ public:
 	 *
 	 * Se usa en el mapa de keyframes, para que se serialicen ordenadamente.
 	 */
+    /*
 	struct lessPointer{
 		bool operator()(const KeyFrame* k1, const KeyFrame* k2) const{
 			return k1->mnId < k2->mnId;
 		}
 	};
+	*/
 
 };
 

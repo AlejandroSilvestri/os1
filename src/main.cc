@@ -43,7 +43,6 @@
 #include <Serializer.h>
 #include <Video.h>
 
-
 using namespace std;
 
 ORB_SLAM2::System *Sistema;
@@ -163,7 +162,7 @@ int main(int argc, char **argv){
 				nombreArchivo.pop_back();	// Quita el \n final
 				cout << "Abriendo archivo " << nombreArchivo << endl;
 
-				SLAM.serializer->mapLoad(nombreArchivo);
+				ORB_SLAM2::Serializer::mapLoad(nombreArchivo);
 				cout << "Mapa cargado." << endl;
 
         	}
@@ -196,7 +195,7 @@ int main(int argc, char **argv){
 				nombreArchivo.pop_back();	// Quita el \n final
 				cout << "Guardando archivo " << nombreArchivo << endl;
 
-            	SLAM.serializer->mapSave(nombreArchivo);
+				ORB_SLAM2::Serializer::mapSave(nombreArchivo);
             	cout << "Mapa guardado." << endl;
         	}
 
