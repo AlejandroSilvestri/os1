@@ -240,6 +240,7 @@ template<class Archive> void KeyFrameSerializer::serialize(Archive& ar, const un
 		mbNotErase = !mspLoopEdges.empty();
 	}
 	ar & mnId;
+	cout << "KF id: " << mnId << endl;
 	ar & mbNotErase;
 
 	// Mat
@@ -372,6 +373,18 @@ MapAccess *Serializer::mapa = 0;
 
 
 
+/**
+ * Functor de comparación para ordenar un set de KeyFrame*, por su mnId.
+ *
+ * Se usa en el mapa de keyframes, para que se serialicen ordenadamente.
+ */
+template<class T> struct lessId{
+	bool operator()(const T* t1, const T* t2) const{
+		return t1->mnId < t2->mnId;
+	}
+};
+
+
 void Serializer::init(System* sistema_){
 	sistema = sistema_;
 	mapa = static_cast<MapAccess*>(sistema->mpMap);
@@ -389,182 +402,6 @@ void Serializer::init(System* sistema_){
 }
 
 
-/**
- * Functor de comparación para ordenar un set de KeyFrame*, por su mnId.
- *
- * Se usa en el mapa de keyframes, para que se serialicen ordenadamente.
- */
-template<class T> struct lessId{
-	bool operator()(const T* t1, const T* t2) const{
-		return t1->mnId < t2->mnId;
-	}
-};
-
-
-
-template<class Archivo> void Serializer::serialize(Archivo& ar, const unsigned int version){
-
-	if(version){
-		// Encabezado, a partir de la versión 1
-		string marca = "Mapa de OS1 - ORB-SLAM2.  Versión Map " + to_string(version) + ".";
-		ar & marca;
-		cout << marca << endl;
-
-		int flags = 0;
-		ar & flags;
-	} else {
-		// Única propiedad, sólo en versión 0, porque es reconstruíble
-		ar & mapa->mnMaxKFid;
-	}
-
-	// Puntos del mapa
-	//ar & mapa->mspMapPoints;
-	serializeContainer(ar, mapa->mspMapPoints);
-	cout << "MapPoints serializados: " << mapa->mspMapPoints.size() << endl;
-
-
-
-	// KeyFrames del mapa
-	/*
-	if(CARGANDO(ar)){
-		//ar & mapa->mspKeyFrames;
-		serializeContainer(ar, mapa->mspKeyFrames);
-	} else {
-		// Guardando: primero ordena el set de KF por mnId
-		std::set<KeyFrame*, lessId<KeyFrame>> KFOrdenados(mapa->mspKeyFrames.begin(), mapa->mspKeyFrames.end());
-		//ar & KFOrdenados;
-		serializeContainer(ar, KFOrdenados);
-	}
-	*/
-	serializeContainer(ar, mapa->mspKeyFrames);
-
-	cout << "KeyFrames serializados: " << mapa->mspKeyFrames.size() << endl;
-	cout << "Último keyframe: " << mapa->mnMaxKFid << endl;
-
-
-	if(version == 0)
-		//ar & mapa->mvpKeyFrameOrigins;
-		serializeContainer(ar, mapa->mvpKeyFrameOrigins);
-}
-
-
-
-template<class Archivo> void Serializer::serializeContainer(Archivo& ar, vector<MapPoint*>& MPs){
-	vector<MapPointSerializer*> MPSs;
-	size_t i, n;
-	if(CARGANDO(ar)){
-		// Cargando
-		MPs.clear();
-		ar & MPSs;
-		n = MPSs.size();
-		MPs.reserve(n);
-		// Vuelca el vector serializable
-		for(i=0; i<n; i++)
-			MPs.push_back(MPSs[i]);
-	} else {
-		// Guardando
-		n = MPs.size();
-		MPSs.reserve(n);
-		// Arma el vector serializable
-		for(i=0; i<n; i++)
-			MPSs.push_back(static_cast<MapPointSerializer*>(MPs[i]));
-		ar & MPSs;
-	}
-}
-
-template<class Archivo> void Serializer::serializeContainer(Archivo& ar, vector<KeyFrame*>& KFs){
-	vector<KeyFrameSerializer*> KFSs;
-	size_t i, n;
-	if(CARGANDO(ar)){
-		// Cargando
-		KFs.clear();
-		ar & KFSs;
-		n = KFSs.size();
-		KFs.reserve(n);
-		// Vuelca el vector serializable
-		for(i=0; i<n; i++)
-			KFs.push_back(KFSs[i]);
-	} else {
-		// Guardando
-		n = KFs.size();
-		KFSs.reserve(n);
-		// Arma el vector serializable
-		for(i=0; i<n; i++)
-			KFSs.push_back(static_cast<KeyFrameSerializer*>(KFs[i]));
-		ar & KFSs;
-	}
-}
-
-
-template<class Archivo> void Serializer::serializeContainer(Archivo& ar, set<MapPoint*>& MPs){
-	set<MapPointSerializer*> MPSs;
-	if(CARGANDO(ar)){
-		// Cargando
-		MPs.clear();
-		ar & MPSs;
-		// Vuelca el vector serializable
-		for(auto elemento: MPSs)
-			MPs.insert(elemento);
-
-	} else {
-		// Guardando
-		// Arma el vector serializable
-		//set<MapPointSerializer*> MPSs(MPs.begin(), MPs.end());
-		for(auto elemento: MPs)
-			MPSs.insert(static_cast<MapPointSerializer*>(elemento));
-
-		ar & MPSs;
-	}
-}
-
-
-template<class Archivo> void Serializer::serializeContainer(Archivo& ar, set<KeyFrame*>& KFs){
-	set<KeyFrameSerializer*> KFSs;
-	if(CARGANDO(ar)){
-		// Cargando
-		KFs.clear();
-		ar & KFSs;
-		// Vuelca el vector serializable
-		for(auto elemento: KFSs)
-			KFs.insert(elemento);
-
-	} else {
-		// Guardando
-		// Arma el vector serializable
-		//set<KeyFrameSerializer*> KFSs(KFs.begin(), KFs.end());
-		for(auto elemento: KFs)
-			KFSs.insert(static_cast<KeyFrameSerializer*>(elemento));
-
-		ar & KFSs;
-	}
-}
-
-
-template<class Archivo> void Serializer::serializeSetKF(Archivo& ar, set<KeyFrame*>& KFs){
-	set<KeyFrameSerializer*> KFSs;
-	if(CARGANDO(ar)){
-		// Cargando
-		KFs.clear();
-		ar & KFSs;
-		// Vuelca el vector serializable
-		for(auto elemento: KFSs)
-			KFs.insert(elemento);
-
-	} else {
-		// Guardando
-		// Arma el vector serializable
-		//set<KeyFrameSerializer*> KFSs(KFs.begin(), KFs.end());
-		for(auto elemento: KFs)
-			KFSs.insert(static_cast<KeyFrameSerializer*>(elemento));
-
-		ar & KFSs;
-	}
-}
-
-
-
-
-
 void Serializer::mapSave(std::string archivo){
 	// Elimina keyframes y mappoint malos de KeyFrame::mvpMapPoints y MapPoint::mObservations
 	depurar();
@@ -577,7 +414,7 @@ void Serializer::mapSave(std::string archivo){
 	ArchivoSalida ar(os, ::boost::archive::no_header);
 
 	// Guarda mappoints y keyframes
-	serialize<ArchivoSalida>(ar, 0);
+	serialize<ArchivoSalida>(ar, 1);
 }
 
 
@@ -593,7 +430,8 @@ void Serializer::mapLoad(std::string archivo){
 		ArchivoEntrada ar(is, ::boost::archive::no_header);
 
 		// Carga mappoints y keyframes en Map
-		serialize<ArchivoEntrada>(ar, 0);
+		// Versión 1.  La versión 0 no tiene marca ni flags.
+		serialize<ArchivoEntrada>(ar, 1);
 	}
 
 
@@ -611,6 +449,7 @@ void Serializer::mapLoad(std::string archivo){
 	KeyFrameDatabase* kfdb = sistema->mpKeyFrameDatabase;
 	KeyFrameSerializer* pKFS;
 	for(KeyFrame *pKF : mapa->mspKeyFrames){
+		cout << "maxId: " << maxId << endl;
 		pKFS = static_cast<KeyFrameSerializer*>(pKF);
 		// Busca el máximo id, para al final determinar nNextId
 		maxId = max(maxId, pKF->mnId);
@@ -729,6 +568,162 @@ void Serializer::mapLoad(std::string archivo){
 
 }
 
+
+
+
+template<class Archivo> void Serializer::serialize(Archivo& ar, const unsigned int version){
+
+	long unsigned int flags = 0;//1<<63;
+	if(version){
+		ar & flags;
+
+		// Encabezado, a partir de la versión 1
+		string marca = "Mapa de OS1 - ORB-SLAM2.  Versión Map " + to_string(version) + ".";
+		ar & marca;
+		cout << marca << endl;
+
+	} else {
+		// Única propiedad, sólo en versión 0, porque es reconstruíble
+		ar & mapa->mnMaxKFid;
+	}
+
+	// Puntos del mapa
+	//ar & mapa->mspMapPoints;
+	serializeContainer(ar, mapa->mspMapPoints);
+	cout << "MapPoints serializados: " << mapa->mspMapPoints.size() << endl;
+
+
+
+	// KeyFrames del mapa
+	serializeContainer(ar, mapa->mspKeyFrames);
+	cout << "KeyFrames serializados: " << mapa->mspKeyFrames.size() << endl;
+
+
+	if(version == 0)
+		//ar & mapa->mvpKeyFrameOrigins;
+		serializeContainer(ar, mapa->mvpKeyFrameOrigins);
+}
+
+
+
+template<class Archivo> void Serializer::serializeContainer(Archivo& ar, vector<MapPoint*>& MPs){
+	vector<MapPointSerializer*> MPSs;
+	size_t i, n;
+	if(CARGANDO(ar)){
+		// Cargando
+		MPs.clear();
+		ar & MPSs;
+		n = MPSs.size();
+		MPs.reserve(n);
+		// Vuelca el vector serializable
+		for(i=0; i<n; i++)
+			MPs.push_back(MPSs[i]);
+	} else {
+		// Guardando
+		n = MPs.size();
+		MPSs.reserve(n);
+		// Arma el vector serializable
+		for(i=0; i<n; i++)
+			MPSs.push_back(static_cast<MapPointSerializer*>(MPs[i]));
+		ar & MPSs;
+	}
+}
+
+template<class Archivo> void Serializer::serializeContainer(Archivo& ar, vector<KeyFrame*>& KFs){
+	vector<KeyFrameSerializer*> KFSs;
+	size_t i, n;
+	if(CARGANDO(ar)){
+		// Cargando
+		KFs.clear();
+		ar & KFSs;
+		n = KFSs.size();
+		KFs.reserve(n);
+		// Vuelca el vector serializable
+		for(i=0; i<n; i++)
+			KFs.push_back(KFSs[i]);
+	} else {
+		// Guardando
+		n = KFs.size();
+		KFSs.reserve(n);
+		// Arma el vector serializable
+		for(i=0; i<n; i++)
+			KFSs.push_back(static_cast<KeyFrameSerializer*>(KFs[i]));
+		ar & KFSs;
+	}
+}
+
+
+template<class Archivo> void Serializer::serializeContainer(Archivo& ar, set<MapPoint*>& MPs){
+	set<MapPointSerializer*> MPSs;
+	if(CARGANDO(ar)){
+		// Cargando
+		ar & MPSs;
+
+		// Vuelca el vector serializable
+		MPs.clear();
+		for(auto&& elemento: MPSs)
+			MPs.insert(elemento);
+
+	} else {
+		// Guardando
+		// Arma el vector serializable
+		for(auto&& elemento: MPs)
+			MPSs.insert(static_cast<MapPointSerializer*>(elemento));
+
+		ar & MPSs;
+	}
+}
+
+
+template<class Archivo> void Serializer::serializeContainer(Archivo& ar, set<KeyFrame*>& KFs){
+	set<KeyFrameSerializer*> KFSs;
+	if(CARGANDO(ar)){
+		// Cargando
+		ar & KFSs;
+
+		// Vuelca el vector serializable
+		KFs.clear();
+		for(auto&& elemento: KFSs)
+			KFs.insert(elemento);
+
+	} else {
+		// Guardando
+		// Arma el vector serializable
+		for(auto&& elemento: KFs)
+			KFSs.insert(static_cast<KeyFrameSerializer*>(elemento));
+
+		ar & KFSs;
+	}
+
+
+	cout << "serializeContainer set KF:  KFs.size(): " << KFs.size() << ", KFSs.size(): " << KFSs.size() << endl;
+}
+
+
+template<class Archivo> void Serializer::serializeSetKF(Archivo& ar, set<KeyFrame*>& KFs){
+	set<KeyFrameSerializer*> KFSs;
+	if(CARGANDO(ar)){
+		// Cargando
+		KFs.clear();
+		ar & KFSs;
+		// Vuelca el vector serializable
+		for(auto elemento: KFSs)
+			KFs.insert(elemento);
+
+	} else {
+		// Guardando
+		// Arma el vector serializable
+		for(auto elemento: KFs)
+			KFSs.insert(static_cast<KeyFrameSerializer*>(elemento));
+
+		ar & KFSs;
+	}
+}
+
+
+
+
+
 /**
  * Depura los conjuntos de keyframes y mappoints que constituyen el mapa->
  *
@@ -742,15 +737,22 @@ void Serializer::mapLoad(std::string archivo){
  *
  * Con esto se evita la serialización de elementos retirados del mapa, que por error siguen apuntados desde algún lugar.
  *
+ * Invocado por mapSave, antes de la serialización.
+ *
  */
 void Serializer::depurar(){
 	cout << "\nDepurando..." << endl;
 	//Primero se deben eliminar los puntos del keyframe, luego los keyframes de los puntos.
 
 	// Anula puntos malos en el vector KeyFrame::mvpMapPoints
-	for(auto &pKF: mapa->mspKeyFrames){	// Keyframes del mapa, en Map::mspKeyFrames
-
-		KeyFrameSerializer *pKFS = static_cast<KeyFrameSerializer*>(pKF);
+	mapa->mspKeyFrames.erase(NULL);	// Elimina del set los KF nulos.  No suele haber ninguno.
+	//for(auto &pKF: mapa->mspKeyFrames){	// Keyframes del mapa, en Map::mspKeyFrames
+	for(auto it = mapa->mspKeyFrames.begin(); it != mapa->mspKeyFrames.end();){	// Keyframes del mapa, en Map::mspKeyFrames
+		auto &pKF = *it;
+		if(!pKF || pKF->isBad()){
+			it = mapa->mspKeyFrames.erase(it);
+			continue;
+		}
 		// Anula puntos malos, y advierte si no está en el mapa.
 		// Usualmente no encuentra nada.
 		auto pMPs = pKF->GetMapPointMatches();	// Vector KeyFrame::mvpMapPoints
@@ -770,14 +772,20 @@ void Serializer::depurar(){
 		}
 
 		// Anula de los ejes de bucle los KF malos o que no estén en el mapa
-		for(auto pKFLoop: pKFS->mspLoopEdges){
-			KeyFrameSerializer* pKFSLoop = static_cast<KeyFrameSerializer*>(pKFLoop);
-			if(pKFSLoop->isBad() || !mapa->isInMap(pKFLoop)){
-				pKFS->mspLoopEdges.erase(pKFLoop);
-				cout << "Eliminado de grafo de bucle KF " << pKF->mnId << endl;
-			}
+		// Problema: range-based for sólo se debe usar en contenedores inmutables.  Para eliminar elementos hay que usar otro for.
+
+		// Casteo a KeyFrameSerializer para acceder a propiedades protegidas
+		KeyFrameSerializer *pKFS = static_cast<KeyFrameSerializer*>(pKF);
+		for(auto it2 = pKFS->mspLoopEdges.begin(); it2 != pKFS->mspLoopEdges.end();){
+			if(!*it2 || (*it2)->isBad()){
+				// Elimina el KF malo
+				it2 = pKFS->mspLoopEdges.erase(it2);
+				cout << "Eliminado un KF del grafo de bucle del KF " << pKF->mnId << endl;
+			} else
+				it2++;
 		}
 
+		it++;
 		// Revisa
 	}
 }

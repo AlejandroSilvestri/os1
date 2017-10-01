@@ -234,6 +234,9 @@ void Tracking::Track()
 
         if(mState!=OK)
             return;
+        else
+        	// Muestra las poses de los dos frames iniciales
+        	cout << "mInitialFrame:\n"  << mInitialFrame.mTcw << "\nmCurrentFrame:\n" << mCurrentFrame.mTcw << endl;
     }
     else
     {

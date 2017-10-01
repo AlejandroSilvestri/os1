@@ -26,6 +26,7 @@ class Serializer;
  * MapAccess deriva de Map, para ser usado en casteo.
  */
 class MapAccess: Map{
+	friend class boost::serialization::access;	// no estoy seguro que se necesite.
 	friend class Serializer;
 };
 

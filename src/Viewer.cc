@@ -236,6 +236,11 @@ void Viewer::Run(){
 			cout << "Flag de guardado (impar para guardado comprimido): " << mpSystem->guardadoFlags << endl;
 			break;
 
+		// Muestra en consola la pose del frame actual
+		case 'p':
+			cout << "\mCurrentFrame:\n" << mpTracker->mCurrentFrame.mTcw << endl;
+			break;
+
 /*
 		// Cambiar la activación de la creación de puntos lejanos
 		case 'l':

@@ -151,7 +151,7 @@ int main(int argc, char **argv){
     		SLAM.mpViewer	  ->RequestStop();
 
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection", "r");
+        	FILE *f = popen("zenity --file-selection 2>/dev/null", "r");
         	fgets(charchivo, 1024, f);
 
         	if(charchivo[0]){
@@ -184,7 +184,7 @@ int main(int argc, char **argv){
 
         	//char archivo[] = "mapa.bin";
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa.osMap", "r");
+        	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa.osMap 2>/dev/null", "r");
         	fgets(charchivo, 1024, f);
 
         	if(charchivo[0]){
@@ -208,7 +208,7 @@ int main(int argc, char **argv){
     	if(visor->abrirVideo){
     		visor->abrirVideo = false;
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection", "r");
+        	FILE *f = popen("zenity --file-selection 2>/dev/null", "r");
         	fgets(charchivo, 1024, f);
         	if(charchivo[0]){
 				std::string nombreArchivo(charchivo);
