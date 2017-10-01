@@ -40,7 +40,7 @@ public:
 	 * Para los flujos en tiempo real (VIDEO_RT y CAM) la imagen disponible se va reemplazando en tiempo real, las que no se leyeron se pierden.
 	 * Para los flujos en tiempo no real (VIDEO) la imagen disponible no se reemplaza hasta que se lee.
 	 *
-	 * @param delta argumento opcional que indica cuantos cuadros avanzar.  -1 para reproducción en reversa.  Usado sólo para flujos VIDEO.
+	 * @param delta argumento opcional que indica cuantos cuadros avanzar.  -1 para reproducción en reversa.  Usado sólo para flujos VIDEO, es decir, para archivos de video en tiempo no real.  Ignorado con otros flujos.
 	 */
 	cv::Mat getImagen(int delta = 1);
 
@@ -104,6 +104,7 @@ public:
 
 	/**
 	 * Posición del cuadro actual en el video de archivo.
+	 * Sólo usado con flujos VIDEO y VIDEO_RT.
 	 * Indefinido para otros flujos.
 	 */
 	int posCuadro = 0;
@@ -118,7 +119,7 @@ public:
 	/**
 	 * Entrada de video desde archivo.
 	 * Se inicializa cuando se abre el archivo.
-	 * No se debe acceder si el flujo no es VIDEO o VIDE_RT
+	 * No se debe acceder si el flujo no es VIDEO o VIDEO_RT
 	 */
 	video;
 

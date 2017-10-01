@@ -109,7 +109,7 @@ int main(int argc, char **argv){
 
 
     while(true){
-
+/*
         // Leer nuevo cuadro, controlar el tiempo del video
     	if(video.flujo == ORB_SLAM2::Video::VIDEO || video.flujo == ORB_SLAM2::Video::VIDEO_RT){
     		if(visor->tiempoAlterado){
@@ -134,6 +134,37 @@ int main(int argc, char **argv){
         // Pass the image to the SLAM system
         if(video.imagenDisponible)
         	SLAM.TrackMonocular(video.getImagen(),(double)video.posCuadro);
+*/
+
+        // Leer nuevo cuadro, controlar el tiempo del video
+    	if(video.flujo == ORB_SLAM2::Video::VIDEO || video.flujo == ORB_SLAM2::Video::VIDEO_RT){
+    		if(visor->tiempoAlterado){
+				// El usuario movió el trackbar: hay que cambiar el frame.
+				video.setCuadroPos(visor->tiempo);
+				visor->tiempoAlterado = false;	// Bajar la señal.
+			} else if(visor->tiempoReversa && !visor->videoPausado){
+				// La película va marcha atrás
+				if(video.posCuadro<2){
+					// Si llega al inicio del video, recomienza hacia adelante
+					video.setCuadroPos(0);
+					visor->tiempoReversa = false;
+				}
+			}
+    	}
+
+    	// t1 está en segundos, con doble precisión.  El bucle para inicialización demora entre 1 y 2 centésimas de segundo.
+    	std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
+
+        // Pass the image to the SLAM system
+        if(video.imagenDisponible)
+        	SLAM.TrackMonocular(
+        		video.getImagen(
+        			visor->videoPausado? 0 :
+        			visor->tiempoReversa? -1 :
+        			1
+        		),
+				(double)video.posCuadro	// timestamp
+			);
 
 
     	// Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
