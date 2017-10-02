@@ -43,109 +43,16 @@ using namespace std;
 namespace ORB_SLAM2
 {
 
-Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor, unsigned int cantidadCuadros):
-    mState(NO_IMAGES_YET), mSensor(sensor), mbOnlyTracking(false), mbVO(false), mpORBVocabulary(pVoc),
+Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Map *pMap, KeyFrameDatabase* pKFDB, const string &strSettingPath, unsigned int cantidadCuadros):
+    mState(NO_IMAGES_YET), mpORBVocabulary(pVoc),
     mpKeyFrameDB(pKFDB), mpInitializer(static_cast<Initializer*>(NULL)), mpSystem(pSys),
-    mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap), mnLastRelocFrameId(0)
+    mpFrameDrawer(pFrameDrawer), mpMapDrawer(pMapDrawer), mpMap(pMap)
 {
     // Load camera parameters from settings file
-
 	ChangeCalibration(strSettingPath);
 	cv::FileStorage fSettings(strSettingPath.c_str(), cv::FileStorage::READ);
 
 
-/*
-    // Matriz intrínseca
-    float fx = fSettings["Camera.fx"];
-    float fy = fSettings["Camera.fy"];
-    float cx = fSettings["Camera.cx"];
-    float cy = fSettings["Camera.cy"];
-
-    cv::Mat K = cv::Mat::eye(3,3,CV_32F);
-    K.at<float>(0,0) = fx;
-    K.at<float>(1,1) = fy;
-    K.at<float>(0,2) = cx;
-    K.at<float>(1,2) = cy;
-    K.copyTo(mK);
-
-
-    // Modo de cámara y coeficientes de distorsión
-    //cv::FileNode fn = fSettings["Camera.modo"];
-    camaraModo = fSettings["Camera.modo"];
-    //if(fn.isNone() || (int)fn == 0){
-    if(camaraModo == 0){
-    	// Modo normal
-
-        cv::Mat DistCoef(8,1,CV_32F);
-        DistCoef.at<float>(0) = fSettings["Camera.k1"];
-        DistCoef.at<float>(1) = fSettings["Camera.k2"];
-        DistCoef.at<float>(2) = fSettings["Camera.p1"];
-        DistCoef.at<float>(3) = fSettings["Camera.p2"];
-        const float k3 = DistCoef.at<float>(4) = fSettings["Camera.k3"];
-        const float k4 = DistCoef.at<float>(5) = fSettings["Camera.k4"];
-        const float k5 = DistCoef.at<float>(6) = fSettings["Camera.k5"];
-        const float k6 = DistCoef.at<float>(7) = fSettings["Camera.k6"];
-
-        // UndistortPoints acorta su fórmula polinómica si el vector de coeficientes es más corto.  Las longitudes son 4, 5 u 8.
-        if(k5==0 && k6==0 && k4==0){
-    		if(k3==0){
-    			DistCoef.resize(4);
-    			cout << "2 coeficientes de distorsión radial." << endl;
-    		}else{
-    			DistCoef.resize(5);
-    			cout << "3 coeficientes de distorsión radial." << endl;
-    		}
-        } else
-    		cout << "6 coeficientes de distorsión radial." << endl;
-
-        DistCoef.copyTo(mDistCoef);
-    }else if(camaraModo == 1){
-		// fiseye, proyección equidistante (sin parámetros de distorsión)
-		mDistCoef = cv::Mat();//::zeros(4,1,CV_32F);
-    }
-
-
-
-    //mbf = fSettings["Camera.bf"];
-
-    float fps = fSettings["Camera.fps"];
-    if(fps==0)
-        fps=30;
-
-    // Max/Min Frames to insert keyframes and to check relocalisation
-    mMinFrames = 0;
-    mMaxFrames = fps;
-
-    cout << endl << "Camera Parameters: " << endl;
-    cout << "- fx: " << fx << endl;
-    cout << "- fy: " << fy << endl;
-    cout << "- cx: " << cx << endl;
-    cout << "- cy: " << cy << endl;
-    if(camaraModo == 0){
-		cout << "- k1: " << mDistCoef.at<float>(0) << endl;
-		cout << "- k2: " << mDistCoef.at<float>(1) << endl;
-		if(mDistCoef.rows>4){
-			cout << "- k3: " << mDistCoef.at<float>(4) << endl;
-			if(mDistCoef.rows>5){
-				cout << "- k4: " << mDistCoef.at<float>(5) << endl;
-				cout << "- k5: " << mDistCoef.at<float>(6) << endl;
-				cout << "- k6: " << mDistCoef.at<float>(7) << endl;
-			}
-		}
-		cout << "- p1: " << mDistCoef.at<float>(2) << endl;
-		cout << "- p2: " << mDistCoef.at<float>(3) << endl;
-    }
-    cout << "- fps: " << fps << endl;
-
-
-    int nRGB = fSettings["Camera.RGB"];
-    mbRGB = nRGB;
-
-    if(mbRGB)
-        cout << "- color order: RGB (ignored if grayscale)" << endl;
-    else
-        cout << "- color order: BGR (ignored if grayscale)" << endl;
-*/
     // Load ORB parameters
 
     int nFeatures = fSettings["ORBextractor.nFeatures"];
@@ -164,8 +71,6 @@ Tracking::Tracking(System *pSys, ORBVocabulary* pVoc, FrameDrawer *pFrameDrawer,
     cout << "- Scale Factor: " << fScaleFactor << endl;
     cout << "- Initial Fast Threshold: " << fIniThFAST << endl;
     cout << "- Minimum Fast Threshold: " << fMinThFAST << endl;
-
-    //mDepthMapFactor = 1.0f/mDepthMapFactor;
 }
 
 void Tracking::SetLocalMapper(LocalMapping *pLocalMapper)

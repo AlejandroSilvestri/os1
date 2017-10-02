@@ -122,7 +122,7 @@ public:
 	 * Constructor de la única instancia de este objeto se invoca continuamente en el thread principal.
 	*/
     Tracking(System* pSys, ORBVocabulary* pVoc, FrameDrawer* pFrameDrawer, MapDrawer* pMapDrawer, Map* pMap,
-             KeyFrameDatabase* pKFDB, const string &strSettingPath, const int sensor, unsigned int cantidadCuadros = 0);
+             KeyFrameDatabase* pKFDB, const string &strSettingPath, unsigned int cantidadCuadros = 0);
 
     /**
      * Recibe una imagen para procesar, desde System, en el mismo hilo.
@@ -217,7 +217,7 @@ public:
 
     /** Tipo de sensor: monocular, estéreo o rgbd.  Siempre System::MONOCULAR en esta versión.*/
     // Input sensor
-    int mSensor;
+    //int mSensor;
 
     /** Cuadro actual.*/
     // Current Frame
@@ -272,7 +272,7 @@ public:
      * Flag indicador de modo Tracking (true) o tracking y mapping (false).
      */
     // True if local mapping is deactivated and we are performing only localization
-    bool mbOnlyTracking;
+    bool mbOnlyTracking = false;
 
     /**
      * Reinicia el sistema.
@@ -520,7 +520,7 @@ protected:
     // points in the map. Still tracking will continue if there are enough matches with temporal points.
     // In that case we are doing visual odometry. The system will try to do relocalization to recover
     // "zero-drift" localization to the map.
-    bool mbVO;
+    bool mbVO = false;
 
     //Other Thread Pointers
     LoopClosing* mpLoopClosing;
@@ -615,7 +615,7 @@ private:
     KeyFrame* mpLastKeyFrame;
     Frame mLastFrame;
     unsigned int mnLastKeyFrameId;
-    unsigned int mnLastRelocFrameId;
+    unsigned int mnLastRelocFrameId = 0;
 
     /**
      * Rototraslación del modelo de movimiento.

@@ -101,7 +101,7 @@ int main(int argc, char **argv){
 		visor->setDuracion(video.cantidadCuadros);
 	}else{
 		// No hay parámetros, no hay video, sólo webcam.
-		video.abrirCamara(0);
+		video.abrirCamara();
 		visor->setDuracion();
 	}
 
@@ -109,32 +109,6 @@ int main(int argc, char **argv){
 
 
     while(true){
-/*
-        // Leer nuevo cuadro, controlar el tiempo del video
-    	if(video.flujo == ORB_SLAM2::Video::VIDEO || video.flujo == ORB_SLAM2::Video::VIDEO_RT){
-    		if(visor->tiempoAlterado){
-				// El usuario movió el trackbar: hay que cambiar el frame.
-				video.setCuadroPos(visor->tiempo);
-				visor->tiempoAlterado = false;	// Bajar la señal.
-			} else if(visor->tiempoReversa && !visor->videoPausado){
-				// La película va marcha atrás
-				if(video.posCuadro<2){
-					// Si llega al inicio del video, recomienza hacia adelante
-					video.setCuadroPos(0);
-					visor->tiempoReversa = false;
-				} else {
-					video.setCuadroPos(video.posCuadro-1);
-				}
-			}
-    	}
-
-    	// t1 está en segundos, con doble precisión.  El bucle para inicialización demora entre 1 y 2 centésimas de segundo.
-    	std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
-
-        // Pass the image to the SLAM system
-        if(video.imagenDisponible)
-        	SLAM.TrackMonocular(video.getImagen(),(double)video.posCuadro);
-*/
 
         // Leer nuevo cuadro, controlar el tiempo del video
     	if(video.flujo == ORB_SLAM2::Video::VIDEO || video.flujo == ORB_SLAM2::Video::VIDEO_RT){
@@ -153,7 +127,7 @@ int main(int argc, char **argv){
     	}
 
     	// t1 está en segundos, con doble precisión.  El bucle para inicialización demora entre 1 y 2 centésimas de segundo.
-    	std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
+    	//std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
 
         // Pass the image to the SLAM system
         if(video.imagenDisponible)
@@ -258,15 +232,24 @@ int main(int argc, char **argv){
 
     	}
 
+    	// Abrir una webcam
+    	if(visor->abrirCamara){
+    		visor->abrirCamara = false;
+    		video.abrirCamara();
+    		Sistema->mpTracker->ChangeCalibration(archivoConfiguracionWebcamPorDefecto);//"webcan.yaml");
+    	}
+
+    	/*
         // Stop cronómetro para medir duración del procesamiento
         double ttrack = std::chrono::duration_cast<std::chrono::duration<double> >(std::chrono::steady_clock::now() - t1).count();
 
         // Delay para 30 fps, período de 0.033 s
         if(ttrack < 0.033)
         	usleep((0.033-ttrack)*1e6);
+        */
 
     }
-    cout << "Invocando shutdown." << endl;
+    cout << "Invocando shutdown..." << endl;
 
     // Stop all threads
     SLAM.Shutdown();

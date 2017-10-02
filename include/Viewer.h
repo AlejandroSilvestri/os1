@@ -190,12 +190,9 @@ public:
     /** Señal para que main abra un archivo de video.*/
     bool abrirVideo = false;
 
-    /**
-     * Período mínimo entre cuadros, en segundos.
-     * El bucle main se asegura de demorar como mínimo este tiempo entre dos cuadros.
-     * El usuario ajusta este valor.
-     */
-    float T = 0.033;	// 30 fps
+    /** Señal para que main abra una webcam.*/
+    bool abrirCamara = false;
+
 
 private:
 

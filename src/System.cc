@@ -39,18 +39,14 @@ namespace ORB_SLAM2
 {
 
 System::System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer)
-				:mSensor(sensor),mbReset(false),mbActivateLocalizationMode(false),
-        mbDeactivateLocalizationMode(false)
+				:mSensor(sensor)
 {
     //Check settings file
     cv::FileStorage fsSettings(strSettingsFile.c_str(), cv::FileStorage::READ);
-    if(!fsSettings.isOpened())
-    {
-       cerr << "Failed to open settings file at: " << strSettingsFile << endl;
+    if(!fsSettings.isOpened()){
+       cerr << "No se pudo abrir el archivo de configuración: " << strSettingsFile << endl;
        exit(-1);
     }
-
-
 
     mpVocabulary = new ORBVocabulary();
 
@@ -66,11 +62,10 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 
     //Initialize the Tracking thread
     //(it will live in the main thread of execution, the one that called this constructor)
-    mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer,
-                             mpMap, mpKeyFrameDatabase, strSettingsFile, mSensor);
+    mpTracker = new Tracking(this, mpVocabulary, mpFrameDrawer, mpMapDrawer, mpMap, mpKeyFrameDatabase, strSettingsFile);
 
     //Initialize the Local Mapping thread and launch
-    mpLocalMapper = new LocalMapping(mpMap, mSensor==MONOCULAR);
+    mpLocalMapper = new LocalMapping(mpMap);
     mptLocalMapping = new thread(&ORB_SLAM2::LocalMapping::Run,mpLocalMapper);
 
     //Initialize the Loop Closing thread and launch
@@ -114,10 +109,7 @@ System::System(const string &strVocFile, const string &strSettingsFile, const eS
 }
 
 
-/**
- */
-cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
-{
+cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp){
     // Check mode change
     {
         unique_lock<mutex> lock(mMutexMode);
@@ -156,30 +148,22 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
     return mpTracker->GrabImageMonocular(im,timestamp);
 }
 
-/** Activa el modo de Localización.  Inicia el autómata finito que lo activa.*/
-void System::ActivateLocalizationMode()
-{
+void System::ActivateLocalizationMode(){
     unique_lock<mutex> lock(mMutexMode);
     mbActivateLocalizationMode = true;
 }
 
-/** Desactiva el modo de Localización.  Inicia el autómata finito que lo desactiva.*/
-void System::DeactivateLocalizationMode()
-{
+void System::DeactivateLocalizationMode(){
     unique_lock<mutex> lock(mMutexMode);
     mbDeactivateLocalizationMode = true;
 }
 
-/** Inicia el autómata finito que resetea el sistema.*/
-void System::Reset()
-{
+void System::Reset(){
     unique_lock<mutex> lock(mMutexReset);
     mbReset = true;
 }
 
-/** Apaga el sistema.*/
-void System::Shutdown()
-{
+void System::Shutdown(){
     mpLocalMapper->RequestFinish();
     mpLoopCloser->RequestFinish();
     mpViewer->RequestFinish();

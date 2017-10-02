@@ -75,7 +75,7 @@ public:
 	 * @param mMap Mapa global.
 	 * @param bMonocular Señal que indica que el sistema es monocular.
 	 */
-    LocalMapping(Map* pMap, const float bMonocular);
+    LocalMapping(Map* pMap);
 
     /**
      * Registra el LoopCloser, la única instancia en el sistema.
@@ -356,7 +356,7 @@ protected:
     cv::Mat SkewSymmetricMatrix(const cv::Mat &v);
 
     /** Señal de modo monocular.*/
-    bool mbMonocular;
+    //bool mbMonocular;
 
     /**
      * Procesa la solicitud de reinicio.

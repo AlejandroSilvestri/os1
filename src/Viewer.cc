@@ -58,14 +58,20 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
     mViewpointF = fSettings["Viewer.ViewpointF"];
 
     // Explicación de las funciones de teclado
-    cout << endl << "Teclas:" << endl
-    		<< "w: Cambia el tamaño de las ventanas de imágenes.  Hay 3 tamaños: 100%, 50% y 25%." << endl
+    cout << endl << "Teclas que actúan sobre la ventana FrameDrawer:" << endl
+    		<< "t: Cambia el tamaño de las ventanas de imágenes.  Hay 3 tamaños: 100%, 50% y 25%." << endl
+    		<< "e: Entrada.  Alterna entre mostrar y ocultar la imagen de entrada a color.  Puede mostrarse distorsionada o antidistorsionada (undistort) con 'u'" << endl
     		<< "u: Undistort, muestra la imagen de entrada antidistorsionada." << endl
     		<< endl
     		<< "Si se procesa un archivo de video:" << endl
     		<< "espacio: Pausa el video." << endl
-    		<< "r: Reversa, invierte la secuencia de imágenes del video." << endl
-    		<< "t: Tiempo entre cuadros.  Alterna entre varios períodos máximos." << endl
+    		<< "r: Reversa, para invertir la secuencia de imágenes del video.  Alterna entre reversa y normal." << endl
+    		<< "a: Automático.  Cuando pierde el tracking, invierte la dirección del video hasta relocalizarse." << endl
+    		<< endl
+    		<< "Otros:" << endl
+    		<< "p: Pose, muestra la matriz de pose, de 4x4, compuesta de la submatriz rotación de 3x3, el vector traslación, y la última fila 0,0,0,1" << endl
+    		<< "c: Comprimir.  Alterna entre modo comprimido y normal, que se usa al guardar un mapa." << endl
+    		<< "w: abre la webcam, usando la calibración webcam.yaml.  Cicla entre webcams si hay más de una." << endl
     		<< "" << endl
     		<< "" << endl
     		<< "" << endl
@@ -73,8 +79,6 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
 }
 
 void Viewer::Run(){
-	//cout << "Viewer Run inciando." << endl;
-
     mbFinished = false;
 
     pangolin::CreateWindowAndBind("ORB-SLAM2: Map Viewer",1024,768);
@@ -171,7 +175,7 @@ void Viewer::Run(){
         char tecla = cv::waitKey(mT);	// Retardo de bucle en ms, 1000/fps
         switch(tecla){
         // Tamaño de las ventanas de imágenes.  T cicla por los divisores 1, 2 y 4.
-        case 'w':
+        case 't':
         	if(factorEscalaImagenParaMostrar == 1.0)
         		factorEscalaImagenParaMostrar = 0.5;
         	else if(factorEscalaImagenParaMostrar == 0.5)
@@ -211,23 +215,11 @@ void Viewer::Run(){
         	modoAutomatico = !modoAutomatico;
         	break;
 
-        // Período T entre cuadros
-        case 't':
-        		 if(T==0) T = 0.033;	// 30 fps
-        	else if(T <1) T = 1;
-        	else 		  T=0;
-        	break;
-
 		// Inicial: debug, contextual, efímero, envía el video al frame 1960, buen lugar de inicialización para un video determinado
 		case 'i':
 			trackbarPosicionAnterior = 1960;
 			cv::setTrackbarPos("tiempo", "ORB-SLAM2: Current Frame", trackbarPosicionAnterior);
 			tiempoAlterado = true;
-			break;
-
-		// Beep
-		case 'b':
-			cout << "\a" << endl;
 			break;
 
 		// Archivo en versión comprimida (eliminando keypoints inútiles).  Alterna el flag
@@ -242,15 +234,10 @@ void Viewer::Run(){
 			cout << "\nmCurrentFrame:\n" << mpTracker->mCurrentFrame.mTcw << endl;
 			break;
 
-				/*
-		// Cambiar la activación de la creación de puntos lejanos
-		case 'l':
-			bool &activado = mpSystem->mpLocalMapper->creacionDePuntosLejanosActivada;
-			activado = !activado;
-			cout << "Puntos lejanos:" << activado << endl;
+		// Abre webcam, envía flag a main.
+		case 'w':
+			abrirCamara = true;
 			break;
-*/
-
 
         }
 

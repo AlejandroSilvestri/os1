@@ -77,9 +77,35 @@ cv::Mat Video::getImagen(int delta){
 }
 
 
-bool Video::abrirCamara(int cam = 0){
+bool Video::abrirCamara(int cam){
+
+	if(cam<0){
+		// Buscar cámara
+
+		// Cantidad de índices a probar, empezando por nIndices+1, y en el rango 0 a nIndices-1
+		const int nIndices = 3;
+		int i;
+		for(i=0; i<nIndices; i++){
+			cam = (i + camaraIndice + 1) % nIndices;
+
+			try{camara.open(cam);}
+			catch(const exception& e){cout << e.what() << endl;};
+
+			if(camara.isOpened())
+				// Camara encontrada
+				break;
+		}
+		if(i >= nIndices){
+			// No se encontró ninguna cámara.  Se termina con error.  Se establece flujo negro.
+			setFlujo(NEGRO);
+			return true;
+		}
+
+	} else
+		camara.open(cam);
+
 	// Abrir cámara
-	camara.open(cam);
+	camaraIndice = cam;
 	posCuadro = 0;
 	cantidadCuadros = 0;
 	return setFlujo(CAM);

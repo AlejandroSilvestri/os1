@@ -459,14 +459,14 @@ private:
 
     // Reset flag
     std::mutex mMutexReset;
-    bool mbReset;
+    bool mbReset = false;
 
     // Change mode flags
     std::mutex mMutexMode;
     /** Señal solicitud de modo only tracking, sin mapeo.*/
-    bool mbActivateLocalizationMode;
+    bool mbActivateLocalizationMode = false;
     /** Señal solicitud de modo tracking&mapping.*/
-    bool mbDeactivateLocalizationMode;
+    bool mbDeactivateLocalizationMode = false;
 };
 
 }// namespace ORB_SLAM

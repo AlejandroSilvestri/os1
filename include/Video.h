@@ -26,6 +26,8 @@ namespace ORB_SLAM2{
  * 2- Abrir orígenes de video con Video::abrirVideo y Video::abrirCamara
  * 3- Alternar entre diferentes flujos con Video::setFlujo
  * 4- Leer imagen con Video::getImagen
+ *
+ * Al cambiar flujos de video puede ser necesario cambiar la calibración de cámara.  La clase Video no se ocupa de esos cambios.
  */
 class Video{
 public:
@@ -72,10 +74,13 @@ public:
 	/**
 	 * Abre la cámara en vivo, y establece el flujo en CAM.
 	 *
-	 * @param cam número de cámara según el sistema operativo.  0, por defecto, cuando hay una única cámara.
+	 * Si no logra abrir la cámara, no hace nada y retorna true indicando error.
+	 *
+	 * @param cam número de cámara según el sistema operativo.  0 cuando hay una única cámara.
+	 * Es -1 por defecto, indicando que busque una cámara para abrir.  Si ya abrió una cámara, busca otra.
 	 * @returns true si hay error, y no se pudo abrir el origen.
 	 */
-	bool abrirCamara(int cam);
+	bool abrirCamara(int cam = -1);
 
 	/**
 	 * Cambia el tipo de flujo, pero manteniendo la ruta.
@@ -128,6 +133,12 @@ public:
 	 * true si hay una nueva imagen y todavía no fue leída con getImagen.
 	 */
 	bool imagenDisponible = false;
+
+	/**
+	 * Índice de la cámara abierta.
+	 * -1 si no se abrió ninguna.
+	 */
+	int camaraIndice = -1;
 
 
 
