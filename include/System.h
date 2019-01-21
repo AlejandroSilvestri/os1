@@ -201,13 +201,13 @@
 #include <string>
 #include <thread>
 #include <opencv2/core.hpp>
-//#include <opencv2/videoio.hpp>
 #include <mutex>
 
 
 #include "ORBVocabulary.h"
 
 
+class Osmap;
 
 namespace ORB_SLAM2{
 
@@ -232,7 +232,6 @@ class LocalMapping;
 /** Única instancia d*/
 class LoopClosing;
 
-class Serializer;
 
 /**
  * System se instancia una única vez en main, en la variable SLAM.
@@ -440,7 +439,7 @@ public:
     MapDrawer* mpMapDrawer;
 
     /** Serializador singleton.*/
-    Serializer *serializer;
+    Osmap *serializer;
 
 private:
 

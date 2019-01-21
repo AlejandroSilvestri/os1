@@ -21,19 +21,14 @@
 #ifndef MAP_H
 #define MAP_H
 
-//#include "MapPoint.h"
-//#include "KeyFrame.h"
-//#include "System.h"
 #include "ORBVocabulary.h"
 #include <set>
 #include <mutex>
 #include <boost/serialization/access.hpp>
-#include "Serializer.h"
 
+class Osmap;
 
-
-namespace ORB_SLAM2
-{
+namespace ORB_SLAM2{
 
 class MapPoint;
 class KeyFrame;
@@ -49,8 +44,7 @@ class KeyFrameDatabase;
  * localMapping y loopClosing son los dos threads que llevan a cabo BA, y al terminar corrigen el flag con SetFlagAfterBA().
  * El flag puede estar en false por períodos muy breves en otras actualizaciones, como por ejemplo al agregar o eliminar un punto.
  */
-class Map
-{
+class Map{
 public:
 	/** Constructor, que inicializa propiedades.  El mapa comienza "desactualizado" con mbMapUpdated==false. */
 	Map();
@@ -186,9 +180,7 @@ protected:
     std::mutex mMutexMap;
 
 	/** Serialización agregada para guardar y cargar mapas.*/
-	friend class boost::serialization::access;
-	friend class Serializer;
-	template<class Archivo> void serialize(Archivo&, const unsigned int);
+	friend class ::Osmap;
 	// Fin del agregado para serialización
 };
 

@@ -40,7 +40,7 @@
 #include <Viewer.h>
 #include <Tracking.h>
 #include <FrameDrawer.h>
-#include <Serializer.h>
+#include <osmap.h>
 #include <Video.h>
 
 

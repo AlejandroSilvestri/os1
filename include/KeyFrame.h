@@ -25,7 +25,6 @@
 #include "../Thirdparty/DBoW2/DBoW2/FeatureVector.h"
 #include "ORBVocabulary.h"
 #include "KeyFrameDatabase.h"
-#include "Serializer.h"
 
 #include <mutex>
 #include <boost/serialization/access.hpp>
@@ -998,16 +997,7 @@ protected:
      * Luego serialize se encarga de cambiarle los valores, aunque sean const.
      */
 	KeyFrame();
-    friend class boost::serialization::access;
-	friend class Serializer;
-
-	/**
-	 * Serializador para KeyFrame.
-	 * Invocado al serializar Map::mspKeyFrames.
-	 * No guarda mpKeyFrameDB, que se debe asignar de otro modo.
-	 *
-	 */
-	template<class Archivo> void serialize(Archivo&, const unsigned int);
+	friend class Osmap;
 	// Fin del agregado para serialización
 
 public:

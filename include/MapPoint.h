@@ -24,7 +24,6 @@
 #include "KeyFrame.h"
 #include "Frame.h"
 #include "Map.h"
-#include "Serializer.h"
 
 #include <opencv2/core/core.hpp>
 #include <mutex>
@@ -527,22 +526,10 @@ protected:
 
 	/**
 	 * Constructor por defecto de MapPoint para el serializador.
-	 *
 	 * Se encarga de inicializar las variables const, para que el compilador no chille.
 	 */
 	MapPoint();
-	friend class boost::serialization::access;
-	friend class Serializer;
-
-	/**
-	 * Serializador de MapPoint
-	 * Se invoca al serializar Map::mspMapPoints y KeyFrame::mvpMapPoints, cuyos mapPoints nunca tienen mbBad true.
-	 * La serialización de MapPoint evita punteros para asegurar el guardado consecutivo de todos los puntos antes de proceder con los KeyFrames.
-	 * Esto evita problemas no identificados con boost::serialization, que cuelgan la aplicación al guardar.
-	 *
-	 * Versionado:
-	 * La versión 1 reconstruye mRefKF, y ya no guarda mnFirstKFid.
-	 */
+	friend class Osmap;
 	template<class Archivo> void serialize(Archivo&, const unsigned int);
 	// Fin del agregado para serialización
 };
