@@ -29,12 +29,12 @@
 #include <mutex>
 #include <boost/serialization/access.hpp>
 
-namespace ORB_SLAM2
-{
+namespace ORB_SLAM2{
 
 class KeyFrame;
 class Map;
 class Frame;
+class Osmap;
 
 
 /**

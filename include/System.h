@@ -207,9 +207,9 @@
 #include "ORBVocabulary.h"
 
 
-class Osmap;
 
 namespace ORB_SLAM2{
+ class Osmap;
 
 class KeyFrameDatabase;
 class MapDrawer;

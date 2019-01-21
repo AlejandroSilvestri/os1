@@ -12,7 +12,7 @@
 
 #define OPTION(OP) if(options[OP]) headerFile << #OP;
 
-using namespace ORB_SLAM2;
+namespace ORB_SLAM2{
 
 void Osmap::mapSave(string baseFilename){
   // Map depuration
@@ -317,7 +317,7 @@ void Osmap::rebuild(){
 		pKF->ComputeBoW();
 
 		// Build many pose matrices
-		pKF->SetPose(pKF->mTcw);
+		pKF->SetPose(pKF->Tcw);
 
 		/*
 		 * Rebuilding grid.
@@ -441,7 +441,7 @@ void Osmap::getVectorKFromKeyframes(){
   keyframeid2vectork.resize(KeyFrame::nNextId);
   for(auto &pKF:map.mspKeyFrames){
     // Test if K is new
-    Mat &K = pKF->mK;
+    const Mat &K = pKF->mK;
     unsigned int i=0;
     for(; i<vectorK.size(); i++){
       Mat &vK = *vectorK[i];
@@ -630,7 +630,7 @@ int Osmap::deserialize(const SerializedMappointArray &serializedMappointArray, v
 // KeyFrame ================================================================================================
 void Osmap::serialize(const KeyFrame &keyframe, SerializedKeyframe *serializedKeyframe){
   serializedKeyframe->set_id(keyframe.mnId);
-  serialize(keyframe.mTcw, serializedKeyframe->mutable_pose());
+  serialize(keyframe.Tcw, serializedKeyframe->mutable_pose());
   serializedKeyframe->set_timestamp(keyframe.mTimeStamp);
   if(options[K_IN_KEYFRAME])
 	serialize(keyframe.mK, serializedKeyframe->mutable_kmatrix());
@@ -650,7 +650,7 @@ KeyFrame *Osmap::deserialize(const SerializedKeyframe &serializedKeyframe){
   pKeyframe->mTimeStamp = serializedKeyframe.timestamp();
 
   if(serializedKeyframe.has_pose())
-	  deserialize(serializedKeyframe.pose(), pKeyframe->mTcw);
+	  deserialize(serializedKeyframe.pose(), pKeyframe->Tcw);
 
   if(serializedKeyframe.has_kmatrix())
 	  // serialized with K_IN_KEYFRAME option, doesn't use K list in yaml
@@ -824,3 +824,5 @@ bool Osmap::readDelimitedFrom(
 
   return true;
 }
+
+}	// namespace ORB_SLAM2

@@ -180,7 +180,7 @@ protected:
     std::mutex mMutexMap;
 
 	/** Serialización agregada para guardar y cargar mapas.*/
-	friend class ::Osmap;
+	friend class Osmap;
 	// Fin del agregado para serialización
 };
 

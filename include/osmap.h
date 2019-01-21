@@ -12,11 +12,11 @@
 #include <opencv2/core.hpp>
 
 namespace ORB_SLAM2{
-	class KeyFrame;
-	class Map;
-	class MapPoint;
-	class KeyFrameDatabase;
-}
+
+class KeyFrame;
+class Map;
+class MapPoint;
+class KeyFrameDatabase;
 
 
 /**
@@ -130,10 +130,10 @@ public:
   bitset<32> options = 0;
 
   /** ORB-SLAM2 map to be serialized. */
-  ORB_SLAM2::Map &map;
+  Map &map;
 
   /** Database of keyframes to be build after loading. */
-  ORB_SLAM2::KeyFrameDatabase &keyFrameDatabase;
+  KeyFrameDatabase &keyFrameDatabase;
 
   /**
   Usually there is only one common matrix K for all KeyFrames in the entire map, there can be more, but there won't be as many K as KeyFrames.
@@ -155,20 +155,20 @@ public:
    * This vector is set in mapSave, and it's left ontouched for user interest.
    * This vector is consumed in serialize
    */
-  vector<ORB_SLAM2::MapPoint*> vectorMapPoints;
+  vector<MapPoint*> vectorMapPoints;
 
   /**
    * Buffer where map's keyframes are stored in ascending id order, to save them to file in this order.
    * This vector is set in mapSave, and it's left ontouched for user interest.
    */
-  vector<ORB_SLAM2::KeyFrame*> vectorKeyFrames;
+  vector<KeyFrame*> vectorKeyFrames;
 
 
 
   /**
   Only constructor, the only way to set the orb-slam2 map.
   */
-  Osmap(ORB_SLAM2::Map &mpMap, ORB_SLAM2::KeyFrameDatabase &mpKeyFrameDatabase): map(mpMap), keyFrameDatabase(mpKeyFrameDatabase)
+  Osmap(Map &mpMap, KeyFrameDatabase &mpKeyFrameDatabase): map(mpMap), keyFrameDatabase(mpKeyFrameDatabase)
   {}
 
   /**
@@ -238,7 +238,7 @@ public:
   @param id Id of the MapPoint to look for.
   @returns a pointer to the MapPoint with the given id, or NULL if not found.
   */
-  ORB_SLAM2::MapPoint *getMapPoint(unsigned int id);
+  MapPoint *getMapPoint(unsigned int id);
 
 
   /**
@@ -248,7 +248,7 @@ public:
   @returns a pointer to the KeyFrame with the given id, or NULL if not found.
   Used only in Osmap::deserialize(const SerializedKeyframeFeatures&).
   */
-  ORB_SLAM2::KeyFrame *getKeyFrame(unsigned int id);
+  KeyFrame *getKeyFrame(unsigned int id);
 
 
   /**
@@ -375,7 +375,7 @@ public:
   /**
   Serializes a MapPoint, according to options.
   */
-  void serialize(const ORB_SLAM2::MapPoint&, SerializedMappoint*);
+  void serialize(const MapPoint&, SerializedMappoint*);
 
   /**
   Creates and fills a MapPoint from optional message fields.
@@ -383,7 +383,7 @@ public:
   @param serializedMappoint Protocol buffers source message.
   @returns *MapPoint A pointer to the newly created MapPoint, ready to be added to the map.
   */
-  ORB_SLAM2::MapPoint *deserialize(const SerializedMappoint& serializedMappoint);
+  MapPoint *deserialize(const SerializedMappoint& serializedMappoint);
 
   /**
   Serialized array of MapPoints.
@@ -393,7 +393,7 @@ public:
   @param serializedMapPointArray message to set up.  Data comes from the range iterated.
   @returns Number of MapPoints serialized or -1 if error.  The number of MapPoints serialized should be the same number of MapPoints in the map.
   */
-  int serialize(const vector<ORB_SLAM2::MapPoint*>&, SerializedMappointArray &);
+  int serialize(const vector<MapPoint*>&, SerializedMappointArray &);
 
   /**
   Retrieves MapPoints from an array, and append them to the map.
@@ -402,7 +402,7 @@ public:
   @returns Number of MapPoints retrieved or -1 if error.
   Map's MapPoints set should be emptied before calling this method.
   */
-  int deserialize(const SerializedMappointArray &, vector<ORB_SLAM2::MapPoint*>&);
+  int deserialize(const SerializedMappointArray &, vector<MapPoint*>&);
 
 
 
@@ -412,14 +412,14 @@ public:
   Serialize a KeyFrame.
   Serialization and deserialization assume KeyFrames are processed in ascending id order.
   */
-  void serialize(const ORB_SLAM2::KeyFrame&, SerializedKeyframe*);
+  void serialize(const KeyFrame&, SerializedKeyframe*);
 
 
   /**
   Reconstructs a KeyFrame from optional fields.
   It doesn't perform KeyFrame initialization.  This should be done after deserialization.
   */
-  ORB_SLAM2::KeyFrame *deserialize(const SerializedKeyframe&);
+  KeyFrame *deserialize(const SerializedKeyframe&);
 
   /**
   Serialized array of KeyFrames.  This can make a file, or be appended to a multiobject file.
@@ -427,7 +427,7 @@ public:
   @param serializedKeyFrameArray message to set up.  Data comes from map.
   @returns Number of KeyFrames serialized or -1 if error.  The number of KeyFrames serialized should be the same number of MapPoints in the map.
   */
-  int serialize(const vector<ORB_SLAM2::KeyFrame*>&, SerializedKeyframeArray&);
+  int serialize(const vector<KeyFrame*>&, SerializedKeyframeArray&);
 
   /**
   Retrieves MapPoints from an array, and append them to the map.
@@ -435,7 +435,7 @@ public:
   @returns Number of MapPoints retrieved or -1 if error.
   Map's MapPoints set should be emptied before calling this method.
   */
-  int deserialize(const SerializedKeyframeArray&, vector<ORB_SLAM2::KeyFrame*>&);
+  int deserialize(const SerializedKeyframeArray&, vector<KeyFrame*>&);
 
 
 
@@ -447,7 +447,7 @@ public:
   @param SerializedKeyframeFeatures Message destination of serialization.
   @returns The serialized message object.
   */
-  void serialize(const ORB_SLAM2::KeyFrame&, SerializedKeyframeFeatures*);
+  void serialize(const KeyFrame&, SerializedKeyframeFeatures*);
 
   /**
   Retrieves all features belonging to one keyframe.
@@ -457,14 +457,14 @@ public:
 
   @param SerializedKeyframeFeatures Object to be deserialized.
   */
-  ORB_SLAM2::KeyFrame *deserialize(const SerializedKeyframeFeatures&);
+  KeyFrame *deserialize(const SerializedKeyframeFeatures&);
 
   /**
    * Serialize all keyframe's features from provided keyframes container, to the specified serialization object.
    * @param vKF vector of KeyFrames to save, usually vectorKeyFrames member order by mnId.
    * @param serializedKeyframeFeaturesArray output serialization object.
    */
-  int serialize(const vector<ORB_SLAM2::KeyFrame*>& vKF, SerializedKeyframeFeaturesArray& serializedKeyframeFeaturesArray);
+  int serialize(const vector<KeyFrame*>& vKF, SerializedKeyframeFeaturesArray& serializedKeyframeFeaturesArray);
 
   /**
    * Retrieves all keyframe's features from the specified serialization object to vectorKeyframe.
@@ -501,5 +501,7 @@ public:
     google::protobuf::MessageLite* message
   );
 };
+
+}	// namespace ORB_SLAM2
 
 #endif /* OSMAP_H_ */

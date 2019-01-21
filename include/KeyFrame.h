@@ -32,13 +32,13 @@
 class KeyFrameTriangulacion;
 
 
-namespace ORB_SLAM2
-{
+namespace ORB_SLAM2{
 
 class Map;
 class MapPoint;
 class Frame;
 class KeyFrameDatabase;
+class Osmap;
 
 /**
  * Cuadro clave, keyframe.
