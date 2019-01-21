@@ -329,7 +329,7 @@ void Osmap::rebuild(){
 			for (int j=0; j<pKF->mnGridRows;j++)
 				grid[i][j].reserve(nReserve);
 
-		for(unsigned int i=0;i<pKF->N;i++){
+		for(int i=0;i<pKF->N;i++){
 			const cv::KeyPoint &kp = pKF->mvKeysUn[i];
 			int posX = round((kp.pt.x-pKF->mnMinX)*pKF->mfGridElementWidthInv);
 			int posY = round((kp.pt.y-pKF->mnMinY)*pKF->mfGridElementHeightInv);
@@ -441,7 +441,7 @@ void Osmap::getVectorKFromKeyframes(){
   keyframeid2vectork.resize(KeyFrame::nNextId);
   for(auto &pKF:map.mspKeyFrames){
     // Test if K is new
-    const Mat &K = pKF->mK;
+    Mat &K = const_cast<cv::Mat &> (pKF->mK);
     unsigned int i=0;
     for(; i<vectorK.size(); i++){
       Mat &vK = *vectorK[i];
@@ -647,17 +647,17 @@ KeyFrame *Osmap::deserialize(const SerializedKeyframe &serializedKeyframe){
   KeyFrame *pKeyframe = new KeyFrame();
 
   pKeyframe->mnId = serializedKeyframe.id();
-  pKeyframe->mTimeStamp = serializedKeyframe.timestamp();
+  const_cast<double&>(pKeyframe->mTimeStamp) = serializedKeyframe.timestamp();
 
   if(serializedKeyframe.has_pose())
 	  deserialize(serializedKeyframe.pose(), pKeyframe->Tcw);
 
   if(serializedKeyframe.has_kmatrix())
 	  // serialized with K_IN_KEYFRAME option, doesn't use K list in yaml
-	  deserialize(serializedKeyframe.kmatrix(), pKeyframe->mK);
+	  deserialize(serializedKeyframe.kmatrix(), const_cast<cv::Mat&>(pKeyframe->mK));
   else
 	  // serialized with default no K_IN_KEYFRAME option, K list in yaml
-	  pKeyframe->mK = *vectorK[serializedKeyframe.kindex()];
+	  const_cast<cv::Mat&>(pKeyframe->mK) = *vectorK[serializedKeyframe.kindex()];
 
   if(serializedKeyframe.loopedgesids_size()){
 	// Only ids of keyframes already deserialized and present on vectorKeyFrames
@@ -693,7 +693,7 @@ int Osmap::deserialize(const SerializedKeyframeArray &serializedKeyframeArray, v
 // Feature ================================================================================================
 void Osmap::serialize(const KeyFrame &keyframe, SerializedKeyframeFeatures *serializedKeyframeFeatures){
   serializedKeyframeFeatures->set_keyframe_id(keyframe.mnId);
-  for(unsigned int i=0; i<keyframe.N; i++){
+  for(int i=0; i<keyframe.N; i++){
 	if(!options[ONLY_MAPPOINTS_FEATURES] || keyframe.mvpMapPoints[i]){	// If chosen to only save mappoints features, check if there is a mappoint.
 		SerializedFeature &serializedFeature = *serializedKeyframeFeatures->add_feature();
 
@@ -717,14 +717,14 @@ KeyFrame *Osmap::deserialize(const SerializedKeyframeFeatures &serializedKeyfram
   KeyFrame *pKF = getKeyFrame(KFid);
   if(pKF){
 	  unsigned int n = serializedKeyframeFeatures.feature_size();
-	  pKF->N = n;
-	  pKF->mvKeysUn.resize(n);
+	  const_cast<int&>(pKF->N) = n;
+	  const_cast<std::vector<cv::KeyPoint>&>(pKF->mvKeysUn).resize(n);
 	  pKF->mvpMapPoints.resize(n);
-	  pKF->mDescriptors = Mat(n, 8, CV_32S);	// n descriptors
+	  const_cast<cv::Mat&>(pKF->mDescriptors) = Mat(n, 8, CV_32S);	// n descriptors
 	  for(unsigned int i=0; i<n; i++){
 		const SerializedFeature &feature = serializedKeyframeFeatures.feature(i);
 		if(feature.mappoint_id())		  pKF->mvpMapPoints[i] = getMapPoint(feature.mappoint_id());
-		if(feature.has_keypoint())    	  deserialize(feature.keypoint(), pKF->mvKeysUn[i]);
+		if(feature.has_keypoint())    	  deserialize(feature.keypoint(), const_cast<cv::KeyPoint&>(pKF->mvKeysUn[i]));
 		if(feature.has_briefdescriptor()){
 			Mat descriptor;
 			deserialize(feature.briefdescriptor(), descriptor);
