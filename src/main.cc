@@ -40,9 +40,8 @@
 #include <Viewer.h>
 #include <Tracking.h>
 #include <FrameDrawer.h>
-#include <osmap.h>
 #include <Video.h>
-
+#include <osmap.h>
 
 using namespace std;
 
@@ -168,6 +167,7 @@ int main(int argc, char **argv){
 				nombreArchivo.pop_back();	// Quita el \n final
 				cout << "Abriendo archivo " << nombreArchivo << endl;
 
+				SLAM.serializer = new ORB_SLAM2::Osmap(SLAM);
 				SLAM.serializer->mapLoad(nombreArchivo);
 				cout << "Mapa cargado." << endl;
 

@@ -1,3 +1,23 @@
+/**
+* This file is part of OSMAP.
+*
+* Copyright (C) 2018-2019 Alejandro Silvestri <alejandrosilvestri at gmail>
+* For more information see <https://github.com/AlejandroSilvestri/osmap>
+*
+* OSMAP is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* OSMAP is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with OSMAP. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include <fstream>
 #include <iostream>
 #include <assert.h>
@@ -9,6 +29,7 @@
 #include "Map.h"
 #include "MapPoint.h"
 #include "System.h"
+#include "Frame.h"
 
 #define OPTION(OP) if(options[OP]) headerFile << #OP;
 
@@ -597,9 +618,9 @@ void Osmap::serialize(const MapPoint &mappoint, SerializedMappoint *serializedMa
     serialize(mappoint.mDescriptor, serializedMappoint->mutable_briefdescriptor());
 }
 
-// TODO: handle NO_ID, autonumerate MapPoints
 MapPoint *Osmap::deserialize(const SerializedMappoint &serializedMappoint){
-  MapPoint *pMappoint = new MapPoint();
+  MapPoint *pMappoint = new MapPoint(*this);
+  pMappoint->mpMap = &map;
 
   pMappoint->mnId        = serializedMappoint.id();
   pMappoint->mnVisible   = serializedMappoint.visible();
@@ -644,7 +665,7 @@ void Osmap::serialize(const KeyFrame &keyframe, SerializedKeyframe *serializedKe
 }
 
 KeyFrame *Osmap::deserialize(const SerializedKeyframe &serializedKeyframe){
-  KeyFrame *pKeyframe = new KeyFrame();
+  KeyFrame *pKeyframe = new KeyFrame(*this);
 
   pKeyframe->mnId = serializedKeyframe.id();
   const_cast<double&>(pKeyframe->mTimeStamp) = serializedKeyframe.timestamp();
@@ -823,6 +844,47 @@ bool Osmap::readDelimitedFrom(
   input.PopLimit(limit);
 
   return true;
-}
+};
+
+
+/**
+ * Default constructors with const properties initialized
+ */
+
+MapPoint::MapPoint(Osmap &osmap):
+	mnFirstKFid(0), nObs(0), mnTrackReferenceForFrame(0),
+	mnLastFrameSeen(0), mnBALocalForKF(0), mnFuseCandidateForKF(0), mnLoopPointForKF(0), mnCorrectedByKF(0),
+	mnCorrectedReference(0), mnBAGlobalForKF(0), mpRefKF(NULL), mnVisible(1), mnFound(1), mbBad(false),
+	mpReplaced(static_cast<MapPoint*>(NULL)), mfMinDistance(0), mfMaxDistance(0),
+	mpMap(&osmap.map)
+{};
+
+KeyFrame::KeyFrame(Osmap &osmap):
+	// Públicas
+    mnFrameId(0),  mTimeStamp(0.0), mnGridCols(FRAME_GRID_COLS), mnGridRows(FRAME_GRID_ROWS),
+    mfGridElementWidthInv(Frame::mfGridElementWidthInv),
+    mfGridElementHeightInv(Frame::mfGridElementHeightInv),
+
+    mnTrackReferenceForFrame(0), mnFuseTargetForKF(0), mnBALocalForKF(0), mnBAFixedForKF(0),
+    mnLoopQuery(0), mnLoopWords(0), mnRelocQuery(0), mnRelocWords(0), mnBAGlobalForKF(0),
+
+    fx(Frame::fx), fy(Frame::fy), cx(Frame::cx), cy(Frame::cy), invfx(Frame::invfx), invfy(Frame::invfy),
+    N(0), mnScaleLevels(osmap.currentFrame.mnScaleLevels),
+    mfScaleFactor(osmap.currentFrame.mfScaleFactor),
+    mfLogScaleFactor(osmap.currentFrame.mfLogScaleFactor),
+    mvScaleFactors(osmap.currentFrame.mvScaleFactors),
+    mvLevelSigma2(osmap.currentFrame.mvLevelSigma2),
+    mvInvLevelSigma2(osmap.currentFrame.mvInvLevelSigma2),
+    mnMinX(Frame::mnMinX), mnMinY(Frame::mnMinY), mnMaxX(Frame::mnMaxX), mnMaxY(Frame::mnMaxY),
+
+	// Protegidas:
+    mpKeyFrameDB(&osmap.keyFrameDatabase),
+    mpORBvocabulary(osmap.system.mpVocabulary),
+    mbFirstConnection(false),
+	mpParent(NULL),
+	mbBad(false),
+	mpMap(&osmap.map)
+{};
+
 
 }	// namespace ORB_SLAM2

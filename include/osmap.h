@@ -1,3 +1,23 @@
+/**
+* This file is part of OSMAP.
+*
+* Copyright (C) 2018-2019 Alejandro Silvestri <alejandrosilvestri at gmail>
+* For more information see <https://github.com/AlejandroSilvestri/osmap>
+*
+* OSMAP is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* OSMAP is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with OSMAP. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #ifndef OSMAP_H_
 #define OSMAP_H_
 
@@ -10,6 +30,8 @@
 #include "osmap.pb.h"
 #include <set>
 #include <opencv2/core.hpp>
+#include "System.h"
+#include "Tracking.h"
 
 namespace ORB_SLAM2{
 
@@ -17,6 +39,8 @@ class KeyFrame;
 class Map;
 class MapPoint;
 class KeyFrameDatabase;
+class System;
+class Frame;
 
 
 /**
@@ -135,6 +159,12 @@ public:
   /** Database of keyframes to be build after loading. */
   KeyFrameDatabase &keyFrameDatabase;
 
+  /** System, needed to populate new keyframes after construction on deserialization, with some configuration values.*/
+  System &system;
+
+  /** Any frame, to copy configuration values from.*/
+  Frame &currentFrame;
+
   /**
   Usually there is only one common matrix K for all KeyFrames in the entire map, there can be more, but there won't be as many K as KeyFrames.
   This vector temporarily store different K for serialization and deserialization.  This avoids serializing one K per KeyFrame.
@@ -168,8 +198,13 @@ public:
   /**
   Only constructor, the only way to set the orb-slam2 map.
   */
-  Osmap(Map &mpMap, KeyFrameDatabase &mpKeyFrameDatabase): map(mpMap), keyFrameDatabase(mpKeyFrameDatabase)
-  {}
+  //Osmap(Map &mpMap, KeyFrameDatabase &mpKeyFrameDatabase): map(mpMap), keyFrameDatabase(mpKeyFrameDatabase){};
+  Osmap(System &_system):
+  map(*_system.mpMap),
+  keyFrameDatabase(*_system.mpKeyFrameDatabase),
+  system(_system),
+  currentFrame(_system.mpTracker->mCurrentFrame)
+  {};
 
   /**
    * Irons keyframes and mappoints sets in map, before save.

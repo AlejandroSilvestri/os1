@@ -27,7 +27,6 @@
 #include "KeyFrameDatabase.h"
 
 #include <mutex>
-#include <boost/serialization/access.hpp>
 
 class KeyFrameTriangulacion;
 
@@ -990,15 +989,13 @@ protected:
      */
     std::mutex mMutexFeatures;
 
-    /**
-     * Constructor por defecto para KeyFrame
-     * Se ocupa de inicializar los atributos const, para que el compilador no chille.
-     * Entre ellos inicializa los atributos no serializables (todos punteros a singletons).
-     * Luego serialize se encarga de cambiarle los valores, aunque sean const.
-     */
-	KeyFrame();
+	/**
+	 * Code added for Osmap:
+	 * - friend class to access private properties to serialization.
+	 * - Default constructor initializing const properties.
+	 */
 	friend class Osmap;
-	// Fin del agregado para serialización
+	KeyFrame(Osmap&);
 
 public:
 	/**

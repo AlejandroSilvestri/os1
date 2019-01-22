@@ -24,7 +24,6 @@
 #include "ORBVocabulary.h"
 #include <set>
 #include <mutex>
-#include <boost/serialization/access.hpp>
 
 class Osmap;
 

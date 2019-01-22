@@ -209,7 +209,7 @@
 
 
 namespace ORB_SLAM2{
- class Osmap;
+class Osmap;
 
 class KeyFrameDatabase;
 class MapDrawer;

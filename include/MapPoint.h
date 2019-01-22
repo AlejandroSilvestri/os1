@@ -27,7 +27,6 @@
 
 #include <opencv2/core/core.hpp>
 #include <mutex>
-#include <boost/serialization/access.hpp>
 
 namespace ORB_SLAM2{
 
@@ -525,12 +524,12 @@ protected:
 	std::mutex mMutexFeatures;
 
 	/**
-	 * Constructor por defecto de MapPoint para el serializador.
-	 * Se encarga de inicializar las variables const, para que el compilador no chille.
+	 * Code added for Osmap:
+	 * - friend class to access private properties to serialization.
+	 * - Default constructor initializing const properties.
 	 */
-	MapPoint();
 	friend class Osmap;
-	template<class Archivo> void serialize(Archivo&, const unsigned int);
+	MapPoint(Osmap&);
 	// Fin del agregado para serialización
 };
 
