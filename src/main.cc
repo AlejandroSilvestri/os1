@@ -91,7 +91,8 @@ int main(int argc, char **argv){
 
     // Arranca el hilo de Video
     ORB_SLAM2::Video video;
-    new thread(&ORB_SLAM2::Video::Run, &video);
+    thread* ptVideo = new thread(&ORB_SLAM2::Video::Run, &video);
+    pthread_setname_np(ptVideo->native_handle(), "VideoPlayer");
 
 	// Indica si la entrada de video corresponde a un archivo, y por lo tanto su base de tiempo es controlable
 	bool videoEsArchivo = rutaVideo;

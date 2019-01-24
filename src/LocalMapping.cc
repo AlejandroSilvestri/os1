@@ -23,8 +23,7 @@
 #include "ORBmatcher.h"
 #include "Optimizer.h"
 #include "KeyFrameTriangulacion.h"
-
-#include<mutex>
+#include <mutex>
 
 namespace ORB_SLAM2
 {
@@ -46,7 +45,6 @@ void LocalMapping::SetTracker(Tracking *pTracker)
 
 void LocalMapping::Run()
 {
-
     mbFinished = false;
 
     while(1)
