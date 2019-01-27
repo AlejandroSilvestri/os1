@@ -189,9 +189,8 @@ int main(int argc, char **argv){
     		SLAM.mpLocalMapper->RequestStop();
     		SLAM.mpViewer	  ->RequestStop();	// No parece que sea necesario para guardar, sino sólo para cargar, pues al guardar no se modifica el mapa.
 
-        	//char archivo[] = "mapa.bin";
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa.osMap", "r");
+        	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa", "r");
         	fgets(charchivo, 1024, f);
 
         	if(charchivo[0]){

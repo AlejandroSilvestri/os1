@@ -15,7 +15,7 @@ namespace ORB_SLAM2{
 Video::Video(){
 	// Crea la imagen negra, de dimensiones arbitrarias, para el flujo NEGRO
 	// Inicialización de imagen, hasta que algún flujo la cambie
-	imagen = imNegra = cv::Mat::zeros(640, 480, CV_8UC3);
+	imagen = imNegra = cv::Mat::zeros(480, 640, CV_8UC3);
 }
 
 void Video::Run(){
@@ -41,18 +41,15 @@ void Video::Run(){
 			posCuadro = video.get(cv::CAP_PROP_POS_FRAMES);
 			video.read(im);
 			if(imagenDisponible == true){	// Único flujo: No Tiempo Real
-				//cout << "VIDEO, antes de mutex" << endl;
 				// Al haber imagen disponible, espera que se consuma para continuar.
 				unique_lock<mutex> lock(mutexEspera);
-				//cout << "VIDEO, después del mutexEspera, antes del wait." << endl;
 				conVarEspera.wait(lock);	// Este lock se destraba sólo con getImage, que además deja imagenDisponible en false.
-				//cout << "VIDEO, después del wait." << endl;
 			}
 			break;
 		}
 
-
-		{	// Actualizar propiedades con mutex
+		if(im.rows){// Problema conocido, suele enviar una imagen vacía en la primera lectura
+			// Actualizar propiedades con mutex
 			unique_lock<mutex> lock(mutexImagen);
 			imagenDisponible = true;
 			imagen = im;
@@ -68,7 +65,6 @@ cv::Mat Video::getImagen(int delta){
 	cv::Mat im = imagen;
 	imagenDisponible = false;
 
-	//lock.release();
 	conVarEspera.notify_all();	// Destraba la lectura de video en Run while.
 
 	if(flujo == VIDEO && delta != 1)

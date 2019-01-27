@@ -23,8 +23,7 @@
 #include "MapPoint.h"
 #include "Map.h"
 
-//#include <opencv2/core.hpp>
-//#include <opencv2/highgui.hpp>
+#include <string>
 #include <opencv2/videoio.hpp>
 #include <opencv2/features2d.hpp>
 
