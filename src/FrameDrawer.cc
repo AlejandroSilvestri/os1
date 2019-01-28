@@ -96,7 +96,7 @@ cv::Mat FrameDrawer::DrawFrame(float radio, int nKF)
     } // destroy scoped mutex -> release mutex
 
     if(im.channels()<3) //this should be always true
-        cvtColor(im,im,CV_GRAY2BGR);
+        cvtColor(im,im,cv::COLOR_GRAY2BGR);
 
     //Draw
     // Dibuja líneas verdes de flujo óptico para inicialización

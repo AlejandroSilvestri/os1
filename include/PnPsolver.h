@@ -165,7 +165,7 @@ class PnPsolver {
   /** Función del código original EPnP.*/
   void compute_barycentric_coordinates(void);
   /** Función del código original EPnP.*/
-  void fill_M(CvMat * M, const int row, const double * alphas, const double u, const double v);
+  void fill_M(cv::Mat * M, const int row, const double * alphas, const double u, const double v);
   /** Función del código original EPnP.*/
   void compute_ccs(const double * betas, const double * ut);
   /** Función del código original EPnP.*/
@@ -175,23 +175,23 @@ class PnPsolver {
   void solve_for_sign(void);
 
   /** Función del código original EPnP.*/
-  void find_betas_approx_1(const CvMat * L_6x10, const CvMat * Rho, double * betas);
+  void find_betas_approx_1(const cv::Mat * L_6x10, const cv::Mat * Rho, double * betas);
   /** Función del código original EPnP.*/
-  void find_betas_approx_2(const CvMat * L_6x10, const CvMat * Rho, double * betas);
+  void find_betas_approx_2(const cv::Mat * L_6x10, const cv::Mat * Rho, double * betas);
   /** Función del código original EPnP.*/
-  void find_betas_approx_3(const CvMat * L_6x10, const CvMat * Rho, double * betas);
+  void find_betas_approx_3(const cv::Mat * L_6x10, const cv::Mat * Rho, double * betas);
   /**
    * Función del código original EPnP.
    *
    * Función final de la siguiente cadena de Invocaciones:
-   ORB_SLAM2::PnPsolver::qr_solve(CvMat *, CvMat *, CvMat *) : void
-	ORB_SLAM2::PnPsolver::gauss_newton(const CvMat *, const CvMat *, double *) : void
+   ORB_SLAM2::PnPsolver::qr_solve(cv::Mat *, cv::Mat *, cv::Mat *) : void
+	ORB_SLAM2::PnPsolver::gauss_newton(const cv::Mat *, const cv::Mat *, double *) : void
 		ORB_SLAM2::PnPsolver::compute_pose(double (*)[3], double *) : double (3 matches)
 			ORB_SLAM2::PnPsolver::Refine() : bool
 			ORB_SLAM2::PnPsolver::iterate(int, bool &, vector<bool,allocator<bool>> &, int &) : Mat
 				ORB_SLAM2::Tracking::Relocalization() : bool
    */
-  void qr_solve(CvMat * A, CvMat * b, CvMat * X);
+  void qr_solve(cv::Mat * A, cv::Mat * b, cv::Mat * X);
 
   /** Función del código original EPnP.*/
   double dot(const double * v1, const double * v2);
@@ -204,10 +204,10 @@ class PnPsolver {
   void compute_L_6x10(const double * ut, double * l_6x10);
 
   /** Función del código original EPnP.*/
-  void gauss_newton(const CvMat * L_6x10, const CvMat * Rho, double current_betas[4]);
+  void gauss_newton(const cv::Mat * L_6x10, const cv::Mat * Rho, double current_betas[4]);
   /** Función del código original EPnP.*/
   void compute_A_and_b_gauss_newton(const double * l_6x10, const double * rho,
-				    double cb[4], CvMat * A, CvMat * b);
+				    double cb[4], cv::Mat * A, cv::Mat * b);
 
   /** Función del código original EPnP.*/
   double compute_R_and_t(const double * ut, const double * betas,
