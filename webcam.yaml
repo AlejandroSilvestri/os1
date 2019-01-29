@@ -16,6 +16,9 @@ Camera.p1: 0
 Camera.p2: 0
 Camera.k3: 0.72288795670281047
 
+# This is used to scale parameters if actual resolution differs from this one
+Camera.width: 640
+
 # Camera frames per second 
 Camera.fps: 30.0
 

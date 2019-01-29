@@ -76,8 +76,7 @@ cv::Mat Video::getImagen(int delta){
 bool Video::abrirCamara(int cam){
 
 	if(cam<0){
-		// Buscar cámara
-
+		// Buscar cámara:
 		// Cantidad de índices a probar, empezando por nIndices+1, y en el rango 0 a nIndices-1
 		const int nIndices = 3;
 		int i;
@@ -94,6 +93,8 @@ bool Video::abrirCamara(int cam){
 		if(i >= nIndices){
 			// No se encontró ninguna cámara.  Se termina con error.  Se establece flujo negro.
 			setFlujo(NEGRO);
+			alto = imNegra.rows;
+			ancho = imNegra.cols;
 			return true;
 		}
 
@@ -104,6 +105,18 @@ bool Video::abrirCamara(int cam){
 	camaraIndice = cam;
 	posCuadro = 0;
 	cantidadCuadros = 0;
+	ancho = camara.get(cv::CAP_PROP_FRAME_WIDTH);
+	alto = camara.get(cv::CAP_PROP_FRAME_HEIGHT);
+
+	cout << //"Índice de cámara " << cam <<
+			"\nResolución " << ancho <<
+			" x " << alto <<
+			//"\nCola " << camara.get(cv::CAP_PROP_GSTREAMER_QUEUE_LENGTH) <<
+			"\nFPS " << camara.get(cv::CAP_PROP_FPS) <<
+			//"\nFOURCC" << camara.get(cv::CAP_PROP_FOURCC) <<
+			//"\nFormato Mat " << camara.get(cv::CAP_PROP_FORMAT) <<
+			endl << endl;
+
 	return setFlujo(CAM);
 }
 
@@ -117,6 +130,8 @@ bool Video::abrirVideo(std::string ruta){
 
 	posCuadro = 0;
 	cantidadCuadros = video.get(cv::CAP_PROP_FRAME_COUNT);
+	ancho = video.get(cv::CAP_PROP_FRAME_WIDTH);
+	alto = video.get(cv::CAP_PROP_FRAME_HEIGHT);
 
 	return setFlujo(VIDEO);
 }

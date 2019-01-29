@@ -88,9 +88,11 @@ int main(int argc, char **argv){
     cv::Mat im;
 
     ORB_SLAM2::Viewer* visor = SLAM.mpViewer;
+	SLAM.mpSerializer = new ORB_SLAM2::Osmap(SLAM);
 
     // Arranca el hilo de Video
     ORB_SLAM2::Video video;
+    SLAM.mpVideo = &video;
     thread* ptVideo = new thread(&ORB_SLAM2::Video::Run, &video);
     pthread_setname_np(ptVideo->native_handle(), "VideoPlayer");
 
@@ -168,8 +170,7 @@ int main(int argc, char **argv){
 				nombreArchivo.pop_back();	// Quita el \n final
 				cout << "Abriendo archivo " << nombreArchivo << endl;
 
-				SLAM.serializer = new ORB_SLAM2::Osmap(SLAM);
-				SLAM.serializer->mapLoad(nombreArchivo);
+				SLAM.mpSerializer->mapLoad(nombreArchivo);
 				cout << "Mapa cargado." << endl;
 
         	}
@@ -201,7 +202,7 @@ int main(int argc, char **argv){
 				nombreArchivo.pop_back();	// Quita el \n final
 				cout << "Guardando archivo " << nombreArchivo << endl;
 
-            	SLAM.serializer->mapSave(nombreArchivo);
+            	SLAM.mpSerializer->mapSave(nombreArchivo);
             	cout << "Mapa guardado." << endl;
         	}
 

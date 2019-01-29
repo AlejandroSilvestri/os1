@@ -114,6 +114,9 @@ public:
 	 */
 	int posCuadro = 0;
 
+
+	/** Dimensiones de la imagen, obtenido con VideoCapture::get */
+	float ancho, alto;
 	/**
 	 * Entrada de video desde cámara.
 	 * Se inicializa cuando se abre la cámara.

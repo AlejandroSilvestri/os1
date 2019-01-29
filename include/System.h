@@ -210,6 +210,7 @@
 
 namespace ORB_SLAM2{
 class Osmap;
+class Video;
 
 class KeyFrameDatabase;
 class MapDrawer;
@@ -439,7 +440,10 @@ public:
     MapDrawer* mpMapDrawer;
 
     /** Serializador singleton.*/
-    Osmap *serializer;
+    Osmap *mpSerializer = NULL;
+
+    /** Video singleton */
+    Video *mpVideo = NULL;
 
 private:
 

@@ -32,6 +32,7 @@
 
 #include"Optimizer.h"
 #include"PnPsolver.h"
+#include"Video.h"
 
 #include<iostream>
 
@@ -1181,12 +1182,26 @@ void Tracking::ChangeCalibration(const string &strSettingPath)
        return;
     }
 
+
     // Matriz intrínseca
     float fx = fSettings["Camera.fx"];
     float fy = fSettings["Camera.fy"];
     float cx = fSettings["Camera.cx"];
     float cy = fSettings["Camera.cy"];
 
+    // Factor de escala por si la imagen tiene ancho diferente al indicado en el archivo de configuración.
+    float escala = 1.0;
+    float ancho = fSettings["Camera.width"];
+    if(ancho && ancho != mpSystem->mpVideo->ancho)
+    	escala = mpSystem->mpVideo->ancho/ancho;
+
+    if(escala!=1.0){
+    	fx *= escala;
+    	fy *= escala;
+    	cx *= escala;
+    	cy *= escala;
+    	cout << "Matriz K escalada por " << escala << endl;
+    }
     cv::Mat K = cv::Mat::eye(3,3,CV_32F);
     K.at<float>(0,0) = fx;
     K.at<float>(1,1) = fy;
