@@ -95,6 +95,7 @@ bool Video::abrirCamara(int cam){
 			setFlujo(NEGRO);
 			alto = imNegra.rows;
 			ancho = imNegra.cols;
+			cout << "No se encontró ninguna cámara." << endl;
 			return true;
 		}
 
@@ -126,13 +127,13 @@ bool Video::abrirVideo(std::string ruta){
 
 	char fourcc[] = "    ";	// 4 bytes para un int, más un 5º byte con \0 para tratarlo como char*.
 	*((int*)fourcc) = static_cast<int>(video.get(cv::CAP_PROP_FOURCC));
-	cout << "FOURCC: " << fourcc << endl;
 
 	posCuadro = 0;
 	cantidadCuadros = video.get(cv::CAP_PROP_FRAME_COUNT);
 	ancho = video.get(cv::CAP_PROP_FRAME_WIDTH);
 	alto = video.get(cv::CAP_PROP_FRAME_HEIGHT);
 
+	cout << "FOURCC: " << fourcc << "\n" << ancho << " x " << alto << " píxeles." <<endl;
 	return setFlujo(VIDEO);
 }
 

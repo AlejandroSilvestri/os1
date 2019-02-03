@@ -341,14 +341,15 @@ public:
   // Descriptor ====================================================================================================
 
   /**
-  Serializes a descriptor, an 1x8 int Mat (256 bits).
+  Serializes a descriptor, an 1x32 uchar Mat (256 bits).
+  Protocol Buffers doesn't have a Byte type, so it's serialized to 8 int.
   Exactly 8 int required.
   */
   void serialize(const Mat&, SerializedDescriptor*);
 
 
   /**
-  Reconstruct a descriptor, an 1x8 int Mat (256 bits).
+  Reconstruct a descriptor, an 1x32 uchar Mat (256 bits).
   Exactly 8 int required.
   */
   void deserialize(const SerializedDescriptor&, Mat&);

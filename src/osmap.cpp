@@ -548,17 +548,16 @@ void Osmap::deserialize(const SerializedKArray &serializedKArray, vector<Mat*> &
 
 // Descriptor ================================================================================================
 void Osmap::serialize(const Mat &m, SerializedDescriptor *serializedDescriptor){
-  assert(m.rows == 1 && m.cols == 8);
-  for(unsigned int i = 0; i<8; i++){
-	serializedDescriptor->add_block(m.at<unsigned int>(0,i));
-  }
+  assert(m.rows == 1 && m.cols == 32);
+  for(unsigned int i = 0; i<8; i++)
+	serializedDescriptor->add_block(((unsigned int*)m.data)[i]);
 }
 
 void Osmap::deserialize(const SerializedDescriptor &serializedDescriptor, Mat &m){
   assert(serializedDescriptor.block_size() == 8);
   m = Mat(1,8,CV_32S);
   for(unsigned int i = 0; i<8; i++)
-    m.at<unsigned int>(0,i) = serializedDescriptor.block(i);
+	((unsigned int*)m.data)[i] = serializedDescriptor.block(i);
 }
 
 // Pose ================================================================================================
