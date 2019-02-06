@@ -234,16 +234,15 @@ public:
 
   /**
   Saves the map to a set of files in the actual directory, with the extensionless name provided as the only argument and different extensions for each file.
-  If the path leads to a .yaml file name, mapSave takes it as the header file, and saves all other files in its folder.
-  If path doesn't have an extension (it doesn't end with .yaml) the path is adopted as a folder, if it doesn't exists saveMap creates it, and saves the map's files in it.
-  Any existing file is rewritten.
+  If filename has .yaml extension, mapSave will remove it to get the actual basefilename.
+  Any existing file is rewritten without warning.
   This is the entry point to save a map.  This method uses the Osmap object to serialize the map to files.
   Before calling this method:
   - ORB-SLAM2 threads must be stopped to assure map is not being modify while saving.
   - Actual directory must be set to the desired destination.  Often a new directory exclusive for the map is created.
   - options must be set.
 
-  @param basefilename File name without extenion.  Many files will be created with this filename and different extensions.
+  @param basefilename File name without extenion or with .yaml extension.  Many files will be created with this basefilename and different extensions.
 
   MapSave copy map's mappoints and keyframes sets to vectorMapPoints and vectorKeyFrames and sort them, to save objects in ascending id order.
   MapLoad doesn't use those vector.
@@ -255,12 +254,25 @@ public:
   /**
   Loads the map from a set of files in the folder whose name is provided as an argument.
   This is the entry point to load a map.  This method uses the Osmap object to serialize the map to files.
+
+  @param yamlFilename file name of .yaml file (including .yaml extension) describing a map.
+
   Only these properties are read from yaml:
   - file nKeyframes
   - options
   - camera calibration matrices K
+  - other files' names
+
+  Before calling this method, threads must be paused.
   */
-  void mapLoad(string);
+  void mapLoad(string yamlFilename);
+
+
+  /**
+   * Clear temporary vectors.
+   *
+   */
+  void clearVectors();
 
   /**
   Traverse map's keyframes looking for different K matrices, and stores them into vectorK.

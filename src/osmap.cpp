@@ -35,13 +35,22 @@
 
 namespace ORB_SLAM2{
 
-void Osmap::mapSave(string baseFilename){
+void Osmap::mapSave(const string givenFilename){
+
+  // Strip .yaml if present
+  std::string baseFilename;
+  int length = givenFilename.length();
+  if(givenFilename.substr(length-5) == ".yaml")
+	  baseFilename = givenFilename.substr(length-5);
+  else
+	  baseFilename = givenFilename;
+
   // Map depuration
   if(!options[NO_DEPURATION])
 	depurate();
 
 
-  // "Savings"
+  // Actual saving
 
   // Open YAML file for write, it will be the last file to close.
   // FileStorage https://docs.opencv.org/3.1.0/da/d56/classcv_1_1FileStorage.html
@@ -180,14 +189,18 @@ void Osmap::mapSave(string baseFilename){
 
   // Save yaml file
   headerFile.release();
+
+  // Clear temporary vectors
+  clearVectors();
 }
 
-void Osmap::mapLoad(string baseFilename){
-  // Open YAML
-  cv::FileStorage headerFile(baseFilename + ".yaml", cv::FileStorage::READ);
+void Osmap::mapLoad(string yamlFilename){
   ifstream file;
   string filename;
   int intOptions;
+
+  // Open YAML
+  cv::FileStorage headerFile(yamlFilename, cv::FileStorage::READ);
 
   // Options
   headerFile["Options"] >> intOptions;
@@ -198,7 +211,6 @@ void Osmap::mapLoad(string baseFilename){
 	  FileNode cameraMatrices = headerFile["cameraMatrices"];
 	  FileNodeIterator it = cameraMatrices.begin(), it_end = cameraMatrices.end();
 	  for( ; it != it_end; ++it){
-		  // TODO
 		  Mat *k = new Mat();
 		  *k = Mat::eye(3,3,CV_32F);
 		  k->at<float>(0,0) = (*it)["fx"];
@@ -249,16 +261,6 @@ void Osmap::mapLoad(string baseFilename){
 					 << deserialize(serializedKeyframeFeaturesArray) << endl;
 			else
 				break;
-
-/*
-		  bool dataRemaining;
-		  do{
-			  dataRemaining = readDelimitedFrom(googleStream, &serializedKeyframeFeaturesArray);
-			  //cout << "readDelimitedFrom data remaining " << dataRemaining << endl;
-			  cout << "Features deserialized in loop: "
-				<< deserialize(serializedKeyframeFeaturesArray) << endl;
-		  } while(dataRemaining);
-*/
 	  } else {
 		  // Not delimited, pure Protocol Buffers
 		  serializedKeyframeFeaturesArray.ParseFromIstream(&file);
@@ -274,7 +276,7 @@ void Osmap::mapLoad(string baseFilename){
   rebuild();
 
   // Copy to map
-  vectorKeyFrames.assign(map.mspKeyFrames.begin(), map.mspKeyFrames.end());
+  //vectorKeyFrames.assign(map.mspKeyFrames.begin(), map.mspKeyFrames.end());
 
   map.mspMapPoints.clear();
   copy(vectorMapPoints.begin(), vectorMapPoints.end(), inserter(map.mspMapPoints, map.mspMapPoints.end()));
@@ -282,8 +284,20 @@ void Osmap::mapLoad(string baseFilename){
 
   map.mspKeyFrames.clear();
   copy(vectorKeyFrames.begin(), vectorKeyFrames.end(), inserter(map.mspKeyFrames, map.mspKeyFrames.end()));
+
+  // Release temp vectors
+  clearVectors();
 }
 
+
+void Osmap::clearVectors(){
+	keyframeid2vectork.clear();
+	keyframeid2vectork.clear();
+	vectorKeyFrames.clear();
+	for(auto pK: vectorK)
+		delete pK;
+	vectorK.clear();
+}
 
 void Osmap::depurate(){
 	// First erase MapPoint from KeyFrames, and then erase KeyFrames from MapPoints.
