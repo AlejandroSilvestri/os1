@@ -475,27 +475,35 @@ void Osmap::getVectorKFromKeyframes(){
   vectorK.clear();
   keyframeid2vectork.resize(KeyFrame::nNextId);
   for(auto &pKF:map.mspKeyFrames){
-    // Test if K is new
+    // Test if K can be found in vectorK.  If new, add it to the end of vectorK.
     Mat &K = const_cast<cv::Mat &> (pKF->mK);
-    unsigned int i=0;
-    for(; i<vectorK.size(); i++){
+
+    // Will be the index of K in vectorK
+    unsigned int i;
+    for(i=0; i<vectorK.size(); i++){
       Mat &vK = *vectorK[i];
+
+      // Tests: break if found
+
       // Quick test
       if(K.data == vK.data) break;
 
       // Slow test, compare each element
       if(
-        K.at<float>(0,0) != vK.at<float>(0,0) ||
-        K.at<float>(1,1) != vK.at<float>(1,1) ||
-        K.at<float>(0,2) != vK.at<float>(0,2) ||
-        K.at<float>(1,2) != vK.at<float>(1,2)
+        K.at<float>(0,0) == vK.at<float>(0,0) &&
+        K.at<float>(1,1) == vK.at<float>(1,1) &&
+        K.at<float>(0,2) == vK.at<float>(0,2) &&
+        K.at<float>(1,2) == vK.at<float>(1,2)
       ) break;
 
     }
+
+    // if not found, push
     if(i>=vectorK.size()){
       // add new K
       vectorK.push_back(&K);
     }
+
     // i is the vectorK index for this keyframe
     keyframeid2vectork[ pKF->mnId ] = i;
   }
