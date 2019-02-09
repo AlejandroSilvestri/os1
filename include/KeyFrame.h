@@ -995,7 +995,7 @@ protected:
 	 * - Default constructor initializing const properties.
 	 */
 	friend class Osmap;
-	KeyFrame(Osmap&);
+	KeyFrame(Osmap*);
 
 public:
 	/**

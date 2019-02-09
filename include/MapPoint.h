@@ -529,7 +529,7 @@ protected:
 	 * - Default constructor initializing const properties.
 	 */
 	friend class Osmap;
-	MapPoint(Osmap&);
+	MapPoint(Osmap*);
 	// Fin del agregado para serialización
 };
 

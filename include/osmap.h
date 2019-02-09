@@ -30,9 +30,23 @@
 #include "osmap.pb.h"
 #include <set>
 #include <opencv2/core.hpp>
+
+#ifdef OSMAP_DUMMY_MAP
+	// Don't include when porting osmap to os1 and orb-slam2
+	#include "dummymap.h"
+
+#else
+
+// Only for use with OrbSlam2
+#include "KeyFrame.h"
+#include "Map.h"
+#include "MapPoint.h"
+#include "System.h"
+#include "Frame.h"
 #include "System.h"
 #include "Tracking.h"
 
+#endif
 namespace ORB_SLAM2{
 
 class KeyFrame;
@@ -67,8 +81,11 @@ A map is saved to a set of files in the actual folder, with a filename provided:
 - filename.features
 - filename.yaml, the header
 
-These files execpt .yaml store binary data using an adaptation of protocol buffer.
+The header is the only text file, in yaml format.  Other files are in binary format.
+keyframes, mappoints and features files consist on a single protocol buffers 3 message.
+features file can also be an ad hoc delimited array of protocol buffers 3 messages.
 
+Protocol buffers messages format can be found in osmap.proto file.
 Some of these objects has another object like KeyPoint, nested serialized with the appropiate serialize signature.
 
 
@@ -124,28 +141,28 @@ public:
   */
   enum Options {
 	  // Delimited to overcome a Protocol Buffers limitation.  It is automatic, but can be forced with this options:
-	  FEATURES_FILE_DELIMITED,	// Implemented, load fails
-	  FEATURES_FILE_NOT_DELIMITED,	// Implemented
+	  FEATURES_FILE_DELIMITED,	/*!< Saves features file in delimited form: many protocol buffers messages in one file. */
+	  FEATURES_FILE_NOT_DELIMITED,	/*!< Avoids saving features file in delimited form: only one protocol buffers message in the file, as always done with mappoints and keyframes. */
 
 	  // Skip files, for analisys propuses
-	  NO_MAPPOINTS_FILE,	// Implemented
-	  NO_KEYFRAMES_FILE,	// Implemented
-	  NO_FEATURES_FILE, 	// Implemented
+	  NO_MAPPOINTS_FILE,	/*!< Skip saving mappoints file.  Map will be incomplete, only for analysis porpouses. */
+	  NO_KEYFRAMES_FILE,	/*!< Skip saving keyframes file.  Map will be incomplete, only for analysis porpouses. */
+	  NO_FEATURES_FILE, 	/*!< Skip saving fesatures file.  Map will be incomplete, only for analysis porpouses. */
 
 	  // Shrink file
-	  NO_FEATURES_DESCRIPTORS,	// Implemented. Implicit in file, flag ignored on load.
-	  ONLY_MAPPOINTS_FEATURES,	// Implemented. Implicit in file, flag ignored on load.
+	  NO_FEATURES_DESCRIPTORS,	/*!< Skip saving descriptors in features file.  Descriptors are the heaviest part of features.  Map will be incomplete, only for analysis porpouses. */
+	  ONLY_MAPPOINTS_FEATURES,	/*!< Skip saving features that not belong to mappoints.  This notable reduce feature file size.  Map will be fine for tracking, may get a little hard (not impossible) to continue mapping. */
 
 	  // Options
-	  NO_LOOPS,	// Pending serializing loops
-	  K_IN_KEYFRAME,	// Implemented. Implicit in file, flag ignored on load.
+	  NO_LOOPS,			/*!< Skip saving and retrieving (loading) loops edges.  Not expected size reduction.  Map will work. For debug and analysis porpouses. */
+	  K_IN_KEYFRAME,	/*!< Force saving K camera matrix on each keyframe instead of saving them on yaml file.  Keyframes file will increase. */
 
 	  // Depuration and rebuild options
-	  NO_DEPURATION,	// Implemented, avoids depurate()
-	  NO_SET_BAD,		// Implemented, avoids SetBad(), used with dummy maps to prevent anomally detection.
-	  NO_APPEND_FOUND_MAPPOINTS,	// Implemented
+	  NO_DEPURATION,	/*!< Avoids map depuration process before save.  Depuration get rid of bad elements, but could ruin the map if illformed.  */
+	  NO_SET_BAD,		/*!< Avoids bad mappoints and keyframe detection while rebuilding the map, right after load.  Used with dummy maps examples to prevent anomally detection, because dummy maps have incomplete class implementations. */
+	  NO_APPEND_FOUND_MAPPOINTS,	/*!< On depuration process before save, avoids adding to the map any found good mappoint erroneously deleted from map. */
 
-	  OPTIONS_SIZE	// Not an option
+	  OPTIONS_SIZE	// /*!< Number of options.  Not an option. */
   };
 
   /**
@@ -270,6 +287,8 @@ public:
 
   /**
    * Clear temporary vectors.
+   *
+   * Only clears the vectors, not the objects its pointer elements pointed to (keyframes, mappoints, K matrices), because they belong to the map.
    *
    */
   void clearVectors();
@@ -549,6 +568,8 @@ public:
     google::protobuf::MessageLite* message
   );
 };
+
+
 
 }	// namespace ORB_SLAM2
 
