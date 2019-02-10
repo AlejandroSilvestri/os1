@@ -994,8 +994,8 @@ protected:
 	 * - friend class to access private properties to serialization.
 	 * - Default constructor initializing const properties.
 	 */
-	friend class Osmap;
-	KeyFrame(Osmap*);
+	//friend class Osmap;
+	//KeyFrame(Osmap*);
 
 public:
 	/**
@@ -1008,7 +1008,6 @@ public:
 			return k1->mnId < k2->mnId;
 		}
 	};
-
 };
 
 } //namespace ORB_SLAM

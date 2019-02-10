@@ -528,8 +528,8 @@ protected:
 	 * - friend class to access private properties to serialization.
 	 * - Default constructor initializing const properties.
 	 */
-	friend class Osmap;
-	MapPoint(Osmap*);
+	//friend class Osmap;
+	//MapPoint(Osmap*);
 	// Fin del agregado para serialización
 };
 
