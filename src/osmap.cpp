@@ -94,7 +94,7 @@ void Osmap::mapSave(const string givenFilename){
 	  vectorMapPoints.clear();
 	  vectorMapPoints.reserve(map.mspMapPoints.size());
 	  //vectorMapPoints.assign(map.mspMapPoints.begin(), map.mspMapPoints.end());	// Should static_cast using transform
-	  std::transform(map.mspMapPoints.begin(), map.mspMapPoints.end(), vectorMapPoints.begin(), [](MapPoint *pMP)->OsmapMapPoint*{return static_cast<OsmapMapPoint*>(pMP);});
+	  std::transform(map.mspMapPoints.begin(), map.mspMapPoints.end(), std::back_inserter(vectorMapPoints), [](MapPoint *pMP)->OsmapMapPoint*{return static_cast<OsmapMapPoint*>(pMP);});
 	  sort(vectorMapPoints.begin(), vectorMapPoints.end(), [](const MapPoint* a, const MapPoint* b){return a->mnId < b->mnId;});
 
 	  // New file
@@ -119,7 +119,7 @@ void Osmap::mapSave(const string givenFilename){
 	  vectorKeyFrames.clear();
 	  vectorKeyFrames.reserve(map.mspKeyFrames.size());
 	  //vectorKeyFrames.assign(map.mspKeyFrames.begin(), map.mspKeyFrames.end());	// Should static_cast with transform
-	  std::transform(map.mspKeyFrames.begin(), map.mspKeyFrames.end(), vectorKeyFrames.begin(), [](KeyFrame *pKF)->OsmapKeyFrame*{return static_cast<OsmapKeyFrame*>(pKF);});
+	  std::transform(map.mspKeyFrames.begin(), map.mspKeyFrames.end(), std::back_inserter(vectorKeyFrames), [](KeyFrame *pKF)->OsmapKeyFrame*{return static_cast<OsmapKeyFrame*>(pKF);});
 
 	  sort(vectorKeyFrames.begin(), vectorKeyFrames.end(), [](const KeyFrame *a, const KeyFrame *b){return a->mnId < b->mnId;});
 
@@ -326,22 +326,22 @@ void Osmap::depurate(){
 
 	// NULL out bad MapPoints in KeyFrame::mvpMapPoints
 	for(auto pKF: map.mspKeyFrames){
-		auto pOKF = static_cast<OsmapKeyFrame*>(pKF);
 		// NULL out bad MapPoints and warns if not in map.  Usually doesn't find anything.
-		auto &pMPs = pOKF->mvpMapPoints;//static_cast<vector<OsmapMapPoint*>>(pKF->mvpMapPoints);
+		auto pOKF = static_cast<OsmapKeyFrame*>(pKF);
+		auto &pMPs = pOKF->mvpMapPoints;
 		for(int i=pMPs.size(); --i>=0;){
-			auto pMP = static_cast<OsmapMapPoint *>(pMPs[i]);
+			auto pOMP = static_cast<OsmapMapPoint *>(pMPs[i]);
 
-			if(!pMP) continue;	// Ignore if NULL
+			if(!pOMP) continue;	// Ignore if NULL
 
-			if(pMP->mbBad){
+			if(pOMP->mbBad){
 				// If MapPoint is bad, NULL it in keyframe's observations.
-				cout << "Nullifying bad MapPoint " << pMP->mnId << " in KeyFrame " << pOKF->mnId << endl;
+				cout << "depurate(): Nullifying bad MapPoint " << pOMP->mnId << " in KeyFrame " << pOKF->mnId << endl;
 				pMPs[i] = NULL;
-			} else if(!map.mspMapPoints.count(pMP) && !options[NO_APPEND_FOUND_MAPPOINTS]){
+			} else if(!map.mspMapPoints.count(pOMP) && !options[NO_APPEND_FOUND_MAPPOINTS]){
 				// If MapPoint is not in map, append it to the map
-				map.mspMapPoints.insert(pMP);
-				cout << "APPEND_FOUND_MAPPOINTS: MapPoint " << pMP->mnId << " added to map. ";
+				map.mspMapPoints.insert(pOMP);
+				cout << "depurate(): APPEND_FOUND_MAPPOINTS: MapPoint " << pOMP->mnId << " added to map. ";
 			}
 		}
 
@@ -602,7 +602,7 @@ void Osmap::serialize(const Mat &m, SerializedDescriptor *serializedDescriptor){
 
 void Osmap::deserialize(const SerializedDescriptor &serializedDescriptor, Mat &m){
   assert(serializedDescriptor.block_size() == 8);
-  m = Mat(1,8,CV_32S);
+  m = Mat(1, 32, CV_8UC1);
   for(unsigned int i = 0; i<8; i++)
 	((unsigned int*)m.data)[i] = serializedDescriptor.block(i);
 }
@@ -787,7 +787,7 @@ OsmapKeyFrame *Osmap::deserialize(const SerializedKeyframeFeatures &serializedKe
 	  const_cast<int&>(pKF->N) = n;
 	  const_cast<std::vector<cv::KeyPoint>&>(pKF->mvKeysUn).resize(n);
 	  pKF->mvpMapPoints.resize(n);
-	  const_cast<cv::Mat&>(pKF->mDescriptors) = Mat(n, 8, CV_32S);	// n descriptors
+	  const_cast<cv::Mat&>(pKF->mDescriptors) = Mat(n, 32, CV_8UC1);	// n descriptors
 	  for(int i=0; i<n; i++){
 		const SerializedFeature &feature = serializedKeyframeFeatures.feature(i);
 		if(feature.mappoint_id())		  pKF->mvpMapPoints[i] = getMapPoint(feature.mappoint_id());
