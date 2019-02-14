@@ -41,7 +41,7 @@
 #include <Tracking.h>
 #include <FrameDrawer.h>
 #include <Video.h>
-#include <osmap.h>
+#include <Osmap.h>
 
 using namespace std;
 

@@ -21,10 +21,11 @@
 #include <fstream>
 #include <iostream>
 #include <assert.h>
+#include <unistd.h>
 #include <opencv2/core.hpp>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 
-#include "osmap.h"
+#include <Osmap.h>
 
 // Option check macro
 #define OPTION(OP) if(options[OP]) headerFile << #OP;
@@ -40,13 +41,15 @@ Osmap::Osmap(System &_system):
 	system(_system),
 	currentFrame(_system.mpTracker->mCurrentFrame)
 {
+#ifndef OSMAP_DUMMY_MAP
+
 	/* Every new MapPoint require a dummy pRefKF in its constructor, copying the following parameters:
 	 *
 	 * - mnFirstKFid(pRefKF->mnId)
 	 * - mnFirstFrame(pRefKF->mnFrameId)
 	 * - mpRefKF(pRefKF)
 	 *
-	 * A dummy keyframe construction requires a Frame with
+	 * A fake keyframe construction requires a Frame with
 	 *
 	 *  - mTcw (must be provided, error if not)
 	 *  - Grid (already exists)
@@ -55,12 +58,18 @@ Osmap::Osmap(System &_system):
 	dummyFrame.mTcw = Mat::eye(4, 4, CV_32F);
 	pRefKF = new KeyFrame(dummyFrame, &map, &keyFrameDatabase);
 
+#endif
 };
 
 
-void Osmap::mapSave(const string givenFilename){
+void Osmap::mapSave(const string givenFilename, bool pauseThreads){
+	// Stop threads
+	if(pauseThreads){
+		system.mpLocalMapper->RequestStop();
+		while(!system.mpLocalMapper->isStopped()) usleep(1000);
+	}
 
-  // Strip .yaml if present
+  // Strip out .yaml if present
   string baseFilename;
   int length = givenFilename.length();
   if(givenFilename.substr(length-5) == ".yaml")
@@ -81,33 +90,21 @@ void Osmap::mapSave(const string givenFilename){
   FileStorage headerFile(filename, FileStorage::WRITE);
   if(!headerFile.isOpened()){
     // Is this necessary?
-     cerr << "Couldn't create file " << baseFilename << ".yaml" << endl;
+     cerr << "Couldn't create file " << baseFilename << ".yaml, map not saved." << endl;
      return;
   }
 
-  // Other files
-  ofstream file;
-
   // MapPoints
   if(!options[NO_MAPPOINTS_FILE]){
-	  // Order keyframes by mnId
-	  vectorMapPoints.clear();
-	  vectorMapPoints.reserve(map.mspMapPoints.size());
-	  //vectorMapPoints.assign(map.mspMapPoints.begin(), map.mspMapPoints.end());	// Should static_cast using transform
-	  std::transform(map.mspMapPoints.begin(), map.mspMapPoints.end(), std::back_inserter(vectorMapPoints), [](MapPoint *pMP)->OsmapMapPoint*{return static_cast<OsmapMapPoint*>(pMP);});
-	  sort(vectorMapPoints.begin(), vectorMapPoints.end(), [](const MapPoint* a, const MapPoint* b){return a->mnId < b->mnId;});
+	  // Order mappoints by mnId
+	  getMapPointsFromMap();
 
 	  // New file
 	  filename = baseFilename + ".mappoints";
-	  file.open(filename, std::ofstream::binary);
 
 	  // Serialize
-	  SerializedMappointArray serializedMappointArray;
 	  headerFile << "mappointsFile" << filename;
-	  headerFile << "nMappoints" << serialize(vectorMapPoints, serializedMappointArray);
-	  if (!serializedMappointArray.SerializeToOstream(&file)) {/*error*/}
-
-	  file.close();
+	  headerFile << "nMappoints" << MapPointsSave(filename);
   }
 
   // K: grab camera calibration matrices.  Will be saved to yaml file later.
@@ -115,73 +112,21 @@ void Osmap::mapSave(const string givenFilename){
 
   // KeyFrames
   if(!options[NO_KEYFRAMES_FILE]){
-	  // Order keyframes by mnId
-	  vectorKeyFrames.clear();
-	  vectorKeyFrames.reserve(map.mspKeyFrames.size());
-	  //vectorKeyFrames.assign(map.mspKeyFrames.begin(), map.mspKeyFrames.end());	// Should static_cast with transform
-	  std::transform(map.mspKeyFrames.begin(), map.mspKeyFrames.end(), std::back_inserter(vectorKeyFrames), [](KeyFrame *pKF)->OsmapKeyFrame*{return static_cast<OsmapKeyFrame*>(pKF);});
-
-	  sort(vectorKeyFrames.begin(), vectorKeyFrames.end(), [](const KeyFrame *a, const KeyFrame *b){return a->mnId < b->mnId;});
+	  getKeyFramesFromMap();
 
 	  // New file
 	  filename = baseFilename + ".keyframes";
-	  file.open(filename, ofstream::binary);
 
 	  // Serialize
-	  SerializedKeyframeArray serializedKeyFrameArray;
 	  headerFile << "keyframesFile" << filename;
-	  headerFile << "nKeyframes" << serialize(vectorKeyFrames, serializedKeyFrameArray);
-	  if (!serializedKeyFrameArray.SerializeToOstream(&file)) {/*error*/}
-
-	  file.close();
+	  headerFile << "nKeyframes" << KeyFramesSave(filename);
   }
 
   // Features
   if(!options[NO_FEATURES_FILE]){
 	  filename = baseFilename + ".features";
-	  file.open(filename, ofstream::binary);
 	  headerFile << "featuresFile" << filename;
-	  if(
-		options[FEATURES_FILE_DELIMITED] ||
-		(!options[FEATURES_FILE_NOT_DELIMITED] && countFeatures() > FEATURES_MESSAGE_LIMIT)
-	  ){
-		  options.set(FEATURES_FILE_DELIMITED);
-
-		  // Loop serializing blocks of no more than FEATURES_MESSAGE_LIMIT features, using Kendon Varda's function
-		  int nFeatures = 0;
-
-		  // This Protocol Buffers stream must be deleted before closing file.  It happens automatically at }.
-		  ::google::protobuf::io::OstreamOutputStream protocolbuffersStream(&file);
-		  vector<OsmapKeyFrame*> vectorBlock;
-		  vectorBlock.reserve(FEATURES_MESSAGE_LIMIT/30);
-
-		  auto it = vectorKeyFrames.begin();
-		  while(it != vectorKeyFrames.end()){
-			  unsigned int n = (*it)->N;
-			  vectorBlock.clear();
-			  do{
-				  vectorBlock.push_back(*it);
-				  ++it;
-				  if(it == vectorKeyFrames.end()) break;
-				  //n += (*it)->N;
-				  KeyFrame *KF = *it;
-				  n += KF->N;
-			  } while(n <= FEATURES_MESSAGE_LIMIT);
-
-			  SerializedKeyframeFeaturesArray serializedKeyframeFeaturesArray;
-			  nFeatures += serialize(vectorBlock, serializedKeyframeFeaturesArray);
-			  writeDelimitedTo(serializedKeyframeFeaturesArray, &protocolbuffersStream);
-			  //cout << writeDelimitedTo(serializedKeyframeFeaturesArray, &protocolbuffersStream) << " (1 is ok writeDelimitedTo)" << endl;
-		  }
-		  headerFile << "nFeatures" << nFeatures;
-	  }else{
-		  options.set(FEATURES_FILE_NOT_DELIMITED);
-		  SerializedKeyframeFeaturesArray serializedKeyframeFeaturesArray;
-		  headerFile << "nFeatures" << serialize(vectorKeyFrames, serializedKeyframeFeaturesArray);
-		  if (!serializedKeyframeFeaturesArray.SerializeToOstream(&file))
-			  cerr << "Error while serializing features file without delimitation." << endl;
-	  }
-	  file.close();
+	  headerFile << "nFeatures" << featuresSave(filename);
   }
 
 
@@ -217,101 +162,271 @@ void Osmap::mapSave(const string givenFilename){
 
   // Clear temporary vectors
   clearVectors();
+
+  if(pauseThreads)
+	  system.mpViewer->Release();
 }
 
-void Osmap::mapLoad(string yamlFilename){
-  ifstream file;
-  string filename;
-  int intOptions;
+void Osmap::mapLoad(string yamlFilename, bool pauseThreads){
+	if(pauseThreads){
+		system.mpLocalMapper->Release();
 
-  // Open YAML
-  cv::FileStorage headerFile(yamlFilename, cv::FileStorage::READ);
+		// Limpia el mapa de todos los singletons
+		system.mpTracker->Reset();
+		// En este punto el sistema está reseteado.
 
-  // Options
-  headerFile["Options"] >> intOptions;
-  options = intOptions;
+		// Espera a que se detenga LocalMapping y  Viewer
+		system.mpLocalMapper->RequestStop();
+		system.mpViewer	    ->RequestStop();
 
-  // K
-  if(!options[K_IN_KEYFRAME]){
-	  FileNode cameraMatrices = headerFile["cameraMatrices"];
-	  FileNodeIterator it = cameraMatrices.begin(), it_end = cameraMatrices.end();
-	  for( ; it != it_end; ++it){
-		  Mat *k = new Mat();
-		  *k = Mat::eye(3,3,CV_32F);
-		  k->at<float>(0,0) = (*it)["fx"];
-		  k->at<float>(1,1) = (*it)["fy"];
-		  k->at<float>(2,0) = (*it)["cx"];
-		  k->at<float>(2,1) = (*it)["cy"];
-		  vectorK.push_back(k);
-	  }
-  }
+		while(!system.mpLocalMapper->isStopped()) usleep(1000);
+		while(!system.mpViewer     ->isStopped()) usleep(1000);
+	}
+
+	string filename;
+	int intOptions;
+
+	// Open YAML
+	cv::FileStorage headerFile(yamlFilename, cv::FileStorage::READ);
+
+	// Options
+	headerFile["Options"] >> intOptions;
+	options = intOptions;
+
+	// K
+	if(!options[K_IN_KEYFRAME]){
+		vectorK.clear();
+		FileNode cameraMatrices = headerFile["cameraMatrices"];
+		FileNodeIterator it = cameraMatrices.begin(), it_end = cameraMatrices.end();
+		for( ; it != it_end; ++it){
+			Mat *k = new Mat();
+			*k = Mat::eye(3,3,CV_32F);
+			k->at<float>(0,0) = (*it)["fx"];
+			k->at<float>(1,1) = (*it)["fy"];
+			k->at<float>(2,0) = (*it)["cx"];
+			k->at<float>(2,1) = (*it)["cy"];
+			vectorK.push_back(k);
+		}
+	}
 
 
-  // MapPoints
-  vectorMapPoints.clear();
-  if(!options[NO_MAPPOINTS_FILE]){
-	  headerFile["mappointsFile"] >> filename;
-	  file.open(filename, ifstream::binary);
-	  SerializedMappointArray serializedMappointArray;
-	  serializedMappointArray.ParseFromIstream(&file);
-	  cout << "Mappoints deserialized: "
-		<< deserialize(serializedMappointArray, vectorMapPoints) << endl;
-	  file.close();
-  }
+	// Change directory
+	size_t pos = yamlFilename.find_last_of("\\/");
+	if(std::string::npos != pos)
+		chdir(yamlFilename.substr(0, pos).c_str());
 
-  // KeyFrames
-  vectorKeyFrames.clear();// TODO: destroy each KeyFrame to prevent memory leak.
-  if(!options[NO_KEYFRAMES_FILE]){
-	  // KeyFrames
-	  headerFile["keyframesFile"] >> filename;
-	  file.open(filename, ifstream::binary);
-	  if(!currentFrame.mTcw.dims)	// if map is no initialized, currentFrame has no pose, a pose is needed to create keyframes.
-		  currentFrame.mTcw = Mat::eye(4, 4, CV_32F);
-	  SerializedKeyframeArray serializedKeyFrameArray;
-	  serializedKeyFrameArray.ParseFromIstream(&file);
-	  cout << "Keyframes deserialized: "
-		<< deserialize(serializedKeyFrameArray, vectorKeyFrames) << endl;
-	  file.close();
-  }
 
-  // Features
-  if(!options[NO_FEATURES_FILE]){
-	  headerFile["featuresFile"] >> filename;
-	  file.open(filename, ifstream::binary);
-	  auto *googleStream = new ::google::protobuf::io::IstreamInputStream(&file);
-	  SerializedKeyframeFeaturesArray serializedKeyframeFeaturesArray;
-	  if(options[FEATURES_FILE_DELIMITED]){
-		  while(true)
-			if(readDelimitedFrom(googleStream, &serializedKeyframeFeaturesArray))
+	// MapPoints
+	vectorMapPoints.clear();
+	if(!options[NO_MAPPOINTS_FILE]){
+		headerFile["mappointsFile"] >> filename;
+		MapPointsLoad(filename);
+	}
+
+
+	// KeyFrames
+	vectorKeyFrames.clear();
+	if(!options[NO_KEYFRAMES_FILE]){
+		headerFile["keyframesFile"] >> filename;
+		KeyFramesLoad(filename);
+	}
+
+	// Features
+	if(!options[NO_FEATURES_FILE]){
+		headerFile["featuresFile"] >> filename;
+		featuresLoad(filename);
+	}
+
+	// Close yaml file
+	headerFile.release();
+
+	// Rebuild
+	rebuild();
+
+	// Copy to map
+	setMapPointsToMap();
+	setKeyFramesToMap();
+
+	// Release temporary vectors
+	clearVectors();
+
+	// Lost state, the system must relocalize itself in the just loaded map.
+	system.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
+
+	if(pauseThreads){
+		// Resume threads
+
+		// Reactivate viewer.  Do not reactivate localMapper because the system resumes in "only tracking" mode immediatly after loading.
+		system.mpViewer->Release();
+
+		// Tracking do this when going to LOST state.
+		// Involed after viewer.Release() because of mutex.
+		system.mpFrameDrawer->Update(system.mpTracker);
+	}
+}
+
+int Osmap::MapPointsSave(string filename){
+	ofstream file;
+	file.open(filename, std::ofstream::binary);
+
+	// Serialize
+	SerializedMappointArray serializedMappointArray;
+	int nMP = serialize(vectorMapPoints, serializedMappointArray);
+
+	// Closing
+	if (!serializedMappointArray.SerializeToOstream(&file))
+		// Signals the error
+		nMP = -1;
+	file.close();
+
+	return nMP;
+}
+
+int Osmap::MapPointsLoad(string filename){
+	ifstream file;
+	file.open(filename, ifstream::binary);
+
+	SerializedMappointArray serializedMappointArray;
+	serializedMappointArray.ParseFromIstream(&file);
+	int nMP = deserialize(serializedMappointArray, vectorMapPoints);
+	cout << "Mappoints deserialized: " << nMP << endl;
+
+	file.close();
+	return nMP;
+}
+
+int Osmap::KeyFramesSave(string filename){
+	ofstream file;
+	file.open(filename, std::ofstream::binary);
+
+	// Serialize
+	SerializedKeyframeArray serializedKeyFrameArray;
+	int nKF = serialize(vectorKeyFrames, serializedKeyFrameArray);
+
+	// Closing
+	if (!serializedKeyFrameArray.SerializeToOstream(&file))
+		// Signals the error
+		nKF = -1;
+	file.close();
+
+	return nKF;
+}
+
+int Osmap::KeyFramesLoad(string filename){
+	ifstream file;
+	file.open(filename, ifstream::binary);
+#ifndef OSMAP_DUMMY_MAP
+	if(!currentFrame.mTcw.dims)	// if map is no initialized, currentFrame has no pose, a pose is needed to create keyframes.
+		currentFrame.mTcw = Mat::eye(4, 4, CV_32F);
+#endif
+	SerializedKeyframeArray serializedKeyFrameArray;
+	serializedKeyFrameArray.ParseFromIstream(&file);
+	int nKF = deserialize(serializedKeyFrameArray, vectorKeyFrames);
+	cout << "Keyframes deserialized: "
+		<< nKF << endl;
+	file.close();
+	return nKF;
+}
+
+int Osmap::featuresSave(string filename){
+	int nFeatures = 0;
+	ofstream file;
+
+	file.open(filename, ofstream::binary);
+	if(
+		options[FEATURES_FILE_DELIMITED] ||
+		(!options[FEATURES_FILE_NOT_DELIMITED] && countFeatures() > FEATURES_MESSAGE_LIMIT)
+	){
+		// Saving with delimited ad hoc file format
+		// Loop serializing blocks of no more than FEATURES_MESSAGE_LIMIT features, using Kendon Varda's function
+
+		options.set(FEATURES_FILE_DELIMITED);
+
+		// This Protocol Buffers stream must be deleted before closing file.  It happens automatically at }.
+		::google::protobuf::io::OstreamOutputStream protocolbuffersStream(&file);
+		vector<OsmapKeyFrame*> vectorBlock;
+		vectorBlock.reserve(FEATURES_MESSAGE_LIMIT/30);
+
+		auto it = vectorKeyFrames.begin();
+		while(it != vectorKeyFrames.end()){
+			unsigned int n = (*it)->N;
+			vectorBlock.clear();
+			do{
+				vectorBlock.push_back(*it);
+				++it;
+				if(it == vectorKeyFrames.end()) break;
+				KeyFrame *KF = *it;
+				n += KF->N;
+			} while(n <= FEATURES_MESSAGE_LIMIT);
+
+			SerializedKeyframeFeaturesArray serializedKeyframeFeaturesArray;
+			nFeatures += serialize(vectorBlock, serializedKeyframeFeaturesArray);
+			writeDelimitedTo(serializedKeyframeFeaturesArray, &protocolbuffersStream);
+		}
+	}else{
+		options.set(FEATURES_FILE_NOT_DELIMITED);
+		SerializedKeyframeFeaturesArray serializedKeyframeFeaturesArray;
+		nFeatures = serialize(vectorKeyFrames, serializedKeyframeFeaturesArray);
+		if (!serializedKeyframeFeaturesArray.SerializeToOstream(&file)){
+			cerr << "Error while serializing features file without delimitation." << endl;
+			nFeatures = -1;
+		}
+	}
+	file.close();
+
+	return nFeatures;
+}
+
+int Osmap::featuresLoad(string filename){
+	int nFeatures = 0;
+	ifstream file;
+	file.open(filename, ifstream::binary);
+	auto *googleStream = new ::google::protobuf::io::IstreamInputStream(&file);
+	SerializedKeyframeFeaturesArray serializedKeyframeFeaturesArray;
+	if(options[FEATURES_FILE_DELIMITED]){
+		while(true)
+			if(readDelimitedFrom(googleStream, &serializedKeyframeFeaturesArray)){
+				nFeatures += deserialize(serializedKeyframeFeaturesArray);
 				cout << "Features deserialized in loop: "
-					 << deserialize(serializedKeyframeFeaturesArray) << endl;
+					 << nFeatures << endl;
+			}
 			else
 				break;
-	  } else {
-		  // Not delimited, pure Protocol Buffers
-		  serializedKeyframeFeaturesArray.ParseFromIstream(&file);
-		  cout << "Features deserialized: " << deserialize(serializedKeyframeFeaturesArray) << endl;
+	} else {
+		// Not delimited, pure Protocol Buffers
+		serializedKeyframeFeaturesArray.ParseFromIstream(&file);
+		nFeatures = deserialize(serializedKeyframeFeaturesArray);
 	  }
-	  file.close();
-  }
-
-  // Close yaml file
-  headerFile.release();
-
-  // Rebuild
-  rebuild();
-
-  // Copy to map
-  map.mspMapPoints.clear();
-  copy(vectorMapPoints.begin(), vectorMapPoints.end(), inserter(map.mspMapPoints, map.mspMapPoints.end()));
-
-
-  map.mspKeyFrames.clear();
-  copy(vectorKeyFrames.begin(), vectorKeyFrames.end(), inserter(map.mspKeyFrames, map.mspKeyFrames.end()));
-
-  // Release temp vectors
-  clearVectors();
+	cout << "Features deserialized: " << nFeatures << endl;
+	file.close();
+	return nFeatures;
 }
+
+void Osmap::getMapPointsFromMap(){
+	  vectorMapPoints.clear();
+	  vectorMapPoints.reserve(map.mspMapPoints.size());
+	  std::transform(map.mspMapPoints.begin(), map.mspMapPoints.end(), std::back_inserter(vectorMapPoints), [](MapPoint *pMP)->OsmapMapPoint*{return static_cast<OsmapMapPoint*>(pMP);});
+	  sort(vectorMapPoints.begin(), vectorMapPoints.end(), [](const MapPoint* a, const MapPoint* b){return a->mnId < b->mnId;});
+}
+
+void Osmap::setMapPointsToMap(){
+	map.mspMapPoints.clear();
+	copy(vectorMapPoints.begin(), vectorMapPoints.end(), inserter(map.mspMapPoints, map.mspMapPoints.end()));
+}
+
+void Osmap::getKeyFramesFromMap(){
+	// Order keyframes by mnId
+	vectorKeyFrames.clear();
+	vectorKeyFrames.reserve(map.mspKeyFrames.size());
+	std::transform(map.mspKeyFrames.begin(), map.mspKeyFrames.end(), std::back_inserter(vectorKeyFrames), [](KeyFrame *pKF)->OsmapKeyFrame*{return static_cast<OsmapKeyFrame*>(pKF);});
+	sort(vectorKeyFrames.begin(), vectorKeyFrames.end(), [](const KeyFrame *a, const KeyFrame *b){return a->mnId < b->mnId;});
+}
+
+void Osmap::setKeyFramesToMap(){
+	map.mspKeyFrames.clear();
+	copy(vectorKeyFrames.begin(), vectorKeyFrames.end(), inserter(map.mspKeyFrames, map.mspKeyFrames.end()));
+}
+
 
 
 void Osmap::clearVectors(){
@@ -344,16 +459,6 @@ void Osmap::depurate(){
 				cout << "depurate(): APPEND_FOUND_MAPPOINTS: MapPoint " << pOMP->mnId << " added to map. ";
 			}
 		}
-
-		/*
-		// NULL out bad loop edges.  Loop edges are KeyFrames.
-		if(!options[NO_ERASE_ORPHAN_KEYFRAME_IN_LOOP])
-		  for(auto &pKFLoop: pKF->mspLoopEdges)
-			if(pKFLoop->mbBad || !map.mspKeyFrames.count(pKFLoop)){
-			  cout << "ERASE_ORPHAN_KEYFRAME_IN_LOOP: Nullifying loop edge " << pKFLoop->mnId << " from keyframe " << pKF->mnId << endl;
-			  pKF->mspLoopEdges.erase(pKFLoop);
-			}
-		*/
 	}
 }
 
@@ -365,7 +470,6 @@ void Osmap::rebuild(){
 	 * - MapPoint::AddObservation on each point to rebuild MapPoint:mObservations y MapPoint:mObs
 	 */
 	cout << "Rebuilding..." << endl;
-	cout << "Warning: rebuilding on fake objects will set bad most MapPoints and KeyFrames." << endl;
 	keyFrameDatabase.clear();
 
 	for(auto *pKF : vectorKeyFrames){
@@ -404,22 +508,18 @@ void Osmap::rebuild(){
 				pKF->mGrid[i][j] = grid[i][j];
 		}
 
-
 		// Append keyframe to the database
 		keyFrameDatabase.add(pKF);
 
-		// UpdateConnections to rebuild covisibility graph, in mnId order.
+		// Calling UpdateConnections in mnId order rebuilds the covisibility graph and the spanning tree.
 		pKF->UpdateConnections();
 
-		// If this keyframe is isolated (and it isn't keyframe zero), erase it.
-		if(pKF->mConnectedKeyFrameWeights.empty() && pKF->mnId){
-			cout << "Isolated keyframe " << pKF->mnId;
-			if(!options[NO_SET_BAD]){
+		if(!options[NO_SET_BAD])
+			// If this keyframe is isolated (and it isn't keyframe zero), erase it.
+			if(pKF->mConnectedKeyFrameWeights.empty() && pKF->mnId){
+				cout << "Isolated keyframe " << pKF->mnId << " set bad." << endl;
 				pKF->SetBadFlag();
-				cout << " set bad.";
 			}
-			cout << endl;
-		}
 
 		// Rebuilds MapPoints obvervations
 		size_t n = pKF->mvpMapPoints.size();
@@ -437,24 +537,26 @@ void Osmap::rebuild(){
 	KeyFrame::nNextId = map.mnMaxKFid + 1;
 
 
-	/**
-	 * Rebuilds the spanning tree asigning a mpParent to every KeyFrame, except that with id 0.
+
+	/*
+	 * Check and fix the spanning tree created with UpdateConnections.
+	 * Rebuilds the spanning tree asigning a mpParent to every orphan KeyFrame without, except that with id 0.
  	 * It ends when every KeyFrame has a parent.
 	 */
 
-	// mvpKeyFrameOrigins should be empty at this point, and will contain only one element, the first keyframe.
+	// mvpKeyFrameOrigins should be empty at this point, and must contain only one element, the first keyframe.
 	map.mvpKeyFrameOrigins.clear();
 	map.mvpKeyFrameOrigins.push_back(*vectorKeyFrames.begin());
 
-	// Cantidad de padres asignados en cada iteración, y total.
+	// Number of parents assigned in each iteration and in total.  Usually 0.
 	int nParents = -1, nParentsTotal = 0;
 	while(nParents){
 		nParents = 0;
 		for(auto pKF: vectorKeyFrames)
-			if(!pKF->mpParent && pKF->mnId)	// Para todos los KF excepto mnId 0, que no tiene padre
+			if(!pKF->mpParent && pKF->mnId)	// Process all keyframes without parent, exccept id 0
 				for(auto *pConnectedKF : pKF->mvpOrderedConnectedKeyFrames){
 					auto poConnectedKF = static_cast<OsmapKeyFrame*>(pConnectedKF);
-					if(poConnectedKF->mpParent || poConnectedKF->mnId == 0){	// Candidato a padre encontrado: no es huérfano o es el original
+					if(poConnectedKF->mpParent || poConnectedKF->mnId == 0){	// Parent found: not orphan or id 0
 						nParents++;
 						pKF->ChangeParent(pConnectedKF);
 						break;
@@ -472,15 +574,12 @@ void Osmap::rebuild(){
 	 */
 	for(OsmapMapPoint *pMP : vectorMapPoints){
 		// Rebuilds mpRefKF.  Requires mObservations.
-		if(pMP->mObservations.empty()){
-			cout << "MP " << pMP->mnId << " without observations.";
-			if(!options[NO_SET_BAD]){
+		if(!options[NO_SET_BAD])
+			if(pMP->mObservations.empty()){
+				cout << "MP " << pMP->mnId << " without observations." << "  Set bad." << endl;
 				pMP->SetBadFlag();
-				cout << "  Set bad.";
+				continue;
 			}
-			cout << endl;
-			continue;
-		}
 
 		// Asumes the first observation has the lowest mnId.
 		auto pair = (*pMP->mObservations.begin());
@@ -835,17 +934,13 @@ bool Osmap::writeDelimitedTo(
     const google::protobuf::MessageLite& message,
     google::protobuf::io::ZeroCopyOutputStream* rawOutput
 ){
-  //cout << "call to writeDelimitedTo" << endl;
   // We create a new coded stream for each message.  Don't worry, this is fast.
   google::protobuf::io::CodedOutputStream output(rawOutput);
 
   // Write the size.
   const int size = message.ByteSize();
   output.WriteVarint32(size);
-  //cout << "Message size " << size << endl;
-
   uint8_t* buffer = output.GetDirectBufferForNBytesAndAdvance(size);
-  //cout << "Fast buffer? " << (buffer!= NULL) << endl;
   if (buffer != NULL) {
     // Optimization:  The message fits in one buffer, so use the faster
     // direct-to-array serialization path.
@@ -858,7 +953,6 @@ bool Osmap::writeDelimitedTo(
       return false;
     }
   }
-  //cout << "Bytes serializados: " << output.ByteCount() << endl;
   return true;
 }
 
@@ -866,8 +960,6 @@ bool Osmap::readDelimitedFrom(
     google::protobuf::io::ZeroCopyInputStream* rawInput,
     google::protobuf::MessageLite* message
 ){
-  //cout << "call to readDelimitedFrom" << endl;
-
   // We create a new coded stream for each message.  Don't worry, this is fast,
   // and it makes sure the 64MB total size limit is imposed per-message rather
   // than on the whole stream.  (See the CodedInputStream interface for more
@@ -892,11 +984,11 @@ bool Osmap::readDelimitedFrom(
   return true;
 };
 
-#ifndef OSMAP_DUMMY_MAP
 
 /*
  * Orbslam adapter.  Class wrappers.
  */
+#ifndef OSMAP_DUMMY_MAP
 
 OsmapMapPoint::OsmapMapPoint(Osmap *osmap):
 	MapPoint(Mat(), osmap->pRefKF, &osmap->map)
@@ -906,6 +998,15 @@ OsmapKeyFrame::OsmapKeyFrame(Osmap *osmap):
 	KeyFrame(osmap->currentFrame, &osmap->map, &osmap->keyFrameDatabase)
 {};
 
+#else
+
+OsmapMapPoint::OsmapMapPoint(Osmap *osmap):
+	MapPoint(osmap)
+{};
+
+OsmapKeyFrame::OsmapKeyFrame(Osmap *osmap):
+	KeyFrame(osmap)
+{};
 
 #endif
 
