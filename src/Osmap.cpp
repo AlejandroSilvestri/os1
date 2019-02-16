@@ -255,8 +255,10 @@ void Osmap::mapLoad(string yamlFilename, bool pauseThreads){
 	// Release temporary vectors
 	clearVectors();
 
-	// Lost state, the system must relocalize itself in the just loaded map.
+#ifndef OSMAP_DUMMY_MAP
+// Lost state, the system must relocalize itself in the just loaded map.
 	system.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
+#endif
 
 	if(pauseThreads){
 		// Resume threads
@@ -635,13 +637,21 @@ void Osmap::getVectorKFromKeyframes(){
       if(K.data == vK.data) break;
 
       // Slow test, compare each element
+/*
       if(
         K.at<float>(0,0) == vK.at<float>(0,0) &&
         K.at<float>(1,1) == vK.at<float>(1,1) &&
         K.at<float>(0,2) == vK.at<float>(0,2) &&
         K.at<float>(1,2) == vK.at<float>(1,2)
       ) break;
-
+*/
+#define DELTA 0.1
+      if(
+        abs(K.at<float>(0,0) - vK.at<float>(0,0)) < DELTA &&
+        abs(K.at<float>(1,1) - vK.at<float>(1,1)) < DELTA &&
+        abs(K.at<float>(0,2) - vK.at<float>(0,2)) < DELTA &&
+        abs(K.at<float>(1,2) - vK.at<float>(1,2)) < DELTA
+      ) break;
     }
 
     // if not found, push
