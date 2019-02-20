@@ -147,25 +147,11 @@ int main(int argc, char **argv){
     	if(visor->cargarMapa){
     		visor->cargarMapa = false;
 
-    		// El reset subsiguiente requiere que LocalMapping no esté pausado.
-    		//SLAM.mpLocalMapper->Release();
-
-        	// Limpia el mapa de todos los singletons
-    		//SLAM.mpTracker->Reset();
-    		// En este punto el sistema está reseteado.
-
-    	    // Espera a que se detenga LocalMapping y  Viewer
-    		//SLAM.mpLocalMapper->RequestStop();
-    		//SLAM.mpViewer	  ->RequestStop();
-
         	char charchivo[1024];
         	FILE *f = popen("zenity --file-selection", "r");
         	fgets(charchivo, 1024, f);
 
         	if(charchivo[0]){
-            	//while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
-    			//while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
-
 				std::string nombreArchivo(charchivo);
 				nombreArchivo.pop_back();	// Quita el \n final
 				cout << "Abriendo archivo " << nombreArchivo << endl;
@@ -174,40 +160,24 @@ int main(int argc, char **argv){
 				cout << "Mapa cargado." << endl;
 
         	}
-			//SLAM.mpTracker->mState = ORB_SLAM2::Tracking::LOST;
-
-			// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
-			//SLAM.mpViewer->Release();
-
-			// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST.
-			// Como tiene un mutex, por las dudas lo invoco después de viewer.release.
-			//SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
     	}
     	if(visor->guardarMapa){
     		visor->guardarMapa = false;
-
-    	    // Espera a que se detenga LocalMapping
-    		//SLAM.mpLocalMapper->RequestStop();
-    		//SLAM.mpViewer	  ->RequestStop();	// No parece que sea necesario para guardar, sino sólo para cargar, pues al guardar no se modifica el mapa.
 
         	char charchivo[1024];
         	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa", "r");
         	fgets(charchivo, 1024, f);
 
         	if(charchivo[0]){
-        		//while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
-        		//while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
-
 				std::string nombreArchivo(charchivo);
 				nombreArchivo.pop_back();	// Quita el \n final
 				cout << "Guardando archivo " << nombreArchivo << endl;
+				SLAM.mpSerializer->options.set(ORB_SLAM2::Osmap::ONLY_MAPPOINTS_FEATURES, visor->opcionesMapa & 1);
+				SLAM.mpSerializer->options.set(ORB_SLAM2::Osmap::NO_FEATURES_DESCRIPTORS, visor->opcionesMapa & 2);
 
             	SLAM.mpSerializer->mapSave(nombreArchivo);
             	cout << "Mapa guardado." << endl;
         	}
-
-        	// Reactiva viewer.  No reactiva el mapeador, pues el sistema queda en sólo tracking luego de cargar.
-        	//SLAM.mpViewer->Release();
     	}
 
 
@@ -239,16 +209,6 @@ int main(int argc, char **argv){
     		video.abrirCamara();
     		Sistema->mpTracker->ChangeCalibration(archivoConfiguracionWebcamPorDefecto);//"webcan.yaml");
     	}
-
-    	/*
-        // Stop cronómetro para medir duración del procesamiento
-        double ttrack = std::chrono::duration_cast<std::chrono::duration<double> >(std::chrono::steady_clock::now() - t1).count();
-
-        // Delay para 30 fps, período de 0.033 s
-        if(ttrack < 0.033)
-        	usleep((0.033-ttrack)*1e6);
-        */
-
     }
     cout << "Invocando shutdown..." << endl;
 

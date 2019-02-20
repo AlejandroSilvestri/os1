@@ -193,6 +193,8 @@ public:
     /** Señal para que main abra una webcam.*/
     bool abrirCamara = false;
 
+    /** Opciones para mapa. */
+    int opcionesMapa = 0;
 
 private:
 

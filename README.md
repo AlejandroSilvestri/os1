@@ -15,6 +15,9 @@ La documentación es un trabajo en proceso.
 Este proyecto es trabajo de Alejandro Silvestri para de la materia de Robótica y visión artificial de ingeniería informática, y como parte del proyecto RAC del laboratorio de mecatrónica de la Universidad Austral, Pilar, Buenos Aires, Argentina.
 
 
+#Febrero de 2019
+Incorpora Osmap para guardar y cargar mapas, mucho más estable que el anterior Serializer:
+https://github.com/AlejandroSilvestri/osmap
 
 
 #Agregados y modificaciones

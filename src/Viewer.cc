@@ -23,7 +23,6 @@
 #include "MapDrawer.h"
 #include "Tracking.h"
 #include "System.h"
-//#include "Video.h"
 #include <pangolin/pangolin.h>
 
 //#include <opencv2/core.hpp>	// Cargado en Video.h
@@ -171,7 +170,7 @@ void Viewer::Run(){
     // Bucle principal del visor
     while(1){
 
-    	// Análisis de teclas
+    	// Teclas ============================================================================================
         char tecla = cv::waitKey(mT);	// Retardo de bucle en ms, 1000/fps
         switch(tecla){
         // Tamaño de las ventanas de imágenes.  T cicla por los divisores 1, 2 y 4.
@@ -222,10 +221,18 @@ void Viewer::Run(){
 			tiempoAlterado = true;
 			break;
 
-		// Archivo en versión comprimida (eliminando keypoints inútiles).  Alterna el flag
+		// Alterna compresiones para guardar el mapa
 		case 'c':
-			mpSystem->guardadoFlags ^= 1;
-			cout << "Flag de guardado (impar para guardado comprimido): " << mpSystem->guardadoFlags << endl;
+			opcionesMapa++;
+			if(opcionesMapa>3)
+				opcionesMapa = 0;
+
+			cout << "Opción de guardado: ";
+			if(opcionesMapa == 0)	cout << "normal";
+			if(opcionesMapa & 1)	cout << "ONLY_MAPPOINTS_FEATURES ";
+			if(opcionesMapa & 2)	cout << "NO_FEATURES_DESCRIPTORS";
+			cout << endl;
+
 			break;
 
 
