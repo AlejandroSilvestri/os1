@@ -250,14 +250,14 @@ public:
   This vector temporarily store different K for serialization and deserialization.  This avoids serializing one K per KeyFrame.
   This vector is consumed in keyframe deserialization.
   */
-  vector<Mat*> vectorK;
+  vector<Mat const *> vectorK;
 
   /**
   For each index KeyFrame.mnId the value returned is an index to vectorK.
   The later is the index saved in each keyframe as k.
   It is populated only by getVectorKFromKeyframes, and consumed only while saving the map, during keyframe serialization.
   */
-  vector<unsigned int> keyframeid2vectork;
+  vector<unsigned int> keyframeid2vectorkIdx;
 
 
   /**

@@ -314,6 +314,8 @@ public:
      */
     int camaraModo;
 
+    size_t relocalizacionCandidatos = 0;
+
 
 protected:
 

@@ -194,7 +194,7 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
             s << ", + VO matches: " << mnTrackedVO;
     }
     else if(nState==Tracking::LOST){
-        s << " PERDIDO.  INTENTANDO RELOCALIZAR ";
+        s << " PERDIDO.  INTENTANDO RELOCALIZAR.  Candidatos: " << relocalizacionCandidatos;
         color = cv::Scalar(0,0,128);
     }
     else if(nState==Tracking::SYSTEM_NOT_READY){
@@ -230,6 +230,8 @@ void FrameDrawer::Update(Tracking *pTracker)
     mvbMap = vector<bool>(N,false);
     mbOnlyTracking = pTracker->mbOnlyTracking;
     mvpMapPoints = pTracker->mCurrentFrame.mvpMapPoints;
+    relocalizacionCandidatos = pTracker->relocalizacionCandidatos;
+
 
     // Datos adicionales para viewer
     observaciones = vector<int>(N,0);

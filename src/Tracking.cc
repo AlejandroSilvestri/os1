@@ -975,6 +975,7 @@ bool Tracking::Relocalization()
     // Track Lost: Query KeyFrame Database for keyframe candidates for relocalisation
     vector<KeyFrame*> vpCandidateKFs = mpKeyFrameDB->DetectRelocalizationCandidates(&mCurrentFrame);
 
+    relocalizacionCandidatos = vpCandidateKFs.size();
     if(vpCandidateKFs.empty())
         return false;
 

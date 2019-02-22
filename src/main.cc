@@ -148,35 +148,34 @@ int main(int argc, char **argv){
     		visor->cargarMapa = false;
 
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection", "r");
-        	fgets(charchivo, 1024, f);
-
-        	if(charchivo[0]){
-				std::string nombreArchivo(charchivo);
-				nombreArchivo.pop_back();	// Quita el \n final
-				cout << "Abriendo archivo " << nombreArchivo << endl;
-
-				SLAM.mpSerializer->mapLoad(nombreArchivo);
-				cout << "Mapa cargado." << endl;
-
+        	FILE *f = popen("zenity --file-selection --file-filter=\"*.yaml\" --title=\"Cargar mapa\"", "r");
+        	if(f){
+				fgets(charchivo, 1024, f);
+				if(charchivo[0]){
+					std::string nombreArchivo(charchivo);
+					nombreArchivo.pop_back();	// Quita el \n final
+					cout << "Abriendo archivo " << nombreArchivo << endl;
+					SLAM.mpSerializer->mapLoad(nombreArchivo);
+					cout << "Mapa cargado." << endl;
+				}
         	}
     	}
     	if(visor->guardarMapa){
     		visor->guardarMapa = false;
 
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa", "r");
-        	fgets(charchivo, 1024, f);
-
-        	if(charchivo[0]){
-				std::string nombreArchivo(charchivo);
-				nombreArchivo.pop_back();	// Quita el \n final
-				cout << "Guardando archivo " << nombreArchivo << endl;
-				SLAM.mpSerializer->options.set(ORB_SLAM2::Osmap::ONLY_MAPPOINTS_FEATURES, visor->opcionesMapa & 1);
-				SLAM.mpSerializer->options.set(ORB_SLAM2::Osmap::NO_FEATURES_DESCRIPTORS, visor->opcionesMapa & 2);
-
-            	SLAM.mpSerializer->mapSave(nombreArchivo);
-            	cout << "Mapa guardado." << endl;
+        	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa --file-filter=\"*.yaml\" --title=\"Guardar mapa\"", "r");
+        	if(f){
+				fgets(charchivo, 1024, f);
+				if(charchivo[0]){
+					std::string nombreArchivo(charchivo);
+					nombreArchivo.pop_back();	// Quita el \n final
+					cout << "Guardando archivo " << nombreArchivo << endl;
+					SLAM.mpSerializer->options.set(ORB_SLAM2::Osmap::ONLY_MAPPOINTS_FEATURES, visor->opcionesMapa & 1);
+					SLAM.mpSerializer->options.set(ORB_SLAM2::Osmap::NO_FEATURES_DESCRIPTORS, visor->opcionesMapa & 2);
+					SLAM.mpSerializer->mapSave(nombreArchivo);
+					cout << "Mapa guardado." << endl;
+				}
         	}
     	}
 
@@ -185,7 +184,7 @@ int main(int argc, char **argv){
     	if(visor->abrirVideo){
     		visor->abrirVideo = false;
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection", "r");
+        	FILE *f = popen("zenity --file-selection --title\"Abrir video\"", "r");
         	fgets(charchivo, 1024, f);
         	if(charchivo[0]){
 				std::string nombreArchivo(charchivo);

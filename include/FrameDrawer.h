@@ -109,6 +109,9 @@ public:
      */
     double timestamp = 0;
 
+    size_t relocalizacionCandidatos = 0;
+
+
 
 protected:
 
