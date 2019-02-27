@@ -9,5 +9,6 @@ var class_o_r_b___s_l_a_m2_1_1_key_frame_database =
     [ "resizeInvertedFile", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a2ca6799c8d2b118fe5dc04c9d4e05a47", null ],
     [ "mMutex", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a31fc30f1474b8c97d81c96135e6912a1", null ],
     [ "mpVoc", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#ad11a653313a5f0ef6f6fbc4880df0b7d", null ],
-    [ "mvInvertedFile", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a67693c447ad3afefd38c80aa3b2777cf", null ]
+    [ "mvInvertedFile", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#a67693c447ad3afefd38c80aa3b2777cf", null ],
+    [ "verbose", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html#acf08ff766537fbc27ac9e2aed93cf64f", null ]
 ];

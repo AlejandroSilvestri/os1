@@ -91,7 +91,7 @@ var searchData=
   ['optimizer_2eh',['Optimizer.h',['../_optimizer_8h.html',1,'']]],
   ['optimizesim3',['OptimizeSim3',['../class_o_r_b___s_l_a_m2_1_1_optimizer.html#a5158a64390b806687666c1e93425120d',1,'ORB_SLAM2::Optimizer']]],
   ['option',['OPTION',['../_osmap_8cpp.html#ad03af0f42dc7a494b6eed50efd468b79',1,'Osmap.cpp']]],
-  ['options',['options',['../class_o_r_b___s_l_a_m2_1_1_osmap.html#a928cfe547ef3b6412c2187b0fe6158fd',1,'ORB_SLAM2::Osmap::options()'],['../class_o_r_b___s_l_a_m2_1_1_osmap.html#ad0c3627b8ca7468eb50dc38eb6ed2b14',1,'ORB_SLAM2::Osmap::Options()']]],
+  ['options',['Options',['../class_o_r_b___s_l_a_m2_1_1_osmap.html#ad0c3627b8ca7468eb50dc38eb6ed2b14',1,'ORB_SLAM2::Osmap::Options()'],['../class_o_r_b___s_l_a_m2_1_1_osmap.html#a928cfe547ef3b6412c2187b0fe6158fd',1,'ORB_SLAM2::Osmap::options()']]],
   ['options_5fsize',['OPTIONS_SIZE',['../class_o_r_b___s_l_a_m2_1_1_osmap.html#ad0c3627b8ca7468eb50dc38eb6ed2b14ad1ba80ebae75fcc0d8e017113cd2069d',1,'ORB_SLAM2::Osmap']]],
   ['orb_5fslam2',['ORB_SLAM2',['../namespace_o_r_b___s_l_a_m2.html',1,'']]],
   ['orbextractor',['ORBextractor',['../class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html#aaa8e010415e516246e171b9bbb9f84af',1,'ORB_SLAM2::ORBextractor']]],
