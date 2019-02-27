@@ -1,8 +1,12 @@
 var searchData=
 [
   ['factory',['Factory',['../classg2o_1_1_factory.html#af8b5afc514363e6f00c61e8acd67b495',1,'g2o::Factory']]],
+  ['feature',['feature',['../class_serialized_keyframe_features.html#a542da6f82cec4540c13294216283de33',1,'SerializedKeyframeFeatures::feature(int index) const'],['../class_serialized_keyframe_features.html#a17bda7cdb556b179d6920aa438014743',1,'SerializedKeyframeFeatures::feature() const'],['../class_serialized_keyframe_features_array.html#aea54dce3092ad43701580b305a3920f8',1,'SerializedKeyframeFeaturesArray::feature(int index) const'],['../class_serialized_keyframe_features_array.html#ac6cacc03d05d6e766abbf3014073b821',1,'SerializedKeyframeFeaturesArray::feature() const']]],
+  ['feature_5fsize',['feature_size',['../class_serialized_keyframe_features.html#a4ff44a74f427637bac93da930c30f79a',1,'SerializedKeyframeFeatures::feature_size()'],['../class_serialized_keyframe_features_array.html#a03071df882c809f8e5c44653909b9ff5',1,'SerializedKeyframeFeaturesArray::feature_size()']]],
+  ['featuresload',['featuresLoad',['../class_o_r_b___s_l_a_m2_1_1_osmap.html#a2a2320912c25b4866a50d76f99bd6cb8',1,'ORB_SLAM2::Osmap']]],
+  ['featuressave',['featuresSave',['../class_o_r_b___s_l_a_m2_1_1_osmap.html#a441308a8c45fe52261b83e4ef067a3b0',1,'ORB_SLAM2::Osmap']]],
   ['featurevector',['FeatureVector',['../class_d_bo_w2_1_1_feature_vector.html#a66c069d269c8c98dcf3ae39cbc6f861b',1,'DBoW2::FeatureVector']]],
-  ['fill_5fm',['fill_M',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a8cc37bbb1cc4e575d83fb7503136a542',1,'ORB_SLAM2::PnPsolver']]],
+  ['fill_5fm',['fill_M',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a5c6588f41e855a9ee3123f17556d95cd',1,'ORB_SLAM2::PnPsolver']]],
   ['fillblockstructure',['fillBlockStructure',['../classg2o_1_1_sparse_block_matrix.html#add5e7a5c95f2a6be69ededec4a043a94',1,'g2o::SparseBlockMatrix']]],
   ['fillccs',['fillCCS',['../classg2o_1_1_sparse_block_matrix.html#a54b93e3ed8ccb6c30e694d417f7c336f',1,'g2o::SparseBlockMatrix::fillCCS(int *Cp, int *Ci, double *Cx, bool upperTriangle=false) const'],['../classg2o_1_1_sparse_block_matrix.html#ac01f380ada64511737cb97631d39a9e8',1,'g2o::SparseBlockMatrix::fillCCS(double *Cx, bool upperTriangle=false) const'],['../classg2o_1_1_sparse_block_matrix_c_c_s.html#a1751f9966ed8ab54d5a2942388407261',1,'g2o::SparseBlockMatrixCCS::fillCCS(int *Cp, int *Ci, double *Cx, bool upperTriangle=false) const'],['../classg2o_1_1_sparse_block_matrix_c_c_s.html#a6bb0a7087552ec2d777c64de43d955f1',1,'g2o::SparseBlockMatrixCCS::fillCCS(double *Cx, bool upperTriangle=false) const']]],
   ['fillknownkernels',['fillKnownKernels',['../classg2o_1_1_robust_kernel_factory.html#a078e96a0ca100165d18b146f07813765',1,'g2o::RobustKernelFactory']]],
@@ -11,9 +15,9 @@ var searchData=
   ['fillsparseblockmatrixccstransposed',['fillSparseBlockMatrixCCSTransposed',['../classg2o_1_1_sparse_block_matrix.html#a3808d27b1def55e9dd6e26b678d8f728',1,'g2o::SparseBlockMatrix']]],
   ['fillsparsematrix',['fillSparseMatrix',['../classg2o_1_1_linear_solver_eigen.html#a8ab862dc1eebb6ec5815f3970e9073f3',1,'g2o::LinearSolverEigen']]],
   ['find',['find',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a784429037a79cb53923f4db181a4d115',1,'ORB_SLAM2::PnPsolver::find()'],['../class_o_r_b___s_l_a_m2_1_1_sim3_solver.html#a34ba62d5d8033ab12a811c241f30544b',1,'ORB_SLAM2::Sim3Solver::find()']]],
-  ['find_5fbetas_5fapprox_5f1',['find_betas_approx_1',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a6d36f0e15dfca9c0ecfff91149882232',1,'ORB_SLAM2::PnPsolver']]],
-  ['find_5fbetas_5fapprox_5f2',['find_betas_approx_2',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a95d7f0790ebd99fdc012971dd9a78e65',1,'ORB_SLAM2::PnPsolver']]],
-  ['find_5fbetas_5fapprox_5f3',['find_betas_approx_3',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#af80a1580251b4368156fb0e0d36a7ac2',1,'ORB_SLAM2::PnPsolver']]],
+  ['find_5fbetas_5fapprox_5f1',['find_betas_approx_1',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#ad86c9dc410fd4953b6facd57fac2a74c',1,'ORB_SLAM2::PnPsolver']]],
+  ['find_5fbetas_5fapprox_5f2',['find_betas_approx_2',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#ae13db0fdc203652c2df75868495f6bd3',1,'ORB_SLAM2::PnPsolver']]],
+  ['find_5fbetas_5fapprox_5f3',['find_betas_approx_3',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#af23f4eda28398fca48ddaee83291374f',1,'ORB_SLAM2::PnPsolver']]],
   ['findactiveedge',['findActiveEdge',['../classg2o_1_1_sparse_optimizer.html#a3b8397148c3b75539043df83412829bd',1,'g2o::SparseOptimizer']]],
   ['findactivevertex',['findActiveVertex',['../classg2o_1_1_sparse_optimizer.html#a801bd46818f64a45aea124789d6d9511',1,'g2o::SparseOptimizer']]],
   ['findcache',['findCache',['../classg2o_1_1_cache_container.html#a2a0230117e0e71210f3d10a9e7143d0f',1,'g2o::CacheContainer']]],
@@ -26,6 +30,7 @@ var searchData=
   ['forcestopflag',['forceStopFlag',['../classg2o_1_1_sparse_optimizer.html#aa3e5ee5263cd424aa763330d3a8a77c8',1,'g2o::SparseOptimizer']]],
   ['format',['Format',['../class_d_utils_1_1_timestamp.html#ad2ce60eeec43f9fa86379ed8b269ab64',1,'DUtils::Timestamp::Format(bool machine_friendly=false) const'],['../class_d_utils_1_1_timestamp.html#abd63d0a2abc2209f9300296ee3e85265',1,'DUtils::Timestamp::Format(double s)']]],
   ['formatstring',['formatString',['../group__utils.html#ga4326834faf460aaec85ba8c4cb1a3d4e',1,'g2o']]],
+  ['found',['found',['../class_serialized_mappoint.html#a23636a5d24a36f8f4a954811ab1d8110',1,'SerializedMappoint']]],
   ['frame',['Frame',['../class_o_r_b___s_l_a_m2_1_1_frame.html#aa43d601e841ddb7a9f100b0b9afd3b10',1,'ORB_SLAM2::Frame::Frame()'],['../class_o_r_b___s_l_a_m2_1_1_frame.html#ac7e6ed9973b81ec85e91228e3d4ecf22',1,'ORB_SLAM2::Frame::Frame(const Frame &amp;frame)'],['../class_o_r_b___s_l_a_m2_1_1_frame.html#a80ad447b32eff73dd69f7646e25e33c9',1,'ORB_SLAM2::Frame::Frame(const cv::Mat &amp;imGray, const double &amp;timeStamp, ORBextractor *extractor, ORBVocabulary *voc, cv::Mat &amp;K, cv::Mat &amp;distCoef)']]],
   ['framedrawer',['FrameDrawer',['../class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add0e1c3734c200a959d8ed9f225223db',1,'ORB_SLAM2::FrameDrawer']]],
   ['free',['free',['../classg2o_1_1_matrix_structure.html#a4bc9281fa8ae82dab908506fe0819498',1,'g2o::MatrixStructure']]],
@@ -35,5 +40,7 @@ var searchData=
   ['fromstring',['fromString',['../class_d_bo_w2_1_1_f_class.html#a0f27985bf4c13f0a6c12ebc4822c1217',1,'DBoW2::FClass::fromString()'],['../class_d_bo_w2_1_1_f_o_r_b.html#a4023e7775d0691b44f6708f865b6b8d7',1,'DBoW2::FORB::fromString()'],['../classg2o_1_1_base_property.html#aeabc313d9f66a403738aece884c85e1d',1,'g2o::BaseProperty::fromString()'],['../classg2o_1_1_property.html#a5c0a6eacc67e98d4f0b3fd9fe856dbbe',1,'g2o::Property::fromString()']]],
   ['fromvector',['fromVector',['../classg2o_1_1_s_e3_quat.html#a59aa7dffe9320761ee65bcdfa2bc61fd',1,'g2o::SE3Quat']]],
   ['frontierlevel',['frontierLevel',['../classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html#a291b75bdb7c37467a6d4e7e7d839e0fc',1,'g2o::EstimatePropagator::AdjacencyMapEntry']]],
-  ['fuse',['Fuse',['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#add796fcf9f5cae91393d4c0b767e0183',1,'ORB_SLAM2::ORBmatcher::Fuse(KeyFrame *pKF, const vector&lt; MapPoint *&gt; &amp;vpMapPoints, const float th=3.0)'],['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a16efd376a838e1edf18c04229b86059d',1,'ORB_SLAM2::ORBmatcher::Fuse(KeyFrame *pKF, cv::Mat Scw, const std::vector&lt; MapPoint *&gt; &amp;vpPoints, float th, vector&lt; MapPoint *&gt; &amp;vpReplacePoint)']]]
+  ['fuse',['Fuse',['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#add796fcf9f5cae91393d4c0b767e0183',1,'ORB_SLAM2::ORBmatcher::Fuse(KeyFrame *pKF, const vector&lt; MapPoint *&gt; &amp;vpMapPoints, const float th=3.0)'],['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html#a16efd376a838e1edf18c04229b86059d',1,'ORB_SLAM2::ORBmatcher::Fuse(KeyFrame *pKF, cv::Mat Scw, const std::vector&lt; MapPoint *&gt; &amp;vpPoints, float th, vector&lt; MapPoint *&gt; &amp;vpReplacePoint)']]],
+  ['fx',['fx',['../class_serialized_k.html#a7caacc815ad6972de251c4865b08d989',1,'SerializedK']]],
+  ['fy',['fy',['../class_serialized_k.html#affe4a2e355a92b8995cb37be761f5007',1,'SerializedK']]]
 ];

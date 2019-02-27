@@ -18,8 +18,8 @@ var searchData=
   ['optimization_5falgorithm_5ffactory_2ed',['optimization_algorithm_factory.d',['../_release_2g2o_2core_2optimization__algorithm__factory_8d.html',1,'']]],
   ['optimization_5falgorithm_5ffactory_2eh',['optimization_algorithm_factory.h',['../optimization__algorithm__factory_8h.html',1,'']]],
   ['optimization_5falgorithm_5fgauss_5fnewton_2ecpp',['optimization_algorithm_gauss_newton.cpp',['../optimization__algorithm__gauss__newton_8cpp.html',1,'']]],
-  ['optimization_5falgorithm_5fgauss_5fnewton_2ed',['optimization_algorithm_gauss_newton.d',['../g2o_2_release_2core_2optimization__algorithm__gauss__newton_8d.html',1,'']]],
   ['optimization_5falgorithm_5fgauss_5fnewton_2ed',['optimization_algorithm_gauss_newton.d',['../_release_2g2o_2core_2optimization__algorithm__gauss__newton_8d.html',1,'']]],
+  ['optimization_5falgorithm_5fgauss_5fnewton_2ed',['optimization_algorithm_gauss_newton.d',['../g2o_2_release_2core_2optimization__algorithm__gauss__newton_8d.html',1,'']]],
   ['optimization_5falgorithm_5fgauss_5fnewton_2eh',['optimization_algorithm_gauss_newton.h',['../optimization__algorithm__gauss__newton_8h.html',1,'']]],
   ['optimization_5falgorithm_5flevenberg_2ecpp',['optimization_algorithm_levenberg.cpp',['../optimization__algorithm__levenberg_8cpp.html',1,'']]],
   ['optimization_5falgorithm_5flevenberg_2ed',['optimization_algorithm_levenberg.d',['../g2o_2_release_2core_2optimization__algorithm__levenberg_8d.html',1,'']]],
@@ -40,5 +40,9 @@ var searchData=
   ['os_5fspecific_2ec',['os_specific.c',['../os__specific_8c.html',1,'']]],
   ['os_5fspecific_2ed',['os_specific.d',['../_release_2g2o_2stuff_2os__specific_8d.html',1,'']]],
   ['os_5fspecific_2ed',['os_specific.d',['../g2o_2_release_2stuff_2os__specific_8d.html',1,'']]],
-  ['os_5fspecific_2eh',['os_specific.h',['../os__specific_8h.html',1,'']]]
+  ['os_5fspecific_2eh',['os_specific.h',['../os__specific_8h.html',1,'']]],
+  ['osmap_2ecpp',['Osmap.cpp',['../_osmap_8cpp.html',1,'']]],
+  ['osmap_2eh',['Osmap.h',['../_osmap_8h.html',1,'']]],
+  ['osmap_2epb_2ecc',['osmap.pb.cc',['../osmap_8pb_8cc.html',1,'']]],
+  ['osmap_2epb_2eh',['osmap.pb.h',['../osmap_8pb_8h.html',1,'']]]
 ];

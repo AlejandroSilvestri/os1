@@ -24,10 +24,7 @@
 #include "Tracking.h"
 #include "System.h"
 #include <pangolin/pangolin.h>
-
-//#include <opencv2/core.hpp>	// Cargado en Video.h
 #include <opencv2/imgcodecs.hpp>
-
 #include <mutex>
 
 namespace ORB_SLAM2{
@@ -246,6 +243,9 @@ void Viewer::Run(){
 			abrirCamara = true;
 			break;
 
+		// Verbose, activa datos de relocalización en consola, sólo una vez para no spammear.
+		case 'v':
+			mpSystem->mpKeyFrameDatabase->verbose = -1;
         }
 
 

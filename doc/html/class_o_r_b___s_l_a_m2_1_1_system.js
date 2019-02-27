@@ -27,12 +27,13 @@ var class_o_r_b___s_l_a_m2_1_1_system =
     [ "mpLoopCloser", "class_o_r_b___s_l_a_m2_1_1_system.html#ad722b80260f1ab8292ec8b7951047348", null ],
     [ "mpMap", "class_o_r_b___s_l_a_m2_1_1_system.html#a47daae04f6006cb21d7b00b5541d2bca", null ],
     [ "mpMapDrawer", "class_o_r_b___s_l_a_m2_1_1_system.html#a45f69b6579fdea93c692e52dbd9b0614", null ],
+    [ "mpSerializer", "class_o_r_b___s_l_a_m2_1_1_system.html#ac5dc9bca209954649cf36240d7e54e3f", null ],
     [ "mptLocalMapping", "class_o_r_b___s_l_a_m2_1_1_system.html#a920fdcb880bd1fa57bebfa2c90057c19", null ],
     [ "mptLoopClosing", "class_o_r_b___s_l_a_m2_1_1_system.html#a834f5f1017e9b36f9be8c7ce10fc1418", null ],
     [ "mpTracker", "class_o_r_b___s_l_a_m2_1_1_system.html#a4170bdaefc0ea8fc5aad6b6e782f2dc4", null ],
     [ "mptViewer", "class_o_r_b___s_l_a_m2_1_1_system.html#a734cf8bef072b5c49c0ecb21f0f1aa7d", null ],
+    [ "mpVideo", "class_o_r_b___s_l_a_m2_1_1_system.html#a2b805770f939add9b7657f71a27306fd", null ],
     [ "mpViewer", "class_o_r_b___s_l_a_m2_1_1_system.html#a4f89f0644efa2054604a53ffa8dbd4e7", null ],
     [ "mpVocabulary", "class_o_r_b___s_l_a_m2_1_1_system.html#a30df3414ecc346463295d8138c80af2f", null ],
-    [ "mSensor", "class_o_r_b___s_l_a_m2_1_1_system.html#a6e2c6a2e12b887481a564e0f95912d40", null ],
-    [ "serializer", "class_o_r_b___s_l_a_m2_1_1_system.html#a8507b13866c3804cbbe74ba407d0caea", null ]
+    [ "mSensor", "class_o_r_b___s_l_a_m2_1_1_system.html#a6e2c6a2e12b887481a564e0f95912d40", null ]
 ];

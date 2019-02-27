@@ -1,10 +1,10 @@
 <map id="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/stuff/macros.h" name="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/stuff/macros.h">
-<area shape="rect" id="node2" href="$optimizable__graph_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimizable\l_graph.h" alt="" coords="1999,109,2177,180"/>
+<area shape="rect" id="node2" href="$optimizable__graph_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimizable\l_graph.h" alt="" coords="2007,109,2185,180"/>
 <area shape="rect" id="node3" href="$base__vertex_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/base_vertex.h" alt="" coords="160,235,347,291"/>
 <area shape="rect" id="node11" href="$types__six__dof__expmap_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_six\l_dof_expmap.cpp" alt="" coords="3074,584,3251,655"/>
-<area shape="rect" id="node18" href="$sparse__optimizer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/sparse_optimizer.h" alt="" coords="1521,235,1735,291"/>
+<area shape="rect" id="node18" href="$sparse__optimizer_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/sparse_optimizer.h" alt="" coords="1529,235,1743,291"/>
 <area shape="rect" id="node19" href="$block__solver_8hpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/block_solver.hpp" alt="" coords="533,354,736,410"/>
-<area shape="rect" id="node24" href="$optimizable__graph_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimizable\l_graph.cpp" alt="" coords="2934,465,3111,536"/>
+<area shape="rect" id="node24" href="$optimizable__graph_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimizable\l_graph.cpp" alt="" coords="2935,465,3113,536"/>
 <area shape="rect" id="node25" href="$sparse__optimizer_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/sparse_optimizer.cpp" alt="" coords="3927,473,4156,529"/>
 <area shape="rect" id="node26" href="$optimization__algorithm__gauss__newton_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimization\l_algorithm_gauss_newton.cpp" alt="" coords="2022,347,2221,417"/>
 <area shape="rect" id="node32" href="$hyper__graph__action_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/hyper_graph\l_action.cpp" alt="" coords="4493,465,4670,536"/>
@@ -14,13 +14,13 @@
 <area shape="rect" id="node48" href="$property_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/stuff/property.cpp" alt="" coords="4695,354,4873,410"/>
 <area shape="rect" id="node49" href="$string__tools_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/stuff/string_tools.cpp" alt="" coords="4543,235,4742,291"/>
 <area shape="rect" id="node50" href="$hyper__dijkstra_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/hyper_dijkstra.cpp" alt="" coords="4999,117,5209,173"/>
-<area shape="rect" id="node14" href="$base__edge_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/base_edge.h" alt="" coords="975,235,1153,291"/>
+<area shape="rect" id="node14" href="$base__edge_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/base_edge.h" alt="" coords="953,235,1132,291"/>
 <area shape="rect" id="node22" href="$estimate__propagator_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/estimate_propagator.h" alt="" coords="1764,354,1999,410"/>
 <area shape="rect" id="node28" href="$optimization__algorithm__with__hessian_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimization\l_algorithm_with_hessian.cpp" alt="" coords="1549,347,1739,417"/>
 <area shape="rect" id="node29" href="$cache_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/cache.h" alt="" coords="2645,235,2822,291"/>
 <area shape="rect" id="node30" href="$cache_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/cache.cpp" alt="" coords="2594,354,2771,410"/>
 <area shape="rect" id="node31" href="$factory_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/factory.cpp" alt="" coords="2795,354,2973,410"/>
-<area shape="rect" id="node33" href="$jacobian__workspace_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/jacobian_workspace.cpp" alt="" coords="1811,235,2059,291"/>
+<area shape="rect" id="node33" href="$jacobian__workspace_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/jacobian_workspace.cpp" alt="" coords="1819,235,2067,291"/>
 <area shape="rect" id="node34" href="$marginal__covariance__cholesky_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/marginal_covariance\l_cholesky.h" alt="" coords="2345,228,2569,299"/>
 <area shape="rect" id="node4" href="$types__six__dof__expmap_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_six\l_dof_expmap.h" alt="" coords="726,465,903,536"/>
 <area shape="rect" id="node7" href="$types__seven__dof__expmap_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/types/types_seven\l_dof_expmap.h" alt="" coords="848,584,1035,655"/>

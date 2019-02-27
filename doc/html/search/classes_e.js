@@ -11,5 +11,9 @@ var searchData=
   ['optimizationalgorithmwithhessian',['OptimizationAlgorithmWithHessian',['../classg2o_1_1_optimization_algorithm_with_hessian.html',1,'g2o']]],
   ['optimizer',['Optimizer',['../class_o_r_b___s_l_a_m2_1_1_optimizer.html',1,'ORB_SLAM2']]],
   ['orbextractor',['ORBextractor',['../class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html',1,'ORB_SLAM2']]],
-  ['orbmatcher',['ORBmatcher',['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html',1,'ORB_SLAM2']]]
+  ['orbmatcher',['ORBmatcher',['../class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html',1,'ORB_SLAM2']]],
+  ['osmap',['Osmap',['../class_o_r_b___s_l_a_m2_1_1_osmap.html',1,'ORB_SLAM2']]],
+  ['osmapkeyframe',['OsmapKeyFrame',['../class_o_r_b___s_l_a_m2_1_1_osmap_key_frame.html',1,'ORB_SLAM2']]],
+  ['osmapmap',['OsmapMap',['../class_o_r_b___s_l_a_m2_1_1_osmap_map.html',1,'ORB_SLAM2']]],
+  ['osmapmappoint',['OsmapMapPoint',['../class_o_r_b___s_l_a_m2_1_1_osmap_map_point.html',1,'ORB_SLAM2']]]
 ];

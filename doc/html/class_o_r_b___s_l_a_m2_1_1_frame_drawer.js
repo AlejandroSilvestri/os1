@@ -28,5 +28,6 @@ var class_o_r_b___s_l_a_m2_1_1_frame_drawer =
     [ "N", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#adbc9489192f5485ece966b0d6d589e47", null ],
     [ "nKFPendientes", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#ae819ca32d5dedf8339327ad00ad19fd6", null ],
     [ "observaciones", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a44ac17e7eaa72fc541bd64c45e697265", null ],
+    [ "relocalizacionCandidatos", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#a67597587689561452a5b73062eee06ca", null ],
     [ "timestamp", "class_o_r_b___s_l_a_m2_1_1_frame_drawer.html#add82f4451e608ce2ae36c2cba8a8e78b", null ]
 ];

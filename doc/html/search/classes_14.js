@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['vertex',['Vertex',['../classg2o_1_1_hyper_graph_1_1_vertex.html',1,'g2o::HyperGraph']]],
   ['vertex',['Vertex',['../classg2o_1_1_optimizable_graph_1_1_vertex.html',1,'g2o::OptimizableGraph']]],
+  ['vertex',['Vertex',['../classg2o_1_1_hyper_graph_1_1_vertex.html',1,'g2o::HyperGraph']]],
   ['vertexidcompare',['VertexIDCompare',['../structg2o_1_1_optimizable_graph_1_1_vertex_i_d_compare.html',1,'g2o::OptimizableGraph']]],
   ['vertexidhashfunction',['VertexIDHashFunction',['../classg2o_1_1_estimate_propagator_1_1_vertex_i_d_hash_function.html',1,'g2o::EstimatePropagator']]],
   ['vertexsbapointxyz',['VertexSBAPointXYZ',['../classg2o_1_1_vertex_s_b_a_point_x_y_z.html',1,'g2o']]],

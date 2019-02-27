@@ -18,13 +18,11 @@
 * along with ORB-SLAM2. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <iostream>
 #include "KeyFrameDatabase.h"
-
 #include "Frame.h"
 #include "KeyFrame.h"
 #include "../Thirdparty/DBoW2/DBoW2/BowVector.h"
-
-#include<mutex>
 
 using namespace std;
 
@@ -208,7 +206,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
 
         for(DBoW2::BowVector::const_iterator vit=F->mBowVec.begin(), vend=F->mBowVec.end(); vit != vend; vit++)
         {
-            list<KeyFrame*> &lKFs =   mvInvertedFile[vit->first];
+            list<KeyFrame*> &lKFs = mvInvertedFile[vit->first];
 
             for(list<KeyFrame*>::iterator lit=lKFs.begin(), lend= lKFs.end(); lit!=lend; lit++)
             {
@@ -223,8 +221,16 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
             }
         }
     }
-    if(lKFsSharingWords.empty())
+
+    if(lKFsSharingWords.empty()){
+        if(verbose){
+        	cout << "\nWords in frame: " << F->mBowVec.size() << endl;
+        	cout << "Keyframes sharing words: " << lKFsSharingWords.size() << endl;
+        }
         return vector<KeyFrame*>();
+    }
+
+    if(verbose) cout << endl;
 
     // Only compare against those keyframes that share enough words
     int maxCommonWords=0;
@@ -293,6 +299,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
     set<KeyFrame*> spAlreadyAddedKF;
     vector<KeyFrame*> vpRelocCandidates;
     vpRelocCandidates.reserve(lAccScoreAndMatch.size());
+
     for(list<pair<float,KeyFrame*> >::iterator it=lAccScoreAndMatch.begin(), itend=lAccScoreAndMatch.end(); it!=itend; it++)
     {
         const float &si = it->first;
@@ -303,10 +310,26 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
             {
                 vpRelocCandidates.push_back(pKFi);
                 spAlreadyAddedKF.insert(pKFi);
+                if(verbose)
+                	cout << "Candidate keyframe Id: " << pKFi->mnId << endl;
             }
         }
     }
 
+    if(verbose){
+    	cout << "\nWords in frame: " << F->mBowVec.size() << endl;
+    	cout << "Maximum commons words found: " << maxCommonWords;
+    	cout << ", minimum commons words chosen: " << minCommonWords << endl;
+    	cout << "Best score found: " << bestAccScore;
+    	cout << ", minimum score chosen: " << minScoreToRetain << endl;
+    	cout << "\nKeyframes sharing words: " << lKFsSharingWords.size() << endl;
+    	cout << "Keyframes with at least minimum commons words: " << nscores << endl;
+   		cout << "Candidates: " << vpRelocCandidates.size();
+   		if(spAlreadyAddedKF.size())
+   			cout << " (más " << spAlreadyAddedKF.size() << " duplicados)";
+   		cout << endl;
+    	if(verbose<0) verbose = 0;	// Autoreset
+    }
     return vpRelocCandidates;
 }
 

@@ -44,15 +44,14 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "ORBmatcher", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher" ]
     ] ],
     [ "ORBVocabulary.h", "_o_r_b_vocabulary_8h.html", "_o_r_b_vocabulary_8h" ],
+    [ "Osmap.h", "_osmap_8h.html", "_osmap_8h" ],
+    [ "osmap.pb.h", "osmap_8pb_8h.html", "osmap_8pb_8h" ],
     [ "PnPsolver.h", "_pn_psolver_8h.html", [
       [ "PnPsolver", "class_o_r_b___s_l_a_m2_1_1_pn_psolver.html", "class_o_r_b___s_l_a_m2_1_1_pn_psolver" ]
     ] ],
     [ "PuntoLejano.h", "_punto_lejano_8h.html", "_punto_lejano_8h" ],
     [ "PuntosLejanosDB.h", "_puntos_lejanos_d_b_8h.html", [
       [ "PuntosLejanosDB", "class_o_r_b___s_l_a_m2_1_1_puntos_lejanos_d_b.html", "class_o_r_b___s_l_a_m2_1_1_puntos_lejanos_d_b" ]
-    ] ],
-    [ "Serializer.h", "_serializer_8h.html", [
-      [ "Serializer", "class_o_r_b___s_l_a_m2_1_1_serializer.html", "class_o_r_b___s_l_a_m2_1_1_serializer" ]
     ] ],
     [ "Sim3Solver.h", "_sim3_solver_8h.html", [
       [ "Sim3Solver", "class_o_r_b___s_l_a_m2_1_1_sim3_solver.html", "class_o_r_b___s_l_a_m2_1_1_sim3_solver" ]

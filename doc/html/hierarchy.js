@@ -7,8 +7,8 @@ var hierarchy =
     [ "g2o::AbstractRobustKernelCreator", "classg2o_1_1_abstract_robust_kernel_creator.html", [
       [ "g2o::RobustKernelCreator< T >", "classg2o_1_1_robust_kernel_creator.html", null ]
     ] ],
-    [ "g2o::HyperDijkstra::AdjacencyMapEntry", "structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry.html", null ],
     [ "g2o::EstimatePropagator::AdjacencyMapEntry", "classg2o_1_1_estimate_propagator_1_1_adjacency_map_entry.html", null ],
+    [ "g2o::HyperDijkstra::AdjacencyMapEntry", "structg2o_1_1_hyper_dijkstra_1_1_adjacency_map_entry.html", null ],
     [ "g2o::BaseProperty", "classg2o_1_1_base_property.html", [
       [ "g2o::Property< T >", "classg2o_1_1_property.html", null ],
       [ "g2o::Property< bool >", "classg2o_1_1_property.html", null ],
@@ -109,10 +109,11 @@ var hierarchy =
     ] ],
     [ "ORB_SLAM2::Initializer", "class_o_r_b___s_l_a_m2_1_1_initializer.html", null ],
     [ "g2o::JacobianWorkspace", "classg2o_1_1_jacobian_workspace.html", null ],
-    [ "ORB_SLAM2::KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html", null ],
+    [ "ORB_SLAM2::KeyFrame", "class_o_r_b___s_l_a_m2_1_1_key_frame.html", [
+      [ "ORB_SLAM2::OsmapKeyFrame", "class_o_r_b___s_l_a_m2_1_1_osmap_key_frame.html", null ]
+    ] ],
     [ "ORB_SLAM2::KeyFrameDatabase", "class_o_r_b___s_l_a_m2_1_1_key_frame_database.html", null ],
     [ "ORB_SLAM2::KeyFrameTriangulacion", "class_o_r_b___s_l_a_m2_1_1_key_frame_triangulacion.html", null ],
-    [ "ORB_SLAM2::lessId< T >", "struct_o_r_b___s_l_a_m2_1_1less_id.html", null ],
     [ "ORB_SLAM2::KeyFrame::lessPointer", "struct_o_r_b___s_l_a_m2_1_1_key_frame_1_1less_pointer.html", null ],
     [ "g2o::LinearSolver< MatrixType >", "classg2o_1_1_linear_solver.html", [
       [ "g2o::LinearSolverCCS< MatrixType >", "classg2o_1_1_linear_solver_c_c_s.html", null ],
@@ -122,6 +123,9 @@ var hierarchy =
     [ "g2o::LinearSolver< PoseMatrixType >", "classg2o_1_1_linear_solver.html", null ],
     [ "ORB_SLAM2::LocalMapping", "class_o_r_b___s_l_a_m2_1_1_local_mapping.html", null ],
     [ "ORB_SLAM2::LoopClosing", "class_o_r_b___s_l_a_m2_1_1_loop_closing.html", null ],
+    [ "ORB_SLAM2::Map", "class_o_r_b___s_l_a_m2_1_1_map.html", [
+      [ "ORB_SLAM2::OsmapMap", "class_o_r_b___s_l_a_m2_1_1_osmap_map.html", null ]
+    ] ],
     [ "map", null, [
       [ "DBoW2::BowVector", "class_d_bo_w2_1_1_bow_vector.html", null ],
       [ "DBoW2::FeatureVector", "class_d_bo_w2_1_1_feature_vector.html", null ],
@@ -131,12 +135,28 @@ var hierarchy =
         [ "g2o::DrawAction::Parameters", "classg2o_1_1_draw_action_1_1_parameters.html", null ]
       ] ]
     ] ],
-    [ "ORB_SLAM2::Map", "class_o_r_b___s_l_a_m2_1_1_map.html", null ],
     [ "ORB_SLAM2::MapDrawer", "class_o_r_b___s_l_a_m2_1_1_map_drawer.html", null ],
-    [ "ORB_SLAM2::MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html", null ],
+    [ "ORB_SLAM2::MapPoint", "class_o_r_b___s_l_a_m2_1_1_map_point.html", [
+      [ "ORB_SLAM2::OsmapMapPoint", "class_o_r_b___s_l_a_m2_1_1_osmap_map_point.html", null ]
+    ] ],
     [ "g2o::MarginalCovarianceCholesky", "classg2o_1_1_marginal_covariance_cholesky.html", null ],
     [ "g2o::MatrixElem", "structg2o_1_1_matrix_elem.html", null ],
     [ "g2o::MatrixStructure", "classg2o_1_1_matrix_structure.html", null ],
+    [ "Message", null, [
+      [ "SerializedDescriptor", "class_serialized_descriptor.html", null ],
+      [ "SerializedFeature", "class_serialized_feature.html", null ],
+      [ "SerializedK", "class_serialized_k.html", null ],
+      [ "SerializedKArray", "class_serialized_k_array.html", null ],
+      [ "SerializedKeyframe", "class_serialized_keyframe.html", null ],
+      [ "SerializedKeyframeArray", "class_serialized_keyframe_array.html", null ],
+      [ "SerializedKeyframeFeatures", "class_serialized_keyframe_features.html", null ],
+      [ "SerializedKeyframeFeaturesArray", "class_serialized_keyframe_features_array.html", null ],
+      [ "SerializedKeypoint", "class_serialized_keypoint.html", null ],
+      [ "SerializedMappoint", "class_serialized_mappoint.html", null ],
+      [ "SerializedMappointArray", "class_serialized_mappoint_array.html", null ],
+      [ "SerializedPose", "class_serialized_pose.html", null ],
+      [ "SerializedPosition", "class_serialized_position.html", null ]
+    ] ],
     [ "multimap", null, [
       [ "g2o::EstimatePropagator::PriorityQueue", "classg2o_1_1_estimate_propagator_1_1_priority_queue.html", null ]
     ] ],
@@ -154,6 +174,7 @@ var hierarchy =
     [ "ORB_SLAM2::Optimizer", "class_o_r_b___s_l_a_m2_1_1_optimizer.html", null ],
     [ "ORB_SLAM2::ORBextractor", "class_o_r_b___s_l_a_m2_1_1_o_r_bextractor.html", null ],
     [ "ORB_SLAM2::ORBmatcher", "class_o_r_b___s_l_a_m2_1_1_o_r_bmatcher.html", null ],
+    [ "ORB_SLAM2::Osmap", "class_o_r_b___s_l_a_m2_1_1_osmap.html", null ],
     [ "g2o::HyperGraphAction::Parameters", "classg2o_1_1_hyper_graph_action_1_1_parameters.html", [
       [ "g2o::HyperGraphAction::ParametersIteration", "classg2o_1_1_hyper_graph_action_1_1_parameters_iteration.html", null ]
     ] ],
@@ -184,7 +205,19 @@ var hierarchy =
     [ "g2o::ScopedOpenMPMutex", "classg2o_1_1_scoped_open_m_p_mutex.html", null ],
     [ "g2o::ScopeTime", "classg2o_1_1_scope_time.html", null ],
     [ "g2o::SE3Quat", "classg2o_1_1_s_e3_quat.html", null ],
-    [ "ORB_SLAM2::Serializer", "class_o_r_b___s_l_a_m2_1_1_serializer.html", null ],
+    [ "SerializedDescriptorDefaultTypeInternal", "class_serialized_descriptor_default_type_internal.html", null ],
+    [ "SerializedFeatureDefaultTypeInternal", "class_serialized_feature_default_type_internal.html", null ],
+    [ "SerializedKArrayDefaultTypeInternal", "class_serialized_k_array_default_type_internal.html", null ],
+    [ "SerializedKDefaultTypeInternal", "class_serialized_k_default_type_internal.html", null ],
+    [ "SerializedKeyframeArrayDefaultTypeInternal", "class_serialized_keyframe_array_default_type_internal.html", null ],
+    [ "SerializedKeyframeDefaultTypeInternal", "class_serialized_keyframe_default_type_internal.html", null ],
+    [ "SerializedKeyframeFeaturesArrayDefaultTypeInternal", "class_serialized_keyframe_features_array_default_type_internal.html", null ],
+    [ "SerializedKeyframeFeaturesDefaultTypeInternal", "class_serialized_keyframe_features_default_type_internal.html", null ],
+    [ "SerializedKeypointDefaultTypeInternal", "class_serialized_keypoint_default_type_internal.html", null ],
+    [ "SerializedMappointArrayDefaultTypeInternal", "class_serialized_mappoint_array_default_type_internal.html", null ],
+    [ "SerializedMappointDefaultTypeInternal", "class_serialized_mappoint_default_type_internal.html", null ],
+    [ "SerializedPoseDefaultTypeInternal", "class_serialized_pose_default_type_internal.html", null ],
+    [ "SerializedPositionDefaultTypeInternal", "class_serialized_position_default_type_internal.html", null ],
     [ "g2o::Sim3", "structg2o_1_1_sim3.html", null ],
     [ "ORB_SLAM2::Sim3Solver", "class_o_r_b___s_l_a_m2_1_1_sim3_solver.html", null ],
     [ "SimplicialLDLT", null, [
@@ -205,7 +238,9 @@ var hierarchy =
     [ "g2o::SparseBlockMatrixDiagonal< MatrixType >", "classg2o_1_1_sparse_block_matrix_diagonal.html", null ],
     [ "g2o::SparseBlockMatrixDiagonal< LandmarkMatrixType >", "classg2o_1_1_sparse_block_matrix_diagonal.html", null ],
     [ "g2o::SparseBlockMatrixHashMap< MatrixType >", "classg2o_1_1_sparse_block_matrix_hash_map.html", null ],
+    [ "protobuf_osmap_2eproto::StaticDescriptorInitializer", "structprotobuf__osmap__2eproto_1_1_static_descriptor_initializer.html", null ],
     [ "ORB_SLAM2::System", "class_o_r_b___s_l_a_m2_1_1_system.html", null ],
+    [ "protobuf_osmap_2eproto::TableStruct", "structprotobuf__osmap__2eproto_1_1_table_struct.html", null ],
     [ "DBoW2::TemplatedVocabulary< TDescriptor, F >", "class_d_bo_w2_1_1_templated_vocabulary.html", null ],
     [ "DUtils::Timestamp", "class_d_utils_1_1_timestamp.html", null ],
     [ "ORB_SLAM2::Tracking", "class_o_r_b___s_l_a_m2_1_1_tracking.html", null ],

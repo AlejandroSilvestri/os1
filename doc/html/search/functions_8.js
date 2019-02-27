@@ -1,5 +1,10 @@
 var searchData=
 [
+  ['has_5fbriefdescriptor',['has_briefdescriptor',['../class_serialized_mappoint.html#a81563a8f142ea4cebbf2fb92c31480d7',1,'SerializedMappoint::has_briefdescriptor()'],['../class_serialized_feature.html#a400d28966ace9d8da2ff38fbd739c8ea',1,'SerializedFeature::has_briefdescriptor()']]],
+  ['has_5fkeypoint',['has_keypoint',['../class_serialized_feature.html#abe6b96e9ad92afcdd6edcd6fd4c44b2c',1,'SerializedFeature']]],
+  ['has_5fkmatrix',['has_kmatrix',['../class_serialized_keyframe.html#ac6639c7ef0b1ffd647b747e081cb7caa',1,'SerializedKeyframe']]],
+  ['has_5fpose',['has_pose',['../class_serialized_keyframe.html#a9a83db42328bf691fdf23c11d0fce381',1,'SerializedKeyframe']]],
+  ['has_5fposition',['has_position',['../class_serialized_mappoint.html#aeb931b938918fcd25f38a3fedc0e0fcd',1,'SerializedMappoint']]],
   ['haschild',['hasChild',['../class_o_r_b___s_l_a_m2_1_1_key_frame.html#a2276fdbae634194e790878adebba7861',1,'ORB_SLAM2::KeyFrame']]],
   ['hessian',['hessian',['../classg2o_1_1_base_vertex.html#ac35e0c8c62a59e947ac7710ed85fcd7a',1,'g2o::BaseVertex::hessian(int i, int j) const'],['../classg2o_1_1_base_vertex.html#a6ab2212fdb00dec460299fdbabe09cb9',1,'g2o::BaseVertex::hessian(int i, int j)'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#af46fa4f0baa4c87e29b137f24e713acb',1,'g2o::OptimizableGraph::Vertex::hessian(int i, int j) const =0'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#ade95d46370bb9a86f64c4e591726ad62',1,'g2o::OptimizableGraph::Vertex::hessian(int i, int j)=0']]],
   ['hessiandata',['hessianData',['../classg2o_1_1_base_vertex.html#aedf92fbb5c2c86185422a955be02a3a6',1,'g2o::BaseVertex::hessianData()'],['../classg2o_1_1_optimizable_graph_1_1_vertex.html#a4ec536d8c82d839e507d89c7a7e368ae',1,'g2o::OptimizableGraph::Vertex::hessianData()']]],

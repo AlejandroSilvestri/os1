@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_o_r_b___s_l_a_m2_1_1_loop_closing.html" title="Cierre de bucles. " alt="" coords="5,5,187,32"/>
+<area shape="rect" id="node1" href="$class_o_r_b___s_l_a_m2_1_1_map.html" title="Mapa del mundo, de puntos y keyframes. " alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$class_o_r_b___s_l_a_m2_1_1_osmap_map.html" title="Wrapped Map to let Osmap access protected properties without modifying Map code. " alt="" coords="188,5,364,32"/>
 </map>

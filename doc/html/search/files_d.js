@@ -6,8 +6,6 @@ var searchData=
   ['se3_5fops_2eh',['se3_ops.h',['../se3__ops_8h.html',1,'']]],
   ['se3_5fops_2ehpp',['se3_ops.hpp',['../se3__ops_8hpp.html',1,'']]],
   ['se3quat_2eh',['se3quat.h',['../se3quat_8h.html',1,'']]],
-  ['serializer_2ecpp',['Serializer.cpp',['../_serializer_8cpp.html',1,'']]],
-  ['serializer_2eh',['Serializer.h',['../_serializer_8h.html',1,'']]],
   ['sim3_2eh',['sim3.h',['../sim3_8h.html',1,'']]],
   ['sim3solver_2ecc',['Sim3Solver.cc',['../_sim3_solver_8cc.html',1,'']]],
   ['sim3solver_2eh',['Sim3Solver.h',['../_sim3_solver_8h.html',1,'']]],

@@ -12,7 +12,12 @@ var searchData=
   ['pllejano',['plLejano',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#ac9a66e20731d19d6d9f5b338728fd2eb',1,'ORB_SLAM2::MapPoint']]],
   ['plorigen',['plOrigen',['../class_o_r_b___s_l_a_m2_1_1_map_point.html#a06996dc2bbf528da3681f2331144bab4',1,'ORB_SLAM2::MapPoint']]],
   ['poscuadro',['posCuadro',['../class_o_r_b___s_l_a_m2_1_1_video.html#adf479894109afcdd2b4adc3947a10bd7',1,'ORB_SLAM2::Video']]],
-  ['posedim',['PoseDim',['../structg2o_1_1_block_solver_traits.html#a90a03bcfc60b629da5601f6df9514297',1,'g2o::BlockSolverTraits::PoseDim()'],['../structg2o_1_1_block_solver_traits_3_01_eigen_1_1_dynamic_00_01_eigen_1_1_dynamic_01_4.html#a04a2cc2de80563b4b21f815150c3b0ec',1,'g2o::BlockSolverTraits&lt; Eigen::Dynamic, Eigen::Dynamic &gt;::PoseDim()'],['../classg2o_1_1_block_solver.html#a9a68f557c8e04cd76565fc45e1747e45',1,'g2o::BlockSolver::PoseDim()'],['../structg2o_1_1_optimization_algorithm_property.html#a2c0c87eeaa423e8c944cfa846eb6a553',1,'g2o::OptimizationAlgorithmProperty::poseDim()']]],
+  ['pose_5f',['pose_',['../class_serialized_keyframe.html#aaf9766587d1e1c12b2058ab52b8a66dd',1,'SerializedKeyframe']]],
+  ['posedim',['poseDim',['../structg2o_1_1_optimization_algorithm_property.html#a2c0c87eeaa423e8c944cfa846eb6a553',1,'g2o::OptimizationAlgorithmProperty::poseDim()'],['../structg2o_1_1_block_solver_traits.html#a90a03bcfc60b629da5601f6df9514297',1,'g2o::BlockSolverTraits::PoseDim()'],['../structg2o_1_1_block_solver_traits_3_01_eigen_1_1_dynamic_00_01_eigen_1_1_dynamic_01_4.html#a04a2cc2de80563b4b21f815150c3b0ec',1,'g2o::BlockSolverTraits&lt; Eigen::Dynamic, Eigen::Dynamic &gt;::PoseDim()'],['../classg2o_1_1_block_solver.html#a9a68f557c8e04cd76565fc45e1747e45',1,'g2o::BlockSolver::PoseDim()']]],
+  ['position_5f',['position_',['../class_serialized_mappoint.html#ab50d621841b65f678375f93272e52d08',1,'SerializedMappoint']]],
+  ['prefkf',['pRefKF',['../class_o_r_b___s_l_a_m2_1_1_osmap.html#addf599a8a94d9ab35dd91d7f99506e5a',1,'ORB_SLAM2::Osmap']]],
+  ['ptx_5f',['ptx_',['../class_serialized_keypoint.html#aa37f2a71fe260a162286d2867a1ba757',1,'SerializedKeypoint']]],
+  ['pty_5f',['pty_',['../class_serialized_keypoint.html#a897915b9bdaff1fee275ba9906069282',1,'SerializedKeypoint']]],
   ['puntoslejanos',['puntosLejanos',['../class_o_r_b___s_l_a_m2_1_1_map.html#a9d45e27f4e9362eb5f8db931b9376b85',1,'ORB_SLAM2::Map']]],
   ['pws',['pws',['../class_o_r_b___s_l_a_m2_1_1_pn_psolver.html#a053e3eea03b62181aa944c9fc20d5bfa',1,'ORB_SLAM2::PnPsolver']]]
 ];

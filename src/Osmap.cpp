@@ -83,7 +83,7 @@ void Osmap::mapSave(const string givenFilename, bool pauseThreads){
 
 	// Map depuration
 	if(!options[NO_DEPURATION])
-	depurate();
+		depurate();
 
 
 	// Actual saving

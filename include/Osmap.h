@@ -155,6 +155,14 @@ In Linux, zenity comes handy as dialog to get file name to load and save map.  Y
     FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa", "r");
     fgets(cstringfilename, 1024, f);
 
+
+You probably want to go to localization only mode (tracking only, no mapping) right before saving or loading.  To do that:
+
+    SLAM->ActivateLocalizationMode();
+
+User also can control this with the button "Localization mode" in viewer.
+
+
 */
 class Osmap{
 public:

@@ -24,13 +24,8 @@
 #include <vector>
 #include <list>
 #include <set>
-
-//#include "KeyFrame.h"
-//#include "Frame.h"
+#include <mutex>
 #include "ORBVocabulary.h"
-
-#include<mutex>
-
 
 namespace ORB_SLAM2
 {
@@ -117,6 +112,18 @@ public:
 	 * Se invoca desde el constructor de System.
 	 */
 	void resizeInvertedFile(size_t);
+
+
+	/**
+	 * Flag para que algunos métodos muestren en consola datos de su operación.
+	 * Se ajusta desde otro lugar, usualmente desde la UI a partir de una acción de usuario.
+	 *
+	 * 0: no muestra nada.
+	 * 1: muestra datos.
+	 * -1: muestra datos una vez y se pone en 0.
+	 */
+	int verbose = 0;
+
 
 protected:
 

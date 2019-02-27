@@ -147,10 +147,11 @@ int main(int argc, char **argv){
     	if(visor->cargarMapa){
     		visor->cargarMapa = false;
 
-        	char charchivo[1024];
+        	char charchivo[1024] = {};
         	FILE *f = popen("zenity --file-selection --file-filter=\"*.yaml\" --title=\"Cargar mapa\"", "r");
         	if(f){
 				fgets(charchivo, 1024, f);
+				cout << charchivo << endl;
 				if(charchivo[0]){
 					std::string nombreArchivo(charchivo);
 					nombreArchivo.pop_back();	// Quita el \n final
@@ -163,7 +164,8 @@ int main(int argc, char **argv){
     	if(visor->guardarMapa){
     		visor->guardarMapa = false;
 
-        	char charchivo[1024];
+        	char charchivo[1024] = {};
+			cout << charchivo << endl;
         	FILE *f = popen("zenity --file-selection --save --confirm-overwrite --filename=mapa --file-filter=\"*.yaml\" --title=\"Guardar mapa\"", "r");
         	if(f){
 				fgets(charchivo, 1024, f);

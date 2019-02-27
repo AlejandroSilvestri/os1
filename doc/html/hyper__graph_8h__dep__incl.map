@@ -1,11 +1,11 @@
 <map id="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/hyper_graph.h" name="/home/alejandro/Desarrollo eclipse/os1/Thirdparty/g2o/g2o/core/hyper_graph.h">
 <area shape="rect" id="node2" href="$optimizable__graph_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimizable\l_graph.h" alt="" coords="1726,228,1903,299"/>
-<area shape="rect" id="node33" href="$parameter_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/parameter.h" alt="" coords="907,117,1085,173"/>
+<area shape="rect" id="node33" href="$parameter_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/parameter.h" alt="" coords="899,117,1077,173"/>
 <area shape="rect" id="node36" href="$jacobian__workspace_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/jacobian_workspace.h" alt="" coords="1960,117,2195,173"/>
-<area shape="rect" id="node37" href="$creators_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/creators.h" alt="" coords="534,235,711,291"/>
+<area shape="rect" id="node37" href="$creators_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/creators.h" alt="" coords="526,235,703,291"/>
 <area shape="rect" id="node38" href="$factory_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/factory.h" alt="" coords="310,354,487,410"/>
 <area shape="rect" id="node39" href="$solver_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/solver.h" alt="" coords="3371,354,3549,410"/>
-<area shape="rect" id="node41" href="$optimization__algorithm_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimization\l_algorithm.h" alt="" coords="2518,109,2695,180"/>
+<area shape="rect" id="node41" href="$optimization__algorithm_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimization\l_algorithm.h" alt="" coords="2517,109,2694,180"/>
 <area shape="rect" id="node47" href="$hyper__dijkstra_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/hyper_dijkstra.h" alt="" coords="3395,117,3592,173"/>
 <area shape="rect" id="node49" href="$hyper__graph_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/hyper_graph.cpp" alt="" coords="3169,117,3370,173"/>
 <area shape="rect" id="node50" href="$hyper__graph__action_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/hyper_graph\l_action.h" alt="" coords="2277,228,2454,299"/>
@@ -39,7 +39,7 @@
 <area shape="rect" id="node17" href="$block__solver_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/block_solver.h" alt="" coords="3365,591,3555,647"/>
 <area shape="rect" id="node20" href="$estimate__propagator_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/estimate_propagator.cpp" alt="" coords="2105,591,2353,647"/>
 <area shape="rect" id="node32" href="$marginal__covariance__cholesky_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/marginal_covariance\l_cholesky.cpp" alt="" coords="1871,465,2095,536"/>
-<area shape="rect" id="node34" href="$parameter_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/parameter.cpp" alt="" coords="770,235,958,291"/>
+<area shape="rect" id="node34" href="$parameter_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/parameter.cpp" alt="" coords="762,235,950,291"/>
 <area shape="rect" id="node35" href="$parameter__container_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/parameter_container.cpp" alt="" coords="5,473,253,529"/>
 <area shape="rect" id="node40" href="$solver_8cpp.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/solver.cpp" alt="" coords="3699,473,3877,529"/>
 <area shape="rect" id="node42" href="$optimization__algorithm__with__hessian_8h.html" title="/home/alejandro/Desarrollo\l eclipse/os1/Thirdparty\l/g2o/g2o/core/optimization\l_algorithm_with_hessian.h" alt="" coords="2915,228,3093,299"/>
