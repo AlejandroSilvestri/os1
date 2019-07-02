@@ -22,13 +22,16 @@
 #include <iostream>
 #include <assert.h>
 #include <unistd.h>
-#include <opencv2/core.hpp>
+#include <opencv2/core/core.hpp>
 #include <google/protobuf/io/zero_copy_stream_impl.h>
 
-#include <Osmap.h>
+#include "Osmap.h"
 
 // Option check macro
 #define OPTION(OP) if(options[OP]) headerFile << #OP;
+
+// Log variable
+#define LOGV(VAR) if(verbose) cout << #VAR << ": " << VAR << endl;
 
 using namespace std;
 using namespace cv;
@@ -174,21 +177,32 @@ void Osmap::mapSave(const string givenFilename, bool pauseThreads){
 	  system.mpViewer->Release();
 }
 
-void Osmap::mapLoad(string yamlFilename, bool pauseThreads){
+void Osmap::mapLoad(string yamlFilename, bool noSetBad, bool pauseThreads){
+#ifndef OSMAP_DUMMY_MAP
+	LOGV(system.mpTracker->mState)
+	// Initialize currentFrame via calling GrabImageMonocular just in case, with a dummy image.
+	if(system.mpTracker->mState == ORB_SLAM2::Tracking::NO_IMAGES_YET){
+		Mat m = Mat::zeros(100, 100, CV_8U);
+		system.mpTracker->GrabImageMonocular(m, 0.0);
+		// system.mTrackingState = system.mpTracker->mState;
+	}
+#endif
+
 	if(pauseThreads){
-		system.mpLocalMapper->Release();
-
-		// Limpia el mapa de todos los singletons
+		// Reset thr tracker to clean the map
+		system.mpLocalMapper->Release();	// Release local mapper just in case it's stopped, because if it is stopped it can't be reset
 		system.mpTracker->Reset();
-		// En este punto el sistema está reseteado.
+		// Here the system is reset, state is NO_IMAGE_YET
 
-		// Espera a que se detenga LocalMapping y  Viewer
+		// Stop LocalMapping and Viewer
 		system.mpLocalMapper->RequestStop();
 		system.mpViewer	    ->RequestStop();
-
 		while(!system.mpLocalMapper->isStopped()) usleep(1000);
 		while(!system.mpViewer     ->isStopped()) usleep(1000);
 	}
+
+	LOGV(system.mpLocalMapper->isStopped())
+	LOGV(system.mpViewer     ->isStopped())
 
 	string filename;
 	int intOptions;
@@ -250,7 +264,7 @@ void Osmap::mapLoad(string yamlFilename, bool pauseThreads){
 	headerFile.release();
 
 	// Rebuild
-	rebuild();
+	rebuild(noSetBad);
 
 	// Copy to map
 	setMapPointsToMap();
@@ -271,7 +285,7 @@ void Osmap::mapLoad(string yamlFilename, bool pauseThreads){
 		system.mpViewer->Release();
 
 		// Tracking do this when going to LOST state.
-		// Involed after viewer.Release() because of mutex.
+		// Invoked after viewer.Release() because of mutex.
 		system.mpFrameDrawer->Update(system.mpTracker);
 	}
 }
@@ -490,7 +504,7 @@ void Osmap::depurate(){
 	}
 }
 
-void Osmap::rebuild(){
+void Osmap::rebuild(bool noSetBad){
 	/*
 	 * On every KeyFrame:
 	 * - Builds the map database
@@ -500,14 +514,24 @@ void Osmap::rebuild(){
 	cout << "Rebuilding map:" << endl;
 	keyFrameDatabase.clear();
 
+	if(noSetBad)
+		options.set(NO_SET_BAD);
+
+	log("Processing", vectorKeyFrames.size(), "keyframes");
 	for(auto *pKF : vectorKeyFrames){
+		LOGV(pKF);
+		LOGV(pKF->mnId);
+
 		pKF->mbNotErase = !pKF->mspLoopEdges.empty();
+		LOGV(pKF->mbNotErase);
 
 		// Build BoW vectors
 		pKF->ComputeBoW();
+		log("BoW computed");
 
 		// Build many pose matrices
 		pKF->SetPose(pKF->Tcw);
+		log("Pose set");
 
 		/*
 		 * Rebuilding grid.
@@ -518,6 +542,7 @@ void Osmap::rebuild(){
 		for(int i=0; i<pKF->mnGridCols;i++)
 			for (int j=0; j<pKF->mnGridRows;j++)
 				grid[i][j].reserve(nReserve);
+		log("Grid built");
 
 		for(int i=0;i<pKF->N;i++){
 			const cv::KeyPoint &kp = pKF->mvKeysUn[i];
@@ -528,6 +553,7 @@ void Osmap::rebuild(){
 			if(!(posX<0 || posX>=pKF->mnGridCols || posY<0 || posY>=pKF->mnGridRows))
 				grid[posX][posY].push_back(i);
 		}
+		log("Grid full");
 
 		pKF->mGrid.resize(pKF->mnGridCols);
 		for(int i=0; i < pKF->mnGridCols;i++){
@@ -535,27 +561,22 @@ void Osmap::rebuild(){
 			for(int j=0; j < pKF->mnGridRows; j++)
 				pKF->mGrid[i][j] = grid[i][j];
 		}
+		log("Grid fitted");
 
 		// Append keyframe to the database
 		keyFrameDatabase.add(pKF);
 
-		// Calling UpdateConnections in mnId order rebuilds the covisibility graph and the spanning tree.
-		pKF->UpdateConnections();
-
-		if(!options[NO_SET_BAD])
-			// If this keyframe is isolated (and it isn't keyframe zero), erase it.
-			if(pKF->mConnectedKeyFrameWeights.empty() && pKF->mnId){
-				cerr << "Isolated keyframe " << pKF->mnId << " set bad." << endl;
-				pKF->SetBadFlag();
-			}
-
-		// Rebuilds MapPoints obvervations
+		// Rebuild MapPoints obvervations
 		size_t n = pKF->mvpMapPoints.size();
 		for(size_t i=0; i<n; i++){
 			MapPoint *pMP = pKF->mvpMapPoints[i];
-			if (pMP)
+			if(pMP)
 				pMP->AddObservation(pKF, i);
 		}
+		log("Observations rebuilt");
+
+		// Calling UpdateConnections in mnId order rebuilds the covisibility graph and the spanning tree.
+		pKF->UpdateConnections();
 	}
 
 	// Last KeyFrame's id
@@ -563,6 +584,20 @@ void Osmap::rebuild(){
 
 	// Next KeyFrame id
 	KeyFrame::nNextId = map.mnMaxKFid + 1;
+
+	// Retry on isolated keyframes
+	for(auto *pKF : vectorKeyFrames)
+		if(pKF->mConnectedKeyFrameWeights.empty()){
+			log("Isolated keyframe pKF:", pKF);
+			pKF->UpdateConnections();
+			if(!options[NO_SET_BAD] && pKF->mConnectedKeyFrameWeights.empty() && pKF->mnId){
+				// If this keyframe is isolated (and it isn't keyframe zero), erase it.
+				cerr << "Isolated keyframe " << pKF->mnId << " set bad." << endl;
+				pKF->SetBadFlag();
+			}
+		}
+
+
 
 	/*
 	 * Check and fix the spanning tree created with UpdateConnections.
@@ -576,6 +611,7 @@ void Osmap::rebuild(){
 
 	// Number of parents assigned in each iteration and in total.  Usually 0.
 	int nParents = -1, nParentsTotal = 0;
+	log("Rebuilding spanning tree.");
 	while(nParents){
 		nParents = 0;
 		for(auto pKF: vectorKeyFrames)
@@ -589,16 +625,19 @@ void Osmap::rebuild(){
 					}
 				}
 		nParentsTotal += nParents;
-		cout << "Parents assigned in this loop: " << nParents << endl;
+		log("Parents assigned in this loop:", nParents);
 	}
-	cout << "Parents assigned in total: " << nParentsTotal << endl;
+	log("Parents assigned in total:", nParentsTotal);
 
 	/*
 	 * On every MapPoint:
 	 * - Rebuilds mpRefKF as the first observation, which should be the KeyFrame with the lowest id
 	 * - Rebuilds many properties with UpdateNormalAndDepth()
 	 */
+	log("Processing", vectorMapPoints.size(), "mappoints.");
 	for(OsmapMapPoint *pMP : vectorMapPoints){
+		LOGV(pMP)
+		LOGV(pMP->mnId)
 		// Rebuilds mpRefKF.  Requires mObservations.
 		if(!options[NO_SET_BAD] && pMP->mnId && pMP->mObservations.empty()){
 			cerr << "MP " << pMP->mnId << " without observations." << "  Set bad." << endl;
@@ -805,7 +844,6 @@ void Osmap::serialize(const OsmapMapPoint &mappoint, SerializedMappoint *seriali
 
 OsmapMapPoint *Osmap::deserialize(const SerializedMappoint &serializedMappoint){
   OsmapMapPoint *pMappoint = new OsmapMapPoint(this);
-  //pMappoint->mpMap = &map;
 
   pMappoint->mnId        = serializedMappoint.id();
   pMappoint->mnVisible   = serializedMappoint.visible();
@@ -917,7 +955,6 @@ void Osmap::serialize(const OsmapKeyFrame &keyframe, SerializedKeyframeFeatures 
   }
 }
 
-
 OsmapKeyFrame *Osmap::deserialize(const SerializedKeyframeFeatures &serializedKeyframeFeatures){
   unsigned int KFid = serializedKeyframeFeatures.keyframe_id();
   OsmapKeyFrame *pKF = getKeyFrame(KFid);
@@ -927,6 +964,12 @@ OsmapKeyFrame *Osmap::deserialize(const SerializedKeyframeFeatures &serializedKe
 	  const_cast<std::vector<cv::KeyPoint>&>(pKF->mvKeysUn).resize(n);
 	  pKF->mvpMapPoints.resize(n);
 	  const_cast<cv::Mat&>(pKF->mDescriptors) = Mat(n, 32, CV_8UC1);	// n descriptors
+
+// ORB-SLAM2 needs to have set mvuRight and mvDepth even though they are not used in monocular.  DUMMY_MAP and OS1 don't have these properties.
+#if !defined OSMAP_DUMMY_MAP && !defined OS1
+	  const_cast<std::vector<float>&>(pKF->mvuRight) = vector<float>(n,-1.0f);
+	  const_cast<std::vector<float>&>(pKF->mvDepth) = vector<float>(n,-1.0f);
+#endif
 	  for(int i=0; i<n; i++){
 		const SerializedFeature &feature = serializedKeyframeFeatures.feature(i);
 		if(feature.mappoint_id())		  pKF->mvpMapPoints[i] = getMapPoint(feature.mappoint_id());

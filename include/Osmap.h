@@ -29,7 +29,7 @@
 #include <iterator>
 #include "osmap.pb.h"
 #include <set>
-#include <opencv2/core.hpp>
+#include <opencv2/core/core.hpp>
 
 #ifdef OSMAP_DUMMY_MAP
 
@@ -49,6 +49,7 @@
 
 #endif
 namespace ORB_SLAM2{
+class Osmap;
 
 /**
  * Wrapped MapPoint to let Osmap access protected properties without modifying MapPoint code.
@@ -173,31 +174,17 @@ public:
 
   To test an option:
 
-  if(options[ONLY_MAPPOINTS_FEATURES])...
+      if(options[ORB_SLAM2::Osmap::ONLY_MAPPOINTS_FEATURES])...
 
   To set an option:
 
-  options.set(ONLY_MAPPOINTS_FEATURES);
+      options.set(ORB_SLAM2::Osmap::ONLY_MAPPOINTS_FEATURES);
 
-  Options available:
-
-  - NO_ID: Do not save mappoints id and keyframes id.  It shrinks mappoints and keyframes a little.  When loading, ids will be assigned automatically in increasing order.  Map will work perfectly.  The only drawback is the lack of traceability between two map instances.
-  - NO_LOOPS: Don't save loop closure data, for debugging porpuses.
-  - NO_FEATURES_DESCRIPTORS: Don't save descriptors in features file. Mappoints descriptors will be saved instead.  Descriptors take a huge amount of bytes, and this will shrink thw whole map a lot.  Not sure about drawbacks.
-
-  - K_IN_KEYFRAME: Save K camera matrix in each keyframe, and not in YAML file.  By default K is saved in yaml file.  Usually maps has only one K or few different K.  This option is usefull when each keyframe has a different K.
-  - ONLY_MAPPOINTS_FEATURES: Do not save features not associated to mappoints.  It shrinks the map a lot.  Keyframes will not be suitable to add new mappoints.  Usefull for tracking only.
-
-  - FEATURES_FILE_DELIMITED: Features file is delimited, Kenda Varda's function is needed to retrieve.  On save, force delimited.
-  - FEATURES_FILE_NOT_DELIMITED: Features file is not delimited, file can be read with protocol buffers in the usual way.  On save, force not delimited.  If any of these is set on save, the decision is automatic.
-
-  - NO_MAPPOINTS_FILE: Avoid saving MapPoints file.  Useful when analysing some other file, to save serialization time.
-  - NO_KEYFRAMES_FILE: Avoid saving KeyFrames file.  Useful when analysing some other file, to save serialization time.
-  - NO_FEATURES_FILE:   Avoid saving Features file.  Useful when analysing some other file, to save serialization time.
-
-  New options can be added in the future, but the order of existing options must be keeped.  So, new options must be added to the end of enum.
+  Available options are documented in enum Options.  New options can be added in the future, but the order of existing options must be keeped.  So, new options must be added to the end of enum.
 
   Time stamp is not optional because it always occupy place in protocol buffers, as all numeric fields.  Defaults to 0.
+
+  Options are saved in the map file.  NO_SET_BAD is the only option one can have insterest to set before loading, while not set in the file.
   */
   enum Options {
 	  // Delimited to overcome a Protocol Buffers limitation.  It is automatic, but can be forced with this options:
@@ -207,11 +194,11 @@ public:
 	  // Skip files, for analisys propuses
 	  NO_MAPPOINTS_FILE,	/*!< Skip saving mappoints file.  Map will be incomplete, only for analysis porpouses. */
 	  NO_KEYFRAMES_FILE,	/*!< Skip saving keyframes file.  Map will be incomplete, only for analysis porpouses. */
-	  NO_FEATURES_FILE, 	/*!< Skip saving fesatures file.  Map will be incomplete, only for analysis porpouses. */
+	  NO_FEATURES_FILE, 	/*!< Skip saving features file.  Map will be incomplete, only for analysis porpouses. */
 
 	  // Shrink file
-	  NO_FEATURES_DESCRIPTORS,	/*!< Skip saving descriptors in features file.  Descriptors are the heaviest part of features.  Map will be incomplete, only for analysis porpouses. */
-	  ONLY_MAPPOINTS_FEATURES,	/*!< Skip saving features that not belong to mappoints.  This notable reduce feature file size.  Map will be fine for tracking, may get a little hard (not impossible) to continue mapping. */
+	  NO_FEATURES_DESCRIPTORS,	/*!< Skip saving descriptors in features file.  Descriptors are saved only in mappoints.  It is usually used with ONLY_MAPPOINTS_FEATURES to notable reduce features file size. */
+	  ONLY_MAPPOINTS_FEATURES,	/*!< Skip saving features that not belong to mappoints.  This notable reduce features file size.  Map will be fine for tracking, may get a little hard (not impossible) to continue mapping. */
 
 	  // Options
 	  NO_LOOPS,			/*!< Skip saving and retrieving (loading) loops edges.  Not expected size reduction.  Map will work. For debug and analysis porpouses. */
@@ -282,6 +269,10 @@ public:
   vector<OsmapKeyFrame*> vectorKeyFrames;
 
 
+  /**
+   * Whether or not print on console info for debuging.
+   */
+  bool verbose = false;
 
   /**
   Only constructor, the only way to set the orb-slam2 map.
@@ -313,6 +304,7 @@ public:
   This is the entry point to load a map.  This method uses the Osmap object to serialize the map to files.
 
   @param yamlFilename file name of .yaml file (including .yaml extension) describing a map.
+  @param noSetBad true to avoid bad mappoints and keyframes deletion on rebuilding after loading.
   @param stopTrheads Serializing needs some orb-slam2 threads to be paused.  true (the default value) signals mapLoad to pause the threads before saving, and resume them after saving.  false when threads are paused and resumed by other means.
 
   Only these properties are read from yaml:
@@ -323,7 +315,7 @@ public:
 
   Before calling this method, threads must be paused.
   */
-  void mapLoad(string yamlFilename, bool pauseThreads = true);
+  void mapLoad(string yamlFilename, bool noSetBad = false, bool pauseThreads = true);
 
   /**
    * Save the content of vectorMapPoints to file like "map.mappoints".
@@ -414,11 +406,41 @@ public:
   void depurate();
 
   /**
-   * Works on vectorMapPoints and vectorKeyFrames.
+   * Rebuilding takes place right after loading a map from files, before the map is copied to ORB-SLAM2' sets.
+   *
+   * Works on Osmap::vectorMapPoints and Osmap::vectorKeyFrames.
    * After rebuilding, the elements in these vector should be copied to the map sets.
-   * rebuild() needs KeyPoints and MapPoints to be initialized with a lot of properties set, as the default constructors provided in constructors.cpp show.
+   *
+   * rebuild() needs KeyPoints and MapPoints to be initialized with a lot of properties set,
+   * as the default constructors for OsmapKeyFrame and OsmapMapPoint show.
+   *
+   * @param noSetBad true to avoid bad mappoints and keyframes deletion on rebuilding.
+   *
+   * This method checks Osmap::verbose property to produce console output for debugging purposes.
+   *
+   *
+   * How rebuild works:
+   *
+   *  - Loops on every keyframe:
+   * 		- ComputeBOW, building BOW vectors from descriptors
+   * 		- Builds many pose matrices from pose
+   * 		- Builds the grid
+   * 		- Adds to KeyFrameDatabase
+   * 		- Builds its mappoints observations
+   * 		- UpdateConnections, building the spaning tree and the covisibility graph
+   *  - Sets KeyFrame::nNextId
+   *  - Retries UpdateConnections on isolated keyframes.
+   *  - Sets bad keyframes remaining isolated (avoided with noSetBad argument true)
+   *  - Sets map.mvpKeyFrameOrigins
+   *  - Travels keyframes looking for orphans, trying to assign a parent, thus including them in the spanning tree.
+   *  - Loops on every mappoint:
+   * 		- Sets bad mappoints without observations (avoided with noSetBad argument true)
+   * 		- Sets mpRefKF
+   * 		- UpdateNormalAndDepth, setting mNormalVector, mfMinDistance, mfMaxDistance
+   *  - Sets MapPoint::nNextId
+   *
    */
-  void rebuild();
+  void rebuild(bool noSetBad = false);
 
 
 
@@ -711,6 +733,17 @@ public:
     google::protobuf::io::ZeroCopyInputStream* rawInput,
     google::protobuf::MessageLite* message
   );
+
+
+  // Modified LOG function from https://stackoverflow.com/questions/29326460/how-to-make-a-variadic-macro-for-stdcout
+  void log() {cout << endl;}
+  template<typename Head, typename... Args> void log(const Head& head, const Args&... args ){
+  	if(verbose){
+  		std::cout << head << " ";
+  		log(args...);
+  	}
+  }
+
 };
 
 

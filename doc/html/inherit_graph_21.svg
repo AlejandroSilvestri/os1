@@ -18,7 +18,7 @@
 <!-- Node0 -->
 <g id="node2" class="node">
 <title>Node0</title>
-<g id="a_node2"><a xlink:href="classg2o_1_1_estimate_propagator_1_1_priority_queue.html" target="_top" xlink:title="priority queue for AdjacencyMapEntry ">
+<g id="a_node2"><a xlink:href="d0/d9d/classg2o_1_1_estimate_propagator_1_1_priority_queue.html" target="_top" xlink:title="priority queue for AdjacencyMapEntry ">
 <polygon fill="#ffffff" stroke="#000000" points="92,-.5 92,-30.5 217,-30.5 217,-.5 92,-.5"/>
 <text text-anchor="start" x="100" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">g2o::EstimatePropagator</text>
 <text text-anchor="middle" x="154.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">::PriorityQueue</text>

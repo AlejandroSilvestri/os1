@@ -12,7 +12,7 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_map.html" target="_top" xlink:title="Mapa del mundo, de puntos y keyframes. ">
+<g id="a_node1"><a xlink:href="d9/db3/class_o_r_b___s_l_a_m2_1_1_map.html" target="_top" xlink:title="Mapa del mundo, de puntos y keyframes. ">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-19.5 101,-19.5 101,-.5 0,-.5"/>
 <text text-anchor="middle" x="50.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ORB_SLAM2::Map</text>
 </a>
@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_osmap_map.html" target="_top" xlink:title="Wrapped Map to let Osmap access protected properties without modifying Map code. ">
+<g id="a_node2"><a xlink:href="d0/d14/class_o_r_b___s_l_a_m2_1_1_osmap_map.html" target="_top" xlink:title="Wrapped Map to let Osmap access protected properties without modifying Map code. ">
 <polygon fill="#ffffff" stroke="#000000" points="137,-.5 137,-19.5 269,-19.5 269,-.5 137,-.5"/>
 <text text-anchor="middle" x="203" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ORB_SLAM2::OsmapMap</text>
 </a>

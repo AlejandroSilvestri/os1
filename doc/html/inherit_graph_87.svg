@@ -12,7 +12,7 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_map_drawer.html" target="_top" xlink:title="Esta clase contiene los métodos para dibujar en pangolin. ">
+<g id="a_node1"><a xlink:href="dd/d36/class_o_r_b___s_l_a_m2_1_1_map_drawer.html" target="_top" xlink:title="Esta clase contiene los métodos para dibujar en pangolin. ">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-19.5 132,-19.5 132,-.5 0,-.5"/>
 <text text-anchor="middle" x="66" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ORB_SLAM2::MapDrawer</text>
 </a>

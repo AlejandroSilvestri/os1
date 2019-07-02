@@ -12,7 +12,7 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_map_point.html" target="_top" xlink:title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">
+<g id="a_node1"><a xlink:href="d3/def/class_o_r_b___s_l_a_m2_1_1_map_point.html" target="_top" xlink:title="Cada instancia representa un mapa 3D en el sistema de referencia del mapa. ">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-19.5 123,-19.5 123,-.5 0,-.5"/>
 <text text-anchor="middle" x="61.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ORB_SLAM2::MapPoint</text>
 </a>
@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="class_o_r_b___s_l_a_m2_1_1_osmap_map_point.html" target="_top" xlink:title="Wrapped MapPoint to let Osmap access protected properties without modifying MapPoint code...">
+<g id="a_node2"><a xlink:href="d2/dff/class_o_r_b___s_l_a_m2_1_1_osmap_map_point.html" target="_top" xlink:title="Wrapped MapPoint to let Osmap access protected properties without modifying MapPoint code...">
 <polygon fill="#ffffff" stroke="#000000" points="159,-.5 159,-19.5 314,-19.5 314,-.5 159,-.5"/>
 <text text-anchor="middle" x="236.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">ORB_SLAM2::OsmapMapPoint</text>
 </a>

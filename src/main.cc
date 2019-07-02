@@ -50,7 +50,7 @@ ORB_SLAM2::System *Sistema;
 int main(int argc, char **argv){
 
 	cout	<< "Iniciando ORB-SLAM.  Línea de comando:" << endl
-			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl;
+			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin ruta de archivo para usar la webcam, sin argumentos para usar la webcam con la configuración en webcam.yaml" << endl;
 
     // Parámetros de la línea de comando
 

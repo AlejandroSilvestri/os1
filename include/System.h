@@ -1,4 +1,4 @@
-/**
+/*
 * This file is part of ORB-SLAM2.
 *
 * Copyright (C) 2014-2016 Raúl Mur-Artal <raulmur at unizar dot es> (University of Zaragoza)
@@ -165,20 +165,6 @@
  *
  * \subsection System System
  * \subsection KeyFrameDatabase KeyFrameDatabase
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
- * \subsection
  *
  * \section hilos Descripción de los hilos
  * ORB-SLAM tiene cuatro hilos paralelos, cada uno con su propio bucle.
